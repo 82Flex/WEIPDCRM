@@ -72,7 +72,7 @@
 			echo "<br><br>";
 			echo str_replace("//URL//", "<code>".base64_decode(DCRM_REPOURL)."</code>", "您可以通过 Cydia <a href = \"cydia://sources/add\">添加</a> //URL// 访问该源。");
 			if (DCRM_SHOWLIST == 1) {
-				require_once('manage/include/connect.php');
+				require_once('manage/include/connect.inc.php');
 				$con = mysql_connect($server,$username,$password);
 				if (!$con) {
 					echo '<br />数据库错误！如果您是首次安装，请运行 <a href="init/index.html">快速安装脚本</a> 。';

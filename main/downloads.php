@@ -21,7 +21,7 @@
 	define("DCRM",true);
 	require_once("manage/include/config.inc.php");
 	require_once("manage/include/func.php");
-	require_once('manage/include/connect.php');
+	require_once('manage/include/connect.inc.php');
 	
 	if (!empty($_GET['request']) AND (!empty($_SERVER['HTTP_X_UNIQUE_ID']) OR DCRM_DIRECT_DOWN == 1)) {
 		$r_path = $_GET['request'];

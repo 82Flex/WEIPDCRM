@@ -22,11 +22,12 @@
 	require_once("manage/include/config.inc.php");
 	require_once("manage/include/autofill.inc.php");
 	require_once("manage/include/Mobile_Detect.php");
-	require_once('manage/include/connect.php');
+	require_once('manage/include/connect.inc.php');
 	header("Content-Type: text/html; charset=UTF-8");
+	date_default_timezone_set('Asia/Shanghai');
 	
 	$detect = new Mobile_Detect;
-	if(!$detect->isMobile()){
+	if(!$detect->isiOS()){
 	    header("Location: misc.php");
 	}
 	$con = mysql_connect($server,$username,$password);
@@ -57,28 +58,47 @@
 	if (isset($_GET['pid']) && is_numeric($_GET['pid'])) {
 		if (isset($_GET['method']) && $_GET['method'] == "screenshot") {
 			$index = 2;
-			$pkg = (int)mysql_real_escape_string($_GET['pid']);
-			$pkg_query = mysql_query("SELECT `PID`, `Image`, `Description`, `Width`, `Height` FROM `ScreenShots` WHERE `PID` = '".$pkg."'");
-			if (!$pkg_query) {
-				echo 'MYSQL ERROR!';
-				exit();
+			$title = "预览截图";
+		} elseif (isset($_GET['method']) && $_GET['method'] == "report") {
+			$device_type = array("iPhone","iPod","iPad");
+			for ($i = 0; $i < count($device_type); $i++) {
+				$check = $detect->version($device_type[$i]);
+				if ($check !== false) {
+					if (isset($_SERVER['HTTP_X_MACHINE'])) {
+						$DEVICE = $_SERVER['HTTP_X_MACHINE'];
+					} else {
+						$DEVICE = "Unknown";
+					}
+					$OS = str_replace("_", ".", $check);
+					$VER = $detect->version("Mobile");
+					if (!$VER) {
+						$VER = "NULL";
+					}
+					break;
+				}
 			}
-			$title = $pkg." - 截图";
+			if (isset($_GET['support'])) {
+				if ($_GET['support'] == "1") {
+					$support = 1;
+				} elseif ($_GET['support'] == "2") {
+					$support = 2;
+				} elseif ($_GET['support'] == "3") {
+					$support = 3;
+				} else {
+					$support = 0;
+				}
+				$index = 4;
+				$title = "提交报告";
+			} else {
+				$index = 3;
+				$title = "提交报告";
+			}
+		} elseif (isset($_GET['method']) && $_GET['method'] == "history") {
+			$index = 5;
+			$title = "历史版本";
 		} else {
 			$index = 1;
-			$pkg = (int)mysql_real_escape_string($_GET['pid']);
-			$pkg_query = mysql_query("SELECT `Name`, `Version`, `Package`, `Description`, `DownloadTimes`, `Multi`, `CreateStamp` FROM `Packages` WHERE (`ID` = '".$pkg."' AND `Stat` = '1') LIMIT 1");
-			if (!$pkg_query) {
-				echo 'MYSQL ERROR!';
-				exit();
-			}
-			$pkg_assoc = mysql_fetch_assoc($pkg_query);
-			if (!$pkg_assoc) {
-				echo 'NO PACKAGE SELECTED!';
-				exit();
-			} else {
-				$title = $pkg_assoc['Name'];
-			}
+			$title = "查看软件包";
 		}
 	} else {
 		$index = 0;
@@ -174,12 +194,35 @@
 				}
 				echo $txt;
 	} elseif ($index == 1) {
+		$pkg = (int)mysql_real_escape_string($_GET['pid']);
+		$pkg_query = mysql_query("SELECT `Name`, `Version`, `Package`, `Description`, `DownloadTimes`, `Multi`, `CreateStamp` FROM `Packages` WHERE `ID` = '".$pkg."' LIMIT 1");
+		if (!$pkg_query) {
+			echo 'MYSQL ERROR!';
+			exit();
+		}
+		$pkg_assoc = mysql_fetch_assoc($pkg_query);
+		if (!$pkg_assoc) {
+			echo 'NO PACKAGE SELECTED!';
+			exit();
+		}
 ?>
 			<fieldset>
 				<a href="cydia://package/<?php echo $pkg_assoc['Package']; ?>" id="cydialink">
 					<img class="icon" src="icons/cydia.png" width="58" height="58">
 					<div>
 						<label>在 Cydia<sup><small>™</small></sup> 中查看</label>
+					</div>
+				</a>
+				<a href="index.php?pid=<?php echo $_GET['pid']; ?>&method=report" id="reportlink">
+					<img class="icon" src="icons/report.png" width="58" height="58">
+					<div>
+						<label>提交报告</label>
+					</div>
+				</a>
+				<a href="index.php?pid=<?php echo $_GET['pid']; ?>&method=history" id="historylink">
+					<img class="icon" src="icons/clock.png" width="58" height="58">
+					<div>
+						<label>历史版本</label>
 					</div>
 				</a>
 				<a href="index.php?pid=<?php echo $_GET['pid']; ?>&method=screenshot">
@@ -194,8 +237,8 @@
 				</div></a>
 			</fieldset>
 			<block>
-			<p><?php echo "上传时间：".$pkg_assoc['CreateStamp']; ?></p>
 			<p><?php echo "版本 ".$pkg_assoc['Version']." 下载次数 ".$pkg_assoc['DownloadTimes']; ?></p>
+			<p><?php echo "更新时间：".$pkg_assoc['CreateStamp']; ?></p>
 			</block>
 			<block>
 			<p><strong><?php echo htmlspecialchars($pkg_assoc['Description']); ?></strong></p>
@@ -203,8 +246,17 @@
 			</block>
 <?php
 	} elseif ($index == 2) {
+		$pkg = (int)mysql_real_escape_string($_GET['pid']);
+		$q_info = mysql_query("SELECT count(*) FROM `ScreenShots` WHERE `PID` = '".$pkg."'");
+		$info = mysql_fetch_row($q_info);
+		$num[0] = (int)$info[0];
+		$pkg_query = mysql_query("SELECT `PID`, `Image`, `Description`, `Width`, `Height` FROM `ScreenShots` WHERE `PID` = '".$pkg."'");
+		if (!$pkg_query) {
+			echo 'MYSQL ERROR!';
+			exit();
+		}
 ?>
-			<label><?php if(count($pkg_query)==0){echo("该软件包暂无截图");}else{echo("截图");} ?></label>
+			<label><?php if($num[0]==0){echo("该软件包暂无截图");}else{echo("截图");} ?></label>
 			<div style="text-align: center; width: 320px">
 			<?php
 				while ($pkg_assoc = mysql_fetch_assoc($pkg_query)) {
@@ -213,6 +265,70 @@
 			?>
 			</div>
 <?php
+	} elseif ($index == 3) {
+?>
+			<block>
+			<p><strong>当前设备信息</strong></p>
+			<p><?php echo $DEVICE." &amp; ".$OS."(".$VER.")"; ?></p>
+			</block>
+			<fieldset>
+				<a href="index.php?pid=<?php echo $_GET['pid']; ?>&method=report&support=1">
+					<img class="icon" src="icons/support_1.png" width="58" height="58">
+					<div>
+						<label>完美兼容</label>
+					</div>
+				</a>
+				<a href="index.php?pid=<?php echo $_GET['pid']; ?>&method=report&support=0">
+					<img class="icon" src="icons/support_0.png" width="58" height="58">
+					<div>
+						<label>不完美兼容</label>
+					</div>
+				</a>
+				<a href="index.php?pid=<?php echo $_GET['pid']; ?>&method=report&support=2">
+					<img class="icon" src="icons/support_2.png" width="58" height="58">
+					<div>
+						<label>不兼容</label>
+					</div>
+				</a>
+				<a href="index.php?pid=<?php echo $_GET['pid']; ?>&method=report&support=3">
+					<img class="icon" src="icons/support_3.png" width="58" height="58">
+					<div>
+						<label>请求升级</label>
+					</div>
+				</a>
+			</fieldset>
+			<block>
+			<p><strong>软件包兼容性报告是由广大用户投票，系统统计生成的数据，仅供参考。</strong></p>
+			<p>如果您，安装以后出现兼容性问题，您的一票，也许能够帮助成千上万的用户免于安全模式、白苹果等诸多威胁。</p>
+			<p>当然，如果您安装以后能够完美使用，也请您投上一票，它能够让大家更放心地安装软件包。</p>
+			</block>
+<?php
+	} elseif ($index == 4) {
+		$result = mysql_query("SELECT `ID` FROM `Reports` WHERE (`Remote` = '".mysql_real_escape_string($_SERVER['REMOTE_ADDR'])."' AND `PID`='".$_GET['pid']."') LIMIT 2");
+		if (mysql_affected_rows() < 2) {
+			if (!empty($_SERVER['REMOTE_ADDR']) && !empty($DEVICE) && !empty($OS) && !empty($VER)) {
+				$result = mysql_query("INSERT INTO `Reports`(`Remote`, `Device`, `iOS`, `Version`, `Support`, `TimeStamp`, `PID`) VALUES('".mysql_real_escape_string($_SERVER['REMOTE_ADDR'])."', '".mysql_real_escape_string($DEVICE)."', '".mysql_real_escape_string($OS)."', '".mysql_real_escape_string($VER)."', '".$support."', '".mysql_real_escape_string(date('Y-m-d H:i:s'))."', '".$_GET['pid']."')");
+			}
+			$message = "您的报告已经提交完成。<br />感谢您的支持！";
+		} else {
+			$message = "投票次数超过系统限制。<br />请稍后再试！";
+		}
+?>
+			<block>
+			<p><strong><?php echo($message); ?></strong></p>
+			</block>
+<?php
+	} elseif ($index == 5) {
+		$history_query = mysql_query("SELECT `ID`, `Version` FROM `Packages` WHERE (`Package` = (SELECT `Package` FROM `Packages` WHERE `ID` = '".$_GET['pid']."' LIMIT 1) AND `Version` != (SELECT `Version` FROM `Packages` WHERE `ID` = '".$_GET['pid']."' LIMIT 1)) ORDER BY `ID` DESC LIMIT 20");
+		if (mysql_affected_rows() > 0) {
+			echo '<label>历史版本</label><fieldset>';
+			while ($history = mysql_fetch_assoc($history_query)) {
+				echo '<a href="index.php?pid='.$history['ID'].'&addr=nohistory"><img class="icon" src="icons/clock.png" width="58" height="58"><div><label>版本 '.$history['Version'].'</label></div></a>';
+			}
+			echo '</fieldset>';
+		} else {
+			echo '<label>该软件包暂无历史版本</label>';
+		}
 	}
 ?>
 		</panel>
@@ -220,6 +336,12 @@
 			if (navigator.userAgent.search(/Cydia/) != -1) {
 				document.body.classList.add("cydia");
 				document.getElementById("cydialink").style.display="none";
+			} else {
+				document.getElementById("reportlink").style.display="none";
+			}
+			if (window.location.href.search(/nohistory/) != -1) {
+				document.getElementById("reportlink").style.display="none";
+				document.getElementById("historylink").style.display="none";
 			}
 		</script>
 		<!-- Statistics Start -->

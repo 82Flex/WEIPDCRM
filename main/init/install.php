@@ -25,7 +25,7 @@
 			header("Location: index.html");
 			exit();
 		}
-		$put = file_put_contents("../manage/include/connect.php", "<?php\n\t\$server = '".$_POST['db_host']."';\n\t\$username = '".$_POST['db_user']."';\n\t\$password = '".$_POST['db_password']."';\n\t\$database = '".$_POST['db_database']."';\n?>");
+		$put = file_put_contents("../manage/include/connect.inc.php", "<?php\n\t\$server = '".$_POST['db_host']."';\n\t\$username = '".$_POST['db_user']."';\n\t\$password = '".$_POST['db_password']."';\n\t\$database = '".$_POST['db_database']."';\n?>");
 		if (!$put) {
 			$inst_alert = "数据库配置写入失败，请检查文件权限！";
 			goto endlabel;
@@ -34,7 +34,7 @@
 	
 	define("DCRM",true);
 	require_once("../manage/include/config.inc.php");
-	require_once("../manage/include/connect.php");
+	require_once("../manage/include/connect.inc.php");
 	header("Content-Type: text/html; charset=UTF-8");
 	
 	if (!defined('PHP_VERSION_ID')) {
@@ -165,7 +165,6 @@
 		goto endlabel;
 	}
 	
-	
 	/*
 	-- ----------------------------
 	--  Table structure for `ScreenShots`
@@ -186,6 +185,36 @@
 	  `Description` varchar(512) NOT NULL,
 	  `Width` int(8) NOT NULL,
 	  `Height` int(8) NOT NULL,
+	  PRIMARY KEY (`ID`)
+	) ENGINE=MyISAM AUTO_INCREMENT=0 DEFAULT CHARSET=utf8");
+	
+	if (!$result) {
+		$inst_alert = mysql_error();
+		goto endlabel;
+	}
+	
+	/*
+	-- ----------------------------
+	--  Table structure for `Reports`
+	-- ----------------------------
+	*/
+	
+	$result = mysql_query("DROP TABLE IF EXISTS `Reports`");
+	
+	if (!$result) {
+		$inst_alert = mysql_error();
+		goto endlabel;
+	}
+	
+	$result = mysql_query("CREATE TABLE `Reports` (
+	  `ID` int(8) NOT NULL AUTO_INCREMENT,
+	  `PID` int(8) NOT NULL,
+	  `Remote` varchar(64) NOT NULL,
+	  `Device` varchar(64) NOT NULL,
+	  `iOS` varchar(64) NOT NULL,
+	  `Version` varchar(64) NOT NULL,
+	  `Support` int(8) NOT NULL,
+	  `TimeStamp` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
 	  PRIMARY KEY (`ID`)
 	) ENGINE=MyISAM AUTO_INCREMENT=0 DEFAULT CHARSET=utf8");
 	

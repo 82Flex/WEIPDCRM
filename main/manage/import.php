@@ -21,7 +21,7 @@
 	define("DCRM",true);
 	require_once('include/config.inc.php');
 	require_once('include/tar.php');
-	require_once('include/connect.php');
+	require_once('include/connect.inc.php');
 	require_once('include/func.php');
 	header("Content-Type: text/html; charset=UTF-8");
 	date_default_timezone_set('Asia/Shanghai');

@@ -22,7 +22,7 @@
 	require_once('include/tar.php');
 	require_once('include/func.php');
 	require_once("include/config.inc.php");
-	require_once('include/connect.php');
+	require_once('include/connect.inc.php');
 	header("Content-Type: text/html; charset=UTF-8");
 	
 	if (!isset($_SESSION['connected'])) {
