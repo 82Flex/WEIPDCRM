@@ -23,22 +23,18 @@
 	require_once("include/connect.inc.php");
 	require_once("include/func.php");
 	header("Content-Type: text/html; charset=UTF-8");
-	
-	// Connect to Server
-	$con = mysql_connect($server,$username,$password);
-	
-	if (!$con) {
-		goto endlabel;
-	}
-	
-	mysql_query("SET NAMES utf8",$con);
-	$select  = mysql_select_db($database,$con);
-	if (!$select) {
-		$alert = mysql_error();
-		goto endlabel;
-	}
 
 	if (isset($_SESSION['connected'])) {
+		$con = mysql_connect($server,$username,$password);
+		if (!$con) {
+			goto endlabel;
+		}
+		mysql_query("SET NAMES utf8",$con);
+		$select  = mysql_select_db($database,$con);
+		if (!$select) {
+			$alert = mysql_error();
+			goto endlabel;
+		}
 ?>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -137,7 +133,7 @@
 						?>
 						<br />
 						<!-- Statistics Start -->
-						<script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan id='cnzz_stat_icon_1000537818'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s11.cnzz.com/z_stat.php%3Fid%3D1000537818%26online%3D1%26show%3Dline' type='text/javascript'%3E%3C/script%3E"));</script>
+						<?php echo AUTOFILL_STATISTICS_INFO; ?>
 						<!-- Statistics End -->
 					</div>
 				</div>

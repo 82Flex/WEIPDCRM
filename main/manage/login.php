@@ -24,6 +24,8 @@
 	ob_start();
 	define("DCRM",true);
 	require_once("include/config.inc.php");
+	require_once("include/connect.inc.php");
+	date_default_timezone_set('Asia/Shanghai');
 	
 	if (isset($_GET['authpic']) AND $_GET['authpic'] == 'png') {
 		header("Content-type: image/png");
@@ -97,15 +99,39 @@
 	} 
 	elseif (!empty($_POST['username']) AND !empty($_POST['password']) AND !empty($_POST['authcode'])) {
 		if ($_POST['authcode'] != $_SESSION['VCODE']) {
+			unset($_SESSION['VCODE']);
 			header("Location: login.php?error=authcode");
 			exit();
 		}
-		if ($_POST['username'] == DCRM_USERNAME AND sha1($_POST['password']) == DCRM_PASSWORD) {
-			$_SESSION['connected'] = true;
-			$_SESSION['token'] = sha1(time()*rand(140,320));
-			$_SESSION['try'] = 0;
-			header("Location: center.php");
+		$con = mysql_connect($server,$username,$password);
+		if (!$con) {
+			header("Location: login.php?error=bear");
 			exit();
+		}
+		mysql_query("SET NAMES utf8",$con);
+		$select  = mysql_select_db($database,$con);
+		if (!$select) {
+			header("Location: login.php?error=bear");
+			exit();
+		}
+		$login_query = mysql_query("SELECT `ID`, `Username`, `SHA1`, `LastLoginTime` FROM `Users` WHERE `Username` = '".mysql_real_escape_string($_POST['username'])."' LIMIT 1");
+		if (mysql_affected_rows() > 0) {
+			$login = mysql_fetch_assoc($login_query);
+			if ($login['Username'] === $_POST['username'] AND strtoupper($login['SHA1']) === strtoupper(sha1($_POST['password']))) {
+				$login_query = mysql_query("UPDATE `Users` SET `LastLoginTime` = '".date('Y-m-d H:i:s')."' WHERE `ID` = '".$login['ID']."'");
+				$_SESSION['connected'] = true;
+				$_SESSION['token'] = sha1(time()*rand(140,320));
+				$_SESSION['userid'] = $login['ID'];
+				$_SESSION['username'] = $login['Username'];
+				$_SESSION['try'] = 0;
+				header("Location: center.php");
+				exit();
+			}
+			else {
+				$_SESSION['try'] = $_SESSION['try'] + 1;
+				header("Location: login.php?error=badlogin");
+				exit();
+			}
 		}
 		else {
 			$_SESSION['try'] = $_SESSION['try'] + 1;
@@ -172,7 +198,7 @@
 			<hr>
 			<p><input type="text" name="username" required="required" placeholder="用户名" /></p>
 			<p><input type="password" name="password" placeholder="密码" required="required" /></p>
-			<p><input type="text" name="authcode" required="required" placeholder="验证码" style="width:120px;" />&nbsp;<img src="login.php?authpic=png" style="height:36px;width:88px;" onclick="this.src='login.php?authpic=png&rand=' + new Date().getTime();" /></p>
+			<p><input type="text" name="authcode" required="required" placeholder="验证码" style="width:120px;" />&nbsp;<img src="login.php?authpic=png&rand=<?php echo(time()); ?>" style="height:36px;width:88px;" onclick="this.src='login.php?authpic=png&rand=' + new Date().getTime();" /></p>
 				<input type="submit" class="btn btn-success" name="submit" value="立即登录" />
 		</form>
 		<?php
@@ -181,7 +207,7 @@
 		?>
 		<div class="well">
 			错误：<hr>
-			您的登录次数太多，请联系管理员解锁。
+			您的登录错误次数太多，关闭会话后再试。
 		</div>
 		<?php
 			}

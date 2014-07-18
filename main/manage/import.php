@@ -26,15 +26,14 @@
 	header("Content-Type: text/html; charset=UTF-8");
 	date_default_timezone_set('Asia/Shanghai');
 	
-	$diff = FALSE;
-	$replace = FALSE;
-	$success = true;
 	if (!isset($_SESSION['connected'])) {
 		header("Location: login.php");
 		exit();
 	}
+	$diff = FALSE;
+	$replace = FALSE;
+	$success = true;
 	$con = mysql_connect($server,$username,$password);
-	
 	if (!$con) {
 		$alert = "数据库错误！";
 		$success = false;

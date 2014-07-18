@@ -27,22 +27,17 @@
 		header("Location: login.php");
 		exit();
 	}
-	
-	// Connect to Server
 	$con = mysql_connect($server,$username,$password);
-	
 	if (!$con) {
 		$alert = "数据库错误！";
 		goto endlabel;
 	}
-	
 	mysql_query("SET NAMES utf8",$con);
 	$select  = mysql_select_db($database,$con);
 	if (!$select) {
 		$alert = mysql_error();
 		goto endlabel;
 	}
-	
 	$request_id = (int)$_GET['id'];
 	$m_query = mysql_query("SELECT * FROM `Packages` WHERE `ID` = '" . $request_id . "'");
 	if ($m_query == false) {
@@ -50,7 +45,6 @@
 		goto endlabel;
 	}
 	$m_array = mysql_fetch_assoc($m_query);
-	
 	if ($m_array == false) {
 		$alert = "查询不到指定的项目。";
 		goto endlabel;
@@ -62,8 +56,6 @@
 		}
 	}
 	$f_Package = str_replace("../","./",$f_Package);
-	
-	
 	endlabel:
 	mysql_close($con);
 ?>

@@ -29,15 +29,11 @@
 		header("Location: login.php");
 		exit();
 	}
-	
-	// Connect to Server
 	$con = mysql_connect($server,$username,$password);
-	
 	if (!$con) {
 		$alert = "数据库错误！" . mysql_error();
 		goto endlabel;
 	}
-	
 	mysql_query("SET NAMES utf8",$con);
 	$select  = mysql_select_db($database,$con);
 	if (!$select) {

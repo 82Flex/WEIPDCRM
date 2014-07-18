@@ -24,7 +24,6 @@
 	header("Content-Type: text/html; charset=UTF-8");
 	
 	if (isset($_SESSION['connected'])) {
-		// Connect to Server
 		$con = mysql_connect($server,$username,$password);
 		if (!$con) {
 			die("MYSQL Error!");

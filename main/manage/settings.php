@@ -20,9 +20,21 @@
 	ob_start();
 	define("DCRM",true);
 	require_once("include/config.inc.php");
+	require_once("include/connect.inc.php");
 	header("Content-Type: text/html; charset=UTF-8");
-	
+
 	if (isset($_SESSION['connected'])) {
+		$con = mysql_connect($server,$username,$password);
+		if (!$con) {
+			echo(mysql_error());
+			exit();
+		}
+		mysql_query("SET NAMES utf8",$con);
+		$select  = mysql_select_db($database,$con);
+		if (!$select) {
+			echo(mysql_error());
+			exit();
+		}
 ?>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -75,7 +87,7 @@
 						<div class="group-control">
 							<label class="control-label">用户名</label>
 							<div class="controls">
-								<input type="text" required="required" name="username" value="<?php echo DCRM_USERNAME; ?>"/>
+								<input type="text" required="required" name="username" value="<?php echo $_SESSION['username']; ?>"/>
 							</div>
 						</div>
 						<br />
@@ -251,14 +263,11 @@
 							echo '<br /><a href="settings.php">返回</a></h3>';
 						}
 						else {
+							$result = mysql_query("UPDATE `Users` SET `Username` = '".mysql_real_escape_string($_POST['username'])."' WHERE `ID` = '".$_SESSION['userid']."'");
+							if (!empty($_POST['password']) AND $result) {
+								$result = mysql_query("UPDATE `Users` SET `SHA1` = '".sha1($_POST['password'])."' WHERE `ID` = '".$_SESSION['userid']."'");
+							}
 							$config_text = "<?php\n\tif (!defined(\"DCRM\")) {\n\t\texit;\n\t}\n";
-							$config_text .= "\tdefine(\"DCRM_USERNAME\",\"".$_POST['username']."\");\n";
-							if (!empty($_POST['password'])) {
-								$config_text .= "\tdefine(\"DCRM_PASSWORD\",\"".sha1($_POST['password'])."\");\n";
-							}
-							else {
-								$config_text .= "\tdefine(\"DCRM_PASSWORD\",\"".DCRM_PASSWORD."\");\n";
-							}
 							$config_text .= "\tdefine(\"DCRM_MAXLOGINFAIL\",".$_POST['trials'].");\n";
 							$config_text .= "\tdefine(\"DCRM_SHOWLIST\",".$_POST['list'].");\n";
 							$config_text .= "\tdefine(\"DCRM_SHOW_NUM\",".$_POST['listnum'].");\n";
@@ -274,6 +283,9 @@
 							fputs($config_handle,stripslashes($config_text));
 							fclose($config_handle);
 							echo '<h3 class="alert alert-success">设置修改成功。<br/><a href="settings.php">返回</a></h3>';
+							if ($result) {
+								header("Location: login.php?action=logout");
+							}
 						}
 					}
 				?>

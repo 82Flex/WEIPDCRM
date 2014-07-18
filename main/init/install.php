@@ -223,6 +223,32 @@
 		goto endlabel;
 	}
 	
+	/*
+	-- ----------------------------
+	--  Table structure for `Users`
+	-- ----------------------------
+	*/
+	
+	$result = mysql_query("DROP TABLE IF EXISTS `Users`");
+	
+	if (!$result) {
+		$inst_alert = mysql_error();
+		goto endlabel;
+	}
+	
+	$result = mysql_query("CREATE TABLE `Users` (
+	  `ID` int(8) NOT NULL AUTO_INCREMENT PRIMARY KEY,
+	  `Username` varchar(64) NOT NULL,
+	  `SHA1` varchar(128) NOT NULL,
+	  `LastLoginTime` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00'
+	) ENGINE=MyISAM AUTO_INCREMENT=0 DEFAULT CHARSET=utf8");
+	
+	if (!$result) {
+		$inst_alert = mysql_error();
+		goto endlabel;
+	}
+
+	
 	if(!mkdir("../tmp") || !copy("CydiaIcon.png", "../CydiaIcon.png")) {
 		$inst_alert = "文件权限错误，请赋予根目录读取与写入权限。";
 		goto endlabel;
