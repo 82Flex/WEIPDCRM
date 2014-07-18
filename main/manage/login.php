@@ -89,30 +89,30 @@
 	if (isset($_GET['action']) AND $_GET['action'] == "logout") {
 		session_unset();
 		session_destroy();
-		header("Location: login.php");
-		exit();
+		goto endlabel;
 	}
 	if (isset($_SESSION['connected']) && $_SESSION['connected'] === true) {
 		header("Location: center.php");
 		exit();
-	} else {
+	}
+	if(isset($_POST['submit'])) {
 		if (!empty($_POST['username']) AND !empty($_POST['password']) AND !empty($_POST['authcode'])) {
 			if ($_POST['authcode'] != $_SESSION['VCODE']) {
 				unset($_SESSION['VCODE']);
 				$_SESSION['try'] = $_SESSION['try'] + 1;
-				header("Location: login.php?error=authcode");
-				exit();
+				$error = "authcode";
+				goto endlabel;
 			}
 			$con = mysql_connect($server,$username,$password);
 			if (!$con) {
-				header("Location: login.php?error=bear");
-				exit();
+				$error = "bear";
+				goto endlabel;
 			}
 			mysql_query("SET NAMES utf8");
 			$select  = mysql_select_db($database);
 			if (!$select) {
-				header("Location: login.php?error=bear");
-				exit();
+				$error = "bear";
+				goto endlabel;
 			}
 			$login_query = mysql_query("SELECT * FROM `Users` WHERE `Username` = '".mysql_real_escape_string($_POST['username'])."' LIMIT 1");
 			if (mysql_affected_rows() > 0) {
@@ -129,18 +129,20 @@
 					exit();
 				} else {
 					$_SESSION['try'] = $_SESSION['try'] + 1;
-					header("Location: login.php?error=badlogin");
-					exit();
+					$error = "badlogin";
+					goto endlabel;
 				}
 			} else {
 				$_SESSION['try'] = $_SESSION['try'] + 1;
-				header("Location: login.php?error=badlogin");
-				exit();
+				$error = "badlogin";
+				goto endlabel;
 			}
-		} elseif (isset($_POST['submit'])) {
-			header("Location: login.php?error=notenough");
-			exit();
 		} else {
+			$error = "notenough";
+			goto endlabel;
+		}
+	}
+	endlabel:
 ?>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -176,16 +178,19 @@
 		?>
 		<form class="well" action="login.php" method="POST">
 			<?php
-				if (isset($_GET['error']) AND $_GET["error"] == "notenough") {
+				if (isset($_GET['error'])) {
+					$error = $_GET['error'];
+				}
+				if ($error == "notenough") {
 					echo '请填写用户名和密码！';
 				}
-				elseif (isset($_GET['error']) AND $_GET["error"] == "badlogin") {
+				elseif ($error == "badlogin") {
 					echo '用户名或密码错误！';
 				}
-				elseif (isset($_GET['error']) AND $_GET["error"] == "bear") {
+				elseif ($error == "bear") {
 					echo '熊出没注意！';
 				}
-				elseif (isset($_GET['error']) AND $_GET["error"] == "authcode") {
+				elseif ($error == "authcode") {
 					echo '验证码错误！';
 				}
 				else {
@@ -211,7 +216,3 @@
 		?>
 	</body>
 </html>
-<?php
-		}
-	}
-?>
