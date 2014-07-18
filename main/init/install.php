@@ -249,6 +249,13 @@
 		goto endlabel;
 	}
 
+	$result = mysql_query("INSERT INTO `Users` (`Username`, `SHA1`, `LastLoginTime`, `Power`)
+	VALUES ('root', 'DC76E9F0C0006E8F919E0C515C66DBBA3982F785', '0000-00-00 00:00:00', '1')");
+	
+	if (!$result) {
+		$inst_alert = mysql_error();
+		goto endlabel;
+	}
 	
 	if(!mkdir("../tmp") || !copy("CydiaIcon.png", "../CydiaIcon.png")) {
 		$inst_alert = "文件权限错误，请赋予根目录读取与写入权限。";

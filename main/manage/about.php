@@ -82,7 +82,7 @@
 				<h2>关于程序</h2>
 				<br /><div class="alert alert-info"><h3>
 				Darwin Cydia Repository Manager (DCRM)<br />
-				版本：1.3 Pro<br />
+				版本：1.4 Pro<br />
 				开源的 Cydia™/APT 个人源解决方案</h3><br /><h4>
 				开发人员</h4>
 				主程序：威锋网测试组 <a href="http://weibo.cn/u/3246210680">@i_82</a><br />
