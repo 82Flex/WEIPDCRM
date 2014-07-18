@@ -80,76 +80,67 @@
 		ImageDestroy($im);
 		/*绘图结束*/
 		exit();
-	}
-	else {
+	} else {
 		header("Content-Type: text/html; charset=UTF-8");
 	}
 	if (!isset($_SESSION['try'])) {
 		$_SESSION['try'] = 0;
 	}
-	if (!empty($_SESSION['connected']) AND isset($_GET['action']) AND $_GET['action'] == "logout") {
+	if (isset($_GET['action']) AND $_GET['action'] == "logout") {
 		session_unset();
 		session_destroy();
-		header("Location: center.php");
+		header("Location: login.php");
 		exit();
 	}
-	elseif (isset($_SESSION['connected'])) {
+	if (isset($_SESSION['connected']) && $_SESSION['connected'] === true) {
 		header("Location: center.php");
 		exit();
-	} 
-	elseif (!empty($_POST['username']) AND !empty($_POST['password']) AND !empty($_POST['authcode'])) {
-		if ($_POST['authcode'] != $_SESSION['VCODE']) {
-			unset($_SESSION['VCODE']);
-			header("Location: login.php?error=authcode");
-			exit();
-		}
-		$con = mysql_connect($server,$username,$password);
-		if (!$con) {
-			header("Location: login.php?error=bear");
-			exit();
-		}
-		mysql_query("SET NAMES utf8",$con);
-		$select  = mysql_select_db($database,$con);
-		if (!$select) {
-			header("Location: login.php?error=bear");
-			exit();
-		}
-		$login_query = mysql_query("SELECT * FROM `Users` WHERE `Username` = '".mysql_real_escape_string($_POST['username'])."' LIMIT 1");
-		if (mysql_affected_rows() > 0) {
-			$login = mysql_fetch_assoc($login_query);
-			if ($login['Username'] === $_POST['username'] AND strtoupper($login['SHA1']) === strtoupper(sha1($_POST['password']))) {
-				$login_query = mysql_query("UPDATE `Users` SET `LastLoginTime` = '".date('Y-m-d H:i:s')."' WHERE `ID` = '".$login['ID']."'");
-				$_SESSION['power'] = $login['Power'];
-				$_SESSION['userid'] = $login['ID'];
-				$_SESSION['username'] = $login['Username'];
-				$_SESSION['token'] = sha1(time()*rand(140,320));
-				$_SESSION['try'] = 0;
-				if ($_SESSION['power'] === 1) {
-					$_SESSION['connected'] = true;
-					header("Location: center.php");
-				} else {
-					$_SESSION['connected'] = false;
-					header("Location: upload.php");
-				}
+	} else {
+		if (!empty($_POST['username']) AND !empty($_POST['password']) AND !empty($_POST['authcode'])) {
+			if ($_POST['authcode'] != $_SESSION['VCODE']) {
+				unset($_SESSION['VCODE']);
+				$_SESSION['try'] = $_SESSION['try'] + 1;
+				header("Location: login.php?error=authcode");
 				exit();
 			}
-			else {
+			$con = mysql_connect($server,$username,$password);
+			if (!$con) {
+				header("Location: login.php?error=bear");
+				exit();
+			}
+			mysql_query("SET NAMES utf8");
+			$select  = mysql_select_db($database);
+			if (!$select) {
+				header("Location: login.php?error=bear");
+				exit();
+			}
+			$login_query = mysql_query("SELECT * FROM `Users` WHERE `Username` = '".mysql_real_escape_string($_POST['username'])."' LIMIT 1");
+			if (mysql_affected_rows() > 0) {
+				$login = mysql_fetch_assoc($login_query);
+				if ($login['Username'] === $_POST['username'] AND strtoupper($login['SHA1']) === strtoupper(sha1($_POST['password']))) {
+					$login_query = mysql_query("UPDATE `Users` SET `LastLoginTime` = '".date('Y-m-d H:i:s')."' WHERE `ID` = '".$login['ID']."'");
+					$_SESSION['power'] = $login['Power'];
+					$_SESSION['userid'] = $login['ID'];
+					$_SESSION['username'] = $login['Username'];
+					$_SESSION['token'] = sha1(time()*rand(140,320));
+					$_SESSION['try'] = 0;
+					$_SESSION['connected'] = true;
+					header("Location: center.php");
+					exit();
+				} else {
+					$_SESSION['try'] = $_SESSION['try'] + 1;
+					header("Location: login.php?error=badlogin");
+					exit();
+				}
+			} else {
 				$_SESSION['try'] = $_SESSION['try'] + 1;
 				header("Location: login.php?error=badlogin");
 				exit();
 			}
-		}
-		else {
-			$_SESSION['try'] = $_SESSION['try'] + 1;
-			header("Location: login.php?error=badlogin");
+		} elseif (isset($_POST['submit'])) {
+			header("Location: login.php?error=notenough");
 			exit();
-		}
-	}
-	elseif (isset($_POST['submit']) AND (empty($_POST['username']) OR empty($_POST['password']))) {
-		header("Location: login.php?error=notenough");
-		exit();
-	}
-	else {
+		} else {
 ?>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -221,5 +212,6 @@
 	</body>
 </html>
 <?php
+		}
 	}
 ?>

@@ -18,7 +18,7 @@
 	
 	ob_start();
 	session_start();
-	if (!empty($_SESSION['connected'])) {
+	if (isset($_SESSION['connected']) && $_SESSION['connected'] === true) {
 		header("Location: center.php");
 	}
 	else {

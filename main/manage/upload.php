@@ -40,7 +40,7 @@
 		return "上传成功：". $path . $name;
 	}
 	
-	if (isset($_SESSION['connected'])) {
+	if (isset($_SESSION['connected']) && $_SESSION['connected'] === true) {
 		if (isset($_GET['action']) && $_GET['action'] == "upload" && !empty($_FILES)) {
 			echo upload($_FILES["deb"]);
 			exit();
