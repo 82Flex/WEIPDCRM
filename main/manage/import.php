@@ -26,7 +26,7 @@
 	header("Content-Type: text/html; charset=UTF-8");
 	date_default_timezone_set('Asia/Shanghai');
 	
-	if (!isset($_SESSION['connected'])) {
+	if (!isset($_SESSION['connected']) || $_SESSION['connected'] != true) {
 		header("Location: login.php");
 		exit();
 	}

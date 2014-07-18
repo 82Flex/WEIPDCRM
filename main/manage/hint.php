@@ -23,7 +23,7 @@
 	require_once("include/connect.inc.php");
 	header("Content-Type: text/html; charset=UTF-8");
 	
-	if (isset($_SESSION['connected'])) {
+	if (isset($_SESSION['connected']) && $_SESSION['connected'] === true) {
 		$con = mysql_connect($server,$username,$password);
 		if (!$con) {
 			die("MYSQL Error!");

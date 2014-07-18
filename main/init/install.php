@@ -241,6 +241,7 @@
 	  `Username` varchar(64) NOT NULL,
 	  `SHA1` varchar(128) NOT NULL,
 	  `LastLoginTime` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00'
+	  `Power` int(8) NOT NULL,
 	) ENGINE=MyISAM AUTO_INCREMENT=0 DEFAULT CHARSET=utf8");
 	
 	if (!$result) {

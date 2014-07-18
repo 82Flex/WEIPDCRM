@@ -23,7 +23,7 @@
 	require_once("include/connect.inc.php");
 	header("Content-Type: text/html; charset=UTF-8");
 
-	if (isset($_SESSION['connected'])) {
+	if (isset($_SESSION['connected']) && $_SESSION['connected'] === true) {
 		$con = mysql_connect($server,$username,$password);
 		if (!$con) {
 			echo(mysql_error());
@@ -94,7 +94,7 @@
 						<div class="group-control">
 							<label class="control-label">密码</label>
 							<div class="controls">
-								<input type="password" name="password"/>
+								<input type="text" name="newpassword"/>
 								<p class="help-block">无需修改密码请留空</p>
 							</div>
 						</div>
@@ -223,6 +223,7 @@
 					}
 					elseif (!empty($_GET['action']) AND $_GET['action'] == "set") {
 						$error_stat = false;
+						$logout = false;
 						if (!isset($_POST['username']) OR empty($_POST['username'])) {
 							$error_text .= "用户名不得设置为空！\n";
 							$error_stat = true;
@@ -251,11 +252,25 @@
 							if (!isset($_POST['listnum']) OR !is_numeric($_POST['listnum']) OR (int)$_POST['listnum'] > 20) {
 								$error_text .= "请设置首页更新列表数量，最大不得超过 20 条！\n";
 								$error_stat = true;
-								}
+							}
 						}
 						if (!isset($_POST['url_repo']) OR empty($_POST['url_repo'])) {
 							$error_text .= "源地址不得设置为空！\n";
 							$error_stat = true;
+						}
+						if ($error_stat === false) {
+							$result = mysql_query("SELECT `ID` FROM `Users` WHERE (`Username` = '".mysql_real_escape_string($_POST['username'])."' AND `ID` != '".$_SESSION['userid']."')");
+							if (!$result OR mysql_affected_rows() != 0) {
+								$error_text .= "存在相同的用户名！\n";
+								$error_stat = true;
+							}
+							else {
+								$result = mysql_query("UPDATE `Users` SET `Username` = '".mysql_real_escape_string($_POST['username'])."' WHERE `ID` = '".$_SESSION['userid']."'");
+								if (!empty($_POST['newpassword'])) {
+									$logout = true;
+									$result = mysql_query("UPDATE `Users` SET `SHA1` = '".sha1($_POST['newpassword'])."' WHERE `ID` = '".$_SESSION['userid']."'");
+								}
+							}
 						}
 						if ($error_stat == true) {
 							echo '<h3 class="alert alert-error">';
@@ -263,10 +278,6 @@
 							echo '<br /><a href="settings.php">返回</a></h3>';
 						}
 						else {
-							$result = mysql_query("UPDATE `Users` SET `Username` = '".mysql_real_escape_string($_POST['username'])."' WHERE `ID` = '".$_SESSION['userid']."'");
-							if (!empty($_POST['password']) AND $result) {
-								$result = mysql_query("UPDATE `Users` SET `SHA1` = '".sha1($_POST['password'])."' WHERE `ID` = '".$_SESSION['userid']."'");
-							}
 							$config_text = "<?php\n\tif (!defined(\"DCRM\")) {\n\t\texit;\n\t}\n";
 							$config_text .= "\tdefine(\"DCRM_MAXLOGINFAIL\",".$_POST['trials'].");\n";
 							$config_text .= "\tdefine(\"DCRM_SHOWLIST\",".$_POST['list'].");\n";
@@ -283,7 +294,7 @@
 							fputs($config_handle,stripslashes($config_text));
 							fclose($config_handle);
 							echo '<h3 class="alert alert-success">设置修改成功。<br/><a href="settings.php">返回</a></h3>';
-							if ($result) {
+							if ($logout) {
 								header("Location: login.php?action=logout");
 							}
 						}

@@ -114,17 +114,23 @@
 			header("Location: login.php?error=bear");
 			exit();
 		}
-		$login_query = mysql_query("SELECT `ID`, `Username`, `SHA1`, `LastLoginTime` FROM `Users` WHERE `Username` = '".mysql_real_escape_string($_POST['username'])."' LIMIT 1");
+		$login_query = mysql_query("SELECT * FROM `Users` WHERE `Username` = '".mysql_real_escape_string($_POST['username'])."' LIMIT 1");
 		if (mysql_affected_rows() > 0) {
 			$login = mysql_fetch_assoc($login_query);
 			if ($login['Username'] === $_POST['username'] AND strtoupper($login['SHA1']) === strtoupper(sha1($_POST['password']))) {
 				$login_query = mysql_query("UPDATE `Users` SET `LastLoginTime` = '".date('Y-m-d H:i:s')."' WHERE `ID` = '".$login['ID']."'");
-				$_SESSION['connected'] = true;
-				$_SESSION['token'] = sha1(time()*rand(140,320));
+				$_SESSION['power'] = $login['Power'];
 				$_SESSION['userid'] = $login['ID'];
 				$_SESSION['username'] = $login['Username'];
+				$_SESSION['token'] = sha1(time()*rand(140,320));
 				$_SESSION['try'] = 0;
-				header("Location: center.php");
+				if ($_SESSION['power'] === 1) {
+					$_SESSION['connected'] = true;
+					header("Location: center.php");
+				} else {
+					$_SESSION['connected'] = false;
+					header("Location: upload.php");
+				}
 				exit();
 			}
 			else {
