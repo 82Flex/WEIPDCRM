@@ -110,9 +110,9 @@
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 		<title><?php echo $title; ?></title>
-		<link rel="shortcut icon" href="favicon.ico" /> 
+		<link rel="shortcut icon" href="favicon.ico" />
 		<base target="_top">
-		<link href="manage/css/iPhone.css" rel="stylesheet">
+		<link href="css/iPhone.css" rel="stylesheet">
 		<meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
 		<style type="text/css">
 			img {

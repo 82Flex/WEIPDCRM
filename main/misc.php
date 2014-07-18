@@ -42,8 +42,8 @@
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 	<title><?php echo $release_origin; ?></title>
-	<link rel="shortcut icon" href="favicon.ico" /> 
-	<link rel="stylesheet" href="manage/css/bootstrap.min.css">
+	<link rel="shortcut icon" href="favicon.ico" />
+	<link href="css/bootstrap.min.css" rel="stylesheet">
 	<style type="text/css" media="screen">
 		body {
 			margin: 100px;

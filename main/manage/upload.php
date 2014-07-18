@@ -52,7 +52,7 @@
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 	<title>DCRM - 源管理系统</title>
 	<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
-	<script type="text/javascript" src="js/jquery.js"></script>
+	<script type="text/javascript" src="http://libs.useso.com/js/jquery/1.4.2/jquery.min.js"></script>
 	<script type="text/javascript" src="js/ajaxfileupload.js"></script>
 	<script type="text/javascript">
 		function ajaxFileUpload() {
@@ -138,18 +138,6 @@
 				<br />· 请上传标准封装的 Debian 软件包，否则可能会导致数据丢失。</h4>
 				<?php
 					}
-					/*
-						elseif ($_GET['action'] == "upload" AND !empty($_FILES)) {
-							if (pathinfo($_FILES['deb']['name'], PATHINFO_EXTENSION) != "deb") {
-								echo '<h3 class="alert alert-error">文件类型错误，请选择正确的 Debian 数据包！<br/><a href="upload.php">返回</a></h3>';
-							}
-							else {
-								rename($_FILES['deb']['tmp_name'],DCRM_DEBIAN_CACHE . $_FILES['deb']['name']);
-								header("Location: manage.php");
-								exit();
-							}
-						}
-					*/
 				?>
 			</div>
 		</div>
