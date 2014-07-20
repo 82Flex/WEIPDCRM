@@ -61,7 +61,7 @@
 		.well {
 			margin-left: auto;
 			margin-right: auto;
-			width: 400px;
+			width: 450px;
 			text-align: center;
 		}
 	</style>

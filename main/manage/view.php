@@ -40,22 +40,34 @@
 	}
 	$request_id = (int)$_GET['id'];
 	$m_query = mysql_query("SELECT * FROM `Packages` WHERE `ID` = '" . $request_id . "'");
-	if ($m_query == false) {
+	if (!$m_query) {
 		$alert = "数据库错误！";
 		goto endlabel;
 	}
 	$m_array = mysql_fetch_assoc($m_query);
-	if ($m_array == false) {
+	if (!$m_array) {
 		$alert = "查询不到指定的项目。";
 		goto endlabel;
 	}
-	
 	foreach ($m_array as $m_key => $m_value) {
-		if ($m_value != NULL) {
+		if (!empty($m_value)) {
 			$f_Package .= $m_key . ": " . trim(str_replace("\n","\n ",$m_value)) . "\n";
 		}
 	}
 	$f_Package = str_replace("../","./",$f_Package);
+	$m_query = mysql_query("SELECT * FROM `ScreenShots` WHERE `PID` = '".$request_id."'");
+	if (!$m_query) {
+		$alert = "数据库错误！";
+		goto endlabel;
+	}
+	if (mysql_affected_rows() <= 0) {
+		$f_ScreenShots = "该软件包尚未添加截图！";
+	} else {
+		$f_ScreenShots = "软件包截图 ".mysql_affected_rows()." 张<br />";
+	}
+	while ($m_array = mysql_fetch_assoc($m_query)) {
+		$f_ScreenShots .= "<a href=\"".$m_array["Image"]."\">".$m_array["Image"]."</a><br />";
+	}
 	endlabel:
 	mysql_close($con);
 ?>
@@ -103,6 +115,7 @@
 			<h2>查看软件包信息</h2>
 			<br />
 			<div class="alert alert-info"><?php echo nl2br(htmlspecialchars($f_Package)); ?></div>
+			<div class="alert alert-success"><?php echo $f_ScreenShots; ?></div>
 			</div>
 		</div>
 	</div>

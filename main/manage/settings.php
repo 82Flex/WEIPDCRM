@@ -87,7 +87,7 @@
 						<div class="group-control">
 							<label class="control-label">用户名</label>
 							<div class="controls">
-								<input type="text" required="required" name="username" value="<?php echo $_SESSION['username']; ?>"/>
+								<input type="text" required="required" name="username" value="<?php echo htmlspecialchars($_SESSION['username']); ?>"/>
 							</div>
 						</div>
 						<br />
@@ -102,7 +102,7 @@
 						<div class="group-control">
 							<label class="control-label">最大尝试次数</label>
 							<div class="controls">
-								<input type="text" required="required" name="trials" value="<?php echo DCRM_MAXLOGINFAIL; ?>"/>
+								<input type="text" required="required" name="trials" value="<?php echo htmlspecialchars(DCRM_MAXLOGINFAIL); ?>"/>
 							</div>
 						</div>
 						<br />
@@ -125,7 +125,7 @@
 						<div class="group-control">
 							<label class="control-label">最大下载速度</label>
 							<div class="controls">
-								<input type="text" required="required" name="speedlimit" value="<?php echo DCRM_SPEED_LIMIT; ?>"/>
+								<input type="text" required="required" name="speedlimit" value="<?php echo htmlspecialchars(DCRM_SPEED_LIMIT); ?>"/>
 								<p class="help-block">字节每秒，不限制请填写 0</p>
 							</div>
 						</div>
@@ -199,7 +199,7 @@
 						<div class="group-control">
 							<label class="control-label">更新列表数量</label>
 							<div class="controls">
-								<input type="text"  name="listnum" value="<?php echo DCRM_SHOW_NUM; ?>"/>
+								<input type="text"  name="listnum" value="<?php echo htmlspecialchars(DCRM_SHOW_NUM); ?>"/>
 								<p class="help-block">最大不得超过 20 条</p>
 							</div>
 						</div>
@@ -207,7 +207,7 @@
 						<div class="group-control">
 							<label class="control-label">源地址</label>
 							<div class="controls">
-								<input type="text" required="required" name="url_repo" value="<?php echo base64_decode(DCRM_REPOURL); ?>"/>
+								<input type="text" required="required" name="url_repo" value="<?php echo htmlspecialchars(base64_decode(DCRM_REPOURL)); ?>"/>
 								<p class="help-block">展示在首页供用户添加</p>
 							</div>
 						</div>

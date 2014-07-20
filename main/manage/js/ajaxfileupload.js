@@ -1,7 +1,4 @@
-
 jQuery.extend({
-
-
     createUploadIframe: function(id, uri)
 	{
 			//create frame
@@ -171,7 +168,6 @@ jQuery.extend({
         return {abort: function () {}};
 
     },
-
     uploadHttpData: function( r, type ) {
         var data = !type;
         data = type == "xml" || data ? r.responseXML : r.responseText;
@@ -188,4 +184,3 @@ jQuery.extend({
         return data;
     }
 })
-

@@ -85,7 +85,7 @@
 						<div class="group-control">
 							<label class="control-label">名称</label>
 							<div class="controls">
-								<input type="text" required="required" name="origin" value="<?php if (!empty($release['Origin'])) {echo $release['Origin'];} ?>"/>
+								<input type="text" required="required" name="origin" value="<?php if (!empty($release['Origin'])) {echo htmlspecialchars($release['Origin']);} ?>"/>
 								<p class="help-block">这个名称将显示在 Cydia 的软件源编辑界面</p>
 							</div>
 						</div>
@@ -93,7 +93,7 @@
 						<div class="group-control">
 							<label class="control-label">代号</label>
 							<div class="controls">
-								<input type="text" required="required" name="label" value="<?php if (!empty($release['Label'])) {echo $release['Label'];} ?>"/>
+								<input type="text" required="required" name="label" value="<?php if (!empty($release['Label'])) {echo htmlspecialchars($release['Label']);} ?>"/>
 								<p class="help-block">这个名称将显示在软件包列表顶部</p>
 							</div>
 						</div>
@@ -101,7 +101,7 @@
 						<div class="group-control">
 							<label class="control-label">标识符</label>
 							<div class="controls">
-								<input type="text" required="required" name="codename" value="<?php if (!empty($release['Codename'])) {echo $release['Codename'];} ?>"/>
+								<input type="text" required="required" name="codename" value="<?php if (!empty($release['Codename'])) {echo htmlspecialchars($release['Codename']);} ?>"/>
 							</div>
 						</div>
 						<br />
@@ -115,7 +115,7 @@
 						<div class="group-control">
 							<label class="control-label">版本</label>
 							<div class="controls">
-								<input type="text" required="required" name="version" value="<?php if (!empty($release['Version'])) {echo $release['Version'];} ?>"/>
+								<input type="text" required="required" name="version" value="<?php if (!empty($release['Version'])) {echo htmlspecialchars($release['Version']);} ?>"/>
 							</div>
 						</div>
 						<br />

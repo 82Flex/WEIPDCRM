@@ -36,7 +36,7 @@
 		$how = 4; //验证码位数
 		$w = $how * 15; //图片宽度
 		$h = 18; //图片高度
-		$fontsize = 6; //字体大小
+		$fontsize = 5; //字体大小
 		$alpha = "abcdefghijkmnopqrstuvwxyz"; //验证码内容1:字母
 		$number = "023456789"; //验证码内容2:数字
 		$randcode = ""; //验证码字符串初始化

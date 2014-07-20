@@ -152,7 +152,7 @@
 						document.getElementsByName("Depiction")[0].value = "NULL";
 					}
 				} else {
-					document.getElementsByName("Depiction")[0].value = "<?php echo(base64_decode(DCRM_REPOURL)."/index.php?pid=".$_GET['id']) ?>";
+					document.getElementsByName("Depiction")[0].value = "<?php echo(base64_decode(DCRM_REPOURL)."/index.php?pid=".$_GET['id']); ?>";
 				}
 			} else if (opt == 9) {
 				if (document.getElementsByName("Description")[0].value.length > 0) {
@@ -177,17 +177,17 @@
 			tmpStr = frmObj.value.toLowerCase();
 			strLen = tmpStr.length;
 			if (strLen > 0) {
-				for (index = 0; index < strLen; index++)  {
+				for (index = 0; index < strLen; index++) {
 					if (index == 0) {
-						tmpChar = tmpStr.substring(0,1).toUpperCase();
-						postString = tmpStr.substring(1,strLen);
+						tmpChar = tmpStr.substring(0, 1).toUpperCase();
+						postString = tmpStr.substring(1, strLen);
 						tmpStr = tmpChar + postString;
 					} else {
-						tmpChar = tmpStr.substring(index, index+1);
-						if (tmpChar == " " && index < (strLen-1)) {
-							tmpChar = tmpStr.substring(index+1, index+2).toUpperCase();
-							preString = tmpStr.substring(0, index+1);
-							postString = tmpStr.substring(index+2,strLen);
+						tmpChar = tmpStr.substring(index, index + 1);
+						if (tmpChar == " " && index < (strLen - 1)) {
+							tmpChar = tmpStr.substring(index + 1, index + 2).toUpperCase();
+							preString = tmpStr.substring(0, index + 1);
+							postString = tmpStr.substring(index + 2, strLen);
 							tmpStr = preString + tmpChar + postString;
 						}
 					}
@@ -250,28 +250,28 @@
 						<div class="group-control">
 							<label class="control-label">* <a href="javascript:autofill(1)">标识符</a></label>
 							<div class="controls">
-								<input type="text" style="width: 400px;" required="required" name="Package" value="<?php if (!empty($edit_info['Package'])) {echo $edit_info['Package'];} ?>"/>
+								<input type="text" style="width: 400px;" required="required" name="Package" value="<?php if (!empty($edit_info['Package'])) {echo htmlspecialchars($edit_info['Package']);} ?>"/>
 							</div>
 						</div>
 						<br />
 						<div class="group-control">
 							<label class="control-label">* <a href="javascript:autofill(2)">名称</a></label>
 							<div class="controls">
-								<input type="text" style="width: 400px;" required="required" name="Name" value="<?php if (!empty($edit_info['Name'])) {echo $edit_info['Name'];} ?>"/>
+								<input type="text" style="width: 400px;" required="required" name="Name" value="<?php if (!empty($edit_info['Name'])) {echo htmlspecialchars($edit_info['Name']);} ?>"/>
 							</div>
 						</div>
 						<br />
 						<div class="group-control">
 							<label class="control-label">* <a href="javascript:autofill(3)">版本</a></label>
 							<div class="controls">
-								<input type="text" style="width: 400px;" required="required" name="Version" value="<?php if (!empty($edit_info['Version'])) {echo $edit_info['Version'];} ?>"/>
+								<input type="text" style="width: 400px;" required="required" name="Version" value="<?php if (!empty($edit_info['Version'])) {echo htmlspecialchars($edit_info['Version']);} ?>"/>
 							</div>
 						</div>
 						<br />
 						<div class="group-control">
 							<label class="control-label">* <a href="javascript:autofill(4)">作者</a></label>
 							<div class="controls">
-								<input type="text" style="width: 400px;" required="required" name="Author" value="<?php if (!empty($edit_info['Author'])) {echo $edit_info['Author'];} ?>"/>
+								<input type="text" style="width: 400px;" required="required" name="Author" value="<?php if (!empty($edit_info['Author'])) {echo htmlspecialchars($edit_info['Author']);} ?>"/>
 							</div>
 						</div>
 						<br />
@@ -284,10 +284,10 @@
 									if (!$s_query) {
 										goto endlabel;
 									}
-									echo '<option value="' . $edit_info['Section'] . '" selected="selected">' . $edit_info['Section'] . '</option>';
+									echo '<option value="' . htmlspecialchars($edit_info['Section']) . '" selected="selected">' . htmlspecialchars($edit_info['Section']) . '</option>';
 									while($s_list = mysql_fetch_assoc($s_query)) {
 										if ($s_list['Name'] != $edit_info['Section']) {
-											echo '<option value="' . $s_list['Name'] . '">' . $s_list['Name'] . '</option>';
+											echo '<option value="' . htmlspecialchars($s_list['Name']) . '">' . htmlspecialchars($s_list['Name']) . '</option>';
 										}
 									}
 								?>
@@ -298,21 +298,21 @@
 						<div class="group-control">
 							<label class="control-label"><a href="javascript:autofill(6)">提供者</a></label>
 							<div class="controls">
-								<input type="text" style="width: 400px;" name="Maintainer" value="<?php if (!empty($edit_info['Maintainer'])) {echo $edit_info['Maintainer'];} ?>"/>
+								<input type="text" style="width: 400px;" name="Maintainer" value="<?php if (!empty($edit_info['Maintainer'])) {echo htmlspecialchars($edit_info['Maintainer']);} ?>"/>
 							</div>
 						</div>
 						<br />
 						<div class="group-control">
 							<label class="control-label"><a href="javascript:autofill(7)">保证人</a></label>
 							<div class="controls">
-								<input type="text" style="width: 400px;" name="Sponsor" value="<?php if (!empty($edit_info['Sponsor'])) {echo $edit_info['Sponsor'];} ?>"/>
+								<input type="text" style="width: 400px;" name="Sponsor" value="<?php if (!empty($edit_info['Sponsor'])) {echo htmlspecialchars($edit_info['Sponsor']);} ?>"/>
 							</div>
 						</div>
 						<br />
 						<div class="group-control">
 							<label class="control-label"><a href="javascript:autofill(8)">预览页</a></label>
 							<div class="controls">
-								<input id="urlinput" type="text" style="width: 400px;" name="Depiction" value="<?php if (!empty($edit_info['Depiction'])) {echo $edit_info['Depiction'];} ?>"/>
+								<input id="urlinput" type="text" style="width: 400px;" name="Depiction" value="<?php if (!empty($edit_info['Depiction'])) {echo htmlspecialchars($edit_info['Depiction']);} ?>"/>
 								<p class="help-block"><a class="btn btn-warning" href="javascript:jump()">单击此处预览</a></p>
 							</div>
 						</div>
@@ -320,14 +320,14 @@
 						<div class="group-control">
 							<label class="control-label"><a href="javascript:autofill(9)">描述</a></label>
 							<div class="controls">
-								<textarea type="text" style="height: 40px; width: 400px;" name="Description"><?php if (!empty($edit_info['Description'])) {echo $edit_info['Description'];} ?></textarea>
+								<textarea type="text" style="height: 40px; width: 400px;" name="Description"><?php if (!empty($edit_info['Description'])) {echo htmlspecialchars($edit_info['Description']);} ?></textarea>
 							</div>
 						</div>
 						<br />
 						<div class="group-control">
 							<label class="control-label">详细描述</label>
 							<div class="controls">
-								<textarea type="text" style="height: 200px; width: 400px;" name="Multi"><?php if (!empty($edit_info['Multi'])) {echo $edit_info['Multi'];} ?></textarea>
+								<textarea type="text" style="height: 200px; width: 400px;" name="Multi"><?php if (!empty($edit_info['Multi'])) {echo htmlspecialchars($edit_info['Multi']);} ?></textarea>
 								<p class="help-block">支持 HTML 代码</p>
 							</div>
 						</div>
@@ -380,7 +380,7 @@
 							<label class="control-label">* 修改字段</label>
 							<div class="controls">
 								<input type="hidden" id="item_id" value="<?php echo $request_id; ?>" />
-								<select id="item_adv" style="width: 400px;" name="Advance" onChange="javascript:ajax()" >
+								<select id="item_adv" style="width: 400px;" name="Advance" onChange="javascript:ajax();" >
 								<?php
 									$z_query = mysql_query("SELECT `COLUMN_NAME` FROM `information_schema`.`COLUMNS` WHERE `TABLE_SCHEMA`='".$database."' and `TABLE_NAME`='Packages' order by COLUMN_NAME",$con);
 									while($z_list = mysql_fetch_assoc($z_query)) {

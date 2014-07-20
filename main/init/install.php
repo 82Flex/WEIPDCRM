@@ -25,7 +25,7 @@
 			header("Location: index.html");
 			exit();
 		}
-		$put = file_put_contents("../manage/include/connect.inc.php", "<?php\n\t\$server = '".$_POST['db_host']."';\n\t\$username = '".$_POST['db_user']."';\n\t\$password = '".$_POST['db_password']."';\n\t\$database = '".$_POST['db_database']."';\n?>");
+		$put = file_put_contents("../manage/include/connect.inc.php", "<?php\n\tif (!defined(\"DCRM\")) {\n\t\texit();\n\t}\n\t\n\t\$server = '".$_POST['db_host']."';\n\t\$username = '".$_POST['db_user']."';\n\t\$password = '".$_POST['db_password']."';\n\t\$database = '".$_POST['db_database']."';\n?>");
 		if (!$put) {
 			$inst_alert = "数据库配置写入失败，请检查文件权限！";
 			goto endlabel;
@@ -182,9 +182,6 @@
 	  `ID` int(8) NOT NULL AUTO_INCREMENT,
 	  `PID` int(8) NOT NULL,
 	  `Image` varchar(512) NOT NULL,
-	  `Description` varchar(512) NOT NULL,
-	  `Width` int(8) NOT NULL,
-	  `Height` int(8) NOT NULL,
 	  PRIMARY KEY (`ID`)
 	) ENGINE=MyISAM AUTO_INCREMENT=0 DEFAULT CHARSET=utf8");
 	
@@ -240,8 +237,8 @@
 	  `ID` int(8) NOT NULL AUTO_INCREMENT PRIMARY KEY,
 	  `Username` varchar(64) NOT NULL,
 	  `SHA1` varchar(128) NOT NULL,
-	  `LastLoginTime` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00'
-	  `Power` int(8) NOT NULL,
+	  `LastLoginTime` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
+	  `Power` int(8) NOT NULL
 	) ENGINE=MyISAM AUTO_INCREMENT=0 DEFAULT CHARSET=utf8");
 	
 	if (!$result) {
