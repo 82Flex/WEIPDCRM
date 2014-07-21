@@ -108,7 +108,7 @@
 						<div class="group-control">
 							<label class="control-label">描述</label>
 							<div class="controls">
-								<textarea type="text" required="required" name="description" ><?php if (!empty($release['Description'])) {echo $release['Description'];} ?></textarea>
+								<textarea type="text" style="height: 40px;" required="required" name="description" ><?php if (!empty($release['Description'])) {echo $release['Description'];} ?></textarea>
 							</div>
 						</div>
 						<br />

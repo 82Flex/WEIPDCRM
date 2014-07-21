@@ -195,6 +195,13 @@
 			}
 			frmObj.value = tmpStr;
 		}
+		function html(addStr) {
+			if (addStr == "br" || addStr == "hr") {
+				document.getElementsByName("Multi")[0].value = document.getElementsByName("Multi")[0].value + "<"+ addStr +" />";
+			} else {
+				document.getElementsByName("Multi")[0].value = document.getElementsByName("Multi")[0].value + "<" + addStr + "></"+ addStr +">";
+			}
+		}
 	</script>
 </head>
 <body>
@@ -328,7 +335,19 @@
 							<label class="control-label">详细描述</label>
 							<div class="controls">
 								<textarea type="text" style="height: 200px; width: 400px;" name="Multi"><?php if (!empty($edit_info['Multi'])) {echo htmlspecialchars($edit_info['Multi']);} ?></textarea>
-								<p class="help-block">支持 HTML 代码</p>
+								<p class="help-block">
+								<em><a href="javascript:html('em');">斜体</a></em>	
+								<strong><a href="javascript:html('strong');">粗体</a></strong>	
+								<u><a href="javascript:html('u');">下划线</a></u>	
+								<del><a href="javascript:html('del');">删除线</a></del>	
+								<a href="javascript:html('ul');">项目框</a>	
+								<a href="javascript:html('li');">项目</a>	
+								<a href="javascript:html('p');">分段</a>	
+								<a href="javascript:html('br');">换行</a>	
+								<a href="javascript:html('hr');">分割线</a>	
+								<sup><a href="javascript:html('sup');">上标</a></sup>	
+								<sub><a href="javascript:html('sub');">下标</a></sub>
+								</p>
 							</div>
 						</div>
 						<br />

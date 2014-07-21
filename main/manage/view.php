@@ -29,47 +29,32 @@
 	}
 	$con = mysql_connect($server,$username,$password);
 	if (!$con) {
-		$alert = "数据库错误！";
-		goto endlabel;
+		echo(mysql_error());
+		exit();
 	}
 	mysql_query("SET NAMES utf8",$con);
 	$select  = mysql_select_db($database,$con);
 	if (!$select) {
-		$alert = mysql_error();
-		goto endlabel;
+		echo(mysql_error());
+		exit();
 	}
-	$request_id = (int)$_GET['id'];
+	if (is_numeric($_GET['id'])) {
+		$request_id = (int)$_GET['id'];
+	} else {
+		echo("非法请求！");
+		exit();
+	}
 	$m_query = mysql_query("SELECT * FROM `Packages` WHERE `ID` = '" . $request_id . "'");
 	if (!$m_query) {
-		$alert = "数据库错误！";
-		goto endlabel;
+		echo(mysql_error());
+		exit();
 	}
-	$m_array = mysql_fetch_assoc($m_query);
-	if (!$m_array) {
-		$alert = "查询不到指定的项目。";
-		goto endlabel;
+	if (isset($_GET['action']) && $_GET['action'] == "image" && isset($_POST['image']) && strlen($_POST['image']) > 0) {
+		mysql_query("INSERT INTO `ScreenShots`(`PID`, `Image`) VALUES('".$request_id."', '".mysql_real_escape_string($_POST['image'])."')");
 	}
-	foreach ($m_array as $m_key => $m_value) {
-		if (!empty($m_value)) {
-			$f_Package .= $m_key . ": " . trim(str_replace("\n","\n ",$m_value)) . "\n";
-		}
+	elseif (isset($_GET['action']) && $_GET['action'] == "del" && is_numeric($_GET['image'])) {
+		mysql_query("DELETE FROM `ScreenShots` WHERE `ID` = '".mysql_real_escape_string($_GET['image'])."'");
 	}
-	$f_Package = str_replace("../","./",$f_Package);
-	$m_query = mysql_query("SELECT * FROM `ScreenShots` WHERE `PID` = '".$request_id."'");
-	if (!$m_query) {
-		$alert = "数据库错误！";
-		goto endlabel;
-	}
-	if (mysql_affected_rows() <= 0) {
-		$f_ScreenShots = "该软件包尚未添加截图！";
-	} else {
-		$f_ScreenShots = "软件包截图 ".mysql_affected_rows()." 张<br />";
-	}
-	while ($m_array = mysql_fetch_assoc($m_query)) {
-		$f_ScreenShots .= "<a href=\"".$m_array["Image"]."\">".$m_array["Image"]."</a><br />";
-	}
-	endlabel:
-	mysql_close($con);
 ?>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -77,6 +62,13 @@
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 	<title>DCRM - 源管理系统</title>
 	<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+	<script type="text/javascript">
+		function delimage(pid) {
+			if(confirm("您确定要彻底删除这张截图？")){
+			   window.location.href = "view.php?id=<?php echo($request_id); ?>&action=del&image=" + pid;
+			}
+		}
+	</script>
 </head>
 <body>
 	<div class="container">
@@ -114,8 +106,59 @@
 			<div class="span10">
 			<h2>查看软件包信息</h2>
 			<br />
-			<div class="alert alert-info"><?php echo nl2br(htmlspecialchars($f_Package)); ?></div>
-			<div class="alert alert-success"><?php echo $f_ScreenShots; ?></div>
+<?php
+	$m_array = mysql_fetch_assoc($m_query);
+	if (!$m_array) {
+		$alert = "查询不到指定的项目。";
+	} else {
+		foreach ($m_array as $m_key => $m_value) {
+			if (!empty($m_value)) {
+				$f_Package .= $m_key . ": " . trim(str_replace("\n","\n ",$m_value)) . "\n";
+			}
+		}
+		$f_Package = str_replace("../","./",$f_Package);
+?>
+			<div class="alert alert-info">
+<?php echo nl2br(htmlspecialchars($f_Package)); ?>
+			</div>
+<?php
+	}
+	$m_query = mysql_query("SELECT * FROM `ScreenShots` WHERE `PID` = '".$request_id."'");
+	if (!$m_query) {
+		echo(mysql_error());
+		exit();
+	}
+	if (mysql_affected_rows() <= 0) {
+?>
+			<div class="alert" id="tips">
+				该软件包暂无截图<br />
+			</div>
+<?php
+	} else {
+?>
+			<div class="alert alert-success" id="tips">
+				软件包截图 <?php echo(mysql_affected_rows()); ?> 张<br />
+<?php
+		while ($m_array = mysql_fetch_assoc($m_query)) {
+?>
+				<li><a href="<?php echo($m_array["Image"]); ?>"><?php echo($m_array["Image"]); ?></a>&emsp;<a href="javascript:delimage(<?php echo($m_array["ID"]); ?>);">&times;</a></li>
+<?php
+		}
+?>
+			</div>
+<?php
+	}
+?>
+			<form class="form-horizontal" method="POST" action="view.php?id=<?php echo($request_id); ?>&action=image">
+				<fieldset>
+					<div class="group-control">
+						<label class="control-label">* 新增截图</label>
+						<div class="controls">
+							<input type="text" style="width: 400px;" required="required" name="image" />
+						</div>
+					</div>
+				</fieldset>
+			</form>
 			</div>
 		</div>
 	</div>

@@ -121,7 +121,7 @@
 	}
 ?>
 		<link rel="shortcut icon" href="favicon.ico" />
-		<base target="_blank">
+		<base target="_top">
 		<style>
 			fieldset.warning {
 			    background-color: #ffdddd;
@@ -140,6 +140,21 @@
 			label {
 				padding-bottom: 10px;
 			}
+			a.panel {
+			    color: #586c90;
+			    font-weight: bold;
+			    text-shadow: rgba(255, 255, 255, 0.75) 1px 1px 0;
+			}
+			panel > fieldset > a.half {
+			    margin-right: -4px;
+			}
+			panel > div#version {
+			    color: #4d4d70;
+			    font-size: 12px;
+			    margin-bottom: 9px;
+			    margin-top: -3px;
+			    text-align: center;
+			}
 		</style>
 		<link href="css/menes.css" rel="stylesheet">
 	</head>
@@ -156,11 +171,15 @@
 					</div>
 				</a>
 			</fieldset>
-			<fieldset class="index">
+			<fieldset>
 				<div>
-					<div style="float: right; margin-top: 7px; text-align: center; width: 200px">
-						<span style="font-size: 20px" id="welcome"><?php echo $release_origin; ?></span><br/>
-						<span style="font-size: 17px" id="by"><a class="panel" href="<?php echo AUTOFILL_SITE; ?>"><?php echo AUTOFILL_FULLNAME; ?></a><br><a class="panel" href="mailto:<?php echo AUTOFILL_EMAIL; ?>"><?php echo AUTOFILL_EMAIL; ?></a></span>
+					<div style="float: right; margin-top: -3px; text-align: center; width: 200px">
+						<span style="font-size: 20px"><?php echo $release_origin; ?></span><br/>
+						<span style="font-size: 17px">
+							<a class="panel" href="<?php echo AUTOFILL_SITE; ?>"><?php echo AUTOFILL_FULLNAME; ?></a>
+							<br />
+							<a class="panel" href="mailto:<?php echo AUTOFILL_EMAIL; ?>"><?php echo AUTOFILL_EMAIL; ?></a>
+						</span>
 					</div>
 					<img src="CydiaIcon.png" style="vertical-align: middle" width="60" height="60"/>
 				</div>
@@ -174,7 +193,7 @@
 ?>
 				<p>目前有 <strong><?php echo $num[0]; ?></strong> 个软件包可供下载喔！</p>
 				<p><?php echo $release_description; ?></p>
-				<p><strong>请使用 Cydia<sup><small>™</small></sup> 添加地址：<br><a href="<?php echo(base64_decode(DCRM_REPOURL)); ?>"><?php echo(base64_decode(DCRM_REPOURL)); ?></a></strong></p>
+				<p><strong>请使用 Cydia<sup><small>™</small></sup> 添加地址：<br /><a href="<?php echo(base64_decode(DCRM_REPOURL)); ?>"><?php echo(base64_decode(DCRM_REPOURL)); ?></a></strong></p>
 			</block>
 <?php
 		$section_query = mysql_query("SELECT `Name`, `Icon` FROM `Sections`");

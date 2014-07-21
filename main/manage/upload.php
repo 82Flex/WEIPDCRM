@@ -120,9 +120,13 @@
 							<div class="controls">
 								<input type="file" id="deb" class="span6" name="deb" accept="application/x-deb" />
 								<p class="help-block" id="tips">准备就绪</p>
-								<br />
+							</div>
+						</div>
+						<div class="form-actions">
+							<div class="controls">
 								<button type="button" class="btn btn-success" onclick="return ajaxFileUpload();">上传</button>
 							</div>
+						</div>
 					</fieldset>
 				</form>
 				<h3>操作提示</h3>
