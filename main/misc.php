@@ -46,27 +46,7 @@
 	<title><?php echo $release_origin; ?></title>
 	<link rel="shortcut icon" href="favicon.ico" />
 	<link href="css/bootstrap.min.css" rel="stylesheet">
-	<style type="text/css" media="screen">
-		body {
-			margin: 100px;
-			background: #ffffff;
-			background: -moz-radial-gradient(center, ellipse cover, #ffffff 0%, #e5e5e5 100%);
-			background: -webkit-gradient(radial, center center, 0px, center center, 100%, color-stop(0%,#ffffff), color-stop(100%,#e5e5e5));
-			background: -webkit-radial-gradient(center, ellipse cover, #ffffff 0%,#e5e5e5 100%);
-			background: -o-radial-gradient(center, ellipse cover, #ffffff 0%,#e5e5e5 100%);
-			background: -ms-radial-gradient(center, ellipse cover, #ffffff 0%,#e5e5e5 100%);
-			background: radial-gradient(center, ellipse cover, #ffffff 0%,#e5e5e5 100%);
-			filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#e5e5e5',GradientType=1 );
-			font-family: Arial,Helvetica,sans-serif;
-			font-size: 10pt;
-		}
-		.well {
-			margin-left: auto;
-			margin-right: auto;
-			width: 450px;
-			text-align: center;
-		}
-	</style>
+	<link href="css/misc.min.css" rel="stylesheet" media="screen">
 </head>
 <body>
 	<div class="well">
@@ -102,27 +82,13 @@
 			endlabel:
 		?>
 	</div>
-	<script>
-		function wrapper(triangleitem, item) {
-			var triangle = document.getElementById(triangleitem);
-			var elementitem = document.getElementById(item);
-			if (elementitem.style.display == "none") {
-				triangle.style.mozTransform = "rotate(90deg)";
-				triangle.style.webkitTransform = "rotate(90deg)";
-				triangle.style.oTransform = "rotate(90deg)";
-				triangle.style.transform = "rotate(90deg)";
-				elementitem.style.display = "block";
-			} else {
-				elementitem.style.display = "none";
-				triangle.style.mozTransform = "rotate(0deg)";
-				triangle.style.webkitTransform = "rotate(0deg)";
-				triangle.style.oTransform = "rotate(0deg)";
-				triangle.style.transform = "rotate(0deg)";
-			}
-		}
-	</script>
-	<!-- Statistics Start -->
-	<div style="display: none;">><?php echo AUTOFILL_STATISTICS; ?></div
-	<!-- Statistics End -->
+	<script src="js/misc.js"></script>
+<?php
+	if (defined("AUTOFILL_STATISTICS")) {
+?>
+		<div style="text-align: center; display: none;"><?php echo AUTOFILL_STATISTICS; ?></div>
+<?php
+	}
+?>
 </body>
 </html>
