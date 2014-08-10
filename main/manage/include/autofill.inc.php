@@ -3,6 +3,7 @@
 		exit;
 	}
 	//该配置文件请自行修改，不需要请注释掉。
+	define("EMERGENCY", "安全警告！8月9日上传的 iGrimace 破解版疑似捆绑有盗号木马。<br />\n请所有安装过它的童鞋立即检查自己的微博帐号以及 Apple ID。");
 	//软件源包前缀
 	define("AUTOFILL_PRE","com.darwindev.");
 	//未知名称显示

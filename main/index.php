@@ -285,14 +285,18 @@
 				</a>
 <?php
 		}
+		if (defined("EMERGENCY")) {
 ?>
 				<a>
 					<div>
 						<div>
-						近期有小学生冒充我们以收取中文源捐助的名义要求给他充值Q币，遇到此类事件请第一时间举报，谢谢合作。
+						<?php echo EMERGENCY; ?>
 						</div>
 					</div>
 				</a>
+<?php
+		}
+?>
 			</fieldset>
 <?php
 		if (defined("AUTOFILL_ADVERTISEMENT")) {
