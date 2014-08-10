@@ -16,6 +16,8 @@
 	    along with WEIPDCRM.  If not, see <http://www.gnu.org/licenses/>.
 	*/
 	
+	/* DCRM Debian Analyze */
+	
 	if (!defined("DCRM")) {
 		exit();
 	}

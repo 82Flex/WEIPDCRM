@@ -16,6 +16,8 @@
 	    along with WEIPDCRM.  If not, see <http://www.gnu.org/licenses/>.
 	*/
 	
+	/* DCRM Management Jump Page */
+	
 	ob_start();
 	session_start();
 	if (isset($_SESSION['connected']) && $_SESSION['connected'] === true) {

@@ -2,6 +2,7 @@
 	if (!defined("DCRM")) {
 		exit;
 	}
+	//请勿手动修改该文件，该文件由系统设置生成。
 	define("DCRM_MAXLOGINFAIL",3);
 	define("DCRM_SHOWLIST",1);
 	define("DCRM_SHOW_NUM",5);

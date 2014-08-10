@@ -16,6 +16,8 @@
 	    along with WEIPDCRM.  If not, see <http://www.gnu.org/licenses/>.
 	*/
 	
+	/* DCRM Debian Simple View */
+	
 	session_start();
 	ob_start();
 	define("DCRM",true);

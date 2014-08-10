@@ -16,6 +16,8 @@
 	    along with WEIPDCRM.  If not, see <http://www.gnu.org/licenses/>.
 	*/
 	
+	/* DCRM PC Index Page */
+	
 	error_reporting(0);
 	ob_start();
 	define("DCRM",true);
@@ -120,7 +122,7 @@
 		}
 	</script>
 	<!-- Statistics Start -->
-	<?php echo AUTOFILL_STATISTICS; ?>
+	<div style="display: none;">><?php echo AUTOFILL_STATISTICS; ?></div
 	<!-- Statistics End -->
 </body>
 </html>

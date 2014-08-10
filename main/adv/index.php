@@ -16,6 +16,8 @@
 		along with WEIPDCRM.  If not, see <http://www.gnu.org/licenses/>.
 	*/
 	
+	/* DCRM Advertisement Auto Rewrite */
+	
 	error_reporting(0);
 	$r = rand(1,3);
 	$pic = "0".$r.".jpg";

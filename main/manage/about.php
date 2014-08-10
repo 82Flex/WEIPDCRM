@@ -16,6 +16,8 @@
 	    along with WEIPDCRM.  If not, see <http://www.gnu.org/licenses/>.
 	*/
 	
+	/* DCRM About Page */
+	
 	session_start();
 	ob_start();
 	define("DCRM",true);
@@ -82,7 +84,7 @@
 				<h2>关于程序</h2>
 				<br /><div class="alert alert-info"><h3>
 				Darwin Cydia Repository Manager (DCRM)<br />
-				版本：1.4 Pro<br />
+				版本：1.5 Pro<br />
 				开源的 Cydia™/APT 个人源解决方案</h3><br /><h4>
 				开发人员</h4>
 				主程序：威锋网测试组 <a href="http://weibo.cn/u/3246210680">@i_82</a><br />
@@ -92,7 +94,7 @@
 				网友 <a href="http://weibo.com/u/1766730601">@zsm1703</a>、<a href="http://weibo.com/u/2175594103">@Naville</a>、<a href="http://weibo.com/u/1931192555">@Q某某某某</a>、<a href="http://weibo.com/u/3254325910">@摇滚米饭_</a><br />
 				威锋网测试组 <a href="http://weibo.com/u/1675423275">@Sunbelife</a>、威锋网技术组 <a href="http://weibo.cn/nivalxer">@NivalXer</a>、<a href="http://weibo.com/u/1417725530">@ioshack</a> 提供测试意见<br />
 				威锋网技术组 <a href="http://weibo.com/u/2004244347">@autopear</a> 撰写的：<a href="http://bbs.weiphone.com/read-htm-tid-669283.html">从零开始搭建 Cydia™ 软件源，制作 Debian 安装包</a><br />
-				当然，还有 Cydia™ 之父 <a href="http://www.saurik.com">Saurik</a> 撰写的：<a href="http://www.saurik.com/id/7">How to host a Cydia™ Repository</a><br /><br /><h4>
+				Cydia™ 之父 <a href="http://www.saurik.com">Saurik</a> 撰写的：<a href="http://www.saurik.com/id/7">How to host a Cydia™ Repository</a>，移动版首页样式来自 Saurik IT.<br /><br /><h4>
 				<a href="http://82flex.com/DCRM/Buy">获取 DCRM Pro</a></h4><br />
 				捐助地址：<a href="https://me.alipay.com/coster">https://me.alipay.com/coster</a><br /><br /><h4>
 				版权所有 © 2013–2014 威锋网测试组<br />

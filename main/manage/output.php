@@ -16,6 +16,8 @@
 	    along with WEIPDCRM.  If not, see <http://www.gnu.org/licenses/>.
 	*/
 	
+	/* DCRM Debian Output */
+	
 	session_start();
 	ob_start();
 	define("DCRM",true);
@@ -45,7 +47,7 @@
 		$alert = "无效的参数。";
 		goto endlabel;
 	}
-	$m_query = mysql_query("SELECT `Package`, `Source`, `Version`, `Priority`, `Section`, `Essential`, `Maintainer`, `Pre-Depends`, `Depends`, `Recommends`, `Suggests`, `Conflicts`, `Provides`, `Replaces`, `Enhances`, `Architecture`, `Size`, `Installed-Size`, `Origin`, `Bugs`, `Name`, `Author`, `Sponsor`, `Icon`, `Tag`, `Filename` FROM `Packages` WHERE `ID` = '" . (string)$request_id . "' LIMIT 1");
+	$m_query = mysql_query("SELECT `Package`, `Source`, `Version`, `Priority`, `Section`, `Essential`, `Maintainer`, `Pre-Depends`, `Depends`, `Recommends`, `Suggests`, `Conflicts`, `Provides`, `Replaces`, `Enhances`, `Architecture`, `Installed-Size`, `Origin`, `Bugs`, `Name`, `Author`, `Sponsor`, `Icon`, `Tag`, `Filename` FROM `Packages` WHERE `ID` = '" . (string)$request_id . "' LIMIT 1");
 	if ($m_query == false) {
 		$alert = "数据库错误： " . mysql_error();
 		goto endlabel;

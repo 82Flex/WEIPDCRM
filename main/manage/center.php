@@ -16,11 +16,14 @@
 	    along with WEIPDCRM.  If not, see <http://www.gnu.org/licenses/>.
 	*/
 	
+	/* DCRM Debian List */
+	
 	session_start();
 	ob_start();
 	define("DCRM",true);
 	require_once("include/config.inc.php");
 	require_once("include/connect.inc.php");
+	require_once("include/autofill.inc.php");
 	require_once("include/func.php");
 	require_once("include/corepage.php");
 	header("Content-Type: text/html; charset=UTF-8");
@@ -100,7 +103,9 @@
 							<input type="hidden" name="action" value="search" />
 							<input class="input-xlarge" name="contents" required="required" />
 						</div>
-						<br/>
+					</div>
+					<br />
+					<div class="group-control">
 						<label class="control-label">搜索类型</label>
 						<div class="controls">
 							<select name="type" >
@@ -179,7 +184,7 @@
 									echo '<td><a href="edit.php?id=' . $list['ID'] . '" class="close" style="line-height: 20px;">◎</a></td>';
 									echo '<td><a href="center.php?action=delete_confirm&name=' . $list['Package'] . '&id=' . $list['ID'] . '" class="close" style="line-height: 20px;">&times;</a></td>';
 									if (empty($list['Name'])) {
-										$list['Name'] = "[未命名]";
+										$list['Name'] = AUTOFILL_NONAME;
 									}
 									echo '<td><a href = "view.php?id=' . $list['ID'] . '"><ul class="ctl" style="width:300px;">' . htmlspecialchars($list['Name']) . '</ul></a></td>';
 									// echo '<td><ul class="ctl" style="width:200px;">' . htmlspecialchars($list['Package']) . '</ul></td>';
@@ -249,7 +254,6 @@
 							echo '<th><ul class="ctl">编辑</ul></th>';
 							echo '<th><ul class="ctl">删除</ul></th>';
 							echo '<th><ul class="ctl">名称</ul></th>';
-							// echo '<th><ul class="ctl">标记</ul></th>';
 							echo '<th><ul class="ctl">版本</ul></th>';
 							echo '<th><ul class="ctl">下载次数</ul></th>';
 							echo '</tr></thead><tbody>';
@@ -265,10 +269,9 @@
 									echo '<td><a href="edit.php?id=' . $list['ID'] . '" class="close" style="line-height: 20px;">◎</a></td>';
 									echo '<td><a href="center.php?action=delete_confirm&name=' . $list['Package'] . '&id=' . $list['ID'] . '" class="close" style="line-height: 20px;">&times;</a></td>';
 									if (empty($list['Name'])) {
-										$list['Name'] = "[未命名]";
+										$list['Name'] = AUTOFILL_NONAME;
 									}
 									echo '<td><a href = "view.php?id=' . $list['ID'] . '"><ul class="ctl" style="width:300px;">' . htmlspecialchars($list['Name']) . '</ul></a></td>';
-									// echo '<td><ul class="ctl" style="width:200px;">' . htmlspecialchars($list['Package']) . '</ul></td>';
 									echo '<td><ul class="ctl" style="width:60px;">' . htmlspecialchars($list['Version']) . '</ul></td>';
 									echo '<td><ul class="ctl" style="width:50px;">' . $list['DownloadTimes'] . '</ul></td>';
 									echo '</tr>';	

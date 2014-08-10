@@ -16,6 +16,8 @@
 	    along with WEIPDCRM.  If not, see <http://www.gnu.org/licenses/>.
 	*/
 	
+	/* DCRM Section Manage */
+	
 	session_start();
 	ob_start();
 	define("DCRM",true);

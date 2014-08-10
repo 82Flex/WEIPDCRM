@@ -16,6 +16,8 @@
 	    along with WEIPDCRM.  If not, see <http://www.gnu.org/licenses/>.
 	*/
 	
+	/* DCRM Onekey Install */
+	
 	error_reporting(0);
 	ob_start();
 	$inst_success = false;

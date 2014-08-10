@@ -16,6 +16,8 @@
 	    along with WEIPDCRM.  If not, see <http://www.gnu.org/licenses/>.
 	*/
 	
+	/* DCRM Login Page */
+	
 	error_reporting(0);
 	session_cache_expire(30);
 	session_cache_limiter("private");
@@ -23,62 +25,17 @@
 	session_regenerate_id(true);
 	ob_start();
 	define("DCRM",true);
+	define('ROOT_PATH', dirname(__FILE__));
 	require_once("include/config.inc.php");
 	require_once("include/connect.inc.php");
+	require_once("include/func.php");
 	date_default_timezone_set('Asia/Shanghai');
+	header("Cache-Control: max-age=0");
 	
 	if (isset($_GET['authpic']) AND $_GET['authpic'] == 'png') {
-		header("Content-type: image/png");
-		/*
-		* 初始化
-		*/
-		$border = 0; //是否要边框
-		$how = 4; //验证码位数
-		$w = $how * 15; //图片宽度
-		$h = 18; //图片高度
-		$fontsize = 5; //字体大小
-		$alpha = "abcdefghijkmnopqrstuvwxyz"; //验证码内容1:字母
-		$number = "023456789"; //验证码内容2:数字
-		$randcode = ""; //验证码字符串初始化
-		srand((double)microtime()*1000000);
-		$im = ImageCreate($w, $h);
-		/*
-		* 绘制基本框架
-		*/
-		$bgcolor = ImageColorAllocate($im, 255, 255, 255);
-		ImageFill($im, 0, 0, $bgcolor);
-		if ($border) {
-		    $black = ImageColorAllocate($im, 0, 0, 0);
-		    ImageRectangle($im, 0, 0, $w-1, $h-1, $black);
-		}
-		/*
-		* 逐位产生随机字符
-		*/
-		for ($i=0; $i<$how; $i++) {   
-		    $alpha_or_number = mt_rand(0, 1);
-		    $str = $alpha_or_number ? $alpha : $number;
-		    $which = mt_rand(0, strlen($str)-1);
-		    $code = substr($str, $which, 1);
-		    $j = !$i ? 4 : $j+15;
-		    $color3 = ImageColorAllocate($im, mt_rand(0,100), mt_rand(0,100), mt_rand(0,100));
-		    ImageChar($im, $fontsize, $j, 3, $code, $color3);
-		    $randcode .= $code;
-		}
-		/*
-		* 添加干扰
-		*/
-		for ($i=0; $i<5; $i++) {   
-		    $color1 = ImageColorAllocate($im, mt_rand(0,255), mt_rand(0,255), mt_rand(0,255));
-		    ImageArc($im, mt_rand(-5,$w), mt_rand(-5,$h), mt_rand(20,300), mt_rand(20,200), 55, 44, $color1);
-		}   
-		for ($i=0; $i<$how*40; $i++) {   
-		    $color2 = ImageColorAllocate($im, mt_rand(0,255), mt_rand(0,255), mt_rand(0,255));
-		    ImageSetPixel($im, mt_rand(0,$w), mt_rand(0,$h), $color2);
-		}
-		$_SESSION['VCODE'] = $randcode;
-		ImagePNG($im);
-		ImageDestroy($im);
-		/*绘图结束*/
+		$_vc = new ValidateCode();
+		$_vc->doimg();
+		$_SESSION['VCODE'] = $_vc->getCode();
 		exit();
 	} else {
 		header("Content-Type: text/html; charset=UTF-8");

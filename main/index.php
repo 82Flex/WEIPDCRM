@@ -16,6 +16,8 @@
 		along with WEIPDCRM.  If not, see <http://www.gnu.org/licenses/>.
 	*/
 	
+	/* DCRM Mobile Page */
+	
 	error_reporting(0);
 	ob_start();
 	define("DCRM",true);
@@ -32,13 +34,13 @@
 	}
 	$con = mysql_connect($server,$username,$password);
 	if (!$con) {
-		echo 'MYSQL ERROR!';
+		echo 'MYSQL ERROR!<br />数据库错误！<br />请联系管理员检查问题。';
 		exit();
 	}
 	mysql_query("SET NAMES utf8",$con);
 	$select  = mysql_select_db($database,$con);
 	if (!$select) {
-		echo 'MYSQL ERROR!';
+		echo 'MYSQL ERROR!<br />数据库错误！<br />请联系管理员检查问题。';
 		exit();
 	}
 	if (file_exists("Release")) {
@@ -87,7 +89,7 @@
 				$title = "提交报告";
 			} else {
 				$index = 3;
-				$title = "提交报告";
+				$title = "兼容报告";
 			}
 		} elseif (isset($_GET['method']) && $_GET['method'] == "history") {
 			$index = 5;
@@ -120,43 +122,13 @@
 <?php
 	}
 ?>
-		<link rel="shortcut icon" href="favicon.ico" />
 		<base target="_top">
-		<style>
-			fieldset.warning {
-			    background-color: #ffdddd;
-			}
-			fieldset.success {
-			    background-color: #ccffcc;
-			}
-			fieldset.warning p {
-			    text-align: center;
-			}
-			fieldset.index {
-				background-color: transparent;
-				border: none;
-				margin: -4px 10px -14px 10px;
-			}
-			label {
-				padding-bottom: 10px;
-			}
-			a.panel {
-			    color: #586c90;
-			    font-weight: bold;
-			    text-shadow: rgba(255, 255, 255, 0.75) 1px 1px 0;
-			}
-			panel > fieldset > a.half {
-			    margin-right: -4px;
-			}
-			panel > div#version {
-			    color: #4d4d70;
-			    font-size: 12px;
-			    margin-bottom: 9px;
-			    margin-top: -3px;
-			    text-align: center;
-			}
-		</style>
-		<link href="css/menes.css" rel="stylesheet">
+		<link rel="shortcut icon" href="favicon.ico" />
+		<link href="css/menes.min.css" rel="stylesheet">
+		<link href="css/scroll.min.css" rel="stylesheet">
+		<script src="js/fastclick.js" type="text/javascript"></script>
+		<script src="js/menes.js" type="text/javascript"></script>
+		<script src="js/cytyle.js" type="text/javascript"></script>
 	</head>
 	<body class="pinstripe">
 		<panel>
@@ -165,15 +137,19 @@
 ?>
 			<fieldset>
 				<a href="cydia://sources/add">
-					<img class="icon" src="CydiaIcon.png">
+				<img class="icon" src="CydiaIcon.png">
 					<div>
-						<label><?php echo $release_origin; ?></label>
+						<div>
+						<label>
+						<p><?php echo $release_origin; ?></p>
+						</label>
+						</div>
 					</div>
 				</a>
 			</fieldset>
 			<fieldset>
 				<div>
-					<div style="float: right; margin-top: -3px; text-align: center; width: 200px">
+					<div style="float: right; margin-top: 8px; text-align: center; width: 200px">
 						<span style="font-size: 20px"><?php echo $release_origin; ?></span><br/>
 						<span style="font-size: 17px">
 							<a class="panel" href="<?php echo AUTOFILL_SITE; ?>"><?php echo AUTOFILL_FULLNAME; ?></a>
@@ -198,7 +174,7 @@
 <?php
 		$section_query = mysql_query("SELECT `Name`, `Icon` FROM `Sections`");
 		if (!$section_query) {
-			echo "MYSQL ERROR!";
+			echo "MYSQL ERROR!<br />数据库错误！<br />请联系管理员检查问题。";
 		}
 		while ($section_assoc = mysql_fetch_assoc($section_query)) {
 ?>
@@ -211,7 +187,11 @@
 				<a href="index.php?pid=<?php echo($package_assoc['ID']); ?>">
 					<img class="icon" src="icons/<?php echo($section_assoc['Icon']); ?>" width="58" height="58">
 					<div>
-						<label><?php echo($package_assoc['Name']); ?></label>
+						<div>
+							<label>
+							<p><?php echo($package_assoc['Name']); ?></p>
+							</label>
+						</div>
 					</div>
 				</a>
 <?php
@@ -224,59 +204,104 @@
 		$pkg = (int)mysql_real_escape_string($_GET['pid']);
 		$pkg_query = mysql_query("SELECT `Name`, `Version`, `Package`, `Description`, `DownloadTimes`, `Multi`, `CreateStamp` FROM `Packages` WHERE `ID` = '".$pkg."' LIMIT 1");
 		if (!$pkg_query) {
-			echo 'MYSQL ERROR!';
+			echo 'MYSQL ERROR!<br />数据库错误！<br />请联系管理员检查问题。';
 			exit();
 		}
 		$pkg_assoc = mysql_fetch_assoc($pkg_query);
 		if (!$pkg_assoc) {
-			echo 'NO PACKAGE SELECTED!';
+			echo 'NO PACKAGE SELECTED!<br />无效的软件包信息！<br />可能是该软件包已被删除，如有疑问，请联系管理员。';
 			exit();
 		}
 ?>
-			<fieldset>
-				<a href="cydia://package/<?php echo $pkg_assoc['Package']; ?>" id="cydialink">
-					<img class="icon" src="icons/cydia.png" width="58" height="58">
+			<fieldset id="cydialink" style="display: none;">
+				<a href="cydia://package/<?php echo $pkg_assoc['Package']; ?>">
+				<img class="icon" src="icons/cydia.png">
 					<div>
-						<label>在 Cydia<sup><small>™</small></sup> 中查看</label>
+						<div>
+							<label>
+							<p>在 Cydia<sup><small>™</small></sup> 中查看</p>
+							</label>
+						</div>
 					</div>
 				</a>
+			</fieldset>
+			<fieldset>
 				<a href="index.php?pid=<?php echo $_GET['pid']; ?>&method=screenshot">
-					<img class="icon" src="icons/screenshots.png" width="58" height="58">
+				<img class="icon" src="icons/screenshots.png">
 					<div>
-						<label>查看截图</label>
+						<div>
+							<label>
+							<p>预览截图</p>
+							</label>
+						</div>
 					</div>
 				</a>
 				<a href="index.php?pid=<?php echo $_GET['pid']; ?>&method=history" id="historylink">
-					<img class="icon" src="icons/clock.png" width="58" height="58">
+				<img class="icon" src="icons/clock.png">
 					<div>
-						<label>历史版本</label>
+						<div>
+							<label>
+							<p>历史版本</p>
+							</label>
+						</div>
 					</div>
 				</a>
 				<a href="index.php?pid=<?php echo $_GET['pid']; ?>&method=report" id="reportlink">
-					<img class="icon" src="icons/report.png" width="58" height="58">
+				<img class="icon" src="icons/report.png">
 					<div>
-						<label>兼容报告</label>
+						<div>
+							<label>
+							<p>兼容报告</p>
+							</label>
+						</div>
 					</div>
 				</a>
+<?php
+		if (defined("AUTOFILL_WEIBO") && defined("AUTOFILL_WEIBO_NAME")) {
+?>
 				<a href="<?php echo AUTOFILL_WEIBO; ?>">
-					<img class="icon" src="icons/weibo.png" width="58" height="58">
+				<img class="icon" src="icons/weibo.png">
 					<div>
-						<label>@<?php echo AUTOFILL_WEIBO_NAME; ?> 官方微博</label>
+						<div>
+							<label>
+							<p>@<?php echo AUTOFILL_WEIBO_NAME; ?> 官方微博</p>
+							</label>
+						</div>
 					</div>
 				</a>
+<?php
+		}
+		if (defined("AUTOFILL_PAYPAL")) {
+?>
 				<a href="<?php echo AUTOFILL_PAYPAL; ?>" target="_blank">
-				    <img class="icon" src="icons/paypal.png" width="58" height="58">
-				    <div>
-				    	<label>前往 <span style="font-style: italic; font-weight: bold"><span style="color: #1a3665">Pay</span><span style="color: #32689a">Pal</span><sup><small>™</small></sup></span> 捐助</label>
+				<img class="icon" src="icons/paypal.png">
+					<div>
+						<div>
+				    	<label>
+				    	<p>前往 <span style="font-style: italic; font-weight: bold"><span style="color: #1a3665">Pay</span><span style="color: #32689a">Pal</span><sup><small>™</small></sup></span> 捐助</p>
+				    	</label>
+				    </div>
+					</div>
+				</a>
+<?php
+		}
+?>
+				<a>
+					<div>
+						<div>
+						近期有小学生冒充我们以收取中文源捐助的名义要求给他充值Q币，遇到此类事件请第一时间举报，谢谢合作。
+						</div>
 					</div>
 				</a>
 			</fieldset>
 <?php
 		if (defined("AUTOFILL_ADVERTISEMENT")) {
 ?>
-			<fieldset>
+			<fieldset id="advertisement">
 				<div>
-					<?php echo AUTOFILL_ADVERTISEMENT; ?>
+					<div>
+						<?php echo AUTOFILL_ADVERTISEMENT; ?>
+					</div>
 				</div>
 			</fieldset>
 <?php	
@@ -295,7 +320,9 @@
 ?>
 			<fieldset>
 				<div>
-					<?php echo $pkg_assoc['Multi']; ?>
+					<div>
+						<?php echo $pkg_assoc['Multi']; ?>
+					</div>
 				</div>
 			</fieldset>
 <?php
@@ -304,13 +331,14 @@
 		$pkg = (int)mysql_real_escape_string($_GET['pid']);
 		$pkg_query = mysql_query("SELECT `PID`, `Image` FROM `ScreenShots` WHERE `PID` = '".$pkg."'");
 		if (!$pkg_query) {
-			echo 'MYSQL ERROR!';
+			echo 'MYSQL ERROR!<br />数据库错误！<br />请联系管理员检查问题。';
 			exit();
 		}
 		$num = mysql_affected_rows();
 		if ($num != 0) {
 			?>
-			<label>截图</label>
+			<label>预览截图</label>
+			<br />
 			<div class="horizontal-scroll-wrapper" id="scroller">
 				<div class="horizontal-scroll-area" style="width:<?php echo($num * 200); ?>px;">
 					<?php
@@ -325,6 +353,7 @@
 		} else {
 ?>
 			<label>该软件包暂无截图</label>
+			<br />
 <?php
 		}
 	} elseif ($index == 3) {
@@ -350,25 +379,41 @@
 				<a href="index.php?pid=<?php echo $_GET['pid']; ?>&method=report&support=1">
 					<img class="icon" src="icons/support_1.png" width="58" height="58">
 					<div>
-						<label>完美兼容<?php echo $s_1; ?></label>
+						<div>
+							<label>
+							<p>完美兼容<?php echo $s_1; ?></p>
+							</label>
+						</div>
 					</div>
 				</a>
 				<a href="index.php?pid=<?php echo $_GET['pid']; ?>&method=report&support=0">
 					<img class="icon" src="icons/support_0.png" width="58" height="58">
 					<div>
-						<label>不完美兼容<?php echo $s_0; ?></label>
+						<div>
+							<label>
+							<p>部分兼容<?php echo $s_0; ?></p>
+							</label>
+						</div>
 					</div>
 				</a>
 				<a href="index.php?pid=<?php echo $_GET['pid']; ?>&method=report&support=2">
 					<img class="icon" src="icons/support_2.png" width="58" height="58">
 					<div>
-						<label>不兼容<?php echo $s_2; ?></label>
+						<div>
+							<label>
+							<p>不兼容<?php echo $s_2; ?></p>
+							</label>
+						</div>
 					</div>
 				</a>
 				<a href="index.php?pid=<?php echo $_GET['pid']; ?>&method=report&support=3">
 					<img class="icon" src="icons/support_3.png" width="58" height="58">
 					<div>
-						<label>请求升级</label>
+						<div>
+							<label>
+							<p>请求升级</p>
+							</label>
+						</div>
 					</div>
 				</a>
 			</fieldset>
@@ -408,6 +453,7 @@
 		if (mysql_affected_rows() > 0) {
 ?>
 			<label>历史版本</label>
+			<br />
 			<fieldset>
 <?php
 			while ($history = mysql_fetch_assoc($history_query)) {
@@ -415,7 +461,11 @@
 				<a href="index.php?pid=<?php echo($history['ID']); ?>&addr=nohistory">
 					<img class="icon" src="icons/clock.png" width="58" height="58">
 					<div>
-						<label>版本 <?php echo($history['Version']); ?></label>
+						<div>
+							<label>
+							<p>版本 <?php echo($history['Version']); ?></p>
+							</label>
+						</div>
 					</div>
 				</a>
 <?php
@@ -428,26 +478,12 @@
 		}
 	}
 ?>
-		<script src="js/iscroll2.js"></script> 
-		<script>
-			if (document.getElementById('scroller')) {
-				new iScroll(document.getElementById('scroller'));
-			}
-			if (navigator.userAgent.search(/Cydia/) != -1) {
-				document.body.classList.add("cydia");
-				document.getElementById("cydialink").style.display="none";
-			} else {
-				document.getElementById("reportlink").style.display="none";
-			}
-			if (window.location.href.search(/nohistory/) != -1) {
-				document.getElementById("reportlink").style.display="none";
-				document.getElementById("historylink").style.display="none";
-			}
-		</script>
+		<script src="js/scroll.js" type="text/javascript"></script> 
+		<script src="js/main.js" type="text/javascript"></script>
 <?php
 	if (defined("AUTOFILL_STATISTICS")) {
 ?>
-		<div style="text-align: center;"><?php echo AUTOFILL_STATISTICS; ?></div>
+		<div style="text-align: center; display: none;"><?php echo AUTOFILL_STATISTICS; ?></div>
 <?php
 	}
 ?>

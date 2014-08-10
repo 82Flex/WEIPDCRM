@@ -16,6 +16,8 @@
 	    along with WEIPDCRM.  If not, see <http://www.gnu.org/licenses/>.
 	*/
 	
+	/* DCRM List Footer Control */
+	
 	if (!defined("DCRM")) {
 		exit();
 	}
