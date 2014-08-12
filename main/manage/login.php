@@ -54,7 +54,7 @@
 	}
 	if(isset($_POST['submit'])) {
 		if (!empty($_POST['username']) AND !empty($_POST['password']) AND !empty($_POST['authcode'])) {
-			if ($_POST['authcode'] != $_SESSION['VCODE']) {
+			if (strtolower($_POST['authcode']) != strtolower($_SESSION['VCODE'])) {
 				unset($_SESSION['VCODE']);
 				$_SESSION['try'] = $_SESSION['try'] + 1;
 				$error = "authcode";
