@@ -30,7 +30,7 @@
 	
 	$detect = new Mobile_Detect;
 	if(!$detect->isiOS()){
-	    header("Location: misc.php");
+		header("Location: misc.php");
 	}
 	$con = mysql_connect($server,$username,$password);
 	if (!$con) {
@@ -38,7 +38,7 @@
 		exit();
 	}
 	mysql_query("SET NAMES utf8",$con);
-	$select  = mysql_select_db($database,$con);
+	$select = mysql_select_db($database,$con);
 	if (!$select) {
 		echo 'MYSQL ERROR!<br />数据库错误！<br />请联系管理员检查问题。';
 		exit();
@@ -174,15 +174,19 @@
 <?php
 		$section_query = mysql_query("SELECT `Name`, `Icon` FROM `Sections`");
 		if (!$section_query) {
-			echo "MYSQL ERROR!<br />数据库错误！<br />请联系管理员检查问题。";
-		}
-		while ($section_assoc = mysql_fetch_assoc($section_query)) {
+?>
+			<block>
+			<p>MYSQL ERROR!<br />数据库错误！<br />请联系管理员检查问题。</p>
+			</block>
+<?php
+		} else {
+			while ($section_assoc = mysql_fetch_assoc($section_query)) {
 ?>
 			<label><?php echo($section_assoc['Name']); ?></label>
 			<fieldset>
 <?php
-			$package_query = mysql_query("SELECT `ID`, `Name`, `Package` FROM `Packages` WHERE (`Stat` = '1' AND `Section` = '".mysql_real_escape_string($section_assoc['Name'])."') ORDER BY `ID` DESC LIMIT " . DCRM_SHOW_NUM);
-			while ($package_assoc = mysql_fetch_assoc($package_query)) {
+				$package_query = mysql_query("SELECT `ID`, `Name`, `Package` FROM `Packages` WHERE (`Stat` = '1' AND `Section` = '".mysql_real_escape_string($section_assoc['Name'])."') ORDER BY `ID` DESC LIMIT " . DCRM_SHOW_NUM);
+				while ($package_assoc = mysql_fetch_assoc($package_query)) {
 ?>
 				<a href="index.php?pid=<?php echo($package_assoc['ID']); ?>">
 					<img class="icon" src="icons/<?php echo($section_assoc['Icon']); ?>" width="58" height="58">
@@ -195,23 +199,30 @@
 					</div>
 				</a>
 <?php
-			}
+				}
 ?>
 			</fieldset>
 <?php
+			}
 		}
 	} elseif ($index == 1) {
 		$pkg = (int)mysql_real_escape_string($_GET['pid']);
 		$pkg_query = mysql_query("SELECT `Name`, `Version`, `Package`, `Description`, `DownloadTimes`, `Multi`, `CreateStamp` FROM `Packages` WHERE `ID` = '".$pkg."' LIMIT 1");
 		if (!$pkg_query) {
-			echo 'MYSQL ERROR!<br />数据库错误！<br />请联系管理员检查问题。';
-			exit();
-		}
-		$pkg_assoc = mysql_fetch_assoc($pkg_query);
-		if (!$pkg_assoc) {
-			echo 'NO PACKAGE SELECTED!<br />无效的软件包信息！<br />可能是该软件包已被删除，如有疑问，请联系管理员。';
-			exit();
-		}
+?>
+			<block>
+			<p>MYSQL ERROR!<br />数据库错误！<br />请联系管理员检查问题。</p>
+			</block>
+<?php
+		} else {
+			$pkg_assoc = mysql_fetch_assoc($pkg_query);
+			if (!$pkg_assoc) {
+?>
+			<block>
+			<p>NO PACKAGE SELECTED!<br />无效的软件包信息！<br />可能是该软件包已被删除，如有疑问，请联系管理员。</p>
+			</block>
+<?php
+			} else {
 ?>
 			<fieldset id="cydialink" style="display: none;">
 				<a href="cydia://package/<?php echo $pkg_assoc['Package']; ?>">
@@ -257,7 +268,7 @@
 					</div>
 				</a>
 <?php
-		if (defined("AUTOFILL_WEIBO") && defined("AUTOFILL_WEIBO_NAME")) {
+				if (defined("AUTOFILL_WEIBO") && defined("AUTOFILL_WEIBO_NAME")) {
 ?>
 				<a href="<?php echo AUTOFILL_WEIBO; ?>">
 				<img class="icon" src="icons/weibo.png">
@@ -270,22 +281,22 @@
 					</div>
 				</a>
 <?php
-		}
-		if (defined("AUTOFILL_PAYPAL")) {
+				}
+				if (defined("AUTOFILL_PAYPAL")) {
 ?>
 				<a href="<?php echo AUTOFILL_PAYPAL; ?>" target="_blank">
 				<img class="icon" src="icons/paypal.png">
 					<div>
 						<div>
-				    	<label>
-				    	<p>前往 <span style="font-style: italic; font-weight: bold"><span style="color: #1a3665">Pay</span><span style="color: #32689a">Pal</span><sup><small>™</small></sup></span> 捐助</p>
-				    	</label>
-				    </div>
+							<label>
+							<p>前往 <span style="font-style: italic; font-weight: bold"><span style="color: #1a3665">Pay</span><span style="color: #32689a">Pal</span><sup><small>™</small></sup></span> 捐助</p>
+							</label>
+						</div>
 					</div>
 				</a>
 <?php
-		}
-		if (defined("EMERGENCY")) {
+				}
+				if (defined("EMERGENCY")) {
 ?>
 				<a>
 					<div>
@@ -295,11 +306,11 @@
 					</div>
 				</a>
 <?php
-		}
+				}
 ?>
 			</fieldset>
 <?php
-		if (defined("AUTOFILL_ADVERTISEMENT")) {
+				if (defined("AUTOFILL_ADVERTISEMENT")) {
 ?>
 			<fieldset id="advertisement">
 				<div>
@@ -309,7 +320,7 @@
 				</div>
 			</fieldset>
 <?php	
-		}
+				}
 ?>
 			<fieldset>
 				<div>
@@ -320,7 +331,7 @@
 				</div>
 			</fieldset>
 <?php
-		if (!empty($pkg_assoc['Multi'])) {
+				if (!empty($pkg_assoc['Multi'])) {
 ?>
 			<fieldset>
 				<div>
@@ -330,6 +341,8 @@
 				</div>
 			</fieldset>
 <?php
+				}
+			}
 		}
 	} elseif ($index == 2) {
 		$pkg = (int)mysql_real_escape_string($_GET['pid']);
@@ -337,10 +350,10 @@
 		if (!$pkg_query) {
 			echo 'MYSQL ERROR!<br />数据库错误！<br />请联系管理员检查问题。';
 			exit();
-		}
-		$num = mysql_affected_rows();
-		if ($num != 0) {
-			?>
+		} else {
+			$num = mysql_affected_rows();
+			if ($num != 0) {
+?>
 			<label>预览截图</label>
 			<br />
 			<div class="horizontal-scroll-wrapper" id="scroller">
@@ -354,25 +367,48 @@
 				<div class="horizontal-scroll-pips"></div>
 			</div>
 <?php
-		} else {
+			} else {
 ?>
 			<label>该软件包暂无截图</label>
 			<br />
 <?php
+			}
 		}
 	} elseif ($index == 3) {
 		$q_count = mysql_query("SELECT `Support`, COUNT(*) AS 'num' FROM `Reports` WHERE (`Device` = '".$DEVICE."' AND `iOS` = '".$OS."' AND `PID` = '".$_GET['pid']."') GROUP BY `Support`");
 		if (mysql_affected_rows() > 0) {
 			while ($s_count = mysql_fetch_assoc($q_count)) {
 				switch ($s_count['Support']) {
-					case 1: $s_1 = " (".$s_count['num'].")"; break;
-					case 2: $s_2 = " (".$s_count['num'].")"; break;
-					case 0: $s_0 = " (".$s_count['num'].")"; break;
+					case 1:
+						$s_1 = " (".$s_count['num'].")";
+						$i_1 = $s_count['num'];
+						break;
+					case 2:
+						$s_2 = " (".$s_count['num'].")";
+						$i_2 = $s_count['num'];
+						break;
+					case 0:
+						$s_0 = " (".$s_count['num'].")";
+						$i_0 = $s_count['num'];
+						break;
 				}
 			}
 		}
+		$check_int = $i_1 * 3 + $i_2 - $i_0 * 2;
+		if ($check_int >= 10) {
+?>
+			<fieldset style="background-color: #ccffcc;">
+<?php
+		} elseif ($check_int <= -6) {
+?>
+			<fieldset style="background-color: #ffdddd;">
+<?php
+		} else {
 ?>
 			<fieldset>
+<?php
+		}
+?>
 				<div>
 					<p><strong>当前设备信息</strong></p>
 					<hr />
@@ -434,7 +470,7 @@
 		$result = mysql_query("SELECT `ID` FROM `Reports` WHERE (`Remote` = '".mysql_real_escape_string($_SERVER['REMOTE_ADDR'])."' AND `PID`='".$_GET['pid']."') LIMIT 3");
 		if (mysql_affected_rows() < 3) {
 			if (!empty($_SERVER['REMOTE_ADDR']) && !empty($DEVICE) && !empty($OS)) {
-				$result = mysql_query("INSERT INTO `Reports`(`Remote`, `Device`, `iOS`, `Support`, `TimeStamp`, `PID`) VALUES('".mysql_real_escape_string($_SERVER['REMOTE_ADDR'])."', '".$DEVICE."', '".$OS."', '".$support."', '".date('Y-m-d H:i:s')."', '".$_GET['pid']."')");
+				$result = mysql_query("INSERT INTO `Reports`(`Remote`, `Device`, `iOS`, `Support`, `TimeStamp`, `PID`) VALUES('".mysql_real_escape_string($_SERVER['REMOTE_ADDR'])."', '".$DEVICE."', '".$OS."', '".$support."', '".date('Y-m-d H:i:s')."', '".(int)$_GET['pid']."')");
 			}
 ?>
 			<fieldset class="success">
@@ -453,11 +489,10 @@
 			</fieldset>
 <?php
 	} elseif ($index == 5) {
-		$history_query = mysql_query("SELECT `ID`, `Version` FROM `Packages` WHERE (`Package` = (SELECT `Package` FROM `Packages` WHERE `ID` = '".$_GET['pid']."' LIMIT 1) AND `Version` != (SELECT `Version` FROM `Packages` WHERE `ID` = '".$_GET['pid']."' LIMIT 1)) ORDER BY `ID` DESC LIMIT 20");
+		$history_query = mysql_query("SELECT `ID`, `Version` FROM `Packages` WHERE (`Package` = (SELECT `Package` FROM `Packages` WHERE `ID` = '".(int)$_GET['pid']."' LIMIT 1) AND `Version` != (SELECT `Version` FROM `Packages` WHERE `ID` = '".(int)$_GET['pid']."' LIMIT 1)) ORDER BY `ID` DESC LIMIT 20");
 		if (mysql_affected_rows() > 0) {
 ?>
 			<label>历史版本</label>
-			<br />
 			<fieldset>
 <?php
 			while ($history = mysql_fetch_assoc($history_query)) {
