@@ -25,6 +25,7 @@
 	require_once("include/connect.inc.php");
 	require_once("include/func.php");
 	require_once("include/tar.php");
+	require_once("include/corepage.php");
 	header("Content-Type: text/html; charset=UTF-8");
 	
 	if (isset($_SESSION['connected']) && $_SESSION['connected'] === true) {
@@ -45,9 +46,7 @@
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 	<title>DCRM - 源管理系统</title>
 	<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
-	<style type="text/css">
-	.ctl {text-overflow:ellipsis;overflow:hidden;white-space: nowrap;padding:2px} 
-	</style>
+	<link rel="stylesheet" type="text/css" href="css/corepage.css">
 </head>
 <body>
 	<div class="container">
@@ -90,17 +89,35 @@
 				<br />
 				<h3 class="navbar">分类列表　<a href="sections.php?action=add">添加分类</a>　<a href="sections.php?action=create">生成图标包</a></h3>
 				<?php
-						$list_query = mysql_query("SELECT * FROM `Sections` ORDER BY `ID` DESC LIMIT 50",$con);
+						if (isset($_GET['page'])) {
+								$page = $_GET['page'];
+						}
+						else {
+							$page = 1;
+						}
+						if ($page <= 0 OR $page >= 6) {
+							$page = 1;
+						}
+						$page_a = $page * 10 - 10;
+						if ($page == 1) {
+							$page_b = $page;
+						}
+						else {
+							$page_b = $page - 1;
+						}
+						$list_query = mysql_query("SELECT * FROM `Sections` ORDER BY `ID` DESC LIMIT ".(string)$page_a.",10",$con);
 						if ($list_query == FALSE) {
 							goto endlabel;
 						}
 						else {
-							echo '<table class="table"><thead><tr>';
-							echo '<th><ul class="ctl">编辑</ul></th>';
-							echo '<th><ul class="ctl">名称</ul></th>';
-							echo '<th><ul class="ctl">图标</ul></th>';
-							echo '<th><ul class="ctl">最后修改</ul></th>';
-							echo '</tr></thead><tbody>';
+				?>
+					<table class="table"><thead><tr>
+					<th><ul class="ctl">编辑</ul></th>
+					<th><ul class="ctl">名称</ul></th>
+					<th><ul class="ctl">图标</ul></th>
+					<th><ul class="ctl">最后修改</ul></th>
+					</tr></thead><tbody>
+				<?php
 							while ($list = mysql_fetch_assoc($list_query)) {
 								echo '<tr>';
 								echo '<td><a href="sections.php?action=delete_confirmation&id=' . $list['ID'] . '&name=' . $list['Name'] . '" class="close" style="line-height: 12px;">&times</a></td>';
@@ -114,11 +131,19 @@
 								echo '<td><ul class="ctl" style="width:150px;">' . $list['TimeStamp'] . '</ul></td>';
 								echo '</tr>';	
 							}
-							echo '</tbody></table>';
+				?>
+					</tbody></table>
+				<?php
+							$q_info = mysql_query("SELECT count(*) FROM `Sections`");
+							$info = mysql_fetch_row($q_info);
+							$totalnum = (int)$info[0];
+							$params = array('total_rows'=>$totalnum, 'method'=>'html', 'parameter' =>'sections.php?page=%page', 'now_page'  =>$page, 'list_rows' =>10);
+							$page = new Core_Lib_Page($params);
+							echo '<div class="page">' . $page->show(2) . '</div>';
 						}
 					}
 					elseif (!empty($_GET['action']) AND $_GET['action'] == "add") {
-						?>
+				?>
 						<h2>分类管理</h2>
 						<br />
 						<h3 class="navbar"><a href="sections.php">分类列表</a>　添加分类　<a href="sections.php?action=create">生成图标包</a></h3>
@@ -146,7 +171,7 @@
 							</div>
 						</div>
 						</form>
-						<?php
+				<?php
 					}
 					elseif (!empty($_GET['action']) AND $_GET['action'] == "add_now" AND !empty($_POST['contents'])) {
 						$new_name = mysql_real_escape_string($_POST['contents']);
@@ -156,7 +181,7 @@
 						}
 						$info = mysql_fetch_row($q_info);
 						$num = (int)$info[0];
-						if ($num < 50) {
+						if ($num <= 50) {
 							if (pathinfo($_FILES['icon']['name'], PATHINFO_EXTENSION) == "png") {
 								if (file_exists("../icons/" . $_FILES['icon']['name'])) {
 									unlink("../icons/" . $_FILES['icon']['name']);

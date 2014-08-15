@@ -1,0 +1,5 @@
+.ctl {text-overflow:ellipsis;overflow:hidden;white-space:nowrap;padding:2px}
+.page {font:16px}
+.page span{float:left;margin:0px 3px;}
+.page a{float:left;margin:0 3px;border:1px solid #ddd;padding:3px 7px;text-decoration:none;color:#666}
+.page a.now_page,#page a:hover{color:#fff;background:#0088cc}

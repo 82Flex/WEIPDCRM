@@ -347,6 +347,7 @@
 								<textarea type="text" style="height: 40px;" name="EMERGENCY" ><?php if(defined("AUTOFILL_EMERGENCY")){echo(htmlspecialchars(AUTOFILL_EMERGENCY));} ?></textarea>
 							</div>
 						</div>
+						<br />
 						<div class="form-actions">
 							<div class="controls">
 								<button type="submit" class="btn btn-success">保存</button>

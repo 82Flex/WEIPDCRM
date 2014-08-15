@@ -33,9 +33,7 @@
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 	<title>DCRM - 源管理系统</title>
 	<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
-	<style type="text/css">
-	.ctl {text-overflow:ellipsis;overflow:hidden;white-space: nowrap;padding:2px} 
-	</style>
+	<link rel="stylesheet" type="text/css" href="css/corepage.css">
 </head>
 <body>
 	<div class="container">
@@ -77,38 +75,47 @@
 				<h2>导入软件包</h2>
 				<br />
 				<?php
-					$folder = opendir("../upload/");
-					$files = array();
-					while ($element = readdir($folder)) {
-						if (preg_match("#.\.deb#", $element)) {
-							$files[] = $element;
+						$folder = opendir("../upload/");
+						$files = array();
+						while ($element = readdir($folder)) {
+							if (preg_match("#.\.deb#", $element)) {
+								$files[] = $element;
+							}
 						}
-					}
-					if (empty($files)) {
-						echo '<h3 class="alert alert-info">上传目录为空。<br />您可以通过上传功能或 FTP 服务将软件包上传到根目录的 upload 目录下。</h3>';
-					}
-					else {
-						sort($files);
-						echo '<h3>目录列表</h3>';
-						echo '<table class="table"><thead><tr>';
-						echo '<th><ul class="ctl">删除</ul></th>';
-						echo '<th><ul class="ctl">名称</ul></th>';
-						echo '<th><ul class="ctl">尺寸</ul></th>';
-						echo '</tr></thead><tbody>';
-						foreach ($files as $file) {
-							$filesize = filesize("../upload/" . $file);
-							$filesize_withext = sizeext($filesize);
-							echo '<tr>';
-							echo '<td><a href="manage.php?action=delete_confirmation&file='.urlencode($file).'" class="close" style="line-height: 12px;">&times;</a></td>';
-							echo '<td><a href = "import.php?filename='.$file.'"><ul class="ctl" style="width:450px;">'.$file.'</a></ul></td>';
-							echo '<td><ul class="ctl" style="width:100px;">'.$filesize_withext.'</ul></td>';
-							echo '</tr>';	
+						if (empty($files)) {
+				?>
+						<h3 class="alert alert-info">
+							上传目录为空。<br />
+							您可以通过上传功能或 FTP 服务将软件包上传到根目录的 upload 目录下。
+						</h3>
+				<?php
 						}
-						echo '</tbody></table>';
-					}
+						else {
+							sort($files);
+				?>
+						<h3>目录列表</h3>
+						<table class="table"><thead><tr>
+						<th><ul class="ctl">删除</ul></th>
+						<th><ul class="ctl">名称</ul></th>
+						<th><ul class="ctl">尺寸</ul></th>
+						</tr></thead><tbody>
+				<?php
+							foreach ($files as $file) {
+								$filesize = filesize("../upload/" . $file);
+								$filesize_withext = sizeext($filesize);
+								echo '<tr>';
+								echo '<td><a href="manage.php?action=delete_confirmation&file='.urlencode($file).'" class="close" style="line-height: 12px;">&times;</a></td>';
+								echo '<td><a href = "import.php?filename='.$file.'"><ul class="ctl" style="width:450px;">'.$file.'</a></ul></td>';
+								echo '<td><ul class="ctl" style="width:100px;">'.$filesize_withext.'</ul></td>';
+								echo '</tr>';	
+							}
+				?>
+						</tbody></table>
+				<?php
+						}
 					}
 					elseif ($_GET['action'] == "delete_confirmation" AND !empty($_GET['file']) AND file_exists("../upload/" . urldecode($_GET['file']))) {
-						echo '<h3 class="alert">您确定要删除：'.urldecode($_GET['file']).' ？</h3>';
+						echo '<h3 class="alert">您确定要删除：'.urldecode($_GET['file']).'？该操作无法撤销！</h3>';
 						echo '<a class="btn btn-warning" href="manage.php?action=delete&file='.urlencode($_GET['file']).'">确定</a>';
 						echo '　';
 						echo '<a class="btn btn-success" href="manage.php">取消</a>';
@@ -120,7 +127,12 @@
 							exit();
 						}
 						else {
-							echo '<h3 class="alert alert-error">无法删除，请检查文件系统权限。<br /><a href="sections.php">返回</a></h3>';
+				?>
+						<h3 class="alert alert-error">
+							无法删除，请检查文件系统权限。<br />
+							<a href="sections.php">返回</a>
+						</h3>
+				<?php
 						}
 					}
 				?>
