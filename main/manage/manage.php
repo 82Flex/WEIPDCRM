@@ -77,7 +77,7 @@
 				<h2>导入软件包</h2>
 				<br />
 				<?php
-					$folder = opendir(DCRM_DEBIAN_CACHE);
+					$folder = opendir("../upload/");
 					$files = array();
 					while ($element = readdir($folder)) {
 						if (preg_match("#.\.deb#", $element)) {
@@ -96,7 +96,7 @@
 						echo '<th><ul class="ctl">尺寸</ul></th>';
 						echo '</tr></thead><tbody>';
 						foreach ($files as $file) {
-							$filesize = filesize(DCRM_DEBIAN_CACHE . $file);
+							$filesize = filesize("../upload/" . $file);
 							$filesize_withext = sizeext($filesize);
 							echo '<tr>';
 							echo '<td><a href="manage.php?action=delete_confirmation&file='.urlencode($file).'" class="close" style="line-height: 12px;">&times;</a></td>';
@@ -107,15 +107,15 @@
 						echo '</tbody></table>';
 					}
 					}
-					elseif ($_GET['action'] == "delete_confirmation" AND !empty($_GET['file']) AND file_exists(DCRM_DEBIAN_CACHE . urldecode($_GET['file']))) {
+					elseif ($_GET['action'] == "delete_confirmation" AND !empty($_GET['file']) AND file_exists("../upload/" . urldecode($_GET['file']))) {
 						echo '<h3 class="alert">您确定要删除：'.urldecode($_GET['file']).' ？</h3>';
 						echo '<a class="btn btn-warning" href="manage.php?action=delete&file='.urlencode($_GET['file']).'">确定</a>';
 						echo '　';
 						echo '<a class="btn btn-success" href="manage.php">取消</a>';
 					}
-					elseif ($_GET['action'] == "delete" AND !empty($_GET['file']) AND file_exists(DCRM_DEBIAN_CACHE . urldecode($_GET['file']))) {
-						if (is_writable(DCRM_DEBIAN_CACHE . urldecode($_GET['file']))) {
-							unlink(DCRM_DEBIAN_CACHE . urldecode($_GET['file']));
+					elseif ($_GET['action'] == "delete" AND !empty($_GET['file']) AND file_exists("../upload/" . urldecode($_GET['file']))) {
+						if (is_writable("../upload/" . urldecode($_GET['file']))) {
+							unlink("../upload/" . urldecode($_GET['file']));
 							header("Location: manage.php");
 							exit();
 						}

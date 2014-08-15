@@ -54,7 +54,7 @@
 		goto endlabel;
 	}
 	
-	$r_path = DCRM_DEBIAN_CACHE . str_replace("\\", "",str_replace("/", "",$_GET['filename']));
+	$r_path = "../upload/" . str_replace("\\", "",str_replace("/", "",$_GET['filename']));
 	if (pathinfo($r_path, PATHINFO_EXTENSION) != "deb") {
 		$alert = "无效的文件类型！";
 		$success = false;
@@ -97,13 +97,13 @@
 	
 	nextstep:
 	if (is_int(stripos($control_c_raw_data[0][0], 'control.tar.gz'))) {
-		if (!is_dir(DCRM_TEMP)) {
-			mkdir(DCRM_TEMP);
+		if (!is_dir("../tmp/")) {
+			mkdir("../tmp/");
 		}
-		if (!is_dir(DCRM_TEMP . $r_id)) {
-			mkdir(DCRM_TEMP . $r_id);
+		if (!is_dir("../tmp/" . $r_id)) {
+			mkdir("../tmp/" . $r_id);
 		}
-		$t_path = DCRM_TEMP . $r_id . '/control.tar.gz';
+		$t_path = "../tmp/" . $r_id . '/control.tar.gz';
 		if (file_exists($t_path)) {
 			unlink($t_path);
 		}
@@ -117,7 +117,7 @@
 		
 		$plain_array = explode("\n",$control_data);
 		foreach ($plain_array as $line) {
-			if(preg_match(TAGS,$line)) {
+			if(preg_match("#^Package|Source|Version|Priority|Section|Essential|Maintainer|Pre-Depends|Depends|Recommends|Suggests|Conflicts|Provides|Replaces|Enhances|Architecture|Filename|Size|Installed-Size|Description|Origin|Bugs|Name|Author|Homepage|Website|Depiction|Icon|Tag|Sponsor#",$line)) {
 				$t_package[trim(preg_replace("#^(.+): (.+)#","$1", $line))] = trim(preg_replace("#^(.+): (.+)#","$2", $line));
 			}
 		}
@@ -188,7 +188,7 @@
 	}
 	
 	importnow:
-	$new_daily = DCRM_DOWNLOADS . date("Ymd");
+	$new_daily = "../downloads/" . date("Ymd");
 	$new_path = $new_daily . "/" . $t_package['Package'] . "_" . $t_package['Version'] . "_" . $t_package['Architecture'] . ".deb";
 	if (!is_dir($new_daily)) {
 		$mkdir = mkdir($new_daily);

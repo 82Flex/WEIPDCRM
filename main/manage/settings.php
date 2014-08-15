@@ -23,6 +23,7 @@
 	define("DCRM",true);
 	require_once("include/config.inc.php");
 	require_once("include/connect.inc.php");
+	require_once("include/autofill.inc.php");
 	header("Content-Type: text/html; charset=UTF-8");
 
 	if (isset($_SESSION['connected']) && $_SESSION['connected'] === true) {
@@ -82,10 +83,12 @@
 				<?php
 					if (!isset($_GET['action'])) {
 				?>
-				<h2><?php echo $lang_release['title'][DCRM_LANG]; ?></h2>
+				<h2>系统设置</h2>
 				<br />
 				<form class="form-horizontal" method="POST" action="settings.php?action=set">
 					<fieldset>
+						<h3>登录信息</h3>
+						<br />
 						<div class="group-control">
 							<label class="control-label">用户名</label>
 							<div class="controls">
@@ -107,6 +110,8 @@
 								<input type="text" required="required" name="trials" value="<?php echo htmlspecialchars(DCRM_MAXLOGINFAIL); ?>"/>
 							</div>
 						</div>
+						<br />
+						<h3>下载设置</h3>
 						<br />
 						<div class="group-control">
 							<label class="control-label">防盗链</label>
@@ -182,6 +187,8 @@
 							</div>
 						</div>
 						<br />
+						<h3>首页展示</h3>
+						<br />
 						<div class="group-control">
 							<label class="control-label">首页更新列表</label>
 							<div class="controls">
@@ -214,6 +221,132 @@
 							</div>
 						</div>
 						<br />
+						<h3>自动填充</h3>
+						<br />
+						<div class="group-control">
+							<label class="control-label">软件包默认标识符</label>
+							<div class="controls">
+								<input type="text" name="PRE" value="<?php if(defined("AUTOFILL_PRE")){echo(htmlspecialchars(AUTOFILL_PRE));} ?>"/>
+							</div>
+						</div>
+						<br />
+						<div class="group-control">
+							<label class="control-label">软件包默认名称</label>
+							<div class="controls">
+								<input type="text" name="NONAME" value="<?php if(defined("AUTOFILL_NONAME")){echo(htmlspecialchars(AUTOFILL_NONAME));} ?>"/>
+							</div>
+						</div>
+						<br />
+						<div class="group-control">
+							<label class="control-label">软件包默认描述</label>
+							<div class="controls">
+								<input type="text" name="DESCRIPTION" value="<?php if(defined("AUTOFILL_DESCRIPTION")){echo(htmlspecialchars(AUTOFILL_DESCRIPTION));} ?>"/>
+							</div>
+						</div>
+						<br />
+						<h3>SEO 优化</h3>
+						<br />
+						<div class="group-control">
+							<label class="control-label">SEO 名称</label>
+							<div class="controls">
+								<input type="text" name="SEO" value="<?php if(defined("AUTOFILL_SEO")){echo(htmlspecialchars(AUTOFILL_SEO));} ?>"/>
+							</div>
+						</div>
+						<br />
+						<div class="group-control">
+							<label class="control-label">SEO 关键词</label>
+							<div class="controls">
+								<input type="text" name="KEYWORDS" value="<?php if(defined("AUTOFILL_KEYWORDS")){echo(htmlspecialchars(AUTOFILL_KEYWORDS));} ?>"/>
+								<p class="help-block">以英文半角逗号分隔</p>
+							</div>
+						</div>
+						<br />
+						<div class="group-control">
+							<label class="control-label">SEO 域名</label>
+							<div class="controls">
+								<input type="text" name="SITE" value="<?php if(defined("AUTOFILL_SITE")){echo(htmlspecialchars(AUTOFILL_SITE));} ?>"/>
+							</div>
+						</div>
+						<br />
+						<h3>管理员信息</h3>
+						<br />
+						<div class="group-control">
+							<label class="control-label">管理员名称</label>
+							<div class="controls">
+								<input type="text" name="MASTER" value="<?php if(defined("AUTOFILL_MASTER")){echo(htmlspecialchars(AUTOFILL_MASTER));} ?>"/>
+							</div>
+						</div>
+						<br />
+						<div class="group-control">
+							<label class="control-label">管理员全名</label>
+							<div class="controls">
+								<input type="text" name="FULLNAME" value="<?php if(defined("AUTOFILL_FULLNAME")){echo(htmlspecialchars(AUTOFILL_FULLNAME));} ?>"/>
+							</div>
+						</div>
+						<br />
+						<div class="group-control">
+							<label class="control-label">管理员邮箱</label>
+							<div class="controls">
+								<input type="text" name="EMAIL" value="<?php if(defined("AUTOFILL_EMAIL")){echo(htmlspecialchars(AUTOFILL_EMAIL));} ?>"/>
+							</div>
+						</div>
+						<br />
+						<h3>分享设定</h3>
+						<br />
+						<div class="group-control">
+							<label class="control-label">微博地址</label>
+							<div class="controls">
+								<input type="text" name="WEIBO" value="<?php if(defined("AUTOFILL_WEIBO")){echo(htmlspecialchars(AUTOFILL_WEIBO));} ?>"/>
+							</div>
+						</div>
+						<br />
+						<div class="group-control">
+							<label class="control-label">微博名称</label>
+							<div class="controls">
+								<input type="text" name="WEIBO_NAME" value="<?php if(defined("AUTOFILL_WEIBO_NAME")){echo(htmlspecialchars(AUTOFILL_WEIBO_NAME));} ?>"/>
+							</div>
+						</div>
+						<br />
+						<div class="group-control">
+							<label class="control-label">Paypal 捐助地址</label>
+							<div class="controls">
+								<input type="text" name="PAYPAL" value="<?php if(defined("AUTOFILL_PAYPAL")){echo(htmlspecialchars(AUTOFILL_PAYPAL));} ?>"/>
+							</div>
+						</div>
+						<br />
+						<h3>统计与广告</h3>
+						<br />
+						<div class="group-control">
+							<label class="control-label">外部统计代码</label>
+							<div class="controls">
+								<textarea type="text" style="height: 40px;" name="STATISTICS" ><?php if(defined("AUTOFILL_STATISTICS")){echo(htmlspecialchars(AUTOFILL_STATISTICS));} ?></textarea>
+								<p class="help-block">不可见的统计代码</p>
+							</div>
+						</div>
+						<br />
+						<div class="group-control">
+							<label class="control-label">内部统计代码</label>
+							<div class="controls">
+								<textarea type="text" style="height: 40px;" name="STATISTICS_INFO" ><?php if(defined("AUTOFILL_STATISTICS_INFO")){echo(htmlspecialchars(AUTOFILL_STATISTICS_INFO));} ?></textarea>
+								<p class="help-block">查看信息的统计代码</p>
+							</div>
+						</div>
+						<br />
+						<div class="group-control">
+							<label class="control-label">广告支持</label>
+							<div class="controls">
+								<textarea type="text" style="height: 40px;" name="ADVERTISEMENT" ><?php if(defined("AUTOFILL_ADVERTISEMENT")){echo(htmlspecialchars(AUTOFILL_ADVERTISEMENT));} ?></textarea>
+							</div>
+						</div>
+						<br />
+						<h3>通知</h3>
+						<br />
+						<div class="group-control">
+							<label class="control-label">紧急通知</label>
+							<div class="controls">
+								<textarea type="text" style="height: 40px;" name="EMERGENCY" ><?php if(defined("AUTOFILL_EMERGENCY")){echo(htmlspecialchars(AUTOFILL_EMERGENCY));} ?></textarea>
+							</div>
+						</div>
 						<div class="form-actions">
 							<div class="controls">
 								<button type="submit" class="btn btn-success">保存</button>
@@ -288,13 +421,21 @@
 							$config_text .= "\tdefine(\"DCRM_DIRECT_DOWN\",".$_POST['directdown'].");\n";
 							$config_text .= "\tdefine(\"DCRM_LISTS_METHOD\",".$_POST['listsmethod'].");\n";
 							$config_text .= "\tdefine(\"DCRM_REPOURL\",\"".base64_encode($_POST['url_repo'])."\");\n";
-							$config_text .= "\tdefine(\"DCRM_DEBIAN_CACHE\",\""."../upload/"."\");\n";
-							$config_text .= "\tdefine(\"DCRM_TEMP\",\""."../tmp/"."\");\n";
-							$config_text .= "\tdefine(\"DCRM_DOWNLOADS\",\""."../downloads/"."\");\n";
-							$config_text .= "\tdefine(\"TAGS\",\""."#^Package|Source|Version|Priority|Section|Essential|Maintainer|Pre-Depends|Depends|Recommends|Suggests|Conflicts|Provides|Replaces|Enhances|Architecture|Filename|Size|Installed-Size|Description|Origin|Bugs|Name|Author|Homepage|Website|Depiction|Icon|Tag|Sponsor#"."\");\n?>";
+							$config_text .= "?>";
+							$autofill_text = "<?php\n\tif (!defined(\"DCRM\")) {\n\t\texit;\n\t}\n";
+							$autofill_list = array("EMERGENCY", "PRE", "NONAME", "MASTER", "FULLNAME", "EMAIL", "SITE", "WEIBO", "WEIBO_NAME", "DESCRIPTION", "SEO", "KEYWORDS", "PAYPAL", "STATISTICS", "STATISTICS_INFO", "ADVERTISEMENT");
+							foreach ($autofill_list as $value) {
+								if (!empty($_POST[$value])) {
+									$autofill_text .= "\tdefine(\"AUTOFILL_".$value."\",\"".addslashes(str_replace(array("\r","\n"), '',nl2br(htmlspecialchars_decode($_POST[$value]))))."\");\n";
+								}
+							}
+							$autofill_text .= "?>";
 							$config_handle = fopen("include/config.inc.php", "w");
 							fputs($config_handle,stripslashes($config_text));
 							fclose($config_handle);
+							$autofill_handle = fopen("include/autofill.inc.php", "w");
+							fputs($autofill_handle,$autofill_text);
+							fclose($autofill_handle);
 							echo '<h3 class="alert alert-success">设置修改成功。<br/><a href="settings.php">返回</a></h3>';
 							if ($logout) {
 								header("Location: login.php?action=logout");

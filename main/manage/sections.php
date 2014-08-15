@@ -200,17 +200,17 @@
 						}
 						if (file_exists("include/empty_icon.deb")) {
 							$r_id = randstr(40);
-							if (!is_dir(DCRM_TEMP)) {
-								$result = mkdir(DCRM_TEMP);
+							if (!is_dir("../tmp/")) {
+								$result = mkdir("../tmp/");
 							}
-							if (!is_dir(DCRM_TEMP . $r_id)) {
-								$result = mkdir(DCRM_TEMP . $r_id);
+							if (!is_dir("../tmp/" . $r_id)) {
+								$result = mkdir("../tmp/" . $r_id);
 								if (!$result) {
 									$alert = "临时目录创建失败，请检查文件权限！";
 									goto endlabel;
 								}
 							}
-							$deb_path = DCRM_TEMP . $r_id . "/icon_" . time() . ".deb";
+							$deb_path = "../tmp/" . $r_id . "/icon_" . time() . ".deb";
 							$result = copy("include/empty_icon.deb", $deb_path);
 							if (!$result) {
 								$alert = "图标包模板复制失败，请检查文件权限！";
@@ -218,15 +218,15 @@
 							}
 							$raw_data = new phpAr($deb_path);
 							$new_tar = new Tar();
-							$new_path = DCRM_TEMP . $r_id . "/data.tar.gz";
+							$new_path = "../tmp/" . $r_id . "/data.tar.gz";
 							$icon_query = mysql_query("SELECT * FROM `Sections`");
 							while ($icon_assoc = mysql_fetch_assoc($icon_query)) {
-								mkdir(DCRM_TEMP . $r_id . "/Applications");
-								mkdir(DCRM_TEMP . $r_id . "/Applications/Cydia.app");
-								mkdir(DCRM_TEMP . $r_id . "/Applications/Cydia.app/Sections");
+								mkdir("../tmp/" . $r_id . "/Applications");
+								mkdir("../tmp/" . $r_id . "/Applications/Cydia.app");
+								mkdir("../tmp/" . $r_id . "/Applications/Cydia.app/Sections");
 								if ($icon_assoc['Icon'] != "") {
 									$new_filename = str_replace("[", "", str_replace("]", "", str_replace(" ", "_", $icon_assoc['Name']))) . ".png";
-									$new_filepath = DCRM_TEMP . $r_id . "/Applications/Cydia.app/Sections/" . $new_filename;
+									$new_filepath = "../tmp/" . $r_id . "/Applications/Cydia.app/Sections/" . $new_filename;
 									copy("../icons/" . $icon_assoc['Icon'], $new_filepath);
 									$new_tar -> add_file("/Applications/Cydia.app/Sections/" . $new_filename, "", file_get_contents($new_filepath));
 								}
@@ -238,7 +238,7 @@
 								goto endlabel;
 							}
 							else {
-								$result = rename($deb_path, DCRM_DEBIAN_CACHE . "icon_" . time() . ".deb");
+								$result = rename($deb_path, "../upload/" . "icon_" . time() . ".deb");
 								if (!$result) {
 									$alert = "图标包重定位失败！";
 									goto endlabel;

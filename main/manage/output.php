@@ -70,11 +70,11 @@
 		}
 	}
 	$r_id = randstr(40);
-	if (!is_dir(DCRM_TEMP)) {
-		mkdir(DCRM_TEMP);
+	if (!is_dir("../tmp/")) {
+		mkdir("../tmp/");
 	}
-	if (!is_dir(DCRM_TEMP . $r_id)) {
-		mkdir(DCRM_TEMP . $r_id);
+	if (!is_dir("../tmp/" . $r_id)) {
+		mkdir("../tmp/" . $r_id);
 	}
 	$raw_data = new phpAr($deb_path);
 	$filename_array = $raw_data -> listfiles();
@@ -87,7 +87,7 @@
 	}
 	nextstep:
 	if (is_int(stripos($control_c_raw_data[0][0], 'control.tar.gz'))) {
-		$control_tar_path = DCRM_TEMP . $r_id . "/old.tar.gz";
+		$control_tar_path = "../tmp/" . $r_id . "/old.tar.gz";
 		$control_tar_handle = fopen($control_tar_path, 'w');
 		fputs($control_tar_handle,$control_c_raw_data[0][6]);
 		fclose($control_tar_handle);
@@ -100,7 +100,7 @@
 				$new_tar -> add_file($c_key, "", $control_array[$c_key]['data']);
 			}
 		}
-		$new_path = DCRM_TEMP . $r_id . "/control.tar.gz";
+		$new_path = "../tmp/" . $r_id . "/control.tar.gz";
 		$new_tar -> add_file("control", "", $f_Package);
 		$new_tar -> save($new_path);
 	}
