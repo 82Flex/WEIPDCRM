@@ -278,10 +278,10 @@
 						}
 					}
 					elseif (!empty($_GET['action']) AND $_GET['action'] == "delete_confirmation" AND !empty($_GET['id']) AND !empty($_GET['name'])) {
-						echo '<div class="alert">您确定要删除： ' . htmlspecialchars($_GET['name']) . ' ？<br />';
+						echo '<h3 class="alert">您确定要删除： ' . htmlspecialchars($_GET['name']) . ' ？</h3>';
 						echo '<a class="btn btn-warning" href="sections.php?action=delete&id='.$_GET['id'].'">确定</a>';
 						echo '　';
-						echo '<a class="btn btn-success" href="sections.php">取消</a></div>';
+						echo '<a class="btn btn-success" href="sections.php">取消</a>';
 					}
 					elseif (!empty($_GET['action']) AND $_GET['action'] == "delete" AND !empty($_GET['id'])) {
 						$delete_id = (int)$_GET['id'];

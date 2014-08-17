@@ -226,21 +226,21 @@
 						<div class="group-control">
 							<label class="control-label">软件包默认标识符</label>
 							<div class="controls">
-								<input type="text" name="PRE" value="<?php if(defined("AUTOFILL_PRE")){echo(htmlspecialchars(AUTOFILL_PRE));} ?>"/>
+								<input type="text" name="PRE" value="<?php if(defined("AUTOFILL_PRE")){echo(htmlspecialchars(stripslashes(AUTOFILL_PRE)));} ?>"/>
 							</div>
 						</div>
 						<br />
 						<div class="group-control">
 							<label class="control-label">软件包默认名称</label>
 							<div class="controls">
-								<input type="text" name="NONAME" value="<?php if(defined("AUTOFILL_NONAME")){echo(htmlspecialchars(AUTOFILL_NONAME));} ?>"/>
+								<input type="text" name="NONAME" value="<?php if(defined("AUTOFILL_NONAME")){echo(htmlspecialchars(stripslashes(AUTOFILL_NONAME)));} ?>"/>
 							</div>
 						</div>
 						<br />
 						<div class="group-control">
 							<label class="control-label">软件包默认描述</label>
 							<div class="controls">
-								<input type="text" name="DESCRIPTION" value="<?php if(defined("AUTOFILL_DESCRIPTION")){echo(htmlspecialchars(AUTOFILL_DESCRIPTION));} ?>"/>
+								<input type="text" name="DESCRIPTION" value="<?php if(defined("AUTOFILL_DESCRIPTION")){echo(htmlspecialchars(stripslashes(AUTOFILL_DESCRIPTION)));} ?>"/>
 							</div>
 						</div>
 						<br />
@@ -249,14 +249,14 @@
 						<div class="group-control">
 							<label class="control-label">SEO 名称</label>
 							<div class="controls">
-								<input type="text" name="SEO" value="<?php if(defined("AUTOFILL_SEO")){echo(htmlspecialchars(AUTOFILL_SEO));} ?>"/>
+								<input type="text" name="SEO" value="<?php if(defined("AUTOFILL_SEO")){echo(htmlspecialchars(stripslashes(AUTOFILL_SEO)));} ?>"/>
 							</div>
 						</div>
 						<br />
 						<div class="group-control">
 							<label class="control-label">SEO 关键词</label>
 							<div class="controls">
-								<input type="text" name="KEYWORDS" value="<?php if(defined("AUTOFILL_KEYWORDS")){echo(htmlspecialchars(AUTOFILL_KEYWORDS));} ?>"/>
+								<input type="text" name="KEYWORDS" value="<?php if(defined("AUTOFILL_KEYWORDS")){echo(htmlspecialchars(stripslashes(AUTOFILL_KEYWORDS)));} ?>"/>
 								<p class="help-block">以英文半角逗号分隔</p>
 							</div>
 						</div>
@@ -264,7 +264,7 @@
 						<div class="group-control">
 							<label class="control-label">SEO 域名</label>
 							<div class="controls">
-								<input type="text" name="SITE" value="<?php if(defined("AUTOFILL_SITE")){echo(htmlspecialchars(AUTOFILL_SITE));} ?>"/>
+								<input type="text" name="SITE" value="<?php if(defined("AUTOFILL_SITE")){echo(htmlspecialchars(stripslashes(AUTOFILL_SITE)));} ?>"/>
 							</div>
 						</div>
 						<br />
@@ -273,44 +273,88 @@
 						<div class="group-control">
 							<label class="control-label">管理员名称</label>
 							<div class="controls">
-								<input type="text" name="MASTER" value="<?php if(defined("AUTOFILL_MASTER")){echo(htmlspecialchars(AUTOFILL_MASTER));} ?>"/>
+								<input type="text" name="MASTER" value="<?php if(defined("AUTOFILL_MASTER")){echo(htmlspecialchars(stripslashes(AUTOFILL_MASTER)));} ?>"/>
 							</div>
 						</div>
 						<br />
 						<div class="group-control">
 							<label class="control-label">管理员全名</label>
 							<div class="controls">
-								<input type="text" name="FULLNAME" value="<?php if(defined("AUTOFILL_FULLNAME")){echo(htmlspecialchars(AUTOFILL_FULLNAME));} ?>"/>
+								<input type="text" name="FULLNAME" value="<?php if(defined("AUTOFILL_FULLNAME")){echo(htmlspecialchars(stripslashes(AUTOFILL_FULLNAME)));} ?>"/>
 							</div>
 						</div>
 						<br />
 						<div class="group-control">
 							<label class="control-label">管理员邮箱</label>
 							<div class="controls">
-								<input type="text" name="EMAIL" value="<?php if(defined("AUTOFILL_EMAIL")){echo(htmlspecialchars(AUTOFILL_EMAIL));} ?>"/>
+								<input type="text" name="EMAIL" value="<?php if(defined("AUTOFILL_EMAIL")){echo(htmlspecialchars(stripslashes(AUTOFILL_EMAIL)));} ?>"/>
 							</div>
 						</div>
 						<br />
-						<h3>分享设定</h3>
+						<h3>社会化分享</h3>
+						<br />
+						<div class="group-control">
+							<label class="control-label">QQ群地址</label>
+							<div class="controls">
+								<input type="text" name="TENCENT" value="<?php if(defined("AUTOFILL_TENCENT")){echo(htmlspecialchars(stripslashes(AUTOFILL_TENCENT)));} ?>"/>
+								<p class="help-block">需要手机QQ生成</p>
+							</div>
+						</div>
+						<br />
+						<div class="group-control">
+							<label class="control-label">QQ群名称</label>
+							<div class="controls">
+								<input type="text" name="TENCENT_NAME" value="<?php if(defined("AUTOFILL_TENCENT_NAME")){echo(htmlspecialchars(stripslashes(AUTOFILL_TENCENT_NAME)));} ?>"/>
+							</div>
+						</div>
 						<br />
 						<div class="group-control">
 							<label class="control-label">微博地址</label>
 							<div class="controls">
-								<input type="text" name="WEIBO" value="<?php if(defined("AUTOFILL_WEIBO")){echo(htmlspecialchars(AUTOFILL_WEIBO));} ?>"/>
+								<input type="text" name="WEIBO" value="<?php if(defined("AUTOFILL_WEIBO")){echo(htmlspecialchars(stripslashes(AUTOFILL_WEIBO)));} ?>"/>
 							</div>
 						</div>
 						<br />
 						<div class="group-control">
 							<label class="control-label">微博名称</label>
 							<div class="controls">
-								<input type="text" name="WEIBO_NAME" value="<?php if(defined("AUTOFILL_WEIBO_NAME")){echo(htmlspecialchars(AUTOFILL_WEIBO_NAME));} ?>"/>
+								<input type="text" name="WEIBO_NAME" value="<?php if(defined("AUTOFILL_WEIBO_NAME")){echo(htmlspecialchars(stripslashes(AUTOFILL_WEIBO_NAME)));} ?>"/>
+							</div>
+						</div>
+						<br />
+						<div class="group-control">
+							<label class="control-label">Twitter 地址</label>
+							<div class="controls">
+								<input type="text" name="TWITTER" value="<?php if(defined("AUTOFILL_TWITTER")){echo(htmlspecialchars(stripslashes(AUTOFILL_TWITTER)));} ?>"/>
+								<p class="help-block">登录后方可查看</p>
+							</div>
+						</div>
+						<br />
+						<div class="group-control">
+							<label class="control-label">Twitter 名称</label>
+							<div class="controls">
+								<input type="text" name="TWITTER_NAME" value="<?php if(defined("AUTOFILL_TWITTER_NAME")){echo(htmlspecialchars(stripslashes(AUTOFILL_TWITTER_NAME)));} ?>"/>
+							</div>
+						</div>
+						<br />
+						<div class="group-control">
+							<label class="control-label">Facebook 地址</label>
+							<div class="controls">
+								<input type="text" name="FACEBOOK" value="<?php if(defined("AUTOFILL_FACEBOOK")){echo(htmlspecialchars(stripslashes(AUTOFILL_FACEBOOK)));} ?>"/>
+							</div>
+						</div>
+						<br />
+						<div class="group-control">
+							<label class="control-label">Facebook 名称</label>
+							<div class="controls">
+								<input type="text" name="FACEBOOK_NAME" value="<?php if(defined("AUTOFILL_FACEBOOK_NAME")){echo(htmlspecialchars(stripslashes(AUTOFILL_FACEBOOK_NAME)));} ?>"/>
 							</div>
 						</div>
 						<br />
 						<div class="group-control">
 							<label class="control-label">Paypal 捐助地址</label>
 							<div class="controls">
-								<input type="text" name="PAYPAL" value="<?php if(defined("AUTOFILL_PAYPAL")){echo(htmlspecialchars(AUTOFILL_PAYPAL));} ?>"/>
+								<input type="text" name="PAYPAL" value="<?php if(defined("AUTOFILL_PAYPAL")){echo(htmlspecialchars(stripslashes(AUTOFILL_PAYPAL)));} ?>"/>
 							</div>
 						</div>
 						<br />
@@ -319,7 +363,7 @@
 						<div class="group-control">
 							<label class="control-label">外部统计代码</label>
 							<div class="controls">
-								<textarea type="text" style="height: 40px;" name="STATISTICS" ><?php if(defined("AUTOFILL_STATISTICS")){echo(htmlspecialchars(AUTOFILL_STATISTICS));} ?></textarea>
+								<textarea type="text" style="height: 40px;" name="STATISTICS" ><?php if(defined("AUTOFILL_STATISTICS")){echo(htmlspecialchars(stripslashes(AUTOFILL_STATISTICS)));} ?></textarea>
 								<p class="help-block">不可见的统计代码</p>
 							</div>
 						</div>
@@ -327,7 +371,7 @@
 						<div class="group-control">
 							<label class="control-label">内部统计代码</label>
 							<div class="controls">
-								<textarea type="text" style="height: 40px;" name="STATISTICS_INFO" ><?php if(defined("AUTOFILL_STATISTICS_INFO")){echo(htmlspecialchars(AUTOFILL_STATISTICS_INFO));} ?></textarea>
+								<textarea type="text" style="height: 40px;" name="STATISTICS_INFO" ><?php if(defined("AUTOFILL_STATISTICS_INFO")){echo(htmlspecialchars(stripslashes(AUTOFILL_STATISTICS_INFO)));} ?></textarea>
 								<p class="help-block">查看信息的统计代码</p>
 							</div>
 						</div>
@@ -335,7 +379,7 @@
 						<div class="group-control">
 							<label class="control-label">广告支持</label>
 							<div class="controls">
-								<textarea type="text" style="height: 40px;" name="ADVERTISEMENT" ><?php if(defined("AUTOFILL_ADVERTISEMENT")){echo(htmlspecialchars(AUTOFILL_ADVERTISEMENT));} ?></textarea>
+								<textarea type="text" style="height: 40px;" name="ADVERTISEMENT" ><?php if(defined("AUTOFILL_ADVERTISEMENT")){echo(htmlspecialchars(stripslashes(AUTOFILL_ADVERTISEMENT)));} ?></textarea>
 							</div>
 						</div>
 						<br />
@@ -344,7 +388,7 @@
 						<div class="group-control">
 							<label class="control-label">紧急通知</label>
 							<div class="controls">
-								<textarea type="text" style="height: 40px;" name="EMERGENCY" ><?php if(defined("AUTOFILL_EMERGENCY")){echo(htmlspecialchars(AUTOFILL_EMERGENCY));} ?></textarea>
+								<textarea type="text" style="height: 40px;" name="EMERGENCY" ><?php if(defined("AUTOFILL_EMERGENCY")){echo(htmlspecialchars(stripslashes(AUTOFILL_EMERGENCY)));} ?></textarea>
 							</div>
 						</div>
 						<br />
@@ -424,7 +468,7 @@
 							$config_text .= "\tdefine(\"DCRM_REPOURL\",\"".base64_encode($_POST['url_repo'])."\");\n";
 							$config_text .= "?>";
 							$autofill_text = "<?php\n\tif (!defined(\"DCRM\")) {\n\t\texit;\n\t}\n";
-							$autofill_list = array("EMERGENCY", "PRE", "NONAME", "MASTER", "FULLNAME", "EMAIL", "SITE", "WEIBO", "WEIBO_NAME", "DESCRIPTION", "SEO", "KEYWORDS", "PAYPAL", "STATISTICS", "STATISTICS_INFO", "ADVERTISEMENT");
+							$autofill_list = array("EMERGENCY", "PRE", "NONAME", "MASTER", "FULLNAME", "EMAIL", "SITE", "WEIBO", "WEIBO_NAME", "TWITTER", "TWITTER_NAME", "FACEBOOK", "FACEBOOK_NAME", "DESCRIPTION", "SEO", "KEYWORDS", "PAYPAL", "STATISTICS", "STATISTICS_INFO", "ADVERTISEMENT", "TENCENT", "TENCENT_NAME");
 							foreach ($autofill_list as $value) {
 								if (!empty($_POST[$value])) {
 									$autofill_text .= "\tdefine(\"AUTOFILL_".$value."\",\"".addslashes(str_replace(array("\r","\n"), '',nl2br(htmlspecialchars_decode($_POST[$value]))))."\");\n";

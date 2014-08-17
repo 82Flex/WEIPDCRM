@@ -1,0 +1,8 @@
+Origin: 82Flex 中文源™
+Label: 82Flex
+Suite: stable
+Version: 1.1
+Codename: 82Flex
+Architectures: iphoneos-arm
+Components: main
+Description: 在线提取服务维护完毕，使用 Safari 可下载软件包。
