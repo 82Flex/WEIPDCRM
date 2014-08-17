@@ -223,14 +223,14 @@
 					}
 					else
 					{
-						if($this->now_page-$i>=4 && $i != 1)
+						if($this->now_page-$i>=8 && $i != 1)
 						{
 							$return .="<span class='pageMore'>...</span>\n";
-							$i = $this->now_page-3;
+							$i = $this->now_page-7;
 						}
 						else
 						{
-							if($i >= $this->now_page+5 && $i != $this->total_pages)
+							if($i >= $this->now_page+9 && $i != $this->total_pages)
 							{
 								$return .="<span>...</span>\n"; 
 								$i = $this->total_pages;

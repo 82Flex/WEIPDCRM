@@ -33,8 +33,8 @@
 		if (!$con) {
 			goto endlabel;
 		}
-		mysql_query("SET NAMES utf8",$con);
-		$select  = mysql_select_db($database,$con);
+		mysql_query("SET NAMES utf8");
+		$select  = mysql_select_db($database);
 		if (!$select) {
 			$alert = mysql_error();
 			goto endlabel;
@@ -47,6 +47,19 @@
 	<title>DCRM - 源管理系统</title>
 	<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
 	<link rel="stylesheet" type="text/css" href="css/corepage.css">
+	<script src="js/mbar.js" type="text/javascript"></script>
+	<script type="text/javascript">
+	function show(stat) {
+		sli = document.getElementById('sli');
+		
+		if (stat == 1) {
+			sli.innerHTML = '<a href="javascript:opt(4)">隐藏软件包</a>';
+		} else {
+			sli.innerHTML = '<a href="javascript:opt(5)">显示软件包</a>';
+		}
+		document.getElementById('mbar').style.display = "";
+	}
+	</script>
 </head>
 <body>
 	<div class="container">
@@ -78,6 +91,15 @@
 						<li class="nav-header">SYSTEM</li>
 							<li><a href="stats.php">运行状态</a></li>
 							<li><a href="about.php">关于程序</a></li>
+					</ul>
+				</div>
+				<div class="well sidebar-nav" id="mbar" style="display: none;">
+					<ul class="nav nav-list">
+						<li class="nav-header">OPERATIONS</li>
+							<li><a href="javascript:opt(1)">查看详情</a></li>
+							<li><a href="javascript:opt(2)">常规编辑</a></li>
+							<li><a href="javascript:opt(3)">高级编辑</a></li>
+							<li id="sli"></li>
 					</ul>
 				</div>
 			</div>
@@ -151,45 +173,39 @@
 							else {
 								$page_b = $page - 1;
 							}
-							$list_query = mysql_query("SELECT `ID`, `Package`, `Name`, `Version`, `DownloadTimes`, `Stat` FROM `Packages` ORDER BY `Stat` DESC, `ID` DESC LIMIT " . (string)$page_a. ",10",$con);
+							$list_query = mysql_query("SELECT `ID`, `Package`, `Name`, `Version`, `DownloadTimes`, `Stat`, `Size`, `Section` FROM `Packages` ORDER BY `Stat` DESC, `ID` DESC, `Version` DESC, `Name` DESC LIMIT " . (string)$page_a. ",10");
 							if ($list_query == FALSE) {
 								goto endlabel;
 							}
 							else {
 				?>
 								<table class="table"><thead><tr>
-								<th><ul class="ctl">显示</ul></th>
-								<th><ul class="ctl">编辑</ul></th>
-								<th><ul class="ctl">删除</ul></th>
+								<th></th>
 								<th><ul class="ctl">名称</ul></th>
 								<th><ul class="ctl">版本</ul></th>
+								<th><ul class="ctl">尺寸</ul></th>
 								<th><ul class="ctl">下载次数</ul></th>
+								<th><ul class="ctl">删除</ul></th>
 								<th><ul class="ctl">历史</ul></th>
 								</tr></thead><tbody>
 				<?php
 								$i = 0;
 								while ($list = mysql_fetch_assoc($list_query)) {
 									$i++;
-									if ((int)$list['Stat'] != 1) {
-										$submit_icon = "▽";
-									}
-									else {
-										$submit_icon = "▼";
-									}
 				?>
 								<tr>
-								<td><a href="center.php?action=submit&id=<?php echo $list['ID']; ?>" class="close" style="line-height: 20px;"><?php echo $submit_icon; ?></a></td>
-								<td><a href="edit.php?id=<?php echo $list['ID']; ?>" class="close" style="line-height: 20px;">◎</a></td>
-								<td><a href="center.php?action=delete_confirm&name=<?php echo $list['Package']; ?>&id=<?php echo $list['ID']; ?>" class="close" style="line-height: 20px;">&times;</a></td>
+								<td height="20"><input type="radio" name="package" value="<?php echo $list['ID']; ?>" onclick="javascript:show(<?php echo $list['Stat']; ?>);" /></td>
 				<?php
 									if (empty($list['Name'])) {
 										$list['Name'] = AUTOFILL_NONAME;
 									}
 				?>
-								<td><a href = "view.php?id=<?php echo $list['ID']; ?>"><ul class="ctl" style="width:300px;"><?php echo htmlspecialchars($list['Name']); ?></ul></a></td>
-								<td><ul class="ctl" style="width:60px;"><?php echo htmlspecialchars($list['Version']); ?></ul></td>
+								<td><a href = "view.php?id=<?php echo $list['ID']; ?>"><ul class="ctl" style="width:240px;"><?php echo htmlspecialchars($list['Name']); ?></ul></a></td>
+								<td><ul class="ctl" style="width:80px;"><?php echo htmlspecialchars($list['Version']); ?></ul></td>
+								<td><ul class="ctl" style="width:80px;"><?php echo sizeext($list['Size']); ?></ul></td>
 								<td><ul class="ctl" style="width:50px;"><?php echo $list['DownloadTimes']; ?></ul></td>
-								<td><a href="center.php?action=search&contents=<?php echo $list['Package']; ?>&type=1" class="close" style="line-height: 20px;">&raquo;</a></td>
+								<td><a href="center.php?action=delete_confirm&name=<?php echo $list['Package']; ?>&id=<?php echo $list['ID']; ?>" class="close">&times;</a></td>
+								<td><a href="center.php?action=search&contents=<?php echo $list['Package']; ?>&type=1" class="close">&raquo;</a></td>
 								</tr>
 				<?php
 								}
@@ -263,41 +279,37 @@
 								goto endlabel;
 						}
 						$r_value = mysql_real_escape_string($_GET['contents']);
-						$list_query = mysql_query("SELECT `ID`, `Package`, `Name`, `Version`, `DownloadTimes`, `Stat` FROM `Packages` WHERE `" . $t . "` LIKE '%" . $r_value . "%' ORDER BY `Stat` DESC, `ID` DESC LIMIT ".(string)$page_a.",10",$con);
+						$list_query = mysql_query("SELECT `ID`, `Package`, `Name`, `Version`, `DownloadTimes`, `Stat`, `Size` FROM `Packages` WHERE `" . $t . "` LIKE '%" . $r_value . "%' ORDER BY `Stat` DESC, `ID` DESC LIMIT ".(string)$page_a.",10");
 						if ($list_query == FALSE) {
 							goto endlabel;
 						}
 						else {
 				?>
 								<table class="table"><thead><tr>
-								<th><ul class="ctl">显示</ul></th>
-								<th><ul class="ctl">编辑</ul></th>
-								<th><ul class="ctl">删除</ul></th>
+								<th></th>
 								<th><ul class="ctl">名称</ul></th>
 								<th><ul class="ctl">版本</ul></th>
+								<th><ul class="ctl">尺寸</ul></th>
 								<th><ul class="ctl">下载次数</ul></th>
+								<th><ul class="ctl">删除</ul></th>
+								<th><ul class="ctl">历史</ul></th>
 								</tr></thead><tbody>
 				<?php
 								while ($list = mysql_fetch_assoc($list_query)) {
-									if ((int)$list['Stat'] != 1) {
-										$submit_icon = "▽";
-									}
-									else {
-										$submit_icon = "▼";
-									}
 				?>
 								<tr>
-								<td><a href="center.php?action=submit&id=<?php echo $list['ID']; ?>" class="close" style="line-height: 20px;"><?php echo $submit_icon; ?></a></td>
-								<td><a href="edit.php?id=<?php echo $list['ID']; ?>" class="close" style="line-height: 20px;">◎</a></td>
-								<td><a href="center.php?action=delete_confirm&name=<?php echo $list['Package']; ?>&id=<?php echo $list['ID']; ?>" class="close" style="line-height: 20px;">&times;</a></td>
+								<td height="20"><input type="radio" name="package" value="<?php echo $list['ID']; ?>" onclick="javascript:show(<?php echo $list['Stat']; ?>);" /></td>
 				<?php
 									if (empty($list['Name'])) {
 										$list['Name'] = AUTOFILL_NONAME;
 									}
 				?>
-								<td><a href = "view.php?id=<?php echo $list['ID']; ?>"><ul class="ctl" style="width:300px;"><?php echo htmlspecialchars($list['Name']); ?></ul></a></td>
-								<td><ul class="ctl" style="width:60px;"><?php echo htmlspecialchars($list['Version']); ?></ul></td>
+								<td><a href = "view.php?id=<?php echo $list['ID']; ?>"><ul class="ctl" style="width:240px;"><?php echo htmlspecialchars($list['Name']); ?></ul></a></td>
+								<td><ul class="ctl" style="width:80px;"><?php echo htmlspecialchars($list['Version']); ?></ul></td>
+								<td><ul class="ctl" style="width:80px;"><?php echo sizeext($list['Size']); ?></ul></td>
 								<td><ul class="ctl" style="width:50px;"><?php echo $list['DownloadTimes']; ?></ul></td>
+								<td><a href="center.php?action=delete_confirm&name=<?php echo $list['Package']; ?>&id=<?php echo $list['ID']; ?>" class="close">&times;</a></td>
+								<td><a href="center.php?action=search&contents=<?php echo $list['Package']; ?>&type=1" class="close">&raquo;</a></td>
 								</tr>
 				<?php
 								}
@@ -329,7 +341,7 @@
 					}
 					elseif (!empty($_GET['action']) AND $_GET['action'] == "delete" AND !empty($_GET['id'])) {
 						$delete_id = (int)$_GET['id'];
-						$f_query = mysql_query("SELECT `Filename` FROM `Packages` WHERE `ID` = '" . $delete_id . "'",$con);
+						$f_query = mysql_query("SELECT `Filename` FROM `Packages` WHERE `ID` = '" . $delete_id . "'");
 						if (!$f_query) {
 							goto endlabel;
 						}
@@ -339,7 +351,7 @@
 								goto endlabel;
 							}
 							unlink($f_filename['Filename']);
-							$d_query = mysql_query("DELETE FROM `Packages` WHERE `ID` = '" . $delete_id . "'",$con);
+							$d_query = mysql_query("DELETE FROM `Packages` WHERE `ID` = '" . $delete_id . "'");
 						}
 						if (!$d_query) {
 							goto endlabel;
@@ -359,7 +371,7 @@
 					}
 					elseif (!empty($_GET['action']) AND $_GET['action'] == "submit" AND !empty($_GET['id'])) {
 						$submit_id = (int)$_GET['id'];
-						$s_query = mysql_query("SELECT `Stat` FROM `Packages` WHERE `ID` = '" . $submit_id . "'",$con);
+						$s_query = mysql_query("SELECT `Package`, `Stat` FROM `Packages` WHERE `ID` = '" . $submit_id . "'");
 						if (!$s_query) {
 							goto endlabel;
 						}
@@ -370,10 +382,11 @@
 							}
 						}
 						if ((int)$s_info['Stat'] != 1) {
-							$s_query = mysql_query("UPDATE `Packages` SET `Stat` = '1' WHERE `ID` = '" . $submit_id . "'",$con);
+							$s_query = mysql_query("UPDATE `Packages` SET `Stat` = '-1' WHERE `Package` = '" . $s_info['Package'] . "'");
+							$s_query = mysql_query("UPDATE `Packages` SET `Stat` = '1' WHERE `ID` = '" . $submit_id . "'");
 						}
 						else {
-							$s_query = mysql_query("UPDATE `Packages` SET `Stat` = '-1' WHERE `ID` = '" . $submit_id . "'",$con);
+							$s_query = mysql_query("UPDATE `Packages` SET `Stat` = '-1' WHERE `ID` = '" . $submit_id . "'");
 						}
 						if (!$s_query) {
 							goto endlabel;

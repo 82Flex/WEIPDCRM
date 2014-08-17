@@ -29,14 +29,25 @@
 	
 	if (isset($_SESSION['connected']) && $_SESSION['connected'] === true) {
 		$con = mysql_connect($server,$username,$password);
+		if (is_numeric($_GET['id'])) {
+			$request_id = (int)$_GET['id'];
+			if ($request_id < 1) {
+				echo("非法请求！");
+				exit();
+			}
+		} else {
+			echo("非法请求！");
+			exit();
+		}
 		if (!$con) {
-			goto endlabel;
+			echo("数据库出现错误：".mysql_error());
+			exit();
 		}
 		mysql_query("SET NAMES utf8",$con);
 		$select  = mysql_select_db($database,$con);
 		if (!$select) {
-			$alert = mysql_error();
-			goto endlabel;
+			echo("数据库出现错误：".mysql_error());
+			exit();
 		}
 ?>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -45,165 +56,166 @@
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 	<title>DCRM - 源管理系统</title>
 	<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+	<script src="js/mbar.js" type="text/javascript"></script>
 	<script type="text/javascript">
-		function jump() {
-			var input = document.getElementById("urlinput");
-			window.open(input.value,"_blank");
-			return 0;
+	function jump() {
+		var input = document.getElementById("urlinput");
+		window.open(input.value,"_blank");
+		return 0;
+	}
+	function ajax() {
+		document.getElementById("contents").innerHTML="数据加载中";
+		xmlhttp = new XMLHttpRequest();
+		xmlhttp.open("POST","hint.php",true);
+		xmlhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+		xmlhttp.send("action=adv_info&item=" + document.getElementById("item_id").value + "&col=" + document.getElementById("item_adv").value);
+		xmlhttp.onreadystatechange = function () {
+			if (xmlhttp.readyState == 4) {
+				if (xmlhttp.status == 200) {
+					document.getElementById("contents").innerHTML=xmlhttp.responseText;
+				} else {
+					document.getElementById("contents").innerHTML="数据库错误";
+				}
+				xmlhttp.close();
+			}
 		}
-		function ajax() {
-			document.getElementById("contents").innerHTML="数据加载中";
-			xmlhttp = new XMLHttpRequest();
-			xmlhttp.open("POST","hint.php",true);
-			xmlhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
-			xmlhttp.send("action=adv_info&item=" + document.getElementById("item_id").value + "&col=" + document.getElementById("item_adv").value);
-			xmlhttp.onreadystatechange = function () {
-				if (xmlhttp.readyState == 4) {
-					if (xmlhttp.status == 200) {
-						document.getElementById("contents").innerHTML=xmlhttp.responseText;
-					} else {
-						document.getElementById("contents").innerHTML="数据库错误";
+	}
+	function changeCase(frmObj) {
+		var index;
+		var tmpStr;
+		var tmpChar;
+		var preString;
+		var postString;
+		var strlen;
+		tmpStr = frmObj.value.toLowerCase();
+		strLen = tmpStr.length;
+		if (strLen > 0) {
+			for (index = 0; index < strLen; index++) {
+				if (index == 0) {
+					tmpChar = tmpStr.substring(0, 1).toUpperCase();
+					postString = tmpStr.substring(1, strLen);
+					tmpStr = tmpChar + postString;
+				} else {
+					tmpChar = tmpStr.substring(index, index + 1);
+					if (tmpChar == " " && index < (strLen - 1)) {
+						tmpChar = tmpStr.substring(index + 1, index + 2).toUpperCase();
+						preString = tmpStr.substring(0, index + 1);
+						postString = tmpStr.substring(index + 2, strLen);
+						tmpStr = preString + tmpChar + postString;
 					}
-					xmlhttp.close();
 				}
 			}
 		}
-		function autofill(opt) {
-			if (opt == 1) {
-				var pstr = document.getElementsByName("Package")[0].value;
-				if (pstr.length > 0) {
+		frmObj.value = tmpStr;
+	}
+	function html(addStr) {
+		if (addStr == "br" || addStr == "hr") {
+			document.getElementsByName("Multi")[0].value = document.getElementsByName("Multi")[0].value + "<"+ addStr +" />";
+		} else {
+			document.getElementsByName("Multi")[0].value = document.getElementsByName("Multi")[0].value + "<" + addStr + "></"+ addStr +">";
+		}
+	}
+	function autofill(opt) {
+		if (opt == 1) {
+			var pstr = document.getElementsByName("Package")[0].value;
+			if (pstr.length > 0) {
+				var pstrs = new Array();
+				pstrs = pstr.split(".", 4);
+				if (pstrs.length >= 1) {
+					var save = pstrs[pstrs.length - 1];
+				}
+				document.getElementsByName("Package")[0].value = "<?php echo AUTOFILL_PRE; ?>" + save;
+			} else {
+				document.getElementsByName("Package")[0].value = "<?php echo AUTOFILL_PRE; ?>";
+			}
+		} else if (opt == 2) {
+			if (document.getElementsByName("Name")[0].value.length > 0) {
+				changeCase(document.getElementsByName("Name")[0]);
+			} else {
+				document.getElementsByName("Name")[0].value = "<?php echo AUTOFILL_NONAME; ?>";
+			}
+		} else if (opt == 3) {
+			var pstr = document.getElementsByName("Version")[0].value;
+			if (pstr.length > 0) {
+				if (pstr.indexOf("-") == -1) {
 					var pstrs = new Array();
 					pstrs = pstr.split(".", 4);
 					if (pstrs.length >= 1) {
-						var save = pstrs[pstrs.length - 1];
+						var save = parseInt(pstrs[pstrs.length - 1]);
 					}
-					document.getElementsByName("Package")[0].value = "<?php echo AUTOFILL_PRE; ?>" + save;
+					save++;
+					pstr = "";
+					for (var i = 0; i < pstrs.length - 1; i++) {
+						pstr = pstr + pstrs[i] + ".";
+					}
+					document.getElementsByName("Version")[0].value = pstr + save.toString();
 				} else {
-					document.getElementsByName("Package")[0].value = "<?php echo AUTOFILL_PRE; ?>";
-				}
-			} else if (opt == 2) {
-				if (document.getElementsByName("Name")[0].value.length > 0) {
-					changeCase(document.getElementsByName("Name")[0]);
-				} else {
-					document.getElementsByName("Name")[0].value = "<?php echo AUTOFILL_NONAME; ?>";
-				}
-			} else if (opt == 3) {
-				var pstr = document.getElementsByName("Version")[0].value;
-				if (pstr.length > 0) {
-					if (pstr.indexOf("-") == -1) {
-						var pstrs = new Array();
-						pstrs = pstr.split(".", 4);
-						if (pstrs.length >= 1) {
-							var save = parseInt(pstrs[pstrs.length - 1]);
-						}
+					var pstrs = new Array();
+					pstrs = pstr.split("-", 2);
+					if (pstrs.length == 2) {
+						var save = parseInt(pstrs[1]);
 						save++;
-						pstr = "";
-						for (var i = 0; i < pstrs.length - 1; i++) {
-							pstr = pstr + pstrs[i] + ".";
-						}
-						document.getElementsByName("Version")[0].value = pstr + save.toString();
-					} else {
-						var pstrs = new Array();
-						pstrs = pstr.split("-", 2);
-						if (pstrs.length == 2) {
-							var save = parseInt(pstrs[1]);
-							save++;
-							document.getElementsByName("Version")[0].value = pstrs[0] + "-" + save.toString();
-						}
-					}
-				} else {
-					document.getElementsByName("Version")[0].value = "0.0.1-1";
-				}
-			} else if (opt == 4) {
-				var pstr = document.getElementsByName("Author")[0].value;
-				if (pstr.length == 0) {
-					document.getElementsByName("Author")[0].value = "<?php echo AUTOFILL_MASTER; ?> <<?php echo AUTOFILL_EMAIL; ?>>";
-				} else {
-					if (pstr.indexOf("<") == -1) {
-						document.getElementsByName("Author")[0].value = pstr + " <<?php echo AUTOFILL_EMAIL; ?>>";
+						document.getElementsByName("Version")[0].value = pstrs[0] + "-" + save.toString();
 					}
 				}
-			} else if (opt == 5) {
-				if (document.getElementsByName("Section")[0].value.length == 0) {
-					document.getElementsByName("Section")[0].value = "<?php echo AUTOFILL_SECTION; ?>";
-				}
-			} else if (opt == 6) {
-				var pstr = document.getElementsByName("Maintainer")[0].value;
-				if (pstr.length == 0) {
-					document.getElementsByName("Maintainer")[0].value = "<?php echo AUTOFILL_MASTER; ?> <<?php echo AUTOFILL_EMAIL; ?>>";
-				} else {
-					if (pstr.indexOf("<") == -1) {
-						document.getElementsByName("Maintainer")[0].value = pstr + " <<?php echo AUTOFILL_EMAIL; ?>>";
-					}
-				}
-			} else if (opt == 7) {
-				var pstr = document.getElementsByName("Sponsor")[0].value;
-				if (pstr.length == 0) {
-					document.getElementsByName("Sponsor")[0].value = "<?php echo AUTOFILL_MASTER; ?> <<?php echo AUTOFILL_SITE; ?>>";
-				} else {
-					if (pstr.indexOf("<") == -1) {
-						document.getElementsByName("Sponsor")[0].value = pstr + " <<?php echo AUTOFILL_SITE; ?>>";
-					}
-				}
-			} else if (opt == 8) {
-				var pstr = document.getElementsByName("Depiction")[0].value;
-				if (pstr.length != 0) {
-					if (pstr.indexOf("http://") == -1) {
-						document.getElementsByName("Depiction")[0].value = "http://" + pstr;
-					} else {
-						document.getElementsByName("Depiction")[0].value = "NULL";
-					}
-				} else {
-					document.getElementsByName("Depiction")[0].value = "<?php echo(base64_decode(DCRM_REPOURL)."/index.php?pid=".$_GET['id']); ?>";
-				}
-			} else if (opt == 9) {
-				if (document.getElementsByName("Description")[0].value.length > 0) {
-					changeCase(document.getElementsByName("Description")[0]);
-				} else {
-					document.getElementsByName("Description")[0].value = "<?php echo AUTOFILL_DESCRIPTION; ?>";
-				}
-			} else if (opt == 10) {
-				document.getElementsByName("NewContents")[0].value = "NULL";
 			} else {
-				alert("What!?");
+				document.getElementsByName("Version")[0].value = "0.0.1-1";
 			}
-			return 0;
-		}
-		function changeCase(frmObj) {
-			var index;
-			var tmpStr;
-			var tmpChar;
-			var preString;
-			var postString;
-			var strlen;
-			tmpStr = frmObj.value.toLowerCase();
-			strLen = tmpStr.length;
-			if (strLen > 0) {
-				for (index = 0; index < strLen; index++) {
-					if (index == 0) {
-						tmpChar = tmpStr.substring(0, 1).toUpperCase();
-						postString = tmpStr.substring(1, strLen);
-						tmpStr = tmpChar + postString;
-					} else {
-						tmpChar = tmpStr.substring(index, index + 1);
-						if (tmpChar == " " && index < (strLen - 1)) {
-							tmpChar = tmpStr.substring(index + 1, index + 2).toUpperCase();
-							preString = tmpStr.substring(0, index + 1);
-							postString = tmpStr.substring(index + 2, strLen);
-							tmpStr = preString + tmpChar + postString;
-						}
-					}
+		} else if (opt == 4) {
+			var pstr = document.getElementsByName("Author")[0].value;
+			if (pstr.length == 0) {
+				document.getElementsByName("Author")[0].value = "<?php echo AUTOFILL_MASTER; ?> <<?php echo AUTOFILL_EMAIL; ?>>";
+			} else {
+				if (pstr.indexOf("<") == -1) {
+					document.getElementsByName("Author")[0].value = pstr + " <<?php echo AUTOFILL_EMAIL; ?>>";
 				}
 			}
-			frmObj.value = tmpStr;
-		}
-		function html(addStr) {
-			if (addStr == "br" || addStr == "hr") {
-				document.getElementsByName("Multi")[0].value = document.getElementsByName("Multi")[0].value + "<"+ addStr +" />";
-			} else {
-				document.getElementsByName("Multi")[0].value = document.getElementsByName("Multi")[0].value + "<" + addStr + "></"+ addStr +">";
+		} else if (opt == 5) {
+			if (document.getElementsByName("Section")[0].value.length == 0) {
+				document.getElementsByName("Section")[0].value = "<?php echo AUTOFILL_SECTION; ?>";
 			}
+		} else if (opt == 6) {
+			var pstr = document.getElementsByName("Maintainer")[0].value;
+			if (pstr.length == 0) {
+				document.getElementsByName("Maintainer")[0].value = "<?php echo AUTOFILL_MASTER; ?> <<?php echo AUTOFILL_EMAIL; ?>>";
+			} else {
+				if (pstr.indexOf("<") == -1) {
+					document.getElementsByName("Maintainer")[0].value = pstr + " <<?php echo AUTOFILL_EMAIL; ?>>";
+				}
+			}
+		} else if (opt == 7) {
+			var pstr = document.getElementsByName("Sponsor")[0].value;
+			if (pstr.length == 0) {
+				document.getElementsByName("Sponsor")[0].value = "<?php echo AUTOFILL_MASTER; ?> <<?php echo AUTOFILL_SITE; ?>>";
+			} else {
+				if (pstr.indexOf("<") == -1) {
+					document.getElementsByName("Sponsor")[0].value = pstr + " <<?php echo AUTOFILL_SITE; ?>>";
+				}
+			}
+		} else if (opt == 8) {
+			var pstr = document.getElementsByName("Depiction")[0].value;
+			if (pstr.length != 0) {
+				if (pstr.indexOf("http://") == -1) {
+					document.getElementsByName("Depiction")[0].value = "http://" + pstr;
+				} else {
+					document.getElementsByName("Depiction")[0].value = "NULL";
+				}
+			} else {
+				document.getElementsByName("Depiction")[0].value = "<?php echo(base64_decode(DCRM_REPOURL)."/index.php?pid=".$_GET['id']); ?>";
+			}
+		} else if (opt == 9) {
+			if (document.getElementsByName("Description")[0].value.length > 0) {
+				changeCase(document.getElementsByName("Description")[0]);
+			} else {
+				document.getElementsByName("Description")[0].value = "<?php echo AUTOFILL_DESCRIPTION; ?>";
+			}
+		} else if (opt == 10) {
+			document.getElementsByName("NewContents")[0].value = "NULL";
+		} else {
+			alert("What!?");
 		}
+		return 0;
+	}
 	</script>
 </head>
 <body>
@@ -229,7 +241,7 @@
 						<li class="nav-header">PACKAGES</li>
 							<li><a href="upload.php">上传软件包</a></li>
 							<li><a href="manage.php">导入软件包</a></li>
-							<li class="active"><a href="center.php">管理软件包</a></li>
+							<li><a href="center.php">管理软件包</a></li>
 						<li class="nav-header">REPOSITORY</li>
 							<li><a href="sections.php">分类管理</a></li>
 							<li><a href="release.php">源信息设置</a></li>
@@ -238,11 +250,30 @@
 							<li><a href="about.php">关于程序</a></li>
 					</ul>
 				</div>
+				<div class="well sidebar-nav">
+					<ul class="nav nav-list">
+						<li class="nav-header">OPERATIONS</li>
+							<li><a href="javascript:opt(1)">查看详情</a></li>
+							<?php
+								if (isset($_GET['action']) && $_GET['action'] == 'advance') {
+							?>
+							<li><a href="javascript:opt(2)">常规编辑</a></li>
+							<li class="active"><a href="javascript:opt(3)">高级编辑</a></li>
+							<?php
+								} else {
+							?>
+							<li class="active"><a href="javascript:opt(2)">常规编辑</a></li>
+							<li><a href="javascript:opt(3)">高级编辑</a></li>
+							<?php
+								}
+							?>
+					</ul>
+				</div>
 			</div>
 			<div class="span10">
+			<input type="radio" name="package" value="<?php echo($request_id); ?>" style="display: none;" checked="checked" />
 				<?php
 					if (!isset($_GET['action']) AND !empty($_GET['id'])) {
-						$request_id = (int)$_GET['id'];
 						$e_query = mysql_query("SELECT * FROM `Packages` WHERE `ID` = '" . $request_id . "'",$con);
 						if (!$e_query) {
 							goto endlabel;
@@ -257,35 +288,35 @@
 				<form class="form-horizontal" method="POST" action="edit.php?action=set&id=<?php echo $request_id; ?>">
 					<fieldset>
 						<div class="group-control">
-							<label class="control-label">* <a href="javascript:autofill(1)">标识符</a></label>
+							<label class="control-label">* <a href="javascript:autofill(1);">标识符</a></label>
 							<div class="controls">
 								<input type="text" style="width: 400px;" required="required" name="Package" value="<?php if (!empty($edit_info['Package'])) {echo htmlspecialchars($edit_info['Package']);} ?>"/>
 							</div>
 						</div>
 						<br />
 						<div class="group-control">
-							<label class="control-label">* <a href="javascript:autofill(2)">名称</a></label>
+							<label class="control-label">* <a href="javascript:autofill(2);">名称</a></label>
 							<div class="controls">
 								<input type="text" style="width: 400px;" required="required" name="Name" value="<?php if (!empty($edit_info['Name'])) {echo htmlspecialchars($edit_info['Name']);} ?>"/>
 							</div>
 						</div>
 						<br />
 						<div class="group-control">
-							<label class="control-label">* <a href="javascript:autofill(3)">版本</a></label>
+							<label class="control-label">* <a href="javascript:autofill(3);">版本</a></label>
 							<div class="controls">
 								<input type="text" style="width: 400px;" required="required" name="Version" value="<?php if (!empty($edit_info['Version'])) {echo htmlspecialchars($edit_info['Version']);} ?>"/>
 							</div>
 						</div>
 						<br />
 						<div class="group-control">
-							<label class="control-label">* <a href="javascript:autofill(4)">作者</a></label>
+							<label class="control-label">* <a href="javascript:autofill(4);">作者</a></label>
 							<div class="controls">
 								<input type="text" style="width: 400px;" required="required" name="Author" value="<?php if (!empty($edit_info['Author'])) {echo htmlspecialchars($edit_info['Author']);} ?>"/>
 							</div>
 						</div>
 						<br />
 						<div class="group-control">
-							<label class="control-label" required="required">* <a href="javascript:autofill(5)">分类</a></label>
+							<label class="control-label" required="required">* <a href="javascript:autofill(5);">分类</a></label>
 							<div class="controls">
 								<select name="Section" style="width: 400px;">
 								<?php
@@ -305,21 +336,21 @@
 						</div>
 						<br />
 						<div class="group-control">
-							<label class="control-label"><a href="javascript:autofill(6)">提供者</a></label>
+							<label class="control-label"><a href="javascript:autofill(6);">提供者</a></label>
 							<div class="controls">
 								<input type="text" style="width: 400px;" name="Maintainer" value="<?php if (!empty($edit_info['Maintainer'])) {echo htmlspecialchars($edit_info['Maintainer']);} ?>"/>
 							</div>
 						</div>
 						<br />
 						<div class="group-control">
-							<label class="control-label"><a href="javascript:autofill(7)">保证人</a></label>
+							<label class="control-label"><a href="javascript:autofill(7);">保证人</a></label>
 							<div class="controls">
 								<input type="text" style="width: 400px;" name="Sponsor" value="<?php if (!empty($edit_info['Sponsor'])) {echo htmlspecialchars($edit_info['Sponsor']);} ?>"/>
 							</div>
 						</div>
 						<br />
 						<div class="group-control">
-							<label class="control-label"><a href="javascript:autofill(8)">预览页</a></label>
+							<label class="control-label"><a href="javascript:autofill(8);">预览页</a></label>
 							<div class="controls">
 								<input id="urlinput" type="text" style="width: 400px;" name="Depiction" value="<?php if (!empty($edit_info['Depiction'])) {echo htmlspecialchars($edit_info['Depiction']);} ?>"/>
 								<p class="help-block"><a class="btn btn-warning" href="javascript:jump()">单击此处预览</a></p>
@@ -327,7 +358,7 @@
 						</div>
 						<br />
 						<div class="group-control">
-							<label class="control-label"><a href="javascript:autofill(9)">描述</a></label>
+							<label class="control-label"><a href="javascript:autofill(9);">描述</a></label>
 							<div class="controls">
 								<textarea type="text" style="height: 40px; width: 400px;" name="Description"><?php if (!empty($edit_info['Description'])) {echo htmlspecialchars($edit_info['Description']);} ?></textarea>
 							</div>
@@ -356,7 +387,6 @@
 						<div class="form-actions">
 							<div class="controls">
 								<button type="submit" class="btn btn-success">保存</button>　
-								<a class="btn btn-danger" href="edit.php?action=advance&id=<?php echo $request_id; ?>">高级编辑</a>
 							</div>
 						</div>
 					</fieldset>
@@ -383,7 +413,6 @@
 						echo '<br /><a href="output.php?id='.$new_id.'">立即写入</a>　<a href="javascript:history.go(-1);">返回</a></h3>';
 					}
 					elseif (!empty($_GET['action']) AND $_GET['action'] == "advance" AND !empty($_GET['id'])) {
-						$request_id = (int)$_GET['id'];
 						$e_query = mysql_query("SELECT * FROM `Packages` WHERE `ID` = '" . $request_id . "'",$con);
 						if (!$e_query) {
 							goto endlabel;
@@ -422,7 +451,6 @@
 						<div class="form-actions">
 							<div class="controls">
 								<button type="submit" class="btn btn-success">保存</button>　
-								<a class="btn btn-warning" href="edit.php?id=<?php echo $request_id; ?>">常规编辑</a>
 							</div>
 						</div>
 					</fieldset>

@@ -64,6 +64,7 @@
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 	<title>DCRM - 源管理系统</title>
 	<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+	<script src="js/mbar.js" type="text/javascript"></script>
 	<script type="text/javascript">
 		function delimage(pid) {
 			if(confirm("您确定要彻底删除这张截图？")){
@@ -95,7 +96,7 @@
 						<li class="nav-header">PACKAGES</li>
 							<li><a href="upload.php">上传软件包</a></li>
 							<li><a href="manage.php">导入软件包</a></li>
-							<li class="active"><a href="center.php">管理软件包</a></li>
+							<li><a href="center.php">管理软件包</a></li>
 						<li class="nav-header">REPOSITORY</li>
 							<li><a href="sections.php">分类管理</a></li>
 							<li><a href="release.php">源信息设置</a></li>
@@ -104,8 +105,17 @@
 							<li><a href="about.php">关于程序</a></li>
 					</ul>
 				</div>
+				<div class="well sidebar-nav">
+					<ul class="nav nav-list">
+						<li class="nav-header">OPERATIONS</li>
+							<li class="active"><a href="javascript:opt(1)">查看详情</a></li>
+							<li><a href="javascript:opt(2)">常规编辑</a></li>
+							<li><a href="javascript:opt(3)">高级编辑</a></li>
+					</ul>
+				</div>
 			</div>
 			<div class="span10">
+			<input type="radio" name="package" value="<?php echo($request_id); ?>" style="display: none;" checked="checked" />
 			<h2>查看软件包信息</h2>
 			<br />
 <?php
