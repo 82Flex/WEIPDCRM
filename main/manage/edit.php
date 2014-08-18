@@ -57,7 +57,64 @@
 	<title>DCRM - 源管理系统</title>
 	<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
 	<script src="js/mbar.js" type="text/javascript"></script>
+	<script charset="utf-8" src="js/kindeditor.min.js"></script>
+	<script charset="utf-8" src="js/lang/zh_CN.js"></script>
 	<script type="text/javascript">
+	KindEditor.ready(function(K) {
+		K.each({
+			'plug-align' : {
+				name : '对齐方式',
+				method : {
+					'justifyleft' : '左对齐',
+					'justifycenter' : '居中对齐',
+					'justifyright' : '右对齐'
+				}
+			},
+			'plug-order' : {
+				name : '编号',
+				method : {
+					'insertorderedlist' : '数字编号',
+					'insertunorderedlist' : '项目编号'
+				}
+			},
+			'plug-indent' : {
+				name : '缩进',
+				method : {
+					'indent' : '向右缩进',
+					'outdent' : '向左缩进'
+				}
+			}
+		},function( pluginName, pluginData ){
+			var lang = {};
+			lang[pluginName] = pluginData.name;
+			KindEditor.lang( lang );
+			KindEditor.plugin( pluginName, function(K) {
+				var self = this;
+				self.clickToolbar( pluginName, function() {
+					var menu = self.createMenu({
+							name : pluginName,
+							width : pluginData.width || 100
+						});
+					K.each( pluginData.method, function( i, v ){
+						menu.addItem({
+							title : v,
+							checked : false,
+							iconClass : pluginName+'-'+i,
+							click : function() {
+								self.exec(i).hideMenu();
+							}
+						});
+					})
+				});
+			});
+		});
+		K.create('#kind', {
+			themeType : 'qq',
+			items : [
+				'source','bold','italic','underline','fontname','fontsize','forecolor','hilitecolor','plug-align','plug-order','plug-indent','link','removeformat'
+			]
+		});
+	});
 	function jump() {
 		var input = document.getElementById("urlinput");
 		window.open(input.value,"_blank");
@@ -107,13 +164,6 @@
 			}
 		}
 		frmObj.value = tmpStr;
-	}
-	function html(addStr) {
-		if (addStr == "br" || addStr == "hr") {
-			document.getElementsByName("Multi")[0].value = document.getElementsByName("Multi")[0].value + "<"+ addStr +" />";
-		} else {
-			document.getElementsByName("Multi")[0].value = document.getElementsByName("Multi")[0].value + "<" + addStr + "></"+ addStr +">";
-		}
 	}
 	function autofill(opt) {
 		if (opt == 1) {
@@ -367,20 +417,7 @@
 						<div class="group-control">
 							<label class="control-label">详细描述</label>
 							<div class="controls">
-								<textarea type="text" style="height: 200px; width: 400px;" name="Multi"><?php if (!empty($edit_info['Multi'])) {echo htmlspecialchars($edit_info['Multi']);} ?></textarea>
-								<p class="help-block">
-								<em><a href="javascript:html('em');">斜体</a></em>	
-								<strong><a href="javascript:html('strong');">粗体</a></strong>	
-								<u><a href="javascript:html('u');">下划线</a></u>	
-								<del><a href="javascript:html('del');">删除线</a></del>	
-								<a href="javascript:html('ul');">项目框</a>	
-								<a href="javascript:html('li');">项目</a>	
-								<a href="javascript:html('p');">分段</a>	
-								<a href="javascript:html('br');">换行</a>	
-								<a href="javascript:html('hr');">分割线</a>	
-								<sup><a href="javascript:html('sup');">上标</a></sup>	
-								<sub><a href="javascript:html('sub');">下标</a></sub>
-								</p>
+								<textarea id="kind" type="text" style="height: 400px; width: 408px; visibility: hidden;" name="Multi"><?php if (!empty($edit_info['Multi'])) {echo htmlspecialchars($edit_info['Multi']);} ?></textarea>
 							</div>
 						</div>
 						<br />

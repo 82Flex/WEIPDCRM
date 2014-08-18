@@ -149,40 +149,33 @@
 	}
 	$same_row = mysql_fetch_assoc($same_query);
 	if ($same_row != FALSE) {
-		if ($same_row['Version'] == $t_package['Version']) {
-			$alert = "已经存在相同软件包及版本号，导入失败： " . $same_row['Package'] . " &amp; " . $same_row['Version'] . "<br />导入时间：" . $same_row['CreateStamp'];
+		if (!isset($_GET['type'])) {
+			$alert = "已经存在相同软件包，请选择一个操作。<br />原软件包：" . $same_row['Package'] . " &amp; " . $same_row['Version'] . "<br />导入时间：" . $same_row['CreateStamp'] . "<br />MD5sum：" . $same_row['MD5sum'] . "<br /><br />新软件包：" . $t_package['Package'] . " &amp; " . $t_package['Version'] . "<br />MD5sum：" . $file_md5;
+			$diff = true;
 			$success = false;
 			goto endlabel;
 		}
 		else {
-			if (!isset($_GET['type'])) {
-				$alert = "已经存在相同软件包，但版本号不同，请选择一个操作。<br />原软件包：" . $same_row['Package'] . " &amp; " . $same_row['Version'] . "<br />导入时间：" . $same_row['CreateStamp'] . "<br />MD5sum：" . $same_row['MD5sum'] . "<br /><br />新软件包：" . $t_package['Package'] . " &amp; " . $t_package['Version'] . "<br />MD5sum：" . $file_md5;
-				$diff = true;
-				$success = false;
-				goto endlabel;
+			if ($_GET['type'] == '1') {
+				$p_query = mysql_query("SELECT `Package`, `Source`, `Priority`, `Section`, `Essential`, `Maintainer`, `Pre-Depends`, `Depends`, `Recommends`, `Suggests`, `Conflicts`, `Provides`, `Replaces`, `Enhances`, `Architecture`, `Installed-Size`, `Description`, `Origin`, `Bugs`, `Name`, `Author`, `Sponsor`, `Homepage`, `Website`, `Icon`, `Tag` FROM `Packages` WHERE `Package` = '" . $same_row['Package'] . "' ORDER BY `ID` DESC LIMIT 1");
+				$p_row = mysql_fetch_assoc($p_query);
+				foreach ($p_row as $p_key => $p_value) {
+					$t_package[$p_key] = $p_value;
+				}
+				$replace = true;
+				goto importnow;
+			}
+			elseif ($_GET['type'] == '2') {
+				$replace = true;
+				goto importnow;
+			}
+			elseif ($_GET['type'] == '3') {
+				goto importnow;
 			}
 			else {
-				if ($_GET['type'] == '1') {
-					$p_query = mysql_query("SELECT `Package`, `Source`, `Priority`, `Section`, `Essential`, `Maintainer`, `Pre-Depends`, `Depends`, `Recommends`, `Suggests`, `Conflicts`, `Provides`, `Replaces`, `Enhances`, `Architecture`, `Installed-Size`, `Description`, `Origin`, `Bugs`, `Name`, `Author`, `Sponsor`, `Homepage`, `Website`, `Depiction`, `Icon`, `Tag` FROM `Packages` WHERE `Package` = '" . $same_row['Package'] . "' ORDER BY `ID` DESC LIMIT 1");
-					$p_row = mysql_fetch_assoc($p_query);
-					foreach ($p_row as $p_key => $p_value) {
-						$t_package[$p_key] = $p_value;
-					}
-					$replace = true;
-					goto importnow;
-				}
-				elseif ($_GET['type'] == '2') {
-					$replace = true;
-					goto importnow;
-				}
-				elseif ($_GET['type'] == '3') {
-					goto importnow;
-				}
-				else {
-					$alert = "错误的导入请求类型！";
-					$success = false;
-					goto endlabel;
-				}
+				$alert = "错误的导入请求类型！";
+				$success = false;
+				goto endlabel;
 			}
 		}
 	}

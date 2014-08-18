@@ -123,12 +123,12 @@
 	if (!$m_array) {
 		$alert = "查询不到指定的项目。";
 	} else {
+		unset($m_array['Multi']);
 		foreach ($m_array as $m_key => $m_value) {
 			if (!empty($m_value)) {
 				$f_Package .= $m_key . ": " . trim(str_replace("\n","\n ",$m_value)) . "\n";
 			}
 		}
-		$f_Package = str_replace("../","./",$f_Package);
 ?>
 			<div class="alert alert-info">
 <?php echo nl2br(htmlspecialchars($f_Package)); ?>

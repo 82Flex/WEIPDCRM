@@ -570,13 +570,13 @@
 <?php
 				if (defined("AUTOFILL_ADVERTISEMENT") && $isCydia) {
 ?>
-			<fieldset id="advertisement">
+			<block id="advertisement">
 				<div>
 					<div>
 						<?php echo AUTOFILL_ADVERTISEMENT; ?>
 					</div>
 				</div>
-			</fieldset>
+			</block>
 <?php	
 				}
 ?>
@@ -591,13 +591,11 @@
 <?php
 				if (!empty($pkg_assoc['Multi'])) {
 ?>
-			<block>
+			<fieldset>
 				<div>
-					<div>
 						<?php echo $pkg_assoc['Multi']; ?>
-					</div>
 				</div>
-			</block>
+			</fieldset>
 <?php
 				}
 ?>
