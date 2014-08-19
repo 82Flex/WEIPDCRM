@@ -305,7 +305,7 @@
 						<li class="nav-header">OPERATIONS</li>
 							<li><a href="javascript:opt(1)">查看详情</a></li>
 							<?php
-								if (isset($_GET['action']) && $_GET['action'] == 'advance') {
+								if (isset($_GET['action']) && ($_GET['action'] == 'advance' || $_GET['action'] == 'advance_set')) {
 							?>
 							<li><a href="javascript:opt(2)">常规编辑</a></li>
 							<li class="active"><a href="javascript:opt(3)">高级编辑</a></li>

@@ -53,7 +53,12 @@
 		exit();
 	}
 	if(isset($_POST['submit'])) {
-		if (!empty($_POST['username']) AND !empty($_POST['password']) AND !empty($_POST['authcode'])) {
+		if (!empty($_POST['username']) AND !empty($_POST['password'])) {
+			if (empty($_POST['authcode'])) {
+				unset($_SESSION['VCODE']);
+				$error = "authcode";
+				goto endlabel;
+			}
 			if (strtolower($_POST['authcode']) != strtolower($_SESSION['VCODE'])) {
 				unset($_SESSION['VCODE']);
 				$_SESSION['try'] = $_SESSION['try'] + 1;

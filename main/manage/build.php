@@ -42,7 +42,17 @@
 		$alert = mysql_error();
 		goto endlabel;
 	}
-	$m_query = mysql_query("SELECT `ID`, `Package`, `Source`, `Version`, `Priority`, `Section`, `Essential`, `Maintainer`, `Pre-Depends`, `Depends`, `Recommends`, `Suggests`, `Conflicts`, `Provides`, `Replaces`, `Enhances`, `Architecture`, `Filename`, `Size`, `Installed-Size`, `Description`, `Origin`, `Bugs`, `Name`, `Author`, `Sponsor`, `Homepage`, `Website`, `Depiction`, `Icon`, `MD5sum`, `Tag` FROM `Packages` WHERE `Stat` = '1' GROUP BY `Package` ORDER BY `ID` DESC");
+	$parts = "`ID`, `Package`, `Source`, `Version`, `Priority`, `Section`, `Essential`, `Maintainer`, `Pre-Depends`, `Depends`, `Recommends`, `Suggests`, `Conflicts`, `Provides`, `Replaces`, `Enhances`, `Architecture`, `Filename`, `Size`, `Installed-Size`, `Description`, `Origin`, `Bugs`, `Name`, `Author`, `Sponsor`, `Homepage`, `Website`, `Depiction`, `Icon`, `Tag`";
+	if (DCRM_CHECK_METHOD != 0) {
+		$parts .= ", `MD5sum`";
+	}
+	if (DCRM_CHECK_METHOD == 2 || DCRM_CHECK_METHOD == 3) {
+		$parts .= ", `SHA1`";
+	}
+	if (DCRM_CHECK_METHOD == 3) {
+		$parts .= ", `SHA256`";
+	}
+	$m_query = mysql_query("SELECT ".$parts." FROM `Packages` WHERE `Stat` = '1' GROUP BY `Package` ORDER BY `ID` DESC");
 	if ($m_query == false) {
 		$alert = "数据库错误！";
 		goto endlabel;
@@ -52,10 +62,10 @@
 	while ($m_array = mysql_fetch_assoc($m_query)) {
 		$i++;
 		$f_Package = "";
-		$m_array['Filename'] = "../debs/" . $m_array['ID'] . ".deb";
+		$m_array['Filename'] = "./debs/" . $m_array['ID'] . ".deb";
 		unset($m_array['ID']);
 		foreach ($m_array as $m_key => $m_value) {
-			if (strlen($m_value) > 0 AND $m_value != NULL) {
+			if (!empty($m_value) && !empty($m_key)) {
 				$f_Package .= $m_key . ": " . trim(str_replace("\n", "\n ", $m_value)) . "\n";
 			}
 		}
@@ -63,7 +73,6 @@
 	}
 	
 	if ($i > 0) {
-		$Packages = str_replace("../", "./", $Packages);
 		$alert .= "找到记录数：".$i;
 	}
 	else {

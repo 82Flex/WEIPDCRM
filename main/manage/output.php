@@ -21,10 +21,10 @@
 	session_start();
 	ob_start();
 	define("DCRM",true);
-	require_once('include/tar.php');
-	require_once('include/func.php');
 	require_once("include/config.inc.php");
 	require_once('include/connect.inc.php');
+	require_once('include/func.php');
+	require_once('include/tar.php');
 	header("Content-Type: text/html; charset=UTF-8");
 	
 	if (!isset($_SESSION['connected']) || $_SESSION['connected'] != true) {
@@ -36,8 +36,8 @@
 		$alert = "数据库错误！";
 		goto endlabel;
 	}
-	mysql_query("SET NAMES utf8",$con);
-	$select  = mysql_select_db($database,$con);
+	mysql_query("SET NAMES utf8");
+	$select  = mysql_select_db($database);
 	if (!$select) {
 		$alert = mysql_error();
 		goto endlabel;
@@ -89,7 +89,7 @@
 	if (is_int(stripos($control_c_raw_data[0][0], 'control.tar.gz'))) {
 		$control_tar_path = "../tmp/" . $r_id . "/old.tar.gz";
 		$control_tar_handle = fopen($control_tar_path, 'w');
-		fputs($control_tar_handle,$control_c_raw_data[0][6]);
+		fputs($control_tar_handletrol_c_raw_data[0][6]);
 		fclose($control_tar_handle);
 		$control_tar = new Tar();
 		$new_tar = new Tar();
@@ -113,16 +113,39 @@
 		$alert .= "· 警告：安装包写入失败！<br />";
 		$success = false;
 	}
-	$new_md5 = md5_file($deb_path);
+	$chk_success = true;
+	if ((int)DCRM_CHECK_METHOD != 0) {
+		$new_md5 = md5_file($deb_path);
+		if (!$new_md5) {
+			$chk_success = false;
+		} else {
+			$md5_query = mysql_query("UPDATE `Packages` SET `MD5sum` = '" . $new_md5 . "' WHERE `ID` = '" . (string)$request_id . "'");
+		}
+	}
+	if ((int)DCRM_CHECK_METHOD == 2 || (int)DCRM_CHECK_METHOD == 3) {
+		$new_sha1 = sha1_file($deb_path);
+		if (!$new_sha1) {
+			$chk_success = false;
+		} else {
+			$sha1_query = mysql_query("UPDATE `Packages` SET `SHA1` = '" . $new_sha1 . "' WHERE `ID` = '" . (string)$request_id . "'");
+		}
+	}
+	if ((int)DCRM_CHECK_METHOD == 3) {
+		$new_sha256 = hash("sha256",file_get_contents($deb_path));
+		if (!$new_sha256) {
+			$chk_success = false;
+		} else {
+			$sha256_query = mysql_query("UPDATE `Packages` SET `SHA256` = '" . $new_sha256 . "' WHERE `ID` = '" . (string)$request_id . "'");
+		}
+	}
 	$new_size = filesize($deb_path);
-	$md5_query = mysql_query("UPDATE `Packages` SET `MD5sum` = '" . $new_md5 . "' WHERE `ID` = '" . (string)$request_id . "'",$con);
-	$size_query = mysql_query("UPDATE `Packages` SET `Size` = '" . $new_size . "' WHERE `ID` = '" . (string)$request_id . "'",$con);
-	if ($md5_query == FALSE OR $size_query == FALSE) {
-		$alert .= "· MD5sum 更新失败！请检查安装包是否成功生成！<br />";
+	$size_query = mysql_query("UPDATE `Packages` SET `Size` = '" . $new_size . "' WHERE `ID` = '" . (string)$request_id . "'");
+	if ($chk_success == false || $size_query == false) {
+		$alert .= "· 验证信息更新失败！请检查安装包是否成功生成！<br />";
 		$success = false;
 	}
 	else {
-		$alert .= "· MD5sum 更新成功！<br />";
+		$alert .= "· 验证信息更新成功！<br />";
 	}
 	
 	endlabel:

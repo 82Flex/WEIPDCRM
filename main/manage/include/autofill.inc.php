@@ -16,5 +16,5 @@
 	define("AUTOFILL_PAYPAL","https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=g1ghell@163.com&item_name=zsm1703");
 	define("AUTOFILL_STATISTICS","<script type=\"text/javascript\">var cnzz_protocol = ((\"https:\" == document.location.protocol) ? \" https://\" : \" http://\");document.write(unescape(\"%3Cspan id=\'cnzz_stat_icon_1000537818\'%3E%3C/span%3E%3Cscript src=\'\" + cnzz_protocol + \"s11.cnzz.com/z_stat.php%3Fid%3D1000537818%26show%3Dpic1\' type=\'text/javascript\'%3E%3C/script%3E\"));</script>");
 	define("AUTOFILL_STATISTICS_INFO","<script type=\"text/javascript\">var cnzz_protocol = ((\"https:\" == document.location.protocol) ? \" https://\" : \" http://\");document.write(unescape(\"%3Cspan id=\'cnzz_stat_icon_1000537818\'%3E%3C/span%3E%3Cscript src=\'\" + cnzz_protocol + \"s11.cnzz.com/z_stat.php%3Fid%3D1000537818%26online%3D1%26show%3Dline\' type=\'text/javascript\'%3E%3C/script%3E\"));</script>");
-	define("AUTOFILL_ADVERTISEMENT","<a href=\"cydia://package/com.darwindev.touchsprite\" id=\"advertisement\"><img src=\"adv\" alt=\"触动精灵\" width=\"264\" height=\"176\" /></a>");
+	define("AUTOFILL_ADVERTISEMENT","<a href=\"cydia://package/com.darwindev.touchsprite\" id=\"advertisement\" target=\"_blank\"><img src=\"adv\" alt=\"触动精灵\" width=\"264\" height=\"176\" /></a>");
 ?>

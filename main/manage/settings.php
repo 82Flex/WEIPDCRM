@@ -130,19 +130,21 @@
 						</div>
 						<br />
 						<div class="group-control">
-							<label class="control-label">最大下载速度</label>
+							<label class="control-label" style="color: red;">最大下载速度</label>
 							<div class="controls">
 								<input type="text" required="required" name="speedlimit" value="<?php echo htmlspecialchars(DCRM_SPEED_LIMIT); ?>"/>
 								<p class="help-block">字节每秒，不限制请填写 0</p>
 							</div>
 						</div>
 						<br />
+						<h3>列表设置</h3>
+						<br />
 						<div class="group-control">
-							<label class="control-label">Packages 压缩</label>
+							<label class="control-label" style="color: red;">Packages 压缩</label>
 							<div class="controls">
 								<select name="listsmethod">
 									<?php
-										function getmethod($opt) {
+										function getzmethod($opt) {
 											switch ($opt) {
 												case 0:
 													$opt_text = "隐藏列表";
@@ -175,15 +177,53 @@
 										}
 										for ($opt = 0; $opt <= 7; $opt++) {
 											if (DCRM_LISTS_METHOD == $opt) {
-												echo '<option value="' . $opt . '" selected="selected">' . getmethod($opt) . '</option>\n';
+												echo '<option value="' . $opt . '" selected="selected">' . htmlspecialchars(getzmethod($opt)) . '</option>\n';
 											}
 											else {
-												echo '<option value="' . $opt . '">' . getmethod($opt) . '</option>\n';
+												echo '<option value="' . $opt . '">' . htmlspecialchars(getzmethod($opt)) . '</option>\n';
 											}
 										}
 									?>
 								</select>
 								<p class="help-block">若修改后发现刷新列表出错，请更换压缩方式</p>
+							</div>
+						</div>
+						<br />
+						<div class="group-control">
+							<label class="control-label" style="color: red;">软件包验证</label>
+							<div class="controls">
+								<select name="checkmethod">
+									<?php
+										function getsmethod($opt) {
+											switch ($opt) {
+												case 0:
+													$opt_text = "不验证";
+													break;
+												case 1:
+													$opt_text = "MD5Sum";
+													break;
+												case 2:
+													$opt_text = "MD5Sum & SHA1";
+													break;
+												case 3:
+													$opt_text = "MD5Sum & SHA1 & SHA256";
+													break;
+												default:
+													$opt_text = "";
+											}
+											return $opt_text;
+										}
+										for ($opt = 0; $opt <= 3; $opt++) {
+											if (DCRM_CHECK_METHOD == $opt) {
+												echo '<option value="' . $opt . '" selected="selected">' . htmlspecialchars(getsmethod($opt)) . '</option>\n';
+											}
+											else {
+												echo '<option value="' . $opt . '">' . htmlspecialchars(getsmethod($opt)) . '</option>\n';
+											}
+										}
+									?>
+								</select>
+								<p class="help-block">仅在写入软件包时生效</p>
 							</div>
 						</div>
 						<br />
@@ -214,9 +254,9 @@
 						</div>
 						<br />
 						<div class="group-control">
-							<label class="control-label">源地址</label>
+							<label class="control-label" style="color: red;">源地址</label>
 							<div class="controls">
-								<input type="text" required="required" name="url_repo" value="<?php echo htmlspecialchars(base64_decode(DCRM_REPOURL)); ?>"/>
+								<input type="text" required="required" name="url_repo" style="width: 400px;" value="<?php echo htmlspecialchars(base64_decode(DCRM_REPOURL)); ?>"/>
 								<p class="help-block">展示在首页供用户添加</p>
 							</div>
 						</div>
@@ -226,21 +266,21 @@
 						<div class="group-control">
 							<label class="control-label">软件包默认标识符</label>
 							<div class="controls">
-								<input type="text" name="PRE" value="<?php if(defined("AUTOFILL_PRE")){echo(htmlspecialchars(stripslashes(AUTOFILL_PRE)));} ?>"/>
+								<input type="text" name="PRE" style="width: 400px;" value="<?php if(defined("AUTOFILL_PRE")){echo(htmlspecialchars(stripslashes(AUTOFILL_PRE)));} ?>"/>
 							</div>
 						</div>
 						<br />
 						<div class="group-control">
 							<label class="control-label">软件包默认名称</label>
 							<div class="controls">
-								<input type="text" name="NONAME" value="<?php if(defined("AUTOFILL_NONAME")){echo(htmlspecialchars(stripslashes(AUTOFILL_NONAME)));} ?>"/>
+								<input type="text" name="NONAME" style="width: 400px;" value="<?php if(defined("AUTOFILL_NONAME")){echo(htmlspecialchars(stripslashes(AUTOFILL_NONAME)));} ?>"/>
 							</div>
 						</div>
 						<br />
 						<div class="group-control">
 							<label class="control-label">软件包默认描述</label>
 							<div class="controls">
-								<input type="text" name="DESCRIPTION" value="<?php if(defined("AUTOFILL_DESCRIPTION")){echo(htmlspecialchars(stripslashes(AUTOFILL_DESCRIPTION)));} ?>"/>
+								<textarea type="text" name="DESCRIPTION" style="height: 40px; width: 400px;"><?php if(defined("AUTOFILL_DESCRIPTION")){echo(htmlspecialchars(stripslashes(AUTOFILL_DESCRIPTION)));} ?></textarea>
 							</div>
 						</div>
 						<br />
@@ -254,17 +294,17 @@
 						</div>
 						<br />
 						<div class="group-control">
-							<label class="control-label">SEO 关键词</label>
+							<label class="control-label">SEO 域名</label>
 							<div class="controls">
-								<input type="text" name="KEYWORDS" value="<?php if(defined("AUTOFILL_KEYWORDS")){echo(htmlspecialchars(stripslashes(AUTOFILL_KEYWORDS)));} ?>"/>
-								<p class="help-block">以英文半角逗号分隔</p>
+								<input type="text" name="SITE" style="width: 400px;" value="<?php if(defined("AUTOFILL_SITE")){echo(htmlspecialchars(stripslashes(AUTOFILL_SITE)));} ?>"/>
 							</div>
 						</div>
 						<br />
 						<div class="group-control">
-							<label class="control-label">SEO 域名</label>
+							<label class="control-label">SEO 关键词</label>
 							<div class="controls">
-								<input type="text" name="SITE" value="<?php if(defined("AUTOFILL_SITE")){echo(htmlspecialchars(stripslashes(AUTOFILL_SITE)));} ?>"/>
+								<textarea type="text" name="KEYWORDS" style="height: 40px; width: 400px;"><?php if(defined("AUTOFILL_KEYWORDS")){echo(htmlspecialchars(stripslashes(AUTOFILL_KEYWORDS)));} ?></textarea>
+								<p class="help-block">以英文半角逗号分隔</p>
 							</div>
 						</div>
 						<br />
@@ -280,26 +320,18 @@
 						<div class="group-control">
 							<label class="control-label">管理员全名</label>
 							<div class="controls">
-								<input type="text" name="FULLNAME" value="<?php if(defined("AUTOFILL_FULLNAME")){echo(htmlspecialchars(stripslashes(AUTOFILL_FULLNAME)));} ?>"/>
+								<input type="text" name="FULLNAME" style="width: 400px;" value="<?php if(defined("AUTOFILL_FULLNAME")){echo(htmlspecialchars(stripslashes(AUTOFILL_FULLNAME)));} ?>"/>
 							</div>
 						</div>
 						<br />
 						<div class="group-control">
 							<label class="control-label">管理员邮箱</label>
 							<div class="controls">
-								<input type="text" name="EMAIL" value="<?php if(defined("AUTOFILL_EMAIL")){echo(htmlspecialchars(stripslashes(AUTOFILL_EMAIL)));} ?>"/>
+								<input type="text" name="EMAIL" style="width: 400px;" value="<?php if(defined("AUTOFILL_EMAIL")){echo(htmlspecialchars(stripslashes(AUTOFILL_EMAIL)));} ?>"/>
 							</div>
 						</div>
 						<br />
 						<h3>社会化分享</h3>
-						<br />
-						<div class="group-control">
-							<label class="control-label">QQ群地址</label>
-							<div class="controls">
-								<input type="text" name="TENCENT" value="<?php if(defined("AUTOFILL_TENCENT")){echo(htmlspecialchars(stripslashes(AUTOFILL_TENCENT)));} ?>"/>
-								<p class="help-block">需要手机QQ生成</p>
-							</div>
-						</div>
 						<br />
 						<div class="group-control">
 							<label class="control-label">QQ群名称</label>
@@ -309,9 +341,10 @@
 						</div>
 						<br />
 						<div class="group-control">
-							<label class="control-label">微博地址</label>
+							<label class="control-label">QQ群地址</label>
 							<div class="controls">
-								<input type="text" name="WEIBO" value="<?php if(defined("AUTOFILL_WEIBO")){echo(htmlspecialchars(stripslashes(AUTOFILL_WEIBO)));} ?>"/>
+								<input type="text" name="TENCENT" style="width: 400px;" value="<?php if(defined("AUTOFILL_TENCENT")){echo(htmlspecialchars(stripslashes(AUTOFILL_TENCENT)));} ?>"/>
+								<p class="help-block">需要新版手机客户端支持</p>
 							</div>
 						</div>
 						<br />
@@ -323,10 +356,10 @@
 						</div>
 						<br />
 						<div class="group-control">
-							<label class="control-label">Twitter 地址</label>
+							<label class="control-label">微博地址</label>
 							<div class="controls">
-								<input type="text" name="TWITTER" value="<?php if(defined("AUTOFILL_TWITTER")){echo(htmlspecialchars(stripslashes(AUTOFILL_TWITTER)));} ?>"/>
-								<p class="help-block">登录后方可查看</p>
+								<input type="text" name="WEIBO" style="width: 400px;" value="<?php if(defined("AUTOFILL_WEIBO")){echo(htmlspecialchars(stripslashes(AUTOFILL_WEIBO)));} ?>"/>
+								<p class="help-block">请填写移动版主页</p>
 							</div>
 						</div>
 						<br />
@@ -338,9 +371,10 @@
 						</div>
 						<br />
 						<div class="group-control">
-							<label class="control-label">Facebook 地址</label>
+							<label class="control-label">Twitter 地址</label>
 							<div class="controls">
-								<input type="text" name="FACEBOOK" value="<?php if(defined("AUTOFILL_FACEBOOK")){echo(htmlspecialchars(stripslashes(AUTOFILL_FACEBOOK)));} ?>"/>
+								<input type="text" name="TWITTER" style="width: 400px;" value="<?php if(defined("AUTOFILL_TWITTER")){echo(htmlspecialchars(stripslashes(AUTOFILL_TWITTER)));} ?>"/>
+								<p class="help-block">登录后方可查看</p>
 							</div>
 						</div>
 						<br />
@@ -352,9 +386,17 @@
 						</div>
 						<br />
 						<div class="group-control">
+							<label class="control-label">Facebook 地址</label>
+							<div class="controls">
+								<input type="text" name="FACEBOOK" style="width: 400px;" value="<?php if(defined("AUTOFILL_FACEBOOK")){echo(htmlspecialchars(stripslashes(AUTOFILL_FACEBOOK)));} ?>"/>
+								<p class="help-block">登录后方可查看</p>
+							</div>
+						</div>
+						<br />
+						<div class="group-control">
 							<label class="control-label">Paypal 捐助地址</label>
 							<div class="controls">
-								<input type="text" name="PAYPAL" value="<?php if(defined("AUTOFILL_PAYPAL")){echo(htmlspecialchars(stripslashes(AUTOFILL_PAYPAL)));} ?>"/>
+								<input type="text" name="PAYPAL" style="width: 400px;" value="<?php if(defined("AUTOFILL_PAYPAL")){echo(htmlspecialchars(stripslashes(AUTOFILL_PAYPAL)));} ?>"/>
 							</div>
 						</div>
 						<br />
@@ -363,7 +405,7 @@
 						<div class="group-control">
 							<label class="control-label">外部统计代码</label>
 							<div class="controls">
-								<textarea type="text" style="height: 40px;" name="STATISTICS" ><?php if(defined("AUTOFILL_STATISTICS")){echo(htmlspecialchars(stripslashes(AUTOFILL_STATISTICS)));} ?></textarea>
+								<textarea type="text" style="height: 80px; width: 400px;" name="STATISTICS" ><?php if(defined("AUTOFILL_STATISTICS")){echo(htmlspecialchars(stripslashes(AUTOFILL_STATISTICS)));} ?></textarea>
 								<p class="help-block">不可见的统计代码</p>
 							</div>
 						</div>
@@ -371,7 +413,7 @@
 						<div class="group-control">
 							<label class="control-label">内部统计代码</label>
 							<div class="controls">
-								<textarea type="text" style="height: 40px;" name="STATISTICS_INFO" ><?php if(defined("AUTOFILL_STATISTICS_INFO")){echo(htmlspecialchars(stripslashes(AUTOFILL_STATISTICS_INFO)));} ?></textarea>
+								<textarea type="text" style="height: 80px; width: 400px;" name="STATISTICS_INFO" ><?php if(defined("AUTOFILL_STATISTICS_INFO")){echo(htmlspecialchars(stripslashes(AUTOFILL_STATISTICS_INFO)));} ?></textarea>
 								<p class="help-block">查看信息的统计代码</p>
 							</div>
 						</div>
@@ -379,7 +421,7 @@
 						<div class="group-control">
 							<label class="control-label">广告支持</label>
 							<div class="controls">
-								<textarea type="text" style="height: 40px;" name="ADVERTISEMENT" ><?php if(defined("AUTOFILL_ADVERTISEMENT")){echo(htmlspecialchars(stripslashes(AUTOFILL_ADVERTISEMENT)));} ?></textarea>
+								<textarea type="text" style="height: 80px; width: 400px;" name="ADVERTISEMENT" ><?php if(defined("AUTOFILL_ADVERTISEMENT")){echo(htmlspecialchars(stripslashes(AUTOFILL_ADVERTISEMENT)));} ?></textarea>
 							</div>
 						</div>
 						<br />
@@ -388,7 +430,7 @@
 						<div class="group-control">
 							<label class="control-label">紧急通知</label>
 							<div class="controls">
-								<textarea type="text" style="height: 40px;" name="EMERGENCY" ><?php if(defined("AUTOFILL_EMERGENCY")){echo(htmlspecialchars(stripslashes(AUTOFILL_EMERGENCY)));} ?></textarea>
+								<textarea type="text" style="height: 80px; width: 400px;" name="EMERGENCY" ><?php if(defined("AUTOFILL_EMERGENCY")){echo(htmlspecialchars(stripslashes(AUTOFILL_EMERGENCY)));} ?></textarea>
 							</div>
 						</div>
 						<br />
@@ -465,6 +507,7 @@
 							$config_text .= "\tdefine(\"DCRM_SPEED_LIMIT\",".$_POST['speedlimit'].");\n";
 							$config_text .= "\tdefine(\"DCRM_DIRECT_DOWN\",".$_POST['directdown'].");\n";
 							$config_text .= "\tdefine(\"DCRM_LISTS_METHOD\",".$_POST['listsmethod'].");\n";
+							$config_text .= "\tdefine(\"DCRM_CHECK_METHOD\",".$_POST['checkmethod'].");\n";
 							$config_text .= "\tdefine(\"DCRM_REPOURL\",\"".base64_encode($_POST['url_repo'])."\");\n";
 							$config_text .= "?>";
 							$autofill_text = "<?php\n\tif (!defined(\"DCRM\")) {\n\t\texit;\n\t}\n";

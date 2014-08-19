@@ -296,7 +296,7 @@
 	
 	    //构造方法初始化
 	    public function __construct() {
-	        $this->font = ROOT_PATH.'/css/elephant.ttf';
+	        $this->font = ROOT_PATH.'/css/AmericanTypewriter.ttc';
 	    }
 	
 	    //生成随机码

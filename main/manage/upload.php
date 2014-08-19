@@ -58,19 +58,30 @@
 	<script type="text/javascript" src="js/ajaxfileupload.js"></script>
 	<script type="text/javascript">
 		function ajaxFileUpload() {
-			$("#tips").html("上传中，请稍等……");
-			$.ajaxFileUpload(
-				{
-					url:"upload.php?action=upload",
-					secureuri:false,
-					fileElementId:'deb',
-					dataType: 'text',
-					success: function(data) {
-						$("#tips").html(data);
-					}
+			fakepath = document.getElementById("deb").value;
+			if (fakepath != "") {
+				if (/\.[^\.]+$/.exec(fakepath) == ".deb") {
+					$("#tips").html("上传中，请稍等……");
+					$.ajaxFileUpload(
+						{
+							url: "upload.php?action=upload",
+							secureuri: false,
+							fileElementId: 'deb',
+							dataType: 'text',
+							success: function(data) {
+								$("#tips").html(data);
+							}
+						}
+					);
+					return true;
+				} else {
+					$("#tips").html("不允许的文件类型！");
+					return false;
 				}
-			);
-		return true;
+			} else {
+				$("#tips").html("请选择一个软件包！");
+				return false;
+			}
 		}
 	</script>
 </head>

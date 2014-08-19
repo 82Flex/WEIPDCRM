@@ -147,9 +147,10 @@
 		<panel>
 <?php
 	if ($index == 0) {
+		if (!$isCydia) {
 ?>
 			<fieldset>
-				<a href="cydia://sources/add">
+				<a href="cydia://sources/add" target="_blank">
 				<img class="icon" src="CydiaIcon.png">
 					<div>
 						<div>
@@ -160,6 +161,9 @@
 					</div>
 				</a>
 			</fieldset>
+<?php
+		}
+?>
 			<fieldset>
 				<div>
 					<div style="float: right; vertical-align: middle; text-align: center; width: 200px">
@@ -306,8 +310,16 @@
 <?php
 				$package_query = mysql_query("SELECT `ID`, `Name`, `Package` FROM `Packages` WHERE (`Stat` = '1' AND `Section` = '".mysql_real_escape_string($section_assoc['Name'])."') ORDER BY `ID` DESC LIMIT " . DCRM_SHOW_NUM);
 				while ($package_assoc = mysql_fetch_assoc($package_query)) {
+					if ($isCydia) {
+?>
+				<a href="cydia://package/<?php echo $package_assoc['Package']; ?>" target="_blank">
+<?php
+					} else {
 ?>
 				<a href="index.php?pid=<?php echo($package_assoc['ID']); ?>">
+<?php
+					}
+?>
 					<img class="icon" src="icons/<?php echo($section_assoc['Icon']); ?>" width="58" height="58">
 					<div>
 						<div>
@@ -323,29 +335,31 @@
 			</fieldset>
 <?php
 			}
+			if (!$isCydia) {
 ?>
-				<label class="source">
-					<p>软件源信息</p>
-				</label>
-				<fieldset class="source">
-					<a>
-						<img class="icon" src="CydiaIcon.png"></div>
+			<label class="source">
+				<p>软件源信息</p>
+			</label>
+			<fieldset class="source">
+				<a href="/">
+					<img class="icon" src="CydiaIcon.png"></div>
+					<div>
 						<div>
-							<div>
-								<label>
-								<p id="source-name"><?php echo $release_origin; ?></p>
-								</label>
-							</div>
+							<label>
+							<p id="source-name"><?php echo $release_origin; ?></p>
+							</label>
 						</div>
-					</a>
-					<div class="source-description" id="source-description">
-						<p><?php echo $release_description; ?></p>
 					</div>
-				</fieldset>
-				<footer id="footer" style="display: none;"><p><span id="id">首页</span><br><span class="source-name"><?php echo $release_origin; ?></span>
-				·
-				<span id="section">版权所有 &copy; 2014</span></p></footer>
+				</a>
+				<div class="source-description" id="source-description">
+					<p><?php echo $release_description; ?></p>
+				</div>
+			</fieldset>
+			<footer id="footer" style="display: none;"><p><span id="id">首页</span><br><span class="source-name"><?php echo $release_origin; ?></span>
+			·
+			<span id="section">版权所有 &copy; 2014</span></p></footer>
 <?php
+			}
 		}
 	} elseif ($index == 1) {
 		$pkg = (int)mysql_real_escape_string($_GET['pid']);
@@ -368,7 +382,7 @@
 				if (!$isCydia) {
 ?>
 			<fieldset id="cydialink" style="display: none;">
-				<a href="cydia://package/<?php echo $pkg_assoc['Package']; ?>">
+				<a href="cydia://package/<?php echo $pkg_assoc['Package']; ?>" target="_blank">
 				<img class="icon" src="icons/cydia.png">
 					<div>
 						<div>
@@ -432,7 +446,7 @@
 					</div>
 				</a>
 				<a href="index.php?pid=<?php echo $_GET['pid']; ?>&method=history" id="historylink">
-				<img class="icon" src="icons/clock.png">
+				<img class="icon" src="icons/changelog.png">
 					<div>
 						<div>
 							<label>
@@ -585,7 +599,7 @@
 					<p><?php echo "版本 ".$pkg_assoc['Version']." 下载次数 ".$pkg_assoc['DownloadTimes']; ?></p>
 					<p><?php echo "更新时间：".$pkg_assoc['CreateStamp']; ?></p>
 					<hr />
-					<p><strong><?php echo htmlspecialchars($pkg_assoc['Description']); ?></strong></p>
+					<p><?php echo nl2br(htmlspecialchars($pkg_assoc['Description'])); ?></p>
 				</div>
 			</fieldset>
 <?php
@@ -603,7 +617,7 @@
 				<p>软件源信息</p>
 			</label>
 			<fieldset class="source">
-				<a>
+				<a href="/">
 					<img class="icon" src="CydiaIcon.png"></div>
 					<div>
 						<div>
@@ -791,7 +805,7 @@
 			while ($history = mysql_fetch_assoc($history_query)) {
 ?>
 				<a href="index.php?pid=<?php echo($history['ID']); ?>&addr=nohistory">
-					<img class="icon" src="icons/clock.png" width="58" height="58">
+					<img class="icon" src="icons/changelog.png" width="58" height="58">
 					<div>
 						<div>
 							<label>

@@ -182,7 +182,7 @@
 	
 	importnow:
 	$new_daily = "../downloads/" . date("Ymd");
-	$new_path = $new_daily . "/" . $t_package['Package'] . "_" . $t_package['Version'] . "_" . $t_package['Architecture'] . ".deb";
+	$new_path = $new_daily . "/" . $r_id . ".deb";
 	if (!is_dir($new_daily)) {
 		$mkdir = mkdir($new_daily);
 		if (!$mkdir) {
@@ -196,7 +196,7 @@
 		$success = false;
 		goto endlabel;
 	}
-	if (rename($r_path,$new_path) == FALSE) {
+	if (rename($r_path,$new_path) == false) {
 		$alert = "文件移动失败： " . $new_path;
 		$success = false;
 		goto endlabel;
