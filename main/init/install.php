@@ -127,6 +127,8 @@
 	  `Depiction` varchar(512) NOT NULL,
 	  `Icon` varchar(512) NOT NULL,
 	  `MD5sum` varchar(512) NOT NULL,
+	  `SHA1` varchar(512) NOT NULL,
+	  `SHA256` varchar(512) NOT NULL,
 	  `Stat` int(1) NOT NULL,
 	  `Tag` varchar(512) NOT NULL,
 	  `UUID` varchar(512) NOT NULL,
