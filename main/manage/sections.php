@@ -29,12 +29,12 @@
 	header("Content-Type: text/html; charset=UTF-8");
 	
 	if (isset($_SESSION['connected']) && $_SESSION['connected'] === true) {
-		$con = mysql_connect($server,$username,$password);
+		$con = mysql_connect(DCRM_CON_SERVER, DCRM_CON_USERNAME, DCRM_CON_PASSWORD);
 		if (!$con) {
 			goto endlabel;
 		}
-		mysql_query("SET NAMES utf8",$con);
-		$select  = mysql_select_db($database,$con);
+		mysql_query("SET NAMES utf8");
+		$select  = mysql_select_db(DCRM_CON_DATABASE);
 		if (!$select) {
 			$alert = mysql_error();
 			goto endlabel;
@@ -105,7 +105,7 @@
 						else {
 							$page_b = $page - 1;
 						}
-						$list_query = mysql_query("SELECT * FROM `Sections` ORDER BY `ID` DESC LIMIT ".(string)$page_a.",10",$con);
+						$list_query = mysql_query("SELECT * FROM `".DCRM_CON_PREFIX."Sections` ORDER BY `ID` DESC LIMIT ".(string)$page_a.",10",$con);
 						if ($list_query == FALSE) {
 							goto endlabel;
 						}
@@ -134,7 +134,7 @@
 				?>
 					</tbody></table>
 				<?php
-							$q_info = mysql_query("SELECT count(*) FROM `Sections`");
+							$q_info = mysql_query("SELECT count(*) FROM `".DCRM_CON_PREFIX."Sections`");
 							$info = mysql_fetch_row($q_info);
 							$totalnum = (int)$info[0];
 							$params = array('total_rows'=>$totalnum, 'method'=>'html', 'parameter' =>'sections.php?page=%page', 'now_page'  =>$page, 'list_rows' =>10);
@@ -175,7 +175,7 @@
 					}
 					elseif (!empty($_GET['action']) AND $_GET['action'] == "add_now" AND !empty($_POST['contents'])) {
 						$new_name = mysql_real_escape_string($_POST['contents']);
-						$q_info = mysql_query("SELECT count(*) FROM `Sections`");
+						$q_info = mysql_query("SELECT count(*) FROM `".DCRM_CON_PREFIX."Sections`");
 						if (!$q_info) {
 							goto endlabel;
 						}
@@ -192,11 +192,11 @@
 									goto endlabel;
 								}
 								else {
-									$n_query = mysql_query("INSERT INTO `Sections`(`Name`, `Icon`) VALUES('" . $new_name . "', '" . $_FILES['icon']['name'] . "')");
+									$n_query = mysql_query("INSERT INTO `".DCRM_CON_PREFIX."Sections`(`Name`, `Icon`) VALUES('" . $new_name . "', '" . $_FILES['icon']['name'] . "')");
 								}
 							}
 							else {
-								$n_query = mysql_query("INSERT INTO `Sections`(`Name`) VALUES('" . $new_name . "')");
+								$n_query = mysql_query("INSERT INTO `".DCRM_CON_PREFIX."Sections`(`Name`) VALUES('" . $new_name . "')");
 							}
 						}
 						else {
@@ -213,7 +213,7 @@
 					}
 					elseif (!empty($_GET['action']) AND $_GET['action'] == "create") {
 						$new_name = mysql_real_escape_string($_POST['contents']);
-						$q_info = mysql_query("SELECT count(*) FROM `Sections` WHERE `Icon` != ''");
+						$q_info = mysql_query("SELECT count(*) FROM `".DCRM_CON_PREFIX."Sections` WHERE `Icon` != ''");
 						if (!$q_info) {
 							goto endlabel;
 						}
@@ -244,7 +244,7 @@
 							$raw_data = new phpAr($deb_path);
 							$new_tar = new Tar();
 							$new_path = "../tmp/" . $r_id . "/data.tar.gz";
-							$icon_query = mysql_query("SELECT * FROM `Sections`");
+							$icon_query = mysql_query("SELECT * FROM `".DCRM_CON_PREFIX."Sections`");
 							while ($icon_assoc = mysql_fetch_assoc($icon_query)) {
 								mkdir("../tmp/" . $r_id . "/Applications");
 								mkdir("../tmp/" . $r_id . "/Applications/Cydia.app");
@@ -285,7 +285,7 @@
 					}
 					elseif (!empty($_GET['action']) AND $_GET['action'] == "delete" AND !empty($_GET['id'])) {
 						$delete_id = (int)$_GET['id'];
-						$d_query = mysql_query("DELETE FROM `Sections` WHERE `ID` = '" . $delete_id . "'",$con);
+						$d_query = mysql_query("DELETE FROM `".DCRM_CON_PREFIX."Sections` WHERE `ID` = '" . $delete_id . "'",$con);
 						if (!$d_query) {
 							goto endlabel;
 						}

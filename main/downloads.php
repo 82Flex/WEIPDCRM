@@ -34,20 +34,20 @@
 			$text_id = substr($r_path, 0, strlen($r_path) - 4);
 			$request_id = (int)$text_id;
 		}
-		$con = mysql_connect($server,$username,$password);
+		$con = mysql_connect(DCRM_CON_SERVER, DCRM_CON_USERNAME, DCRM_CON_PASSWORD);
 		if (!$con) {
 			httpinfo(500);
 		}
 		else {
-			mysql_query("SET NAMES utf8",$con);
-			mysql_select_db($database,$con);
+			mysql_query("SET NAMES utf8");
+			mysql_select_db(DCRM_CON_DATABASE);
 		}
-		$a_query = mysql_query("UPDATE `Packages` SET `DownloadTimes` = `DownloadTimes` + 1 WHERE `ID` = '" . (string)$request_id . "'",$con);
+		$a_query = mysql_query("UPDATE `".DCRM_CON_PREFIX."Packages` SET `DownloadTimes` = `DownloadTimes` + 1 WHERE `ID` = '" . (string)$request_id . "'",$con);
 		if (!$a_query) {
 			httpinfo(500);
 		}
 		else {
-			$m_query = mysql_query("SELECT `Package`, `Version`, `Filename` FROM `Packages` WHERE `ID` = '" . (string)$request_id . "'");
+			$m_query = mysql_query("SELECT `Package`, `Version`, `Filename` FROM `".DCRM_CON_PREFIX."Packages` WHERE `ID` = '" . (string)$request_id . "'");
 		}
 		if (!$m_query) {
 			httpinfo(500);

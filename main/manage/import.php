@@ -35,14 +35,14 @@
 	$diff = FALSE;
 	$replace = FALSE;
 	$success = true;
-	$con = mysql_connect($server,$username,$password);
+	$con = mysql_connect(DCRM_CON_SERVER, DCRM_CON_USERNAME, DCRM_CON_PASSWORD);
 	if (!$con) {
 		$alert = "数据库错误！";
 		$success = false;
 		goto endlabel;
 	}
-	mysql_query("SET NAMES utf8",$con);
-	$select  = mysql_select_db($database,$con);
+	mysql_query("SET NAMES utf8");
+	$select  = mysql_select_db(DCRM_CON_DATABASE);
 	if (!$select) {
 		$alert = mysql_error();
 		$success = false;
@@ -72,7 +72,7 @@
 		goto endlabel;
 	}
 	$file_md5 = md5_file($r_path);
-	$md5_query = mysql_query("SELECT `MD5sum` FROM `Packages` WHERE `MD5sum` = '" . $file_md5 . "'");
+	$md5_query = mysql_query("SELECT `MD5sum` FROM `".DCRM_CON_PREFIX."Packages` WHERE `MD5sum` = '" . $file_md5 . "'");
 	if ($md5_query == FALSE) {
 		$alert = "无效的请求： " . mysql_error();
 		$success = false;
@@ -141,7 +141,7 @@
 	goto endlabel;
 	
 	vaildPackage:
-	$same_query = mysql_query("SELECT `ID`, `Package`, `Name`, `Version`, `CreateStamp`, `MD5sum` FROM `Packages` WHERE `Package` = '" . mysql_real_escape_string($t_package['Package']) . "' ORDER BY `ID` DESC LIMIT 1");
+	$same_query = mysql_query("SELECT `ID`, `Package`, `Name`, `Version`, `CreateStamp`, `MD5sum` FROM `".DCRM_CON_PREFIX."Packages` WHERE `Package` = '" . mysql_real_escape_string($t_package['Package']) . "' ORDER BY `ID` DESC LIMIT 1");
 	if ($same_query == FALSE) {
 		$alert = "无效的请求： " . mysql_error();
 		$success = false;
@@ -157,7 +157,7 @@
 		}
 		else {
 			if ($_GET['type'] == '1') {
-				$p_query = mysql_query("SELECT `Package`, `Source`, `Priority`, `Section`, `Essential`, `Maintainer`, `Pre-Depends`, `Depends`, `Recommends`, `Suggests`, `Conflicts`, `Provides`, `Replaces`, `Enhances`, `Architecture`, `Installed-Size`, `Description`, `Origin`, `Bugs`, `Name`, `Author`, `Sponsor`, `Homepage`, `Website`, `Icon`, `Tag` FROM `Packages` WHERE `Package` = '" . $same_row['Package'] . "' ORDER BY `ID` DESC LIMIT 1");
+				$p_query = mysql_query("SELECT `Package`, `Source`, `Priority`, `Section`, `Essential`, `Maintainer`, `Pre-Depends`, `Depends`, `Recommends`, `Suggests`, `Conflicts`, `Provides`, `Replaces`, `Enhances`, `Architecture`, `Installed-Size`, `Description`, `Origin`, `Bugs`, `Name`, `Author`, `Sponsor`, `Homepage`, `Website`, `Icon`, `Tag` FROM `".DCRM_CON_PREFIX."Packages` WHERE `Package` = '" . $same_row['Package'] . "' ORDER BY `ID` DESC LIMIT 1");
 				$p_row = mysql_fetch_assoc($p_query);
 				foreach ($p_row as $p_key => $p_value) {
 					$t_package[$p_key] = $p_value;
@@ -201,7 +201,7 @@
 		$success = false;
 		goto endlabel;
 	}
-	$query = mysql_query("INSERT INTO `Packages`(`UUID`) VALUES('" . $r_id . "')");
+	$query = mysql_query("INSERT INTO `".DCRM_CON_PREFIX."Packages`(`UUID`) VALUES('" . $r_id . "')");
 	if ($query != false) {
 		$t_package['Size'] = filesize($new_path);
 		$t_package['Filename'] = $new_path;
@@ -211,7 +211,7 @@
 		$new_id = mysql_insert_id();
 		foreach ($t_package as $t_key => $t_value) {
 			if (strlen($t_key) > 0) {
-				$main_query = mysql_query("UPDATE `Packages` SET `" . mysql_real_escape_string($t_key) . "` = '" . mysql_real_escape_string($t_value) . "' WHERE `ID` = '" . (string)$new_id . "'");
+				$main_query = mysql_query("UPDATE `".DCRM_CON_PREFIX."Packages` SET `" . mysql_real_escape_string($t_key) . "` = '" . mysql_real_escape_string($t_value) . "' WHERE `ID` = '" . (string)$new_id . "'");
 			}
 		}
 	}
@@ -220,7 +220,7 @@
 		$success = false;
 	}
 	if ($replace == true) {
-		mysql_query("UPDATE `Packages` SET `Stat` = '-1' WHERE (`Package` = '" . $same_row['Package'] . "' AND `Version` = '" . $same_row['Version'] . "')",$con);
+		mysql_query("UPDATE `".DCRM_CON_PREFIX."Packages` SET `Stat` = '-1' WHERE (`Package` = '" . $same_row['Package'] . "' AND `Version` = '" . $same_row['Version'] . "')",$con);
 		header("Location: output.php?id=".(string)$new_id);
 		exit();
 	}

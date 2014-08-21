@@ -40,13 +40,13 @@
 			$isCydia = true;
 		}
 	}
-	$con = mysql_connect($server,$username,$password);
+	$con = mysql_connect(DCRM_CON_SERVER, DCRM_CON_USERNAME, DCRM_CON_PASSWORD);
 	if (!$con) {
 		echo 'MYSQL ERROR!<br />数据库错误！<br />请联系管理员检查问题。';
 		exit();
 	}
-	mysql_query("SET NAMES utf8",$con);
-	$select = mysql_select_db($database,$con);
+	mysql_query("SET NAMES utf8");
+	$select = mysql_select_db(DCRM_CON_DATABASE);
 	if (!$select) {
 		echo 'MYSQL ERROR!<br />数据库错误！<br />请联系管理员检查问题。';
 		exit();
@@ -180,7 +180,7 @@
 			<block>
 				<p>欢迎来到 <?php echo AUTOFILL_MASTER; ?> 的软件源！</p>
 <?php
-		$q_info = mysql_query("SELECT count(*) FROM `Packages` WHERE `Stat` = '1'");
+		$q_info = mysql_query("SELECT count(*) FROM `".DCRM_CON_PREFIX."Packages` WHERE `Stat` = '1'");
 		$info = mysql_fetch_row($q_info);
 		$num[0] = (int)$info[0];
 ?>
@@ -295,7 +295,7 @@
 ?>
 			</fieldset>
 <?php
-		$section_query = mysql_query("SELECT `Name`, `Icon` FROM `Sections`");
+		$section_query = mysql_query("SELECT `Name`, `Icon` FROM `".DCRM_CON_PREFIX."Sections`");
 		if (!$section_query) {
 ?>
 			<block>
@@ -308,7 +308,7 @@
 			<label><?php echo($section_assoc['Name']); ?></label>
 			<fieldset>
 <?php
-				$package_query = mysql_query("SELECT `ID`, `Name`, `Package` FROM `Packages` WHERE (`Stat` = '1' AND `Section` = '".mysql_real_escape_string($section_assoc['Name'])."') ORDER BY `ID` DESC LIMIT " . DCRM_SHOW_NUM);
+				$package_query = mysql_query("SELECT `ID`, `Name`, `Package` FROM `".DCRM_CON_PREFIX."Packages` WHERE (`Stat` = '1' AND `Section` = '".mysql_real_escape_string($section_assoc['Name'])."') ORDER BY `ID` DESC LIMIT " . DCRM_SHOW_NUM);
 				while ($package_assoc = mysql_fetch_assoc($package_query)) {
 					if ($isCydia) {
 ?>
@@ -363,7 +363,7 @@
 		}
 	} elseif ($index == 1) {
 		$pkg = (int)mysql_real_escape_string($_GET['pid']);
-		$pkg_query = mysql_query("SELECT `Name`, `Version`, `Author`, `Package`, `Description`, `DownloadTimes`, `Multi`, `CreateStamp`, `Installed-Size`, `Section`, `Homepage` FROM `Packages` WHERE `ID` = '".$pkg."' LIMIT 1");
+		$pkg_query = mysql_query("SELECT `Name`, `Version`, `Author`, `Package`, `Description`, `DownloadTimes`, `Multi`, `CreateStamp`, `Installed-Size`, `Section`, `Homepage` FROM `".DCRM_CON_PREFIX."Packages` WHERE `ID` = '".$pkg."' LIMIT 1");
 		if (!$pkg_query) {
 ?>
 			<block>
@@ -395,7 +395,7 @@
 			</fieldset>
 <?php
 					if (!empty($pkg_assoc['Section'])) {
-						$section_query = mysql_query("SELECT `Name`, `Icon` FROM `Sections` WHERE `Name` = '".$pkg_assoc['Section']."' LIMIT 1");
+						$section_query = mysql_query("SELECT `Name`, `Icon` FROM `".DCRM_CON_PREFIX."Sections` WHERE `Name` = '".$pkg_assoc['Section']."' LIMIT 1");
 						if (!$section_query) {
 							$icon_url = "";
 						} else {
@@ -643,7 +643,7 @@
 		}
 	} elseif ($index == 2) {
 		$pkg = (int)mysql_real_escape_string($_GET['pid']);
-		$pkg_query = mysql_query("SELECT `PID`, `Image` FROM `ScreenShots` WHERE `PID` = '".$pkg."'");
+		$pkg_query = mysql_query("SELECT `PID`, `Image` FROM `".DCRM_CON_PREFIX."ScreenShots` WHERE `PID` = '".$pkg."'");
 		if (!$pkg_query) {
 			echo 'MYSQL ERROR!<br />数据库错误！<br />请联系管理员检查问题。';
 			exit();
@@ -672,7 +672,7 @@
 			}
 		}
 	} elseif ($index == 3) {
-		$q_count = mysql_query("SELECT `Support`, COUNT(*) AS 'num' FROM `Reports` WHERE (`Device` = '".$DEVICE."' AND `iOS` = '".$OS."' AND `PID` = '".$_GET['pid']."') GROUP BY `Support`");
+		$q_count = mysql_query("SELECT `Support`, COUNT(*) AS 'num' FROM `".DCRM_CON_PREFIX."Reports` WHERE (`Device` = '".$DEVICE."' AND `iOS` = '".$OS."' AND `PID` = '".$_GET['pid']."') GROUP BY `Support`");
 		if (mysql_affected_rows() > 0) {
 			while ($s_count = mysql_fetch_assoc($q_count)) {
 				switch ($s_count['Support']) {
@@ -768,10 +768,10 @@
 			</fieldset>
 <?php
 	} elseif ($index == 4) {
-		$result = mysql_query("SELECT `ID` FROM `Reports` WHERE (`Remote` = '".mysql_real_escape_string($_SERVER['REMOTE_ADDR'])."' AND `PID`='".$_GET['pid']."') LIMIT 3");
+		$result = mysql_query("SELECT `ID` FROM `".DCRM_CON_PREFIX."Reports` WHERE (`Remote` = '".mysql_real_escape_string($_SERVER['REMOTE_ADDR'])."' AND `PID`='".$_GET['pid']."') LIMIT 3");
 		if (mysql_affected_rows() < 3) {
 			if (!empty($_SERVER['REMOTE_ADDR']) && !empty($DEVICE) && !empty($OS) && $isCydia) {
-				$result = mysql_query("INSERT INTO `Reports`(`Remote`, `Device`, `iOS`, `Support`, `TimeStamp`, `PID`) VALUES('".mysql_real_escape_string($_SERVER['REMOTE_ADDR'])."', '".$DEVICE."', '".$OS."', '".$support."', '".date('Y-m-d H:i:s')."', '".(int)$_GET['pid']."')");
+				$result = mysql_query("INSERT INTO `".DCRM_CON_PREFIX."Reports`(`Remote`, `Device`, `iOS`, `Support`, `TimeStamp`, `PID`) VALUES('".mysql_real_escape_string($_SERVER['REMOTE_ADDR'])."', '".$DEVICE."', '".$OS."', '".$support."', '".date('Y-m-d H:i:s')."', '".(int)$_GET['pid']."')");
 ?>
 			<fieldset style="background-color: #ccffcc;">
 			<div>
@@ -796,7 +796,7 @@
 			</fieldset>
 <?php
 	} elseif ($index == 5) {
-		$history_query = mysql_query("SELECT `ID`, `Version` FROM `Packages` WHERE (`Package` = (SELECT `Package` FROM `Packages` WHERE `ID` = '".(int)$_GET['pid']."' LIMIT 1) AND `Version` != (SELECT `Version` FROM `Packages` WHERE `ID` = '".(int)$_GET['pid']."' LIMIT 1)) ORDER BY `ID` DESC LIMIT 20");
+		$history_query = mysql_query("SELECT `ID`, `Version` FROM `".DCRM_CON_PREFIX."Packages` WHERE (`Package` = (SELECT `Package` FROM `".DCRM_CON_PREFIX."Packages` WHERE `ID` = '".(int)$_GET['pid']."' LIMIT 1) AND `Version` != (SELECT `Version` FROM `".DCRM_CON_PREFIX."Packages` WHERE `ID` = '".(int)$_GET['pid']."' LIMIT 1)) ORDER BY `ID` DESC LIMIT 20");
 		if (mysql_affected_rows() > 0) {
 ?>
 			<label>历史版本</label>
@@ -824,7 +824,7 @@
 		}
 	} elseif ($index == 6) {
 		$pkg = (int)mysql_real_escape_string($_GET['pid']);
-		$pkg_query = mysql_query("SELECT `Author`, `Sponsor`, `Maintainer` FROM `Packages` WHERE `ID` = '".$pkg."' LIMIT 1");
+		$pkg_query = mysql_query("SELECT `Author`, `Sponsor`, `Maintainer` FROM `".DCRM_CON_PREFIX."Packages` WHERE `ID` = '".$pkg."' LIMIT 1");
 		if (!$pkg_query) {
 ?>
 			<block>

@@ -27,13 +27,13 @@
 	header("Content-Type: text/html; charset=UTF-8");
 
 	if (isset($_SESSION['connected']) && $_SESSION['connected'] === true) {
-		$con = mysql_connect($server,$username,$password);
+		$con = mysql_connect(DCRM_CON_SERVER, DCRM_CON_USERNAME, DCRM_CON_PASSWORD);
 		if (!$con) {
 			echo(mysql_error());
 			exit();
 		}
-		mysql_query("SET NAMES utf8",$con);
-		$select  = mysql_select_db($database,$con);
+		mysql_query("SET NAMES utf8");
+		$select  = mysql_select_db(DCRM_CON_DATABASE);
 		if (!$select) {
 			echo(mysql_error());
 			exit();
@@ -481,16 +481,16 @@
 							$error_stat = true;
 						}
 						if ($error_stat === false) {
-							$result = mysql_query("SELECT `ID` FROM `Users` WHERE (`Username` = '".mysql_real_escape_string($_POST['username'])."' AND `ID` != '".$_SESSION['userid']."')");
+							$result = mysql_query("SELECT `ID` FROM `".DCRM_CON_PREFIX."Users` WHERE (`Username` = '".mysql_real_escape_string($_POST['username'])."' AND `ID` != '".$_SESSION['userid']."')");
 							if (!$result OR mysql_affected_rows() != 0) {
 								$error_text .= "存在相同的用户名！\n";
 								$error_stat = true;
 							}
 							else {
-								$result = mysql_query("UPDATE `Users` SET `Username` = '".mysql_real_escape_string($_POST['username'])."' WHERE `ID` = '".$_SESSION['userid']."'");
+								$result = mysql_query("UPDATE `".DCRM_CON_PREFIX."Users` SET `Username` = '".mysql_real_escape_string($_POST['username'])."' WHERE `ID` = '".$_SESSION['userid']."'");
 								if (!empty($_POST['newpassword'])) {
 									$logout = true;
-									$result = mysql_query("UPDATE `Users` SET `SHA1` = '".sha1($_POST['newpassword'])."' WHERE `ID` = '".$_SESSION['userid']."'");
+									$result = mysql_query("UPDATE `".DCRM_CON_PREFIX."Users` SET `SHA1` = '".sha1($_POST['newpassword'])."' WHERE `ID` = '".$_SESSION['userid']."'");
 								}
 							}
 						}

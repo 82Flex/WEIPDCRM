@@ -29,12 +29,12 @@
 	header("Content-Type: text/html; charset=UTF-8");
 	
 	if (isset($_SESSION['connected']) && $_SESSION['connected'] === true) {
-		$con = mysql_connect($server,$username,$password);
+		$con = mysql_connect(DCRM_CON_SERVER, DCRM_CON_USERNAME, DCRM_CON_PASSWORD);
 		if (!$con) {
 			goto endlabel;
 		}
 		mysql_query("SET NAMES utf8");
-		$select  = mysql_select_db($database);
+		$select  = mysql_select_db(DCRM_CON_DATABASE);
 		if (!$select) {
 			$alert = mysql_error();
 			goto endlabel;
@@ -173,7 +173,7 @@
 							else {
 								$page_b = $page - 1;
 							}
-							$list_query = mysql_query("SELECT `ID`, `Package`, `Name`, `Version`, `DownloadTimes`, `Stat`, `Size`, `Section` FROM `Packages` ORDER BY `Stat` DESC, `ID` DESC, `Version` DESC, `Name` DESC LIMIT " . (string)$page_a. ",10");
+							$list_query = mysql_query("SELECT `ID`, `Package`, `Name`, `Version`, `DownloadTimes`, `Stat`, `Size`, `Section` FROM `".DCRM_CON_PREFIX."Packages` ORDER BY `Stat` DESC, `ID` DESC, `Version` DESC, `Name` DESC LIMIT " . (string)$page_a. ",10");
 							if ($list_query == FALSE) {
 								goto endlabel;
 							}
@@ -218,7 +218,7 @@
 				?>
 								</tbody></table>
 				<?php
-								$q_info = mysql_query("SELECT count(*) FROM `Packages`");
+								$q_info = mysql_query("SELECT count(*) FROM `".DCRM_CON_PREFIX."Packages`");
 								$info = mysql_fetch_row($q_info);
 								$totalnum = (int)$info[0];
 								$params = array('total_rows'=>$totalnum, 'method'=>'html', 'parameter' =>'center.php?page=%page', 'now_page'  =>$page, 'list_rows' =>10);
@@ -279,7 +279,7 @@
 								goto endlabel;
 						}
 						$r_value = mysql_real_escape_string($_GET['contents']);
-						$list_query = mysql_query("SELECT `ID`, `Package`, `Name`, `Version`, `DownloadTimes`, `Stat`, `Size` FROM `Packages` WHERE `" . $t . "` LIKE '%" . $r_value . "%' ORDER BY `Stat` DESC, `ID` DESC LIMIT ".(string)$page_a.",10");
+						$list_query = mysql_query("SELECT `ID`, `Package`, `Name`, `Version`, `DownloadTimes`, `Stat`, `Size` FROM `".DCRM_CON_PREFIX."Packages` WHERE `" . $t . "` LIKE '%" . $r_value . "%' ORDER BY `Stat` DESC, `ID` DESC LIMIT ".(string)$page_a.",10");
 						if ($list_query == FALSE) {
 							goto endlabel;
 						}
@@ -316,7 +316,7 @@
 				?>
 								</tbody></table>
 				<?php
-							$q_info = mysql_query("SELECT count(*) FROM `Packages` WHERE `" . $t . "` LIKE '%" . $r_value . "%'");
+							$q_info = mysql_query("SELECT count(*) FROM `".DCRM_CON_PREFIX."Packages` WHERE `" . $t . "` LIKE '%" . $r_value . "%'");
 							$info = mysql_fetch_row($q_info);
 							$totalnum = (int)$info[0];
 							$params = array('total_rows'=>$totalnum, 'method'=>'html', 'parameter' =>'center.php?action=search&contents='.$_GET['contents'].'&type='.$_GET['type'].'&page=%page', 'now_page'  =>$page, 'list_rows' =>10);
@@ -341,7 +341,7 @@
 					}
 					elseif (!empty($_GET['action']) AND $_GET['action'] == "delete" AND !empty($_GET['id'])) {
 						$delete_id = (int)$_GET['id'];
-						$f_query = mysql_query("SELECT `Filename` FROM `Packages` WHERE `ID` = '" . $delete_id . "'");
+						$f_query = mysql_query("SELECT `Filename` FROM `".DCRM_CON_PREFIX."Packages` WHERE `ID` = '" . $delete_id . "'");
 						if (!$f_query) {
 							goto endlabel;
 						}
@@ -351,7 +351,7 @@
 								goto endlabel;
 							}
 							unlink($f_filename['Filename']);
-							$d_query = mysql_query("DELETE FROM `Packages` WHERE `ID` = '" . $delete_id . "'");
+							$d_query = mysql_query("DELETE FROM `".DCRM_CON_PREFIX."Packages` WHERE `ID` = '" . $delete_id . "'");
 						}
 						if (!$d_query) {
 							goto endlabel;
@@ -371,7 +371,7 @@
 					}
 					elseif (!empty($_GET['action']) AND $_GET['action'] == "submit" AND !empty($_GET['id'])) {
 						$submit_id = (int)$_GET['id'];
-						$s_query = mysql_query("SELECT `Package`, `Stat` FROM `Packages` WHERE `ID` = '" . $submit_id . "'");
+						$s_query = mysql_query("SELECT `Package`, `Stat` FROM `".DCRM_CON_PREFIX."Packages` WHERE `ID` = '" . $submit_id . "'");
 						if (!$s_query) {
 							goto endlabel;
 						}
@@ -382,11 +382,11 @@
 							}
 						}
 						if ((int)$s_info['Stat'] != 1) {
-							$s_query = mysql_query("UPDATE `Packages` SET `Stat` = '-1' WHERE `Package` = '" . $s_info['Package'] . "'");
-							$s_query = mysql_query("UPDATE `Packages` SET `Stat` = '1' WHERE `ID` = '" . $submit_id . "'");
+							$s_query = mysql_query("UPDATE `".DCRM_CON_PREFIX."Packages` SET `Stat` = '-1' WHERE `Package` = '" . $s_info['Package'] . "'");
+							$s_query = mysql_query("UPDATE `".DCRM_CON_PREFIX."Packages` SET `Stat` = '1' WHERE `ID` = '" . $submit_id . "'");
 						}
 						else {
-							$s_query = mysql_query("UPDATE `Packages` SET `Stat` = '-1' WHERE `ID` = '" . $submit_id . "'");
+							$s_query = mysql_query("UPDATE `".DCRM_CON_PREFIX."Packages` SET `Stat` = '-1' WHERE `ID` = '" . $submit_id . "'");
 						}
 						if (!$s_query) {
 							goto endlabel;

@@ -28,7 +28,7 @@
 	header("Content-Type: text/html; charset=UTF-8");
 	
 	if (isset($_SESSION['connected']) && $_SESSION['connected'] === true) {
-		$con = mysql_connect($server,$username,$password);
+		$con = mysql_connect(DCRM_CON_SERVER, DCRM_CON_USERNAME, DCRM_CON_PASSWORD);
 		if (is_numeric($_GET['id'])) {
 			$request_id = (int)$_GET['id'];
 			if ($request_id < 1) {
@@ -43,8 +43,8 @@
 			echo("数据库出现错误：".mysql_error());
 			exit();
 		}
-		mysql_query("SET NAMES utf8",$con);
-		$select  = mysql_select_db($database,$con);
+		mysql_query("SET NAMES utf8");
+		$select  = mysql_select_db(DCRM_CON_DATABASE);
 		if (!$select) {
 			echo("数据库出现错误：".mysql_error());
 			exit();
@@ -324,7 +324,7 @@
 			<input type="radio" name="package" value="<?php echo($request_id); ?>" style="display: none;" checked="checked" />
 				<?php
 					if (!isset($_GET['action']) AND !empty($_GET['id'])) {
-						$e_query = mysql_query("SELECT * FROM `Packages` WHERE `ID` = '" . $request_id . "'",$con);
+						$e_query = mysql_query("SELECT * FROM `".DCRM_CON_PREFIX."Packages` WHERE `ID` = '" . $request_id . "'",$con);
 						if (!$e_query) {
 							goto endlabel;
 						}
@@ -370,7 +370,7 @@
 							<div class="controls">
 								<select name="Section" style="width: 400px;">
 								<?php
-									$s_query = mysql_query("SELECT `ID`, `Name` FROM `Sections` ORDER BY `ID` ASC",$con);
+									$s_query = mysql_query("SELECT `ID`, `Name` FROM `".DCRM_CON_PREFIX."Sections` ORDER BY `ID` ASC",$con);
 									if (!$s_query) {
 										goto endlabel;
 									}
@@ -439,7 +439,7 @@
 								if ($new_value == 'NULL') {
 									$new_value = '';
 								}
-								$new_query = mysql_query("UPDATE `Packages` SET `" . $new_key . "` = '" . $new_value . "' WHERE `ID` = '" . $new_id . "'",$con);
+								$new_query = mysql_query("UPDATE `".DCRM_CON_PREFIX."Packages` SET `" . $new_key . "` = '" . $new_value . "' WHERE `ID` = '" . $new_id . "'",$con);
 								if (!$new_query) {
 									goto endlabel;
 								}
@@ -450,7 +450,7 @@
 						echo '<br /><a href="output.php?id='.$new_id.'">立即写入</a>　<a href="javascript:history.go(-1);">返回</a></h3>';
 					}
 					elseif (!empty($_GET['action']) AND $_GET['action'] == "advance" AND !empty($_GET['id'])) {
-						$e_query = mysql_query("SELECT * FROM `Packages` WHERE `ID` = '" . $request_id . "'",$con);
+						$e_query = mysql_query("SELECT * FROM `".DCRM_CON_PREFIX."Packages` WHERE `ID` = '" . $request_id . "'",$con);
 						if (!$e_query) {
 							goto endlabel;
 						}
@@ -469,7 +469,7 @@
 								<input type="hidden" id="item_id" value="<?php echo $request_id; ?>" />
 								<select id="item_adv" style="width: 400px;" name="Advance" onChange="javascript:ajax();" >
 								<?php
-									$z_query = mysql_query("SELECT `COLUMN_NAME` FROM `information_schema`.`COLUMNS` WHERE `TABLE_SCHEMA`='".$database."' and `TABLE_NAME`='Packages' order by COLUMN_NAME",$con);
+									$z_query = mysql_query("SELECT `COLUMN_NAME` FROM `information_schema`.`COLUMNS` WHERE `TABLE_SCHEMA`='".DCRM_CON_DATABASE."' and `TABLE_NAME`='Packages' order by COLUMN_NAME");
 									while($z_list = mysql_fetch_assoc($z_query)) {
 										echo '<option value="'.$z_list['COLUMN_NAME'].'">'.$z_list['COLUMN_NAME'].'</option>';
 									}
@@ -502,7 +502,7 @@
 							if ($a_value == 'NULL') {
 								$a_value = '';
 							}
-							$a_query = mysql_query("UPDATE `Packages` SET `" . $a_key . "` = '" . $a_value . "' WHERE `ID` = '" . $a_id . "'",$con);
+							$a_query = mysql_query("UPDATE `".DCRM_CON_PREFIX."Packages` SET `" . $a_key . "` = '" . $a_value . "' WHERE `ID` = '" . $a_id . "'",$con);
 							if (!$a_query) {
 								goto endlabel;
 							}

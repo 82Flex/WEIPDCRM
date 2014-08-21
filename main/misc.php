@@ -56,13 +56,13 @@
 			echo str_replace("//URL//", "<code>".base64_decode(DCRM_REPOURL)."</code>", "您可以通过 Cydia <a href = \"cydia://sources/add\">添加</a> //URL// 访问该源。");
 			if (DCRM_SHOWLIST == 1) {
 				require_once('manage/include/connect.inc.php');
-				$con = mysql_connect($server,$username,$password);
+				$con = mysql_connect(DCRM_CON_SERVER, DCRM_CON_USERNAME, DCRM_CON_PASSWORD);
 				if (!$con) {
 					echo '<br />数据库错误！如果您是首次安装，请运行 <a href="init/index.html">快速安装脚本</a> 。';
 					goto endlabel;
 				}
-				mysql_query("SET NAMES utf8",$con);
-						$select  = mysql_select_db($database,$con);
+				mysql_query("SET NAMES utf8");
+						$select  = mysql_select_db(DCRM_CON_DATABASE);
 				if (!$select) {
 					$alert = mysql_error();
 					echo('<br />数据库错误！');
@@ -71,7 +71,7 @@
 				echo "<br><br><div class=\"wrapper\">";
 				echo "<ul class=\"breadcrumb\"><i class=\"icon\" id=\"source_triangle\" onclick=\"wrapper('source_triangle','item_source'); return false;\">&#9658;</i>&nbsp;"."最新软件包"."</ul>";
 				echo '<table class="table" id="item_source" style="display: none;"><thead><tr><th class="span5">'."最新软件包".'</th></tr></thead><tbody>';
-				$new_query = mysql_query("SELECT `Name`, `Package` FROM `Packages` WHERE `Stat` = '1' ORDER BY `ID` DESC LIMIT " . DCRM_SHOW_NUM,$con);
+				$new_query = mysql_query("SELECT `Name`, `Package` FROM `".DCRM_CON_PREFIX."Packages` WHERE `Stat` = '1' ORDER BY `ID` DESC LIMIT " . DCRM_SHOW_NUM,$con);
 				while ($daily = mysql_fetch_assoc($new_query)) {
 					echo '<tr><td><a href="cydia://package/' . $daily['Package'] . '">' . $daily['Name'] . '</a></td></tr>';
 				}

@@ -23,11 +23,21 @@
 	$inst_success = false;
 	
 	if (!isset($_GET['skip']) OR $_GET['skip'] != "yes") {
-		if (empty($_POST['db_host']) || empty($_POST['db_user']) || empty($_POST['db_database'])) {
+		if (empty($_POST['db_host']) || empty($_POST['db_user']) || empty($_POST['db_database']) || empty($_POST['db_prefix'])) {
 			header("Location: index.html");
 			exit();
 		}
-		$put = file_put_contents("../manage/include/connect.inc.php", "<?php\n\tif (!defined(\"DCRM\")) {\n\t\texit();\n\t}\n\t\n\t\$server = '".$_POST['db_host']."';\n\t\$username = '".$_POST['db_user']."';\n\t\$password = '".$_POST['db_password']."';\n\t\$database = '".$_POST['db_database']."';\n?>");
+		$inc .= "<?php\n";
+		$inc .= "\tif (!defined(\"DCRM\")) {\n";
+		$inc .= "\t\texit();";
+		$inc .= "\t}";
+		$inc .= "\tdefine(\"DCRM_CON_SERVER\", 'localhost');";
+		$inc .= "\tdefine(\"DCRM_CON_PREFIX\", 'apt_');";
+		$inc .= "\tdefine(\"DCRM_CON_USERNAME\", 'root');";
+		$inc .= "\tdefine(\"DCRM_CON_PASSWORD\", '');";
+		$inc .= "\tdefine(\"DCRM_CON_DATABASE\", 'cydia');";
+		$inc .= "?>";
+		$put = file_put_contents("../manage/include/connect.inc.php", $inc);
 		if (!$put) {
 			$inst_alert = "数据库配置写入失败，请检查文件权限！";
 			goto endlabel;
@@ -53,7 +63,7 @@
 	}
 	
 	// Connect to Server
-	$con = mysql_connect($server,$username,$password);
+	$con = mysql_connect(DCRM_CON_SERVER, DCRM_CON_USERNAME, DCRM_CON_PASSWORD);
 	
 	if (!$con) {
 		$inst_alert = mysql_error();
@@ -67,14 +77,14 @@
 		goto endlabel;
 	}
 	
-	$result = mysql_query("CREATE DATABASE IF NOT EXISTS `$database`");
+	$result = mysql_query("CREATE DATABASE IF NOT EXISTS `".DCRM_CON_DATABASE."`");
 	
 	if (!$result) {
 		$inst_alert = mysql_error();
 		goto endlabel;
 	}
 	
-	$result = mysql_select_db($database);
+	$result = mysql_select_db(DCRM_CON_DATABASE);
 	
 	if (!$result) {
 		$inst_alert = mysql_error();
@@ -87,14 +97,14 @@
 	-- ----------------------------
 	*/
 	
-	$result = mysql_query("DROP TABLE IF EXISTS `Packages`");
+	$result = mysql_query("DROP TABLE IF EXISTS `".DCRM_CON_PREFIX."Packages`");
 	
 	if (!$result) {
 		$inst_alert = mysql_error();
 		goto endlabel;
 	}
 	
-	$result = mysql_query("CREATE TABLE `Packages` (
+	$result = mysql_query("CREATE TABLE `".DCRM_CON_PREFIX."Packages` (
 	  `ID` int(8) NOT NULL AUTO_INCREMENT,
 	  `Package` varchar(512) NOT NULL,
 	  `Source` varchar(512) NOT NULL,
@@ -149,14 +159,14 @@
 	-- ----------------------------
 	*/
 	
-	$result = mysql_query("DROP TABLE IF EXISTS `Sections`");
+	$result = mysql_query("DROP TABLE IF EXISTS `".DCRM_CON_PREFIX."Sections`");
 	
 	if (!$result) {
 		$inst_alert = mysql_error();
 		goto endlabel;
 	}
 	
-	$result = mysql_query("CREATE TABLE `Sections` (
+	$result = mysql_query("CREATE TABLE `".DCRM_CON_PREFIX."Sections` (
 	  `ID` int(8) NOT NULL AUTO_INCREMENT,
 	  `Name` varchar(512) NOT NULL,
 	  `Icon` varchar(512) NOT NULL,
@@ -175,14 +185,14 @@
 	-- ----------------------------
 	*/
 	
-	$result = mysql_query("DROP TABLE IF EXISTS `ScreenShots`");
+	$result = mysql_query("DROP TABLE IF EXISTS `".DCRM_CON_PREFIX."ScreenShots`");
 	
 	if (!$result) {
 		$inst_alert = mysql_error();
 		goto endlabel;
 	}
 	
-	$result = mysql_query("CREATE TABLE `ScreenShots` (
+	$result = mysql_query("CREATE TABLE `".DCRM_CON_PREFIX."ScreenShots` (
 	  `ID` int(8) NOT NULL AUTO_INCREMENT,
 	  `PID` int(8) NOT NULL,
 	  `Image` varchar(512) NOT NULL,
@@ -200,14 +210,14 @@
 	-- ----------------------------
 	*/
 	
-	$result = mysql_query("DROP TABLE IF EXISTS `Reports`");
+	$result = mysql_query("DROP TABLE IF EXISTS `".DCRM_CON_PREFIX."Reports`");
 	
 	if (!$result) {
 		$inst_alert = mysql_error();
 		goto endlabel;
 	}
 	
-	$result = mysql_query("CREATE TABLE `Reports` (
+	$result = mysql_query("CREATE TABLE `".DCRM_CON_PREFIX."Reports` (
 	  `ID` int(8) NOT NULL AUTO_INCREMENT,
 	  `PID` int(8) NOT NULL,
 	  `Remote` varchar(64) NOT NULL,
@@ -230,14 +240,14 @@
 	-- ----------------------------
 	*/
 	
-	$result = mysql_query("DROP TABLE IF EXISTS `Users`");
+	$result = mysql_query("DROP TABLE IF EXISTS `".DCRM_CON_PREFIX."Users`");
 	
 	if (!$result) {
 		$inst_alert = mysql_error();
 		goto endlabel;
 	}
 	
-	$result = mysql_query("CREATE TABLE `Users` (
+	$result = mysql_query("CREATE TABLE `".DCRM_CON_PREFIX."Users` (
 	  `ID` int(8) NOT NULL AUTO_INCREMENT PRIMARY KEY,
 	  `Username` varchar(64) NOT NULL,
 	  `SHA1` varchar(128) NOT NULL,
@@ -250,7 +260,7 @@
 		goto endlabel;
 	}
 
-	$result = mysql_query("INSERT INTO `Users` (`Username`, `SHA1`, `LastLoginTime`, `Power`)
+	$result = mysql_query("INSERT INTO `".DCRM_CON_PREFIX."Users` (`Username`, `SHA1`, `LastLoginTime`, `Power`)
 	VALUES ('root', 'DC76E9F0C0006E8F919E0C515C66DBBA3982F785', '0000-00-00 00:00:00', '1')");
 	
 	if (!$result) {

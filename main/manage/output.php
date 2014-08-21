@@ -31,13 +31,13 @@
 		header("Location: login.php");
 		exit();
 	}
-	$con = mysql_connect($server,$username,$password);
+	$con = mysql_connect(DCRM_CON_SERVER, DCRM_CON_USERNAME, DCRM_CON_PASSWORD);
 	if (!$con) {
 		$alert = "数据库错误！";
 		goto endlabel;
 	}
 	mysql_query("SET NAMES utf8");
-	$select  = mysql_select_db($database);
+	$select  = mysql_select_db(DCRM_CON_DATABASE);
 	if (!$select) {
 		$alert = mysql_error();
 		goto endlabel;
@@ -47,7 +47,7 @@
 		$alert = "无效的参数。";
 		goto endlabel;
 	}
-	$m_query = mysql_query("SELECT `Package`, `Source`, `Version`, `Priority`, `Section`, `Essential`, `Maintainer`, `Pre-Depends`, `Depends`, `Recommends`, `Suggests`, `Conflicts`, `Provides`, `Replaces`, `Enhances`, `Architecture`, `Installed-Size`, `Origin`, `Bugs`, `Name`, `Author`, `Sponsor`, `Icon`, `Tag`, `Filename` FROM `Packages` WHERE `ID` = '" . (string)$request_id . "' LIMIT 1");
+	$m_query = mysql_query("SELECT `Package`, `Source`, `Version`, `Priority`, `Section`, `Essential`, `Maintainer`, `Pre-Depends`, `Depends`, `Recommends`, `Suggests`, `Conflicts`, `Provides`, `Replaces`, `Enhances`, `Architecture`, `Installed-Size`, `Origin`, `Bugs`, `Name`, `Author`, `Sponsor`, `Icon`, `Tag`, `Filename` FROM `".DCRM_CON_PREFIX."Packages` WHERE `ID` = '" . (string)$request_id . "' LIMIT 1");
 	if ($m_query == false) {
 		$alert = "数据库错误： " . mysql_error();
 		goto endlabel;
@@ -119,7 +119,7 @@
 		if (!$new_md5) {
 			$chk_success = false;
 		} else {
-			$md5_query = mysql_query("UPDATE `Packages` SET `MD5sum` = '" . $new_md5 . "' WHERE `ID` = '" . (string)$request_id . "'");
+			$md5_query = mysql_query("UPDATE `".DCRM_CON_PREFIX."Packages` SET `MD5sum` = '" . $new_md5 . "' WHERE `ID` = '" . (string)$request_id . "'");
 		}
 	}
 	if ((int)DCRM_CHECK_METHOD == 2 || (int)DCRM_CHECK_METHOD == 3) {
@@ -127,7 +127,7 @@
 		if (!$new_sha1) {
 			$chk_success = false;
 		} else {
-			$sha1_query = mysql_query("UPDATE `Packages` SET `SHA1` = '" . $new_sha1 . "' WHERE `ID` = '" . (string)$request_id . "'");
+			$sha1_query = mysql_query("UPDATE `".DCRM_CON_PREFIX."Packages` SET `SHA1` = '" . $new_sha1 . "' WHERE `ID` = '" . (string)$request_id . "'");
 		}
 	}
 	if ((int)DCRM_CHECK_METHOD == 3) {
@@ -135,11 +135,11 @@
 		if (!$new_sha256) {
 			$chk_success = false;
 		} else {
-			$sha256_query = mysql_query("UPDATE `Packages` SET `SHA256` = '" . $new_sha256 . "' WHERE `ID` = '" . (string)$request_id . "'");
+			$sha256_query = mysql_query("UPDATE `".DCRM_CON_PREFIX."Packages` SET `SHA256` = '" . $new_sha256 . "' WHERE `ID` = '" . (string)$request_id . "'");
 		}
 	}
 	$new_size = filesize($deb_path);
-	$size_query = mysql_query("UPDATE `Packages` SET `Size` = '" . $new_size . "' WHERE `ID` = '" . (string)$request_id . "'");
+	$size_query = mysql_query("UPDATE `".DCRM_CON_PREFIX."Packages` SET `Size` = '" . $new_size . "' WHERE `ID` = '" . (string)$request_id . "'");
 	if ($chk_success == false || $size_query == false) {
 		$alert .= "· 验证信息更新失败！请检查安装包是否成功生成！<br />";
 		$success = false;

@@ -65,22 +65,22 @@
 				$error = "authcode";
 				goto endlabel;
 			}
-			$con = mysql_connect($server,$username,$password);
+			$con = mysql_connect(DCRM_CON_SERVER, DCRM_CON_USERNAME, DCRM_CON_PASSWORD);
 			if (!$con) {
 				$error = "bear";
 				goto endlabel;
 			}
 			mysql_query("SET NAMES utf8");
-			$select  = mysql_select_db($database);
+			$select  = mysql_select_db(DCRM_CON_DATABASE);
 			if (!$select) {
 				$error = "bear";
 				goto endlabel;
 			}
-			$login_query = mysql_query("SELECT * FROM `Users` WHERE `Username` = '".mysql_real_escape_string($_POST['username'])."' LIMIT 1");
+			$login_query = mysql_query("SELECT * FROM `".DCRM_CON_PREFIX."Users` WHERE `Username` = '".mysql_real_escape_string($_POST['username'])."' LIMIT 1");
 			if (mysql_affected_rows() > 0) {
 				$login = mysql_fetch_assoc($login_query);
 				if ($login['Username'] === $_POST['username'] AND strtoupper($login['SHA1']) === strtoupper(sha1($_POST['password']))) {
-					$login_query = mysql_query("UPDATE `Users` SET `LastLoginTime` = '".date('Y-m-d H:i:s')."' WHERE `ID` = '".$login['ID']."'");
+					$login_query = mysql_query("UPDATE `".DCRM_CON_PREFIX."Users` SET `LastLoginTime` = '".date('Y-m-d H:i:s')."' WHERE `ID` = '".$login['ID']."'");
 					$_SESSION['power'] = $login['Power'];
 					$_SESSION['userid'] = $login['ID'];
 					$_SESSION['username'] = $login['Username'];

@@ -26,12 +26,12 @@
 	header("Content-Type: text/html; charset=UTF-8");
 	
 	if (isset($_SESSION['connected']) && $_SESSION['connected'] === true) {
-		$con = mysql_connect($server,$username,$password);
+		$con = mysql_connect(DCRM_CON_SERVER, DCRM_CON_USERNAME, DCRM_CON_PASSWORD);
 		if (!$con) {
 			die("MYSQL Error!");
 		}
-		mysql_query("SET NAMES utf8",$con);
-		$select  = mysql_select_db($database,$con);
+		mysql_query("SET NAMES utf8");
+		$select  = mysql_select_db(DCRM_CON_DATABASE);
 		if (!$select) {
 			die("MYSQL Error!");
 		}
@@ -41,7 +41,7 @@
 			if (empty($item_col) || $item_id == 0) {
 				die("NULL");
 			}
-			$item_query = mysql_query("SELECT * FROM `Packages` WHERE `ID` = '" . $item_id . "'",$con);
+			$item_query = mysql_query("SELECT * FROM `".DCRM_CON_PREFIX."Packages` WHERE `ID` = '" . $item_id . "'");
 			if (!$item_query) {
 				die("MYSQL Error.");
 			}

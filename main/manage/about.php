@@ -26,12 +26,12 @@
 	header("Content-Type: text/html; charset=UTF-8");
 
 	if (isset($_SESSION['connected']) && $_SESSION['connected'] === true) {
-		$con = mysql_connect($server,$username,$password);
+		$con = mysql_connect(DCRM_CON_SERVER, DCRM_CON_USERNAME, DCRM_CON_PASSWORD);
 		if (!$con) {
 			goto endlabel;
 		}
-		mysql_query("SET NAMES utf8",$con);
-		$select  = mysql_select_db($database,$con);
+		mysql_query("SET NAMES utf8");
+		$select  = mysql_select_db(DCRM_CON_DATABASE);
 		if (!$select) {
 			$alert = mysql_error();
 			goto endlabel;
@@ -104,7 +104,6 @@
 				else {
 					endlabel:
 					echo $alert;
-					mysql_close($con);
 				}
 			?>
 			</div>

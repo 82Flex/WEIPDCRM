@@ -29,13 +29,13 @@
 		header("Location: login.php");
 		exit();
 	}
-	$con = mysql_connect($server,$username,$password);
+	$con = mysql_connect(DCRM_CON_SERVER, DCRM_CON_USERNAME, DCRM_CON_PASSWORD);
 	if (!$con) {
 		echo(mysql_error());
 		exit();
 	}
-	mysql_query("SET NAMES utf8",$con);
-	$select  = mysql_select_db($database,$con);
+	mysql_query("SET NAMES utf8");
+	$select  = mysql_select_db(DCRM_CON_DATABASE);
 	if (!$select) {
 		echo(mysql_error());
 		exit();
@@ -46,16 +46,16 @@
 		echo("非法请求！");
 		exit();
 	}
-	$m_query = mysql_query("SELECT * FROM `Packages` WHERE `ID` = '" . $request_id . "'");
+	$m_query = mysql_query("SELECT * FROM `".DCRM_CON_PREFIX."Packages` WHERE `ID` = '" . $request_id . "'");
 	if (!$m_query) {
 		echo(mysql_error());
 		exit();
 	}
 	if (isset($_GET['action']) && $_GET['action'] == "image" && isset($_POST['image']) && strlen($_POST['image']) > 0) {
-		mysql_query("INSERT INTO `ScreenShots`(`PID`, `Image`) VALUES('".$request_id."', '".mysql_real_escape_string($_POST['image'])."')");
+		mysql_query("INSERT INTO `".DCRM_CON_PREFIX."ScreenShots`(`PID`, `Image`) VALUES('".$request_id."', '".mysql_real_escape_string($_POST['image'])."')");
 	}
 	elseif (isset($_GET['action']) && $_GET['action'] == "del" && is_numeric($_GET['image'])) {
-		mysql_query("DELETE FROM `ScreenShots` WHERE `ID` = '".mysql_real_escape_string($_GET['image'])."'");
+		mysql_query("DELETE FROM `".DCRM_CON_PREFIX."ScreenShots` WHERE `ID` = '".mysql_real_escape_string($_GET['image'])."'");
 	}
 ?>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -135,7 +135,7 @@
 			</div>
 <?php
 	}
-	$m_query = mysql_query("SELECT * FROM `ScreenShots` WHERE `PID` = '".$request_id."'");
+	$m_query = mysql_query("SELECT * FROM `".DCRM_CON_PREFIX."ScreenShots` WHERE `PID` = '".$request_id."'");
 	if (!$m_query) {
 		echo(mysql_error());
 		exit();

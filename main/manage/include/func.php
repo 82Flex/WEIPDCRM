@@ -101,38 +101,39 @@
 		header('Last-Modified: ' . gmdate("D, d M Y H:i:s", $lastModified) . ' GMT');
 		header("ETag: $etag");
 		if (isset($_SERVER['HTTP_IF_MODIFIED_SINCE']) && strtotime($_SERVER['HTTP_IF_MODIFIED_SINCE']) >= $lastModified) {
-			header("HTTP/1.1 304 Not Modified");
+			header('HTTP/1.1 304 Not Modified');
 			return true;
 		}  
 		if (isset($_SERVER['HTTP_IF_UNMODIFIED_SINCE']) && strtotime($_SERVER['HTTP_IF_UNMODIFIED_SINCE']) < $lastModified) {
-			header("HTTP/1.1 304 Not Modified");
+			header('HTTP/1.1 304 Not Modified');
 			return true;
 		}
 		if (isset($_SERVER['HTTP_IF_NONE_MATCH']) &&  $_SERVER['HTTP_IF_NONE_MATCH'] == $etag) {
-			header("HTTP/1.1 304 Not Modified");
+			header('HTTP/1.1 304 Not Modified');
 			return true;
 		}
-		if ($fancyName == '') {
+		if (empty($fancyName)) {
 			$fancyName = basename($fileName);
 		}
-		if ($contentType == '') {  
+		if (empty($contentType)) {  
 			$contentType = 'application/octet-stream';
 		}
 		$fileSize = $fileStat['size'];
 		$contentLength = $fileSize;
-		$isPartial = false;
-		if (isset($_SERVER['HTTP_RANGE'])) {  
-			if (preg_match('/^bytes=(d*)-(d*)$/', $_SERVER['HTTP_RANGE'], $matches)) {
-				$startPos = $matches[1];
-				$endPos = $matches[2];
-				if ($startPos == '' && $endPos == '') {
+		if (isset($_SERVER['HTTP_RANGE'])) {
+			//if (preg_match('/^bytes=(d*)-(d*)$/', $_SERVER['HTTP_RANGE'], $matches)) {
+				$match = str_replace('=','-',$_SERVER['HTTP_RANGE']);
+				$matches = explode('-',$match);
+				$startPos = trim($matches[1]);
+				$endPos = trim($matches[2]);
+				if (empty($startPos) && empty($endPos)) {
 					return false;  
 				}
-				if ($startPos == '') {
+				if (empty($startPos)) {
 					$startPos = $fileSize - $endPos;
 					$endPos = $fileSize - 1;
 				}
-				elseif ($endPos == '') {
+				elseif (empty($endPos)) {
 					$endPos = $fileSize - 1;
 				}
 				$startPos = $startPos < 0 ? 0 : $startPos;
@@ -142,19 +143,15 @@
 					return false;
 				}
 				$contentLength = $length;
-				$isPartial = true;
-			}
-		}
-		if ($isPartial) {
-			header('HTTP/1.1 206 Partial Content');
-			header("Content-Range: bytes $startPos-$endPos/$fileSize");
-		}
-		else {
+				header('HTTP/1.1 206 Partial Content');
+				header('Content-Range: bytes '.$startPos.'-'.$endPos.'/'.$fileSize);
+			//}
+		} else {
 			header("HTTP/1.1 200 OK");
 			$startPos = 0;
 			$endPos = $contentLength - 1;
 		}
-		header('Pragma: cache');
+		header('Pragma: public');
 		header('Cache-Control: public, must-revalidate, max-age=0');
 		header('Accept-Ranges: bytes');
 		header('Content-type: ' . $contentType);
@@ -172,7 +169,7 @@
 		fseek($fp, $startPos);
 		while ($bytesSent < $contentLength && !feof($fp) && connection_status() == 0 ) {
 			if ($speedLimit != 0) {
-				list($usec, $sec) = explode(" ", microtime());
+				list($usec, $sec) = explode(' ', microtime());
 				$outputTimeStart = ((float)$usec + (float)$sec);
 			}
 			$readBufferSize = $contentLength - $bytesSent < $bufferSize ? $contentLength - $bytesSent : $bufferSize;
@@ -182,7 +179,7 @@
 			flush();
 			$bytesSent += $readBufferSize;
 			if ($speedLimit != 0) {
-				list($usec, $sec) = explode(" ", microtime());
+				list($usec, $sec) = explode(' ', microtime());
 				$outputTimeEnd = ((float)$usec + (float)$sec);
 				$useTime = ((float) $outputTimeEnd - (float) $outputTimeStart) * 1000000;
 				$sleepTime = round($packetTime - $useTime);
@@ -284,19 +281,19 @@
 	}
 	
 	class ValidateCode {
-			private $charset = 'abcdefghkmnprstuvwxyzABCDEFGHKMNPRSTUVWXYZ23456789';    //随机因子
+			private $charset = 'abcdefghijklmnopqrstuvwxvzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';    //随机因子
 	    private $code;                            //验证码
 	    private $codelen = 4;                    //验证码长度
 	    private $width = 176;                    //宽度
 	    private $height = 72;                    //高度
 	    private $img;                                //图形资源句柄
 	    private $font;                                //指定的字体
-	    private $fontsize = 32;                //指定字体大小
+	    private $fontsize = 42;                //指定字体大小
 	    private $fontcolor;                        //指定字体颜色
 	
 	    //构造方法初始化
 	    public function __construct() {
-	        $this->font = ROOT_PATH.'/css/AmericanTypewriter.ttc';
+	        $this->font = ROOT_PATH.'/css/Herculanum.ttf';
 	    }
 	
 	    //生成随机码

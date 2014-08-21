@@ -31,13 +31,13 @@
 		header("Location: login.php");
 		exit();
 	}
-	$con = mysql_connect($server,$username,$password);
+	$con = mysql_connect(DCRM_CON_SERVER, DCRM_CON_USERNAME, DCRM_CON_PASSWORD);
 	if (!$con) {
 		$alert = "数据库错误！" . mysql_error();
 		goto endlabel;
 	}
-	mysql_query("SET NAMES utf8",$con);
-	$select  = mysql_select_db($database,$con);
+	mysql_query("SET NAMES utf8");
+	$select  = mysql_select_db(DCRM_CON_DATABASE);
 	if (!$select) {
 		$alert = mysql_error();
 		goto endlabel;
@@ -52,7 +52,7 @@
 	if (DCRM_CHECK_METHOD == 3) {
 		$parts .= ", `SHA256`";
 	}
-	$m_query = mysql_query("SELECT ".$parts." FROM `Packages` WHERE `Stat` = '1' GROUP BY `Package` ORDER BY `ID` DESC");
+	$m_query = mysql_query("SELECT ".$parts." FROM `".DCRM_CON_PREFIX."Packages` WHERE `Stat` = '1' GROUP BY `Package` ORDER BY `ID` DESC");
 	if ($m_query == false) {
 		$alert = "数据库错误！";
 		goto endlabel;

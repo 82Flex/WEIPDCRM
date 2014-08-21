@@ -28,12 +28,12 @@
 	header("Content-Type: text/html; charset=UTF-8");
 
 	if (isset($_SESSION['connected']) && $_SESSION['connected'] === true) {
-		$con = mysql_connect($server,$username,$password);
+		$con = mysql_connect(DCRM_CON_SERVER, DCRM_CON_USERNAME, DCRM_CON_PASSWORD);
 		if (!$con) {
 			goto endlabel;
 		}
-		mysql_query("SET NAMES utf8",$con);
-		$select  = mysql_select_db($database,$con);
+		mysql_query("SET NAMES utf8");
+		$select  = mysql_select_db(DCRM_CON_DATABASE);
 		if (!$select) {
 			$alert = mysql_error();
 			goto endlabel;
@@ -113,20 +113,20 @@
 					<ul class="breadcrumb" onclick="return false;"><i class="icon" id="triangle_manage" onclick="wrapper('triangle_manage','item_manage'); return false;">▼</i>&nbsp;管理统计</ul>
 					<div class="item" style="display:block;" id="item_manage">
 						<?php
-							$q_info = mysql_query("SELECT sum(`DownloadTimes`) FROM `Packages`");
+							$q_info = mysql_query("SELECT sum(`DownloadTimes`) FROM `".DCRM_CON_PREFIX."Packages`");
 							$info = mysql_fetch_row($q_info);
 							$totalDownloads = (int)$info[0];
-							$q_info = mysql_query("SELECT sum(`Size`) FROM `Packages`");
+							$q_info = mysql_query("SELECT sum(`Size`) FROM `".DCRM_CON_PREFIX."Packages`");
 							$info = mysql_fetch_row($q_info);
 							$poolSize = (int)$info[0];
 							$poolSize_withext = sizeext($poolSize);
-							$q_info = mysql_query("SELECT count(*) FROM `Packages`");
+							$q_info = mysql_query("SELECT count(*) FROM `".DCRM_CON_PREFIX."Packages`");
 							$info = mysql_fetch_row($q_info);
 							$num[0] = (int)$info[0];
-							$q_info = mysql_query("SELECT count(*) FROM `Packages` WHERE `Stat` != '-1'");
+							$q_info = mysql_query("SELECT count(*) FROM `".DCRM_CON_PREFIX."Packages` WHERE `Stat` != '-1'");
 							$info = mysql_fetch_row($q_info);
 							$num[1] = (int)$info[0];
-							$q_info = mysql_query("SELECT count(*) FROM `Sections`");
+							$q_info = mysql_query("SELECT count(*) FROM `".DCRM_CON_PREFIX."Sections`");
 							$info = mysql_fetch_row($q_info);
 							$num[2] = (int)$info[0];
 							$tmpSize = dirsize("../tmp");
