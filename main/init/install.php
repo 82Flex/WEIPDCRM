@@ -22,6 +22,11 @@
 	ob_start();
 	$inst_success = false;
 	
+	if (file_exists("../manage/include/release.default.save")) {
+		$inst_alert = "快速安装脚本已锁定，请删除 ../manage/include/release.default.save 继续安装！";
+		goto endlabel;
+	}
+	
 	if (!isset($_GET['skip']) OR $_GET['skip'] != "yes") {
 		if (empty($_POST['db_host']) || empty($_POST['db_user']) || empty($_POST['db_database']) || empty($_POST['db_prefix'])) {
 			header("Location: index.html");

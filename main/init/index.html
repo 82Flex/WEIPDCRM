@@ -7,7 +7,25 @@
 	<title>DCRM - 快捷安装向导</title>
 </head>
 <body>
-<div style="">
+<div>
+	<h4>初始化配置文件</h4>
+	<ul>
+		<li>1、如果您是首次安装，请修改 ./manage/include/*.inc.default.php 为 ./manage/include/*.inc.php。</li>
+		<li>2、请赋予整站根目录及子目录读写权限。</li>
+	</ul>
+	<h4>配置网页服务端</h4>
+	<ul>
+		<li>1、DCRM Pro 支持以下网页服务端：Apache >= 2.4.7, Nginx >= 1.0.11, Lighttpd >= 1.0。</li>
+		<li>2、需要打开 Rewrite 功能，Apache 只需拷贝 dcrm_apache.htaccess 到根目录 .htaccess，Nginx 与 Lighttpd 需要修改主配置文件，相关配置储存在 readme.files 中。</li>
+		<li>3、如果不清楚如何修改服务端配置文件，请联系技术支持。</li>
+	</ul>
+	<h4>配置 PHP</h4>
+	<ul>
+		<li>1、DCRM Pro 支持以下版本的 PHP：PHP >= 5.3。</li>
+		<li>2、登录验证码功能需要 gd 模块支持。</li>
+		<li>3、列表压缩功能可能需要 zlib、bz2 模块支持。</li>
+		<li>4、列表验证功能可能需要 hash 模块支持。</li>
+	</ul>
 	<h4>配置 MYSQL 数据库</h4>
 		<form method="post" action="install.php">
 			<h5><table><tbody>
@@ -19,7 +37,7 @@
 			<tr><td></td><td><input type="submit" style="width:60px;" value="提交" /></td></tr>
 			</tbody></table></h5>
 		</form>
-	<h5><a href="install.php?skip=yes">我已经配置好数据库，直接跳过。</a></h5>
+	<h5><a href="install.php?skip=yes">我已经手动配置完成，跳过此步骤。</a></h5>
 </div>
 </body>
 </html>
