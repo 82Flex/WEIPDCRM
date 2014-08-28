@@ -91,7 +91,7 @@
 	
 	function downFile($fileName, $fancyName = '', $forceDownload = true, $speedLimit = DCRM_SPEED_LIMIT, $contentType = '') {
 		if (!is_readable($fileName)) {
-			header("HTTP/1.1 404 Not Found");
+			httpinfo(404);
 			return false;
 		}
 		$fileStat = stat($fileName);
@@ -101,15 +101,15 @@
 		header('Last-Modified: ' . gmdate("D, d M Y H:i:s", $lastModified) . ' GMT');
 		header("ETag: $etag");
 		if (isset($_SERVER['HTTP_IF_MODIFIED_SINCE']) && strtotime($_SERVER['HTTP_IF_MODIFIED_SINCE']) >= $lastModified) {
-			header('HTTP/1.1 304 Not Modified');
+			httpinfo(304);
 			return true;
 		}  
 		if (isset($_SERVER['HTTP_IF_UNMODIFIED_SINCE']) && strtotime($_SERVER['HTTP_IF_UNMODIFIED_SINCE']) < $lastModified) {
-			header('HTTP/1.1 304 Not Modified');
+			httpinfo(304);
 			return true;
 		}
 		if (isset($_SERVER['HTTP_IF_NONE_MATCH']) &&  $_SERVER['HTTP_IF_NONE_MATCH'] == $etag) {
-			header('HTTP/1.1 304 Not Modified');
+			httpinfo(304);
 			return true;
 		}
 		if (empty($fancyName)) {
@@ -193,6 +193,10 @@
 	
 	function httpinfo($info_type) {
 		switch ($info_type) {
+			case 304:
+				header("HTTP/1.1 304 Not Modified");
+				header("Status: 304 Not Modified");
+			break;
 			case 400:
 				header("HTTP/1.1 400 Bad Request");
 				header("Status: 400 Bad Request");
@@ -206,8 +210,8 @@
 				header('Status: 403 Forbidden');
 			break;
 			case 4031:
-				header('HTTP/1.1 402 Payment Required'); 
-				header('Status: 402 Payment Required');
+				header('HTTP/1.1 403 Payment Required'); 
+				header('Status: 403 Payment Required');
 			break;
 			case 500:
 				header('HTTP/1.1 500 Internal Server Error');
