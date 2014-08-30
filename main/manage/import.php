@@ -32,8 +32,8 @@
 		header("Location: login.php");
 		exit();
 	}
-	$diff = FALSE;
-	$replace = FALSE;
+	$diff = false;
+	$replace = false;
 	$success = true;
 	$con = mysql_connect(DCRM_CON_SERVER, DCRM_CON_USERNAME, DCRM_CON_PASSWORD);
 	if (!$con) {
@@ -66,20 +66,20 @@
 		$success = false;
 		goto endlabel;
 	}
-	if (file_exists($r_path) == FALSE) {
+	if (file_exists($r_path) == false) {
 		$alert = '找不到文件： ' . $r_path;
 		$success = false;
 		goto endlabel;
 	}
 	$file_md5 = md5_file($r_path);
 	$md5_query = mysql_query("SELECT `MD5sum` FROM `".DCRM_CON_PREFIX."Packages` WHERE `MD5sum` = '" . $file_md5 . "'");
-	if ($md5_query == FALSE) {
+	if ($md5_query == false) {
 		$alert = "无效的请求： " . mysql_error();
 		$success = false;
 		goto endlabel;
 	}
 	$md5_row = mysql_fetch_row($md5_query);
-	if ($md5_row != FALSE) {
+	if ($md5_row != false) {
 		$alert = "文件已存在： " . $file_md5;
 		$success = false;
 		goto endlabel;
@@ -124,12 +124,10 @@
 		
 		if (strlen((string)$t_package['Package']) > 0 && strlen((string)$t_package['Version']) > 0 && strlen((string)$t_package['Architecture']) > 0) {
 			goto vaildPackage;
-		}
-		else {
+		} else {
 			goto invaildPackage;
 		}
-	}
-	else {
+	} else {
 		goto invaildControl;
 	}
 	
@@ -141,42 +139,62 @@
 	goto endlabel;
 	
 	vaildPackage:
-	$same_query = mysql_query("SELECT `ID`, `Package`, `Name`, `Version`, `CreateStamp`, `MD5sum` FROM `".DCRM_CON_PREFIX."Packages` WHERE `Package` = '" . mysql_real_escape_string($t_package['Package']) . "' ORDER BY `ID` DESC LIMIT 1");
-	if ($same_query == FALSE) {
-		$alert = "无效的请求： " . mysql_error();
+	if (isset($_GET['force'])) {
+		if (is_numeric($_GET['force'])) {
+			$same_query = mysql_query("SELECT `ID`, `Package`, `Name`, `Version`, `CreateStamp`, `MD5sum` FROM `".DCRM_CON_PREFIX."Packages` WHERE `ID` = '" . mysql_real_escape_string($_GET['force']) . "' LIMIT 1");
+		} else {
+			$alert = "强制继承失败：非法的被继承软件包编号";
+			$success = false;
+			goto endlabel;
+		}
+	} else {
+		$same_query = mysql_query("SELECT `ID`, `Package`, `Name`, `Version`, `CreateStamp`, `MD5sum` FROM `".DCRM_CON_PREFIX."Packages` WHERE `Package` = '" . mysql_real_escape_string($t_package['Package']) . "' ORDER BY `ID` DESC LIMIT 1");
+	}
+	if ($same_query == false) {
+		$alert = "数据库错误： " . mysql_error();
 		$success = false;
 		goto endlabel;
 	}
 	$same_row = mysql_fetch_assoc($same_query);
-	if ($same_row != FALSE) {
+	if ($same_row != false) {
 		if (!isset($_GET['type'])) {
-			$alert = "已经存在相同软件包，请选择一个操作。<br />原软件包：" . $same_row['Package'] . " &amp; " . $same_row['Version'] . "<br />导入时间：" . $same_row['CreateStamp'] . "<br />MD5sum：" . $same_row['MD5sum'] . "<br /><br />新软件包：" . $t_package['Package'] . " &amp; " . $t_package['Version'] . "<br />MD5sum：" . $file_md5;
+			$ver_compare = version_compare($t_package['Version'], $same_row['Version']);
+			if ($ver_compare == 0) {
+				$alert = "已经存在相同的软件包及版本，请选择一个操作。<br />";
+			} elseif ($ver_compare == 1) {
+				$alert = "已经存在该软件包的早期版本，请选择一个操作。<br />";
+			} else {
+				$alert = "已经存在该软件包的更新版本，请选择一个操作。<br />";
+			}
+			$alert .= "原软件包：" . $same_row['Package'] . " &amp; " . $same_row['Version'] . "<br />导入时间：" . $same_row['CreateStamp'] . "<br />MD5sum：" . $same_row['MD5sum'] . "<br /><br />新软件包：" . $t_package['Package'] . " &amp; " . $t_package['Version'] . "<br />MD5sum：" . $file_md5;
 			$diff = true;
 			$success = false;
 			goto endlabel;
-		}
-		else {
+		} else {
 			if ($_GET['type'] == '1') {
-				$p_query = mysql_query("SELECT `Package`, `Source`, `Priority`, `Section`, `Essential`, `Maintainer`, `Pre-Depends`, `Depends`, `Recommends`, `Suggests`, `Conflicts`, `Provides`, `Replaces`, `Enhances`, `Architecture`, `Installed-Size`, `Description`, `Origin`, `Bugs`, `Name`, `Author`, `Sponsor`, `Homepage`, `Website`, `Icon`, `Tag` FROM `".DCRM_CON_PREFIX."Packages` WHERE `Package` = '" . $same_row['Package'] . "' ORDER BY `ID` DESC LIMIT 1");
+				$p_query = mysql_query("SELECT `Package`, `Source`, `Priority`, `Section`, `Essential`, `Maintainer`, `Pre-Depends`, `Depends`, `Recommends`, `Suggests`, `Conflicts`, `Provides`, `Replaces`, `Enhances`, `Architecture`, `Installed-Size`, `Description`, `Origin`, `Bugs`, `Name`, `Author`, `Sponsor`, `Homepage`, `Website`, `Icon`, `Tag`, `Multi` FROM `".DCRM_CON_PREFIX."Packages` WHERE `Package` = '" . $same_row['Package'] . "' ORDER BY `ID` DESC LIMIT 1");
 				$p_row = mysql_fetch_assoc($p_query);
 				foreach ($p_row as $p_key => $p_value) {
 					$t_package[$p_key] = $p_value;
 				}
 				$replace = true;
 				goto importnow;
-			}
-			elseif ($_GET['type'] == '2') {
+			} elseif ($_GET['type'] == '2') {
 				$replace = true;
 				goto importnow;
-			}
-			elseif ($_GET['type'] == '3') {
+			} elseif ($_GET['type'] == '3') {
 				goto importnow;
-			}
-			else {
+			} else {
 				$alert = "错误的导入请求类型！";
 				$success = false;
 				goto endlabel;
 			}
+		}
+	} else {
+		if (isset($_GET['force'])) {
+			$alert = "强制继承失败：无效的被继承软件包编号";
+			$success = false;
+			goto endlabel;
 		}
 	}
 	
@@ -214,17 +232,16 @@
 				$main_query = mysql_query("UPDATE `".DCRM_CON_PREFIX."Packages` SET `" . mysql_real_escape_string($t_key) . "` = '" . mysql_real_escape_string($t_value) . "' WHERE `ID` = '" . (string)$new_id . "'");
 			}
 		}
-	}
-	else {
+	} else {
 		$alert = '导入失败！请检查数据库配置！';
 		$success = false;
 	}
 	if ($replace == true) {
-		mysql_query("UPDATE `".DCRM_CON_PREFIX."Packages` SET `Stat` = '-1' WHERE (`Package` = '" . $same_row['Package'] . "' AND `Version` = '" . $same_row['Version'] . "')",$con);
+		mysql_query("UPDATE `".DCRM_CON_PREFIX."Packages` SET `Stat` = '-1' WHERE (`Package` = '" . $same_row['Package'] . "' AND `Version` = '" . $same_row['Version'] . "')");
+		mysql_query("INSERT INTO `ScreenShots`(`PID`, `Image`) SELECT '".(int)$new_id."', `Image` FROM `ScreenShots` WHERE `PID` = '".(int)$same_row['ID']."'");
 		header("Location: output.php?id=".(string)$new_id);
 		exit();
-	}
-	else {
+	} else {
 		$alert = '导入成功！现在您可以进入数据库管理页面对其进行审核！<br />软件包地址： ' . $new_path;
 	}
 	goto endlabel;
@@ -281,27 +298,34 @@
 			<h2>导入软件包</h2>
 			<br />
 			<?php
-				if ($diff == FALSE) {
+				if ($diff == false) {
 					if ($success) {
-						echo '<h4 class="alert alert-success">';
-					}
-					else {
-						echo '<h4 class="alert alert-error">';
+			?>
+				<h4 class="alert alert-success">
+			<?php
+					} else {
+			?>
+				<h4 class="alert alert-error">
+			<?php
 					}
 					echo $alert;
-					echo '<br /><a href="manage.php">返回</a></h4>';
-				}
-				else {
-					echo '<h4 class="alert alert-info">';
-					echo $alert;
-					echo '</h4>';
-					echo '<a class="btn btn-warning" href="import.php?type=1&filename='.urlencode($_GET['filename']).'">继承并替换</a>';
-					echo '　';
-					echo '<a class="btn btn-warning" href="import.php?type=2&filename='.urlencode($_GET['filename']).'">直接替换</a>';
-					echo '　';
-					echo '<a class="btn btn-warning" href="import.php?type=3&filename='.urlencode($_GET['filename']).'">新增条目</a>';
-					echo '　';
-					echo '<a class="btn btn-success" href="manage.php">取消</a>';
+			?>
+				<br /><a href="manage.php">返回</a></h4>
+			<?php
+				} else {
+					$url_addr .= '&filename='.urlencode($_GET['filename']);
+					if (isset($_GET['force']) && is_numeric($_GET['force'])) {
+						$url_addr .= '&force='.$_GET['force'];
+					}
+			?>
+				<h4 class="alert alert-info">
+					<?php echo $alert; ?>
+				</h4>
+				<a class="btn btn-warning" href="import.php?type=1<?php echo($url_addr); ?>">继承并替换</a>　
+				<a class="btn btn-warning" href="import.php?type=2<?php echo($url_addr); ?>">直接替换</a>　
+				<a class="btn btn-warning" href="import.php?type=3<?php echo($url_addr); ?>">新增条目</a>　
+				<a class="btn btn-success" href="manage.php">取消</a>
+			<?php
 				}
 			?>
 			</div>

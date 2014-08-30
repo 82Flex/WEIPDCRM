@@ -24,7 +24,8 @@
 	
 	if (file_exists("../manage/include/release.default.save")) {
 		$inst_alert = "快速安装脚本已锁定，请删除 ../manage/include/release.default.save 继续安装！";
-		goto endlabel;
+		echo "<script>alert(\'".$inst_alert."\');</script>"; 
+		exit();
 	}
 	
 	if (!isset($_GET['skip']) OR $_GET['skip'] != "yes") {
@@ -45,7 +46,8 @@
 		$put = file_put_contents("../manage/include/connect.inc.php", $inc);
 		if (!$put) {
 			$inst_alert = "数据库配置写入失败，请检查文件权限！";
-			goto endlabel;
+			echo "<script>alert(\'".$inst_alert."\');</script>"; 
+			exit();
 		}
 	}
 	
@@ -54,17 +56,17 @@
 	require_once("../manage/include/connect.inc.php");
 	header("Content-Type: text/html; charset=UTF-8");
 	
-	if (!defined('PHP_VERSION_ID')) {
-		$version = explode('.', PHP_VERSION);
-		define('PHP_VERSION_ID', ($version[0] * 10000 + $version[1] * 100 + $version[2]));
-	}
-	if (PHP_VERSION_ID < 50300) {
-		$inst_alert = "PHP 版本必须为 5.3 及以上！";
-		goto endlabel;
+	if (!defined('PHP_VERSION')) {
+		if (version_compare(PHP_VERSION, '5.3') < 0) {
+			$inst_alert = "PHP 版本必须大于等于 5.3";
+			echo "<script>alert(\'".$inst_alert."\');</script>"; 
+			exit();
+		}
 	}
 	if (!extension_loaded("gd")) {
 		$inst_alert = "gd 库未加载，验证码模块无法安装！";
-		goto endlabel;
+		echo "<script>alert(\'".$inst_alert."\');</script>"; 
+		exit();
 	}
 	
 	// Connect to Server
@@ -72,28 +74,32 @@
 	
 	if (!$con) {
 		$inst_alert = mysql_error();
-		goto endlabel;
+		echo "<script>alert(\'".$inst_alert."\');</script>"; 
+		exit();
 	}
 	
 	$result = mysql_query("SET FOREIGN_KEY_CHECKS=0");
 	
 	if (!$result) {
 		$inst_alert = mysql_error();
-		goto endlabel;
+		echo "<script>alert(\'".$inst_alert."\');</script>"; 
+		exit();
 	}
 	
 	$result = mysql_query("CREATE DATABASE IF NOT EXISTS `".DCRM_CON_DATABASE."`");
 	
 	if (!$result) {
 		$inst_alert = mysql_error();
-		goto endlabel;
+		echo "<script>alert(\'".$inst_alert."\');</script>"; 
+		exit();
 	}
 	
 	$result = mysql_select_db(DCRM_CON_DATABASE);
 	
 	if (!$result) {
 		$inst_alert = mysql_error();
-		goto endlabel;
+		echo "<script>alert(\'".$inst_alert."\');</script>"; 
+		exit();
 	}
 	
 	/*
@@ -106,7 +112,8 @@
 	
 	if (!$result) {
 		$inst_alert = mysql_error();
-		goto endlabel;
+		echo "<script>alert(\'".$inst_alert."\');</script>"; 
+		exit();
 	}
 	
 	$result = mysql_query("CREATE TABLE `".DCRM_CON_PREFIX."Packages` (
@@ -155,7 +162,8 @@
 	
 	if (!$result) {
 		$inst_alert = mysql_error();
-		goto endlabel;
+		echo "<script>alert(\'".$inst_alert."\');</script>"; 
+		exit();
 	}
 	
 	/*
@@ -168,7 +176,8 @@
 	
 	if (!$result) {
 		$inst_alert = mysql_error();
-		goto endlabel;
+		echo "<script>alert(\'".$inst_alert."\');</script>"; 
+		exit();
 	}
 	
 	$result = mysql_query("CREATE TABLE `".DCRM_CON_PREFIX."Sections` (
@@ -181,7 +190,8 @@
 	
 	if (!$result) {
 		$inst_alert = mysql_error();
-		goto endlabel;
+		echo "<script>alert(\'".$inst_alert."\');</script>"; 
+		exit();
 	}
 	
 	/*
@@ -194,7 +204,8 @@
 	
 	if (!$result) {
 		$inst_alert = mysql_error();
-		goto endlabel;
+		echo "<script>alert(\'".$inst_alert."\');</script>"; 
+		exit();
 	}
 	
 	$result = mysql_query("CREATE TABLE `".DCRM_CON_PREFIX."ScreenShots` (
@@ -206,7 +217,8 @@
 	
 	if (!$result) {
 		$inst_alert = mysql_error();
-		goto endlabel;
+		echo "<script>alert(\'".$inst_alert."\');</script>"; 
+		exit();
 	}
 	
 	/*
@@ -219,7 +231,8 @@
 	
 	if (!$result) {
 		$inst_alert = mysql_error();
-		goto endlabel;
+		echo "<script>alert(\'".$inst_alert."\');</script>"; 
+		exit();
 	}
 	
 	$result = mysql_query("CREATE TABLE `".DCRM_CON_PREFIX."Reports` (
@@ -236,7 +249,8 @@
 	
 	if (!$result) {
 		$inst_alert = mysql_error();
-		goto endlabel;
+		echo "<script>alert(\'".$inst_alert."\');</script>"; 
+		exit();
 	}
 	
 	/*
@@ -249,7 +263,8 @@
 	
 	if (!$result) {
 		$inst_alert = mysql_error();
-		goto endlabel;
+		echo "<script>alert(\'".$inst_alert."\');</script>"; 
+		exit();
 	}
 	
 	$result = mysql_query("CREATE TABLE `".DCRM_CON_PREFIX."Users` (
@@ -262,7 +277,8 @@
 	
 	if (!$result) {
 		$inst_alert = mysql_error();
-		goto endlabel;
+		echo "<script>alert(\'".$inst_alert."\');</script>"; 
+		exit();
 	}
 
 	$result = mysql_query("INSERT INTO `".DCRM_CON_PREFIX."Users` (`Username`, `SHA1`, `LastLoginTime`, `Power`)
@@ -270,12 +286,14 @@
 	
 	if (!$result) {
 		$inst_alert = mysql_error();
-		goto endlabel;
+		echo "<script>alert(\'".$inst_alert."\');</script>"; 
+		exit();
 	}
 	
 	if(!mkdir("../tmp") || !copy("CydiaIcon.png", "../CydiaIcon.png")) {
 		$inst_alert = "文件权限错误，请赋予根目录读取与写入权限。";
-		goto endlabel;
+		echo "<script>alert(\'".$inst_alert."\');</script>"; 
+		exit();
 	}
 	else {
 		unlink("index.html");
@@ -285,7 +303,6 @@
 		$inst_success = true;
 	}
 	
-	endlabel:
 ?>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">

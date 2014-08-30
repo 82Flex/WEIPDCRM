@@ -111,6 +111,105 @@
 							</div>
 						</div>
 						<br />
+						<h3>移动版功能开关</h3>
+						<br />
+						<div class="group-control">
+							<label class="control-label" style="color: red;">总开关</label>
+							<div class="controls">
+								<select name="mobile">
+									<?php
+										if (DCRM_MOBILE == 2) {
+											echo '<option value="2" selected="selected">开启</option>\n<option value="1">关闭</option>';
+										}
+										else {
+											echo '<option value="1" selected="selected">关闭</option>\n<option value="2">开启</option>';
+										}
+									?>
+								</select>
+							</div>
+						</div>
+						<br />
+						<div class="group-control">
+							<label class="control-label">预览截图</label>
+							<div class="controls">
+								<select name="screenshots">
+									<?php
+										if (DCRM_SCREENSHOTS == 2) {
+											echo '<option value="2" selected="selected">开启</option>\n<option value="1">关闭</option>';
+										}
+										else {
+											echo '<option value="1" selected="selected">关闭</option>\n<option value="2">开启</option>';
+										}
+									?>
+								</select>
+							</div>
+						</div>
+						<br />
+						<div class="group-control">
+							<label class="control-label">报告问题</label>
+							<div class="controls">
+								<select name="reporting">
+									<?php
+										if (DCRM_REPORTING == 2) {
+											echo '<option value="2" selected="selected">开启</option>\n<option value="1">关闭</option>';
+										}
+										else {
+											echo '<option value="1" selected="selected">关闭</option>\n<option value="2">开启</option>';
+										}
+									?>
+								</select>
+							</div>
+						</div>
+						<br />
+						<div class="group-control">
+							<label class="control-label">更新日志</label>
+							<div class="controls">
+								<select name="updatelogs">
+									<?php
+										if (DCRM_UPDATELOGS == 2) {
+											echo '<option value="2" selected="selected">开启</option>\n<option value="1">关闭</option>';
+										}
+										else {
+											echo '<option value="1" selected="selected">关闭</option>\n<option value="2">开启</option>';
+										}
+									?>
+								</select>
+								<p class="help-block">显示在历史版本中的更新日志</p>
+							</div>
+						</div>
+						<br />
+						<div class="group-control">
+							<label class="control-label">更多信息</label>
+							<div class="controls">
+								<select name="moreinfo">
+									<?php
+										if (DCRM_MOREINFO == 2) {
+											echo '<option value="2" selected="selected">开启</option>\n<option value="1">关闭</option>';
+										}
+										else {
+											echo '<option value="1" selected="selected">关闭</option>\n<option value="2">开启</option>';
+										}
+									?>
+								</select>
+							</div>
+						</div>
+						<br />
+						<div class="group-control">
+							<label class="control-label">详细描述</label>
+							<div class="controls">
+								<select name="multiinfo">
+									<?php
+										if (DCRM_MULTIINFO == 2) {
+											echo '<option value="2" selected="selected">开启</option>\n<option value="1">关闭</option>';
+										}
+										else {
+											echo '<option value="1" selected="selected">关闭</option>\n<option value="2">开启</option>';
+										}
+									?>
+								</select>
+							</div>
+						</div>
+						<br />
 						<h3>下载设置</h3>
 						<br />
 						<div class="group-control">
@@ -462,6 +561,30 @@
 							$error_text .= "请设置防盗链开关！\n";
 							$error_stat = true;
 						}
+						if (!isset($_POST['mobile']) OR !is_numeric($_POST['mobile'])) {
+							$error_text .= "请设置移动版总开关！\n";
+							$error_stat = true;
+						}
+						if (!isset($_POST['screenshots']) OR !is_numeric($_POST['screenshots'])) {
+							$error_text .= "请设置预览截图开关！\n";
+							$error_stat = true;
+						}
+						if (!isset($_POST['reporting']) OR !is_numeric($_POST['reporting'])) {
+							$error_text .= "请设置报告问题开关！\n";
+							$error_stat = true;
+						}
+						if (!isset($_POST['updatelogs']) OR !is_numeric($_POST['updatelogs'])) {
+							$error_text .= "请设置更新日志开关！\n";
+							$error_stat = true;
+						}
+						if (!isset($_POST['moreinfo']) OR !is_numeric($_POST['moreinfo'])) {
+							$error_text .= "请设置更多信息开关！\n";
+							$error_stat = true;
+						}
+						if (!isset($_POST['multiinfo']) OR !is_numeric($_POST['multiinfo'])) {
+							$error_text .= "请设置自定义展示开关！\n";
+							$error_stat = true;
+						}
 						if (!isset($_POST['listsmethod']) OR !is_numeric($_POST['listsmethod']) OR (int)$_POST['listsmethod'] > 7) {
 							$error_text .= "请设置正确的 Packages 压缩方式！\n";
 							$error_stat = true;
@@ -506,6 +629,12 @@
 							$config_text .= "\tdefine(\"DCRM_SHOW_NUM\",".$_POST['listnum'].");\n";
 							$config_text .= "\tdefine(\"DCRM_SPEED_LIMIT\",".$_POST['speedlimit'].");\n";
 							$config_text .= "\tdefine(\"DCRM_DIRECT_DOWN\",".$_POST['directdown'].");\n";
+							$config_text .= "\tdefine(\"DCRM_MOBILE\",".$_POST['mobile'].");\n";
+							$config_text .= "\tdefine(\"DCRM_SCREENSHOTS\",".$_POST['screenshots'].");\n";
+							$config_text .= "\tdefine(\"DCRM_REPORTING\",".$_POST['reporting'].");\n";
+							$config_text .= "\tdefine(\"DCRM_UPDATELOGS\",".$_POST['updatelogs'].");\n";
+							$config_text .= "\tdefine(\"DCRM_MOREINFO\",".$_POST['moreinfo'].");\n";
+							$config_text .= "\tdefine(\"DCRM_MULTIINFO\",".$_POST['multiinfo'].");\n";
 							$config_text .= "\tdefine(\"DCRM_LISTS_METHOD\",".$_POST['listsmethod'].");\n";
 							$config_text .= "\tdefine(\"DCRM_CHECK_METHOD\",".$_POST['checkmethod'].");\n";
 							$config_text .= "\tdefine(\"DCRM_REPOURL\",\"".base64_encode($_POST['url_repo'])."\");\n";

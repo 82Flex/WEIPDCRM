@@ -34,10 +34,14 @@
 		header("Location: misc.php");
 		exit();
 	} else {
-		if (!strpos($detect->getUserAgent(), 'Cydia')) {
-			$isCydia = false;
+		if (DCRM_MOBILE == 2) {
+			if (!strpos($detect->getUserAgent(), 'Cydia')) {
+				$isCydia = false;
+			} else {
+				$isCydia = true;
+			}
 		} else {
-			$isCydia = true;
+			exit();	
 		}
 	}
 	$con = mysql_connect(DCRM_CON_SERVER, DCRM_CON_USERNAME, DCRM_CON_PASSWORD);
@@ -435,6 +439,9 @@
 				}
 ?>
 			<fieldset>
+<?php
+				if (DCRM_SCREENSHOTS == 2) {
+?>
 				<a href="index.php?pid=<?php echo $_GET['pid']; ?>&method=screenshot">
 				<img class="icon" src="icons/screenshots.png">
 					<div>
@@ -445,6 +452,9 @@
 						</div>
 					</div>
 				</a>
+<?php
+				}
+?>
 				<a href="index.php?pid=<?php echo $_GET['pid']; ?>&method=history" id="historylink">
 				<img class="icon" src="icons/changelog.png">
 					<div>
@@ -470,7 +480,7 @@
 				</a>
 <?php
 				}
-				if ($isCydia) {
+				if ($isCydia && DCRM_REPORTING == 2) {
 ?>
 				<a href="index.php?pid=<?php echo $_GET['pid']; ?>&method=report" id="reportlink">
 				<img class="icon" src="icons/report.png">
@@ -554,7 +564,7 @@
 				</a>
 <?php
 				}
-				if (!empty($pkg_assoc['Homepage'])) {
+				if (!empty($pkg_assoc['Homepage']) && DCRM_MOREINFO == 2) {
 ?>
 				<a href="<?php echo $pkg_assoc['Homepage']; ?>" target="_blank">
 				<img class="icon" src="icons/moreinfo.png">
@@ -596,14 +606,20 @@
 ?>
 			<fieldset>
 				<div>
+				<?php
+					if (DCRM_MULTIINFO == 2) {
+				?>
 					<p><?php echo "版本 ".$pkg_assoc['Version']." 下载次数 ".$pkg_assoc['DownloadTimes']; ?></p>
 					<p><?php echo "更新时间：".$pkg_assoc['CreateStamp']; ?></p>
 					<hr />
+				<?php
+					}
+				?>
 					<p><?php echo nl2br(htmlspecialchars($pkg_assoc['Description'])); ?></p>
 				</div>
 			</fieldset>
 <?php
-				if (!empty($pkg_assoc['Multi'])) {
+				if (!empty($pkg_assoc['Multi']) && DCRM_MULTIINFO == 2) {
 ?>
 			<fieldset>
 				<div>
@@ -642,14 +658,15 @@
 			}
 		}
 	} elseif ($index == 2) {
-		$pkg = (int)mysql_real_escape_string($_GET['pid']);
-		$pkg_query = mysql_query("SELECT `PID`, `Image` FROM `".DCRM_CON_PREFIX."ScreenShots` WHERE `PID` = '".$pkg."'");
-		if (!$pkg_query) {
-			echo 'MYSQL ERROR!<br />数据库错误！<br />请联系管理员检查问题。';
-			exit();
-		} else {
-			$num = mysql_affected_rows();
-			if ($num != 0) {
+		if (DCRM_SCREENSHOTS == 2) {
+			$pkg = (int)mysql_real_escape_string($_GET['pid']);
+			$pkg_query = mysql_query("SELECT `PID`, `Image` FROM `".DCRM_CON_PREFIX."ScreenShots` WHERE `PID` = '".$pkg."'");
+			if (!$pkg_query) {
+				echo 'MYSQL ERROR!<br />数据库错误！<br />请联系管理员检查问题。';
+				exit();
+			} else {
+				$num = mysql_affected_rows();
+				if ($num != 0) {
 ?>
 			<label>预览截图</label>
 			<br />
@@ -664,47 +681,54 @@
 				<div class="horizontal-scroll-pips"></div>
 			</div>
 <?php
-			} else {
+				} else {
 ?>
 			<label>该软件包暂无截图</label>
 			<br />
 <?php
-			}
-		}
-	} elseif ($index == 3) {
-		$q_count = mysql_query("SELECT `Support`, COUNT(*) AS 'num' FROM `".DCRM_CON_PREFIX."Reports` WHERE (`Device` = '".$DEVICE."' AND `iOS` = '".$OS."' AND `PID` = '".$_GET['pid']."') GROUP BY `Support`");
-		if (mysql_affected_rows() > 0) {
-			while ($s_count = mysql_fetch_assoc($q_count)) {
-				switch ($s_count['Support']) {
-					case 1:
-						$s_1 = " (".$s_count['num'].")";
-						$i_1 = $s_count['num'];
-						break;
-					case 2:
-						$s_2 = " (".$s_count['num'].")";
-						$i_2 = $s_count['num'];
-						break;
-					case 0:
-						$s_0 = " (".$s_count['num'].")";
-						$i_0 = $s_count['num'];
-						break;
 				}
 			}
+		} else {
+?>
+			<label>管理员关闭了预览截图功能</label>
+			<br />
+<?php
 		}
-		$check_int = $i_1 * 3 + $i_2 - $i_0 * 2;
-		if ($check_int >= 10) {
+	} elseif ($index == 3) {
+		if (DCRM_REPORTING == 2) {
+			$q_count = mysql_query("SELECT `Support`, COUNT(*) AS 'num' FROM `".DCRM_CON_PREFIX."Reports` WHERE (`Device` = '".$DEVICE."' AND `iOS` = '".$OS."' AND `PID` = '".$_GET['pid']."') GROUP BY `Support`");
+			if (mysql_affected_rows() > 0) {
+				while ($s_count = mysql_fetch_assoc($q_count)) {
+					switch ($s_count['Support']) {
+						case 1:
+							$s_1 = " (".$s_count['num'].")";
+							$i_1 = $s_count['num'];
+							break;
+						case 2:
+							$s_2 = " (".$s_count['num'].")";
+							$i_2 = $s_count['num'];
+							break;
+						case 0:
+							$s_0 = " (".$s_count['num'].")";
+							$i_0 = $s_count['num'];
+							break;
+					}
+				}
+			}
+			$check_int = $i_1 * 3 + $i_2 - $i_0 * 2;
+			if ($check_int >= 10) {
 ?>
 			<fieldset style="background-color: #ccffcc;">
 <?php
-		} elseif ($check_int <= -6) {
+			} elseif ($check_int <= -6) {
 ?>
 			<fieldset style="background-color: #ffdddd;">
 <?php
-		} else {
+			} else {
 ?>
 			<fieldset>
 <?php
-		}
+			}
 ?>
 				<div>
 					<p><strong>当前设备信息</strong></p>
@@ -767,36 +791,49 @@
 				</div>
 			</fieldset>
 <?php
+		} else {
+?>
+			<label>管理员关闭了报告问题功能</label>
+			<br />
+<?php
+		}
 	} elseif ($index == 4) {
-		$result = mysql_query("SELECT `ID` FROM `".DCRM_CON_PREFIX."Reports` WHERE (`Remote` = '".mysql_real_escape_string($_SERVER['REMOTE_ADDR'])."' AND `PID`='".$_GET['pid']."') LIMIT 3");
-		if (mysql_affected_rows() < 3) {
-			if (!empty($_SERVER['REMOTE_ADDR']) && !empty($DEVICE) && !empty($OS) && $isCydia) {
-				$result = mysql_query("INSERT INTO `".DCRM_CON_PREFIX."Reports`(`Remote`, `Device`, `iOS`, `Support`, `TimeStamp`, `PID`) VALUES('".mysql_real_escape_string($_SERVER['REMOTE_ADDR'])."', '".$DEVICE."', '".$OS."', '".$support."', '".date('Y-m-d H:i:s')."', '".(int)$_GET['pid']."')");
+		if (DCRM_REPORTING == 2) {
+			$result = mysql_query("SELECT `ID` FROM `".DCRM_CON_PREFIX."Reports` WHERE (`Remote` = '".mysql_real_escape_string($_SERVER['REMOTE_ADDR'])."' AND `PID`='".$_GET['pid']."') LIMIT 3");
+			if (mysql_affected_rows() < 3) {
+				if (!empty($_SERVER['REMOTE_ADDR']) && !empty($DEVICE) && !empty($OS) && $isCydia) {
+					$result = mysql_query("INSERT INTO `".DCRM_CON_PREFIX."Reports`(`Remote`, `Device`, `iOS`, `Support`, `TimeStamp`, `PID`) VALUES('".mysql_real_escape_string($_SERVER['REMOTE_ADDR'])."', '".$DEVICE."', '".$OS."', '".$support."', '".date('Y-m-d H:i:s')."', '".(int)$_GET['pid']."')");
 ?>
 			<fieldset style="background-color: #ccffcc;">
 			<div>
 			<p><strong>您的报告已经提交完成。<br />感谢您的支持！</strong></p>
 <?php
-			} else {
+				} else {
 ?>
 			<fieldset style="background-color: #ffdddd;">
 			<div>
 			<p><strong>请使用 Cydia 进行投票。<br />每台设备限制投票 2 次！</strong></p>
 <?php
-			}
-		} else {
+				}
+			} else {
 ?>
 			<fieldset style="background-color: #ffdddd;">
 			<div>
 			<p><strong>投票次数超过系统限制。<br />请稍后再试！</strong></p>
 <?php
-		}
+			}
 ?>
 			</div>
 			</fieldset>
 <?php
+		} else {
+?>
+			<label>管理员关闭了报告问题功能</label>
+			<br />
+<?php
+		}
 	} elseif ($index == 5) {
-		$history_query = mysql_query("SELECT `ID`, `Version` FROM `".DCRM_CON_PREFIX."Packages` WHERE (`Package` = (SELECT `Package` FROM `".DCRM_CON_PREFIX."Packages` WHERE `ID` = '".(int)$_GET['pid']."' LIMIT 1) AND `Version` != (SELECT `Version` FROM `".DCRM_CON_PREFIX."Packages` WHERE `ID` = '".(int)$_GET['pid']."' LIMIT 1)) ORDER BY `ID` DESC LIMIT 20");
+		$history_query = mysql_query("SELECT `ID`, `Version` FROM `".DCRM_CON_PREFIX."Packages` WHERE `Package` = (SELECT `Package` FROM `".DCRM_CON_PREFIX."Packages` WHERE `ID` = '".(int)$_GET['pid']."' LIMIT 1) ORDER BY `ID` DESC LIMIT 1,20");
 		if (mysql_affected_rows() > 0) {
 ?>
 			<label>历史版本</label>
@@ -820,7 +857,10 @@
 			</fieldset>
 <?php
 		} else {
-			echo '<label>该软件包暂无历史版本</label>';
+?>
+			<label>该软件包暂无历史版本</label>
+			<br />
+<?php
 		}
 	} elseif ($index == 6) {
 		$pkg = (int)mysql_real_escape_string($_GET['pid']);

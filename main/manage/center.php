@@ -278,7 +278,7 @@
 							default:
 								goto endlabel;
 						}
-						$r_value = mysql_real_escape_string($_GET['contents']);
+						$r_value = mysql_real_escape_string(str_replace('*', '%', str_replace('?', '_', $_GET['contents'])));
 						$list_query = mysql_query("SELECT `ID`, `Package`, `Name`, `Version`, `DownloadTimes`, `Stat`, `Size` FROM `".DCRM_CON_PREFIX."Packages` WHERE `" . $t . "` LIKE '%" . $r_value . "%' ORDER BY `Stat` DESC, `ID` DESC LIMIT ".(string)$page_a.",10");
 						if ($list_query == FALSE) {
 							goto endlabel;
