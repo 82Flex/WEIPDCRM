@@ -58,7 +58,10 @@
 				require_once('manage/include/connect.inc.php');
 				$con = mysql_connect(DCRM_CON_SERVER, DCRM_CON_USERNAME, DCRM_CON_PASSWORD);
 				if (!$con) {
-					echo '<br />数据库错误！如果您是首次安装，请运行 <a href="init/index.html">快速安装脚本</a> 。';
+					echo '<br />数据库错误！';
+					if (!file_exists("../manage/include/release.default.save")) {
+						echo '如果您是首次安装，请运行 <a href="init/index.html">快速安装脚本</a> 。';
+					}
 					goto endlabel;
 				}
 				mysql_query("SET NAMES utf8");

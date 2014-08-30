@@ -89,13 +89,14 @@
 	if (is_int(stripos($control_c_raw_data[0][0], 'control.tar.gz'))) {
 		$control_tar_path = "../tmp/" . $r_id . "/old.tar.gz";
 		$control_tar_handle = fopen($control_tar_path, 'w');
-		fputs($control_tar_handletrol_c_raw_data[0][6]);
+		fputs($control_tar_handle, $control_c_raw_data[0][6]);
 		fclose($control_tar_handle);
 		$control_tar = new Tar();
 		$new_tar = new Tar();
 		$control_tar -> load($control_tar_path);
 		$control_array = $control_tar -> contents();
 		foreach ($control_array as $c_key => $c_value) {
+			$alert .= "· 处理文件：".htmlspecialchars($c_key)."<br />";
 			if ($c_key != "control") {
 				$new_tar -> add_file($c_key, "", $control_array[$c_key]['data']);
 			}
