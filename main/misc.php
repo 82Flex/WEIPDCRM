@@ -54,7 +54,7 @@
 			echo $release_origin;
 			echo "<br><br>";
 			echo str_replace("//URL//", "<code>".base64_decode(DCRM_REPOURL)."</code>", "您可以通过 Cydia <a href = \"cydia://sources/add\">添加</a> //URL// 访问该源。");
-			if (DCRM_SHOWLIST == 1) {
+			if (DCRM_SHOWLIST == 2) {
 				require_once('manage/include/connect.inc.php');
 				$con = mysql_connect(DCRM_CON_SERVER, DCRM_CON_USERNAME, DCRM_CON_PASSWORD);
 				if (!$con) {

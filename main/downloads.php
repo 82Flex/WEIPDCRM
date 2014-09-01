@@ -32,7 +32,13 @@
 		}
 		else {
 			$text_id = substr($r_path, 0, strlen($r_path) - 4);
-			$request_id = (int)$text_id;
+			if (ctype_digit($text_id) && intval($text_id) <= 10000) {
+				$request_id = intval($text_id);
+			} else {
+				header("Content-Type: text/html; charset=UTF-8");
+				echo 'ILLEGAL ARGUMENTS!<br />非法的参数！';
+				exit();
+			}
 		}
 		$con = mysql_connect(DCRM_CON_SERVER, DCRM_CON_USERNAME, DCRM_CON_PASSWORD);
 		if (!$con) {

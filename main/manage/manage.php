@@ -156,7 +156,7 @@
 				<?php
 					} elseif ($_GET['action'] == "delete_confirmation" AND !empty($_GET['file']) AND file_exists("../upload/" . urldecode($_GET['file']))) {
 				?>
-						<h3 class="alert">您确定要删除：<?php echo(urldecode($_GET['file'])); ?>？该操作无法撤销！</h3>
+						<h3 class="alert">您确定要删除：<?php echo(urldecode($_GET['file'])); ?>？<br />该操作无法撤销！</h3>
 						<a class="btn btn-warning" href="manage.php?action=delete&file=<?php echo($_GET['file']); ?>">确定</a>　
 						<a class="btn btn-success" href="manage.php">取消</a>
 				<?php

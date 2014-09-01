@@ -22,6 +22,7 @@
 	ob_start();
 	define("DCRM",true);
 	require_once("include/config.inc.php");
+	require_once("include/autofill.inc.php");
 	require_once("include/connect.inc.php");
 	require_once("include/func.php");
 	require_once("include/tar.php");
@@ -123,7 +124,7 @@
 								echo '<td><a href="sections.php?action=delete_confirmation&id=' . $list['ID'] . '&name=' . $list['Name'] . '" class="close" style="line-height: 12px;">&times</a></td>';
 								echo '<td><ul class="ctl" style="width:400px;"><a href="center.php?action=search&contents=' . urlencode($list['Name']) . '&type=7">' . htmlspecialchars($list['Name']) . '</a></ul></td>';
 								if ($list['Icon'] != "") {
-									echo '<td><ul class="ctl" style="width:150px;"><a href="../icons/' . $list['Icon'] . '">' . $list['Icon'] . '</a></ul></td>';
+									echo '<td><ul class="ctl" style="width:150px;"><a href="'.base64_decode(DCRM_REPOURL).'/icons/' . $list['Icon'] . '">' . $list['Icon'] . '</a></ul></td>';
 								}
 								else {
 									echo '<td><ul class="ctl" style="width:150px;">无图标</ul></td>';
@@ -210,8 +211,14 @@
 							header("Location: sections.php");
 							exit();
 						}
-					}
-					elseif (!empty($_GET['action']) AND $_GET['action'] == "create") {
+					} elseif (!empty($_GET['action']) AND $_GET['action'] == "create") {
+						if (defined("AUTOFILL_SEO") && defined("AUTOFILL_PRE")) {
+							$alert = '您确定要生成 '.AUTOFILL_SEO.' 图标包 吗？<br /><a href="sections.php?action=createnow">立即生成</a>';
+						} else {
+							$alert = '您尚未填写站点SEO以及自动填充信息，无法使用该功能！';
+						}
+						goto endlabel;
+					} elseif (!empty($_GET['action']) AND $_GET['action'] == "createnow") {
 						$new_name = mysql_real_escape_string($_POST['contents']);
 						$q_info = mysql_query("SELECT count(*) FROM `".DCRM_CON_PREFIX."Sections` WHERE `Icon` != ''");
 						if (!$q_info) {
@@ -263,7 +270,7 @@
 								goto endlabel;
 							}
 							else {
-								$result = rename($deb_path, "../upload/" . "icon_" . time() . ".deb");
+								$result = rename($deb_path, "../upload/" . AUTOFILL_PRE."sourceicon_" . time() . ".deb");
 								if (!$result) {
 									$alert = "图标包重定位失败！";
 									goto endlabel;
@@ -294,7 +301,7 @@
 					}
 					if (!$con) {
 						endlabel:
-						echo '<h3 class="alert alert-error">数据库出现错误！<br />';
+						echo '<h3 class="alert alert-error">';
 						if (isset($alert)) {
 							echo $alert . '<br />';
 						}

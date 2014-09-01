@@ -125,7 +125,7 @@
 							<label class="control-label">源图标</label>
 							<div class="controls">
 								<input type="file" class="span6" name="icon" accept="image/x-png" />
-								<p class="help-block">允许上传的格式：png，保存为根目录 <a href="../CydiaIcon.png">CydiaIcon.png</a></p>
+								<p class="help-block">允许上传的格式：png，保存为根目录 <a href="<?php echo(base64_decode(DCRM_REPOURL)); ?>/CydiaIcon.png">CydiaIcon.png</a></p>
 							</div>
 						</div>
 						<br />

@@ -111,7 +111,34 @@
 							</div>
 						</div>
 						<br />
-						<h3>移动版功能开关</h3>
+						<div class="group-control">
+							<label class="control-label" style="color: red;">源地址</label>
+							<div class="controls">
+								<input type="text" required="required" name="url_repo" style="width: 400px;" value="<?php echo htmlspecialchars(base64_decode(DCRM_REPOURL)); ?>"/>
+								<p class="help-block">展示在首页供用户添加</p>
+							</div>
+						</div>
+						<br />
+						<h3>电脑版功能</h3>
+						<br />
+						<div class="group-control">
+							<label class="control-label" style="color: red;">总开关</label>
+							<div class="controls">
+								<select name="pcindex">
+									<?php
+										if (DCRM_PCINDEX == 2) {
+											echo '<option value="2" selected="selected">开启</option>\n<option value="1">关闭</option>';
+										}
+										else {
+											echo '<option value="1" selected="selected">关闭</option>\n<option value="2">开启</option>';
+										}
+									?>
+								</select>
+								<p class="help-block">开启后非苹果用户将自动跳转</p>
+							</div>
+						</div>
+						<br />
+						<h3>移动版功能</h3>
 						<br />
 						<div class="group-control">
 							<label class="control-label" style="color: red;">总开关</label>
@@ -333,11 +360,27 @@
 							<div class="controls">
 								<select name="list">
 									<?php
-										if (DCRM_SHOWLIST == 1) {
-											echo '<option value="1" selected="selected">开启</option>\n<option value="2">关闭</option>';
+										if (DCRM_SHOWLIST == 2) {
+											echo '<option value="2" selected="selected">开启</option>\n<option value="1">关闭</option>';
 										}
 										else {
-											echo '<option value="2" selected="selected">关闭</option>\n<option value="1">开启</option>';
+											echo '<option value="1" selected="selected">关闭</option>\n<option value="2">开启</option>';
+										}
+									?>
+								</select>
+							</div>
+						</div>
+						<br />
+						<div class="group-control">
+							<label class="control-label">允许查看完整列表</label>
+							<div class="controls">
+								<select name="allowfulllist">
+									<?php
+										if (DCRM_ALLOWFULLLIST == 2) {
+											echo '<option value="2" selected="selected">开启</option>\n<option value="1">关闭</option>';
+										}
+										else {
+											echo '<option value="1" selected="selected">关闭</option>\n<option value="2">开启</option>';
 										}
 									?>
 								</select>
@@ -349,14 +392,6 @@
 							<div class="controls">
 								<input type="text"  name="listnum" value="<?php echo htmlspecialchars(DCRM_SHOW_NUM); ?>"/>
 								<p class="help-block">最大不得超过 20 条</p>
-							</div>
-						</div>
-						<br />
-						<div class="group-control">
-							<label class="control-label" style="color: red;">源地址</label>
-							<div class="controls">
-								<input type="text" required="required" name="url_repo" style="width: 400px;" value="<?php echo htmlspecialchars(base64_decode(DCRM_REPOURL)); ?>"/>
-								<p class="help-block">展示在首页供用户添加</p>
 							</div>
 						</div>
 						<br />
@@ -561,6 +596,10 @@
 							$error_text .= "请设置防盗链开关！\n";
 							$error_stat = true;
 						}
+						if (!isset($_POST['pcindex']) OR !is_numeric($_POST['pcindex'])) {
+							$error_text .= "请设置电脑版总开关！\n";
+							$error_stat = true;
+						}
 						if (!isset($_POST['mobile']) OR !is_numeric($_POST['mobile'])) {
 							$error_text .= "请设置移动版总开关！\n";
 							$error_stat = true;
@@ -592,12 +631,15 @@
 						if (!isset($_POST['list']) OR !is_numeric($_POST['list'])) {
 							$error_text .= "请设置首页更新列表开关！\n";
 							$error_stat = true;
-						}
-						else {
+						} else {
 							if (!isset($_POST['listnum']) OR !is_numeric($_POST['listnum']) OR (int)$_POST['listnum'] > 20) {
 								$error_text .= "请设置首页更新列表数量，最大不得超过 20 条！\n";
 								$error_stat = true;
 							}
+						}
+						if (!isset($_POST['allowfulllist']) OR !is_numeric($_POST['allowfulllist'])) {
+							$error_text .= "请设置允许查看完整列表开关！\n";
+							$error_stat = true;
 						}
 						if (!isset($_POST['url_repo']) OR empty($_POST['url_repo'])) {
 							$error_text .= "源地址不得设置为空！\n";
@@ -627,8 +669,10 @@
 							$config_text .= "\tdefine(\"DCRM_MAXLOGINFAIL\",".$_POST['trials'].");\n";
 							$config_text .= "\tdefine(\"DCRM_SHOWLIST\",".$_POST['list'].");\n";
 							$config_text .= "\tdefine(\"DCRM_SHOW_NUM\",".$_POST['listnum'].");\n";
+							$config_text .= "\tdefine(\"DCRM_ALLOW_FULLLIST\",".$_POST['allowfulllist'].");\n";
 							$config_text .= "\tdefine(\"DCRM_SPEED_LIMIT\",".$_POST['speedlimit'].");\n";
 							$config_text .= "\tdefine(\"DCRM_DIRECT_DOWN\",".$_POST['directdown'].");\n";
+							$config_text .= "\tdefine(\"DCRM_PCINDEX\",".$_POST['pcindex'].");\n";
 							$config_text .= "\tdefine(\"DCRM_MOBILE\",".$_POST['mobile'].");\n";
 							$config_text .= "\tdefine(\"DCRM_SCREENSHOTS\",".$_POST['screenshots'].");\n";
 							$config_text .= "\tdefine(\"DCRM_REPORTING\",".$_POST['reporting'].");\n";

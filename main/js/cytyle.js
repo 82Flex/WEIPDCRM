@@ -24,7 +24,7 @@
                     return;
 
                 if (typeof cydia != 'undefined')
-                    if (item.href.substr(0, 32) == 'http://cydia.saurik.com/package/')
+                    if (item.href.substr(0, 32) == 'http://apt.82flex.com/package/')
                         item.href = 'cydia://package/' + item.href.substr(32);
 
                 item.className += ' cytyle-dn';
