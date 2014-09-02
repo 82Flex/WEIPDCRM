@@ -153,7 +153,7 @@
 <?php
 		while ($m_array = mysql_fetch_assoc($m_query)) {
 ?>
-				<li><a href="<?php echo($m_array["Image"]); ?>"><?php echo($m_array["Image"]); ?></a>&emsp;<a href="javascript:delimage(<?php echo($m_array["ID"]); ?>);">&times;</a></li>
+				<li><a href="<?php echo($m_array["Image"]); ?>"><?php if(strlen($m_array["Image"]) > 72){echo(mb_substr($m_array["Image"],0,72,"UTF-8").' ...');}else{echo($m_array["Image"]);} ?></a>&emsp;<a href="javascript:delimage(<?php echo($m_array["ID"]); ?>);">&times;</a></li>
 <?php
 		}
 ?>

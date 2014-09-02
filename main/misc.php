@@ -32,66 +32,78 @@
 			if(preg_match("#^Origin#", $line)) {
 				$release_origin = trim(preg_replace("#^(.+): (.+)#","$2", $line));
 			}
+			if(preg_match("#^Description#", $line)) {
+				$release_description = trim(preg_replace("#^(.+): (.+)#","$2", $line));
+			}
 		}
-	}
-	else {
+	} else {
 		$release_origin = '空白页';
+		if (file_exists('init/install.php')) {
+			$first = true;
+		} else {
+			$first = false;
+		}
 	}
 	
 ?>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
-<head>
-	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-	<title><?php echo $release_origin; ?></title>
-	<link rel="shortcut icon" href="favicon.ico" />
-	<link href="css/bootstrap.min.css" rel="stylesheet">
-	<link href="css/misc.min.css" rel="stylesheet" media="screen">
-</head>
-<body>
-	<div class="well">
-		<?php
-			echo $release_origin;
-			echo "<br><br>";
-			echo str_replace("//URL//", "<code>".base64_decode(DCRM_REPOURL)."</code>", "您可以通过 Cydia <a href = \"cydia://sources/add\">添加</a> //URL// 访问该源。");
-			if (DCRM_SHOWLIST == 2) {
-				require_once('manage/include/connect.inc.php');
-				$con = mysql_connect(DCRM_CON_SERVER, DCRM_CON_USERNAME, DCRM_CON_PASSWORD);
-				if (!$con) {
-					echo '<br />数据库错误！';
-					if (!file_exists("../manage/include/release.default.save")) {
-						echo '如果您是首次安装，请运行 <a href="init/index.html">快速安装脚本</a> 。';
-					}
-					goto endlabel;
-				}
-				mysql_query("SET NAMES utf8");
-						$select  = mysql_select_db(DCRM_CON_DATABASE);
-				if (!$select) {
-					$alert = mysql_error();
-					echo('<br />数据库错误！');
-					goto endlabel;
-				}
-				echo "<br><br><div class=\"wrapper\">";
-				echo "<ul class=\"breadcrumb\"><i class=\"icon\" id=\"source_triangle\" onclick=\"wrapper('source_triangle','item_source'); return false;\">&#9658;</i>&nbsp;"."最新软件包"."</ul>";
-				echo '<table class="table" id="item_source" style="display: none;"><thead><tr><th class="span5">'."最新软件包".'</th></tr></thead><tbody>';
-				$new_query = mysql_query("SELECT `Name`, `Package` FROM `".DCRM_CON_PREFIX."Packages` WHERE `Stat` = '1' ORDER BY `ID` DESC LIMIT " . DCRM_SHOW_NUM,$con);
-				while ($daily = mysql_fetch_assoc($new_query)) {
-					echo '<tr><td><a href="cydia://package/' . $daily['Package'] . '">' . $daily['Name'] . '</a></td></tr>';
-				}
-						
-				echo '</tbody></table>';
-				echo "</div>";
+	<head>
+		<title><?php echo $release_origin; ?></title>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+		<!-- 搜索引擎检索 -->
+		<meta name="robots" content="index, follow" />
+<?php
+	if (defined("AUTOFILL_SEO")) {
+?>
+		<meta name="title" content="<?php echo(AUTOFILL_SEO); ?>" />
+<?php
+	}
+	if (!empty($release_description)) {
+?>
+		<meta name="description" content="<?php echo($release_description); ?>" />
+<?php
+	}
+	if (defined("AUTOFILL_KEYWORDS")) {
+?>
+		<meta name ="keywords" content="<?php echo(AUTOFILL_KEYWORDS); ?>" />
+<?php
+	}
+?>
+		<!-- 相关文件引用 -->
+		<link rel="shortcut icon" href="favicon.ico" />
+		<link href="css/bootstrap.min.css" rel="stylesheet">
+		<link href="css/misc.min.css" rel="stylesheet" media="screen">
+	</head>
+	<body>
+		<!-- 欢迎信息 -->
+		<div class="well">
+<?php
+			if (file_exists('CydiaIcon.png')) {
+?>
+			<p><img src="CydiaIcon.png" style="width: 64px; height: 64px; border-radius: 5px;" /></p>
+<?php
 			}
-			endlabel:
-		?>
-	</div>
-	<script src="js/misc.js"></script>
+?>
+			<p><?php echo $release_origin; ?></p>
+			<hr />
+			欢迎通过 Cydia <a href="cydia://sources/add">添加</a> <code><?php echo(base64_decode(DCRM_REPOURL)); ?></code> 访问本源。
+<?php
+			if ($first) {
+?>
+			<hr />
+			站长您好，如果您是首次安装 DCRM 专业版，请运行 <a href="init/index.html">快速安装脚本</a> 。
+<?php
+			}
+?>
+		</div>
 <?php
 	if (defined("AUTOFILL_STATISTICS")) {
 ?>
+		<!-- 统计代码 -->
 		<div style="text-align: center; display: none;"><?php echo AUTOFILL_STATISTICS; ?></div>
 <?php
 	}
 ?>
-</body>
+	</body>
 </html>

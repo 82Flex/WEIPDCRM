@@ -285,19 +285,19 @@
 	}
 	
 	class ValidateCode {
-			private $charset = 'abcdefghijklmnopqrstuvwxvzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';    //随机因子
-	    private $code;                            //验证码
-	    private $codelen = 4;                    //验证码长度
-	    private $width = 176;                    //宽度
-	    private $height = 72;                    //高度
-	    private $img;                                //图形资源句柄
-	    private $font;                                //指定的字体
-	    private $fontsize = 42;                //指定字体大小
-	    private $fontcolor;                        //指定字体颜色
+			private $charset = 'abcdefghijklmnopqrstuvwxvzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
+	    private $code;
+	    private $codelen = 4;
+	    private $width = 176;
+	    private $height = 72;
+	    private $img;
+	    private $font;
+	    private $fontsize = 36;
+	    private $fontcolor;
 	
 	    //构造方法初始化
 	    public function __construct() {
-	        $this->font = ROOT_PATH.'/css/Herculanum.ttf';
+	        $this->font = ROOT_PATH.'/css/Pokémon.ttf';
 	    }
 	
 	    //生成随机码
@@ -320,7 +320,7 @@
 	        $_x = $this->width / $this->codelen;
 	        for ($i=0;$i<$this->codelen;$i++) {
 	            $this->fontcolor = imagecolorallocate($this->img,mt_rand(0,156),mt_rand(0,156),mt_rand(0,156));
-	            imagettftext($this->img,$this->fontsize,mt_rand(-30,30),$_x*$i+mt_rand(1,5),$this->height / 1.4,$this->fontcolor,$this->font,$this->code[$i]);
+	            imagettftext($this->img,$this->fontsize,mt_rand(-30,30),$_x*$i+10+mt_rand(1,5),$this->height / 1.4,$this->fontcolor,$this->font,$this->code[$i]);
 	        }
 	    }
 	

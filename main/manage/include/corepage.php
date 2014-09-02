@@ -83,16 +83,16 @@
 					{
 						$parameter = ','.$this->parameter;
 					}
-					return '<a onclick="' . $this->ajax_func_name . '(\'' . $page . '\''.$parameter.')" href="javascript:void(0)">' . $text . '</a>' . "\n";
+					return '<a onclick="' . $this->ajax_func_name . '(\'' . $page . '\''.$parameter.')" href="javascript:void(0)">' . $text . '</a>';
 				break;
 				
 				case 'html':
 					$url = str_replace('%page', $page,$this->parameter);
-					return '<a href="' .$url . '">' . $text . '</a>' . "\n";
+					return '<a href="' .$url . '">' . $text . '</a>';
 				break;
 				
 				default:
-					return '<a href="' . $this->_get_url($page) . '">' . $text . '</a>' . "\n";
+					return '<a href="' . $this->_get_url($page) . '">' . $text . '</a>';
 				break;
 			}
 		}
@@ -219,23 +219,23 @@
 				{
 					if($i == $this->now_page)
 					{
-						$return .= "<a class='now_page'>$i</a>\n";
+						$return .= "<a class='now_page'>$i</a>";
 					}
 					else
 					{
 						if($this->now_page-$i>=8 && $i != 1)
 						{
-							$return .="<span class='pageMore'>...</span>\n";
+							$return .="<span class='pageMore'>...</span>";
 							$i = $this->now_page-7;
 						}
 						else
 						{
 							if($i >= $this->now_page+9 && $i != $this->total_pages)
 							{
-								$return .="<span>...</span>\n"; 
+								$return .="<span>...</span>"; 
 								$i = $this->total_pages;
 							}
-							$return .= $this->_get_link($i, $i) . "\n";
+							$return .= $this->_get_link($i, $i);
 						}
 					}
 				}
@@ -267,11 +267,11 @@
 				}
 				if($i == $this->now_page)
 				{
-					$return .= "<a class='now_page'>$i</a>\n";
+					$return .= "<a class='now_page'>$i</a>";
 				}
 				else
 				{
-					$return .= $this->_get_link($i, $i) . "\n";
+					$return .= $this->_get_link($i, $i);
 				}
 			}
 			$return .= $this->down_page();
@@ -293,10 +293,10 @@
 			$return = '总计 ' .$this->total_rows. ' 个记录分为 ' .$this->total_pages. ' 页, 当前第 ' . $this->now_page . ' 页 ';
 			$return .= '，每页 ';
 			$return .= '<input type="text" value="'.$this->list_rows.'" id="pageSize" size="3"> ';
-			$return .= $this->first_page()."\n";
-			$return .= $this->up_page()."\n"; 
-			$return .= $this->down_page()."\n";
-			$return .= $this->last_page()."\n";
+			$return .= $this->first_page();
+			$return .= $this->up_page(); 
+			$return .= $this->down_page();
+			$return .= $this->last_page();
 			$return .= '<select onchange="'.$this->ajax_func_name.'(this.value)" id="gotoPage">';
 		   
 			for ($i = $begin;$i<=$begin+10;$i++)

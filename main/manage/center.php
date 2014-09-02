@@ -104,10 +104,10 @@
 				</div>
 			</div>
 			<div class="span10">
-				<?php
+<?php
 					if (!isset($_GET['action'])) {
 						if (isset($_GET['search'])) {
-						?>
+?>
 				<h2>管理软件包</h2>
 				<br />
 				<h3 class="navbar"><a href="center.php">所有软件包</a>　搜索软件包</h3>
@@ -143,14 +143,14 @@
 					</div>
 					</form>
 				<br />
-				<?php
+<?php
 						}
 						else {
-				?>
+?>
 				<h2>管理软件包</h2>
 				<br />
 				<h3 class="navbar">所有软件包　<a href="center.php?search=yes">搜索软件包</a></h3>
-				<?php
+<?php
 							if (isset($_GET['page'])) {
 									$page = $_GET['page'];
 							}
@@ -178,36 +178,48 @@
 								goto endlabel;
 							}
 							else {
-				?>
+?>
 								<table class="table"><thead><tr>
-								<th></th>
-								<th><ul class="ctl">名称</ul></th>
-								<th><ul class="ctl">版本</ul></th>
-								<th><ul class="ctl">尺寸</ul></th>
-								<th><ul class="ctl">下载次数</ul></th>
-								<th><ul class="ctl">删除</ul></th>
-								<th><ul class="ctl">历史</ul></th>
+									<th></th>
+									<th><ul class="ctl">名称</ul></th>
+									<th><ul class="ctl">版本</ul></th>
+									<th><ul class="ctl">尺寸</ul></th>
+									<th><ul class="ctl">下载次数</ul></th>
+									<th><ul class="ctl">删除</ul></th>
+									<th><ul class="ctl">历史</ul></th>
 								</tr></thead><tbody>
-				<?php
+<?php
 								$i = 0;
 								while ($list = mysql_fetch_assoc($list_query)) {
 									$i++;
-				?>
+?>
 								<tr>
-								<td height="20"><input type="radio" name="package" value="<?php echo $list['ID']; ?>" onclick="javascript:show(<?php echo $list['Stat']; ?>);" /></td>
-				<?php
+									<td height="20"><input type="radio" name="package" value="<?php echo $list['ID']; ?>" onclick="javascript:show(<?php echo $list['Stat']; ?>);" /></td>
+<?php
 									if (empty($list['Name'])) {
 										$list['Name'] = AUTOFILL_NONAME;
 									}
-				?>
-								<td><a href = "view.php?id=<?php echo $list['ID']; ?>"><ul class="ctl" style="width:240px;"><?php echo htmlspecialchars($list['Name']); ?></ul></a></td>
-								<td><ul class="ctl" style="width:80px;"><?php echo htmlspecialchars($list['Version']); ?></ul></td>
-								<td><ul class="ctl" style="width:80px;"><?php echo sizeext($list['Size']); ?></ul></td>
-								<td><ul class="ctl" style="width:50px;"><?php echo $list['DownloadTimes']; ?></ul></td>
-								<td><a href="center.php?action=delete_confirm&name=<?php echo $list['Package']; ?>&id=<?php echo $list['ID']; ?>" class="close">&times;</a></td>
-								<td><a href="center.php?action=search&contents=<?php echo $list['Package']; ?>&type=1" class="close">&raquo;</a></td>
+									if ($list['Stat'] == 1) {
+?>
+									<td><a href = "view.php?id=<?php echo $list['ID']; ?>"><ul class="ctl" style="width:240px;"><?php echo htmlspecialchars($list['Name']); ?></ul></a></td>
+<?php
+									} elseif ($list['Stat'] == 0) {
+?>
+									<td><a href = "view.php?id=<?php echo $list['ID']; ?>"><ul class="ctl" style="width:240px; color: green;"><?php echo htmlspecialchars($list['Name']); ?></ul></a></td>
+<?php
+									} else {
+?>
+									<td><a href = "view.php?id=<?php echo $list['ID']; ?>"><ul class="ctl" style="width:240px; color: gray;"><?php echo htmlspecialchars($list['Name']); ?></ul></a></td>
+<?php
+									}
+?>
+									<td><ul class="ctl" style="width:80px;"><?php echo htmlspecialchars($list['Version']); ?></ul></td>
+									<td><ul class="ctl" style="width:80px;"><?php echo sizeext($list['Size']); ?></ul></td>
+									<td><ul class="ctl" style="width:50px;"><?php echo $list['DownloadTimes']; ?></ul></td>
+									<td><a href="center.php?action=delete_confirm&name=<?php echo $list['Package']; ?>&id=<?php echo $list['ID']; ?>" class="close">&times;</a></td>
+									<td><a href="center.php?action=search&contents=<?php echo $list['Package']; ?>&type=1" class="close">&raquo;</a></td>
 								</tr>
-				<?php
+<?php
 								}
 								if ($i < 10) {
 									$page_c = $page;
@@ -215,9 +227,9 @@
 								else {
 									$page_c = $page + 1;
 								}
-				?>
+?>
 								</tbody></table>
-				<?php
+<?php
 								$q_info = mysql_query("SELECT count(*) FROM `".DCRM_CON_PREFIX."Packages`");
 								$info = mysql_fetch_row($q_info);
 								$totalnum = (int)$info[0];
@@ -247,11 +259,11 @@
 						else {
 							$page_b = $page - 1;
 						}
-				?>
+?>
 				<h2>管理软件包</h2>
 				<br />
 				<h3 class="navbar">搜索软件包：<?php echo $_GET['contents']; ?></h3>
-				<?php
+<?php
 						$search_type = (int)$_GET['type'];
 						switch ($search_type) {
 							case 1:
@@ -284,38 +296,50 @@
 							goto endlabel;
 						}
 						else {
-				?>
+?>
 								<table class="table"><thead><tr>
-								<th></th>
-								<th><ul class="ctl">名称</ul></th>
-								<th><ul class="ctl">版本</ul></th>
-								<th><ul class="ctl">尺寸</ul></th>
-								<th><ul class="ctl">下载次数</ul></th>
-								<th><ul class="ctl">删除</ul></th>
-								<th><ul class="ctl">历史</ul></th>
+									<th></th>
+									<th><ul class="ctl">名称</ul></th>
+									<th><ul class="ctl">版本</ul></th>
+									<th><ul class="ctl">尺寸</ul></th>
+									<th><ul class="ctl">下载次数</ul></th>
+									<th><ul class="ctl">删除</ul></th>
+									<th><ul class="ctl">历史</ul></th>
 								</tr></thead><tbody>
-				<?php
+<?php
 								while ($list = mysql_fetch_assoc($list_query)) {
-				?>
+?>
 								<tr>
-								<td height="20"><input type="radio" name="package" value="<?php echo $list['ID']; ?>" onclick="javascript:show(<?php echo $list['Stat']; ?>);" /></td>
-				<?php
+									<td height="20"><input type="radio" name="package" value="<?php echo $list['ID']; ?>" onclick="javascript:show(<?php echo $list['Stat']; ?>);" /></td>
+<?php
 									if (empty($list['Name'])) {
 										$list['Name'] = AUTOFILL_NONAME;
 									}
-				?>
-								<td><a href = "view.php?id=<?php echo $list['ID']; ?>"><ul class="ctl" style="width:240px;"><?php echo htmlspecialchars($list['Name']); ?></ul></a></td>
-								<td><ul class="ctl" style="width:80px;"><?php echo htmlspecialchars($list['Version']); ?></ul></td>
-								<td><ul class="ctl" style="width:80px;"><?php echo sizeext($list['Size']); ?></ul></td>
-								<td><ul class="ctl" style="width:50px;"><?php echo $list['DownloadTimes']; ?></ul></td>
-								<td><a href="center.php?action=delete_confirm&name=<?php echo $list['Package']; ?>&id=<?php echo $list['ID']; ?>" class="close">&times;</a></td>
-								<td><a href="center.php?action=search&contents=<?php echo $list['Package']; ?>&type=1" class="close">&raquo;</a></td>
+									if ($list['Stat'] == 1) {
+?>
+									<td><a href = "view.php?id=<?php echo $list['ID']; ?>"><ul class="ctl" style="width:240px;"><?php echo htmlspecialchars($list['Name']); ?></ul></a></td>
+<?php
+									} elseif ($list['Stat'] == 0) {
+?>
+									<td><a href = "view.php?id=<?php echo $list['ID']; ?>"><ul class="ctl" style="width:240px; color: green;"><?php echo htmlspecialchars($list['Name']); ?></ul></a></td>
+<?php
+									} else {
+?>
+									<td><a href = "view.php?id=<?php echo $list['ID']; ?>"><ul class="ctl" style="width:240px; color: gray;"><?php echo htmlspecialchars($list['Name']); ?></ul></a></td>
+<?php
+									}
+?>
+									<td><ul class="ctl" style="width:80px;"><?php echo htmlspecialchars($list['Version']); ?></ul></td>
+									<td><ul class="ctl" style="width:80px;"><?php echo sizeext($list['Size']); ?></ul></td>
+									<td><ul class="ctl" style="width:50px;"><?php echo $list['DownloadTimes']; ?></ul></td>
+									<td><a href="center.php?action=delete_confirm&name=<?php echo $list['Package']; ?>&id=<?php echo $list['ID']; ?>" class="close">&times;</a></td>
+									<td><a href="center.php?action=search&contents=<?php echo $list['Package']; ?>&type=1" class="close">&raquo;</a></td>
 								</tr>
-				<?php
+<?php
 								}
-				?>
+?>
 								</tbody></table>
-				<?php
+<?php
 							$q_info = mysql_query("SELECT count(*) FROM `".DCRM_CON_PREFIX."Packages` WHERE `" . $t . "` LIKE '%" . $r_value . "%'");
 							$info = mysql_fetch_row($q_info);
 							$totalnum = (int)$info[0];
@@ -325,11 +349,11 @@
 						}
 					}
 					elseif (!empty($_GET['action']) AND $_GET['action'] == "delete_confirm" AND !empty($_GET['name']) AND !empty($_GET['id'])) {
-				?>
+?>
 						<h3 class="alert">您确定要执行删除操作：<?php echo htmlspecialchars($_GET['name']); ?>？<br />该操作不可逆，且下载次数将被清空！</h3>
 						<a class="btn btn-danger" href="center.php?action=delete&id=<?php echo $_GET['id']; ?>">删除</a>　
 						<a class="btn btn-warning" href="center.php?action=submit&id=<?php echo $_GET['id']; ?>">隐藏</a>　
-				<?php
+<?php
 						echo '<a class="btn btn-success" href="center.php?';
 						if (!empty($_SESSION['page'])) {
 							echo "page=" . $_SESSION['page'];
@@ -406,15 +430,15 @@
 					}
 					if (!$con) {
 						endlabel:
-				?>
+?>
 						<h3 class="alert alert-error">数据库出现错误！</h3>
 						<code><?php echo mysql_error(); ?></code>
-				<?php
+<?php
 					}
 					else {
 						mysql_close($con);
 					}
-				?>
+?>
 			</div>
 		</div>
 	</div>

@@ -66,7 +66,7 @@
 	//读取源信息
 	if (file_exists("Release")) {
 		$release = file("Release");
-		$release_origin = "未命名";
+		$release_origin = '未命名';
 		$release_mtime = filemtime("Release");
 		$release_time = date("Y-m-d H:i:s",$release_mtime);
 		foreach ($release as $line) {
@@ -151,24 +151,32 @@
 		<title><?php echo $title; ?></title>
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 		<!-- 移动版页面属性 -->
-		<meta name="apple-mobile-web-app-title" content="<?php echo(AUTOFILL_SEO); ?>">
-		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+		<meta name="apple-mobile-web-app-title" content="<?php echo($release_origin); ?>" />
+		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
 		<meta name="viewport" content="minimum-scale=1.0, width=device-width, maximum-scale=0.6667, user-scalable=no" />
-		<link rel="apple-touch-icon" href="CydiaIcon.png"/>
-		<meta name="HandheldFriendly" content="true">
-		<meta content="telephone=no" name="format-detection" />
+		<meta name="HandheldFriendly" content="true" />
+		<meta name="format-detection" content="telephone=no" />
 		<!-- 搜索引擎检索 -->
+		<meta name="robots" content="index, follow" />
 <?php
-	if (defined("AUTOFILL_KEYWORDS")) {
-?>
-		<meta name ="keywords" content="<?php echo(AUTOFILL_KEYWORDS); ?>" />
-<?php
-	}
 	if (defined("AUTOFILL_SEO")) {
 ?>
 		<meta name="title" content="<?php echo(AUTOFILL_SEO); ?>" />
 <?php
 	}
+	if (!empty($release_description)) {
+?>
+		<meta name="description" content="<?php echo($release_description); ?>" />
+<?php
+	}
+	if (defined("AUTOFILL_KEYWORDS")) {
+?>
+		<meta name ="keywords" content="<?php echo(AUTOFILL_KEYWORDS); ?>" />
+<?php
+	}
+?>
+
+<?php
 	if ($isCydia) {
 ?>
 		<base target="_blank">
@@ -180,6 +188,7 @@
 	}
 ?>
 		<!-- 相关文件引用 -->
+		<link rel="apple-touch-icon" href="CydiaIcon.png" />
 		<link rel="shortcut icon" href="favicon.ico" />
 		<link href="css/menes.min.css" rel="stylesheet">
 		<link href="css/scroll.min.css" rel="stylesheet">
@@ -392,6 +401,40 @@
 						<div>
 							<label>
 							<p>更多……</p>
+							</label>
+						</div>
+					</div>
+				</a>
+<?php
+					}
+?>
+			</fieldset>
+<?php
+				}
+			}
+		} else {
+			if (DCRM_ALLOW_FULLLIST == 2) {
+				$section_query = mysql_query("SELECT `ID`, `Name`, `Icon` FROM `".DCRM_CON_PREFIX."Sections`");
+				if (!$section_query) {
+?>
+			<block>
+			<p>MYSQL ERROR!<br />数据库错误！<br />请联系管理员检查问题。</p>
+			</block>
+<?php
+				} else {
+?>
+			<!-- 软件源分类列表 -->
+			<label>软件源分类</label>
+			<fieldset>
+<?php
+					while ($section_assoc = mysql_fetch_assoc($section_query)) {
+?>
+				<a href="index.php?method=section&pid=<?php echo($section_assoc['ID']); ?>">
+					<img class="icon" src="icons/<?php echo($section_assoc['Icon']); ?>" width="58" height="58">
+					<div>
+						<div>
+							<label>
+							<p><?php echo($section_assoc['Name']); ?></p>
 							</label>
 						</div>
 					</div>
@@ -688,7 +731,7 @@
 <?php
 					}
 ?>
-					<p><?php echo nl2br(htmlspecialchars($pkg_assoc['Description'])); ?></p>
+					<p><?php echo nl2br($pkg_assoc['Description']); ?></p>
 				</div>
 			</fieldset>
 <?php
@@ -1025,31 +1068,32 @@
 			}
 		}
 	} elseif ($index == 7) {
-		$section_query = mysql_query("SELECT `Name`, `Icon` FROM `Sections` WHERE `ID` = '".(int)$_GET['pid']."'");
-		if (!$section_query) {
+		if (DCRM_ALLOW_FULLLIST == 2) {
+			$section_query = mysql_query("SELECT `Name`, `Icon` FROM `Sections` WHERE `ID` = '".(int)$_GET['pid']."'");
+			if (!$section_query) {
 ?>
 			<block>
 			<p>MYSQL ERROR!<br />数据库错误！<br />请联系管理员检查问题。</p>
 			</block>
 <?php
-		} else {
-			$section_assoc = mysql_fetch_assoc($section_query);
+			} else {
+				$section_assoc = mysql_fetch_assoc($section_query);
 ?>
 			<!-- 软件包分类展示 -->
 			<label><?php echo($section_assoc['Name']); ?></label>
 			<fieldset>
 <?php
-			$package_query = mysql_query("SELECT `ID`, `Name`, `Package` FROM `".DCRM_CON_PREFIX."Packages` WHERE (`Stat` = '1' AND `Section` = '".mysql_real_escape_string($section_assoc['Name'])."') ORDER BY `ID` DESC");
-			while ($package_assoc = mysql_fetch_assoc($package_query)) {
-				if ($isCydia) {
+				$package_query = mysql_query("SELECT `ID`, `Name`, `Package` FROM `".DCRM_CON_PREFIX."Packages` WHERE (`Stat` = '1' AND `Section` = '".mysql_real_escape_string($section_assoc['Name'])."') ORDER BY `ID` DESC");
+				while ($package_assoc = mysql_fetch_assoc($package_query)) {
+					if ($isCydia) {
 ?>
 				<a href="cydia://package/<?php echo $package_assoc['Package']; ?>" target="_blank">
 <?php
-				} else {
+					} else {
 ?>
 				<a href="index.php?pid=<?php echo($package_assoc['ID']); ?>">
 <?php
-				}
+					}
 ?>
 					<img class="icon" src="icons/<?php echo($section_assoc['Icon']); ?>" width="58" height="58">
 					<div>
@@ -1061,9 +1105,14 @@
 					</div>
 				</a>
 <?php
-			}
+				}
 ?>
 			</fieldset>
+<?php
+			}
+		} else {
+?>
+			<label>管理员关闭了查看分类功能</label>
 <?php
 		}
 	}

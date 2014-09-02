@@ -157,6 +157,46 @@
 						</div>
 						<br />
 						<div class="group-control">
+							<label class="control-label">展示最新列表</label>
+							<div class="controls">
+								<select name="list">
+									<?php
+										if (DCRM_SHOWLIST == 2) {
+											echo '<option value="2" selected="selected">开启</option>\n<option value="1">关闭</option>';
+										}
+										else {
+											echo '<option value="1" selected="selected">关闭</option>\n<option value="2">开启</option>';
+										}
+									?>
+								</select>
+							</div>
+						</div>
+						<br />
+						<div class="group-control">
+							<label class="control-label">最新列表数量</label>
+							<div class="controls">
+								<input type="text"  name="listnum" value="<?php echo htmlspecialchars(DCRM_SHOW_NUM); ?>"/>
+								<p class="help-block">最大不得超过 20 条</p>
+							</div>
+						</div>
+						<br />
+						<div class="group-control">
+							<label class="control-label">分类完整列表</label>
+							<div class="controls">
+								<select name="allowfulllist">
+									<?php
+										if (DCRM_ALLOW_FULLLIST == 2) {
+											echo '<option value="2" selected="selected">开启</option>\n<option value="1">关闭</option>';
+										}
+										else {
+											echo '<option value="1" selected="selected">关闭</option>\n<option value="2">开启</option>';
+										}
+									?>
+								</select>
+							</div>
+						</div>
+						<br />
+						<div class="group-control">
 							<label class="control-label">预览截图</label>
 							<div class="controls">
 								<select name="screenshots">
@@ -353,48 +393,6 @@
 							</div>
 						</div>
 						<br />
-						<h3>首页展示</h3>
-						<br />
-						<div class="group-control">
-							<label class="control-label">首页更新列表</label>
-							<div class="controls">
-								<select name="list">
-									<?php
-										if (DCRM_SHOWLIST == 2) {
-											echo '<option value="2" selected="selected">开启</option>\n<option value="1">关闭</option>';
-										}
-										else {
-											echo '<option value="1" selected="selected">关闭</option>\n<option value="2">开启</option>';
-										}
-									?>
-								</select>
-							</div>
-						</div>
-						<br />
-						<div class="group-control">
-							<label class="control-label">允许查看完整列表</label>
-							<div class="controls">
-								<select name="allowfulllist">
-									<?php
-										if (DCRM_ALLOWFULLLIST == 2) {
-											echo '<option value="2" selected="selected">开启</option>\n<option value="1">关闭</option>';
-										}
-										else {
-											echo '<option value="1" selected="selected">关闭</option>\n<option value="2">开启</option>';
-										}
-									?>
-								</select>
-							</div>
-						</div>
-						<br />
-						<div class="group-control">
-							<label class="control-label">更新列表数量</label>
-							<div class="controls">
-								<input type="text"  name="listnum" value="<?php echo htmlspecialchars(DCRM_SHOW_NUM); ?>"/>
-								<p class="help-block">最大不得超过 20 条</p>
-							</div>
-						</div>
-						<br />
 						<h3>自动填充</h3>
 						<br />
 						<div class="group-control">
@@ -584,61 +582,69 @@
 							$error_text .= "用户名不得设置为空！\n";
 							$error_stat = true;
 						}
-						if (!isset($_POST['trials']) OR !is_numeric($_POST['trials'])) {
+						if (strlen($_POST['username']) > 20 || strlen($_POST['username']) < 4) {
+							$error_text .= "用户名长度必须在 4 - 20 个字符之间！\n";
+							$error_stat = true;
+						}
+						if (!ereg("^[0-9a-zA-Z\_]*$", $_POST['username'])) {
+							$error_text .= "用户名只能使用数字、字母、下划线的组合！\n";
+							$error_stat = true;
+						}
+						if (!isset($_POST['trials']) OR !ctype_digit($_POST['trials'])) {
 							$error_text .= "最大尝试次数必须为整数！\n";
 							$error_stat = true;
 						}
-						if (!isset($_POST['speedlimit']) OR !is_numeric($_POST['speedlimit'])) {
+						if (!isset($_POST['speedlimit']) OR !ctype_digit($_POST['speedlimit'])) {
 							$error_text .= "下载限速必须为整数！\n";
 							$error_stat = true;
 						}
-						if (!isset($_POST['directdown']) OR !is_numeric($_POST['directdown'])) {
-							$error_text .= "请设置防盗链开关！\n";
+						if (!isset($_POST['directdown']) OR !ctype_digit($_POST['directdown'])) {
+							$error_text .= "请正确设置防盗链开关！\n";
 							$error_stat = true;
 						}
-						if (!isset($_POST['pcindex']) OR !is_numeric($_POST['pcindex'])) {
-							$error_text .= "请设置电脑版总开关！\n";
+						if (!isset($_POST['pcindex']) OR !ctype_digit($_POST['pcindex'])) {
+							$error_text .= "请正确设置电脑版总开关！\n";
 							$error_stat = true;
 						}
-						if (!isset($_POST['mobile']) OR !is_numeric($_POST['mobile'])) {
-							$error_text .= "请设置移动版总开关！\n";
+						if (!isset($_POST['mobile']) OR !ctype_digit($_POST['mobile'])) {
+							$error_text .= "请正确设置移动版总开关！\n";
 							$error_stat = true;
 						}
-						if (!isset($_POST['screenshots']) OR !is_numeric($_POST['screenshots'])) {
-							$error_text .= "请设置预览截图开关！\n";
+						if (!isset($_POST['screenshots']) OR !ctype_digit($_POST['screenshots'])) {
+							$error_text .= "请正确设置预览截图开关！\n";
 							$error_stat = true;
 						}
-						if (!isset($_POST['reporting']) OR !is_numeric($_POST['reporting'])) {
-							$error_text .= "请设置报告问题开关！\n";
+						if (!isset($_POST['reporting']) OR !ctype_digit($_POST['reporting'])) {
+							$error_text .= "请正确设置报告问题开关！\n";
 							$error_stat = true;
 						}
-						if (!isset($_POST['updatelogs']) OR !is_numeric($_POST['updatelogs'])) {
-							$error_text .= "请设置更新日志开关！\n";
+						if (!isset($_POST['updatelogs']) OR !ctype_digit($_POST['updatelogs'])) {
+							$error_text .= "请正确设置更新日志开关！\n";
 							$error_stat = true;
 						}
-						if (!isset($_POST['moreinfo']) OR !is_numeric($_POST['moreinfo'])) {
-							$error_text .= "请设置更多信息开关！\n";
+						if (!isset($_POST['moreinfo']) OR !ctype_digit($_POST['moreinfo'])) {
+							$error_text .= "请正确设置更多信息开关！\n";
 							$error_stat = true;
 						}
-						if (!isset($_POST['multiinfo']) OR !is_numeric($_POST['multiinfo'])) {
-							$error_text .= "请设置自定义展示开关！\n";
+						if (!isset($_POST['multiinfo']) OR !ctype_digit($_POST['multiinfo'])) {
+							$error_text .= "请正确设置自定义展示开关！\n";
 							$error_stat = true;
 						}
-						if (!isset($_POST['listsmethod']) OR !is_numeric($_POST['listsmethod']) OR (int)$_POST['listsmethod'] > 7) {
-							$error_text .= "请设置正确的 Packages 压缩方式！\n";
+						if (!isset($_POST['listsmethod']) OR !ctype_digit($_POST['listsmethod']) OR (int)$_POST['listsmethod'] > 7) {
+							$error_text .= "请正确设置正确的 Packages 压缩方式！\n";
 							$error_stat = true;
 						}
-						if (!isset($_POST['list']) OR !is_numeric($_POST['list'])) {
-							$error_text .= "请设置首页更新列表开关！\n";
+						if (!isset($_POST['list']) OR !ctype_digit($_POST['list'])) {
+							$error_text .= "请正确设置首页更新列表开关！\n";
 							$error_stat = true;
 						} else {
-							if (!isset($_POST['listnum']) OR !is_numeric($_POST['listnum']) OR (int)$_POST['listnum'] > 20) {
-								$error_text .= "请设置首页更新列表数量，最大不得超过 20 条！\n";
+							if (!isset($_POST['listnum']) OR !ctype_digit($_POST['listnum']) OR (int)$_POST['listnum'] > 20) {
+								$error_text .= "请正确设置首页更新列表数量，最大不得超过 20 条！\n";
 								$error_stat = true;
 							}
 						}
-						if (!isset($_POST['allowfulllist']) OR !is_numeric($_POST['allowfulllist'])) {
-							$error_text .= "请设置允许查看完整列表开关！\n";
+						if (!isset($_POST['allowfulllist']) OR !ctype_digit($_POST['allowfulllist'])) {
+							$error_text .= "请正确设置允许查看完整列表开关！\n";
 							$error_stat = true;
 						}
 						if (!isset($_POST['url_repo']) OR empty($_POST['url_repo'])) {

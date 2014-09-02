@@ -32,11 +32,15 @@
 	date_default_timezone_set('Asia/Shanghai');
 	header("Cache-Control: max-age=0");
 	
-	if (isset($_GET['authpic']) AND $_GET['authpic'] == 'png') {
-		$_vc = new ValidateCode();
-		$_vc->doimg();
-		$_SESSION['VCODE'] = $_vc->getCode();
-		exit();
+	if (isset($_GET['authpic'])) {
+		if (trim($_GET['authpic']) == 'png') {
+			$_vc = new ValidateCode();
+			$_vc->doimg();
+			$_SESSION['VCODE'] = $_vc->getCode();
+			exit();
+		} else {
+			exit();
+		}
 	} else {
 		header("Content-Type: text/html; charset=UTF-8");
 	}
@@ -63,6 +67,11 @@
 				unset($_SESSION['VCODE']);
 				$_SESSION['try'] = $_SESSION['try'] + 1;
 				$error = "authcode";
+				goto endlabel;
+			}
+			if (!ereg("^[0-9a-zA-Z\_]*$", $_POST['username'])) {
+				$_SESSION['try'] = $_SESSION['try'] + 1;
+				$error = "badlogin";
 				goto endlabel;
 			}
 			$con = mysql_connect(DCRM_CON_SERVER, DCRM_CON_USERNAME, DCRM_CON_PASSWORD);
@@ -112,69 +121,50 @@
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 		<title>DCRM - 登录</title>
 		<link rel="stylesheet" href="css/bootstrap.min.css">
-		<style type="text/css" media="screen">
-			body {
-				margin: 100px;
-				background: #ffffff;
-				background: -moz-radial-gradient(center, ellipse cover, #ffffff 0%, #e5e5e5 100%);
-				background: -webkit-gradient(radial, center center, 0px, center center, 100%, color-stop(0%,#ffffff), color-stop(100%,#e5e5e5));
-				background: -webkit-radial-gradient(center, ellipse cover, #ffffff 0%,#e5e5e5 100%);
-				background: -o-radial-gradient(center, ellipse cover, #ffffff 0%,#e5e5e5 100%);
-				background: -ms-radial-gradient(center, ellipse cover, #ffffff 0%,#e5e5e5 100%);
-				background: radial-gradient(center, ellipse cover, #ffffff 0%,#e5e5e5 100%);
-				filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#e5e5e5',GradientType=1 );
-				font-family: Arial,Helvetica,sans-serif;
-				font-size: 10pt;
-			}
-			.well {
-				margin-left: auto;
-				margin-right: auto;
-				width: 400px;
-				text-align: center;
-			}
-		</style>
+		<link href="css/misc.min.css" rel="stylesheet" media="screen">
 	</head>
 	<body>
-		<?php
-			if (!isset($_SESSION['try']) OR $_SESSION['try'] <= DCRM_MAXLOGINFAIL) {
-		?>
+<?php
+	if (!isset($_SESSION['try']) OR $_SESSION['try'] <= DCRM_MAXLOGINFAIL) {
+?>
 		<form class="well" action="login.php" method="POST">
-			<?php
-				if (isset($_GET['error'])) {
-					$error = $_GET['error'];
-				}
-				if ($error == "notenough") {
-					echo '请填写用户名和密码！';
-				}
-				elseif ($error == "badlogin") {
-					echo '用户名或密码错误！';
-				}
-				elseif ($error == "bear") {
-					echo '熊出没注意！';
-				}
-				elseif ($error == "authcode") {
-					echo '验证码错误！';
-				}
-				else {
-					echo '源管理系统 - 登录';
-				}
-			?>
-			<hr>
-			<p><input type="text" name="username" required="required" placeholder="用户名" /></p>
+<?php
+		if (file_exists('../CydiaIcon.png')) {
+?>
+		<p><img src="<?php echo(base64_decode(DCRM_REPOURL)); ?>/CydiaIcon.png" style="width: 64px; height: 64px; border-radius: 5px;" /></p>
+<?php
+		}
+		if (isset($_GET['error'])) {
+			$error = $_GET['error'];
+		}
+		if ($error == "notenough") {
+			echo '请填写用户名和密码！';
+		} elseif ($error == "badlogin") {
+			echo '用户名或密码错误！';
+		} elseif ($error == "bear") {
+			echo '熊出没注意！';
+		} elseif ($error == "authcode") {
+			echo '验证码错误！';
+		} else {
+			echo 'DCRM - 登录';
+		}
+?>
+			<hr />
+			<p><input type="text" name="username" placeholder="用户名" required="required" /></p>
 			<p><input type="password" name="password" placeholder="密码" required="required" /></p>
-			<p><input type="text" name="authcode" required="required" placeholder="验证码" style="width:120px;" />&nbsp;<img src="login.php?authpic=png&rand=<?php echo(time()); ?>" style="height:36px;width:88px;" onclick="this.src='login.php?authpic=png&rand=' + new Date().getTime();" /></p>
-				<input type="submit" class="btn btn-success" name="submit" value="立即登录" />
+			<p><input type="text" name="authcode" placeholder="验证码" required="required" style="margin-top: 8px; height: 24px; width:120px;" />&nbsp;<img src="login.php?authpic=png&rand=<?php echo(time()); ?>" style="height: 36px; width: 88px;" onclick="this.src='login.php?authpic=png&rand=' + new Date().getTime();" /></p>
+			<hr />
+			<input type="submit" class="btn btn-success" name="submit" value="立即登录" />
 		</form>
-		<?php
-			}
-			else {
-		?>
+<?php
+	} else {
+?>
 		<div class="well">
-			错误：<hr>
+			错误<hr />
 			您的登录错误次数太多，关闭会话后再试。
 		</div>
-		<?php
-			}
-		?>
+<?php
+	}
+?>
 	</body>
 </html>
