@@ -229,6 +229,14 @@
 						</div>
 						<br />
 						<div class="group-control">
+							<label class="control-label">限制报告次数</label>
+							<div class="controls">
+								<input type="text"  name="reportlimit" value="<?php echo htmlspecialchars(DCRM_REPORT_LIMIT); ?>"/>
+								<p class="help-block">最大不得超过 10 次</p>
+							</div>
+						</div>
+						<br />
+						<div class="group-control">
 							<label class="control-label">更新日志</label>
 							<div class="controls">
 								<select name="updatelogs">
@@ -618,6 +626,10 @@
 							$error_text .= "请正确设置报告问题开关！\n";
 							$error_stat = true;
 						}
+						if (!isset($_POST['reportlimit']) OR !ctype_digit($_POST['reportlimit']) OR (int)$_POST['reportlimit'] > 20) {
+							$error_text .= "请正确设置报告问题限制次数，最大不得超过 10 次！\n";
+							$error_stat = true;
+						}
 						if (!isset($_POST['updatelogs']) OR !ctype_digit($_POST['updatelogs'])) {
 							$error_text .= "请正确设置更新日志开关！\n";
 							$error_stat = true;
@@ -682,6 +694,7 @@
 							$config_text .= "\tdefine(\"DCRM_MOBILE\",".$_POST['mobile'].");\n";
 							$config_text .= "\tdefine(\"DCRM_SCREENSHOTS\",".$_POST['screenshots'].");\n";
 							$config_text .= "\tdefine(\"DCRM_REPORTING\",".$_POST['reporting'].");\n";
+							$config_text .= "\tdefine(\"DCRM_REPORT_LIMIT\",".$_POST['reportlimit'].");\n";
 							$config_text .= "\tdefine(\"DCRM_UPDATELOGS\",".$_POST['updatelogs'].");\n";
 							$config_text .= "\tdefine(\"DCRM_MOREINFO\",".$_POST['moreinfo'].");\n";
 							$config_text .= "\tdefine(\"DCRM_MULTIINFO\",".$_POST['multiinfo'].");\n";
