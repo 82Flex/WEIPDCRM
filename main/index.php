@@ -131,6 +131,7 @@
 				$title = "查看软件包";
 			}
 		} else {
+			header('HTTP/1.1 405 Method Not Allowed');
 			echo 'ILLEGAL ARGUMENTS!<br />非法的参数！';
 			exit();
 		}
@@ -138,6 +139,7 @@
 		$index = 0;
 		$title = $release_origin;
 	} else {
+		header('HTTP/1.1 405 Method Not Allowed');
 		echo 'INVALID METHOD!<br />无效的参数！';
 		exit();
 	}
@@ -174,9 +176,6 @@
 		<meta name ="keywords" content="<?php echo(AUTOFILL_KEYWORDS); ?>" />
 <?php
 	}
-?>
-
-<?php
 	if ($isCydia) {
 ?>
 		<base target="_blank">
