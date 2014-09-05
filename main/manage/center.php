@@ -350,7 +350,7 @@
 					}
 					elseif (!empty($_GET['action']) AND $_GET['action'] == "delete_confirm" AND !empty($_GET['name']) AND !empty($_GET['id'])) {
 ?>
-						<h3 class="alert">您确定要执行删除操作：<?php echo htmlspecialchars($_GET['name']); ?>？<br />该操作不可逆，且下载次数将被清空！</h3>
+						<h3 class="alert">您确定要执行删除操作：<?php echo htmlspecialchars($_GET['name']); ?>？<br />该操作不可逆，该条目所有相关数据都将被清空！</h3>
 						<a class="btn btn-danger" href="center.php?action=delete&id=<?php echo $_GET['id']; ?>">删除</a>　
 						<a class="btn btn-warning" href="center.php?action=submit&id=<?php echo $_GET['id']; ?>">隐藏</a>　
 <?php
@@ -376,6 +376,8 @@
 							}
 							unlink($f_filename['Filename']);
 							$d_query = mysql_query("DELETE FROM `".DCRM_CON_PREFIX."Packages` WHERE `ID` = '" . $delete_id . "'");
+							$d_query = mysql_query("DELETE FROM `".DCRM_CON_PREFIX."Screenshots` WHERE `PID` = '" . $delete_id . "'");
+							$d_query = mysql_query("DELETE FROM `".DCRM_CON_PREFIX."Reports` WHERE `PID` = '" . $delete_id . "'");
 						}
 						if (!$d_query) {
 							goto endlabel;
