@@ -131,7 +131,7 @@
 <?php
 		if (file_exists('../CydiaIcon.png')) {
 ?>
-		<p><img src="<?php echo(base64_decode(DCRM_REPOURL)); ?>/CydiaIcon.png" style="width: 64px; height: 64px; border-radius: 5px;" /></p>
+		<p><img src="<?php echo(base64_decode(DCRM_REPOURL)); ?>/CydiaIcon.png" style="width: 72px; height: 72px; border-radius: 6px;" /></p>
 <?php
 		}
 		if (isset($_GET['error'])) {

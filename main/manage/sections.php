@@ -83,13 +83,13 @@
 				</div>
 			</div>
 			<div class="span10">
-				<?php
+<?php
 					if (!isset($_GET['action'])) {
-				?>
+?>
 				<h2>分类管理</h2>
 				<br />
 				<h3 class="navbar">分类列表　<a href="sections.php?action=add">添加分类</a>　<a href="sections.php?action=create">生成图标包</a></h3>
-				<?php
+<?php
 						if (isset($_GET['page'])) {
 								$page = $_GET['page'];
 						}
@@ -111,30 +111,38 @@
 							goto endlabel;
 						}
 						else {
-				?>
+?>
 					<table class="table"><thead><tr>
 					<th><ul class="ctl">编辑</ul></th>
 					<th><ul class="ctl">名称</ul></th>
 					<th><ul class="ctl">图标</ul></th>
 					<th><ul class="ctl">最后修改</ul></th>
 					</tr></thead><tbody>
-				<?php
+<?php
 							while ($list = mysql_fetch_assoc($list_query)) {
-								echo '<tr>';
-								echo '<td><a href="sections.php?action=delete_confirmation&id=' . $list['ID'] . '&name=' . $list['Name'] . '" class="close" style="line-height: 12px;">&times</a></td>';
-								echo '<td><ul class="ctl" style="width:400px;"><a href="center.php?action=search&contents=' . urlencode($list['Name']) . '&type=7">' . htmlspecialchars($list['Name']) . '</a></ul></td>';
+?>
+					<tr>
+					<td><a href="sections.php?action=delete_confirmation&id=<?php echo($list['ID']); ?>&name=<?php echo($list['Name']); ?>" class="close" style="line-height: 12px;">&times</a></td>
+					<td><ul class="ctl" style="width:400px;"><a href="center.php?action=search&contents=<?php echo(urlencode($list['Name'])); ?>&type=7"><?php echo(htmlspecialchars($list['Name'])); ?></a></ul></td>
+<?php
 								if ($list['Icon'] != "") {
-									echo '<td><ul class="ctl" style="width:150px;"><a href="'.base64_decode(DCRM_REPOURL).'/icons/' . $list['Icon'] . '">' . $list['Icon'] . '</a></ul></td>';
+?>
+					<td><ul class="ctl" style="width:150px;"><a href="<?php echo(base64_decode(DCRM_REPOURL)); ?>/icons/<?php echo($list['Icon']); ?>"><?php echo($list['Icon']); ?></a></ul></td>
+<?php
 								}
 								else {
-									echo '<td><ul class="ctl" style="width:150px;">无图标</ul></td>';
+?>
+					<td><ul class="ctl" style="width:150px;">无图标</ul></td>
+<?php
 								}
-								echo '<td><ul class="ctl" style="width:150px;">' . $list['TimeStamp'] . '</ul></td>';
-								echo '</tr>';	
+?>
+					<td><ul class="ctl" style="width:150px;"><?php echo($list['TimeStamp']); ?></ul></td>
+					</tr>
+<?php
 							}
-				?>
+?>
 					</tbody></table>
-				<?php
+<?php
 							$q_info = mysql_query("SELECT count(*) FROM `".DCRM_CON_PREFIX."Sections`");
 							$info = mysql_fetch_row($q_info);
 							$totalnum = (int)$info[0];
@@ -144,7 +152,7 @@
 						}
 					}
 					elseif (!empty($_GET['action']) AND $_GET['action'] == "add") {
-				?>
+?>
 						<h2>分类管理</h2>
 						<br />
 						<h3 class="navbar"><a href="sections.php">分类列表</a>　添加分类　<a href="sections.php?action=create">生成图标包</a></h3>
@@ -172,7 +180,7 @@
 							</div>
 						</div>
 						</form>
-				<?php
+<?php
 					}
 					elseif (!empty($_GET['action']) AND $_GET['action'] == "add_now" AND !empty($_POST['contents'])) {
 						$new_name = mysql_real_escape_string($_POST['contents']);
@@ -285,10 +293,11 @@
 						}
 					}
 					elseif (!empty($_GET['action']) AND $_GET['action'] == "delete_confirmation" AND !empty($_GET['id']) AND !empty($_GET['name'])) {
-						echo '<h3 class="alert">您确定要删除： ' . htmlspecialchars($_GET['name']) . ' ？</h3>';
-						echo '<a class="btn btn-warning" href="sections.php?action=delete&id='.$_GET['id'].'">确定</a>';
-						echo '　';
-						echo '<a class="btn btn-success" href="sections.php">取消</a>';
+?>
+						<h3 class="alert">您确定要删除：<?php echo(htmlspecialchars($_GET['name'])); ?>？</h3>
+						<a class="btn btn-warning" href="sections.php?action=delete&id=<?php echo($_GET['id']); ?>">确定</a>　
+						<a class="btn btn-success" href="sections.php">取消</a>
+<?php
 					}
 					elseif (!empty($_GET['action']) AND $_GET['action'] == "delete" AND !empty($_GET['id'])) {
 						$delete_id = (int)$_GET['id'];
@@ -310,7 +319,7 @@
 					else {
 						mysql_close($con);
 					}
-				?>
+?>
 			</div>
 		</div>
 	</div>

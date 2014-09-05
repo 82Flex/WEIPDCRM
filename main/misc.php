@@ -81,7 +81,7 @@
 <?php
 			if (file_exists('CydiaIcon.png')) {
 ?>
-			<p><img src="CydiaIcon.png" style="width: 64px; height: 64px; border-radius: 5px;" /></p>
+			<p><img src="CydiaIcon.png" style="width: 72px; height: 72px; border-radius: 6px;" /></p>
 <?php
 			}
 ?>

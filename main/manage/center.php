@@ -203,7 +203,7 @@
 ?>
 									<td><a href = "view.php?id=<?php echo $list['ID']; ?>"><ul class="ctl" style="width:240px;"><?php echo htmlspecialchars($list['Name']); ?></ul></a></td>
 <?php
-									} elseif ($list['Stat'] == 0) {
+									} elseif ($list['Stat'] == 2) {
 ?>
 									<td><a href = "view.php?id=<?php echo $list['ID']; ?>"><ul class="ctl" style="width:240px; color: green;"><?php echo htmlspecialchars($list['Name']); ?></ul></a></td>
 <?php
@@ -319,7 +319,7 @@
 ?>
 									<td><a href = "view.php?id=<?php echo $list['ID']; ?>"><ul class="ctl" style="width:240px;"><?php echo htmlspecialchars($list['Name']); ?></ul></a></td>
 <?php
-									} elseif ($list['Stat'] == 0) {
+									} elseif ($list['Stat'] == 2) {
 ?>
 									<td><a href = "view.php?id=<?php echo $list['ID']; ?>"><ul class="ctl" style="width:240px; color: green;"><?php echo htmlspecialchars($list['Name']); ?></ul></a></td>
 <?php
