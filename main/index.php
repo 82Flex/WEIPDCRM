@@ -432,17 +432,7 @@
 					if (DCRM_ALLOW_FULLLIST == 2) {
 ?>
 				<a href="index.php?method=section&pid=<?php echo($section_assoc['ID']); ?>">
-<?php
-						if (!empty($section_assoc['Icon'])) {
-?>
-					<img class="icon" src="icons/<?php echo($section_assoc['Icon']); ?>" width="58" height="58" />
-<?php
-						} else {
-?>
-					<img class="icon" src="icons/default/unknown.png" width="58" height="58" />
-<?php
-						}
-?>
+					<img class="icon" src="icons/default/moreinfo.png" width="58" height="58" />
 					<div>
 						<div>
 							<label>
@@ -542,7 +532,7 @@
 		}
 	} elseif ($index == 1) {
 		$pkg = (int)mysql_real_escape_string($_GET['pid']);
-		$pkg_query = mysql_query("SELECT `Name`, `Version`, `Author`, `Package`, `Description`, `DownloadTimes`, `Multi`, `CreateStamp`, `Installed-Size`, `Section`, `Homepage` FROM `".DCRM_CON_PREFIX."Packages` WHERE `ID` = '".$pkg."' LIMIT 1");
+		$pkg_query = mysql_query("SELECT `Name`, `Version`, `Author`, `Package`, `Description`, `DownloadTimes`, `Multi`, `CreateStamp`, `Size`, `Installed-Size`, `Section`, `Homepage` FROM `".DCRM_CON_PREFIX."Packages` WHERE `ID` = '".$pkg."' LIMIT 1");
 		if (!$pkg_query) {
 ?>
 			<block>
@@ -630,7 +620,28 @@
 									<p id="contact">
 										<?php echo $author_name; ?>
 									</p>
-								</label>
+							</label>
+						</div>
+					</div>
+				</a>
+			</fieldset>
+<?php
+				}
+				if (DCRM_DIRECT_DOWN == 1 && !$isCydia) {
+?>
+			<fieldset>
+				<a href="debs/<?php echo $_GET['pid']; ?>.deb" id="downloadlink" style="display: none;" target="_blank">
+				<img class="icon" src="icons/default/packages.png" />
+					<div>
+						<div>
+							<label>
+								<p>下载软件包</p>
+							</label>
+							<label class="detail">
+									<p>
+										<?php if(!empty($pkg_assoc['Size'])){echo(sizeext($pkg_assoc['Size']));} ?>
+									</p>
+							</label>
 						</div>
 					</div>
 				</a>
@@ -667,20 +678,6 @@
 					</div>
 				</a>
 <?php
-				if (DCRM_DIRECT_DOWN == 1 && !$isCydia) {
-?>
-				<a href="debs/<?php echo $_GET['pid']; ?>.deb" id="downloadlink" style="display: none;" target="_blank">
-				<img class="icon" src="icons/default/packages.png" />
-					<div>
-						<div>
-							<label>
-								<p>下载软件包</p>
-							</label>
-						</div>
-					</div>
-				</a>
-<?php
-				}
 				if ($isCydia && DCRM_REPORTING == 2) {
 ?>
 				<a href="index.php?pid=<?php echo $_GET['pid']; ?>&method=report" id="reportlink">

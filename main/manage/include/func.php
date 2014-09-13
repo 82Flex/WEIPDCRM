@@ -77,7 +77,7 @@
 	}
 	
 	function sizeext($size) {
-		return ($size < 1048576) ? round($size/1024,2).' KiB' : round($size/1048576,2).' MiB';
+		return ($size < 1048576) ? round($size/1024,2).' KB' : round($size/1048576,2).' MB';
 	}
 	
 	function execInBackground($cmd) {

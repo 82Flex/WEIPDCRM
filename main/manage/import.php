@@ -117,8 +117,15 @@
 		
 		$plain_array = explode("\n",$control_data);
 		foreach ($plain_array as $line) {
-			if(preg_match("#^Package|Source|Version|Priority|Section|Essential|Maintainer|Pre-Depends|Depends|Recommends|Suggests|Conflicts|Provides|Replaces|Enhances|Architecture|Filename|Size|Installed-Size|Description|Origin|Bugs|Name|Author|Homepage|Website|Depiction|Icon|Tag|Sponsor#",$line)) {
-				$t_package[trim(preg_replace("#^(.+): (.+)#","$1", $line))] = trim(preg_replace("#^(.+): (.+)#","$2", $line));
+			if (strlen(trim(substr($line, 0, 1))) == 0) {
+				$t_value = trim($line);
+				$t_package[$t_key] .= "\n".$t_value;
+			} else {
+				if(preg_match("#^Package|Source|Version|Priority|Section|Essential|Maintainer|Pre-Depends|Depends|Recommends|Suggests|Conflicts|Provides|Replaces|Enhances|Architecture|Filename|Size|Installed-Size|Description|Origin|Bugs|Name|Author|Homepage|Website|Depiction|Icon|Tag|Sponsor#",$line)) {
+					$t_key = trim(preg_replace("#^(.+):\\s*(.+)#", "$1", $line));
+					$t_value = trim(preg_replace("#^(.+):\\s*(.+)#", "$2", $line));
+					$t_package[$t_key] = $t_value;
+				}
 			}
 		}
 		
