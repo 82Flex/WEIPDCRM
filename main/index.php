@@ -23,16 +23,16 @@
 	//效率：开启页面缓存
 	ob_start();
 	//安全：引用来源定义
-	define("DCRM",true);
+	define('DCRM',true);
 	//载入配置
-	require_once("manage/include/config.inc.php");
+	require_once('manage/include/config.inc.php');
 	require_once('manage/include/connect.inc.php');
-	require_once("manage/include/autofill.inc.php");
+	require_once('manage/include/autofill.inc.php');
 	//载入功能
-	require_once("manage/include/func.php");
-	require_once("manage/include/Mobile_Detect.php");
+	require_once('manage/include/func.php');
+	require_once('manage/include/Mobile_Detect.php');
 	//传输类型与编码
-	header("Content-Type: text/html; charset=UTF-8");
+	header('Content-Type: text/html; charset=UTF-8');
 	//设置时区
 	date_default_timezone_set('Asia/Shanghai');
 	
@@ -41,7 +41,7 @@
 	if(!$detect->isiOS()){
 		//开关：跳转到PC版页面
 		if (DCRM_PCINDEX == 2) {
-			header("Location: misc.php");
+			header('Location: misc.php');
 			exit();
 		} else {
 			$isCydia = false;
@@ -67,7 +67,7 @@
 		exit();
 	}
 	//设置数据库传输编码
-	mysql_query("SET NAMES utf8");
+	mysql_query('SET NAMES utf8');
 	$select = mysql_select_db(DCRM_CON_DATABASE);
 	if (!$select) {
 		httpinfo(500);
@@ -75,15 +75,15 @@
 	}
 	
 	//从 Release 文件读取源信息
-	if (file_exists("Release")) {
-		$release = file("Release");
+	if (file_exists('Release')) {
+		$release = file('Release');
 		$release_origin = '未命名';
 		//获取最后修改时间并格式化
-		$release_mtime = filemtime("Release");
-		$release_time = date("Y-m-d H:i:s",$release_mtime);
+		$release_mtime = filemtime('Release');
+		$release_time = date('Y-m-d H:i:s',$release_mtime);
 		//读入源名称与描述
 		foreach ($release as $line) {
-			if(preg_match("#^Origin#", $line)) {
+			if(preg_match('#^Origin#', $line)) {
 				$release_origin = trim(preg_replace("#^(.+): (.+)#","$2", $line));
 			}
 			if(preg_match("#^Description#", $line)) {
@@ -98,12 +98,12 @@
 	if (isset($_GET['pid'])) {
 		//安全：限制为整数参数
 		if (ctype_digit($_GET['pid']) && intval($_GET['pid']) <= 10000) {
-			if (isset($_GET['method']) && $_GET['method'] == "screenshot") {
+			if (isset($_GET['method']) && $_GET['method'] == 'screenshot') {
 				$index = 2;
-				$title = "预览截图";
-			} elseif (isset($_GET['method']) && $_GET['method'] == "report") {
+				$title = '预览截图';
+			} elseif (isset($_GET['method']) && $_GET['method'] == 'report') {
 				//尝试设备类型
-				$device_type = array("iPhone","iPod","iPad");
+				$device_type = array('iPhone','iPod','iPad');
 				for ($i = 0; $i < count($device_type); $i++) {
 					//获取设备版本
 					$check = $detect->version($device_type[$i]);
@@ -112,40 +112,43 @@
 						if (isset($_SERVER['HTTP_X_MACHINE'])) {
 							$DEVICE = substr($_SERVER['HTTP_X_MACHINE'],0,-3);
 						} else {
-							$DEVICE = "Unknown";
+							$DEVICE = 'Unknown';
 						}
-						$OS = str_replace("_", ".", $check);
+						$OS = str_replace('_', '.', $check);
 						break;
 					}
 				}
 				if (!isset($_GET['support'])) {
 					$index = 3;
-					$title = "报告问题";
+					$title = '报告问题';
 				} else {
-					if ($_GET['support'] == "1") {
+					if ($_GET['support'] == '1') {
 						$support = 1;
-					} elseif ($_GET['support'] == "2") {
+					} elseif ($_GET['support'] == '2') {
 						$support = 2;
-					} elseif ($_GET['support'] == "3") {
+					} elseif ($_GET['support'] == '3') {
 						$support = 3;
 					} else {
 						$support = 0;
 					}
 					$index = 4;
-					$title = "报告问题";
+					$title = '报告问题';
 				}
-			} elseif (isset($_GET['method']) && $_GET['method'] == "history") {
+			} elseif (isset($_GET['method']) && $_GET['method'] == 'history') {
 				$index = 5;
-				$title = "历史版本";
-			} elseif (isset($_GET['method']) && $_GET['method'] == "contact") {
+				$title = '历史版本';
+			} elseif (isset($_GET['method']) && $_GET['method'] == 'contact') {
 				$index = 6;
-				$title = "联系方式";
-			} elseif (isset($_GET['method']) && $_GET['method'] == "section") {
+				$title = '联系方式';
+			} elseif (isset($_GET['method']) && $_GET['method'] == 'section') {
 				$index = 7;
-				$title = "软件包分类";
-			} else {
+				$title = '软件包分类';
+			} elseif (!isset($_GET['method']) || (isset($_GET['method']) && $_GET['method'] == 'view')) {
 				$index = 1;
-				$title = "查看软件包";
+				$title = '查看软件包';
+			} else {
+				httpinfo(405);
+				exit();
 			}
 		} else {
 			httpinfo(405);
@@ -237,6 +240,7 @@
 			</fieldset>
 <?php
 		}
+		$repo_url = base64_decode(DCRM_REPOURL);
 ?>
 			<!-- 软件源简介 -->
 			<fieldset>
@@ -253,21 +257,20 @@
 						</span>
 					</div>
 					<img class="icon" src="CydiaIcon.png" style="vertical-align: top;" width="64" height="64" />
+					<hr />
+					<p>
+						请使用 Cydia<sup><small>™</small></sup> 添加地址
+						<br />
+						<strong><a href="<?php echo($repo_url); ?>"><?php echo($repo_url); ?></a></strong>
+					</p>
 				</div>
 			</fieldset>
 <?php
 		$q_info = mysql_query("SELECT count(*) FROM `".DCRM_CON_PREFIX."Packages` WHERE `Stat` = '1'");
 		$info = mysql_fetch_row($q_info);
 		$num = (int)$info[0];
-		$repo_url = base64_decode(DCRM_REPOURL);
 ?>
 			<block>
-				<p>
-					请使用 Cydia<sup><small>™</small></sup> 添加地址：
-					<br />
-					<strong><a href="<?php echo($repo_url); ?>"><?php echo($repo_url); ?></a></strong>
-				</p>
-				<hr />
 				<p>
 					全源总计 <strong><?php echo $num; ?></strong> 个软件包。
 				</p>
@@ -431,7 +434,7 @@
 					}
 					if (DCRM_ALLOW_FULLLIST == 2) {
 ?>
-				<a href="index.php?method=section&pid=<?php echo($section_assoc['ID']); ?>">
+				<a href="index.php?pid=<?php echo($section_assoc['ID']); ?>&method=section">
 					<img class="icon" src="icons/default/moreinfo.png" width="58" height="58" />
 					<div>
 						<div>
@@ -468,7 +471,7 @@
 <?php
 					while ($section_assoc = mysql_fetch_assoc($section_query)) {
 ?>
-				<a href="index.php?method=section&pid=<?php echo($section_assoc['ID']); ?>">
+				<a href="index.php?pid=<?php echo($section_assoc['ID']); ?>&method=section">
 <?php
 						if (!empty($section_assoc['Icon'])) {
 ?>
@@ -810,8 +813,7 @@
 				}
 ?>
 			<!-- 软件包摘要信息 -->
-			<fieldset>
-				<div>
+			<block>
 <?php
 					if (DCRM_MULTIINFO == 2) {
 ?>
@@ -822,8 +824,7 @@
 					}
 ?>
 					<p><?php echo nl2br($pkg_assoc['Description']); ?></p>
-				</div>
-			</fieldset>
+			</block>
 <?php
 				if (!empty($pkg_assoc['Multi']) && DCRM_MULTIINFO == 2) {
 ?>
@@ -1237,40 +1238,48 @@
 <?php
 			} else {
 				$section_assoc = mysql_fetch_assoc($section_query);
+				if (!$section_assoc) {
+?>
+			<block>
+				<p>
+					NO SECTION SELECTED!<br />
+					无效的分类信息！
+				</p>
+			</block>
+<?php
+				} else {
 ?>
 			<!-- 软件包分类展示 -->
 			<label><?php echo($section_assoc['Name']); ?></label>
 <?php
-				$package_query = mysql_query("SELECT `ID`, `Name`, `Package` FROM `".DCRM_CON_PREFIX."Packages` WHERE (`Stat` = '1' AND `Section` = '".mysql_real_escape_string($section_assoc['Name'])."') ORDER BY `ID` DESC");
-				$s_num = mysql_affected_rows();
+					$package_query = mysql_query("SELECT `ID`, `Name`, `Package` FROM `".DCRM_CON_PREFIX."Packages` WHERE (`Stat` = '1' AND `Section` = '".mysql_real_escape_string($section_assoc['Name'])."') ORDER BY `ID` DESC");
+					$s_num = mysql_affected_rows();
 ?>
-			<fieldset>
-				<div>
-					<p>创建时间：<strong><?php echo($section_assoc['TimeStamp']); ?></strong></p>
+			<block>
 					<p>该分类总计 <strong><?php echo($s_num); ?></strong> 个软件包</p>
-				</div>
-			</fieldset>
+					<p>创建时间：<strong><?php echo($section_assoc['TimeStamp']); ?></strong></p>
+			</block>
 			<fieldset>
 <?php
-				while ($package_assoc = mysql_fetch_assoc($package_query)) {
-					if ($isCydia) {
+					while ($package_assoc = mysql_fetch_assoc($package_query)) {
+						if ($isCydia) {
 ?>
 				<a href="cydia://package/<?php echo $package_assoc['Package']; ?>" target="_blank">
 <?php
-					} else {
+						} else {
 ?>
 				<a href="index.php?pid=<?php echo($package_assoc['ID']); ?>">
 <?php
-					}
-					if (!empty($section_assoc['Icon'])) {
+						}
+						if (!empty($section_assoc['Icon'])) {
 ?>
 					<img class="icon" src="icons/<?php echo($section_assoc['Icon']); ?>" width="58" height="58">
 <?php
-					} else {
+						} else {
 ?>
 					<img class="icon" src="icons/default/unknown.png" width="58" height="58">
 <?php
-					}
+						}
 ?>
 					<div>
 						<div>
@@ -1281,10 +1290,11 @@
 					</div>
 				</a>
 <?php
-				}
+					}
 ?>
 			</fieldset>
 <?php
+				}
 			}
 		} else {
 ?>

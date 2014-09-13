@@ -42,8 +42,9 @@
 		if (!$con) {
 			httpinfo(500);
 		} else {
-			mysql_query("SET NAMES utf8");
-			mysql_select_db(DCRM_CON_DATABASE);
+			if (!mysql_query("SET NAMES utf8") || !mysql_select_db(DCRM_CON_DATABASE)) {
+				httpinfo(500);
+			}
 		}
 		$a_query = mysql_query("UPDATE `".DCRM_CON_PREFIX."Packages` SET `DownloadTimes` = `DownloadTimes` + 1 WHERE `ID` = '" . (string)$request_id . "'",$con);
 		if (!$a_query) {
