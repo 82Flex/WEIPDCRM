@@ -18,20 +18,28 @@
 	
 	/* DCRM Mobile Page */
 	
+	//安全：禁用错误报告
 	error_reporting(0);
+	//效率：开启页面缓存
 	ob_start();
+	//安全：引用来源定义
 	define("DCRM",true);
+	//载入配置
 	require_once("manage/include/config.inc.php");
 	require_once('manage/include/connect.inc.php');
 	require_once("manage/include/autofill.inc.php");
+	//载入功能
 	require_once("manage/include/func.php");
 	require_once("manage/include/Mobile_Detect.php");
+	//传输类型与编码
 	header("Content-Type: text/html; charset=UTF-8");
+	//设置时区
 	date_default_timezone_set('Asia/Shanghai');
 	
-	//检测设备与 Cydia 环境
+	//检测浏览环境
 	$detect = new Mobile_Detect;
 	if(!$detect->isiOS()){
+		//开关：跳转到PC版页面
 		if (DCRM_PCINDEX == 2) {
 			header("Location: misc.php");
 			exit();
@@ -39,7 +47,9 @@
 			$isCydia = false;
 		}
 	} else {
+		//开关：是否启用移动版页面
 		if (DCRM_MOBILE == 2) {
+			//是否为 Cydia
 			if (!strpos($detect->getUserAgent(), 'Cydia')) {
 				$isCydia = false;
 			} else {
@@ -53,22 +63,25 @@
 	//连接数据库
 	$con = mysql_connect(DCRM_CON_SERVER, DCRM_CON_USERNAME, DCRM_CON_PASSWORD);
 	if (!$con) {
-		echo 'MYSQL ERROR!<br />数据库错误！<br />请联系管理员检查问题。';
+		httpinfo(500);
 		exit();
 	}
+	//设置数据库传输编码
 	mysql_query("SET NAMES utf8");
 	$select = mysql_select_db(DCRM_CON_DATABASE);
 	if (!$select) {
-		echo 'MYSQL ERROR!<br />数据库错误！<br />请联系管理员检查问题。';
+		httpinfo(500);
 		exit();
 	}
 	
-	//读取源信息
+	//从 Release 文件读取源信息
 	if (file_exists("Release")) {
 		$release = file("Release");
 		$release_origin = '未命名';
+		//获取最后修改时间并格式化
 		$release_mtime = filemtime("Release");
 		$release_time = date("Y-m-d H:i:s",$release_mtime);
+		//读入源名称与描述
 		foreach ($release as $line) {
 			if(preg_match("#^Origin#", $line)) {
 				$release_origin = trim(preg_replace("#^(.+): (.+)#","$2", $line));
@@ -83,15 +96,19 @@
 	
 	//根据参数跳转到指定索引
 	if (isset($_GET['pid'])) {
+		//安全：限制为整数参数
 		if (ctype_digit($_GET['pid']) && intval($_GET['pid']) <= 10000) {
 			if (isset($_GET['method']) && $_GET['method'] == "screenshot") {
 				$index = 2;
 				$title = "预览截图";
 			} elseif (isset($_GET['method']) && $_GET['method'] == "report") {
+				//尝试设备类型
 				$device_type = array("iPhone","iPod","iPad");
 				for ($i = 0; $i < count($device_type); $i++) {
+					//获取设备版本
 					$check = $detect->version($device_type[$i]);
 					if ($check !== false) {
+						//获取机型
 						if (isset($_SERVER['HTTP_X_MACHINE'])) {
 							$DEVICE = substr($_SERVER['HTTP_X_MACHINE'],0,-3);
 						} else {
@@ -131,16 +148,14 @@
 				$title = "查看软件包";
 			}
 		} else {
-			header('HTTP/1.1 405 Method Not Allowed');
-			echo 'ILLEGAL ARGUMENTS!<br />非法的参数！';
+			httpinfo(405);
 			exit();
 		}
 	} elseif (!isset($_GET['method'])) {
 		$index = 0;
 		$title = $release_origin;
 	} else {
-		header('HTTP/1.1 405 Method Not Allowed');
-		echo 'INVALID METHOD!<br />无效的参数！';
+		httpinfo(405);
 		exit();
 	}
 	
@@ -150,7 +165,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 	<head>
 		<!-- 首页标题 -->
-		<title><?php echo $title; ?></title>
+		<title><?php echo($title); ?></title>
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 		<!-- 移动版页面属性 -->
 		<meta name="apple-mobile-web-app-title" content="<?php echo($release_origin); ?>" />
@@ -201,19 +216,21 @@
 <?php
 	if ($index == 0) {
 ?>
-	<!-- 移动版首页 -->
+		<!-- 移动版首页 -->
 <?php
 		if (!$isCydia) {
 ?>
 			<!-- 跳转到 Cydia 的顶部按钮 -->
 			<fieldset>
 				<a href="cydia://sources/add" target="_blank">
-				<img class="icon" src="icons/default/cydia.png">
+				<img class="icon" src="icons/default/cydia.png" />
 					<div>
 						<div>
-						<label>
-						<p>在 Cydia<sup><small>™</small></sup> 中添加</p>
-						</label>
+							<label>
+								<p>
+									在 Cydia<sup><small>™</small></sup> 中添加
+								</p>
+							</label>
 						</div>
 					</div>
 				</a>
@@ -225,27 +242,38 @@
 			<fieldset>
 				<div>
 					<div style="float: right; vertical-align: middle; text-align: center; width: 200px">
-						<span style="font-size: 24px"><?php echo $release_origin; ?></span><br/>
+						<span style="font-size: 24px">
+							<?php echo $release_origin; ?>
+						</span>
+						<br/>
 						<span style="font-size: 16px">
 							<a class="panel" href="<?php echo AUTOFILL_SITE; ?>"><?php echo AUTOFILL_FULLNAME; ?></a>
 							<br />
 							<a class="panel" href="mailto:<?php echo AUTOFILL_EMAIL; ?>"><?php echo AUTOFILL_EMAIL; ?></a>
 						</span>
 					</div>
-					<img class="icon" src="CydiaIcon.png" style="vertical-align: top;" width="64" height="64"/>
+					<img class="icon" src="CydiaIcon.png" style="vertical-align: top;" width="64" height="64" />
 				</div>
 			</fieldset>
 <?php
 		$q_info = mysql_query("SELECT count(*) FROM `".DCRM_CON_PREFIX."Packages` WHERE `Stat` = '1'");
 		$info = mysql_fetch_row($q_info);
-		$num[0] = (int)$info[0];
+		$num = (int)$info[0];
 		$repo_url = base64_decode(DCRM_REPOURL);
 ?>
 			<block>
-				<p>请使用 Cydia<sup><small>™</small></sup> 添加地址：<br /><strong><a href="<?php echo($repo_url); ?>"><?php echo($repo_url); ?></a></strong></p>
+				<p>
+					请使用 Cydia<sup><small>™</small></sup> 添加地址：
+					<br />
+					<strong><a href="<?php echo($repo_url); ?>"><?php echo($repo_url); ?></a></strong>
+				</p>
 				<hr />
-				<p>全源总计 <strong><?php echo $num[0]; ?></strong> 个软件包。</p>
-				<p>更新时间：<strong><?php echo $release_time; ?></strong></p>
+				<p>
+					全源总计 <strong><?php echo $num; ?></strong> 个软件包。
+				</p>
+				<p>
+					更新时间：<strong><?php echo $release_time; ?></strong>
+				</p>
 			</block>
 			<!-- 相关链接 -->
 			<fieldset>
@@ -253,26 +281,24 @@
 				if (defined("AUTOFILL_SITE")) {
 ?>
 				<a href="<?php echo AUTOFILL_SITE; ?>" target="_blank">
-				<img class="icon" src="CydiaIcon.png">
+				<img class="icon" src="CydiaIcon.png" />
 					<div>
 						<div>
 							<label>
-							<p>访问首页</p>
+								<p>访问首页</p>
 							</label>
 						</div>
 					</div>
-				</a>
-
-<?php
+				</a><?php
 				}
 				if (defined("AUTOFILL_EMAIL")) {
 ?>
 				<a href="mailto:<?php echo AUTOFILL_EMAIL; ?>?subject=<?php echo $release_origin; ?>" target="_blank">
-				<img class="icon" src="icons/default/mail_forward.png">
+				<img class="icon" src="icons/default/mail_forward.png" />
 					<div>
 						<div>
 							<label>
-							<p>联系我们</p>
+								<p>联系我们</p>
 							</label>
 						</div>
 					</div>
@@ -282,11 +308,11 @@
 				if (defined("AUTOFILL_TENCENT") && defined("AUTOFILL_TENCENT_NAME")) {
 ?>
 				<a href="<?php echo AUTOFILL_TENCENT; ?>" target="_blank">
-				<img class="icon" src="icons/default/qq.png">
+				<img class="icon" src="icons/default/qq.png" />
 					<div>
 						<div>
 							<label>
-							<p><?php echo AUTOFILL_TENCENT_NAME; ?></p>
+								<p><?php echo AUTOFILL_TENCENT_NAME; ?></p>
 							</label>
 						</div>
 					</div>
@@ -296,11 +322,11 @@
 				if (defined("AUTOFILL_WEIBO") && defined("AUTOFILL_WEIBO_NAME")) {
 ?>
 				<a href="<?php echo AUTOFILL_WEIBO; ?>" target="_blank">
-				<img class="icon" src="icons/default/weibo.png">
+				<img class="icon" src="icons/default/weibo.png" />
 					<div>
 						<div>
 							<label>
-							<p>@<?php echo AUTOFILL_WEIBO_NAME; ?></p>
+								<p>@<?php echo AUTOFILL_WEIBO_NAME; ?></p>
 							</label>
 						</div>
 					</div>
@@ -310,11 +336,11 @@
 				if (defined("AUTOFILL_TWITTER") && defined("AUTOFILL_TWITTER_NAME")) {
 ?>
 				<a href="<?php echo AUTOFILL_TWITTER; ?>" target="_blank">
-				<img class="icon" src="icons/default/twitter.png">
+				<img class="icon" src="icons/default/twitter.png" />
 					<div>
 						<div>
 							<label>
-							<p>@<?php echo AUTOFILL_TWITTER_NAME; ?></p>
+								<p>@<?php echo AUTOFILL_TWITTER_NAME; ?></p>
 							</label>
 						</div>
 					</div>
@@ -324,11 +350,11 @@
 				if (defined("AUTOFILL_FACEBOOK") && defined("AUTOFILL_FACEBOOK_NAME")) {
 ?>
 				<a href="<?php echo AUTOFILL_FACEBOOK; ?>" target="_blank">
-				<img class="icon" src="icons/default/facebook.png">
+				<img class="icon" src="icons/default/facebook.png" />
 					<div>
 						<div>
 							<label>
-							<p>@<?php echo AUTOFILL_FACEBOOK_NAME; ?></p>
+								<p>@<?php echo AUTOFILL_FACEBOOK_NAME; ?></p>
 							</label>
 						</div>
 					</div>
@@ -338,11 +364,13 @@
 				if (defined("AUTOFILL_PAYPAL")) {
 ?>
 				<a href="<?php echo AUTOFILL_PAYPAL; ?>" target="_blank">
-				<img class="icon" src="icons/default/paypal.png">
+				<img class="icon" src="icons/default/paypal.png" />
 					<div>
 						<div>
 							<label>
-							<p>前往 <span style="font-style: italic; font-weight: bold"><span style="color: #1a3665">Pay</span><span style="color: #32689a">Pal</span><sup><small>™</small></sup></span> 捐助</p>
+								<p>
+									前往 <span style="font-style: italic; font-weight: bold"><span style="color: #1a3665">Pay</span><span style="color: #32689a">Pal</span><sup><small>™</small></sup></span> 捐助
+								</p>
 							</label>
 						</div>
 					</div>
@@ -358,7 +386,10 @@
 			if (!$section_query) {
 ?>
 			<block>
-			<p>MYSQL ERROR!<br />数据库错误！<br />请联系管理员检查问题。</p>
+				<p>
+					MYSQL ERROR!<br />
+					数据库错误！
+				</p>
 			</block>
 <?php
 			} else {
@@ -380,18 +411,18 @@
 						}
 						if (!empty($section_assoc['Icon'])) {
 ?>
-					<img class="icon" src="icons/<?php echo($section_assoc['Icon']); ?>" width="58" height="58">
+					<img class="icon" src="icons/<?php echo($section_assoc['Icon']); ?>" width="58" height="58" />
 <?php
 						} else {
 ?>
-					<img class="icon" src="icons/default/unknown.png" width="58" height="58">
+					<img class="icon" src="icons/default/unknown.png" width="58" height="58" />
 <?php
 						}
 ?>
 					<div>
 						<div>
 							<label>
-							<p><?php echo($package_assoc['Name']); ?></p>
+								<p><?php echo($package_assoc['Name']); ?></p>
 							</label>
 						</div>
 					</div>
@@ -404,18 +435,18 @@
 <?php
 						if (!empty($section_assoc['Icon'])) {
 ?>
-					<img class="icon" src="icons/<?php echo($section_assoc['Icon']); ?>" width="58" height="58">
+					<img class="icon" src="icons/<?php echo($section_assoc['Icon']); ?>" width="58" height="58" />
 <?php
 						} else {
 ?>
-					<img class="icon" src="icons/default/unknown.png" width="58" height="58">
+					<img class="icon" src="icons/default/unknown.png" width="58" height="58" />
 <?php
 						}
 ?>
 					<div>
 						<div>
 							<label>
-							<p>更多……</p>
+								<p>更多……</p>
 							</label>
 						</div>
 					</div>
@@ -433,7 +464,10 @@
 				if (!$section_query) {
 ?>
 			<block>
-			<p>MYSQL ERROR!<br />数据库错误！<br />请联系管理员检查问题。</p>
+				<p>
+					MYSQL ERROR!<br />
+					数据库错误！
+				</p>
 			</block>
 <?php
 				} else {
@@ -448,18 +482,18 @@
 <?php
 						if (!empty($section_assoc['Icon'])) {
 ?>
-					<img class="icon" src="icons/<?php echo($section_assoc['Icon']); ?>" width="58" height="58">
+					<img class="icon" src="icons/<?php echo($section_assoc['Icon']); ?>" width="58" height="58" />
 <?php
 						} else {
 ?>
-					<img class="icon" src="icons/default/unknown.png" width="58" height="58">
+					<img class="icon" src="icons/default/unknown.png" width="58" height="58" />
 <?php
 						}
 ?>
 					<div>
 						<div>
 							<label>
-							<p><?php echo($section_assoc['Name']); ?></p>
+								<p><?php echo($section_assoc['Name']); ?></p>
 							</label>
 						</div>
 					</div>
@@ -480,11 +514,13 @@
 			</label>
 			<fieldset class="source">
 				<a href="/">
-					<img class="icon" src="CydiaIcon.png"></div>
+					<img class="icon" src="CydiaIcon.png" />
 					<div>
 						<div>
 							<label>
-							<p id="source-name"><?php echo $release_origin; ?></p>
+								<p id="source-name">
+									<?php echo $release_origin; ?>
+								</p>
 							</label>
 						</div>
 					</div>
@@ -494,9 +530,14 @@
 				</div>
 			</fieldset>
 			<!-- 页脚及版权信息 -->
-			<footer id="footer" style="display: none;"><p><span id="id">首页</span><br><span class="source-name"><?php echo $release_origin; ?></span>
-			·
-			<span id="section">版权所有 &copy; 2014</span></p></footer>
+			<footer id="footer" style="display: none;">
+				<p>
+					<span id="id">首页</span>
+					<br />
+					<span class="source-name"><?php echo $release_origin; ?></span>·
+					<span id="section">版权所有 &copy; 2014</span>
+				</p>
+			</footer>
 <?php
 		}
 	} elseif ($index == 1) {
@@ -505,7 +546,10 @@
 		if (!$pkg_query) {
 ?>
 			<block>
-			<p>MYSQL ERROR!<br />数据库错误！<br />请联系管理员检查问题。</p>
+				<p>
+					MYSQL ERROR!<br />
+					数据库错误！
+				</p>
 			</block>
 <?php
 		} else {
@@ -513,7 +557,11 @@
 			if (!$pkg_assoc) {
 ?>
 			<block>
-			<p>NO PACKAGE SELECTED!<br />无效的软件包信息！<br />可能是该软件包已被删除，如有疑问，请联系管理员。</p>
+				<p>
+					NO PACKAGE SELECTED!<br />
+					无效的软件包信息！<br />
+					可能是该软件包已被删除，如有疑问，请联系管理员。
+				</p>
 			</block>
 <?php
 			} else {
@@ -522,11 +570,11 @@
 			<!-- 跳转到 Cydia 软件包的顶部按钮 -->
 			<fieldset id="cydialink" style="display: none;">
 				<a href="cydia://package/<?php echo $pkg_assoc['Package']; ?>" target="_blank">
-				<img class="icon" src="icons/default/cydia.png">
+				<img class="icon" src="icons/default/cydia.png" />
 					<div>
 						<div>
 							<label>
-							<p>在 Cydia<sup><small>™</small></sup> 中查看</p>
+								<p>在 Cydia<sup><small>™</small></sup> 中查看</p>
 							</label>
 						</div>
 					</div>
@@ -547,11 +595,11 @@
 <?php
 						if (!empty($section_assoc['Icon'])) {
 ?>
-				<img class="icon" src="icons/<?php echo($section_assoc['Icon']); ?>" style="vertical-align: top;" width="64" height="64">
+				<img class="icon" src="icons/<?php echo($section_assoc['Icon']); ?>" style="vertical-align: top;" width="64" height="64" />
 <?php
 						} else {
 ?>
-				<img class="icon" src="icons/default/unknown.png" style="vertical-align: top;" width="64" height="64">
+				<img class="icon" src="icons/default/unknown.png" style="vertical-align: top;" width="64" height="64" />
 <?php
 						}
 ?>
@@ -572,11 +620,17 @@
 			<!-- Safari 软件包作者联系方式按钮 -->
 			<fieldset id="contact" style="display: none;">
 				<a href="index.php?pid=<?php echo $_GET['pid']; ?>&method=contact">
-					<img class="icon" src="icons/default/mail_forward.png">
+					<img class="icon" src="icons/default/mail_forward.png" />
 					<div>
 						<div>
-							<label><p>作者</p></label>
-							<label class="detail"><p id="contact"><?php echo $author_name; ?></p></label>
+							<label>
+								<p>作者</p>
+							</label>
+							<label class="detail">
+									<p id="contact">
+										<?php echo $author_name; ?>
+									</p>
+								</label>
 						</div>
 					</div>
 				</a>
@@ -590,11 +644,11 @@
 				if (DCRM_SCREENSHOTS == 2) {
 ?>
 				<a href="index.php?pid=<?php echo $_GET['pid']; ?>&method=screenshot">
-				<img class="icon" src="icons/default/screenshots.png">
+				<img class="icon" src="icons/default/screenshots.png" />
 					<div>
 						<div>
 							<label>
-							<p>预览截图</p>
+								<p>预览截图</p>
 							</label>
 						</div>
 					</div>
@@ -603,11 +657,11 @@
 				}
 ?>
 				<a href="index.php?pid=<?php echo $_GET['pid']; ?>&method=history" id="historylink">
-				<img class="icon" src="icons/default/changelog.png">
+				<img class="icon" src="icons/default/changelog.png" />
 					<div>
 						<div>
 							<label>
-							<p>历史版本</p>
+								<p>历史版本</p>
 							</label>
 						</div>
 					</div>
@@ -616,11 +670,11 @@
 				if (DCRM_DIRECT_DOWN == 1 && !$isCydia) {
 ?>
 				<a href="debs/<?php echo $_GET['pid']; ?>.deb" id="downloadlink" style="display: none;" target="_blank">
-				<img class="icon" src="icons/default/packages.png">
+				<img class="icon" src="icons/default/packages.png" />
 					<div>
 						<div>
 							<label>
-							<p>下载软件包</p>
+								<p>下载软件包</p>
 							</label>
 						</div>
 					</div>
@@ -630,11 +684,11 @@
 				if ($isCydia && DCRM_REPORTING == 2) {
 ?>
 				<a href="index.php?pid=<?php echo $_GET['pid']; ?>&method=report" id="reportlink">
-				<img class="icon" src="icons/default/report.png">
+				<img class="icon" src="icons/default/report.png" />
 					<div>
 						<div>
 							<label>
-							<p>报告问题</p>
+								<p>报告问题</p>
 							</label>
 						</div>
 					</div>
@@ -644,11 +698,11 @@
 				if (defined("AUTOFILL_TENCENT") && defined("AUTOFILL_TENCENT_NAME")) {
 ?>
 				<a href="<?php echo AUTOFILL_TENCENT; ?>" target="_blank">
-				<img class="icon" src="icons/default/qq.png">
+				<img class="icon" src="icons/default/qq.png" />
 					<div>
 						<div>
 							<label>
-							<p><?php echo AUTOFILL_TENCENT_NAME; ?></p>
+								<p><?php echo AUTOFILL_TENCENT_NAME; ?></p>
 							</label>
 						</div>
 					</div>
@@ -658,11 +712,11 @@
 				if (defined("AUTOFILL_WEIBO") && defined("AUTOFILL_WEIBO_NAME")) {
 ?>
 				<a href="<?php echo AUTOFILL_WEIBO; ?>" target="_blank">
-				<img class="icon" src="icons/default/weibo.png">
+				<img class="icon" src="icons/default/weibo.png" />
 					<div>
 						<div>
 							<label>
-							<p>@<?php echo AUTOFILL_WEIBO_NAME; ?></p>
+								<p>@<?php echo AUTOFILL_WEIBO_NAME; ?></p>
 							</label>
 						</div>
 					</div>
@@ -672,11 +726,11 @@
 				if (defined("AUTOFILL_TWITTER") && defined("AUTOFILL_TWITTER_NAME")) {
 ?>
 				<a href="<?php echo AUTOFILL_TWITTER; ?>" target="_blank">
-				<img class="icon" src="icons/default/twitter.png">
+				<img class="icon" src="icons/default/twitter.png" />
 					<div>
 						<div>
 							<label>
-							<p>@<?php echo AUTOFILL_TWITTER_NAME; ?></p>
+								<p>@<?php echo AUTOFILL_TWITTER_NAME; ?></p>
 							</label>
 						</div>
 					</div>
@@ -686,11 +740,11 @@
 				if (defined("AUTOFILL_FACEBOOK") && defined("AUTOFILL_FACEBOOK_NAME")) {
 ?>
 				<a href="<?php echo AUTOFILL_FACEBOOK; ?>" target="_blank">
-				<img class="icon" src="icons/default/facebook.png">
+				<img class="icon" src="icons/default/facebook.png" />
 					<div>
 						<div>
 							<label>
-							<p>@<?php echo AUTOFILL_FACEBOOK_NAME; ?></p>
+								<p>@<?php echo AUTOFILL_FACEBOOK_NAME; ?></p>
 							</label>
 						</div>
 					</div>
@@ -700,11 +754,13 @@
 				if (defined("AUTOFILL_PAYPAL")) {
 ?>
 				<a href="<?php echo AUTOFILL_PAYPAL; ?>" target="_blank">
-				<img class="icon" src="icons/default/paypal.png">
+				<img class="icon" src="icons/default/paypal.png" />
 					<div>
 						<div>
 							<label>
-							<p>前往 <span style="font-style: italic; font-weight: bold"><span style="color: #1a3665">Pay</span><span style="color: #32689a">Pal</span><sup><small>™</small></sup></span> 捐助</p>
+								<p>
+									前往 <span style="font-style: italic; font-weight: bold"><span style="color: #1a3665">Pay</span><span style="color: #32689a">Pal</span><sup><small>™</small></sup></span> 捐助
+								</p>
 							</label>
 						</div>
 					</div>
@@ -714,11 +770,11 @@
 				if (!empty($pkg_assoc['Homepage']) && DCRM_MOREINFO == 2) {
 ?>
 				<a href="<?php echo $pkg_assoc['Homepage']; ?>" target="_blank">
-				<img class="icon" src="icons/default/moreinfo.png">
+				<img class="icon" src="icons/default/moreinfo.png" />
 					<div>
 						<div>
 							<label>
-							<p>更多信息</p>
+								<p>更多信息</p>
 							</label>
 						</div>
 					</div>
@@ -731,7 +787,7 @@
 				<a>
 					<div>
 						<div>
-						<?php echo EMERGENCY; ?>
+							<?php echo EMERGENCY; ?>
 						</div>
 					</div>
 				</a>
@@ -745,7 +801,9 @@
 			<!-- 可关闭广告模块 -->
 			<block id="advertisement">
 				<div style="position: relative;">
-					<div style="position: absolute; right: 10px; top: 2px;"><img src="css/closebox@2x.png" style="width: 30px; height: 29px;" onclick="hide()" /></div>
+					<div style="position: absolute; right: 10px; top: 2px;">
+						<img src="css/closebox@2x.png" style="width: 30px; height: 29px;" onclick="hide()" />
+					</div>
 					<div>
 						<?php echo AUTOFILL_ADVERTISEMENT; ?>
 					</div>
@@ -775,7 +833,7 @@
 			<!-- 软件包详细信息 -->
 			<fieldset>
 				<div>
-						<?php echo $pkg_assoc['Multi']; ?>
+					<?php echo $pkg_assoc['Multi']; ?>
 				</div>
 			</fieldset>
 <?php
@@ -787,26 +845,35 @@
 			</label>
 			<fieldset class="source">
 				<a href="/">
-					<img class="icon" src="CydiaIcon.png"></div>
+					<img class="icon" src="CydiaIcon.png" />
 					<div>
 						<div>
 							<label>
-							<p id="source-name"><?php echo $release_origin; ?></p>
+								<p id="source-name">
+									<?php echo $release_origin; ?>
+								</p>
 							</label>
 						</div>
 					</div>
 				</a>
 				<div class="source-description" id="source-description">
-					<p><?php echo $release_description; ?></p>
+					<p>
+						<?php echo $release_description; ?>
+					</p>
 				</div>
 			</fieldset>
 <?php
 				if (!$isCydia) {
 ?>
 			<!-- Safari 展示页脚 -->
-			<footer id="footer" style="display: none;"><p><span id="id"><?php echo $pkg_assoc['Package']; ?></span><br><span class="source-name"><?php echo $release_origin; ?></span>
-			·
-			<span id="section"><?php echo $pkg_assoc['Section']; ?></span></p></footer>
+			<footer id="footer" style="display: none;">
+				<p>
+					<span id="id"><?php echo $pkg_assoc['Package']; ?></span>
+					<br />
+					<span class="source-name"><?php echo $release_origin; ?></span>·
+					<span id="section"><?php echo $pkg_assoc['Section']; ?></span>
+				</p>
+			</footer>
 <?php
 				}
 			}
@@ -816,25 +883,38 @@
 			$pkg = (int)mysql_real_escape_string($_GET['pid']);
 			$pkg_query = mysql_query("SELECT `PID`, `Image` FROM `".DCRM_CON_PREFIX."ScreenShots` WHERE `PID` = '".$pkg."'");
 			if (!$pkg_query) {
-				echo 'MYSQL ERROR!<br />数据库错误！<br />请联系管理员检查问题。';
-				exit();
+?>
+			<block>
+				<p>
+					MYSQL ERROR!<br />
+					数据库错误！
+				</p>
+			</block>
+<?php
 			} else {
 				$num = mysql_affected_rows();
 				if ($num != 0) {
-					$pkg_assoc = mysql_fetch_assoc($pkg_query);
+					$preview = array();
+					$i = 0;
+					while ($pkg_assoc = mysql_fetch_assoc($pkg_query)) {
+						$preview[$i] = $pkg_assoc['Image'];
+						$i++;
+					}
 ?>
 			<!--label>预览截图</label-->
 			<!-- 截图展示部分 -->
 			<div class="horizontal-scroll-wrapper" style="background: transparent; position: relative;">
-				<div class="horizontal-scroll-wrapper" style="background: transparent url(<?php echo($pkg_assoc['Image']); ?>); background-size: 150%; background-position: center;  -webkit-filter: blur(5px); position: absolute; z-index: 1;"></div>
+				<!-- 取首张截图高斯滤镜置于底层 -->
+				<div class="horizontal-scroll-wrapper" style="background: transparent url(<?php echo($preview[0]); ?>); background-size: 150%; background-position: center; -webkit-filter: blur(5px); position: absolute; z-index: 1;"></div>
 				<div class="horizontal-scroll-wrapper" id="scroller" style="background: transparent; position: absolute; z-index: 2;">
 					<div class="horizontal-scroll-area" style="width:<?php echo($num * 240); ?>px;">
-							<img src="<?php echo($pkg_assoc['Image']); ?>" />
-							<?php
-								while ($pkg_assoc = mysql_fetch_assoc($pkg_query)) {
-									echo '<img src="'.$pkg_assoc['Image'].'" />';
-								}
-							?>
+<?php
+					for ($t = 0; $t < count($preview); $t++) {
+?>
+						<img src="<?php echo($preview[$t]); ?>" />
+<?php
+					}
+?>
 					</div>
 					<div class="horizontal-scroll-pips"></div>
 				</div>
@@ -892,20 +972,24 @@
 			}
 ?>
 				<div>
-					<p><strong>当前设备信息</strong></p>
+					<p>
+						<strong>当前设备信息</strong>
+					</p>
 					<hr />
-					<p><?php echo $DEVICE." &amp; ".$OS; ?></p>
+					<p>
+						<?php echo $DEVICE." &amp; ".$OS; ?>
+					</p>
 				</div>
 			</fieldset>
 			<!-- 请求提交与统计展示 -->
 			<label>提交请求</label>
 			<fieldset>
 				<a href="index.php?pid=<?php echo $_GET['pid']; ?>&method=report&support=3">
-					<img class="icon" src="icons/default/support_3.png" width="58" height="58">
+					<img class="icon" src="icons/default/support_3.png" width="58" height="58" />
 					<div>
 						<div>
 							<label>
-							<p>请求升级</p>
+								<p>请求升级</p>
 							</label>
 						</div>
 					</div>
@@ -914,31 +998,31 @@
 			<label>兼容性报告</label>
 			<fieldset>
 				<a href="index.php?pid=<?php echo $_GET['pid']; ?>&method=report&support=1">
-					<img class="icon" src="icons/default/support_1.png" width="58" height="58">
+					<img class="icon" src="icons/default/support_1.png" width="58" height="58" />
 					<div>
 						<div>
 							<label>
-							<p>完美兼容<?php echo $s_1; ?></p>
+								<p>完美兼容<?php echo $s_1; ?></p>
 							</label>
 						</div>
 					</div>
 				</a>
 				<a href="index.php?pid=<?php echo $_GET['pid']; ?>&method=report&support=0">
-					<img class="icon" src="icons/default/support_0.png" width="58" height="58">
+					<img class="icon" src="icons/default/support_0.png" width="58" height="58" />
 					<div>
 						<div>
 							<label>
-							<p>部分兼容<?php echo $s_0; ?></p>
+								<p>部分兼容<?php echo $s_0; ?></p>
 							</label>
 						</div>
 					</div>
 				</a>
 				<a href="index.php?pid=<?php echo $_GET['pid']; ?>&method=report&support=2">
-					<img class="icon" src="icons/default/support_2.png" width="58" height="58">
+					<img class="icon" src="icons/default/support_2.png" width="58" height="58" />
 					<div>
 						<div>
 							<label>
-							<p>不兼容<?php echo $s_2; ?></p>
+								<p>不兼容<?php echo $s_2; ?></p>
 							</label>
 						</div>
 					</div>
@@ -947,10 +1031,10 @@
 			<!-- 报告问题计划说明 -->
 			<fieldset>
 				<div>
-				<p><strong>软件包兼容性报告是由广大用户投票，系统统计生成的数据，仅供参考。</strong></p>
-				<hr />
-				<p>如果您，安装以后出现兼容性问题，您的一票，也许能够帮助成千上万的用户免于安全模式、白苹果等诸多威胁。</p>
-				<p>当然，如果您安装以后能够完美使用，也请您投上一票，它能够让大家更放心地安装软件包。</p>
+					<p><strong>软件包兼容性报告是由广大用户投票，系统统计生成的数据，仅供参考。</strong></p>
+					<hr />
+					<p>如果您，安装以后出现兼容性问题，您的一票，也许能够帮助成千上万的用户免于安全模式、白苹果等诸多威胁。</p>
+					<p>当然，如果您安装以后能够完美使用，也请您投上一票，它能够让大家更放心地安装软件包。</p>
 				</div>
 			</fieldset>
 <?php
@@ -970,25 +1054,40 @@
 					$result = mysql_query("INSERT INTO `".DCRM_CON_PREFIX."Reports`(`Remote`, `Device`, `iOS`, `Support`, `TimeStamp`, `PID`) VALUES('".mysql_real_escape_string($_SERVER['REMOTE_ADDR'])."', '".$DEVICE."', '".$OS."', '".$support."', '".date('Y-m-d H:i:s')."', '".(int)$_GET['pid']."')");
 ?>
 			<fieldset style="background-color: #ccffcc;">
-			<div>
-			<p><strong>您的报告已经提交完成。<br />感谢您的支持！</strong></p>
+				<div>
+					<p>
+						<strong>
+							您的报告已经提交完成。<br />
+							感谢您的支持！
+						</strong>
+					</p>
 <?php
 				} else {
 ?>
 			<fieldset style="background-color: #ffdddd;">
-			<div>
-			<p><strong>请使用 Cydia 进行投票。<br />每台设备限制投票 2 次！</strong></p>
+				<div>
+					<p>
+						<strong>
+							请使用 Cydia 进行投票。<br />
+							每台设备限制投票 2 次！
+						</strong>
+					</p>
 <?php
 				}
 			} else {
 ?>
 			<fieldset style="background-color: #ffdddd;">
-			<div>
-			<p><strong>投票次数超过系统限制。<br />请稍后再试！</strong></p>
+				<div>
+					<p>
+						<strong>
+							投票次数超过系统限制。<br />
+							请稍后再试！
+						</strong>
+					</p>
 <?php
 			}
 ?>
-			</div>
+				</div>
 			</fieldset>
 <?php
 		} else {
@@ -1011,7 +1110,9 @@
 					<div>
 						<div>
 							<label>
-							<p>版本 <?php echo($history['Version']); ?></p>
+								<p>
+									版本 <?php echo($history['Version']); ?>
+								</p>
 							</label>
 						</div>
 					</div>
@@ -1033,7 +1134,10 @@
 		if (!$pkg_query) {
 ?>
 			<block>
-			<p>MYSQL ERROR!<br />数据库错误！<br />请联系管理员检查问题。</p>
+				<p>
+					MYSQL ERROR!<br />
+					数据库错误！
+				</p>
 			</block>
 <?php
 		} else {
@@ -1041,7 +1145,11 @@
 			if (!$pkg_assoc) {
 ?>
 			<block>
-			<p>NO PACKAGE SELECTED!<br />无效的软件包信息！<br />可能是该软件包已被删除，如有疑问，请联系管理员。</p>
+				<p>
+					NO PACKAGE SELECTED!<br />
+					无效的软件包信息！<br />
+					可能是该软件包已被删除，如有疑问，请联系管理员。
+				</p>
 			</block>
 <?php
 			} else {
@@ -1051,13 +1159,19 @@
 ?>
 			<!-- Safari 软件包作者联系方式 -->
 			<fieldset class="author">
-				<div><p>源管理者<strong>无法</strong>为你解决软件包功能上出现的问题：你<strong>必须</strong>联系其开发者或设计者。</p></div>
+				<div>
+					<p>
+						源管理者<strong>无法</strong>为你解决软件包功能上出现的问题：你<strong>必须</strong>联系其开发者或设计者。
+					</p>
+				</div>
 				<a href="mailto:<?php echo($author_mail); ?>?subject=<?php echo(urlencode("Cydia/APT(A): ".$pkg_assoc['Name']." (".$pkg_assoc['Version'].")")); ?>" target="_blank">
 				<img class="icon" src="icons/default/mail_forward.png">
-				<div>
 					<div>
-						<label><p>作者</p></label>
-						<label class="detail"><p><?php echo($author_name); ?></p></label>
+						<div>
+							<label><p>作者</p></label>
+							<label class="detail">
+								<p><?php echo($author_name); ?></p>
+							</label>
 						</div>
 					</div>
 				</a>
@@ -1069,13 +1183,19 @@
 					$sponsor_url = trim(preg_replace("#^(.+)<(.+)>#","$2", $pkg_assoc['Sponsor']));
 ?>
 			<fieldset class="maintainer">
-				<div><p>如果该软件包为商业软件包，你可以联系其担保人获取商业支持。</p></div>
+				<div>
+					<p>
+						如果该软件包为商业软件包，你可以联系其担保人获取商业支持。
+					</p>
+				</div>
 				<a href="<?php echo($sponsor_url); ?>" target="_blank">
 				<img class="icon" src="icons/default/mail_forward.png">
-				<div>
 					<div>
-						<label><p>担保人</p></label>
-						<label class="detail"><p><?php echo($sponsor_name); ?></p></label>
+						<div>
+							<label><p>担保人</p></label>
+							<label class="detail">
+								<p><?php echo($sponsor_name); ?></p>
+							</label>
 						</div>
 					</div>
 				</a>
@@ -1087,13 +1207,17 @@
 					$maintainer_mail = trim(preg_replace("#^(.+)<(.+)>#","$2", $pkg_assoc['Maintainer']));
 ?>
 			<fieldset class="maintainer">
-				<div><p>安装、卸载过程中出现的问题，你需要将其发送给制作软件包的提供者。</p></div>
+				<div>
+					<p>安装、卸载过程中出现的问题，你需要将其发送给制作软件包的提供者。</p>
+				</div>
 				<a href="mailto:<?php echo($maintainer_mail); ?>?subject=<?php echo(urlencode("Cydia/APT(A): ".$pkg_assoc['Name']." (".$pkg_assoc['Version'].")")); ?>" target="_blank">
 				<img class="icon" src="icons/default/mail_forward.png">
-				<div>
 					<div>
-						<label><p>提供者</p></label>
-						<label class="detail"><p><?php echo($maintainer_name); ?></p></label>
+						<div>
+							<label><p>提供者</p></label>
+							<label class="detail">
+								<p><?php echo($maintainer_name); ?></p>
+							</label>
 						</div>
 					</div>
 				</a>
@@ -1108,7 +1232,10 @@
 			if (!$section_query) {
 ?>
 			<block>
-			<p>MYSQL ERROR!<br />数据库错误！<br />请联系管理员检查问题。</p>
+				<p>
+					MYSQL ERROR!<br />
+					数据库错误！
+				</p>
 			</block>
 <?php
 			} else {
@@ -1151,7 +1278,7 @@
 					<div>
 						<div>
 							<label>
-							<p><?php echo($package_assoc['Name']); ?></p>
+								<p><?php echo($package_assoc['Name']); ?></p>
 							</label>
 						</div>
 					</div>

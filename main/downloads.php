@@ -29,42 +29,36 @@
 		$r_path = $_GET['request'];
 		if (pathinfo($r_path, PATHINFO_EXTENSION) != "deb") {
 			httpinfo(400);
-		}
-		else {
+		} else {
 			$text_id = substr($r_path, 0, strlen($r_path) - 4);
 			if (ctype_digit($text_id) && intval($text_id) <= 10000) {
 				$request_id = intval($text_id);
 			} else {
-				header("Content-Type: text/html; charset=UTF-8");
-				echo 'ILLEGAL ARGUMENTS!<br />非法的参数！';
+				httpinfo(405);
 				exit();
 			}
 		}
 		$con = mysql_connect(DCRM_CON_SERVER, DCRM_CON_USERNAME, DCRM_CON_PASSWORD);
 		if (!$con) {
 			httpinfo(500);
-		}
-		else {
+		} else {
 			mysql_query("SET NAMES utf8");
 			mysql_select_db(DCRM_CON_DATABASE);
 		}
 		$a_query = mysql_query("UPDATE `".DCRM_CON_PREFIX."Packages` SET `DownloadTimes` = `DownloadTimes` + 1 WHERE `ID` = '" . (string)$request_id . "'",$con);
 		if (!$a_query) {
 			httpinfo(500);
-		}
-		else {
+		} else {
 			$m_query = mysql_query("SELECT `Package`, `Version`, `Filename` FROM `".DCRM_CON_PREFIX."Packages` WHERE `ID` = '" . (string)$request_id . "'");
 		}
 		if (!$m_query) {
 			httpinfo(500);
-		}
-		else {
+		} else {
 			$m_row = mysql_fetch_assoc($m_query);
 		}
 		if (!$m_row) {
-			httpinfo(4030);
-		}
-		else {
+			httpinfo(404);
+		} else {
 			$download_path = substr($m_row['Filename'], 1);
 		}
 		if (!empty($download_path)) {
@@ -72,17 +66,14 @@
 			if (file_exists($download_path)) {
 				$fake_name = $m_row['Package'] . "_" . $m_row['Version'] . "_iphoneos-arm.deb";
 				downFile($download_path,$fake_name);
-			}
-			else {
+			} else {
 				httpinfo(404);
 			}
 			exit();
+		} else {
+			httpinfo(500);
 		}
-		else {
-			httpinfo(4030);
-		}
-	}
-	else {
+	} else {
 		httpinfo(400);
 	}
 ?>

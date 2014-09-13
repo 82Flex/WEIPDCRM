@@ -89,8 +89,6 @@
 			<hr />
 			<p>欢迎通过 Cydia <a href="cydia://sources/add">添加</a> <code><?php echo(base64_decode(DCRM_REPOURL)); ?></code> 访问本源。</p>
 			<p>移动版 Safari 访问首页，查看更多精彩内容。</p>
-			<hr />
-			<p><a href="javascript:alert('上传入口将在近期开放，敬请期待！');"><img src="css/uploader.png" /></a></p>
 <?php
 			if ($first) {
 ?>

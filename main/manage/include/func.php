@@ -194,35 +194,47 @@
 	function httpinfo($info_type) {
 		switch ($info_type) {
 			case 304:
-				header("HTTP/1.1 304 Not Modified");
-				header("Status: 304 Not Modified");
+				$info = "304 Not Modified";
 			break;
 			case 400:
-				header("HTTP/1.1 400 Bad Request");
-				header("Status: 400 Bad Request");
+				$info = "400 Bad Request";
 			break;
 			case 404:
-				header('HTTP/1.1 404 Not Found'); 
-				header('Status: 404 Not Found');
+				$info = "404 Not Found";
 			break;
 			case 4030:
-				header('HTTP/1.1 403 Forbidden'); 
-				header('Status: 403 Forbidden');
+				$info = "403 Forbidden";
 			break;
 			case 4031:
-				header('HTTP/1.1 403 Payment Required'); 
-				header('Status: 403 Payment Required');
+				$info = "403 Payment Required";
 			break;
+			case 405:
+				$info = "405 Method Not Allowed";
+			break; 
 			case 500:
-				header('HTTP/1.1 500 Internal Server Error');
-				header('Status: 500 Internal Server Error');
+				$info = "500 Internal Server Error";
 			break;
 			default:
-				header('HTTP/1.1 501 Not Implemented');
-				header('Status: 501 Not Implemented');
+				$info = "501 Not Implemented";
 			break;
 		}
+		header("HTTP/1.1 ".$info);
+		header("Status: ".$info);
 		header("Content-Type: text/html; charset=UTF-8");
+?>
+<html>
+<head>
+	<title><?php echo($info); ?></title>
+</head>
+<body bgcolor="white">
+	<center>
+		<h1><?php echo($info); ?></h1>
+	</center>
+<hr />
+	<center>nginx</center>
+</body>
+</html>
+<?php
 		exit();
 	}
 	
