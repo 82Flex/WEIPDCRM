@@ -20,17 +20,22 @@
 	
 	error_reporting(0);
 	ob_start();
-	define("DCRM",true);
-	require_once("manage/include/config.inc.php");
-	require_once("manage/include/func.php");
+	define('DCRM',true);
+	require_once('manage/include/config.inc.php');
+	require_once('manage/include/func.php');
 	
 	if (!empty($_GET['request']) AND (!empty($_SERVER['HTTP_X_UNIQUE_ID']) OR DCRM_DIRECT_DOWN == 1)) {
 		$r_path = $_GET['request'];
-		if ($r_path == "Release" || $r_path == "Packages" || $r_path == "Packages.gz" || $r_path == "Packages.bz2") {
-			downFile($r_path, $r_path);
+		$list_text = array('Release', 'Packages', 'Packages.gz', 'Packages.bz2');
+		if (in_array($r_path, $list_text)) {
+			if (file_exists($r_path)) {
+				downFile($r_path, $r_path);
+			} else {
+				httpinfo(404);
+			}
 		}
 		else {
-			httpinfo(404);
+			httpinfo(405);
 		}
 	}
 	else {

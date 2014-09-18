@@ -23,6 +23,7 @@
 	define("DCRM",true);
 	require_once("include/config.inc.php");
 	require_once('include/connect.inc.php');
+	require_once("include/func.php");
 	header("Content-Type: text/html; charset=UTF-8");
 	
 	if (!isset($_SESSION['connected']) || $_SESSION['connected'] != true) {
@@ -31,24 +32,24 @@
 	}
 	$con = mysql_connect(DCRM_CON_SERVER, DCRM_CON_USERNAME, DCRM_CON_PASSWORD);
 	if (!$con) {
-		echo(mysql_error());
+		httpinfo(500);
 		exit();
 	}
 	mysql_query("SET NAMES utf8");
 	$select  = mysql_select_db(DCRM_CON_DATABASE);
 	if (!$select) {
-		echo(mysql_error());
+		httpinfo(500);
 		exit();
 	}
 	if (is_numeric($_GET['id'])) {
 		$request_id = (int)$_GET['id'];
 	} else {
-		echo("非法请求！");
+		httpinfo(405);
 		exit();
 	}
 	$m_query = mysql_query("SELECT * FROM `".DCRM_CON_PREFIX."Packages` WHERE `ID` = '" . $request_id . "'");
 	if (!$m_query) {
-		echo(mysql_error());
+		httpinfo(500);
 		exit();
 	}
 	if (isset($_GET['action']) && $_GET['action'] == "image" && isset($_POST['image']) && strlen($_POST['image']) > 0) {
@@ -137,7 +138,7 @@
 	}
 	$m_query = mysql_query("SELECT * FROM `".DCRM_CON_PREFIX."ScreenShots` WHERE `PID` = '".$request_id."'");
 	if (!$m_query) {
-		echo(mysql_error());
+		httpinfo(500);
 		exit();
 	}
 	if (mysql_affected_rows() <= 0) {

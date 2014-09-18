@@ -30,10 +30,10 @@
 		$release_origin = "未命名";
 		foreach ($release as $line) {
 			if(preg_match("#^Origin#", $line)) {
-				$release_origin = trim(preg_replace("#^(.+): (.+)#","$2", $line));
+				$release_origin = trim(preg_replace("#^(.+):\\s*(.+)#","$2", $line));
 			}
 			if(preg_match("#^Description#", $line)) {
-				$release_description = trim(preg_replace("#^(.+): (.+)#","$2", $line));
+				$release_description = trim(preg_replace("#^(.+):\\s*(.+)#","$2", $line));
 			}
 		}
 	} else {

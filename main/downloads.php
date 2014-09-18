@@ -42,14 +42,15 @@
 		if (!$con) {
 			httpinfo(500);
 		} else {
-			mysql_query("SET NAMES utf8");
-			mysql_select_db(DCRM_CON_DATABASE);
+			if (!mysql_query("SET NAMES utf8") || !mysql_select_db(DCRM_CON_DATABASE)) {
+				httpinfo(500);
+			}
 		}
 		$a_query = mysql_query("UPDATE `".DCRM_CON_PREFIX."Packages` SET `DownloadTimes` = `DownloadTimes` + 1 WHERE `ID` = '" . (string)$request_id . "'",$con);
 		if (!$a_query) {
 			httpinfo(500);
 		} else {
-			$m_query = mysql_query("SELECT `Package`, `Version`, `Filename` FROM `".DCRM_CON_PREFIX."Packages` WHERE `ID` = '" . (string)$request_id . "'");
+			$m_query = mysql_query("SELECT `Package`, `Version`, `Architecture`, `Filename` FROM `".DCRM_CON_PREFIX."Packages` WHERE `ID` = '" . (string)$request_id . "'");
 		}
 		if (!$m_query) {
 			httpinfo(500);
@@ -64,7 +65,7 @@
 		if (!empty($download_path)) {
 			mysql_close($con);
 			if (file_exists($download_path)) {
-				$fake_name = $m_row['Package'] . "_" . $m_row['Version'] . "_iphoneos-arm.deb";
+				$fake_name = $m_row['Package'] . "_" . $m_row['Version'] . "_" . $m_row['Architecture'] . ".deb";
 				downFile($download_path,$fake_name);
 			} else {
 				httpinfo(404);

@@ -75,7 +75,7 @@
 							$release = array();
 							foreach ($release_file as $line) {
 								if(preg_match("#^Origin|Label|Version|Codename|Description#", $line)) {
-									$release[trim(preg_replace("#^(.+): (.+)#","$1", $line))] = trim(preg_replace("#^(.+): (.+)#","$2", $line));
+									$release[trim(preg_replace("#^(.+):\\s*(.+)#","$1", $line))] = trim(preg_replace("#^(.+):\\s*(.+)#","$2", $line));
 								}
 							}
 						}
