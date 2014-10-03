@@ -95,10 +95,9 @@
 				威锋网测试组 <a href="http://weibo.com/u/1675423275">@Sunbelife</a>、威锋网技术组 <a href="http://weibo.cn/nivalxer">@NivalXer</a>、<a href="http://weibo.com/u/1417725530">@ioshack</a> 提供测试意见<br />
 				威锋网技术组 <a href="http://weibo.com/u/2004244347">@autopear</a> 撰写的：<a href="http://bbs.weiphone.com/read-htm-tid-669283.html">从零开始搭建 Cydia™ 软件源，制作 Debian 安装包</a><br />
 				Cydia™ 之父 <a href="http://www.saurik.com">Saurik</a> 撰写的：<a href="http://www.saurik.com/id/7">How to host a Cydia™ Repository</a>，移动版首页样式来自 Saurik IT.<br /><br /><h4>
-				<a href="http://82flex.com/DCRM/Buy">获取 DCRM Pro</a></h4><br />
-				捐助地址：<a href="https://me.alipay.com/coster">https://me.alipay.com/coster</a><br /><br /><h4>
+				<a href="http://82flex.com/DCRM/Buy">获取 DCRM Pro</a></h4><br /><h4>
 				版权所有 © 2013–2014 威锋网测试组<br />
-				本程序是自由软件，修改和重新发布应该遵照自由软件基金会出版的 GNU 通用公共许可证条款。</h4></div>
+				本程序是自由软件，修改和重新发布应该遵照自由软件基金会出版的 <a href="http://www.gnu.org/licenses">GNU 通用公共许可证条款第三版</a>。</h4></div>
 				<?php
 				}
 				else {

@@ -309,7 +309,7 @@
 	
 	    //构造方法初始化
 	    public function __construct() {
-	        $this->font = ROOT_PATH.'/css/Pokémon.ttf';
+	        $this->font = ROOT_PATH.'/css/default.ttf';
 	    }
 	
 	    //生成随机码
