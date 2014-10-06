@@ -20,16 +20,15 @@
 	
 	error_reporting(0);
 	ob_start();
+	header('Content-Type: text/html; charset=UTF-8');
 	$inst_success = false;
 	
 	if (file_exists("../manage/include/release.default.save")) {
-		$inst_alert = "快速安装脚本已锁定，请删除 ../manage/include/release.default.save 继续安装！";
-		echo "<script>alert(\'".$inst_alert."\');</script>"; 
 		exit();
 	}
 	
 	if (!isset($_GET['skip']) OR $_GET['skip'] != "yes") {
-		if (empty($_POST['db_host']) || empty($_POST['db_user']) || empty($_POST['db_database']) || empty($_POST['db_prefix'])) {
+		if (empty($_POST['db_host']) || empty($_POST['db_user']) || empty($_POST['db_database']) || empty($_POST['db_prefix']) || empty($_POST['db_password'])) {
 			header("Location: index.html");
 			exit();
 		}
@@ -37,16 +36,16 @@
 		$inc .= "\tif (!defined(\"DCRM\")) {\n";
 		$inc .= "\t\texit();";
 		$inc .= "\t}";
-		$inc .= "\tdefine(\"DCRM_CON_SERVER\", 'localhost');";
-		$inc .= "\tdefine(\"DCRM_CON_PREFIX\", 'apt_');";
-		$inc .= "\tdefine(\"DCRM_CON_USERNAME\", 'root');";
-		$inc .= "\tdefine(\"DCRM_CON_PASSWORD\", '');";
-		$inc .= "\tdefine(\"DCRM_CON_DATABASE\", 'cydia');";
+		$inc .= "\tdefine(\"DCRM_CON_SERVER\", '".addslashes($_POST['db_host'])."');";
+		$inc .= "\tdefine(\"DCRM_CON_PREFIX\", '".addslashes($_POST['db_prefix'])."');";
+		$inc .= "\tdefine(\"DCRM_CON_USERNAME\", '".addslashes($_POST['db_user'])."');";
+		$inc .= "\tdefine(\"DCRM_CON_PASSWORD\", '".addslashes($_POST['db_password'])."');";
+		$inc .= "\tdefine(\"DCRM_CON_DATABASE\", '".addslashes($_POST['db_database'])."');";
 		$inc .= "?>";
 		$put = file_put_contents("../manage/include/connect.inc.php", $inc);
 		if (!$put) {
 			$inst_alert = "数据库配置写入失败，请检查文件权限！";
-			echo "<script>alert(\'".$inst_alert."\');</script>"; 
+			echo $inst_alert; 
 			exit();
 		}
 	}
@@ -59,13 +58,13 @@
 	if (!defined('PHP_VERSION')) {
 		if (version_compare(PHP_VERSION, '5.3') < 0) {
 			$inst_alert = "PHP 版本必须大于等于 5.3";
-			echo "<script>alert(\'".$inst_alert."\');</script>"; 
+			echo $inst_alert; 
 			exit();
 		}
 	}
 	if (!extension_loaded("gd")) {
 		$inst_alert = "gd 库未加载，验证码模块无法安装！";
-		echo "<script>alert(\'".$inst_alert."\');</script>"; 
+		echo $inst_alert; 
 		exit();
 	}
 	
@@ -74,7 +73,7 @@
 	
 	if (!$con) {
 		$inst_alert = mysql_error();
-		echo "<script>alert(\'".$inst_alert."\');</script>"; 
+		echo $inst_alert; 
 		exit();
 	}
 	
@@ -82,7 +81,7 @@
 	
 	if (!$result) {
 		$inst_alert = mysql_error();
-		echo "<script>alert(\'".$inst_alert."\');</script>"; 
+		echo $inst_alert; 
 		exit();
 	}
 	
@@ -90,7 +89,7 @@
 	
 	if (!$result) {
 		$inst_alert = mysql_error();
-		echo "<script>alert(\'".$inst_alert."\');</script>"; 
+		echo $inst_alert; 
 		exit();
 	}
 	
@@ -98,7 +97,7 @@
 	
 	if (!$result) {
 		$inst_alert = mysql_error();
-		echo "<script>alert(\'".$inst_alert."\');</script>"; 
+		echo $inst_alert; 
 		exit();
 	}
 	
@@ -112,7 +111,7 @@
 	
 	if (!$result) {
 		$inst_alert = mysql_error();
-		echo "<script>alert(\'".$inst_alert."\');</script>"; 
+		echo $inst_alert; 
 		exit();
 	}
 	
@@ -162,7 +161,7 @@
 	
 	if (!$result) {
 		$inst_alert = mysql_error();
-		echo "<script>alert(\'".$inst_alert."\');</script>"; 
+		echo $inst_alert; 
 		exit();
 	}
 	
@@ -176,7 +175,7 @@
 	
 	if (!$result) {
 		$inst_alert = mysql_error();
-		echo "<script>alert(\'".$inst_alert."\');</script>"; 
+		echo $inst_alert; 
 		exit();
 	}
 	
@@ -190,7 +189,7 @@
 	
 	if (!$result) {
 		$inst_alert = mysql_error();
-		echo "<script>alert(\'".$inst_alert."\');</script>"; 
+		echo $inst_alert; 
 		exit();
 	}
 	
@@ -204,7 +203,7 @@
 	
 	if (!$result) {
 		$inst_alert = mysql_error();
-		echo "<script>alert(\'".$inst_alert."\');</script>"; 
+		echo $inst_alert; 
 		exit();
 	}
 	
@@ -217,7 +216,7 @@
 	
 	if (!$result) {
 		$inst_alert = mysql_error();
-		echo "<script>alert(\'".$inst_alert."\');</script>"; 
+		echo $inst_alert; 
 		exit();
 	}
 	
@@ -231,7 +230,7 @@
 	
 	if (!$result) {
 		$inst_alert = mysql_error();
-		echo "<script>alert(\'".$inst_alert."\');</script>"; 
+		echo $inst_alert; 
 		exit();
 	}
 	
@@ -249,7 +248,7 @@
 	
 	if (!$result) {
 		$inst_alert = mysql_error();
-		echo "<script>alert(\'".$inst_alert."\');</script>"; 
+		echo $inst_alert; 
 		exit();
 	}
 	
@@ -263,7 +262,7 @@
 	
 	if (!$result) {
 		$inst_alert = mysql_error();
-		echo "<script>alert(\'".$inst_alert."\');</script>"; 
+		echo $inst_alert; 
 		exit();
 	}
 	
@@ -277,7 +276,7 @@
 	
 	if (!$result) {
 		$inst_alert = mysql_error();
-		echo "<script>alert(\'".$inst_alert."\');</script>"; 
+		echo $inst_alert; 
 		exit();
 	}
 
@@ -286,13 +285,13 @@
 	
 	if (!$result) {
 		$inst_alert = mysql_error();
-		echo "<script>alert(\'".$inst_alert."\');</script>"; 
+		echo $inst_alert; 
 		exit();
 	}
 	
 	if(!mkdir("../tmp") || !copy("CydiaIcon.png", "../CydiaIcon.png")) {
 		$inst_alert = "文件权限错误，请赋予根目录读取与写入权限。";
-		echo "<script>alert(\'".$inst_alert."\');</script>"; 
+		echo $inst_alert; 
 		exit();
 	}
 	else {

@@ -152,7 +152,7 @@
 			<hr />
 			<p><input type="text" name="username" placeholder="用户名" required="required" /></p>
 			<p><input type="password" name="password" placeholder="密码" required="required" /></p>
-			<p><input type="text" name="authcode" placeholder="验证码" required="required" style="margin-top: 8px; height: 24px; width:120px;" />&nbsp;<img src="login.php?authpic=png&rand=<?php echo(time()); ?>" style="height: 36px; width: 88px;" onclick="this.src='login.php?authpic=png&rand=' + new Date().getTime();" /></p>
+			<p><input type="text" name="authcode" placeholder="验证码" required="required" style="margin-top: 8px; height: 24px; width:120px;" />&nbsp;<img src="login.php?authpic=png&rand=<?php echo(time()); ?>" style="height: 36px; width: 88px; border-radius: 6px;" onclick="this.src='login.php?authpic=png&rand=' + new Date().getTime();" /></p>
 			<hr />
 			<input type="submit" class="btn btn-success" name="submit" value="立即登录" />
 		</form>
