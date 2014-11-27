@@ -68,6 +68,8 @@
 				$_SESSION['try'] = $_SESSION['try'] + 1;
 				$error = "authcode";
 				goto endlabel;
+			} else {
+				unset($_SESSION['VCODE']);
 			}
 			if (!ereg("^[0-9a-zA-Z\_]*$", $_POST['username'])) {
 				$_SESSION['try'] = $_SESSION['try'] + 1;
