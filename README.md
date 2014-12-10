@@ -1,5 +1,5 @@
 WEIPDCRM
-========
+=======
 <<<<<<< HEAD
 
 Darwin Cydia Repository Manager<br />
@@ -22,13 +22,14 @@ How To Install And Use:<br />
 2.  Nginx: Move /readme.files/dcrm_nginx.conf to Nginx's config directionary, then include it in your website's config.<br />
     Apache: Rename /readme.files/dcrm_apache.htaccess to $wwwroot/.htaccess;<br />
 3.  Restart Nginx;<br />
-4.  Open http://{YOUR_REPO_URL}/manage and change your password.<br />
-5.  Fill in blanks in http://{YOUR_REPO_URL}/manage/settings.php and http://{YOUR_REPO_URL}/manage/release.php<br />
-6.  Upload a package then import it or replace an old version, then you can edit its information (such as Identifier, Author, Name, Depends, etc.).<br />
-7.  Edit the information of packages freely, click the title of each column and it will be autofilled. WEIPDCRM has a well organized depiction page, and you can add screenshots by clicking the title of a package.<br />
-8.  Click "Show this package" or "Hide this package" to make a package visible or not.<br />
-9.  When all is ready, click the "Build" button at the right-top.<br />
-10.  Add your repo in Cydia.<br />
+4.  Open http://{YOUR_REPO_URL}/init to create MYSQL tables.<br />
+5.  Then login as root (password: root) at http://{YOUR_REPO_URL}/manage and change your password.<br />
+6.  Fill in blanks in http://{YOUR_REPO_URL}/manage/settings.php and http://{YOUR_REPO_URL}/manage/release.php<br />
+7.  Upload a package then import it or replace an old version, then you can edit its information (such as Identifier, Author, Name, Depends, etc.).<br />
+8.  Edit the information of packages freely, click the title of each column and it will be autofilled. WEIPDCRM has a well organized depiction page, and you can add screenshots by clicking the title of a package.<br />
+9.  Click "Show this package" or "Hide this package" to make a package visible or not.<br />
+10.  When all is ready, click the "Build" button at the right-top.<br />
+11.  Add your repo in Cydia.<br />
 
 This program is re-designed from tibounise's "DCRM", and I add almost 95% functions for a wonderful repo.<br />
 
