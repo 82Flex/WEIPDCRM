@@ -469,7 +469,7 @@
 								<input type="hidden" id="item_id" value="<?php echo $request_id; ?>" />
 								<select id="item_adv" style="width: 400px;" name="Advance" onChange="javascript:ajax();" >
 								<?php
-									$z_query = mysql_query("SELECT `COLUMN_NAME` FROM `information_schema`.`COLUMNS` WHERE `TABLE_SCHEMA`='".DCRM_CON_DATABASE."' and `TABLE_NAME`='Packages' order by COLUMN_NAME");
+									$z_query = mysql_query("SELECT `COLUMN_NAME` FROM `information_schema`.`COLUMNS` WHERE `TABLE_SCHEMA`='".DCRM_CON_DATABASE."' and `TABLE_NAME`='".DCRM_CON_PREFIX."Packages' order by COLUMN_NAME");
 									while($z_list = mysql_fetch_assoc($z_query)) {
 										echo '<option value="'.$z_list['COLUMN_NAME'].'">'.$z_list['COLUMN_NAME'].'</option>';
 									}
