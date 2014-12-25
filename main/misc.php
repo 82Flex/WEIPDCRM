@@ -108,5 +108,37 @@
 <?php
 	}
 ?>
+<script src="//static.segmentfault.com/build/3rd/assets.ce4fe392.js"></script>
+<script>
+(function(w) {
+	w.SF = {
+		staticUrl: "//static.segmentfault.com",
+	};
+	w.SF.token = (function() {
+		var _tn4 = 'b' + 'a6' + 'f' + '794'
+		 + '66' + '9'
+		 + '9c' + 'ce7'
+		 + 'a' + '648' + ''
+		 + 'ee'
+		 + '' + 'd2'
+		 + 'fe7'
+		 + '3' + 'b'
+		 + 'dd'
+		 + '067',
+		_KYE7 = [[15, 16]];
+		for (var i = 0; i < _KYE7.length; i++) {
+			_tn4 = _tn4.substring(0, _KYE7[i][0]) + _tn4.substring(_KYE7[i][1]);
+		}
+		return _tn4;
+	})();
+})(window);
+function DelCookie(name) {
+    var exp = new Date();
+    exp.setTime(exp.getTime() - 1);
+    document.cookie = name + "=; expires=" + exp.toGMTString();
+}
+DelCookie("christmased");
+</script>
+<script src="//static.segmentfault.com/build/qa/js/index.5fb66921.js"></script>
 	</body>
 </html>
