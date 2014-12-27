@@ -2,6 +2,7 @@
 	if (!defined("DCRM")) {
 		exit;
 	}
+	//define("DCRM_LANG", "zh-cn");
 	define("DCRM_MAXLOGINFAIL",5);
 	define("DCRM_SHOWLIST",1);
 	define("DCRM_SHOW_NUM",5);

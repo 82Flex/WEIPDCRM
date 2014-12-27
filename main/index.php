@@ -77,7 +77,7 @@
 	//从 Release 文件读取源信息
 	if (file_exists('Release')) {
 		$release = file('Release');
-		$release_origin = '未命名';
+		$release_origin = $_e['NONAME'];
 		//获取最后修改时间并格式化
 		$release_mtime = filemtime('Release');
 		$release_time = date('Y-m-d H:i:s',$release_mtime);
@@ -91,7 +91,7 @@
 			}
 		}
 	} else {
-		$release_origin = '空白页';
+		$release_origin = $_e['EMPTY_PAGE'];
 	}
 	
 	//根据参数跳转到指定索引
@@ -100,7 +100,7 @@
 		if (ctype_digit($_GET['pid']) && intval($_GET['pid']) <= 10000) {
 			if (isset($_GET['method']) && $_GET['method'] == 'screenshot') {
 				$index = 2;
-				$title = '预览截图';
+				$title = $_e['VIEW_SCREENSHOTS'];
 			} elseif (isset($_GET['method']) && $_GET['method'] == 'report') {
 				//尝试设备类型
 				$device_type = array('iPhone','iPod','iPad');
@@ -120,7 +120,6 @@
 				}
 				if (!isset($_GET['support'])) {
 					$index = 3;
-					$title = '报告问题';
 				} else {
 					if ($_GET['support'] == '1') {
 						$support = 1;
@@ -132,20 +131,20 @@
 						$support = 0;
 					}
 					$index = 4;
-					$title = '报告问题';
 				}
+				$title = $_e['REPORT_PROBLEMS'];
 			} elseif (isset($_GET['method']) && $_GET['method'] == 'history') {
 				$index = 5;
-				$title = '历史版本';
+				$title = $_e['VERSION_HISTORY'];
 			} elseif (isset($_GET['method']) && $_GET['method'] == 'contact') {
 				$index = 6;
-				$title = '联系方式';
+				$title = $_e['CONTACT_US'];
 			} elseif (isset($_GET['method']) && $_GET['method'] == 'section') {
 				$index = 7;
-				$title = '软件包分类';
+				$title = $_e['PACKAGE_CATEGORY'];
 			} elseif (!isset($_GET['method']) || (isset($_GET['method']) && $_GET['method'] == 'view')) {
 				$index = 1;
-				$title = '查看软件包';
+				$title = $_e['VIEW_PACKAGE'];
 			} else {
 				httpinfo(405);
 				exit();
@@ -231,7 +230,7 @@
 						<div>
 							<label>
 								<p>
-									在 Cydia<sup><small>™</small></sup> 中添加
+									<?php echo(_e('ADD_IN_CYDIA')); ?>
 								</p>
 							</label>
 						</div>
@@ -247,7 +246,7 @@
 				<div>
 					<div style="float: right; vertical-align: middle; text-align: center; width: 200px">
 						<span style="font-size: 24px">
-							<?php echo $release_origin; ?>
+							<?php echo($release_origin); ?>
 						</span>
 						<br/>
 						<span style="font-size: 16px">
@@ -259,7 +258,7 @@
 					<img class="icon" src="CydiaIcon.png" style="vertical-align: top;" width="64" height="64" />
 					<hr />
 					<p>
-						请使用 Cydia<sup><small>™</small></sup> 添加地址
+						<?php echo(_e('USE_CYDIA_TO_ADD_URL')); ?>
 						<br />
 						<strong><a href="<?php echo($repo_url); ?>"><?php echo($repo_url); ?></a></strong>
 					</p>
@@ -272,10 +271,10 @@
 ?>
 			<block>
 				<p>
-					全源总计 <strong><?php echo $num; ?></strong> 个软件包。
+					<?php echo(_e('TOTAL_PACKAGES', $num)); ?> 
 				</p>
 				<p>
-					更新时间：<strong><?php echo $release_time; ?></strong>
+					<?php echo(_e('LAST_UPDATE_TIME', $release_time)); ?> 
 				</p>
 			</block>
 			<!-- 相关链接 -->
@@ -288,7 +287,7 @@
 					<div>
 						<div>
 							<label>
-								<p>访问首页</p>
+								<p><?php echo(_e('VISIT_HOME_PAGE')); ?></p>
 							</label>
 						</div>
 					</div>
@@ -301,7 +300,7 @@
 					<div>
 						<div>
 							<label>
-								<p>联系我们</p>
+								<p><?php echo(_e('CONTACT_US')); ?></p>
 							</label>
 						</div>
 					</div>
@@ -372,7 +371,7 @@
 						<div>
 							<label>
 								<p>
-									前往 <span style="font-style: italic; font-weight: bold"><span style="color: #1a3665">Pay</span><span style="color: #32689a">Pal</span><sup><small>™</small></sup></span> 捐助
+									<?php echo(_e('DONATE_VIA_PAYPAL')); ?>
 								</p>
 							</label>
 						</div>
@@ -390,8 +389,7 @@
 ?>
 			<block>
 				<p>
-					MYSQL ERROR!<br />
-					数据库错误！
+					<?php echo(_e('MYSQL_ERROR')); ?>
 				</p>
 			</block>
 <?php
@@ -439,7 +437,7 @@
 					<div>
 						<div>
 							<label>
-								<p>更多……</p>
+								<p><?php echo(_e('MORE')); ?></p>
 							</label>
 						</div>
 					</div>
@@ -458,15 +456,14 @@
 ?>
 			<block>
 				<p>
-					MYSQL ERROR!<br />
-					数据库错误！
+					<?php echo(_e('MYSQL_ERROR')); ?>
 				</p>
 			</block>
 <?php
 				} else {
 ?>
-			<!-- 软件源分类列表 -->
-			<label>软件源分类</label>
+			<!-- 软件包分类列表 -->
+			<label><?php echo(_e('PACKAGE_CATEGORY')); ?></label>
 			<fieldset>
 <?php
 					while ($section_assoc = mysql_fetch_assoc($section_query)) {
@@ -503,7 +500,7 @@
 ?>
 			<!-- 底部导航 -->
 			<label class="source">
-				<p>软件源信息</p>
+				<p><?php echo(_e('SOURCE_INFO')); ?></p>
 			</label>
 			<fieldset class="source">
 				<a href="/">
@@ -525,10 +522,10 @@
 			<!-- 页脚及版权信息 -->
 			<footer id="footer" style="display: none;">
 				<p>
-					<span id="id">首页</span>
+					<span id="id"><?php echo(_e('INDEX')); ?></span>
 					<br />
 					<span class="source-name"><?php echo $release_origin; ?></span>·
-					<span id="section">版权所有 &copy; 2014</span>
+					<span id="section"><?php echo(_e('COPYRIGHT', date("Y"))); ?></span>
 				</p>
 			</footer>
 <?php
@@ -540,8 +537,7 @@
 ?>
 			<block>
 				<p>
-					MYSQL ERROR!<br />
-					数据库错误！
+					<?php echo(_e('MYSQL_ERROR')); ?>
 				</p>
 			</block>
 <?php
@@ -551,9 +547,7 @@
 ?>
 			<block>
 				<p>
-					NO PACKAGE SELECTED!<br />
-					无效的软件包信息！<br />
-					可能是该软件包已被删除，如有疑问，请联系管理员。
+					<?php echo(_e('NO_PACKAGE_SELECTED')); ?>
 				</p>
 			</block>
 <?php
@@ -567,7 +561,7 @@
 					<div>
 						<div>
 							<label>
-								<p>在 Cydia<sup><small>™</small></sup> 中查看</p>
+								<p><?php echo(_e('VIEW_IN_CYDIA')); ?></p>
 							</label>
 						</div>
 					</div>
@@ -617,7 +611,7 @@
 					<div>
 						<div>
 							<label>
-								<p>作者</p>
+								<p><?php echo(_e('AUTHOR')); ?></p>
 							</label>
 							<label class="detail">
 									<p id="contact">
@@ -638,7 +632,7 @@
 					<div>
 						<div>
 							<label>
-								<p>下载软件包</p>
+								<p><?php echo(_e('DOWNLOAD')); ?></p>
 							</label>
 							<label class="detail">
 									<p>
@@ -662,7 +656,7 @@
 					<div>
 						<div>
 							<label>
-								<p>预览截图</p>
+								<p><?php echo(_e('VIEW_SCREENSHOTS')); ?></p>
 							</label>
 						</div>
 					</div>
@@ -675,7 +669,7 @@
 					<div>
 						<div>
 							<label>
-								<p>历史版本</p>
+								<p><?php echo(_e('VERSION_HISTORY')); ?></p>
 							</label>
 						</div>
 					</div>
@@ -688,7 +682,7 @@
 					<div>
 						<div>
 							<label>
-								<p>报告问题</p>
+								<p><?php echo(_e('REPORT_PROBLEMS')); ?></p>
 							</label>
 						</div>
 					</div>
@@ -759,7 +753,7 @@
 						<div>
 							<label>
 								<p>
-									前往 <span style="font-style: italic; font-weight: bold"><span style="color: #1a3665">Pay</span><span style="color: #32689a">Pal</span><sup><small>™</small></sup></span> 捐助
+									<?php echo(_e('DONATE_VIA_PAYPAL')); ?>
 								</p>
 							</label>
 						</div>
@@ -774,7 +768,7 @@
 					<div>
 						<div>
 							<label>
-								<p>更多信息</p>
+								<p><?php echo(_e('MORE_INFO')); ?></p>
 							</label>
 						</div>
 					</div>
@@ -817,8 +811,8 @@
 <?php
 					if (DCRM_MULTIINFO == 2) {
 ?>
-					<p>版本 <strong><?php echo($pkg_assoc['Version']); ?></strong> | 下载次数 <strong><?php echo($pkg_assoc['DownloadTimes']); ?></strong></p>
-					<p>更新时间 <strong><?php echo($pkg_assoc['CreateStamp']); ?></strong></p>
+					<p><?php echo(_e('VERSION')); ?> <strong><?php echo($pkg_assoc['Version']); ?></strong> | <?php echo(_e('DOWNLOAD_TIMES')); ?> <strong><?php echo($pkg_assoc['DownloadTimes']); ?></strong></p>
+					<p><?php echo(_e('PACKAGE_UPDATE_TIME')); ?> <strong><?php echo($pkg_assoc['CreateStamp']); ?></strong></p>
 					<hr />
 <?php
 					}
@@ -839,7 +833,7 @@
 ?>
 			<!-- 底部导航 -->
 			<label class="source">
-				<p>软件源信息</p>
+				<p><?php echo(_e('SOURCE_INFO')); ?></p>
 			</label>
 			<fieldset class="source">
 				<a href="/">
@@ -884,8 +878,7 @@
 ?>
 			<block>
 				<p>
-					MYSQL ERROR!<br />
-					数据库错误！
+					<?php echo(_e('MYSQL_ERROR')); ?>
 				</p>
 			</block>
 <?php
@@ -899,7 +892,7 @@
 						$i++;
 					}
 ?>
-			<!--label>预览截图</label-->
+			<!--label><?php echo(_e('VIEW_SCREENSHOTS')); ?></label-->
 			<!-- 截图展示部分 -->
 			<div class="horizontal-scroll-wrapper" style="background: transparent; position: relative;">
 				<!-- 取首张截图高斯滤镜置于底层 -->
@@ -920,19 +913,19 @@
 <?php
 				} else {
 ?>
-			<label>该软件包暂无截图</label>
+			<label><?php echo(_e('NO_SCREENSHOTS')); ?></label>
 <?php
 				}
 			}
 		} else {
 ?>
-			<label>管理员关闭了预览截图功能</label>
+			<label><?php echo(_e('FUNCTION_DISABLED', _e("VIEW_SCREENSHOTS"))); ?></label>
 <?php
 		}
 	} elseif ($index == 3) {
 ?>
 			<!-- 报告问题界面 -->
-			<label>设备信息</label>
+			<label><?php echo(_e('DEVICE_INFO')); ?></label>
 <?php
 		if (DCRM_REPORTING == 2) {
 			$q_count = mysql_query("SELECT `Support`, COUNT(*) AS 'num' FROM `".DCRM_CON_PREFIX."Reports` WHERE (`Device` = '".$DEVICE."' AND `iOS` = '".$OS."' AND `PID` = '".$_GET['pid']."') GROUP BY `Support`");
@@ -971,7 +964,7 @@
 ?>
 				<div>
 					<p>
-						<strong>当前设备信息</strong>
+						<strong><?php echo(_e('CURRENT_DEVICE_INFO')); ?></strong>
 					</p>
 					<hr />
 					<p>
@@ -980,27 +973,27 @@
 				</div>
 			</fieldset>
 			<!-- 请求提交与统计展示 -->
-			<label>提交请求</label>
+			<label><?php echo(_e('SUBMIT_YOUR_REQUEST')); ?></label>
 			<fieldset>
 				<a href="index.php?pid=<?php echo $_GET['pid']; ?>&method=report&support=3">
 					<img class="icon" src="icons/default/support_3.png" width="58" height="58" />
 					<div>
 						<div>
 							<label>
-								<p>请求升级</p>
+								<p><?php echo(_e('REQUEST_FOR_UPDATE')); ?></p>
 							</label>
 						</div>
 					</div>
 				</a>
 			</fieldset>
-			<label>兼容性报告</label>
+			<label><?php echo(_e('COMPATIBILITY_REPORTS')); ?></label>
 			<fieldset>
 				<a href="index.php?pid=<?php echo $_GET['pid']; ?>&method=report&support=1">
 					<img class="icon" src="icons/default/support_1.png" width="58" height="58" />
 					<div>
 						<div>
 							<label>
-								<p>完美兼容<?php echo $s_1; ?></p>
+								<p><?php echo(_e('FULLY_COMPATIBILE')); ?><?php echo $s_1; ?></p>
 							</label>
 						</div>
 					</div>
@@ -1010,7 +1003,7 @@
 					<div>
 						<div>
 							<label>
-								<p>部分兼容<?php echo $s_0; ?></p>
+								<p><?php echo(_e('PARTLY_COMPATIBILE')); ?><?php echo $s_0; ?></p>
 							</label>
 						</div>
 					</div>
@@ -1020,7 +1013,7 @@
 					<div>
 						<div>
 							<label>
-								<p>不兼容<?php echo $s_2; ?></p>
+								<p><?php echo(_e('NOT_COMPATIBILE')); ?><?php echo $s_2; ?></p>
 							</label>
 						</div>
 					</div>
@@ -1029,16 +1022,13 @@
 			<!-- 报告问题计划说明 -->
 			<fieldset>
 				<div>
-					<p><strong>软件包兼容性报告是由广大用户投票，系统统计生成的数据，仅供参考。</strong></p>
-					<hr />
-					<p>如果您，安装以后出现兼容性问题，您的一票，也许能够帮助成千上万的用户免于安全模式、白苹果等诸多威胁。</p>
-					<p>当然，如果您安装以后能够完美使用，也请您投上一票，它能够让大家更放心地安装软件包。</p>
+					<?php echo(_e('COMPATIBILE_INTRO')); ?>
 				</div>
 			</fieldset>
 <?php
 		} else {
 ?>
-			<label>管理员关闭了报告问题功能</label>
+			<label><?php echo(_e('FUNCTION_DISABLED', _e("REPORT_PROBLEMS"))); ?></label>
 <?php
 		}
 	} elseif ($index == 4) {
@@ -1055,8 +1045,7 @@
 				<div>
 					<p>
 						<strong>
-							您的报告已经提交完成。<br />
-							感谢您的支持！
+							<?php echo(_e('THANKS_FOR_REPORTING')); ?>
 						</strong>
 					</p>
 <?php
@@ -1066,8 +1055,7 @@
 				<div>
 					<p>
 						<strong>
-							请使用 Cydia 进行投票。<br />
-							每台设备限制投票 2 次！
+							<?php echo(_e('VOTING_RESTRICTIONS')); ?>
 						</strong>
 					</p>
 <?php
@@ -1078,8 +1066,7 @@
 				<div>
 					<p>
 						<strong>
-							投票次数超过系统限制。<br />
-							请稍后再试！
+							<?php echo(_e('VOTING_RETRY')); ?>
 						</strong>
 					</p>
 <?php
@@ -1090,7 +1077,7 @@
 <?php
 		} else {
 ?>
-			<label>管理员关闭了报告问题功能</label>
+			<label><?php echo(_e('FUNCTION_DISABLED', _e("REPORT_PROBLEMS"))); ?></label>
 <?php
 		}
 	} elseif ($index == 5) {
@@ -1098,7 +1085,7 @@
 		if (mysql_affected_rows() > 0) {
 ?>
 			<!-- 历史版本展示 -->
-			<label>历史版本</label>
+			<label><?php echo(_e('VERSION_HISTORY')); ?></label>
 			<fieldset>
 <?php
 			while ($history = mysql_fetch_assoc($history_query)) {
@@ -1109,7 +1096,7 @@
 						<div>
 							<label>
 								<p>
-									版本 <?php echo($history['Version']); ?>
+									<?php echo(_e('VERSION')); ?> <?php echo($history['Version']); ?>
 								</p>
 							</label>
 						</div>
@@ -1122,7 +1109,7 @@
 <?php
 		} else {
 ?>
-			<label>该软件包暂无历史版本</label>
+			<label><?php echo(_e('NO_VERSION_HISTORY')); ?></label>
 			<br />
 <?php
 		}
@@ -1133,8 +1120,7 @@
 ?>
 			<block>
 				<p>
-					MYSQL ERROR!<br />
-					数据库错误！
+					<?php echo(_e('MYSQL_ERROR')); ?>
 				</p>
 			</block>
 <?php
@@ -1144,9 +1130,7 @@
 ?>
 			<block>
 				<p>
-					NO PACKAGE SELECTED!<br />
-					无效的软件包信息！<br />
-					可能是该软件包已被删除，如有疑问，请联系管理员。
+					<?php echo(_e('NO_PACKAGE_SELECTED')); ?>
 				</p>
 			</block>
 <?php
@@ -1159,14 +1143,14 @@
 			<fieldset class="author">
 				<div>
 					<p>
-						源管理者<strong>无法</strong>为你解决软件包功能上出现的问题：你<strong>必须</strong>联系其开发者或设计者。
+						<?php echo(_e('CONTACT_AUTHOR_INTRO')); ?>
 					</p>
 				</div>
 				<a href="mailto:<?php echo($author_mail); ?>?subject=<?php echo(urlencode("Cydia/APT(A): ".$pkg_assoc['Name']." (".$pkg_assoc['Version'].")")); ?>" target="_blank">
 				<img class="icon" src="icons/default/mail_forward.png">
 					<div>
 						<div>
-							<label><p>作者</p></label>
+							<label><p><?php echo(_e('AUTHOR')); ?></p></label>
 							<label class="detail">
 								<p><?php echo($author_name); ?></p>
 							</label>
@@ -1183,14 +1167,14 @@
 			<fieldset class="maintainer">
 				<div>
 					<p>
-						如果该软件包为商业软件包，你可以联系其担保人获取商业支持。
+						<?php echo(_e('CONTACT_SPONSOR_INTRO')); ?>
 					</p>
 				</div>
 				<a href="<?php echo($sponsor_url); ?>" target="_blank">
 				<img class="icon" src="icons/default/mail_forward.png">
 					<div>
 						<div>
-							<label><p>担保人</p></label>
+							<label><p><?php echo(_e('SPONSOR')); ?></p></label>
 							<label class="detail">
 								<p><?php echo($sponsor_name); ?></p>
 							</label>
@@ -1206,13 +1190,13 @@
 ?>
 			<fieldset class="maintainer">
 				<div>
-					<p>安装、卸载过程中出现的问题，你需要将其发送给制作软件包的提供者。</p>
+					<p><?php echo(_e('CONTACT_MAINTAINER_INTRO')); ?></p>
 				</div>
 				<a href="mailto:<?php echo($maintainer_mail); ?>?subject=<?php echo(urlencode("Cydia/APT(A): ".$pkg_assoc['Name']." (".$pkg_assoc['Version'].")")); ?>" target="_blank">
 				<img class="icon" src="icons/default/mail_forward.png">
 					<div>
 						<div>
-							<label><p>提供者</p></label>
+							<label><p><?php echo(_e('MAINTAINER')); ?></p></label>
 							<label class="detail">
 								<p><?php echo($maintainer_name); ?></p>
 							</label>
@@ -1231,8 +1215,7 @@
 ?>
 			<block>
 				<p>
-					MYSQL ERROR!<br />
-					数据库错误！
+					<?php echo(_e('MYSQL_ERROR')); ?>
 				</p>
 			</block>
 <?php
@@ -1242,8 +1225,7 @@
 ?>
 			<block>
 				<p>
-					NO SECTION SELECTED!<br />
-					无效的分类信息！
+					<?php echo(_e('NO_SECTION_SELECTED')); ?>
 				</p>
 			</block>
 <?php
@@ -1256,8 +1238,8 @@
 					$s_num = mysql_affected_rows();
 ?>
 			<block>
-					<p>该分类总计 <strong><?php echo($s_num); ?></strong> 个软件包</p>
-					<p>创建时间：<strong><?php echo($section_assoc['TimeStamp']); ?></strong></p>
+					<p><?php echo(_e('TOTAL_SECTION_PACKAGES', $s_num)); ?></p>
+					<p><?php echo(_e('CREATE_TIME', $section_assoc['TimeStamp'])); ?></strong></p>
 			</block>
 			<fieldset>
 <?php
@@ -1298,7 +1280,7 @@
 			}
 		} else {
 ?>
-			<label>管理员关闭了查看分类功能</label>
+			<label><?php echo(_e('FUNCTION_DISABLED', _e("PACKAGE_CATEGORY"))); ?></label>
 <?php
 		}
 	}

@@ -20,14 +20,14 @@
 	
 	error_reporting(0);
 	ob_start();
-	define("DCRM",true);
+	define("DCRM", true);
 	require_once("manage/include/config.inc.php");
 	require_once("manage/include/autofill.inc.php");
 	header("Content-Type: text/html; charset=UTF-8");
 	
 	if (file_exists("Release")) {
 		$release = file("Release");
-		$release_origin = "未命名";
+		$release_origin = $_e['NONAME'];
 		foreach ($release as $line) {
 			if(preg_match("#^Origin#", $line)) {
 				$release_origin = trim(preg_replace("#^(.+):\\s*(.+)#","$2", $line));
@@ -37,7 +37,7 @@
 			}
 		}
 	} else {
-		$release_origin = '空白页';
+		$release_origin = $_e['EMPTY_PAGE'];
 		if (file_exists('init/install.php')) {
 			$first = true;
 		} else {
@@ -87,15 +87,18 @@
 ?>
 			<p><?php echo $release_origin; ?></p>
 			<hr />
-			<p>欢迎通过 Cydia <a href="cydia://sources/add">添加</a> <code><?php echo(base64_decode(DCRM_REPOURL)); ?></code> 访问本源。</p>
-			<p>移动版 Safari 访问首页，查看更多精彩内容。</p>
+			<p><?php echo(_e('WELCOME_MESSAGE', base64_decode(DCRM_REPOURL))); ?></p>
+            <p><?php echo(_e('SAFARI_ONLY')); ?></p>
+            <hr />
+            <p><?php echo(_e('WEIBO')); ?> <a href="<?php echo(AUTOFILL_WEIBO); ?>"><?php echo(AUTOFILL_WEIBO); ?></a></p>
+            <p><?php echo(_e('BLOG')); ?> <a href="<?php echo(AUTOFILL_SITE); ?>"><?php echo(AUTOFILL_SITE); ?></a></p>
 			<hr />
-			<p>© 2014 <a href="http://82flex.com">82Flex</a>. 由 <a href="http://82flex.com/projects">DCRM</a> 强力驱动.</p>
+			<p>© <?php echo(date('Y')); ?> <a href="http://82flex.com">82Flex</a>. <?php echo(_e('POWERED_BY')); ?></p>
 <?php
 			if ($first) {
 ?>
 			<hr />
-			站长您好，如果您是首次安装 DCRM 专业版，请运行 <a href="init/index.html">快速安装脚本</a> 。
+			<?php echo(_e('INSTALL_INTRO')); ?>
 <?php
 			}
 ?>
@@ -108,37 +111,5 @@
 <?php
 	}
 ?>
-<script src="//static.segmentfault.com/build/3rd/assets.ce4fe392.js"></script>
-<script>
-(function(w) {
-	w.SF = {
-		staticUrl: "//static.segmentfault.com",
-	};
-	w.SF.token = (function() {
-		var _tn4 = 'b' + 'a6' + 'f' + '794'
-		 + '66' + '9'
-		 + '9c' + 'ce7'
-		 + 'a' + '648' + ''
-		 + 'ee'
-		 + '' + 'd2'
-		 + 'fe7'
-		 + '3' + 'b'
-		 + 'dd'
-		 + '067',
-		_KYE7 = [[15, 16]];
-		for (var i = 0; i < _KYE7.length; i++) {
-			_tn4 = _tn4.substring(0, _KYE7[i][0]) + _tn4.substring(_KYE7[i][1]);
-		}
-		return _tn4;
-	})();
-})(window);
-function DelCookie(name) {
-    var exp = new Date();
-    exp.setTime(exp.getTime() - 1);
-    document.cookie = name + "=; expires=" + exp.toGMTString();
-}
-DelCookie("christmased");
-</script>
-<script src="//static.segmentfault.com/build/qa/js/index.5fb66921.js"></script>
 	</body>
 </html>
