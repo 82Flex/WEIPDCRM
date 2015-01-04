@@ -88,6 +88,7 @@
 			<p><?php echo $release_origin; ?></p>
 			<hr />
 			<p><?php echo(_e('WELCOME_MESSAGE', base64_decode(DCRM_REPOURL))); ?></p>
+			<p><img src="css/preview.png" alt="preview" style="width: 300px; border-radius: 6px;" /></p>
             <p><?php echo(_e('SAFARI_ONLY')); ?></p>
             <hr />
             <p><?php echo(_e('WEIBO')); ?> <a href="<?php echo(AUTOFILL_WEIBO); ?>"><?php echo(AUTOFILL_WEIBO); ?></a></p>
