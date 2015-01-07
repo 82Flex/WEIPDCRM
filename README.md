@@ -4,16 +4,12 @@ WEIPDCRM
 
 Darwin Cydia Repository Manager<br />
 This is an open source Repository Manager for Saurik's Cydia Clients.<br />
-A repo means a repository and a apt source.<br />
-No English version now. :(
 
 Online View:<br />
 1.  http://apt.82flex.com<br />
-2.  http://nav.82flex.com<br />
-3.  http://apt.touchsprite.com<br />
-4.  http://apt.phoneai.cn<br />
-5.  http://minwenlsm.pw/cydia<br />
-6.  http://masihtak.com/repo<br />
+2.  http://apt.touchsprite.com<br />
+3.  http://apt.phoneai.cn<br />
+4.  http://minwenlsm.pw/cydia<br />
 
 Requirements:<br />
 1. PHP Version >= 5.3, MYSQL<br />
