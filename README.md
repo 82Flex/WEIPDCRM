@@ -11,6 +11,9 @@ Online View:<br />
 1.  http://apt.82flex.com<br />
 2.  http://nav.82flex.com<br />
 3.  http://apt.touchsprite.com<br />
+4.  http://apt.phoneai.cn<br />
+5.  http://minwenlsm.pw/cydia<br />
+6.  http://masihtak.com/repo<br />
 
 Requirements:<br />
 1. PHP Version >= 5.3, MYSQL<br />
