@@ -57,4 +57,6 @@
 	$_e['WEIBO'] = "微博";
 	$_e['POWERED_BY'] = "由 <a href=\"http://82flex.com/projects\">DCRM</a> 强力驱动.";
 	$_e['INSTALL_INTRO'] = "站长您好，如果您是首次安装 DCRM 专业版，请运行 <a href=\"init/index.html\">快速安装脚本</a> 。";
+	$_e['MY_FAVOURITE_REPO'] = "我最喜爱的软件源：%@（%@）";
+	$_e['SHARE_TO'] = "分享到";
 ?>

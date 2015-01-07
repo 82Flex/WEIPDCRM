@@ -44,14 +44,13 @@
 			$first = false;
 		}
 	}
-	
+	$release_url = base64_decode(DCRM_REPOURL);
 ?>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 	<head>
 		<title><?php echo $release_origin; ?></title>
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-		<!-- 搜索引擎检索 -->
 		<meta name="robots" content="index, follow" />
 <?php
 	if (defined("AUTOFILL_SEO")) {
@@ -70,13 +69,11 @@
 <?php
 	}
 ?>
-		<!-- 相关文件引用 -->
 		<link rel="shortcut icon" href="favicon.ico" />
 		<link href="css/bootstrap.min.css" rel="stylesheet">
 		<link href="css/misc.min.css" rel="stylesheet" media="screen">
 	</head>
 	<body>
-		<!-- 欢迎信息 -->
 		<div class="well">
 <?php
 			if (file_exists('CydiaIcon.png')) {
@@ -87,12 +84,29 @@
 ?>
 			<p><?php echo $release_origin; ?></p>
 			<hr />
-			<p><?php echo(_e('WELCOME_MESSAGE', base64_decode(DCRM_REPOURL))); ?></p>
+			<p><?php echo(_e('WELCOME_MESSAGE', $release_url)); ?></p>
 			<p><img src="css/preview.png" alt="preview" style="width: 300px; border-radius: 6px;" /></p>
-            <p><?php echo(_e('SAFARI_ONLY')); ?></p>
-            <hr />
-            <p><?php echo(_e('WEIBO')); ?> <a href="<?php echo(AUTOFILL_WEIBO); ?>"><?php echo(AUTOFILL_WEIBO); ?></a></p>
-            <p><?php echo(_e('BLOG')); ?> <a href="<?php echo(AUTOFILL_SITE); ?>"><?php echo(AUTOFILL_SITE); ?></a></p>
+			<hr />
+			<p><?php echo(_e('SAFARI_ONLY')); ?></p>
+<?php
+			if (defined("DCRM_DUOSHUO_KEY")) {
+?>
+			<div class="ds-recent-comments" data-num-items="6" data-show-avatars="1" data-show-time="1" data-show-title="1" data-show-admin="1" data-excerpt-length="70"></div>
+			<div class="ds-share flat" 
+			data-thread-key="apt-index" 
+			data-title="<?php echo $release_origin; ?>" 
+			data-images="" 
+			data-content="<?php echo(_e('MY_FAVOURITE_REPO', $release_origin, $release_url)); ?>" 
+			data-url="<?php echo($release_url); ?>">
+			    <div class="ds-share-aside-right">
+			      <div class="ds-share-aside-inner">
+			      </div>
+			      <div class="ds-share-aside-toggle"><?php echo(_e('SHARE_TO')); ?></div>
+			    </div>
+			</div>
+<?php
+			}
+?>
 			<hr />
 			<p>© <?php echo(date('Y')); ?> <a href="http://82flex.com">82Flex</a>. <?php echo(_e('POWERED_BY')); ?></p>
 <?php
@@ -107,8 +121,22 @@
 <?php
 	if (defined("AUTOFILL_STATISTICS")) {
 ?>
-		<!-- 统计代码 -->
 		<div style="text-align: center; display: none;"><?php echo AUTOFILL_STATISTICS; ?></div>
+<?php
+	}
+	if (defined("DCRM_DUOSHUO_KEY")) {
+?>
+		<script type="text/javascript">
+		var duoshuoQuery = {short_name:"<?php echo(DCRM_DUOSHUO_KEY); ?>"};
+			(function() {
+				var ds = document.createElement('script');
+				ds.type = 'text/javascript';ds.async = true;
+				ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.unstable.js';
+				ds.charset = 'UTF-8';
+				(document.getElementsByTagName('head')[0] 
+				 || document.getElementsByTagName('body')[0]).appendChild(ds);
+			})();
+		</script>
 <?php
 	}
 ?>
