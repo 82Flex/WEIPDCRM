@@ -57,4 +57,6 @@
 	$_e['WEIBO'] = "Weibo";
 	$_e['POWERED_BY'] = "Powered by <a href=\"http://82flex.com/projects\">DCRM</a> .";
 	$_e['INSTALL_INTRO'] = "Dear manager, please follow the steps on <a href=\"init/index.html\">Install Introduction</a> first.";
+	$_e['MY_FAVOURITE_REPO'] = "My Favourite Repo: %@(%@)";
+	$_e['SHARE_TO'] = "Share To";
 ?>
