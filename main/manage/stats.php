@@ -136,7 +136,11 @@
 						?>
 						<br />
 						<!-- Statistics Start -->
-						<?php echo AUTOFILL_STATISTICS_INFO; ?>
+						<?php 
+						if (defined("AUTOFILL_STATISTICS_INFO")) {
+							echo AUTOFILL_STATISTICS_INFO;
+						}
+						?>
 						<!-- Statistics End -->
 					</div>
 				</div>
