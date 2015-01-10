@@ -3,7 +3,6 @@
 		exit;
 	}
 	//define("DCRM_LANG", "zh-cn");
-	include_once("./lang/e.php");
 	define("DCRM_MAXLOGINFAIL",5);
 	define("DCRM_SHOWLIST",1);
 	define("DCRM_SHOW_NUM",5);

@@ -22,6 +22,7 @@
 	require_once('manage/include/config.inc.php');
 	require_once('manage/include/connect.inc.php');
 	require_once('manage/include/autofill.inc.php');
+	include_once("lang/e.php");
 	require_once('manage/include/func.php');
 	require_once('manage/include/Mobile_Detect.php');
 	header('Content-Type: text/html; charset=UTF-8');

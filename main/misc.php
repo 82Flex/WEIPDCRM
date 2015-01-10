@@ -23,6 +23,7 @@
 	define("DCRM", true);
 	require_once("manage/include/config.inc.php");
 	require_once("manage/include/autofill.inc.php");
+	include_once("lang/e.php");
 	header("Content-Type: text/html; charset=UTF-8");
 	
 	if (file_exists("Release")) {
