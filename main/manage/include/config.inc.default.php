@@ -18,6 +18,5 @@
 	define("DCRM_LISTS_METHOD",3);
 	define("DCRM_CHECK_METHOD",1);
 	define("DCRM_REPOURL","");
-	define("DCRM_DUOSHUO_KEY", "82flex");
 	define("DCRM_LOGINFAILRESETTIME",600);
 ?>

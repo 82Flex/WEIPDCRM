@@ -778,13 +778,13 @@
 			</fieldset>
 <?php
 				}
-				if (defined("DCRM_DUOSHUO_KEY")) {
+				if (defined("AUTOFILL_DUOSHUO_KEY")) {
 ?>
 			<fieldset>
 				<div class="ds-thread" data-thread-key="<?php echo($pkg_assoc['Package']); ?>" data-title="<?php echo($pkg_assoc['Name']); ?>" data-url="<?php echo('http://'.$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI']); ?>"></div>
 			</fieldset>
 			<script type="text/javascript">
-			var duoshuoQuery = {short_name:"<?php echo(DCRM_DUOSHUO_KEY); ?>"};
+			var duoshuoQuery = {short_name:"<?php echo(AUTOFILL_DUOSHUO_KEY); ?>"};
 				(function() {
 					var ds = document.createElement('script');
 					ds.type = 'text/javascript';ds.async = true;

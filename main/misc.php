@@ -89,7 +89,7 @@
 			<hr />
 			<p><?php echo(_e('SAFARI_ONLY')); ?></p>
 <?php
-			if (defined("DCRM_DUOSHUO_KEY")) {
+			if (defined("AUTOFILL_DUOSHUO_KEY")) {
 ?>
 			<div class="ds-recent-comments" data-num-items="6" data-show-avatars="1" data-show-time="1" data-show-title="1" data-show-admin="1" data-excerpt-length="70"></div>
 			<div class="ds-share flat" 
@@ -124,10 +124,10 @@
 		<div style="text-align: center; display: none;"><?php echo AUTOFILL_STATISTICS; ?></div>
 <?php
 	}
-	if (defined("DCRM_DUOSHUO_KEY")) {
+	if (defined("AUTOFILL_DUOSHUO_KEY")) {
 ?>
 		<script type="text/javascript">
-		var duoshuoQuery = {short_name:"<?php echo(DCRM_DUOSHUO_KEY); ?>"};
+		var duoshuoQuery = {short_name:"<?php echo(AUTOFILL_DUOSHUO_KEY); ?>"};
 			(function() {
 				var ds = document.createElement('script');
 				ds.type = 'text/javascript';ds.async = true;

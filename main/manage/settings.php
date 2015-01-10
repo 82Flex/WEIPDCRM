@@ -481,6 +481,14 @@
 						<h3>社会化分享</h3>
 						<br />
 						<div class="group-control">
+							<label class="control-label">多说社会化评论框KEY</label>
+							<div class="controls">
+								<input type="text" name="DUOSHUO_KEY" value="<?php if(defined("AUTOFILL_DUOSHUO_KEY")){echo(htmlspecialchars(stripslashes(AUTOFILL_DUOSHUO_KEY)));} ?>"/>
+								<p class="help-block">请前往<a href="http://duoshuo.com/">http://duoshuo.com/</a>获取KEY（需要注册）。留空关闭评论功能。</p>
+							</div>
+						</div>
+						<br />
+						<div class="group-control">
 							<label class="control-label">QQ群名称</label>
 							<div class="controls">
 								<input type="text" name="TENCENT_NAME" value="<?php if(defined("AUTOFILL_TENCENT_NAME")){echo(htmlspecialchars(stripslashes(AUTOFILL_TENCENT_NAME)));} ?>"/>
@@ -716,7 +724,7 @@
 							$config_text .= "\tdefine(\"DCRM_LOGINFAILRESETTIME\",".($_POST['resettime']*60).");\n";
 							$config_text .= "?>";
 							$autofill_text = "<?php\n\tif (!defined(\"DCRM\")) {\n\t\texit;\n\t}\n";
-							$autofill_list = array("EMERGENCY", "PRE", "NONAME", "MASTER", "FULLNAME", "EMAIL", "SITE", "WEIBO", "WEIBO_NAME", "TWITTER", "TWITTER_NAME", "FACEBOOK", "FACEBOOK_NAME", "DESCRIPTION", "SEO", "KEYWORDS", "PAYPAL", "STATISTICS", "STATISTICS_INFO", "ADVERTISEMENT", "TENCENT", "TENCENT_NAME");
+							$autofill_list = array("EMERGENCY", "PRE", "NONAME", "MASTER", "FULLNAME", "EMAIL", "SITE", "WEIBO", "WEIBO_NAME", "TWITTER", "TWITTER_NAME", "FACEBOOK", "FACEBOOK_NAME", "DESCRIPTION", "SEO", "KEYWORDS", "PAYPAL", "STATISTICS", "STATISTICS_INFO", "ADVERTISEMENT", "TENCENT", "TENCENT_NAME", "DUOSHUO_KEY");
 							foreach ($autofill_list as $value) {
 								if (!empty($_POST[$value])) {
 									$autofill_text .= "\tdefine(\"AUTOFILL_".$value."\",\"".addslashes(str_replace(array("\r","\n"), '',nl2br(htmlspecialchars_decode($_POST[$value]))))."\");\n";
