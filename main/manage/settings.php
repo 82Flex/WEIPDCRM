@@ -112,6 +112,13 @@
 						</div>
 						<br />
 						<div class="group-control">
+							<label class="control-label">尝试次数重置时间(分钟)</label>
+							<div class="controls">
+								<input type="text" required="required" name="resettime" value="<?php if(defined(DCRM_LOGINFAILRESETTIME)){echo(htmlspecialchars(DCRM_LOGINFAILRESETTIME)/60);}else{echo(10);} ?>"/>
+							</div>
+						</div>
+						<br />
+						<div class="group-control">
 							<label class="control-label" style="color: red;">源地址</label>
 							<div class="controls">
 								<input type="text" required="required" name="url_repo" style="width: 400px;" value="<?php echo htmlspecialchars(base64_decode(DCRM_REPOURL)); ?>"/>
@@ -602,6 +609,10 @@
 							$error_text .= "最大尝试次数必须为整数！\n";
 							$error_stat = true;
 						}
+						if (!isset($_POST['resettime']) OR !ctype_digit($_POST['resettime'])) {
+							$error_text .= "尝试次数重置时间必须为整数！\n";
+							$error_stat = true;
+						}
 						if (!isset($_POST['speedlimit']) OR !ctype_digit($_POST['speedlimit'])) {
 							$error_text .= "下载限速必须为整数！\n";
 							$error_stat = true;
@@ -702,6 +713,7 @@
 							$config_text .= "\tdefine(\"DCRM_LISTS_METHOD\",".$_POST['listsmethod'].");\n";
 							$config_text .= "\tdefine(\"DCRM_CHECK_METHOD\",".$_POST['checkmethod'].");\n";
 							$config_text .= "\tdefine(\"DCRM_REPOURL\",\"".base64_encode($_POST['url_repo'])."\");\n";
+							$config_text .= "\tdefine(\"DCRM_LOGINFAILRESETTIME\",".($_POST['resettime']*60).");\n";
 							$config_text .= "?>";
 							$autofill_text = "<?php\n\tif (!defined(\"DCRM\")) {\n\t\texit;\n\t}\n";
 							$autofill_list = array("EMERGENCY", "PRE", "NONAME", "MASTER", "FULLNAME", "EMAIL", "SITE", "WEIBO", "WEIBO_NAME", "TWITTER", "TWITTER_NAME", "FACEBOOK", "FACEBOOK_NAME", "DESCRIPTION", "SEO", "KEYWORDS", "PAYPAL", "STATISTICS", "STATISTICS_INFO", "ADVERTISEMENT", "TENCENT", "TENCENT_NAME");
