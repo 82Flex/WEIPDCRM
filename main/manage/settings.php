@@ -594,7 +594,7 @@
 							$error_text .= "用户名长度必须在 4 - 20 个字符之间！\n";
 							$error_stat = true;
 						}
-						if (!ereg("^[0-9a-zA-Z\_]*$", $_POST['username'])) {
+						if (!preg_match("/^[0-9a-zA-Z\_]*$/", $_POST['username'])) {
 							$error_text .= "用户名只能使用数字、字母、下划线的组合！\n";
 							$error_stat = true;
 						}
