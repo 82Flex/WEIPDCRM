@@ -25,6 +25,7 @@
 	require_once('include/connect.inc.php');
 	require_once("include/func.php");
 	header("Content-Type: text/html; charset=UTF-8");
+	$f_Package = "";
 	
 	if (!isset($_SESSION['connected']) || $_SESSION['connected'] != true) {
 		header("Location: login.php");

@@ -26,6 +26,7 @@
 	require_once('include/func.php');
 	require_once('include/tar.php');
 	header("Content-Type: text/html; charset=UTF-8");
+	$alert = "";
 	
 	if (!isset($_SESSION['connected']) || $_SESSION['connected'] != true) {
 		header("Location: login.php");
