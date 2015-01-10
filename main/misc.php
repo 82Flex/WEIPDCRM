@@ -109,7 +109,7 @@
 			}
 ?>
 			<hr />
-			<p>© <?php echo(date('Y')); ?> <a href="http://82flex.com">82Flex</a>. <?php echo(_e('POWERED_BY')); ?></p>
+			<p>© <?php if(defined("AUTOFILL_FOOTER_YEAR")){echo(htmlspecialchars(stripslashes(AUTOFILL_FOOTER_YEAR)).'-');} echo(date('Y')); ?> <a href="<?php echo htmlspecialchars(base64_decode(DCRM_REPOURL)); ?>"><?php if(defined("AUTOFILL_FOOTER_NAME")){echo(htmlspecialchars(stripslashes(AUTOFILL_FOOTER_NAME)));}else{echo($release_origin);} ?></a> · <?php echo(_e('POWERED_BY')); ?> · <?php if(defined("AUTOFILL_FOOTER_CODE")){echo(stripslashes(AUTOFILL_FOOTER_CODE));} ?></p>
 <?php
 			if ($first) {
 ?>

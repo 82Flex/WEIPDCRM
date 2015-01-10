@@ -481,8 +481,12 @@
 				<p>
 					<span id="id"><?php echo(_e('INDEX')); ?></span>
 					<br />
-					<span class="source-name"><?php echo($release_origin); ?></span>·
-					<span id="section"><?php echo(_e('COPYRIGHT', date("Y"))); ?></span>
+					<span class="source-name"><?php if(defined("AUTOFILL_FOOTER_NAME")){echo(htmlspecialchars(stripslashes(AUTOFILL_FOOTER_NAME)));}else{echo($release_origin);} ?></span>·
+					<span id="section"><?php if(defined("AUTOFILL_FOOTER_YEAR")){echo(_e('COPYRIGHT', htmlspecialchars(stripslashes(AUTOFILL_FOOTER_YEAR)).'-'.date("Y")));}else{echo(_e('COPYRIGHT', date("Y")));} ?></span>
+					<?php if(defined("AUTOFILL_FOOTER_CODE")){ ?>
+					<br />
+					<span id="code"><?php echo(stripslashes(AUTOFILL_FOOTER_CODE));?></span>
+					<?php } ?>
 				</p>
 			</footer>
 <?php
@@ -829,6 +833,11 @@
 					<br />
 					<span class="source-name"><?php echo($release_origin); ?></span>·
 					<span id="section"><?php echo($pkg_assoc['Section']); ?></span>
+					<br />
+					<?php if(defined("AUTOFILL_FOOTER_CODE")){ ?>
+					<br />
+					<span id="code"><?php echo(stripslashes(AUTOFILL_FOOTER_CODE));?></span>
+					<?php } ?>
 				</p>
 			</footer>
 <?php
