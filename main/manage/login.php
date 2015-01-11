@@ -46,6 +46,8 @@
 	}
 	if (!isset($_SESSION['try'])) {
 		$_SESSION['try'] = 0;
+	} elseif (isset($_SESSION['lasttry']) && $_SESSION['lasttry']+DCRM_LOGINFAILRESETTIME <= time()) {
+		$_SESSION['try'] = 0;
 	}
 	if (isset($_GET['action']) AND $_GET['action'] == "logout") {
 		session_unset();
@@ -102,11 +104,13 @@
 					exit();
 				} else {
 					$_SESSION['try'] = $_SESSION['try'] + 1;
+					$_SESSION['lasttry'] = time();
 					$error = "badlogin";
 					goto endlabel;
 				}
 			} else {
 				$_SESSION['try'] = $_SESSION['try'] + 1;
+				$_SESSION['lasttry'] = time();
 				$error = "badlogin";
 				goto endlabel;
 			}
@@ -163,7 +167,7 @@
 ?>
 		<div class="well">
 			错误<hr />
-			您的登录错误次数太多，关闭会话后再试。
+			您的登录错误次数太多，请关闭会话或等待<?php echo(ceil(($_SESSION['lasttry']+DCRM_LOGINFAILRESETTIME - time())/60)) ?>分钟后再试。
 		</div>
 <?php
 	}

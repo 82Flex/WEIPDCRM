@@ -3,7 +3,6 @@
 		exit;
 	}
 	//define("DCRM_LANG", "zh-cn");
-	include_once("./lang/e.php");
 	define("DCRM_MAXLOGINFAIL",5);
 	define("DCRM_SHOWLIST",1);
 	define("DCRM_SHOW_NUM",5);
@@ -18,5 +17,5 @@
 	define("DCRM_LISTS_METHOD",3);
 	define("DCRM_CHECK_METHOD",1);
 	define("DCRM_REPOURL","");
-	define("DCRM_DUOSHUO_KEY", "82flex");
+	define("DCRM_LOGINFAILRESETTIME",600);
 ?>

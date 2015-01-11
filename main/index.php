@@ -22,6 +22,7 @@
 	require_once('manage/include/config.inc.php');
 	require_once('manage/include/connect.inc.php');
 	require_once('manage/include/autofill.inc.php');
+	include_once("lang/e.php");
 	require_once('manage/include/func.php');
 	require_once('manage/include/Mobile_Detect.php');
 	header('Content-Type: text/html; charset=UTF-8');
@@ -480,8 +481,12 @@
 				<p>
 					<span id="id"><?php echo(_e('INDEX')); ?></span>
 					<br />
-					<span class="source-name"><?php echo($release_origin); ?></span>·
-					<span id="section"><?php echo(_e('COPYRIGHT', date("Y"))); ?></span>
+					<span class="source-name"><?php if(defined("AUTOFILL_FOOTER_NAME")){echo(htmlspecialchars(stripslashes(AUTOFILL_FOOTER_NAME)));}else{echo($release_origin);} ?></span>·
+					<span id="section"><?php if(defined("AUTOFILL_FOOTER_YEAR")){echo(_e('COPYRIGHT', htmlspecialchars(stripslashes(AUTOFILL_FOOTER_YEAR)).'-'.date("Y")));}else{echo(_e('COPYRIGHT', date("Y")));} ?></span>
+					<?php if(defined("AUTOFILL_FOOTER_CODE")){ ?>
+					<br />
+					<span id="code"><?php echo(stripslashes(AUTOFILL_FOOTER_CODE));?></span>
+					<?php } ?>
 				</p>
 			</footer>
 <?php
@@ -778,13 +783,13 @@
 			</fieldset>
 <?php
 				}
-				if (defined("DCRM_DUOSHUO_KEY")) {
+				if (defined("AUTOFILL_DUOSHUO_KEY")) {
 ?>
 			<fieldset>
 				<div class="ds-thread" data-thread-key="<?php echo($pkg_assoc['Package']); ?>" data-title="<?php echo($pkg_assoc['Name']); ?>" data-url="<?php echo('http://'.$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI']); ?>"></div>
 			</fieldset>
 			<script type="text/javascript">
-			var duoshuoQuery = {short_name:"<?php echo(DCRM_DUOSHUO_KEY); ?>"};
+			var duoshuoQuery = {short_name:"<?php echo(AUTOFILL_DUOSHUO_KEY); ?>"};
 				(function() {
 					var ds = document.createElement('script');
 					ds.type = 'text/javascript';ds.async = true;
@@ -828,6 +833,11 @@
 					<br />
 					<span class="source-name"><?php echo($release_origin); ?></span>·
 					<span id="section"><?php echo($pkg_assoc['Section']); ?></span>
+					<br />
+					<?php if(defined("AUTOFILL_FOOTER_CODE")){ ?>
+					<br />
+					<span id="code"><?php echo(stripslashes(AUTOFILL_FOOTER_CODE));?></span>
+					<?php } ?>
 				</p>
 			</footer>
 <?php

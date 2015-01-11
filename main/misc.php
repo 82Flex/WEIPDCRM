@@ -23,6 +23,7 @@
 	define("DCRM", true);
 	require_once("manage/include/config.inc.php");
 	require_once("manage/include/autofill.inc.php");
+	include_once("lang/e.php");
 	header("Content-Type: text/html; charset=UTF-8");
 	
 	if (file_exists("Release")) {
@@ -89,7 +90,7 @@
 			<hr />
 			<p><?php echo(_e('SAFARI_ONLY')); ?></p>
 <?php
-			if (defined("DCRM_DUOSHUO_KEY")) {
+			if (defined("AUTOFILL_DUOSHUO_KEY")) {
 ?>
 			<div class="ds-recent-comments" data-num-items="6" data-show-avatars="1" data-show-time="1" data-show-title="1" data-show-admin="1" data-excerpt-length="70"></div>
 			<div class="ds-share flat" 
@@ -108,7 +109,7 @@
 			}
 ?>
 			<hr />
-			<p>© <?php echo(date('Y')); ?> <a href="http://82flex.com">82Flex</a>. <?php echo(_e('POWERED_BY')); ?></p>
+			<p>© <?php if(defined("AUTOFILL_FOOTER_YEAR")){echo(htmlspecialchars(stripslashes(AUTOFILL_FOOTER_YEAR)).'-');} echo(date('Y')); ?> <a href="<?php echo htmlspecialchars(base64_decode(DCRM_REPOURL)); ?>"><?php if(defined("AUTOFILL_FOOTER_NAME")){echo(htmlspecialchars(stripslashes(AUTOFILL_FOOTER_NAME)));}else{echo($release_origin);} ?></a> · <?php echo(_e('POWERED_BY')); ?> · <?php if(defined("AUTOFILL_FOOTER_CODE")){echo(stripslashes(AUTOFILL_FOOTER_CODE));} ?></p>
 <?php
 			if ($first) {
 ?>
@@ -124,10 +125,10 @@
 		<div style="text-align: center; display: none;"><?php echo AUTOFILL_STATISTICS; ?></div>
 <?php
 	}
-	if (defined("DCRM_DUOSHUO_KEY")) {
+	if (defined("AUTOFILL_DUOSHUO_KEY")) {
 ?>
 		<script type="text/javascript">
-		var duoshuoQuery = {short_name:"<?php echo(DCRM_DUOSHUO_KEY); ?>"};
+		var duoshuoQuery = {short_name:"<?php echo(AUTOFILL_DUOSHUO_KEY); ?>"};
 			(function() {
 				var ds = document.createElement('script');
 				ds.type = 'text/javascript';ds.async = true;

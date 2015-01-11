@@ -112,6 +112,13 @@
 						</div>
 						<br />
 						<div class="group-control">
+							<label class="control-label">尝试次数重置时间(分钟)</label>
+							<div class="controls">
+								<input type="text" required="required" name="resettime" value="<?php if(defined(DCRM_LOGINFAILRESETTIME)){echo(htmlspecialchars(DCRM_LOGINFAILRESETTIME)/60);}else{echo(10);} ?>"/>
+							</div>
+						</div>
+						<br />
+						<div class="group-control">
 							<label class="control-label" style="color: red;">源地址</label>
 							<div class="controls">
 								<input type="text" required="required" name="url_repo" style="width: 400px;" value="<?php echo htmlspecialchars(base64_decode(DCRM_REPOURL)); ?>"/>
@@ -471,7 +478,41 @@
 							</div>
 						</div>
 						<br />
+						<h3>底部设置</h3>
+						<br />
+						<div class="group-control">
+							<label class="control-label">版权起始年份</label>
+							<div class="controls">
+								<input type="number" name="FOOTER_YEAR" style="width: 65px;" value="<?php if(defined("AUTOFILL_FOOTER_YEAR")){echo(htmlspecialchars(stripslashes(AUTOFILL_FOOTER_YEAR)));} ?>" />
+								<p class="help-block">如输入 2010，最终显示为 © 2010-<?php echo(date("Y")); ?>，留空则只显示当前年份。</p>
+							</div>
+						</div>
+						<br />
+						<div class="group-control">
+							<label class="control-label">版权名称</label>
+							<div class="controls">
+								<input type="text" name="FOOTER_NAME" value="<?php if(defined("AUTOFILL_FOOTER_NAME")){echo(htmlspecialchars(stripslashes(AUTOFILL_FOOTER_NAME)));} ?>"/>
+								<p class="help-block">显示在网站底部。如不填写则显示源名称。</p>
+							</div>
+						</div>
+						<br />
+						<div class="group-control">
+							<label class="control-label">页脚信息</label>
+							<div class="controls">
+								<textarea cols="50" rows="10" name="FOOTER_CODE" style="height: 80px; width: 400px;"><?php if(defined("AUTOFILL_FOOTER_CODE")){echo(htmlspecialchars(stripslashes(AUTOFILL_FOOTER_CODE)));} ?></textarea>
+								<p class="help-block">可填写备案号、网站信息等，请使用<code>·</code>作为分隔符。</p>
+							</div>
+						</div>
+						<br />
 						<h3>社会化分享</h3>
+						<br />
+						<div class="group-control">
+							<label class="control-label">多说社会化评论框KEY</label>
+							<div class="controls">
+								<input type="text" name="DUOSHUO_KEY" value="<?php if(defined("AUTOFILL_DUOSHUO_KEY")){echo(htmlspecialchars(stripslashes(AUTOFILL_DUOSHUO_KEY)));} ?>"/>
+								<p class="help-block">请前往<a href="http://duoshuo.com/">http://duoshuo.com/</a>获取KEY（需要注册）。留空关闭评论功能。</p>
+							</div>
+						</div>
 						<br />
 						<div class="group-control">
 							<label class="control-label">QQ群名称</label>
@@ -594,12 +635,16 @@
 							$error_text .= "用户名长度必须在 4 - 20 个字符之间！\n";
 							$error_stat = true;
 						}
-						if (!ereg("^[0-9a-zA-Z\_]*$", $_POST['username'])) {
+						if (!preg_match("/^[0-9a-zA-Z\_]*$/", $_POST['username'])) {
 							$error_text .= "用户名只能使用数字、字母、下划线的组合！\n";
 							$error_stat = true;
 						}
 						if (!isset($_POST['trials']) OR !ctype_digit($_POST['trials'])) {
 							$error_text .= "最大尝试次数必须为整数！\n";
+							$error_stat = true;
+						}
+						if (!isset($_POST['resettime']) OR !ctype_digit($_POST['resettime'])) {
+							$error_text .= "尝试次数重置时间必须为整数！\n";
 							$error_stat = true;
 						}
 						if (!isset($_POST['speedlimit']) OR !ctype_digit($_POST['speedlimit'])) {
@@ -684,7 +729,6 @@
 						}
 						else {
 							$config_text = "<?php\n\tif (!defined(\"DCRM\")) {\n\t\texit;\n\t}\n";
-							$config_text .= "\tinclude_once(\"./lang/e.php\");\n";
 							$config_text .= "\tdefine(\"DCRM_MAXLOGINFAIL\",".$_POST['trials'].");\n";
 							$config_text .= "\tdefine(\"DCRM_SHOWLIST\",".$_POST['list'].");\n";
 							$config_text .= "\tdefine(\"DCRM_SHOW_NUM\",".$_POST['listnum'].");\n";
@@ -702,9 +746,10 @@
 							$config_text .= "\tdefine(\"DCRM_LISTS_METHOD\",".$_POST['listsmethod'].");\n";
 							$config_text .= "\tdefine(\"DCRM_CHECK_METHOD\",".$_POST['checkmethod'].");\n";
 							$config_text .= "\tdefine(\"DCRM_REPOURL\",\"".base64_encode($_POST['url_repo'])."\");\n";
+							$config_text .= "\tdefine(\"DCRM_LOGINFAILRESETTIME\",".($_POST['resettime']*60).");\n";
 							$config_text .= "?>";
 							$autofill_text = "<?php\n\tif (!defined(\"DCRM\")) {\n\t\texit;\n\t}\n";
-							$autofill_list = array("EMERGENCY", "PRE", "NONAME", "MASTER", "FULLNAME", "EMAIL", "SITE", "WEIBO", "WEIBO_NAME", "TWITTER", "TWITTER_NAME", "FACEBOOK", "FACEBOOK_NAME", "DESCRIPTION", "SEO", "KEYWORDS", "PAYPAL", "STATISTICS", "STATISTICS_INFO", "ADVERTISEMENT", "TENCENT", "TENCENT_NAME");
+							$autofill_list = array("EMERGENCY", "PRE", "NONAME", "MASTER", "FULLNAME", "EMAIL", "SITE", "WEIBO", "WEIBO_NAME", "TWITTER", "TWITTER_NAME", "FACEBOOK", "FACEBOOK_NAME", "DESCRIPTION", "SEO", "KEYWORDS", "PAYPAL", "STATISTICS", "STATISTICS_INFO", "ADVERTISEMENT", "TENCENT", "TENCENT_NAME", "DUOSHUO_KEY", "FOOTER_YEAR", "FOOTER_CODE", "FOOTER_NAME");
 							foreach ($autofill_list as $value) {
 								if (!empty($_POST[$value])) {
 									$autofill_text .= "\tdefine(\"AUTOFILL_".$value."\",\"".addslashes(str_replace(array("\r","\n"), '',nl2br(htmlspecialchars_decode($_POST[$value]))))."\");\n";
