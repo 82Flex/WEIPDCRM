@@ -217,7 +217,7 @@
 							<a class="panel" href="mailto:<?php echo(AUTOFILL_EMAIL); ?>"><?php echo(AUTOFILL_EMAIL); ?></a>
 						</span>
 					</div>
-					<img class="icon" src="CydiaIcon.png" style="vertical-align: top;" width="64" height="64" />
+					<img class="icon" src="CydiaIcon.png" style="width:64px; height:64px; vertical-align: top;" />
 					<hr />
 					<p>
 						<?php echo(_e('USE_CYDIA_TO_ADD_URL')); ?>
@@ -372,11 +372,11 @@
 						}
 						if (!empty($section_assoc['Icon'])) {
 ?>
-					<img class="icon" src="icons/<?php echo($section_assoc['Icon']); ?>" width="58" height="58" />
+					<img class="icon" src="icons/<?php echo($section_assoc['Icon']); ?>" />
 <?php
 						} else {
 ?>
-					<img class="icon" src="icons/default/unknown.png" width="58" height="58" />
+					<img class="icon" src="icons/default/unknown.png" />
 <?php
 						}
 ?>
@@ -393,7 +393,7 @@
 					if (DCRM_ALLOW_FULLLIST == 2) {
 ?>
 				<a href="index.php?pid=<?php echo($section_assoc['ID']); ?>&method=section">
-					<img class="icon" src="icons/default/moreinfo.png" width="58" height="58" />
+					<img class="icon" src="icons/default/moreinfo.png" />
 					<div>
 						<div>
 							<label>
@@ -431,11 +431,11 @@
 <?php
 						if (!empty($section_assoc['Icon'])) {
 ?>
-					<img class="icon" src="icons/<?php echo($section_assoc['Icon']); ?>" width="58" height="58" />
+					<img class="icon" src="icons/<?php echo($section_assoc['Icon']); ?>" />
 <?php
 						} else {
 ?>
-					<img class="icon" src="icons/default/unknown.png" width="58" height="58" />
+					<img class="icon" src="icons/default/unknown.png" />
 <?php
 						}
 ?>
@@ -541,11 +541,11 @@
 <?php
 						if (!empty($section_assoc['Icon'])) {
 ?>
-				<img class="icon" src="icons/<?php echo($section_assoc['Icon']); ?>" style="vertical-align: top;" width="64" height="64" />
+				<img class="icon" src="icons/<?php echo($section_assoc['Icon']); ?>" style="width: 64px; height: 64px; vertical-align: top;" />
 <?php
 						} else {
 ?>
-				<img class="icon" src="icons/default/unknown.png" style="vertical-align: top;" width="64" height="64" />
+				<img class="icon" src="icons/default/unknown.png" style="width: 64px; height: 64px; vertical-align: top;" />
 <?php
 						}
 ?>
@@ -946,7 +946,7 @@
 			<label><?php echo(_e('SUBMIT_YOUR_REQUEST')); ?></label>
 			<fieldset>
 				<a href="index.php?pid=<?php echo($_GET['pid']); ?>&method=report&support=3">
-					<img class="icon" src="icons/default/support_3.png" width="58" height="58" />
+					<img class="icon" src="icons/default/support_3.png" />
 					<div>
 						<div>
 							<label>
@@ -959,7 +959,7 @@
 			<label><?php echo(_e('COMPATIBILITY_REPORTS')); ?></label>
 			<fieldset>
 				<a href="index.php?pid=<?php echo($_GET['pid']); ?>&method=report&support=1">
-					<img class="icon" src="icons/default/support_1.png" width="58" height="58" />
+					<img class="icon" src="icons/default/support_1.png" />
 					<div>
 						<div>
 							<label>
@@ -969,7 +969,7 @@
 					</div>
 				</a>
 				<a href="index.php?pid=<?php echo($_GET['pid']); ?>&method=report&support=0">
-					<img class="icon" src="icons/default/support_0.png" width="58" height="58" />
+					<img class="icon" src="icons/default/support_0.png" />
 					<div>
 						<div>
 							<label>
@@ -979,7 +979,7 @@
 					</div>
 				</a>
 				<a href="index.php?pid=<?php echo($_GET['pid']); ?>&method=report&support=2">
-					<img class="icon" src="icons/default/support_2.png" width="58" height="58" />
+					<img class="icon" src="icons/default/support_2.png" />
 					<div>
 						<div>
 							<label>
@@ -1056,7 +1056,7 @@
 			while ($history = mysql_fetch_assoc($history_query)) {
 ?>
 				<a href="index.php?pid=<?php echo($history['ID']); ?>&addr=nohistory">
-					<img class="icon" src="icons/default/changelog.png" width="58" height="58">
+					<img class="icon" src="icons/default/changelog.png">
 					<div>
 						<div>
 							<label>
@@ -1218,11 +1218,11 @@
 						}
 						if (!empty($section_assoc['Icon'])) {
 ?>
-					<img class="icon" src="icons/<?php echo($section_assoc['Icon']); ?>" width="58" height="58">
+					<img class="icon" src="icons/<?php echo($section_assoc['Icon']); ?>">
 <?php
 						} else {
 ?>
-					<img class="icon" src="icons/default/unknown.png" width="58" height="58">
+					<img class="icon" src="icons/default/unknown.png">
 <?php
 						}
 ?>

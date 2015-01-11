@@ -403,7 +403,7 @@
 							<label class="control-label"><a href="javascript:autofill(8);">预览页</a></label>
 							<div class="controls">
 								<input id="urlinput" type="text" style="width: 400px;" name="Depiction" value="<?php if (!empty($edit_info['Depiction'])) {echo htmlspecialchars($edit_info['Depiction']);} ?>"/>
-								<p class="help-block">默认预览页为：http://<?php echo(base64_decode(DCRM_REPOURL)); ?>/index.php?pid=<?php echo($request_id);?></p>
+								<p class="help-block">默认预览页为：<?php echo(base64_decode(DCRM_REPOURL)); ?>/index.php?pid=<?php echo($request_id);?></p>
 								<p class="help-block"><a class="btn btn-warning" href="javascript:jump()">单击此处预览</a></p>
 							</div>
 						</div>
