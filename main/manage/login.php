@@ -167,7 +167,7 @@
 ?>
 		<div class="well">
 			错误<hr />
-			您的登录错误次数太多，请关闭会话或等待<?php echo(ceil(($_SESSION['lasttry']+DCRM_LOGINFAILRESETTIME - time())/60)) ?>分钟后再试。
+			您的登录错误次数太多，请关闭会话或等待 <?php echo(ceil(($_SESSION['lasttry']+DCRM_LOGINFAILRESETTIME - time())/60)) ?> 分钟后再试。
 		</div>
 <?php
 	}

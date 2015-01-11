@@ -112,9 +112,10 @@
 						</div>
 						<br />
 						<div class="group-control">
-							<label class="control-label">尝试次数重置时间(分钟)</label>
+							<label class="control-label">尝试次数重置时间</label>
 							<div class="controls">
 								<input type="text" required="required" name="resettime" value="<?php if(defined(DCRM_LOGINFAILRESETTIME)){echo(htmlspecialchars(DCRM_LOGINFAILRESETTIME)/60);}else{echo(10);} ?>"/>
+								<p class="help-block">单位：分钟</p>
 							</div>
 						</div>
 						<br />
@@ -500,17 +501,17 @@
 							<label class="control-label">页脚信息</label>
 							<div class="controls">
 								<textarea cols="50" rows="10" name="FOOTER_CODE" style="height: 80px; width: 400px;"><?php if(defined("AUTOFILL_FOOTER_CODE")){echo(htmlspecialchars(stripslashes(AUTOFILL_FOOTER_CODE)));} ?></textarea>
-								<p class="help-block">可填写备案号、网站信息等，请使用<code>·</code>作为分隔符。</p>
+								<p class="help-block">可填写备案号、网站信息等，请使用 <code>·</code> 作为分隔符。</p>
 							</div>
 						</div>
 						<br />
 						<h3>社会化分享</h3>
 						<br />
 						<div class="group-control">
-							<label class="control-label">多说社会化评论框KEY</label>
+							<label class="control-label">多说社会化评论框 Key</label>
 							<div class="controls">
 								<input type="text" name="DUOSHUO_KEY" value="<?php if(defined("AUTOFILL_DUOSHUO_KEY")){echo(htmlspecialchars(stripslashes(AUTOFILL_DUOSHUO_KEY)));} ?>"/>
-								<p class="help-block">请前往<a href="http://duoshuo.com/">http://duoshuo.com/</a>获取KEY（需要注册）。留空关闭评论功能。</p>
+								<p class="help-block">请前往 <a href="http://duoshuo.com/">http://duoshuo.com</a> 获取 Key（需要注册），留空关闭评论功能。</p>
 							</div>
 						</div>
 						<br />
