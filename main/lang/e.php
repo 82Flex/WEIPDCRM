@@ -1,11 +1,16 @@
 <?php
+	$vaild_lang = array(
+		'zh-cn',
+		'en',
+		'en-us',
+	);
 	if (!defined("DCRM_LANG")) {
 		$lang_arr = explode(",", $_SERVER['HTTP_ACCEPT_LANGUAGE']);
 		$lang = trim($lang_arr[0]);
 	} else {
 		$lang = DCRM_LANG;
 	}
-	if (!file_exists("./lang/".$lang.".php")) {
+	if (!in_array($lang, $vaild_lang, true) || !file_exists("./lang/".$lang.".php")) {
 		$lang = "zh-cn";
 	}
 	include_once("./lang/".$lang.".php");
