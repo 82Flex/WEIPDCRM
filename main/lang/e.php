@@ -14,7 +14,7 @@
 		$lang = "zh-cn";
 	}
 	include_once("./lang/".$lang.".php");
-	function _e() {
+	function _t() {
 		global $_e;
 		$numargs = func_num_args();
 		$args = func_get_args();

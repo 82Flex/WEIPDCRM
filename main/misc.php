@@ -85,10 +85,10 @@
 ?>
 			<p><?php echo $release_origin; ?></p>
 			<hr />
-			<p><?php echo(_e('WELCOME_MESSAGE', $release_url)); ?></p>
+			<p><?php echo(_t('WELCOME_MESSAGE', $release_url)); ?></p>
 			<p><img src="css/preview.png" alt="preview" style="width: 300px; border-radius: 6px;" /></p>
 			<hr />
-			<p><?php echo(_e('SAFARI_ONLY')); ?></p>
+			<p><?php echo(_t('SAFARI_ONLY')); ?></p>
 <?php
 			if (defined("AUTOFILL_DUOSHUO_KEY")) {
 ?>
@@ -97,24 +97,24 @@
 			data-thread-key="apt-index" 
 			data-title="<?php echo $release_origin; ?>" 
 			data-images="" 
-			data-content="<?php echo(_e('MY_FAVOURITE_REPO', $release_origin, $release_url)); ?>" 
+			data-content="<?php echo(_t('MY_FAVOURITE_REPO', $release_origin, $release_url)); ?>" 
 			data-url="<?php echo($release_url); ?>">
 			    <div class="ds-share-aside-right">
 			      <div class="ds-share-aside-inner">
 			      </div>
-			      <div class="ds-share-aside-toggle"><?php echo(_e('SHARE_TO')); ?></div>
+			      <div class="ds-share-aside-toggle"><?php echo(_t('SHARE_TO')); ?></div>
 			    </div>
 			</div>
 <?php
 			}
 ?>
 			<hr />
-			<p>© <?php if(defined("AUTOFILL_FOOTER_YEAR")){echo(htmlspecialchars(stripslashes(AUTOFILL_FOOTER_YEAR)).'-');} echo(date('Y')); ?> <a href="<?php echo htmlspecialchars(base64_decode(DCRM_REPOURL)); ?>"><?php if(defined("AUTOFILL_FOOTER_NAME")){echo(htmlspecialchars(stripslashes(AUTOFILL_FOOTER_NAME)));}else{echo($release_origin);} ?></a> · <?php echo(_e('POWERED_BY')); if(defined("AUTOFILL_FOOTER_CODE")){echo(stripslashes(" · ".AUTOFILL_FOOTER_CODE));} ?></p>
+			<p>© <?php if(defined("AUTOFILL_FOOTER_YEAR")){echo(htmlspecialchars(stripslashes(AUTOFILL_FOOTER_YEAR)).'-');} echo(date('Y')); ?> <a href="<?php echo htmlspecialchars(base64_decode(DCRM_REPOURL)); ?>"><?php if(defined("AUTOFILL_FOOTER_NAME")){echo(htmlspecialchars(stripslashes(AUTOFILL_FOOTER_NAME)));}else{echo($release_origin);} ?></a> · <?php echo(_t('POWERED_BY')); if(defined("AUTOFILL_FOOTER_CODE")){echo(stripslashes(" · ".AUTOFILL_FOOTER_CODE));} ?></p>
 <?php
 			if ($first) {
 ?>
 			<hr />
-			<?php echo(_e('INSTALL_INTRO')); ?>
+			<?php echo(_t('INSTALL_INTRO')); ?>
 <?php
 			}
 ?>
