@@ -12,7 +12,7 @@
  * More about gettext keywords: http://poedit.net/trac/wiki/Doc/Keywords
  */
 
- define('LANG_DIR', dirname(__FILE__));
+define('LANG_DIR', dirname(__FILE__));
 /**
  * Get the current locale.
  *
@@ -30,7 +30,7 @@
  *
  * @return string The locale of the blog or from the 'locale' hook.
  */
- if ( !function_exists( 'get_locale' ) ):
+if ( !function_exists( 'get_locale' ) ):
 function get_locale() {
 	global $locale;
 
@@ -43,60 +43,51 @@ function get_locale() {
 		return $locale;
 	}
 
-	$langs = explode(',', $_SERVER["HTTP_ACCEPT_LANGUAGE"]);
-	$locale = str_replace('-', '_', $langs[0]);
+	$localelist = get_browser_languages();
 
-	if ( !empty( $locale ) ){
-		if( !(strpos( $locale, '_' ) === FALSE) ) {
-			$lang_coun = explode('_', $locale);
-			// ISO 语言代码
-			$lang = $lang_coun[0];
-			// ISO 国家代码
-			$coun = $lang_coun[1];
-
-			// 特殊语言代码判断
-			switch( $coun ) {
-				case 'hans':
-					$coun = 'Hans';
-					break;
-				case 'hant':
-					$coun = 'Hant';
-					break;
-				default:
-					$coun =  strtoupper($coun);
+	if ( !empty( $localelist ) ){
+		// 先按浏览器语言列表匹配文件
+		foreach ( $localelist as $singlelocale ) {
+			if( file_exists( LANG_DIR.'/'.$singlelocale.'.mo' ) ) {
+				$locale = $singlelocale;
+				return $locale;
 			}
-			$fin_local = $lang . $coun;
-		} else {
-			$lang = $locale;
-			$fin_local = $locale;
 		}
 
-		if( !file_exists( LANG_DIR.'/'.$fin_local.'.mo' ) ) {
-			//检查2位语言代码
-			if( file_exists( LANG_DIR.'/'.$lang.'.mo' ) ) {
-				$locale = $lang;
-				return $locale;
+		// 单独提取ISO 语言代码为 $langlist
+		foreach ( $localelist as $key => $val ) {
+			if( !(strpos( $val, '_' ) === FALSE) ) {
+				$lang_coun = explode('_', $val);
+				$lang = $lang_coun[0];
 			} else {
-				//检查近似语言
-				$files = scandir( LANG_DIR . '/' );
-				if ( $files ){
-					foreach ( $files as $file ) {
-						if ( '.' === $file[0] || is_dir( $file ) ) {
-							continue;
-						}
-						if ( preg_match( '/(?:(.+)-)?' . $lang . '_([A-Za-z_]{1,4}).mo/', $file, $match ) ) {
-							$similarlangs[] = $match;
-						}
-					}
-					if ( isset( $similarlangs ) ) {
-						$locale = $lang . '_' . $similarlangs[0];
-						return $locale;
-					}
+				$lang = $val;
+			}
+			$langlist[$key] = $lang;
+		}
+		// 去掉重复项
+		$langlist = array_unique( $langlist );
+
+		// 按2位语言代码列表匹配文件
+		foreach ( $langlist as $singlelang ) {
+			if( file_exists( LANG_DIR.'/'.$singlelang.'.mo' ) ) {
+				$locale = $singlelang;
+				return $locale;
+			}
+		}
+
+		// 检查近似语言，例如找不到 zh_TW 时寻找 zh_CN
+		$files = scandir( LANG_DIR . '/' );
+		foreach ( $files as $file ) {
+			if ( '.' === $file[0] || is_dir( $file ) ) {
+				continue;
+			}
+			foreach ( $langlist as $singlelang ) {
+				if ( preg_match( '/(?:(.+)-)?' . $singlelang . '_([A-Za-z_]{1,4}).mo/', $file, $match ) ) {
+					$similarlang = $match;
+					$locale = $singlelang . '_' . $similarlang;
+					return $locale;
 				}
 			}
-		} else {
-			$locale = $fin_local;
-			return $locale;
 		}
 	}
 
@@ -104,6 +95,42 @@ function get_locale() {
 	return $locale;
 }
 endif;
+
+/**
+ * Get the browser languages.
+ * 获取浏览器设定的语言列表，并做预处理
+ *
+ */
+function get_browser_languages() {
+	if (isset($_SERVER['HTTP_ACCEPT_LANGUAGE'])) {
+		// break up string into pieces (languages and q factors)
+		preg_match_all('/([a-z]{1,8}(-[a-z]{1,8})?)\s*(;\s*q\s*=\s*(1|0\.[0-9]+))?/i', $_SERVER['HTTP_ACCEPT_LANGUAGE'], $lang_parse);
+		$k = $lang_parse[1];
+
+		foreach ($k as $key => $val) {
+			$val = str_replace('-', '_', $val);
+			if( !(strpos( $val, '_' ) === FALSE) ) {
+				$lang_coun = explode('_', $val);
+				$coun = $lang_coun[1];
+				// 特殊语言代码处理
+				switch( $coun ) {
+					case 'hans':
+						$coun = 'Hans';
+						break;
+					case 'hant':
+						$coun = 'Hant';
+						break;
+					default:
+						$coun =  strtoupper($coun);
+				}
+				$val = $lang_coun[0] . '_' . $coun;
+			}
+			$k[$key] = $val;
+		}
+		return $k;
+	}
+	return null;
+}
 
 /**
  * Retrieve the translation of $text.
