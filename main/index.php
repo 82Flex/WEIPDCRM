@@ -15,6 +15,14 @@
 		You should have received a copy of the GNU General Public License
 		along with WEIPDCRM.  If not, see <http://www.gnu.org/licenses/>.
 	*/
+	
+	if (!file_exists('./manage/include/connect.inc.php')) {
+		$root .= ($directory = trim(dirname($_SERVER["SCRIPT_NAME"]), "/\,")) ? "/$directory/" : "/";
+
+		header('Location: '.$root.'init');
+		exit;
+	}
+
 	/* DCRM Mobile Page */
 	error_reporting(0);
 	ob_start();

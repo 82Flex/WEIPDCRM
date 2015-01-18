@@ -16,6 +16,10 @@
 	    along with WEIPDCRM.  If not, see <http://www.gnu.org/licenses/>.
 	*/
 	
+	if (!file_exists('./manage/include/connect.inc.php')) {
+		exit;
+	}
+
 	/* DCRM Packages Provider */
 	
 	error_reporting(0);

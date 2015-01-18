@@ -33,6 +33,7 @@ define('LANG_DIR', dirname(__FILE__));
 if ( !function_exists( 'get_locale' ) ):
 function get_locale() {
 	global $locale;
+	global $localetype;
 
 	if ( isset( $locale ) ) {
 		return $locale;
@@ -43,12 +44,18 @@ function get_locale() {
 		return $locale;
 	}
 
+	if ( !isset( $localetype ) ) {
+		$localetype = '';
+	} else {
+		$localetype = $localetype . '-';
+	}
+
 	$localelist = get_browser_languages();
 
 	if ( !empty( $localelist ) ){
 		// 先按浏览器语言列表匹配文件
 		foreach ( $localelist as $singlelocale ) {
-			if( file_exists( LANG_DIR.'/'.$singlelocale.'.mo' ) ) {
+			if( file_exists( LANG_DIR . '/' . $localetype . $singlelocale . '.mo' ) ) {
 				$locale = $singlelocale;
 				return $locale;
 			}
@@ -69,7 +76,7 @@ function get_locale() {
 
 		// 按2位语言代码列表匹配文件
 		foreach ( $langlist as $singlelang ) {
-			if( file_exists( LANG_DIR.'/'.$singlelang.'.mo' ) ) {
+			if( file_exists( LANG_DIR . '/' . $localetype . $singlelang . '.mo' ) ) {
 				$locale = $singlelang;
 				return $locale;
 			}
@@ -82,7 +89,7 @@ function get_locale() {
 				continue;
 			}
 			foreach ( $langlist as $singlelang ) {
-				if ( preg_match( '/(?:(.+)-)?' . $singlelang . '_([A-Za-z_]{1,4}).mo/', $file, $match ) ) {
+				if ( preg_match( '/(?:(.+)-)?' . $localetype . $singlelang . '_([A-Za-z_]{1,4}).mo/', $file, $match ) ) {
 					$similarlang = $match;
 					$locale = $singlelang . '_' . $similarlang;
 					return $locale;
@@ -517,6 +524,8 @@ function unload_textdomain( $domain ) {
  * @return bool Whether the textdomain was loaded.
  */
 function load_default_textdomain( $locale = null ) {
+	global $localetype;
+
 	if ( null === $locale ) {
 		$locale = get_locale();
 	}
@@ -526,7 +535,7 @@ function load_default_textdomain( $locale = null ) {
 
 	$return = load_textdomain( 'default', LANG_DIR . "/$locale.mo" );
 
-	if ( is_installer() || defined( 'DCRM_INSTALLING' ) ) {
+	if ( defined( 'DCRM_INSTALLING' ) || $localetype == 'init' ) {
 		load_textdomain( 'default', LANG_DIR . "/init-$locale.mo" );
 	}
 

@@ -16,6 +16,13 @@
 	    along with WEIPDCRM.  If not, see <http://www.gnu.org/licenses/>.
 	*/
 	
+	if (!file_exists('./include/connect.inc.php')) {
+		$root .= ($directory = trim(dirname($_SERVER["SCRIPT_NAME"]), "/\,")) ? "/$directory/" : "/";
+
+		header('Location: '.$root.'../init');
+		exit;
+	}
+	
 	/* DCRM Management Jump Page */
 	
 	ob_start();

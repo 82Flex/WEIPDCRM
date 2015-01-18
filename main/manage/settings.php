@@ -730,30 +730,30 @@
 						}
 						else {
 							$config_text = "<?php\n\tif (!defined(\"DCRM\")) {\n\t\texit;\n\t}\n";
-							$config_text .= "\tdefine(\"DCRM_MAXLOGINFAIL\",".$_POST['trials'].");\n";
-							$config_text .= "\tdefine(\"DCRM_SHOWLIST\",".$_POST['list'].");\n";
-							$config_text .= "\tdefine(\"DCRM_SHOW_NUM\",".$_POST['listnum'].");\n";
-							$config_text .= "\tdefine(\"DCRM_ALLOW_FULLLIST\",".$_POST['allowfulllist'].");\n";
-							$config_text .= "\tdefine(\"DCRM_SPEED_LIMIT\",".$_POST['speedlimit'].");\n";
-							$config_text .= "\tdefine(\"DCRM_DIRECT_DOWN\",".$_POST['directdown'].");\n";
-							$config_text .= "\tdefine(\"DCRM_PCINDEX\",".$_POST['pcindex'].");\n";
-							$config_text .= "\tdefine(\"DCRM_MOBILE\",".$_POST['mobile'].");\n";
-							$config_text .= "\tdefine(\"DCRM_SCREENSHOTS\",".$_POST['screenshots'].");\n";
-							$config_text .= "\tdefine(\"DCRM_REPORTING\",".$_POST['reporting'].");\n";
-							$config_text .= "\tdefine(\"DCRM_REPORT_LIMIT\",".$_POST['reportlimit'].");\n";
-							$config_text .= "\tdefine(\"DCRM_UPDATELOGS\",".$_POST['updatelogs'].");\n";
-							$config_text .= "\tdefine(\"DCRM_MOREINFO\",".$_POST['moreinfo'].");\n";
-							$config_text .= "\tdefine(\"DCRM_MULTIINFO\",".$_POST['multiinfo'].");\n";
-							$config_text .= "\tdefine(\"DCRM_LISTS_METHOD\",".$_POST['listsmethod'].");\n";
-							$config_text .= "\tdefine(\"DCRM_CHECK_METHOD\",".$_POST['checkmethod'].");\n";
-							$config_text .= "\tdefine(\"DCRM_REPOURL\",\"".base64_encode($_POST['url_repo'])."\");\n";
-							$config_text .= "\tdefine(\"DCRM_LOGINFAILRESETTIME\",".($_POST['resettime']*60).");\n";
+							$config_text .= "\tdefine(\"DCRM_MAXLOGINFAIL\", ".$_POST['trials'].");\n";
+							$config_text .= "\tdefine(\"DCRM_SHOWLIST\", ".$_POST['list'].");\n";
+							$config_text .= "\tdefine(\"DCRM_SHOW_NUM\", ".$_POST['listnum'].");\n";
+							$config_text .= "\tdefine(\"DCRM_ALLOW_FULLLIST\", ".$_POST['allowfulllist'].");\n";
+							$config_text .= "\tdefine(\"DCRM_SPEED_LIMIT\", ".$_POST['speedlimit'].");\n";
+							$config_text .= "\tdefine(\"DCRM_DIRECT_DOWN\", ".$_POST['directdown'].");\n";
+							$config_text .= "\tdefine(\"DCRM_PCINDEX\", ".$_POST['pcindex'].");\n";
+							$config_text .= "\tdefine(\"DCRM_MOBILE\", ".$_POST['mobile'].");\n";
+							$config_text .= "\tdefine(\"DCRM_SCREENSHOTS\", ".$_POST['screenshots'].");\n";
+							$config_text .= "\tdefine(\"DCRM_REPORTING\", ".$_POST['reporting'].");\n";
+							$config_text .= "\tdefine(\"DCRM_REPORT_LIMIT\", ".$_POST['reportlimit'].");\n";
+							$config_text .= "\tdefine(\"DCRM_UPDATELOGS\", ".$_POST['updatelogs'].");\n";
+							$config_text .= "\tdefine(\"DCRM_MOREINFO\", ".$_POST['moreinfo'].");\n";
+							$config_text .= "\tdefine(\"DCRM_MULTIINFO\", ".$_POST['multiinfo'].");\n";
+							$config_text .= "\tdefine(\"DCRM_LISTS_METHOD\", ".$_POST['listsmethod'].");\n";
+							$config_text .= "\tdefine(\"DCRM_CHECK_METHOD\", ".$_POST['checkmethod'].");\n";
+							$config_text .= "\tdefine(\"DCRM_REPOURL\", \"".base64_encode($_POST['url_repo'])."\");\n";
+							$config_text .= "\tdefine(\"DCRM_LOGINFAILRESETTIME\", ".($_POST['resettime']*60).");\n";
 							$config_text .= "?>";
 							$autofill_text = "<?php\n\tif (!defined(\"DCRM\")) {\n\t\texit;\n\t}\n";
 							$autofill_list = array("EMERGENCY", "PRE", "NONAME", "MASTER", "FULLNAME", "EMAIL", "SITE", "WEIBO", "WEIBO_NAME", "TWITTER", "TWITTER_NAME", "FACEBOOK", "FACEBOOK_NAME", "DESCRIPTION", "SEO", "KEYWORDS", "PAYPAL", "STATISTICS", "STATISTICS_INFO", "ADVERTISEMENT", "TENCENT", "TENCENT_NAME", "DUOSHUO_KEY", "FOOTER_YEAR", "FOOTER_CODE", "FOOTER_NAME");
 							foreach ($autofill_list as $value) {
 								if (!empty($_POST[$value])) {
-									$autofill_text .= "\tdefine(\"AUTOFILL_".$value."\",\"".addslashes(str_replace(array("\r","\n"), '',nl2br(htmlspecialchars_decode($_POST[$value]))))."\");\n";
+									$autofill_text .= "\tdefine(\"AUTOFILL_".$value."\", \"".addslashes(str_replace(array("\r","\n"), '',nl2br(htmlspecialchars_decode($_POST[$value]))))."\");\n";
 								}
 							}
 							$autofill_text .= "?>";
