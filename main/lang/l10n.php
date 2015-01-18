@@ -40,15 +40,67 @@ function get_locale() {
 
 	if ( defined( 'DCRM_LANG' ) ) {
 		$locale = DCRM_LANG;
+		return $locale;
 	}
 
 	$langs = explode(',', $_SERVER["HTTP_ACCEPT_LANGUAGE"]);
 	$locale = str_replace('-', '_', $langs[0]);
-	
-	if ( empty( $locale ) ) {
-		$locale = 'en_US';
+
+	if ( !empty( $locale ) ){
+		if( !(strpos( $locale, '_' ) === FALSE) ) {
+			$lang_coun = explode('_', $locale);
+			// ISO 语言代码
+			$lang = $lang_coun[0];
+			// ISO 国家代码
+			$coun = $lang_coun[1];
+
+			// 特殊语言代码判断
+			switch( $coun ) {
+				case 'hans':
+					$coun = 'Hans';
+					break;
+				case 'hant':
+					$coun = 'Hant';
+					break;
+				default:
+					$coun =  strtoupper($coun);
+			}
+			$fin_local = $lang . $coun;
+		} else {
+			$lang = $locale;
+			$fin_local = $locale;
+		}
+
+		if( !file_exists( LANG_DIR.'/'.$fin_local.'.mo' ) ) {
+			//检查2位语言代码
+			if( file_exists( LANG_DIR.'/'.$lang.'.mo' ) ) {
+				$locale = $lang;
+				return $locale;
+			} else {
+				//检查近似语言
+				$files = scandir( LANG_DIR . '/' );
+				if ( $files ){
+					foreach ( $files as $file ) {
+						if ( '.' === $file[0] || is_dir( $file ) ) {
+							continue;
+						}
+						if ( preg_match( '/(?:(.+)-)?' . $lang . '_([A-Za-z_]{1,4}).mo/', $file, $match ) ) {
+							$similarlangs[] = $match;
+						}
+					}
+					if ( isset( $similarlangs ) ) {
+						$locale = $lang . '_' . $similarlangs[0];
+						return $locale;
+					}
+				}
+			}
+		} else {
+			$locale = $fin_local;
+			return $locale;
+		}
 	}
 
+	$locale = 'zh_CN';
 	return $locale;
 }
 endif;
