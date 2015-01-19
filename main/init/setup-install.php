@@ -138,10 +138,10 @@ function display_setup_form( $error = null ) {
 	</table>
 	<p class="step"><input type="submit" name="Submit" value="<?php _e( 'Install DCRM' ); ?>" class="button button-large" /></p>
 </form>
-<script src="./js/jquery.js" type="text/javascript"></script>
-<script src="./js/password-strength.min.js" type="text/javascript"></script>
-<script src="./js/zxcvbn-async.min.js" type="text/javascript"></script>
-<script src="./js/zxcvbn.min.js" type="text/javascript"></script>
+<script src="../js/jquery.js" type="text/javascript"></script>
+<script src="../js/password-strength.min.js" type="text/javascript"></script>
+<script src="../js/zxcvbn-async.min.js" type="text/javascript"></script>
+<script src="../js/zxcvbn.min.js" type="text/javascript"></script>
 <script type='text/javascript'>
 var pwsL10n = {"empty":"<?php echo( utf8_unicode( __( 'Strength indicator' ) ) ); ?>","short":"<?php echo( utf8_unicode( _x( 'Short', 'Password' ) ) ); ?>","bad":"<?php echo( utf8_unicode( _x( 'Bad', 'Password' ) ) ); ?>","good":"<?php echo( _x( 'Good', 'Password' ) ); ?>","strong":"<?php echo( utf8_unicode( _x( 'Strong', 'Password' ) ) ); ?>","mismatch":"<?php echo( utf8_unicode( _x( 'Mismatch', 'Password' ) ) ); ?>"};
 </script>

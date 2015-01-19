@@ -538,6 +538,10 @@ function load_default_textdomain( $locale = null ) {
 	if ( defined( 'DCRM_INSTALLING' ) || $localetype == 'init' ) {
 		load_textdomain( 'default', LANG_DIR . "/init-$locale.mo" );
 	}
+	
+	if ( $localetype == 'manage' ) {
+		load_textdomain( 'default', LANG_DIR . "/manage-$locale.mo" );
+	}
 
 	return $return;
 }

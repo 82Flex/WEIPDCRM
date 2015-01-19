@@ -25,6 +25,38 @@
 	require_once("include/connect.inc.php");
 	require_once("include/autofill.inc.php");
 	header("Content-Type: text/html; charset=UTF-8");
+	
+	// 设定绝对目录
+	$root = str_replace('/manage/', '', str_replace('\\', '/', dirname(__FILE__).'/')).'/';
+	define('ABSPATH', $root);
+	unset( $root );
+
+	// 载入语言
+	$localetype = 'manage';
+	$locale = 'zh_CN';
+	include_once ABSPATH . 'lang/l10n.php';
+	
+	/** 
+	 * utf-8 转unicode 
+	 * 
+	 * @param string $name 
+	 * @return string 
+	 */  
+	function utf8_unicode($name){  
+		$name = iconv('UTF-8', 'UCS-2', $name);  
+		$len  = strlen($name);  
+		$str  = '';  
+		for ($i = 0; $i < $len - 1; $i = $i + 2){  
+			$c  = $name[$i];  
+			$c2 = $name[$i + 1];  
+			if (ord($c) > 0){   //两个字节的文字  
+				$str .= '\u'.base_convert(ord($c), 10, 16).str_pad(base_convert(ord($c2), 10, 16), 2, 0, STR_PAD_LEFT);  
+			} else {  
+				$str .= '\u'.str_pad(base_convert(ord($c2), 10, 16), 4, 0, STR_PAD_LEFT);  
+			}  
+		}  
+		return $str;  
+	}
 
 	if (isset($_SESSION['connected']) && $_SESSION['connected'] === true) {
 		$con = mysql_connect(DCRM_CON_SERVER, DCRM_CON_USERNAME, DCRM_CON_PASSWORD);
@@ -45,6 +77,13 @@
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 	<title>DCRM - 源管理系统</title>
 	<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+	<script src="../js/jquery.js" type="text/javascript"></script>
+	<script src="../js/password-strength.min.js" type="text/javascript"></script>
+	<script src="../js/zxcvbn-async.min.js" type="text/javascript"></script>
+	<script src="../js/zxcvbn.min.js" type="text/javascript"></script>
+	<script type='text/javascript'>
+	var pwsL10n = {"empty":"<?php echo( utf8_unicode( __( 'Strength indicator' ) ) ); ?>","short":"<?php echo( utf8_unicode( _x( 'Short', 'Password' ) ) ); ?>","bad":"<?php echo( utf8_unicode( _x( 'Bad', 'Password' ) ) ); ?>","good":"<?php echo( _x( 'Good', 'Password' ) ); ?>","strong":"<?php echo( utf8_unicode( _x( 'Strong', 'Password' ) ) ); ?>","mismatch":"<?php echo( utf8_unicode( _x( 'Mismatch', 'Password' ) ) ); ?>"};
+	</script>
 </head>
 <body>
 	<div class="container">
@@ -97,10 +136,19 @@
 						</div>
 						<br />
 						<div class="group-control">
-							<label class="control-label">密码</label>
+							<label class="control-label"><?php _e('New Password');?></label>
 							<div class="controls">
-								<input type="text" name="newpassword"/>
-								<p class="help-block">无需修改密码请留空</p>
+								<input type="password" name="pass1" id="pass1"/>
+								<p class="help-block"><?php _e('If you would like to change the password type a new one. Otherwise leave this blank.'); ?></p>
+							</div>
+						</div>
+						<br />
+						<div class="group-control">
+							<label class="control-label"><?php _e('Repeat New Password');?></label>
+							<div class="controls">
+								<input type="password" name="pass2" id="pass2"/>
+								<p class="help-block"><?php _e('Type your new password again.');?></p>
+								<div id="pass-strength-result" style="display: block;"><?php _e('Strength indicator'); ?></div>
 							</div>
 						</div>
 						<br />
@@ -628,6 +676,7 @@
 					elseif (!empty($_GET['action']) AND $_GET['action'] == "set") {
 						$error_stat = false;
 						$logout = false;
+						$error_text = '';
 						if (!isset($_POST['username']) OR empty($_POST['username'])) {
 							$error_text .= "用户名不得设置为空！\n";
 							$error_stat = true;
@@ -638,6 +687,13 @@
 						}
 						if (!preg_match("/^[0-9a-zA-Z\_]*$/", $_POST['username'])) {
 							$error_text .= "用户名只能使用数字、字母、下划线的组合！\n";
+							$error_stat = true;
+						}
+						if ( !empty($_POST['pass1']) && empty($_POST['pass2']) ) {
+							$error_text .= __( 'You entered your new password only once.' )."\n";
+							$error_stat = true;
+						}elseif ( $_POST['pass1'] != $_POST['pass2'] ) {
+							$error_text .= __( 'Your passwords do not match. Please try again.' )."\n";
 							$error_stat = true;
 						}
 						if (!isset($_POST['trials']) OR !ctype_digit($_POST['trials'])) {
@@ -717,16 +773,16 @@
 							}
 							else {
 								$result = mysql_query("UPDATE `".DCRM_CON_PREFIX."Users` SET `Username` = '".mysql_real_escape_string($_POST['username'])."' WHERE `ID` = '".$_SESSION['userid']."'");
-								if (!empty($_POST['newpassword'])) {
+								if (!empty($_POST['pass1'])) {
 									$logout = true;
-									$result = mysql_query("UPDATE `".DCRM_CON_PREFIX."Users` SET `SHA1` = '".sha1($_POST['newpassword'])."' WHERE `ID` = '".$_SESSION['userid']."'");
+									$result = mysql_query("UPDATE `".DCRM_CON_PREFIX."Users` SET `SHA1` = '".sha1($_POST['pass1'])."' WHERE `ID` = '".$_SESSION['userid']."'");
 								}
 							}
 						}
 						if ($error_stat == true) {
 							echo '<h3 class="alert alert-error">';
 							echo $error_text;
-							echo '<br /><a href="settings.php">返回</a></h3>';
+							echo '<br /><a href="settings.php" onclick="javascript:history.go(-1);return false;">返回</a></h3>';
 						}
 						else {
 							$config_text = "<?php\n\tif (!defined(\"DCRM\")) {\n\t\texit;\n\t}\n";
