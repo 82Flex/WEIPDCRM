@@ -20,15 +20,38 @@
 	
 	error_reporting(0);
 	ob_start();
+
+	/* Base Configuration File Check */
+	if (!file_exists('./manage/include/connect.inc.php')) {
+		$root .= ($directory = trim(dirname($_SERVER["SCRIPT_NAME"]), "/\,")) ? "/$directory/" : "/";
+
+		header('Location: '.$root.'init');
+		exit;
+	}
+
+	/* Language Switch */
+	require_once("lang/l10n.php");
+	$language = '';
+	if ( ! empty( $_REQUEST['language'] ) ) {
+		$language = preg_replace( '/[^a-zA-Z_]/', '', $_REQUEST['language'] );
+	} else {
+		$language = get_locale();
+	}
+	if ( ! empty( $language ) ) {
+		$local = check_languages(array($language));
+		$link_language = 'language=' . $local;
+	} else {
+		$link_language = '';
+	}
+
 	define("DCRM", true);
 	require_once("manage/include/config.inc.php");
 	require_once("manage/include/autofill.inc.php");
-	include_once("lang/e.php");
 	header("Content-Type: text/html; charset=UTF-8");
 	
 	if (file_exists("Release")) {
 		$release = file("Release");
-		$release_origin = $_e['NONAME'];
+		$release_origin = __('No Name');
 		foreach ($release as $line) {
 			if(preg_match("#^Origin#", $line)) {
 				$release_origin = trim(preg_replace("#^(.+):\\s*(.+)#","$2", $line));
@@ -38,7 +61,7 @@
 			}
 		}
 	} else {
-		$release_origin = $_e['EMPTY_PAGE'];
+		$release_origin = __('Empty Page');
 		if (file_exists('init/install.php')) {
 			$first = true;
 		} else {
@@ -85,10 +108,10 @@
 ?>
 			<p><?php echo $release_origin; ?></p>
 			<hr />
-			<p><?php echo(_t('WELCOME_MESSAGE', $release_url)); ?></p>
+			<p><?php printf( __( 'Welcome to <a href="cydia://sources/add">Add</a> <code>%s</code> via Cydia.' ) , $release_url ); ?></p>
 			<p><img src="css/preview.png" alt="preview" style="width: 300px; border-radius: 6px;" /></p>
 			<hr />
-			<p><?php echo(_t('SAFARI_ONLY')); ?></p>
+			<p><?php _e('This page is available to Safari only.'); ?></p>
 <?php
 			if (defined("AUTOFILL_DUOSHUO_KEY")) {
 ?>
@@ -97,24 +120,24 @@
 			data-thread-key="apt-index" 
 			data-title="<?php echo $release_origin; ?>" 
 			data-images="" 
-			data-content="<?php echo(_t('MY_FAVOURITE_REPO', $release_origin, $release_url)); ?>" 
+			data-content="<?php printf( __( 'My Favourite Repo: %1$s(%2$s)' ) , $release_origin, $release_url ); ?>" 
 			data-url="<?php echo($release_url); ?>">
 			    <div class="ds-share-aside-right">
 			      <div class="ds-share-aside-inner">
 			      </div>
-			      <div class="ds-share-aside-toggle"><?php echo(_t('SHARE_TO')); ?></div>
+			      <div class="ds-share-aside-toggle"><?php _e('Share To'); ?></div>
 			    </div>
 			</div>
 <?php
 			}
 ?>
 			<hr />
-			<p>© <?php if(defined("AUTOFILL_FOOTER_YEAR")){echo(htmlspecialchars(stripslashes(AUTOFILL_FOOTER_YEAR)).'-');} echo(date('Y')); ?> <a href="<?php echo htmlspecialchars(base64_decode(DCRM_REPOURL)); ?>"><?php if(defined("AUTOFILL_FOOTER_NAME")){echo(htmlspecialchars(stripslashes(AUTOFILL_FOOTER_NAME)));}else{echo($release_origin);} ?></a> · <?php echo(_t('POWERED_BY')); if(defined("AUTOFILL_FOOTER_CODE")){echo(stripslashes(" · ".AUTOFILL_FOOTER_CODE));} ?></p>
+			<p>© <?php echo defined("AUTOFILL_FOOTER_YEAR") ? htmlspecialchars(stripslashes(AUTOFILL_FOOTER_YEAR)).'-' : '';echo date('Y'); ?> <a href="<?php echo htmlspecialchars(base64_decode(DCRM_REPOURL)); ?>"><?php echo defined("AUTOFILL_FOOTER_NAME") ? htmlspecialchars(stripslashes(AUTOFILL_FOOTER_NAME)) : $release_origin; ?></a> · <?php _e('Powered by <a href="http://82flex.com/projects">DCRM</a>.'); echo defined("AUTOFILL_FOOTER_CODE") ? stripslashes(" · ".AUTOFILL_FOOTER_CODE) : ''; ?></p>
 <?php
 			if ($first) {
 ?>
 			<hr />
-			<?php echo(_t('INSTALL_INTRO')); ?>
+			<?php _e('Dear manager, please follow the steps on <a href="init/index.html">Install Introduction</a> first.'); ?>
 <?php
 			}
 ?>

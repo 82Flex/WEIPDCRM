@@ -17,6 +17,7 @@
 	*/
 	
 	if (!file_exists('./manage/include/connect.inc.php')) {
+		httpinfo(500);
 		exit;
 	}
 

@@ -34,12 +34,12 @@ $header_title = __( 'Installer' );
 $language = '';
 if ( ! empty( $_REQUEST['language'] ) ) {
 	$language = preg_replace( '/[^a-zA-Z_]/', '', $_REQUEST['language'] );
-	$language = strtolower($language);
 } else {
 	$language = get_locale();
 }
 if ( ! empty( $language ) ) {
-	$step_language = 'language=' . $language;
+	$local = check_languages(array($language));
+	$step_language = 'language=' . $local;
 } else {
 	$step_language = '';
 }

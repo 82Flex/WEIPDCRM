@@ -20,8 +20,8 @@ if ( ! empty( $_REQUEST['language'] ) ) {
 	$language = get_locale();
 }
 if ( ! empty( $language ) ) {
+	$local = check_languages(array($language));
 	$step_language = 'language=' . $language;
-	$local = $language;
 } else {
 	$step_language = '';
 }

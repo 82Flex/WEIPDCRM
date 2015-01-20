@@ -33,7 +33,6 @@ define('LANG_DIR', dirname(__FILE__));
 if ( !function_exists( 'get_locale' ) ):
 function get_locale() {
 	global $locale;
-	global $localetype;
 
 	if ( isset( $locale ) ) {
 		return $locale;
@@ -44,13 +43,62 @@ function get_locale() {
 		return $locale;
 	}
 
+	$localelist = get_browser_languages();
+
+	$locale = check_languages( $localelist );
+	return $locale;
+}
+endif;
+
+/**
+ * Get the browser languages.
+ * 获取浏览器设定的语言列表，并做预处理
+ *
+ */
+function get_browser_languages() {
+	if (isset($_SERVER['HTTP_ACCEPT_LANGUAGE'])) {
+		// break up string into pieces (languages and q factors)
+		preg_match_all('/([a-z]{1,8}(-[a-z]{1,8})?)\s*(;\s*q\s*=\s*(1|0\.[0-9]+))?/i', $_SERVER['HTTP_ACCEPT_LANGUAGE'], $lang_parse);
+		$k = $lang_parse[1];
+
+		foreach ($k as $key => $val) {
+			$val = str_replace('-', '_', $val);
+			if( !(strpos( $val, '_' ) === FALSE) ) {
+				$lang_coun = explode('_', $val);
+				$coun = $lang_coun[1];
+				// 特殊语言代码处理
+				switch( $coun ) {
+					case 'hans':
+						$coun = 'Hans';
+						break;
+					case 'hant':
+						$coun = 'Hant';
+						break;
+					default:
+						$coun =  strtoupper($coun);
+				}
+				$val = $lang_coun[0] . '_' . $coun;
+			}
+			$k[$key] = $val;
+		}
+		return $k;
+	}
+	return null;
+}
+
+/**
+ * Check available language for localelist.
+ * 根据语言列表检查语言文件
+ *
+ */
+function check_languages( $localelist ) {
+	global $localetype;
+
 	if ( !isset( $localetype ) ) {
 		$localetype = '';
 	} else {
 		$localetype = $localetype . '-';
 	}
-
-	$localelist = get_browser_languages();
 
 	if ( !empty( $localelist ) ){
 		// 先按浏览器语言列表匹配文件
@@ -97,46 +145,7 @@ function get_locale() {
 			}
 		}
 	}
-
-	$locale = 'zh_CN';
-	return $locale;
-}
-endif;
-
-/**
- * Get the browser languages.
- * 获取浏览器设定的语言列表，并做预处理
- *
- */
-function get_browser_languages() {
-	if (isset($_SERVER['HTTP_ACCEPT_LANGUAGE'])) {
-		// break up string into pieces (languages and q factors)
-		preg_match_all('/([a-z]{1,8}(-[a-z]{1,8})?)\s*(;\s*q\s*=\s*(1|0\.[0-9]+))?/i', $_SERVER['HTTP_ACCEPT_LANGUAGE'], $lang_parse);
-		$k = $lang_parse[1];
-
-		foreach ($k as $key => $val) {
-			$val = str_replace('-', '_', $val);
-			if( !(strpos( $val, '_' ) === FALSE) ) {
-				$lang_coun = explode('_', $val);
-				$coun = $lang_coun[1];
-				// 特殊语言代码处理
-				switch( $coun ) {
-					case 'hans':
-						$coun = 'Hans';
-						break;
-					case 'hant':
-						$coun = 'Hant';
-						break;
-					default:
-						$coun =  strtoupper($coun);
-				}
-				$val = $lang_coun[0] . '_' . $coun;
-			}
-			$k[$key] = $val;
-		}
-		return $k;
-	}
-	return null;
+	return 'zh_CN';
 }
 
 /**

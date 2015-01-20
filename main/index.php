@@ -15,12 +15,28 @@
 		You should have received a copy of the GNU General Public License
 		along with WEIPDCRM.  If not, see <http://www.gnu.org/licenses/>.
 	*/
-	
+
+	/* Base Configuration File Check */
 	if (!file_exists('./manage/include/connect.inc.php')) {
 		$root .= ($directory = trim(dirname($_SERVER["SCRIPT_NAME"]), "/\,")) ? "/$directory/" : "/";
 
 		header('Location: '.$root.'init');
 		exit;
+	}
+	
+	/* Language Switch */
+	require_once("lang/l10n.php");
+	$language = '';
+	if ( ! empty( $_REQUEST['language'] ) ) {
+		$language = preg_replace( '/[^a-zA-Z_]/', '', $_REQUEST['language'] );
+	} else {
+		$language = get_locale();
+	}
+	if ( ! empty( $language ) ) {
+		$local = check_languages(array($language));
+		$link_language = 'language=' . $local;
+	} else {
+		$link_language = '';
 	}
 
 	/* DCRM Mobile Page */
@@ -30,7 +46,6 @@
 	require_once('manage/include/config.inc.php');
 	require_once('manage/include/connect.inc.php');
 	require_once('manage/include/autofill.inc.php');
-	include_once("lang/e.php");
 	require_once('manage/include/func.php');
 	require_once('manage/include/Mobile_Detect.php');
 	header('Content-Type: text/html; charset=UTF-8');
@@ -67,7 +82,7 @@
 	}
 	if (file_exists('Release')) {
 		$release = file('Release');
-		$release_origin = $_e['NONAME'];
+		$release_origin = __('No Name');
 		$release_mtime = filemtime('Release');
 		$release_time = date('Y-m-d H:i:s',$release_mtime);
 		foreach ($release as $line) {
@@ -79,13 +94,13 @@
 			}
 		}
 	} else {
-		$release_origin = $_e['EMPTY_PAGE'];
+		$release_origin = __('Empty Page');
 	}
 	if (isset($_GET['pid'])) {
 		if (ctype_digit($_GET['pid']) && intval($_GET['pid']) <= 10000) {
 			if (isset($_GET['method']) && $_GET['method'] == 'screenshot') {
 				$index = 2;
-				$title = $_e['VIEW_SCREENSHOTS'];
+				$title = __('View Screenshots');
 			} elseif (isset($_GET['method']) && $_GET['method'] == 'report') {
 				$device_type = array('iPhone','iPod','iPad');
 				for ($i = 0; $i < count($device_type); $i++) {
@@ -114,19 +129,19 @@
 					}
 					$index = 4;
 				}
-				$title = $_e['REPORT_PROBLEMS'];
+				$title = __('Report Problems');
 			} elseif (isset($_GET['method']) && $_GET['method'] == 'history') {
 				$index = 5;
-				$title = $_e['VERSION_HISTORY'];
+				$title = __('Version History');
 			} elseif (isset($_GET['method']) && $_GET['method'] == 'contact') {
 				$index = 6;
-				$title = $_e['CONTACT_US'];
+				$title = __('Contact us');
 			} elseif (isset($_GET['method']) && $_GET['method'] == 'section') {
 				$index = 7;
-				$title = $_e['PACKAGE_CATEGORY'];
+				$title = __('Package Category');
 			} elseif (!isset($_GET['method']) || (isset($_GET['method']) && $_GET['method'] == 'view')) {
 				$index = 1;
-				$title = $_e['VIEW_PACKAGE'];
+				$title = __('View Package');
 			} else {
 				httpinfo(405);
 				exit();
@@ -201,7 +216,7 @@
 						<div>
 							<label>
 								<p>
-									<?php echo(_t('ADD_IN_CYDIA')); ?>
+									<?php _e('Add in Cydia<sup><small>™</small></sup>'); ?>
 								</p>
 							</label>
 						</div>
@@ -228,7 +243,7 @@
 					<img class="icon" src="CydiaIcon.png" style="width:64px; height:64px; vertical-align: top;" />
 					<hr />
 					<p>
-						<?php echo(_t('USE_CYDIA_TO_ADD_URL')); ?>
+						<?php _e('Add this URL via Cydia<sup><small>™</small></sup>: '); ?>
 						<br />
 						<strong><a href="<?php echo($repo_url); ?>"><?php echo($repo_url); ?></a></strong>
 					</p>
@@ -241,10 +256,10 @@
 ?>
 			<block>
 				<p>
-					<?php echo(_t('TOTAL_PACKAGES', $num)); ?> 
+					<?php printf( __( '<strong>%d</strong> packages in total.' ) , $num ); ?> 
 				</p>
 				<p>
-					<?php echo(_t('LAST_UPDATE_TIME', $release_time)); ?> 
+					<?php printf( __( 'Last updated: <strong>%s</strong>' ) , $release_time ); ?> 
 				</p>
 			</block>
 			<fieldset>
@@ -256,7 +271,7 @@
 					<div>
 						<div>
 							<label>
-								<p><?php echo(_t('VISIT_HOME_PAGE')); ?></p>
+								<p><?php _e('Visit Home Page'); ?></p>
 							</label>
 						</div>
 					</div>
@@ -269,7 +284,7 @@
 					<div>
 						<div>
 							<label>
-								<p><?php echo(_t('CONTACT_US')); ?></p>
+								<p><?php _e('Contact us'); ?></p>
 							</label>
 						</div>
 					</div>
@@ -340,7 +355,7 @@
 						<div>
 							<label>
 								<p>
-									<?php echo(_t('DONATE_VIA_PAYPAL')); ?>
+									<?php _e('Donate via <span style="font-style: italic; font-weight: bold"><span style="color: #1a3665">Pay</span><span style="color: #32689a">Pal</span><sup><small>™</small></sup></span>'); ?>
 								</p>
 							</label>
 						</div>
@@ -357,7 +372,7 @@
 ?>
 			<block>
 				<p>
-					<?php echo(_t('MYSQL_ERROR')); ?>
+					<?php _e('MySQL Error!'); ?>
 				</p>
 			</block>
 <?php
@@ -405,7 +420,7 @@
 					<div>
 						<div>
 							<label>
-								<p><?php echo(_t('MORE')); ?></p>
+								<p><?php _e('More...'); ?></p>
 							</label>
 						</div>
 					</div>
@@ -424,13 +439,13 @@
 ?>
 			<block>
 				<p>
-					<?php echo(_t('MYSQL_ERROR')); ?>
+					<?php _e('MySQL Error!'); ?>
 				</p>
 			</block>
 <?php
 				} else {
 ?>
-			<label><?php echo(_t('PACKAGE_CATEGORY')); ?></label>
+			<label><?php _e('Package Category'); ?></label>
 			<fieldset>
 <?php
 					while ($section_assoc = mysql_fetch_assoc($section_query)) {
@@ -466,7 +481,7 @@
 		if (!$isCydia) {
 ?>
 			<label class="source">
-				<p><?php echo(_t('SOURCE_INFO')); ?></p>
+				<p><?php _e('Source Info'); ?></p>
 			</label>
 			<fieldset class="source">
 				<a href="/">
@@ -487,10 +502,10 @@
 			</fieldset>
 			<footer id="footer" style="display: none;">
 				<p>
-					<span id="id"><?php echo(_t('INDEX')); ?></span>
+					<span id="id"><?php _e('Index'); ?></span>
 					<br />
-					<span class="source-name"><?php if(defined("AUTOFILL_FOOTER_NAME")){echo(htmlspecialchars(stripslashes(AUTOFILL_FOOTER_NAME)));}else{echo($release_origin);} ?></span>·
-					<span id="section"><?php if(defined("AUTOFILL_FOOTER_YEAR")){echo(_t('COPYRIGHT', htmlspecialchars(stripslashes(AUTOFILL_FOOTER_YEAR)).'-'.date("Y")));}else{echo(_t('COPYRIGHT', date("Y")));} ?></span>
+					<span class="source-name"><?php echo( defined("AUTOFILL_FOOTER_NAME") ? htmlspecialchars(stripslashes(AUTOFILL_FOOTER_NAME)) : $release_origin ); ?></span>·
+					<span id="section"><?php printf( __( 'Copyright &copy; %s' ) , defined("AUTOFILL_FOOTER_YEAR") ? htmlspecialchars(stripslashes(AUTOFILL_FOOTER_YEAR)).'-'.date("Y") : date("Y") ); ?></span>
 					<?php if(defined("AUTOFILL_FOOTER_CODE")){ ?>
 					<br />
 					<span id="code"><?php echo(stripslashes(AUTOFILL_FOOTER_CODE));?></span>
@@ -506,7 +521,7 @@
 ?>
 			<block>
 				<p>
-					<?php echo(_t('MYSQL_ERROR')); ?>
+					<?php _e('MySQL Error!'); ?>
 				</p>
 			</block>
 <?php
@@ -516,7 +531,7 @@
 ?>
 			<block>
 				<p>
-					<?php echo(_t('NO_PACKAGE_SELECTED')); ?>
+					<?php _e('Invalid package!<br />Perhaps this package has been deleted by us.'); ?>
 				</p>
 			</block>
 <?php
@@ -529,7 +544,7 @@
 					<div>
 						<div>
 							<label>
-								<p><?php echo(_t('VIEW_IN_CYDIA')); ?></p>
+								<p><?php _e('View in Cydia<sup><small>™</small></sup>'); ?></p>
 							</label>
 						</div>
 					</div>
@@ -577,7 +592,7 @@
 					<div>
 						<div>
 							<label>
-								<p><?php echo(_t('AUTHOR')); ?></p>
+								<p><?php _e('Author'); ?></p>
 							</label>
 							<label class="detail">
 									<p id="contact">
@@ -598,7 +613,7 @@
 					<div>
 						<div>
 							<label>
-								<p><?php echo(_t('DOWNLOAD')); ?></p>
+								<p><?php _e('Download'); ?></p>
 							</label>
 							<label class="detail">
 									<p>
@@ -621,7 +636,7 @@
 					<div>
 						<div>
 							<label>
-								<p><?php echo(_t('VIEW_SCREENSHOTS')); ?></p>
+								<p><?php _e('View Screenshots'); ?></p>
 							</label>
 						</div>
 					</div>
@@ -634,7 +649,7 @@
 					<div>
 						<div>
 							<label>
-								<p><?php echo(_t('VERSION_HISTORY')); ?></p>
+								<p><?php _e('Version History'); ?></p>
 							</label>
 						</div>
 					</div>
@@ -647,7 +662,7 @@
 					<div>
 						<div>
 							<label>
-								<p><?php echo(_t('REPORT_PROBLEMS')); ?></p>
+								<p><?php _e('Report Problems'); ?></p>
 							</label>
 						</div>
 					</div>
@@ -718,7 +733,7 @@
 						<div>
 							<label>
 								<p>
-									<?php echo(_t('DONATE_VIA_PAYPAL')); ?>
+									<?php _e('Donate via <span style="font-style: italic; font-weight: bold"><span style="color: #1a3665">Pay</span><span style="color: #32689a">Pal</span><sup><small>™</small></sup></span>'); ?>
 								</p>
 							</label>
 						</div>
@@ -733,7 +748,7 @@
 					<div>
 						<div>
 							<label>
-								<p><?php echo(_t('MORE_INFO')); ?></p>
+								<p><?php _e('More Info'); ?></p>
 							</label>
 						</div>
 					</div>
@@ -773,8 +788,8 @@
 <?php
 					if (DCRM_MULTIINFO == 2) {
 ?>
-					<p><?php echo(_t('VERSION')); ?> <strong><?php echo($pkg_assoc['Version']); ?></strong> | <?php echo(_t('DOWNLOAD_TIMES')); ?> <strong><?php echo($pkg_assoc['DownloadTimes']); ?></strong></p>
-					<p><?php echo(_t('PACKAGE_UPDATE_TIME')); ?> <strong><?php echo($pkg_assoc['CreateStamp']); ?></strong></p>
+					<p><?php _e('Version'); ?> <strong><?php echo($pkg_assoc['Version']); ?></strong> | <?php _e('Download Times'); ?> <strong><?php echo($pkg_assoc['DownloadTimes']); ?></strong></p>
+					<p><?php _e('Last Updated'); ?> <strong><?php echo($pkg_assoc['CreateStamp']); ?></strong></p>
 					<hr />
 <?php
 					}
@@ -811,7 +826,7 @@
 				}
 ?>
 			<label class="source">
-				<p><?php echo(_t('SOURCE_INFO')); ?></p>
+				<p><?php _e('Source Info'); ?></p>
 			</label>
 			<fieldset class="source">
 				<a href="/">
@@ -860,7 +875,7 @@
 ?>
 			<block>
 				<p>
-					<?php echo(_t('MYSQL_ERROR')); ?>
+					<?php _e('MySQL Error!'); ?>
 				</p>
 			</block>
 <?php
@@ -874,7 +889,7 @@
 						$i++;
 					}
 ?>
-			<!--label><?php echo(_t('VIEW_SCREENSHOTS')); ?></label-->
+			<!--label><?php _e('View Screenshots'); ?></label-->
 			<div class="horizontal-scroll-wrapper" style="background: transparent; position: relative;">
 				<div class="horizontal-scroll-wrapper" style="background: transparent url(<?php echo($preview[0]); ?>); background-size: 150%; background-position: center; -webkit-filter: blur(5px); position: absolute; z-index: 1;"></div>
 				<div class="horizontal-scroll-wrapper" id="scroller" style="background: transparent; position: absolute; z-index: 2;">
@@ -893,18 +908,18 @@
 <?php
 				} else {
 ?>
-			<label><?php echo(_t('NO_SCREENSHOTS')); ?></label>
+			<label><?php _e('No screenshots now.'); ?></label>
 <?php
 				}
 			}
 		} else {
 ?>
-			<label><?php echo(_t('FUNCTION_DISABLED', _t("VIEW_SCREENSHOTS"))); ?></label>
+			<label><?php printf( __( 'The %s function is disabled.' ) , __('View Screenshots') ); ?></label>
 <?php
 		}
 	} elseif ($index == 3) {
 ?>
-			<label><?php echo(_t('DEVICE_INFO')); ?></label>
+			<label><?php _e('Device Info'); ?></label>
 <?php
 		if (DCRM_REPORTING == 2) {
 			$q_count = mysql_query("SELECT `Support`, COUNT(*) AS 'num' FROM `".DCRM_CON_PREFIX."Reports` WHERE (`Device` = '".$DEVICE."' AND `iOS` = '".$OS."' AND `PID` = '".$_GET['pid']."') GROUP BY `Support`");
@@ -943,7 +958,7 @@
 ?>
 				<div>
 					<p>
-						<strong><?php echo(_t('CURRENT_DEVICE_INFO')); ?></strong>
+						<strong><?php _e('Current Device Info'); ?></strong>
 					</p>
 					<hr />
 					<p>
@@ -951,27 +966,27 @@
 					</p>
 				</div>
 			</fieldset>
-			<label><?php echo(_t('SUBMIT_YOUR_REQUEST')); ?></label>
+			<label><?php _e('Submit Your Request'); ?></label>
 			<fieldset>
 				<a href="index.php?pid=<?php echo($_GET['pid']); ?>&method=report&support=3">
 					<img class="icon" src="icons/default/support_3.png" />
 					<div>
 						<div>
 							<label>
-								<p><?php echo(_t('REQUEST_FOR_UPDATE')); ?></p>
+								<p><?php _e('Request for updating'); ?></p>
 							</label>
 						</div>
 					</div>
 				</a>
 			</fieldset>
-			<label><?php echo(_t('COMPATIBILITY_REPORTS')); ?></label>
+			<label><?php _e('Compatibility Reports'); ?></label>
 			<fieldset>
 				<a href="index.php?pid=<?php echo($_GET['pid']); ?>&method=report&support=1">
 					<img class="icon" src="icons/default/support_1.png" />
 					<div>
 						<div>
 							<label>
-								<p><?php echo(_t('FULLY_COMPATIBILE')); ?><?php echo($s_1); ?></p>
+								<p><?php _e('Fully Compatibile'); ?><?php echo($s_1); ?></p>
 							</label>
 						</div>
 					</div>
@@ -981,7 +996,7 @@
 					<div>
 						<div>
 							<label>
-								<p><?php echo(_t('PARTLY_COMPATIBILE')); ?><?php echo($s_0); ?></p>
+								<p><?php _e('Partly Compatibile'); ?><?php echo($s_0); ?></p>
 							</label>
 						</div>
 					</div>
@@ -991,7 +1006,7 @@
 					<div>
 						<div>
 							<label>
-								<p><?php echo(_t('NOT_COMPATIBILE')); ?><?php echo($s_2); ?></p>
+								<p><?php _e('Not Compatibile'); ?><?php echo($s_2); ?></p>
 							</label>
 						</div>
 					</div>
@@ -999,13 +1014,13 @@
 			</fieldset>
 			<fieldset>
 				<div>
-					<?php echo(_t('COMPATIBILE_INTRO')); ?>
+					<?php _e('<p><strong>The software package compatibility report is voted by the majority of users, and we generated these statistical data, for reference only.</strong></p><hr /><p>If you have compatibility issues after installation, your vote, may be able to help tens of thousands of users from safe mode and many other threats.</p>'); ?>
 				</div>
 			</fieldset>
 <?php
 		} else {
 ?>
-			<label><?php echo(_t('FUNCTION_DISABLED', _t("REPORT_PROBLEMS"))); ?></label>
+			<label><?php printf( __( 'The %s function is disabled.' ) , __('Report Problems') ); ?></label>
 <?php
 		}
 	} elseif ($index == 4) {
@@ -1019,7 +1034,7 @@
 				<div>
 					<p>
 						<strong>
-							<?php echo(_t('THANKS_FOR_REPORTING')); ?>
+							<?php _e('Your report has been submitted.<br />Thanks for your support!'); ?>
 						</strong>
 					</p>
 <?php
@@ -1029,7 +1044,7 @@
 				<div>
 					<p>
 						<strong>
-							<?php echo(_t('VOTING_RESTRICTIONS')); ?>
+							<?php _e('Please use Cydia to vote.<br />Each device is limited to vote for 2 times!'); ?>
 						</strong>
 					</p>
 <?php
@@ -1040,7 +1055,7 @@
 				<div>
 					<p>
 						<strong>
-							<?php echo(_t('VOTING_RETRY')); ?>
+							<?php _e('You have reached the voting limit.'); ?>
 						</strong>
 					</p>
 <?php
@@ -1051,14 +1066,14 @@
 <?php
 		} else {
 ?>
-			<label><?php echo(_t('FUNCTION_DISABLED', _t("REPORT_PROBLEMS"))); ?></label>
+			<label><?php printf( __( 'The %s function is disabled.' ) , __('Report Problems') ); ?></label>
 <?php
 		}
 	} elseif ($index == 5) {
 		$history_query = mysql_query("SELECT `ID`, `Version` FROM `".DCRM_CON_PREFIX."Packages` WHERE `Package` = (SELECT `Package` FROM `".DCRM_CON_PREFIX."Packages` WHERE `ID` = '".(int)$_GET['pid']."' LIMIT 1) ORDER BY `ID` DESC LIMIT 1,20");
 		if (mysql_affected_rows() > 0) {
 ?>
-			<label><?php echo(_t('VERSION_HISTORY')); ?></label>
+			<label><?php _e('Version History'); ?></label>
 			<fieldset>
 <?php
 			while ($history = mysql_fetch_assoc($history_query)) {
@@ -1069,7 +1084,7 @@
 						<div>
 							<label>
 								<p>
-									<?php echo(_t('VERSION')); ?> <?php echo($history['Version']); ?>
+									<?php _e('Version'); ?> <?php echo($history['Version']); ?>
 								</p>
 							</label>
 						</div>
@@ -1082,7 +1097,7 @@
 <?php
 		} else {
 ?>
-			<label><?php echo(_t('NO_VERSION_HISTORY')); ?></label>
+			<label><?php _e('No version history now.'); ?></label>
 			<br />
 <?php
 		}
@@ -1093,7 +1108,7 @@
 ?>
 			<block>
 				<p>
-					<?php echo(_t('MYSQL_ERROR')); ?>
+					<?php _e('MySQL Error!'); ?>
 				</p>
 			</block>
 <?php
@@ -1103,7 +1118,7 @@
 ?>
 			<block>
 				<p>
-					<?php echo(_t('NO_PACKAGE_SELECTED')); ?>
+					<?php _e('Invalid package!<br />Perhaps this package has been deleted by us.'); ?>
 				</p>
 			</block>
 <?php
@@ -1115,14 +1130,14 @@
 			<fieldset class="author">
 				<div>
 					<p>
-						<?php echo(_t('CONTACT_AUTHOR_INTRO')); ?>
+						<?php _e('Source manager can <strong>NOT</strong> solve the function problem of package: you <strong>MUST</strong> contact the author.'); ?>
 					</p>
 				</div>
 				<a href="mailto:<?php echo($author_mail); ?>?subject=<?php echo(urlencode("Cydia/APT(A): ".$pkg_assoc['Name']." (".$pkg_assoc['Version'].")")); ?>" target="_blank">
 				<img class="icon" src="icons/default/mail_forward.png">
 					<div>
 						<div>
-							<label><p><?php echo(_t('AUTHOR')); ?></p></label>
+							<label><p><?php _e('Author'); ?></p></label>
 							<label class="detail">
 								<p><?php echo($author_name); ?></p>
 							</label>
@@ -1139,14 +1154,14 @@
 			<fieldset class="maintainer">
 				<div>
 					<p>
-						<?php echo(_t('CONTACT_SPONSOR_INTRO')); ?>
+						<?php _e('If the package is a commercial package, you can contact the sponsor to obtain commercial support.'); ?>
 					</p>
 				</div>
 				<a href="<?php echo($sponsor_url); ?>" target="_blank">
 				<img class="icon" src="icons/default/mail_forward.png">
 					<div>
 						<div>
-							<label><p><?php echo(_t('SPONSOR')); ?></p></label>
+							<label><p><?php _e('Sponsor'); ?></p></label>
 							<label class="detail">
 								<p><?php echo($sponsor_name); ?></p>
 							</label>
@@ -1162,13 +1177,13 @@
 ?>
 			<fieldset class="maintainer">
 				<div>
-					<p><?php echo(_t('CONTACT_MAINTAINER_INTRO')); ?></p>
+					<p><?php _e('If you have questions when install or uninstall this package, please contact the maintainer.'); ?></p>
 				</div>
 				<a href="mailto:<?php echo($maintainer_mail); ?>?subject=<?php echo(urlencode("Cydia/APT(A): ".$pkg_assoc['Name']." (".$pkg_assoc['Version'].")")); ?>" target="_blank">
 				<img class="icon" src="icons/default/mail_forward.png">
 					<div>
 						<div>
-							<label><p><?php echo(_t('MAINTAINER')); ?></p></label>
+							<label><p><?php _e('Maintainer'); ?></p></label>
 							<label class="detail">
 								<p><?php echo($maintainer_name); ?></p>
 							</label>
@@ -1187,7 +1202,7 @@
 ?>
 			<block>
 				<p>
-					<?php echo(_t('MYSQL_ERROR')); ?>
+					<?php _e('MySQL Error!'); ?>
 				</p>
 			</block>
 <?php
@@ -1197,7 +1212,7 @@
 ?>
 			<block>
 				<p>
-					<?php echo(_t('NO_SECTION_SELECTED')); ?>
+					<?php _e('Invalid section!<br />Perhaps this section has been deleted by us.'); ?>
 				</p>
 			</block>
 <?php
@@ -1209,8 +1224,8 @@
 					$s_num = mysql_affected_rows();
 ?>
 			<block>
-					<p><?php echo(_t('TOTAL_SECTION_PACKAGES', $s_num)); ?></p>
-					<p><?php echo(_t('CREATE_TIME', $section_assoc['TimeStamp'])); ?></strong></p>
+					<p><?php printf( __( '<strong>%s</strong> packages in this section.' ) , $s_num ); ?></p>
+					<p><?php printf( __( 'Create time: <strong>%s</strong>' ) , $section_assoc['TimeStamp'] ); ?></strong></p>
 			</block>
 			<fieldset>
 <?php
@@ -1251,7 +1266,7 @@
 			}
 		} else {
 ?>
-			<label><?php echo(_t('FUNCTION_DISABLED', _t("PACKAGE_CATEGORY"))); ?></label>
+			<label><?php printf( __( 'The %s function is disabled.' ) , __('Package Category') ); ?></label>
 <?php
 		}
 	}
