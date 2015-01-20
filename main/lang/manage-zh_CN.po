@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: DCRM Manager\n"
-"POT-Creation-Date: 2015-01-19 22:22+0800\n"
-"PO-Revision-Date: 2015-01-19 22:22+0800\n"
+"POT-Creation-Date: 2015-01-20 23:33+0800\n"
+"PO-Revision-Date: 2015-01-20 23:33+0800\n"
 "Last-Translator: Hintay <hintay@me.com>\n"
 "Language-Team: Hintay <hintay@me.com>\n"
 "Language: zh_CN\n"
@@ -17,8 +17,764 @@ msgstr ""
 "_nx_noop:3c,1,2;__ngettext_noop:1,2\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 "X-Poedit-SearchPath-0: ./manage\n"
+"X-Poedit-SearchPath-1: ./lang\n"
 
-#: manage/settings.php:85 manage/settings.php:151
+#: lang/l10n.php:690
+msgctxt "language"
+msgid "Afrikaans"
+msgstr "Afrikaans"
+
+#: lang/l10n.php:691
+msgctxt "language"
+msgid "Albanian"
+msgstr "Albanian"
+
+#: lang/l10n.php:692
+msgctxt "language"
+msgid "Arabic (Algeria)"
+msgstr "Arabic (Algeria)"
+
+#: lang/l10n.php:693
+msgctxt "language"
+msgid "Arabic (Bahrain)"
+msgstr "Arabic (Bahrain)"
+
+#: lang/l10n.php:694
+msgctxt "language"
+msgid "Arabic (Egypt)"
+msgstr "Arabic (Egypt)"
+
+#: lang/l10n.php:695
+msgctxt "language"
+msgid "Arabic (Iraq)"
+msgstr "Arabic (Iraq)"
+
+#: lang/l10n.php:696
+msgctxt "language"
+msgid "Arabic (Jordan)"
+msgstr "Arabic (Jordan)"
+
+#: lang/l10n.php:697
+msgctxt "language"
+msgid "Arabic (Kuwait)"
+msgstr "Arabic (Kuwait)"
+
+#: lang/l10n.php:698
+msgctxt "language"
+msgid "Arabic (Lebanon)"
+msgstr "Arabic (Lebanon)"
+
+#: lang/l10n.php:699
+msgctxt "language"
+msgid "Arabic (libya)"
+msgstr "Arabic (libya)"
+
+#: lang/l10n.php:700
+msgctxt "language"
+msgid "Arabic (Morocco)"
+msgstr "Arabic (Morocco)"
+
+#: lang/l10n.php:701
+msgctxt "language"
+msgid "Arabic (Oman)"
+msgstr "Arabic (Oman)"
+
+#: lang/l10n.php:702
+msgctxt "language"
+msgid "Arabic (Qatar)"
+msgstr "Arabic (Qatar)"
+
+#: lang/l10n.php:703
+msgctxt "language"
+msgid "Arabic (Saudi Arabia)"
+msgstr "Arabic (Saudi Arabia)"
+
+#: lang/l10n.php:704
+msgctxt "language"
+msgid "Arabic (Syria)"
+msgstr "Arabic (Syria)"
+
+#: lang/l10n.php:705
+msgctxt "language"
+msgid "Arabic (Tunisia)"
+msgstr "Arabic (Tunisia)"
+
+#: lang/l10n.php:706
+msgctxt "language"
+msgid "Arabic (U.A.E.)"
+msgstr "阿拉伯文 (阿拉伯联合酋长国) "
+
+#: lang/l10n.php:707
+msgctxt "language"
+msgid "Arabic (Yemen)"
+msgstr "阿拉伯文 (也门)"
+
+#: lang/l10n.php:708
+msgctxt "language"
+msgid "Arabic"
+msgstr "阿拉伯文"
+
+#: lang/l10n.php:709
+msgctxt "language"
+msgid "Armenian"
+msgstr "Armenian"
+
+#: lang/l10n.php:710
+msgctxt "language"
+msgid "Assamese"
+msgstr "Assamese"
+
+#: lang/l10n.php:711
+msgctxt "language"
+msgid "Azeri"
+msgstr "Azeri"
+
+#: lang/l10n.php:712
+msgctxt "language"
+msgid "Basque"
+msgstr "Basque"
+
+#: lang/l10n.php:713
+msgctxt "language"
+msgid "Belarusian"
+msgstr "Belarusian"
+
+#: lang/l10n.php:714
+msgctxt "language"
+msgid "Bengali"
+msgstr "Bengali"
+
+#: lang/l10n.php:715
+msgctxt "language"
+msgid "Bulgarian"
+msgstr "Bulgarian"
+
+#: lang/l10n.php:716
+msgctxt "language"
+msgid "Catalan"
+msgstr "Catalan"
+
+#: lang/l10n.php:717
+msgctxt "language"
+msgid "Chinese (China)"
+msgstr "中文 (中国)"
+
+#: lang/l10n.php:718
+msgctxt "language"
+msgid "Chinese (Hong Kong SAR)"
+msgstr "中文 (香港特别行政区)"
+
+#: lang/l10n.php:719
+msgctxt "language"
+msgid "Chinese (Macau SAR)"
+msgstr "中文 (澳门特别行政区)"
+
+#: lang/l10n.php:720
+msgctxt "language"
+msgid "Chinese (Singapore)"
+msgstr "中文 (新加坡)"
+
+#: lang/l10n.php:721
+msgctxt "language"
+msgid "Chinese (Taiwan)"
+msgstr "中文 (台湾)"
+
+#: lang/l10n.php:722
+msgctxt "language"
+msgid "Chinese (Simplified)"
+msgstr "中文 (简体)"
+
+#: lang/l10n.php:723
+msgctxt "language"
+msgid "Chinese (Traditional)"
+msgstr "中文 (繁体)"
+
+#: lang/l10n.php:724
+msgctxt "language"
+msgid "Chinese"
+msgstr "中文"
+
+#: lang/l10n.php:725
+msgctxt "language"
+msgid "Croatian"
+msgstr "Croatian"
+
+#: lang/l10n.php:726
+msgctxt "language"
+msgid "Czech"
+msgstr "Czech"
+
+#: lang/l10n.php:727
+msgctxt "language"
+msgid "Danish"
+msgstr "Danish"
+
+#: lang/l10n.php:728
+msgctxt "language"
+msgid "Divehi"
+msgstr "Divehi"
+
+#: lang/l10n.php:729
+msgctxt "language"
+msgid "Dutch (Belgium)"
+msgstr "荷兰语 (比利时)"
+
+#: lang/l10n.php:730
+msgctxt "language"
+msgid "Dutch (Netherlands)"
+msgstr "荷兰语 (荷兰)"
+
+#: lang/l10n.php:731
+msgctxt "language"
+msgid "English (Australia)"
+msgstr "English (Australia)"
+
+#: lang/l10n.php:732
+msgctxt "language"
+msgid "English (Belize)"
+msgstr "English (Belize)"
+
+#: lang/l10n.php:733
+msgctxt "language"
+msgid "English (Canada)"
+msgstr "English (Canada)"
+
+#: lang/l10n.php:734
+msgctxt "language"
+msgid "English (Ireland)"
+msgstr "English (Ireland)"
+
+#: lang/l10n.php:735
+msgctxt "language"
+msgid "English (Jamaica)"
+msgstr "English (Jamaica)"
+
+#: lang/l10n.php:736
+msgctxt "language"
+msgid "English (New Zealand)"
+msgstr "英语 (新西兰)"
+
+#: lang/l10n.php:737
+msgctxt "language"
+msgid "English (Philippines)"
+msgstr "English (Philippines)"
+
+#: lang/l10n.php:738
+msgctxt "language"
+msgid "English (South Africa)"
+msgstr "English (South Africa)"
+
+#: lang/l10n.php:739
+msgctxt "language"
+msgid "English (Trinidad)"
+msgstr "English (Trinidad)"
+
+#: lang/l10n.php:740
+msgctxt "language"
+msgid "English (United Kingdom)"
+msgstr "英文 (英国)"
+
+#: lang/l10n.php:741 lang/l10n.php:744
+msgctxt "language"
+msgid "English (United States)"
+msgstr "英文 (美国)"
+
+#: lang/l10n.php:742
+msgctxt "language"
+msgid "English (Zimbabwe)"
+msgstr "英语 (津巴布韦)"
+
+#: lang/l10n.php:743 manage/settings.php:156
+msgctxt "language"
+msgid "English"
+msgstr "英语"
+
+#: lang/l10n.php:745
+msgctxt "language"
+msgid "Estonian"
+msgstr "Estonian"
+
+#: lang/l10n.php:746
+msgctxt "language"
+msgid "Faeroese"
+msgstr "Faeroese"
+
+#: lang/l10n.php:747
+msgctxt "language"
+msgid "Farsi"
+msgstr "Farsi"
+
+#: lang/l10n.php:748
+msgctxt "language"
+msgid "Finnish"
+msgstr "芬兰语"
+
+#: lang/l10n.php:749
+msgctxt "language"
+msgid "French (Belgium)"
+msgstr "French (Belgium)"
+
+#: lang/l10n.php:750
+msgctxt "language"
+msgid "French (Canada)"
+msgstr "French (Canada)"
+
+#: lang/l10n.php:751
+msgctxt "language"
+msgid "French (Luxembourg)"
+msgstr "French (Luxembourg)"
+
+#: lang/l10n.php:752
+msgctxt "language"
+msgid "French (Monaco)"
+msgstr "French (Monaco)"
+
+#: lang/l10n.php:753
+msgctxt "language"
+msgid "French (Switzerland)"
+msgstr "French (Switzerland)"
+
+#: lang/l10n.php:754
+msgctxt "language"
+msgid "French (France)"
+msgstr "法语 (法国)"
+
+#: lang/l10n.php:755
+msgctxt "language"
+msgid "FYRO Macedonian"
+msgstr "马其顿文"
+
+#: lang/l10n.php:756
+msgctxt "language"
+msgid "Gaelic"
+msgstr "Gaelic"
+
+#: lang/l10n.php:757
+msgctxt "language"
+msgid "Georgian"
+msgstr "Georgian"
+
+#: lang/l10n.php:758
+msgctxt "language"
+msgid "German (Austria)"
+msgstr "German (Austria)"
+
+#: lang/l10n.php:759
+msgctxt "language"
+msgid "German (Liechtenstein)"
+msgstr "German (Liechtenstein)"
+
+#: lang/l10n.php:760
+msgctxt "language"
+msgid "German (Luxembourg)"
+msgstr "German (Luxembourg)"
+
+#: lang/l10n.php:761
+msgctxt "language"
+msgid "German (Switzerland)"
+msgstr "German (Switzerland)"
+
+#: lang/l10n.php:762
+msgctxt "language"
+msgid "German (Germany)"
+msgstr "德语 (德国)"
+
+#: lang/l10n.php:763
+msgctxt "language"
+msgid "Greek"
+msgstr "Greek"
+
+#: lang/l10n.php:764
+msgctxt "language"
+msgid "Gujarati"
+msgstr "Gujarati"
+
+#: lang/l10n.php:765
+msgctxt "language"
+msgid "Hebrew"
+msgstr "Hebrew"
+
+#: lang/l10n.php:766
+msgctxt "language"
+msgid "Hindi"
+msgstr "Hindi"
+
+#: lang/l10n.php:767
+msgctxt "language"
+msgid "Hungarian"
+msgstr "Hungarian"
+
+#: lang/l10n.php:768
+msgctxt "language"
+msgid "Icelandic"
+msgstr "Icelandic"
+
+#: lang/l10n.php:769
+msgctxt "language"
+msgid "Indonesian"
+msgstr "Indonesian"
+
+#: lang/l10n.php:770
+msgctxt "language"
+msgid "Italian (Switzerland)"
+msgstr "Italian (Switzerland)"
+
+#: lang/l10n.php:771
+msgctxt "language"
+msgid "Italian (Italy)"
+msgstr "意大利语 (意大利)"
+
+#: lang/l10n.php:772
+msgctxt "language"
+msgid "Japanese"
+msgstr "日语"
+
+#: lang/l10n.php:773
+msgctxt "language"
+msgid "Kannada"
+msgstr "Kannada"
+
+#: lang/l10n.php:774
+msgctxt "language"
+msgid "Kazakh"
+msgstr "Kazakh"
+
+#: lang/l10n.php:775
+msgctxt "language"
+msgid "Konkani"
+msgstr "Konkani"
+
+#: lang/l10n.php:776
+msgctxt "language"
+msgid "Korean"
+msgstr "韩语"
+
+#: lang/l10n.php:777
+msgctxt "language"
+msgid "Kyrgyz"
+msgstr "Kyrgyz"
+
+#: lang/l10n.php:778
+msgctxt "language"
+msgid "Latvian"
+msgstr "Latvian"
+
+#: lang/l10n.php:779
+msgctxt "language"
+msgid "Lithuanian"
+msgstr "Lithuanian"
+
+#: lang/l10n.php:780
+msgctxt "language"
+msgid "Malay"
+msgstr "Malay"
+
+#: lang/l10n.php:781
+msgctxt "language"
+msgid "Malayalam"
+msgstr "Malayalam"
+
+#: lang/l10n.php:782
+msgctxt "language"
+msgid "Maltese"
+msgstr "Maltese"
+
+#: lang/l10n.php:783
+msgctxt "language"
+msgid "Marathi"
+msgstr "Marathi"
+
+#: lang/l10n.php:784
+msgctxt "language"
+msgid "Mongolian (Cyrillic)"
+msgstr "Mongolian (Cyrillic)"
+
+#: lang/l10n.php:785
+msgctxt "language"
+msgid "Nepali (India)"
+msgstr "Nepali (India)"
+
+#: lang/l10n.php:786 lang/l10n.php:788
+msgctxt "language"
+msgid "Norwegian (Bokmal)"
+msgstr "Norwegian (Bokmal)"
+
+#: lang/l10n.php:787
+msgctxt "language"
+msgid "Norwegian (Nynorsk)"
+msgstr "Norwegian (Nynorsk)"
+
+#: lang/l10n.php:789
+msgctxt "language"
+msgid "Oriya"
+msgstr "Oriya"
+
+#: lang/l10n.php:790
+msgctxt "language"
+msgid "Polish"
+msgstr "波兰语"
+
+#: lang/l10n.php:791
+msgctxt "language"
+msgid "Portuguese (Brazil)"
+msgstr "Portuguese (Brazil)"
+
+#: lang/l10n.php:792
+msgctxt "language"
+msgid "Portuguese (Portugal)"
+msgstr "Portuguese (Portugal)"
+
+#: lang/l10n.php:793
+msgctxt "language"
+msgid "Punjabi"
+msgstr "Punjabi"
+
+#: lang/l10n.php:794
+msgctxt "language"
+msgid "Rhaeto-Romanic"
+msgstr "Rhaeto-Romanic"
+
+#: lang/l10n.php:795
+msgctxt "language"
+msgid "Romanian (Moldova)"
+msgstr "Romanian (Moldova)"
+
+#: lang/l10n.php:796
+msgctxt "language"
+msgid "Romanian"
+msgstr "Romanian"
+
+#: lang/l10n.php:797
+msgctxt "language"
+msgid "Russian (Moldova)"
+msgstr "Russian (Moldova)"
+
+#: lang/l10n.php:798
+msgctxt "language"
+msgid "Russian"
+msgstr "俄语"
+
+#: lang/l10n.php:799
+msgctxt "language"
+msgid "Sanskrit"
+msgstr "Sanskrit"
+
+#: lang/l10n.php:800
+msgctxt "language"
+msgid "Serbian"
+msgstr "Serbian"
+
+#: lang/l10n.php:801
+msgctxt "language"
+msgid "Slovak"
+msgstr "Slovak"
+
+#: lang/l10n.php:802
+msgctxt "language"
+msgid "Slovenian"
+msgstr "Slovenian"
+
+#: lang/l10n.php:803
+msgctxt "language"
+msgid "Sorbian"
+msgstr "Sorbian"
+
+#: lang/l10n.php:804
+msgctxt "language"
+msgid "Spanish (Argentina)"
+msgstr "Spanish (Argentina)"
+
+#: lang/l10n.php:805
+msgctxt "language"
+msgid "Spanish (Bolivia)"
+msgstr "Spanish (Bolivia)"
+
+#: lang/l10n.php:806
+msgctxt "language"
+msgid "Spanish (Chile)"
+msgstr "Spanish (Chile)"
+
+#: lang/l10n.php:807
+msgctxt "language"
+msgid "Spanish (Colombia)"
+msgstr "Spanish (Colombia)"
+
+#: lang/l10n.php:808
+msgctxt "language"
+msgid "Spanish (Costa Rica)"
+msgstr "Spanish (Costa Rica)"
+
+#: lang/l10n.php:809
+msgctxt "language"
+msgid "Spanish (Dominican Republic)"
+msgstr "Spanish (Dominican Republic)"
+
+#: lang/l10n.php:810
+msgctxt "language"
+msgid "Spanish (Ecuador)"
+msgstr "Spanish (Ecuador)"
+
+#: lang/l10n.php:811
+msgctxt "language"
+msgid "Spanish (El Salvador)"
+msgstr "Spanish (El Salvador)"
+
+#: lang/l10n.php:812
+msgctxt "language"
+msgid "Spanish (Guatemala)"
+msgstr "Spanish (Guatemala)"
+
+#: lang/l10n.php:813
+msgctxt "language"
+msgid "Spanish (Honduras)"
+msgstr "Spanish (Honduras)"
+
+#: lang/l10n.php:814
+msgctxt "language"
+msgid "Spanish (Mexico)"
+msgstr "Spanish (Mexico)"
+
+#: lang/l10n.php:815
+msgctxt "language"
+msgid "Spanish (Nicaragua)"
+msgstr "Spanish (Nicaragua)"
+
+#: lang/l10n.php:816
+msgctxt "language"
+msgid "Spanish (Panama)"
+msgstr "Spanish (Panama)"
+
+#: lang/l10n.php:817
+msgctxt "language"
+msgid "Spanish (Paraguay)"
+msgstr "Spanish (Paraguay)"
+
+#: lang/l10n.php:818
+msgctxt "language"
+msgid "Spanish (Peru)"
+msgstr "Spanish (Peru)"
+
+#: lang/l10n.php:819
+msgctxt "language"
+msgid "Spanish (Puerto Rico)"
+msgstr "Spanish (Puerto Rico)"
+
+#: lang/l10n.php:820
+msgctxt "language"
+msgid "Spanish (United States)"
+msgstr "Spanish (United States)"
+
+#: lang/l10n.php:821
+msgctxt "language"
+msgid "Spanish (Uruguay)"
+msgstr "Spanish (Uruguay)"
+
+#: lang/l10n.php:822
+msgctxt "language"
+msgid "Spanish (Venezuela)"
+msgstr "Spanish (Venezuela)"
+
+#: lang/l10n.php:823
+msgctxt "language"
+msgid "Spanish (Traditional Sort)"
+msgstr "Spanish (Traditional Sort)"
+
+#: lang/l10n.php:824
+msgctxt "language"
+msgid "Sutu"
+msgstr "Sutu"
+
+#: lang/l10n.php:825
+msgctxt "language"
+msgid "Swahili"
+msgstr "Swahili"
+
+#: lang/l10n.php:826
+msgctxt "language"
+msgid "Swedish (Finland)"
+msgstr "Swedish (Finland)"
+
+#: lang/l10n.php:827
+msgctxt "language"
+msgid "Swedish"
+msgstr "Swedish"
+
+#: lang/l10n.php:828
+msgctxt "language"
+msgid "Syriac"
+msgstr "Syriac"
+
+#: lang/l10n.php:829
+msgctxt "language"
+msgid "Tamil"
+msgstr "Tamil"
+
+#: lang/l10n.php:830
+msgctxt "language"
+msgid "Tatar"
+msgstr "Tatar"
+
+#: lang/l10n.php:831
+msgctxt "language"
+msgid "Telugu"
+msgstr "Telugu"
+
+#: lang/l10n.php:832
+msgctxt "language"
+msgid "Thai"
+msgstr "Thai"
+
+#: lang/l10n.php:833
+msgctxt "language"
+msgid "Tsonga"
+msgstr "Tsonga"
+
+#: lang/l10n.php:834
+msgctxt "language"
+msgid "Tswana"
+msgstr "Tswana"
+
+#: lang/l10n.php:835
+msgctxt "language"
+msgid "Turkish"
+msgstr "Turkish"
+
+#: lang/l10n.php:836
+msgctxt "language"
+msgid "Ukrainian"
+msgstr "Ukrainian"
+
+#: lang/l10n.php:837
+msgctxt "language"
+msgid "Urdu"
+msgstr "Urdu"
+
+#: lang/l10n.php:838
+msgctxt "language"
+msgid "Uzbek"
+msgstr "Uzbek"
+
+#: lang/l10n.php:839
+msgctxt "language"
+msgid "Vietnamese"
+msgstr "Vietnamese"
+
+#: lang/l10n.php:840
+msgctxt "language"
+msgid "Xhosa"
+msgstr "Xhosa"
+
+#: lang/l10n.php:841
+msgctxt "language"
+msgid "Yiddish"
+msgstr "Yiddish"
+
+#: lang/l10n.php:842
+msgctxt "language"
+msgid "Zulu"
+msgstr "祖鲁语"
+
+#: manage/settings.php:85 manage/settings.php:187
 msgid "Strength indicator"
 msgstr "强度评估"
 
@@ -47,28 +803,59 @@ msgctxt "Password"
 msgid "Mismatch"
 msgstr "不匹配"
 
-#: manage/settings.php:139
+#: manage/settings.php:125
+msgid "Preferences"
+msgstr "系统设置"
+
+#: manage/settings.php:129
+msgid "General"
+msgstr "通用"
+
+#: manage/settings.php:132
+msgid "Language"
+msgstr "显示语言"
+
+#: manage/settings.php:140
+msgctxt "language"
+msgid "Detect"
+msgstr "自动检测"
+
+#: manage/settings.php:161
+msgid ""
+"If you want system auto detect users browser language to show pages please "
+"select \"Detect\" option."
+msgstr "如果您想让系统自动匹配浏览器语言来显示页面，请选择“自动检测”。"
+
+#: manage/settings.php:165
+msgid "Login Information"
+msgstr "登录信息"
+
+#: manage/settings.php:168
+msgid "Username"
+msgstr "用户名"
+
+#: manage/settings.php:175
 msgid "New Password"
 msgstr "新密码"
 
-#: manage/settings.php:142
+#: manage/settings.php:178
 msgid ""
 "If you would like to change the password type a new one. Otherwise leave "
 "this blank."
 msgstr "如果您想修改您的密码，请在此输入新密码。不然请留空。"
 
-#: manage/settings.php:147
+#: manage/settings.php:183
 msgid "Repeat New Password"
 msgstr "重复新密码"
 
-#: manage/settings.php:150
+#: manage/settings.php:186
 msgid "Type your new password again."
 msgstr "再输入一遍新密码。"
 
-#: manage/settings.php:692
+#: manage/settings.php:729
 msgid "You entered your new password only once."
 msgstr "您只输入了一次新密码。"
 
-#: manage/settings.php:695
+#: manage/settings.php:732
 msgid "Your passwords do not match. Please try again."
 msgstr "您两次输入的密码不符，请重试。"

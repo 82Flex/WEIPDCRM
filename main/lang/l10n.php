@@ -41,7 +41,7 @@ function get_locale() {
 		return $locale;
 	}
 
-	if ( defined( 'DCRM_LANG' ) ) {
+	if ( defined( 'DCRM_LANG' ) && DCRM_LANG != 'Detect' && DCRM_LANG != '' ) {
 		$locale = DCRM_LANG;
 		return $locale;
 	}
@@ -140,8 +140,8 @@ function check_languages( $localelist ) {
 				continue;
 			}
 			foreach ( $langlist as $singlelang ) {
-				if ( preg_match( '/(?:(.+)-)?' . $localetypehandle . $singlelang . '_([A-Za-z_]{1,4}).mo/', $file, $match ) ) {
-					$similarlang = $match;
+				if ( preg_match( '/' . $localetypehandle . $singlelang . '_([A-Za-z_]{1,4}).mo/', $file, $match ) ) {
+					$similarlang = $match[1];
 					$locale = $singlelang . '_' . $similarlang;
 					return $locale;
 				}
@@ -626,8 +626,7 @@ function get_available_languages( $dir = null ) {
 
 	foreach( (array)glob( ( is_null( $dir) ? LANG_DIR : $dir ) . '/*.mo' ) as $lang_file ) {
 		$lang_file = basename($lang_file, '.mo');
-		if ( 0 !== strpos( $lang_file, 'continents-cities' ) && 0 !== strpos( $lang_file, 'ms-' ) &&
-			0 !== strpos( $lang_file, 'admin-' ))
+		if ( 0 !== strpos( $lang_file, 'init-' ) && 0 !== strpos( $lang_file, 'manage-' ))
 			$languages[] = $lang_file;
 	}
 
@@ -662,12 +661,14 @@ function wp_get_pomo_file_data( $po_file ) {
  *
  * @return Locale text for link.
  */
-function localization_load() {
+function localization_load( $setlang = null ) {
 	global $locale;
 	global $localetype;
 
 	$language = '';
-	if ( ! empty( $_REQUEST['language'] ) ) {
+	if ( $setlang != null) {
+		$language = $setlang;
+	} elseif ( ! empty( $_REQUEST['language'] ) ) {
 		$language = preg_replace( '/[^a-zA-Z_]/', '', $_REQUEST['language'] );
 	} else {
 		$language = get_locale();
@@ -678,7 +679,167 @@ function localization_load() {
 	} else {
 		$link_text = '';
 	}
-	load_default_textdomain();
+	load_default_textdomain( $locale );
 
 	return $link_text;
+}
+
+// Languages array
+function languages_list() {
+	$a_languages = array(
+	'af' => _x( 'Afrikaans', 'language' ),
+	'sq' => _x( 'Albanian', 'language' ),
+	'ar_DZ' => _x( 'Arabic (Algeria)', 'language' ),
+	'ar_BH' => _x( 'Arabic (Bahrain)', 'language' ),
+	'ar_EG' => _x( 'Arabic (Egypt)', 'language' ),
+	'ar_IQ' => _x( 'Arabic (Iraq)', 'language' ),
+	'ar_JO' => _x( 'Arabic (Jordan)', 'language' ),
+	'ar_KW' => _x( 'Arabic (Kuwait)', 'language' ),
+	'ar_LB' => _x( 'Arabic (Lebanon)', 'language' ),
+	'ar_LY' => _x( 'Arabic (libya)', 'language' ),
+	'ar_MA' => _x( 'Arabic (Morocco)', 'language' ),
+	'ar_OM' => _x( 'Arabic (Oman)', 'language' ),
+	'ar_GA' => _x( 'Arabic (Qatar)', 'language' ),
+	'ar_SA' => _x( 'Arabic (Saudi Arabia)', 'language' ),
+	'ar_SY' => _x( 'Arabic (Syria)', 'language' ),
+	'ar_TN' => _x( 'Arabic (Tunisia)', 'language' ),
+	'ar_AE' => _x( 'Arabic (U.A.E.)', 'language' ),
+	'ar_YE' => _x( 'Arabic (Yemen)', 'language' ),
+	'ar' => _x( 'Arabic', 'language' ),
+	'hy' => _x( 'Armenian', 'language' ),
+	'as' => _x( 'Assamese', 'language' ),
+	'az' => _x( 'Azeri', 'language' ),
+	'eu' => _x( 'Basque', 'language' ),
+	'be' => _x( 'Belarusian', 'language' ),
+	'bn' => _x( 'Bengali', 'language' ),
+	'bg' => _x( 'Bulgarian', 'language' ),
+	'ca' => _x( 'Catalan', 'language' ),
+	'zh_CN' => _x( 'Chinese (China)', 'language' ),
+	'zh_HK' => _x( 'Chinese (Hong Kong SAR)', 'language' ),
+	'zh_MO' => _x( 'Chinese (Macau SAR)', 'language' ),
+	'zh_SQ' => _x( 'Chinese (Singapore)', 'language' ),
+	'zh_TW' => _x( 'Chinese (Taiwan)', 'language' ),
+	'zh_Hans' => _x( 'Chinese (Simplified)', 'language' ),
+	'zh_Hant' => _x( 'Chinese (Traditional)', 'language' ),
+	'zh' => _x( 'Chinese', 'language' ),
+	'hr' => _x( 'Croatian', 'language' ),
+	'cs' => _x( 'Czech', 'language' ),
+	'da' => _x( 'Danish', 'language' ),
+	'div' => _x( 'Divehi', 'language' ),
+	'nl_BE' => _x( 'Dutch (Belgium)', 'language' ),
+	'nl' => _x( 'Dutch (Netherlands)', 'language' ),
+	'en_AU' => _x( 'English (Australia)', 'language' ),
+	'en_BZ' => _x( 'English (Belize)', 'language' ),
+	'en_CA' => _x( 'English (Canada)', 'language' ),
+	'en_IE' => _x( 'English (Ireland)', 'language' ),
+	'en_JM' => _x( 'English (Jamaica)', 'language' ),
+	'en_NZ' => _x( 'English (New Zealand)', 'language' ),
+	'en_PH' => _x( 'English (Philippines)', 'language' ),
+	'en_ZA' => _x( 'English (South Africa)', 'language' ),
+	'en_TT' => _x( 'English (Trinidad)', 'language' ),
+	'en_GB' => _x( 'English (United Kingdom)', 'language' ),
+	'en_US' => _x( 'English (United States)', 'language' ),
+	'en_ZW' => _x( 'English (Zimbabwe)', 'language' ),
+	'en' => _x( 'English', 'language' ),
+	'us' => _x( 'English (United States)', 'language' ),
+	'et' => _x( 'Estonian', 'language' ),
+	'fo' => _x( 'Faeroese', 'language' ),
+	'fa' => _x( 'Farsi', 'language' ),
+	'fi' => _x( 'Finnish', 'language' ),
+	'fr_BE' => _x( 'French (Belgium)', 'language' ),
+	'fr_CA' => _x( 'French (Canada)', 'language' ),
+	'fr_LU' => _x( 'French (Luxembourg)', 'language' ),
+	'fr_MC' => _x( 'French (Monaco)', 'language' ),
+	'fr_CH' => _x( 'French (Switzerland)', 'language' ),
+	'fr' => _x( 'French (France)', 'language' ),
+	'mk' => _x( 'FYRO Macedonian', 'language' ),
+	'gd' => _x( 'Gaelic', 'language' ),
+	'ka' => _x( 'Georgian', 'language' ),
+	'de_AT' => _x( 'German (Austria)', 'language' ),
+	'de_LI' => _x( 'German (Liechtenstein)', 'language' ),
+	'de_LU' => _x( 'German (Luxembourg)', 'language' ),
+	'de_CH' => _x( 'German (Switzerland)', 'language' ),
+	'de' => _x( 'German (Germany)', 'language' ),
+	'el' => _x( 'Greek', 'language' ),
+	'gu' => _x( 'Gujarati', 'language' ),
+	'he' => _x( 'Hebrew', 'language' ),
+	'hi' => _x( 'Hindi', 'language' ),
+	'hu' => _x( 'Hungarian', 'language' ),
+	'is' => _x( 'Icelandic', 'language' ),
+	'id' => _x( 'Indonesian', 'language' ),
+	'it_CH' => _x( 'Italian (Switzerland)', 'language' ),
+	'it' => _x( 'Italian (Italy)', 'language' ),
+	'ja' => _x( 'Japanese', 'language' ),
+	'kn' => _x( 'Kannada', 'language' ),
+	'kk' => _x( 'Kazakh', 'language' ),
+	'kok' => _x( 'Konkani', 'language' ),
+	'ko' => _x( 'Korean', 'language' ),
+	'kz' => _x( 'Kyrgyz', 'language' ),
+	'lv' => _x( 'Latvian', 'language' ),
+	'lt' => _x( 'Lithuanian', 'language' ),
+	'ms' => _x( 'Malay', 'language' ),
+	'ml' => _x( 'Malayalam', 'language' ),
+	'mt' => _x( 'Maltese', 'language' ),
+	'mr' => _x( 'Marathi', 'language' ),
+	'mn' => _x( 'Mongolian (Cyrillic)', 'language' ),
+	'ne' => _x( 'Nepali (India)', 'language' ),
+	'nb_NO' => _x( 'Norwegian (Bokmal)', 'language' ),
+	'nn_NO' => _x( 'Norwegian (Nynorsk)', 'language' ),
+	'no' => _x( 'Norwegian (Bokmal)', 'language' ),
+	'or' => _x( 'Oriya', 'language' ),
+	'pl' => _x( 'Polish', 'language' ),
+	'pt_BR' => _x( 'Portuguese (Brazil)', 'language' ),
+	'pt' => _x( 'Portuguese (Portugal)', 'language' ),
+	'pa' => _x( 'Punjabi', 'language' ),
+	'rm' => _x( 'Rhaeto-Romanic', 'language' ),
+	'ro_MD' => _x( 'Romanian (Moldova)', 'language' ),
+	'ro' => _x( 'Romanian', 'language' ),
+	'ru_MD' => _x( 'Russian (Moldova)', 'language' ),
+	'ru' => _x( 'Russian', 'language' ),
+	'sa' => _x( 'Sanskrit', 'language' ),
+	'sr' => _x( 'Serbian', 'language' ),
+	'sk' => _x( 'Slovak', 'language' ),
+	'ls' => _x( 'Slovenian', 'language' ),
+	'sb' => _x( 'Sorbian', 'language' ),
+	'es_AR' => _x( 'Spanish (Argentina)', 'language' ),
+	'es_BO' => _x( 'Spanish (Bolivia)', 'language' ),
+	'es_CL' => _x( 'Spanish (Chile)', 'language' ),
+	'es_CO' => _x( 'Spanish (Colombia)', 'language' ),
+	'es_CR' => _x( 'Spanish (Costa Rica)', 'language' ),
+	'es_DO' => _x( 'Spanish (Dominican Republic)', 'language' ),
+	'es_EC' => _x( 'Spanish (Ecuador)', 'language' ),
+	'es_SV' => _x( 'Spanish (El Salvador)', 'language' ),
+	'es_GT' => _x( 'Spanish (Guatemala)', 'language' ),
+	'es_HN' => _x( 'Spanish (Honduras)', 'language' ),
+	'es_MX' => _x( 'Spanish (Mexico)', 'language' ),
+	'es_NI' => _x( 'Spanish (Nicaragua)', 'language' ),
+	'es_PA' => _x( 'Spanish (Panama)', 'language' ),
+	'es_PY' => _x( 'Spanish (Paraguay)', 'language' ),
+	'es_PE' => _x( 'Spanish (Peru)', 'language' ),
+	'es_PR' => _x( 'Spanish (Puerto Rico)', 'language' ),
+	'es_US' => _x( 'Spanish (United States)', 'language' ),
+	'es_UY' => _x( 'Spanish (Uruguay)', 'language' ),
+	'es_VE' => _x( 'Spanish (Venezuela)', 'language' ),
+	'es' => _x( 'Spanish (Traditional Sort)', 'language' ),
+	'sx' => _x( 'Sutu', 'language' ),
+	'sw' => _x( 'Swahili', 'language' ),
+	'sv_FI' => _x( 'Swedish (Finland)', 'language' ),
+	'sv' => _x( 'Swedish', 'language' ),
+	'syr' => _x( 'Syriac', 'language' ),
+	'ta' => _x( 'Tamil', 'language' ),
+	'tt' => _x( 'Tatar', 'language' ),
+	'te' => _x( 'Telugu', 'language' ),
+	'th' => _x( 'Thai', 'language' ),
+	'ts' => _x( 'Tsonga', 'language' ),
+	'tn' => _x( 'Tswana', 'language' ),
+	'tr' => _x( 'Turkish', 'language' ),
+	'uk' => _x( 'Ukrainian', 'language' ),
+	'ur' => _x( 'Urdu', 'language' ),
+	'uz' => _x( 'Uzbek', 'language' ),
+	'vi' => _x( 'Vietnamese', 'language' ),
+	'xh' => _x( 'Xhosa', 'language' ),
+	'yi' => _x( 'Yiddish', 'language' ),
+	'zu' => _x( 'Zulu', 'language' ));
+
+	return $a_languages;
 }

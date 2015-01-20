@@ -29,15 +29,15 @@
 		exit;
 	}
 
+	define("DCRM", true);
+	require_once("manage/include/config.inc.php");
+	require_once("manage/include/autofill.inc.php");
+	
 	/* Language Switch */
 	require_once("lang/l10n.php");
 	$link_language = localization_load();
 
-	define("DCRM", true);
-	require_once("manage/include/config.inc.php");
-	require_once("manage/include/autofill.inc.php");
 	header("Content-Type: text/html; charset=UTF-8");
-	
 	if (file_exists("Release")) {
 		$release = file("Release");
 		$release_origin = __('No Name');

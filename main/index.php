@@ -23,10 +23,6 @@
 		header('Location: '.$root.'init');
 		exit;
 	}
-	
-	/* Language Switch */
-	require_once("lang/l10n.php");
-	$link_language = localization_load();
 
 	/* DCRM Mobile Page */
 	error_reporting(0);
@@ -37,6 +33,11 @@
 	require_once('manage/include/autofill.inc.php');
 	require_once('manage/include/func.php');
 	require_once('manage/include/Mobile_Detect.php');
+
+	/* Language Switch */
+	require_once("lang/l10n.php");
+	$link_language = localization_load();
+
 	header('Content-Type: text/html; charset=UTF-8');
 	date_default_timezone_set('Asia/Shanghai');
 	$detect = new Mobile_Detect;

@@ -33,8 +33,8 @@
 
 	// 载入语言
 	$localetype = 'manage';
-	$locale = 'zh_CN';
 	include_once ABSPATH . 'lang/l10n.php';
+	localization_load();
 	
 	/** 
 	 * utf-8 转unicode 
@@ -122,14 +122,50 @@
 				<?php
 					if (!isset($_GET['action'])) {
 				?>
-				<h2>系统设置</h2>
+				<h2><?php _e( 'Preferences' ); ?></h2>
 				<br />
 				<form class="form-horizontal" method="POST" action="settings.php?action=set">
 					<fieldset>
-						<h3>登录信息</h3>
+						<h3><?php _e( 'General' ); ?></h3>
 						<br />
 						<div class="group-control">
-							<label class="control-label">用户名</label>
+							<label class="control-label"><?php _e( 'Language' ); ?></label>
+							<div class="controls">
+								<select name="language">
+<?php
+										$languages = get_available_languages();
+										$langtext = '<option value="Detect"';
+										if (defined("DCRM_LANG") && DCRM_LANG == 'Detect')
+											$langtext .= ' selected="selected"';
+										$langtext .= '>'._x( 'Detect', 'language' )."</option>\n";
+
+										$languages_list = languages_list();
+										foreach( $languages as $language ) {
+											$langtext .= "<option value=\"$language\"";
+											if (defined("DCRM_LANG") && DCRM_LANG == $language)
+												$langtext .= ' selected="selected"';
+											$langtext .= '>';
+											$langtext .= isset($languages_list[$language]) ? $languages_list[$language] : $language;
+											$langtext .= "</option>\n";
+										}
+										
+										if(!in_array('en', $languages) && !in_array('en_US', $languages) && !in_array('en_GB', $languages)){
+											$langtext .= "<option value=\"en_US\"";
+											if (defined("DCRM_LANG") && DCRM_LANG == 'en_US')
+												$langtext .= ' selected="selected"';
+											$langtext .= '>'._x('English', 'language')."</option>\n";
+										}
+										echo $langtext;
+									?>
+								</select>
+								<p class="help-block"><?php _e('If you want system auto detect users browser language to show pages please select "Detect" option.'); ?></p>
+							</div>
+						</div>
+						<br />
+						<h3><?php _e('Login Information');?></h3>
+						<br />
+						<div class="group-control">
+							<label class="control-label"><?php _e('Username');?></label>
 							<div class="controls">
 								<input type="text" required="required" name="username" value="<?php echo htmlspecialchars($_SESSION['username']); ?>"/>
 							</div>
@@ -786,6 +822,7 @@
 						}
 						else {
 							$config_text = "<?php\n\tif (!defined(\"DCRM\")) {\n\t\texit;\n\t}\n";
+							$config_text .= "\tdefine(\"DCRM_LANG\", \"".$_POST['language']."\");\n";
 							$config_text .= "\tdefine(\"DCRM_MAXLOGINFAIL\", ".$_POST['trials'].");\n";
 							$config_text .= "\tdefine(\"DCRM_SHOWLIST\", ".$_POST['list'].");\n";
 							$config_text .= "\tdefine(\"DCRM_SHOW_NUM\", ".$_POST['listnum'].");\n";
