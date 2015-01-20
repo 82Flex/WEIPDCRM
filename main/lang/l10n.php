@@ -13,6 +13,9 @@
  */
 
 define('LANG_DIR', dirname(__FILE__));
+include_once LANG_DIR . '/pomo/translations.php';
+include_once LANG_DIR . '/pomo/mo.php';
+
 /**
  * Get the current locale.
  *
@@ -95,15 +98,15 @@ function check_languages( $localelist ) {
 	global $localetype;
 
 	if ( !isset( $localetype ) ) {
-		$localetype = '';
+		$localetypehandle = '';
 	} else {
-		$localetype = $localetype . '-';
+		$localetypehandle = $localetype . '-';
 	}
 
 	if ( !empty( $localelist ) ){
 		// 先按浏览器语言列表匹配文件
 		foreach ( $localelist as $singlelocale ) {
-			if( file_exists( LANG_DIR . '/' . $localetype . $singlelocale . '.mo' ) ) {
+			if( $singlelocale == 'en' || $singlelocale == 'en_US' || $singlelocale == 'en_GB' || file_exists( LANG_DIR . '/' . $localetypehandle . $singlelocale . '.mo' ) ) {
 				$locale = $singlelocale;
 				return $locale;
 			}
@@ -124,7 +127,7 @@ function check_languages( $localelist ) {
 
 		// 按2位语言代码列表匹配文件
 		foreach ( $langlist as $singlelang ) {
-			if( file_exists( LANG_DIR . '/' . $localetype . $singlelang . '.mo' ) ) {
+			if( file_exists( LANG_DIR . '/' . $localetypehandle . $singlelang . '.mo' ) ) {
 				$locale = $singlelang;
 				return $locale;
 			}
@@ -137,7 +140,7 @@ function check_languages( $localelist ) {
 				continue;
 			}
 			foreach ( $langlist as $singlelang ) {
-				if ( preg_match( '/(?:(.+)-)?' . $localetype . $singlelang . '_([A-Za-z_]{1,4}).mo/', $file, $match ) ) {
+				if ( preg_match( '/(?:(.+)-)?' . $localetypehandle . $singlelang . '_([A-Za-z_]{1,4}).mo/', $file, $match ) ) {
 					$similarlang = $match;
 					$locale = $singlelang . '_' . $similarlang;
 					return $locale;
@@ -653,6 +656,29 @@ function wp_get_pomo_file_data( $po_file ) {
 	return $headers;
 }
 
-include_once LANG_DIR . '/pomo/translations.php';
-include_once LANG_DIR . '/pomo/mo.php';
-load_default_textdomain();
+/**
+ * Load Localization System
+ * 多语言系统初始化
+ *
+ * @return Locale text for link.
+ */
+function localization_load() {
+	global $locale;
+	global $localetype;
+
+	$language = '';
+	if ( ! empty( $_REQUEST['language'] ) ) {
+		$language = preg_replace( '/[^a-zA-Z_]/', '', $_REQUEST['language'] );
+	} else {
+		$language = get_locale();
+	}
+	if ( ! empty( $language ) ) {
+		$locale = check_languages(array($language));
+		$link_text = 'language=' . $locale;
+	} else {
+		$link_text = '';
+	}
+	load_default_textdomain();
+
+	return $link_text;
+}

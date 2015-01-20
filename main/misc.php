@@ -31,18 +31,7 @@
 
 	/* Language Switch */
 	require_once("lang/l10n.php");
-	$language = '';
-	if ( ! empty( $_REQUEST['language'] ) ) {
-		$language = preg_replace( '/[^a-zA-Z_]/', '', $_REQUEST['language'] );
-	} else {
-		$language = get_locale();
-	}
-	if ( ! empty( $language ) ) {
-		$local = check_languages(array($language));
-		$link_language = 'language=' . $local;
-	} else {
-		$link_language = '';
-	}
+	$link_language = localization_load();
 
 	define("DCRM", true);
 	require_once("manage/include/config.inc.php");

@@ -28,7 +28,6 @@
 	define('DCRM',true);
 	require_once('manage/include/config.inc.php');
 	require_once('manage/include/func.php');
-	include_once("lang/e.php");
 	
 	if (!empty($_GET['request']) AND (!empty($_SERVER['HTTP_X_UNIQUE_ID']) OR DCRM_DIRECT_DOWN == 1)) {
 		$r_path = $_GET['request'];

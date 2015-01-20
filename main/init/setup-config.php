@@ -12,20 +12,6 @@ error_reporting(E_ALL ^ E_WARNING);
 include_once 'func.php';
 $header_title = __('Configuration Wizard');
 
-/* 多语言支持 */
-$language = '';
-if ( ! empty( $_REQUEST['language'] ) ) {
-	$language = preg_replace( '/[^a-zA-Z_]/', '', $_REQUEST['language'] );
-} else {
-	$language = get_locale();
-}
-if ( ! empty( $language ) ) {
-	$local = check_languages(array($language));
-	$step_language = 'language=' . $language;
-} else {
-	$step_language = '';
-}
-
 $notice = check_notice( $install = false );
 
 $step = isset($_GET['step']) ? $_GET['step'] : 0;

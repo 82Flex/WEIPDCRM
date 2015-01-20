@@ -30,20 +30,6 @@ include_once 'func.php';
 
 $header_title = __( 'Installer' );
 
-/* 多语言支持 */
-$language = '';
-if ( ! empty( $_REQUEST['language'] ) ) {
-	$language = preg_replace( '/[^a-zA-Z_]/', '', $_REQUEST['language'] );
-} else {
-	$language = get_locale();
-}
-if ( ! empty( $language ) ) {
-	$local = check_languages(array($language));
-	$step_language = 'language=' . $local;
-} else {
-	$step_language = '';
-}
-
 //检查数据库配置文件
 if( !file_exists(ABSPATH.'manage/include/connect.inc.php') ){
 	header('location: setup-config.php?'.$step_language);

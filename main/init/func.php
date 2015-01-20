@@ -4,12 +4,10 @@ $root = str_replace('/init/', '', str_replace('\\', '/', dirname(__FILE__).'/'))
 define('ABSPATH', $root);
 unset( $root );
 
-// 载入语言
-if ( ! empty( $_REQUEST['language'] ) ) {
-	$locale = preg_replace( '/[^a-zA-Z_]/', '', $_REQUEST['language'] );
-}
+/* 载入语言 */
 $localetype = 'init';
 include_once ABSPATH . 'lang/l10n.php';
+$step_language = localization_load();
 
 /**
  * 环境检查
