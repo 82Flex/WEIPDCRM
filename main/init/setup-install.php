@@ -124,7 +124,7 @@ function display_setup_form( $error = null ) {
 	</table>
 	<p class="step"><input type="submit" name="Submit" value="<?php _e( 'Install DCRM' ); ?>" class="button button-large" /></p>
 </form>
-<script src="../js/jquery.js" type="text/javascript"></script>
+<script type="text/javascript" src="http://libs.useso.com/js/jquery/1.4.2/jquery.min.js"></script>
 <script src="../js/password-strength.min.js" type="text/javascript"></script>
 <script src="../js/zxcvbn-async.min.js" type="text/javascript"></script>
 <script src="../js/zxcvbn.min.js" type="text/javascript"></script>

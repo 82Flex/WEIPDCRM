@@ -811,7 +811,6 @@
 		</div>
 	</div>
 	</div>
-	<script src="../js/jquery.js" type="text/javascript"></script>
 	<script src="../js/password-strength.min.js" type="text/javascript"></script>
 	<script src="../js/zxcvbn-async.min.js" type="text/javascript"></script>
 	<script src="../js/zxcvbn.min.js" type="text/javascript"></script>

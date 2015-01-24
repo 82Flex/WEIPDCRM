@@ -86,7 +86,6 @@
 		</div>
 	</div>
 	</div>
-	<script type="text/javascript" src="http://libs.useso.com/js/jquery/1.4.2/jquery.min.js"></script>
 	<script type="text/javascript" src="js/ajaxfileupload.js"></script>
 	<script type="text/javascript">
 		function ajaxFileUpload() {

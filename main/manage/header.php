@@ -71,6 +71,26 @@ $sidebars = array(
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 	<title>DCRM - <?php _e('Repository Manager');?></title>
 	<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+	<script type="text/javascript" src="http://libs.useso.com/js/jquery/1.4.2/jquery.min.js"></script>
+	<script type="text/javascript">
+	$(document).ready(function(){
+		var loaded = true;
+		var top = $("#sidebar").offset().top;
+		function Add_Data() {              
+			var scrolla=$(window).scrollTop();
+			var cha=parseInt(top)-parseInt(scrolla)-10;
+			if(loaded && cha<=0) {                
+				$("#sidebar").addClass("sticky");
+				loaded=false;
+			}
+			if(!loaded && cha>0) {
+				$("#sidebar").removeClass("sticky");
+				loaded=true;
+			}
+		}
+		$(window).scroll(Add_Data);
+	});
+	</script>
 	<script type="text/javascript">
 	function setmargin(){
 		var div = document.getElementById('sidebar');
@@ -141,4 +161,4 @@ if ( isset($activeid) && ( 'view' == $activeid || 'edit' == $activeid || 'center
 ?>
 			</div>
 			<div class="content" id="content">
-			<div class="wrap">
+				<div class="wrap">
