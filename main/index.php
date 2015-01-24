@@ -846,7 +846,6 @@
 					<br />
 					<span class="source-name"><?php echo($release_origin); ?></span>·
 					<span id="section"><?php echo($pkg_assoc['Section']); ?></span>
-					<br />
 					<?php if(defined("AUTOFILL_FOOTER_CODE")){ ?>
 					<br />
 					<span id="code"><?php echo(stripslashes(AUTOFILL_FOOTER_CODE));?></span>

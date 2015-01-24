@@ -121,7 +121,8 @@
 			}
 ?>
 			<hr />
-			<p>© <?php echo defined("AUTOFILL_FOOTER_YEAR") ? htmlspecialchars(stripslashes(AUTOFILL_FOOTER_YEAR)).'-' : '';echo date('Y'); ?> <a href="<?php echo htmlspecialchars(base64_decode(DCRM_REPOURL)); ?>"><?php echo defined("AUTOFILL_FOOTER_NAME") ? htmlspecialchars(stripslashes(AUTOFILL_FOOTER_NAME)) : $release_origin; ?></a> · <?php _e('Powered by <a href="http://82flex.com/projects">DCRM</a>.'); echo defined("AUTOFILL_FOOTER_CODE") ? stripslashes(" · ".AUTOFILL_FOOTER_CODE) : ''; ?></p>
+			<p>© <?php echo defined("AUTOFILL_FOOTER_YEAR") ? htmlspecialchars(stripslashes(AUTOFILL_FOOTER_YEAR)).'-' : '';echo date('Y'); ?> <a href="<?php echo htmlspecialchars(base64_decode(DCRM_REPOURL)); ?>"><?php echo defined("AUTOFILL_FOOTER_NAME") ? htmlspecialchars(stripslashes(AUTOFILL_FOOTER_NAME)) : $release_origin; ?></a></p>
+			<p><?php _e('Powered by <a href="http://82flex.com/projects">DCRM</a>.'); echo defined("AUTOFILL_FOOTER_CODE") ? stripslashes(" · ".AUTOFILL_FOOTER_CODE) : ''; ?></p>
 <?php
 			if ($first) {
 ?>
