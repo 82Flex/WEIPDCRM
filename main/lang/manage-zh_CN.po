@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: DCRM Manager\n"
-"POT-Creation-Date: 2015-01-20 23:33+0800\n"
-"PO-Revision-Date: 2015-01-20 23:33+0800\n"
+"POT-Creation-Date: 2015-01-24 17:44+0800\n"
+"PO-Revision-Date: 2015-01-24 17:44+0800\n"
 "Last-Translator: Hintay <hintay@me.com>\n"
 "Language-Team: Hintay <hintay@me.com>\n"
 "Language: zh_CN\n"
@@ -284,7 +284,7 @@ msgctxt "language"
 msgid "English (Zimbabwe)"
 msgstr "英语 (津巴布韦)"
 
-#: lang/l10n.php:743 manage/settings.php:156
+#: lang/l10n.php:743 manage/settings.php:108
 msgctxt "language"
 msgid "English"
 msgstr "英语"
@@ -774,88 +774,144 @@ msgctxt "language"
 msgid "Zulu"
 msgstr "祖鲁语"
 
-#: manage/settings.php:85 manage/settings.php:187
-msgid "Strength indicator"
-msgstr "强度评估"
+#: manage/header.php:24
+msgid "Upload Packages"
+msgstr "上传软件包"
 
-#: manage/settings.php:85
-msgctxt "Password"
-msgid "Short"
-msgstr "极弱"
+#: manage/header.php:29
+msgid "Import Packages"
+msgstr "导入软件包"
 
-#: manage/settings.php:85
-msgctxt "Password"
-msgid "Bad"
-msgstr "弱"
+#: manage/header.php:34
+msgid "Manage Packages"
+msgstr "管理软件包"
 
-#: manage/settings.php:85
-msgctxt "Password"
-msgid "Good"
-msgstr "中等"
+#: manage/header.php:43
+msgid "Manage Sections"
+msgstr "分类管理"
 
-#: manage/settings.php:85
-msgctxt "Password"
-msgid "Strong"
-msgstr "强"
+#: manage/header.php:48
+msgid "Manage Repository"
+msgstr "源信息设置"
 
-#: manage/settings.php:85
-msgctxt "Password"
-msgid "Mismatch"
-msgstr "不匹配"
+#: manage/header.php:57
+msgid "Running State"
+msgstr "运行状态"
 
-#: manage/settings.php:125
+#: manage/header.php:62
+msgid "About"
+msgstr "关于"
+
+#: manage/header.php:72
+msgid "Repository Manager"
+msgstr "源管理系统"
+
+#: manage/header.php:98
+msgid "Refresh the list"
+msgstr "刷新列表"
+
+#: manage/header.php:99
+msgid "Settings"
+msgstr "设置"
+
+#: manage/header.php:100
+msgid "Logout"
+msgstr "注销"
+
+#: manage/header.php:133
+msgid "View Details"
+msgstr "查看详情"
+
+#: manage/header.php:134
+msgid "General Editor"
+msgstr "常规编辑"
+
+#: manage/header.php:135
+msgid "Advance Editor"
+msgstr "高级编辑"
+
+#: manage/settings.php:69
 msgid "Preferences"
 msgstr "系统设置"
 
-#: manage/settings.php:129
+#: manage/settings.php:81
 msgid "General"
 msgstr "通用"
 
-#: manage/settings.php:132
+#: manage/settings.php:84
 msgid "Language"
 msgstr "显示语言"
 
-#: manage/settings.php:140
+#: manage/settings.php:92
 msgctxt "language"
 msgid "Detect"
 msgstr "自动检测"
 
-#: manage/settings.php:161
+#: manage/settings.php:113
 msgid ""
 "If you want system auto detect users browser language to show pages please "
 "select \"Detect\" option."
 msgstr "如果您想让系统自动匹配浏览器语言来显示页面，请选择“自动检测”。"
 
-#: manage/settings.php:165
+#: manage/settings.php:117
 msgid "Login Information"
 msgstr "登录信息"
 
-#: manage/settings.php:168
+#: manage/settings.php:120
 msgid "Username"
 msgstr "用户名"
 
-#: manage/settings.php:175
+#: manage/settings.php:127
 msgid "New Password"
 msgstr "新密码"
 
-#: manage/settings.php:178
+#: manage/settings.php:130
 msgid ""
 "If you would like to change the password type a new one. Otherwise leave "
 "this blank."
 msgstr "如果您想修改您的密码，请在此输入新密码。不然请留空。"
 
-#: manage/settings.php:183
+#: manage/settings.php:135
 msgid "Repeat New Password"
 msgstr "重复新密码"
 
-#: manage/settings.php:186
+#: manage/settings.php:138
 msgid "Type your new password again."
 msgstr "再输入一遍新密码。"
 
-#: manage/settings.php:729
+#: manage/settings.php:139 manage/settings.php:859
+msgid "Strength indicator"
+msgstr "强度评估"
+
+#: manage/settings.php:681
 msgid "You entered your new password only once."
 msgstr "您只输入了一次新密码。"
 
-#: manage/settings.php:732
+#: manage/settings.php:684
 msgid "Your passwords do not match. Please try again."
 msgstr "您两次输入的密码不符，请重试。"
+
+#: manage/settings.php:859
+msgctxt "Password"
+msgid "Short"
+msgstr "极弱"
+
+#: manage/settings.php:859
+msgctxt "Password"
+msgid "Bad"
+msgstr "弱"
+
+#: manage/settings.php:859
+msgctxt "Password"
+msgid "Good"
+msgstr "中等"
+
+#: manage/settings.php:859
+msgctxt "Password"
+msgid "Strong"
+msgstr "强"
+
+#: manage/settings.php:859
+msgctxt "Password"
+msgid "Mismatch"
+msgstr "不匹配"

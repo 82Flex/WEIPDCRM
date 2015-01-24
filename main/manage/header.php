@@ -5,23 +5,33 @@ if (!defined("DCRM")) {
 }
 header("Content-Type: text/html; charset=UTF-8");
 
+// 设定绝对目录
+$root = str_replace('/manage/', '', str_replace('\\', '/', dirname(__FILE__).'/')).'/';
+define('ABSPATH', $root);
+unset( $root );
+
+// 载入语言
+$localetype = 'manage';
+include_once ABSPATH . 'lang/l10n.php';
+localization_load();
+
 $sidebars = array(
 	array(
         'title' => 'PACKAGES',
         'type'  => 'title'
     ),
 	array(
-        'name'  => '上传软件包',
+        'name'  => __('Upload Packages'),
         'id'    => 'upload',
         'type'  => 'subtitle',
     ),
 	array(
-        'name'  => '导入软件包',
+        'name'  => __('Import Packages'),
         'id'    => 'manage',
         'type'  => 'subtitle',
     ),
 	array(
-        'name'  => '管理软件包',
+        'name'  => __('Manage Packages'),
         'id'    => 'center',
         'type'  => 'subtitle',
     ),
@@ -30,12 +40,12 @@ $sidebars = array(
         'type'  => 'title'
     ),
 	array(
-        'name'  => '分类管理',
+        'name'  => __('Manage Sections'),
         'id'    => 'sections',
         'type'  => 'subtitle',
     ),
 	array(
-        'name'  => '源信息设置',
+        'name'  => __('Manage Repository'),
         'id'    => 'release',
         'type'  => 'subtitle',
     ),
@@ -44,12 +54,12 @@ $sidebars = array(
         'type'  => 'title'
     ),
 	array(
-        'name'  => '运行状态',
+        'name'  => __('Running State'),
         'id'    => 'stats',
         'type'  => 'subtitle',
     ),
 	array(
-        'name'  => '关于程序',
+        'name'  => __('About'),
         'id'    => 'about',
         'type'  => 'subtitle',
     )
@@ -59,8 +69,16 @@ $sidebars = array(
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-	<title>DCRM - 源管理系统</title>
+	<title>DCRM - <?php _e('Repository Manager');?></title>
 	<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+	<script type="text/javascript">
+	function setmargin(){
+		var div = document.getElementById('sidebar');
+		var width = div.style.width || div.clientWidth || div.offsetWidth || div.scrollWidth;
+		document.getElementById('content').style.marginLeft = width+1+'px';
+	}
+	window.onload=setmargin;
+	</script>
 <?php
 if ( isset($activeid) && ( 'manage' == $activeid || 'sections' == $activeid || 'center' == $activeid) ) 
 	echo '	<link rel="stylesheet" type="text/css" href="css/corepage.css">';
@@ -77,15 +95,15 @@ if ( isset($activeid) && ( 'view' == $activeid || 'edit' == $activeid || 'center
 			</div>
 			<div class="top-secondary">
 				<div class="btn-group pull-right">
-					<a href="build.php" class="btn btn-inverse">刷新列表</a>
-					<a href="settings.php" class="btn btn-info<?php if ( isset($activeid) && 'settings' == $activeid ) echo ' disabled'; ?>">设置</a>
-					<a href="login.php?action=logout" class="btn btn-info">注销</a>
+					<a href="build.php" class="btn btn-inverse"><?php _e('Refresh the list');?></a>
+					<a href="settings.php" class="btn btn-info<?php if ( isset($activeid) && 'settings' == $activeid ) echo ' disabled'; ?>"><?php _e('Settings');?></a>
+					<a href="login.php?action=logout" class="btn btn-info"><?php _e('Logout');?></a>
 				</div>
 			</div>
 		</div>
 		<br />
 		<div class="row">
-			<div class="span2.5" style="margin-left:0!important;">
+			<div class="span2.5" id="sidebar" style="margin-left:0!important;">
 				<div class="well sidebar-nav">
 					<ul class="nav nav-list">
 <?php
@@ -112,9 +130,9 @@ if ( isset($activeid) && ( 'view' == $activeid || 'edit' == $activeid || 'center
 				<div class="well sidebar-nav" id="mbar" <?php if ( isset($activeid) && 'center' == $activeid ) echo 'style="display: none;"'; ?>>
 					<ul class="nav nav-list">
 						<li class="nav-header">OPERATIONS</li>
-							<li<?php if ( isset($activeid) && 'view' == $activeid ) echo ' class="active"'; ?>><a href="javascript:opt(1)">查看详情</a></li>
-							<li<?php if ( isset($activeid) && 'edit' == $activeid && !isset($_GET['action']) ) echo ' class="active"'?>><a href="javascript:opt(2)">常规编辑</a></li>
-							<li<?php if ( isset($activeid) && 'edit' == $activeid && isset($_GET['action']) && ($_GET['action'] == 'advance' || $_GET['action'] == 'advance_set') ) echo ' class="active"'?>><a href="javascript:opt(3)">高级编辑</a></li>
+							<li<?php if ( isset($activeid) && 'view' == $activeid ) echo ' class="active"'; ?>><a href="javascript:opt(1)"><?php _e('View Details'); ?></a></li>
+							<li<?php if ( isset($activeid) && 'edit' == $activeid && !isset($_GET['action']) ) echo ' class="active"'?>><a href="javascript:opt(2)"><?php _e('General Editor'); ?></a></li>
+							<li<?php if ( isset($activeid) && 'edit' == $activeid && isset($_GET['action']) && ($_GET['action'] == 'advance' || $_GET['action'] == 'advance_set') ) echo ' class="active"'?>><a href="javascript:opt(3)"><?php _e('Advance Editor'); ?></a></li>
 							<?php if ( isset($activeid) && 'center' == $activeid ) echo '<li id="sli"></li>'; ?>
 					</ul>
 				</div>
@@ -122,5 +140,5 @@ if ( isset($activeid) && ( 'view' == $activeid || 'edit' == $activeid || 'center
 }
 ?>
 			</div>
-			<div class="content">
+			<div class="content" id="content">
 			<div class="wrap">
