@@ -25,6 +25,7 @@
 	require_once('include/connect.inc.php');
 	require_once("include/func.php");
 	header("Content-Type: text/html; charset=UTF-8");
+	$activeid = 'view';
 	$f_Package = "";
 	
 	if (!isset($_SESSION['connected']) || $_SESSION['connected'] != true) {
@@ -59,64 +60,9 @@
 	elseif (isset($_GET['action']) && $_GET['action'] == "del" && is_numeric($_GET['image'])) {
 		mysql_query("DELETE FROM `".DCRM_CON_PREFIX."ScreenShots` WHERE `ID` = '".mysql_real_escape_string($_GET['image'])."'");
 	}
+
+	require_once("header.php");
 ?>
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head>
-	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-	<title>DCRM - 源管理系统</title>
-	<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
-	<script src="js/mbar.js" type="text/javascript"></script>
-	<script type="text/javascript">
-		function delimage(pid) {
-			if(confirm("您确定要彻底删除这张截图？")){
-			   window.location.href = "view.php?id=<?php echo($request_id); ?>&action=del&image=" + pid;
-			}
-		}
-	</script>
-</head>
-<body>
-	<div class="container">
-		<div class="row">
-			<div class="span6" id="logo">
-				<p class="title">DCRM</p>
-				<h6 class="underline">Darwin Cydia Repository Manager</h6>
-			</div>
-			<div class="span6">
-				<div class="btn-group pull-right">
-					<a href="build.php" class="btn btn-inverse">刷新列表</a>
-					<a href="settings.php" class="btn btn-info">设置</a>
-					<a href="login.php?action=logout" class="btn btn-info">注销</a>
-				</div>
-			</div>
-		</div>
-		<br />
-		<div class="row">
-			<div class="span2.5" style="margin-left:0!important;">
-				<div class="well sidebar-nav">
-					<ul class="nav nav-list">
-						<li class="nav-header">PACKAGES</li>
-							<li><a href="upload.php">上传软件包</a></li>
-							<li><a href="manage.php">导入软件包</a></li>
-							<li><a href="center.php">管理软件包</a></li>
-						<li class="nav-header">REPOSITORY</li>
-							<li><a href="sections.php">分类管理</a></li>
-							<li><a href="release.php">源信息设置</a></li>
-						<li class="nav-header">SYSTEM</li>
-							<li><a href="stats.php">运行状态</a></li>
-							<li><a href="about.php">关于程序</a></li>
-					</ul>
-				</div>
-				<div class="well sidebar-nav">
-					<ul class="nav nav-list">
-						<li class="nav-header">OPERATIONS</li>
-							<li class="active"><a href="javascript:opt(1)">查看详情</a></li>
-							<li><a href="javascript:opt(2)">常规编辑</a></li>
-							<li><a href="javascript:opt(3)">高级编辑</a></li>
-					</ul>
-				</div>
-			</div>
-			<div class="span10">
 			<input type="radio" name="package" value="<?php echo($request_id); ?>" style="display: none;" checked="checked" />
 			<h2>查看软件包信息</h2>
 			<br />
@@ -176,5 +122,13 @@
 			</div>
 		</div>
 	</div>
+	</div>
+	<script type="text/javascript">
+		function delimage(pid) {
+			if(confirm("您确定要彻底删除这张截图？")){
+			   window.location.href = "view.php?id=<?php echo($request_id); ?>&action=del&image=" + pid;
+			}
+		}
+	</script>
 </body>
 </html>

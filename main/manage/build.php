@@ -26,6 +26,7 @@
 	require_once('include/connect.inc.php');
 	require_once('include/func.php');
 	header("Content-Type: text/html; charset=UTF-8");
+	$activeid = 'build';
 	$alert = "";
 	
 	if (!isset($_SESSION['connected']) || $_SESSION['connected'] != true) {
@@ -139,48 +140,9 @@
 	
 	endlabel:
 	mysql_close($con);
+	
+	require_once("header.php");
 ?>
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head>
-	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-	<title>DCRM - 源管理系统</title>
-	<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
-</head>
-<body>
-	<div class="container">
-		<div class="row">
-			<div class="span6" id="logo">
-				<p class="title">DCRM</p>
-				<h6 class="underline">Darwin Cydia Repository Manager</h6>
-			</div>
-			<div class="span6">
-				<div class="btn-group pull-right">
-					<a href="build.php" class="btn btn-inverse">刷新列表</a>
-					<a href="settings.php" class="btn btn-info">设置</a>
-					<a href="login.php?action=logout" class="btn btn-info">注销</a>
-				</div>
-			</div>
-		</div>
-		<br>
-		<div class="row">
-			<div class="span2.5" style="margin-left:0!important;">
-				<div class="well sidebar-nav">
-					<ul class="nav nav-list">
-						<li class="nav-header">PACKAGES</li>
-							<li><a href="upload.php">上传软件包</a></li>
-							<li><a href="manage.php">导入软件包</a></li>
-							<li><a href="center.php">管理软件包</a></li>
-						<li class="nav-header">REPOSITORY</li>
-							<li><a href="sections.php">分类管理</a></li>
-							<li><a href="release.php">源信息设置</a></li>
-						<li class="nav-header">SYSTEM</li>
-							<li><a href="stats.php">运行状态</a></li>
-							<li><a href="about.php">关于程序</a></li>
-					</ul>
-				</div>
-			</div>
-			<div class="span10">
 			<h2>刷新列表</h2>
 			<br>
 			<h4 class="alert alert-success">列表重建请求提交成功，建议您 <a href="stats.php?action=clean">清理缓存</a> 以释放磁盘空间。</h4>
@@ -198,6 +160,7 @@
 				</div>
 			</div>
 		</div>
+	</div>
 	</div>
 	<script src="js/misc.js" type="text/javascript"></script>
 </body>

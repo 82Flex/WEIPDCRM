@@ -24,62 +24,12 @@
 	require_once("include/config.inc.php");
 	require_once("include/func.php");
 	header("Content-Type: text/html; charset=UTF-8");
+	$activeid = 'manage';
 
 	if (isset($_SESSION['connected']) && $_SESSION['connected'] === true) {
-?>
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head>
-	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-	<title>DCRM - 源管理系统</title>
-	<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
-	<link rel="stylesheet" type="text/css" href="css/corepage.css">
-	<script type="text/javascript">
-		function jump() {
-			var fname = document.getElementById("filename");
-			var fid = document.getElementById("forceid");
-			if (fname.value.length > 0 && fid.value.length > 0) {
-				window.location.href = "import.php?filename=" + fname.value + "&force=" + fid.value;
-			}
-			return 0;
-		}
-	</script>
-</head>
-<body>
-	<div class="container">
-		<div class="row">
-			<div class="span6" id="logo">
-				<p class="title">DCRM</p>
-				<h6 class="underline">Darwin Cydia Repository Manager</h6>
-			</div>
-			<div class="span6">
-				<div class="btn-group pull-right">
-					<a href="build.php" class="btn btn-inverse">刷新列表</a>
-					<a href="settings.php" class="btn btn-info">设置</a>
-					<a href="login.php?action=logout" class="btn btn-info">注销</a>
-				</div>
-			</div>
-		</div>
-		<br />
-		<div class="row">
-			<div class="span2.5" style="margin-left:0!important;">
-				<div class="well sidebar-nav">
-					<ul class="nav nav-list">
-						<li class="nav-header">PACKAGES</li>
-							<li><a href="upload.php">上传软件包</a></li>
-							<li class="active"><a href="manage.php">导入软件包</a></li>
-							<li><a href="center.php">管理软件包</a></li>
-						<li class="nav-header">REPOSITORY</li>
-							<li><a href="sections.php">分类管理</a></li>
-							<li><a href="release.php">源信息设置</a></li>
-						<li class="nav-header">SYSTEM</li>
-							<li><a href="stats.php">运行状态</a></li>
-							<li><a href="about.php">关于程序</a></li>
-					</ul>
-				</div>
-			</div>
-			<div class="span10">
-				<?php
+
+		require_once("header.php");
+
 					if (!isset($_GET['action'])) {
 				?>
 				<h2>导入软件包</h2>
@@ -185,6 +135,17 @@
 			</div>
 		</div>
 	</div>
+	</div>
+	<script type="text/javascript">
+		function jump() {
+			var fname = document.getElementById("filename");
+			var fid = document.getElementById("forceid");
+			if (fname.value.length > 0 && fid.value.length > 0) {
+				window.location.href = "import.php?filename=" + fname.value + "&force=" + fid.value;
+			}
+			return 0;
+		}
+	</script>
 </body>
 </html>
 <?php
