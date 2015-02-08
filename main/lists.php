@@ -15,19 +15,18 @@
 	    You should have received a copy of the GNU General Public License
 	    along with WEIPDCRM.  If not, see <http://www.gnu.org/licenses/>.
 	*/
-	
-	if (!file_exists('./manage/include/connect.inc.php')) {
-		httpinfo(500);
-		exit;
-	}
 
 	/* DCRM Packages Provider */
 	
 	error_reporting(0);
 	ob_start();
 	define('DCRM',true);
-	require_once('manage/include/config.inc.php');
 	require_once('manage/include/func.php');
+	if (!file_exists('./manage/include/connect.inc.php')) {
+		httpinfo(500);
+		exit();
+	}
+	require_once('./manage/include/config.inc.php');
 	
 	if (!empty($_GET['request']) AND (!empty($_SERVER['HTTP_X_UNIQUE_ID']) OR DCRM_DIRECT_DOWN == 1)) {
 		$r_path = $_GET['request'];

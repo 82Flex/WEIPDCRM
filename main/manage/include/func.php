@@ -231,7 +231,7 @@
 		<h1><?php echo($info); ?></h1>
 	</center>
 <hr />
-	<center>nginx</center>
+	<center>DCRM</center>
 </body>
 </html>
 <?php

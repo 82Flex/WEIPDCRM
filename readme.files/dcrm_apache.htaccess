@@ -9,4 +9,5 @@ RewriteRule ^(Packages)$ lists.php?request=Packages
 RewriteRule ^(Packages\.gz)$ lists.php?request=Packages.gz
 RewriteRule ^(Packages\.bz2)$ lists.php?request=Packages.bz2
 RewriteRule ^debs/([^/]+) downloads.php?request=$1
+RewriteRule ^(rewritetest) robots.txt
 Options -Indexes

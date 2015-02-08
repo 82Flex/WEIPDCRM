@@ -44,13 +44,7 @@ $func_vars = check_func($disabled);
 $notice = check_notice( true );
 
 $step = isset($_GET['step']) ? $_GET['step'] : 0;
-if( $step != 'check' ){
-	if ($disabled == false || $notice != '') {
-		header('location: setup-install.php?step=99&'.$step_language);
-		exit();
-	}
-}
-	
+
 require_once(ABSPATH.'manage/include/connect.inc.php');
 
 // Test Connect
@@ -63,18 +57,27 @@ if (!$con) {
 
 // Let's check to make sure DCRM isn't already installed.
 $result = mysql_query("SHOW TABLES FROM `".DCRM_CON_DATABASE."` LIKE '".DCRM_CON_PREFIX."packages'");
-if ($result) {
+if ($result && mysql_num_rows($result) != 0) {
 	mysql_error();
-	
+
 	display_header();
 	echo '<h1>' . __('Already Installed') . '</h1><p>' . __('You appear to have already installed DCRM. To reinstall please clear your old database tables first.') . '</p><p class="step"><a href="../manage/login.php" class="button button-large">' . __('Log In') . '</a></p></body></html>';
 	exit();
+}
+
+if( $step != 99 ){
+	if ($disabled == false || $notice != '') {
+		header('location: setup-install.php?step=99&'.$step_language);
+		exit();
+	}
 }
 
 /**
  * Display installer setup form.
  */
 function display_setup_form( $error = null ) {
+	global $step_language;
+
 	$repo_title = isset( $_POST['repo_title'] ) ? trim( dcrm_unslash( $_POST['repo_title'] ) ) : '';
 	$repo_url = isset( $_POST['repo_url'] ) ? trim( dcrm_unslash( $_POST['repo_url'] ) ) : BASE_URL;
 	$user_name = isset($_POST['user_name']) ? trim( dcrm_unslash( $_POST['user_name'] ) ) : '';
@@ -140,6 +143,11 @@ switch($step) {
 		display_header();
 ?>
 <h1><?php _ex( 'Welcome', 'Howdy' ); ?></h1>
+<?php
+if(isset($_GET['redirect']) && $_GET['redirect'] ){
+?>
+	<div id="error" style="margin: 5px 0px 0px; padding: 10px; background-color: #f3f3f3; border-color: #ccc;"><strong><?php _e('Note: '); ?></strong><?php _e('If you want to recreate <code>connect.inc.php</code>, please click <a href="./setup-config.php">here</a>.');?></div>
+<?php } ?>
 <p><?php _e( 'Welcome to the DCRM installation process! Just fill in the information below.' ); ?></p>
 
 <h1><?php _e( 'Information needed' ); ?></h1>
@@ -278,10 +286,10 @@ switch($step) {
 				$admin_password = dcrm_generate_password( 12, false );
 				$password_message = ('<strong><em>Note that password</em></strong> carefully! It is a <em>random</em> password that was generated just for you.');
 			} else {
-				$password_message = '<em>'.('Your chosen password.').'</em>';
+				$password_message = '<em>'.__('Your chosen password.').'</em>';
 			}
 			dcrm_query("INSERT INTO `".DCRM_CON_PREFIX."Users` (`Username`, `SHA1`, `LastLoginTime`, `Power`)
-			  VALUES ('". $user_name ."', '" . dcrm_slash( $admin_password ) . "', '0000-00-00 00:00:00', '1')");
+			  VALUES ('". $user_name ."', '" . sha1( dcrm_slash( $admin_password ) ) . "', '0000-00-00 00:00:00', '1')");
 
 			//Copy *.inc.default.php to *.inc.php and config
 			define("AUTOFILL_SEO", $repo_title);
@@ -302,7 +310,7 @@ switch($step) {
 					case 'AUTOFILL_SEO':
 					case 'AUTOFILL_MASTER':
 					case 'AUTOFILL_EMAIL':
-						$autofill_file[ $line_num ] = "define('" . $constant . "'," . $padding . "'" . addcslashes( constant( $constant ), "\\'" ) . "');\r\n";
+						$autofill_file[ $line_num ] = "	define('" . $constant . "'," . $padding . "'" . addcslashes( constant( $constant ), "\\'" ) . "');\r\n";
 						break;
 				}
 			}
@@ -316,7 +324,7 @@ switch($step) {
 			
 			// config.inc.php
 			$config_file = file( ABSPATH . 'manage/include/config.inc.default.php' );
-			foreach ( $autofill_file as $line_num => $line ) {
+			foreach ( $config_file as $line_num => $line ) {
 				if ( ! preg_match( '/^.*?define\([\'"]([A-Z_]+)[\'"],([ ]+)/', $line, $match ) )
 					continue;
 
@@ -325,14 +333,14 @@ switch($step) {
 
 				switch ( $constant ) {
 					case 'DCRM_REPOURL':
-						$autofill_file[ $line_num ] = "define('" . $constant . "'," . $padding . "'" . addcslashes( constant( $constant ), "\\'" ) . "');\r\n";
+						$config_file[ $line_num ] = "	define('" . $constant . "'," . $padding . "'" . addcslashes( constant( $constant ), "\\'" ) . "');\r\n";
 						break;
 				}
 			}
 			unset( $line );
 			$config_new = ABSPATH . 'manage/include/config.inc.php';
 			$handle = fopen( $config_new, 'w' );
-			foreach( $autofill_file as $line ) {
+			foreach( $config_file as $line ) {
 				fwrite( $handle, $line );
 			}
 			fclose( $handle );

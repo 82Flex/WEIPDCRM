@@ -233,7 +233,7 @@ function check_notice( $install = false ) {
 	$notice = '';
 	if (!function_exists("curl_init")) {
 		$notice = '<strong>'.__('Warning: ').'</strong>'.__('The server does not support the cURL function, DCRM will not be able to use.');
-	} elseif (!available(BASE_URL.'Release')) {
+	} elseif (!available(BASE_URL.'rewritetest')) {
 		$notice = '<strong>'.__('Warning: ').'</strong>'.__('The server does not support the URL Rewrite, DCRM will not be able to use.');
 	}
 	if( $notice == '' ){
