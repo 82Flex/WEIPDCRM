@@ -762,7 +762,7 @@
 				if (defined("AUTOFILL_ADVERTISEMENT") && $isCydia) {
 ?>
 			<block id="advertisement">
-				<div style="position: relative;">
+				<div style="position: relative; text-align: center;">
 					<div style="position: absolute; right: 10px; top: 2px;">
 						<img src="css/closebox@2x.png" style="width: 30px; height: 29px;" onclick="hide()" />
 					</div>
@@ -791,7 +791,9 @@
 ?>
 			<fieldset>
 				<div>
-					<?php echo($pkg_assoc['Multi']); ?>
+					<p>
+						<?php echo($pkg_assoc['Multi']); ?>
+					</p>
 				</div>
 			</fieldset>
 <?php
