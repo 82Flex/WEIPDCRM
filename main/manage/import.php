@@ -247,7 +247,7 @@
 	}
 	if ($replace == true) {
 		mysql_query("UPDATE `".DCRM_CON_PREFIX."Packages` SET `Stat` = '-1' WHERE (`Package` = '" . $same_row['Package'] . "' AND `Version` = '" . $same_row['Version'] . "')");
-		mysql_query("INSERT INTO `ScreenShots`(`PID`, `Image`) SELECT '".(int)$new_id."', `Image` FROM `ScreenShots` WHERE `PID` = '".(int)$same_row['ID']."'");
+		mysql_query("INSERT INTO `".DCRM_CON_PREFIX."ScreenShots`(`PID`, `Image`) SELECT '".(int)$new_id."', `Image` FROM `".DCRM_CON_PREFIX."ScreenShots` WHERE `PID` = '".(int)$same_row['ID']."'");
 		header("Location: output.php?id=".(string)$new_id);
 		exit();
 	} else {
