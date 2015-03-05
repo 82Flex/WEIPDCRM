@@ -9,7 +9,8 @@ Online View:<br />
 1.  http://apt.82flex.com<br />
 2.  http://apt.touchsprite.com<br />
 3.  http://apt.phoneai.cn<br />
-4.  http://minwenlsm.pw/cydia<br />
+4.  http://cydia.so<br />
+5.  http://cydia.minwenlsm.pw<br />
 
 Requirements:<br />
 1. PHP Version >= 5.3, MYSQL<br />

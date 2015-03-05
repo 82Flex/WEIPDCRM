@@ -7,6 +7,7 @@
 	define("DCRM_SHOWLIST", 1);
 	define("DCRM_SHOW_NUM", 5);
 	define("DCRM_SPEED_LIMIT", 0);
+	define("DCRM_REPORT_LIMIT", 1);
 	define("DCRM_DIRECT_DOWN", 0);
 	define("DCRM_MOBILE", 1);
 	define("DCRM_SCREENSHOTS", 1);
