@@ -488,3 +488,5 @@ input,textarea,.uneditable-input,.btn:first-child,.btn-group:first-child{margin-
 #pass-strength-result.bad{background-color:#ffb78c;border-color:#ff853c}
 #pass-strength-result.good{background-color:#ffec8b;border-color:#fc0}
 #pass-strength-result.strong{background-color:#c3ff88;border-color:#8dff1c}
+.subtitle h2{display:inline;}
+.subtitle span{margin-left: 10px;}
