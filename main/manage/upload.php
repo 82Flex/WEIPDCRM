@@ -37,12 +37,12 @@
 				?>
 				<h2>上传软件包</h2>
 				<br />
+				<div class="form-horizontal">
 					<fieldset>
 						<div class="group-control">
 							<label class="control-label">请选择要上传的软件包</label>
-							<div class="controls">
+							<div class="controls" style="width: 400px;">
 								<input type="file" name="file_upload" id="file_upload" />
-								<p class="help-block" id="tips">准备就绪</p>
 							</div>
 						</div>
 						<div class="form-actions">
@@ -53,6 +53,7 @@
 <input type="hidden" value="1215154" name="tmpdir" id="id_file">
 						</div>
 					</fieldset>
+				</div>
 				<h3>操作提示</h3>
 				<br />
 				<h4 class="alert alert-info">· 允许的数据类型：application/x-deb；
@@ -66,7 +67,6 @@
 		</div>
 	</div>
 	</div>
-<script charset='utf-8' src="js/jquery-2.1.3.js" type="text/javascript"></script> 
 <script charset='utf-8' type="text/javascript" src="js/jquery.uploadify.js"></script>
 <link rel="stylesheet" type="text/css" href="css/uploadify.css"/>
 <script charset='utf-8' type="text/javascript">
@@ -79,12 +79,12 @@ $(function() {
         'swf'      : 'js/uploadify.swf',
         'uploader' : 'js/uploadify.php',
         'method'   : 'post',//方法，服务端可以用$_POST数组获取数据
-	'buttonText' : '选择文件',//设置按钮文本
+		'buttonText' : '选择文件',//设置按钮文本
         'multi'    : true,//允许同时上传多文件
         'uploadLimit' : 10,//一次最多只允许上传10个文件
-        'fileTypeDesc' : 'DEBIAN',//只允许上传的文件种类
-        'fileTypeExts' : '*.deb;',//限制允许上传的后缀
-        'fileSizeLimit' : '10MB',//限制上传的图片不得超过10MB 
+        'fileTypeDesc' : 'Debian Software Package',//只允许上传的文件种类
+        'fileTypeExts' : '*.deb',//限制允许上传的后缀
+        'fileSizeLimit' : '10MB',//限制上传的文件不得超过10MB 
         'onUploadSuccess' : function(file, data, response) {//每次成功上传后执行的回调函数，从服务端返回数据到前端
                img_id_upload[i]=data;
                i++;
