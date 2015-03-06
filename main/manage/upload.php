@@ -17,7 +17,7 @@
 	*/
 	
 	/* DCRM Upload Page */
-	if (strpos($_SERVER['HTTP_USER_AGENT'],'safari') or strpos($_SERVER['HTTP_USER_AGENT'],'iPhone') or strpos($_SERVER['HTTP_USER_AGENT'],'iPhone') or strpos($_SERVER['HTTP_USER_AGENT'],'iPad') or strpos($_SERVER['HTTP_USER_AGENT'],'iPod')) { 
+	if (strpos($_SERVER['HTTP_USER_AGENT'],'Safari') or strpos($_SERVER['HTTP_USER_AGENT'],'iPhone') or strpos($_SERVER['HTTP_USER_AGENT'],'iPhone') or strpos($_SERVER['HTTP_USER_AGENT'],'iPad') or strpos($_SERVER['HTTP_USER_AGENT'],'iPod')) { 
 	require_once('uploadforsafari.php');
 	exit();
 }
