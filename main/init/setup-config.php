@@ -30,7 +30,8 @@ if( $step != 0 && $step != 1 ){
 
 switch($step) {
 	case 0:		
-		display_header($notice);?>
+		display_header($notice);
+		?>
 		<p><strong><?php _e('Welcome to DCRM!'); ?></strong></p>
 		<p><a href="https://github.com/Lessica/WEIPDCRM">DCRM</a> <?php _e('is a Darwin Cydia Repository Manager write by PHP.'); ?> <?php _e('This project is a original designs by <a href="http://weibo.cn/u/3246210680">@i_82</a>, and some codes by <a href="http://weibo.com/hintay">@Hintay</a>.'); ?></p>
 		<p><?php _e('If you pay close attention to <a href="http://weibo.cn/u/3246210680">i_82</a> and some of his <a href="http://82flex.com/projects">projects</a>. Also wanted to help him, welcome to donate him.'); ?></p>
@@ -55,14 +56,14 @@ switch($step) {
 	<p><?php _e('Recommendations before the installation read the accompanying documentation (readme.html), if still not understand of place, can post them to <a href="https://github.com/Lessica/WEIPDCRM/issues/new">GitHub Issues</a>.'); ?></p>
 	<p><?php _e('If you&#8217;re all ready&hellip;'); ?></p>
 
-		<? if ($notice != '') { ?>
+		<?php if ($notice != '') { ?>
 			<p class="step"><a href="setup-config.php?<?php echo $step_language; ?>" class="button"><?php _e('Can&#8217;t start!'); ?></a></p>
-		<? } else { ?>
+		<?php } else { ?>
 			<p class="step"><a href="setup-config.php?step=1&amp;<?php echo $step_language; ?>" class="button"><?php _e('Let&#8217;s go!'); ?></a></p>
-		<?}
+		<?php }
 		
 		break;
-
+		
 	case 1:
 		display_header($notice);
 		include_once 'setup-check.php';
@@ -74,10 +75,10 @@ switch($step) {
 		<a href="setup-config.php?step=2&amp;<?php echo $step_language; ?>" class="button"><?php _ex( 'Next', 'Button' ); ?></a>
 	<?php endif;?>
 	</p>
-
-	<?
+	<?php
+	
 		break;
-
+		
 	case 2:
 		display_header($notice);		
 	?>
@@ -90,15 +91,15 @@ switch($step) {
 		<tr><th scope="row"><label for="dbname"></label><?php _e('Database Name'); ?></th><td><input name="dbname" id="dbname" type="text" size="35" value="cydia" /></td><td><?php _e( 'The name of the database you want to run DCRM in.' ); ?></td></tr>
 		<tr><th scope="row"><label for="prefix"><?php _e( 'Table Prefix' ); ?></label></th><td><input name="prefix" id="prefix" type="text" size="35" value="apt_" /></td><td><?php _e( 'If you want to run multiple DCRM installations in a single database, change this.' ); ?></td></tr>
 	</table>
-	<? if ($notice !== '') { ?>
+	<?php if ($notice !== '') { ?>
 		<p class="step"><a href="setup-config.php?<?php echo $step_language; ?>" class="button"><?php _e( 'Error!' ); ?></a></p>
-	<? } else { ?>
+	<?php } else { ?>
 		<p class="step"><input name="submit" type="submit" value="<?php _e('Submit'); ?>" class="button" /></p>
-	<? } ?>
+	<?php } ?>
 
 	</form>
 
-<?
+<?php
 		break;
 
 	case 3:
@@ -188,6 +189,7 @@ switch($step) {
 <p><?php _e("All right, sparky! You&#8217;ve made it through this part of the installation. DCRM can now communicate with your database. If you are ready, time now to&hellip;"); ?></p>
 
 <p class="step"><a href="setup-install.php?<?php echo $step_language; ?>" class="button button-large"><?php _e('Run the install'); ?></a></p>
-<?
+<?php
 		break;
 }
+?>

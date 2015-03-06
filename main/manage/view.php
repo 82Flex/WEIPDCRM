@@ -113,8 +113,8 @@
 				<fieldset>
 					<div class="group-control">
 						<label class="control-label">* 新增截图</label>
-						<div class="controls">
-							<input type="text" style="width: 400px;" required="required" name="image" />
+						<div class="controls"><input type="button" id="image1" value="选择图片" />
+							<input type="text" id="url1" style="width: 400px;" required="required" name="image" /><button action="view.php?id=<?php echo($request_id); ?>&action=image">确认</button>
 						</div>
 					</div>
 				</fieldset>
@@ -130,5 +130,29 @@
 			}
 		}
 	</script>
+		<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+		<link rel="stylesheet" href="js/themes/default/default.css" />
+		<script charset="utf-8" src="js/kindeditor.min.js"></script>
+		<script charset="utf-8" src="js/lang/zh_CN.js"></script>
+	<script>
+			KindEditor.ready(function(K) {
+				var editor = K.editor({
+					allowFileManager : true
+				});
+				K('#image1').click(function() {
+					editor.loadPlugin('image', function() {
+						editor.plugin.imageDialog({
+							imageUrl : K('#url1').val(),
+							clickFn : function(url, title, width, height, border, align) {
+								K('#url1').val(url);
+								editor.hideDialog();
+							}
+						});
+					});
+				});
+
+			});
+		</script>
+
 </body>
 </html>
