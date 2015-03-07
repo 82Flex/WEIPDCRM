@@ -70,35 +70,35 @@
 				<form class="form-horizontal" method="POST" action="edit.php?action=set&id=<?php echo $request_id; ?>">
 					<fieldset>
 						<div class="group-control">
-							<label class="control-label">* <a href="javascript:autofill(1);">标识符</a></label>
+							<label class="control-label">* <a onclick="javascript:autofill(1);" href="#">标识符</a></label>
 							<div class="controls">
 								<input type="text" style="width: 400px;" required="required" name="Package" value="<?php if (!empty($edit_info['Package'])) {echo htmlspecialchars($edit_info['Package']);} ?>"/>
 							</div>
 						</div>
 						<br />
 						<div class="group-control">
-							<label class="control-label">* <a href="javascript:autofill(2);">名称</a></label>
+							<label class="control-label">* <a onclick="javascript:autofill(2);" href="#">名称</a></label>
 							<div class="controls">
 								<input type="text" style="width: 400px;" required="required" name="Name" value="<?php if (!empty($edit_info['Name'])) {echo htmlspecialchars($edit_info['Name']);} ?>"/>
 							</div>
 						</div>
 						<br />
 						<div class="group-control">
-							<label class="control-label">* <a href="javascript:autofill(3);">版本</a></label>
+							<label class="control-label">* <a onclick="javascript:autofill(3);" href="#">版本</a></label>
 							<div class="controls">
 								<input type="text" style="width: 400px;" required="required" name="Version" value="<?php if (!empty($edit_info['Version'])) {echo htmlspecialchars($edit_info['Version']);} ?>"/>
 							</div>
 						</div>
 						<br />
 						<div class="group-control">
-							<label class="control-label">* <a href="javascript:autofill(4);">作者</a></label>
+							<label class="control-label">* <a onclick="javascript:autofill(4);" href="#">作者</a></label>
 							<div class="controls">
 								<input type="text" style="width: 400px;" required="required" name="Author" value="<?php if (!empty($edit_info['Author'])) {echo htmlspecialchars($edit_info['Author']);} ?>"/>
 							</div>
 						</div>
 						<br />
 						<div class="group-control">
-							<label class="control-label" required="required">* <a href="javascript:autofill(5);">分类</a></label>
+							<label class="control-label" required="required">* <a onclick="javascript:autofill(5);" href="#">分类</a></label>
 							<div class="controls">
 								<select name="Section" style="width: 400px;">
 								<?php
@@ -118,35 +118,43 @@
 						</div>
 						<br />
 						<div class="group-control">
-							<label class="control-label"><a href="javascript:autofill(6);">提供者</a></label>
+							<label class="control-label"><a onclick="javascript:autofill(6);" href="#">提供者</a></label>
 							<div class="controls">
 								<input type="text" style="width: 400px;" name="Maintainer" value="<?php if (!empty($edit_info['Maintainer'])) {echo htmlspecialchars($edit_info['Maintainer']);} ?>"/>
 							</div>
 						</div>
 						<br />
 						<div class="group-control">
-							<label class="control-label"><a href="javascript:autofill(7);">保证人</a></label>
+							<label class="control-label"><a onclick="javascript:autofill(7);" href="#">保证人</a></label>
 							<div class="controls">
 								<input type="text" style="width: 400px;" name="Sponsor" value="<?php if (!empty($edit_info['Sponsor'])) {echo htmlspecialchars($edit_info['Sponsor']);} ?>"/>
 							</div>
 						</div>
 						<br />
 						<div class="group-control">
-							<label class="control-label"><a href="javascript:autofill(8);">预览页</a></label>
+							<label class="control-label"><a onclick="javascript:autofill(8);" href="#">预览页</a></label>
 							<div class="controls">
-								<input id="urlinput" type="text" style="width: 400px;" name="Depiction" value="<?php if (!empty($edit_info['Depiction'])) {echo htmlspecialchars($edit_info['Depiction']);} ?>"/>
-								<p class="help-block">默认预览页为：<?php echo(base64_decode(DCRM_REPOURL)); ?>/index.php?pid=<?php echo($request_id);?></p>
-								<p class="help-block"><a class="btn btn-warning" href="javascript:jump()">单击此处预览</a></p>
+							<?php
+							$repourl = base64_decode(DCRM_REPOURL);
+							$repourl = substr($repourl, -1) == '/' ? $repourl : $repourl.'/'; 
+							$depiction_url = $repourl . 'index.php?pid=' . $request_id;
+							?>
+								<input id="urlinput" type="text" style="width: 400px;" name="Depiction" value="<?php echo !empty($edit_info['Depiction']) ? htmlspecialchars($edit_info['Depiction']) : '' ?>"/>
+								<p class="help-block">默认预览页为：<?php echo($depiction_url); ?></p>
+								<p class="help-block"><a class="btn btn-warning" href="<?php echo($depiction_url); ?>" target="_blank">单击预览默认预览页</a></p>
 							</div>
 						</div>
 						<br />
 						<div class="group-control">
-							<label class="control-label"><a href="javascript:autofill(9);">描述</a></label>
+							<label class="control-label"><a onclick="javascript:autofill(9);" href="#">描述</a></label>
 							<div class="controls">
 								<textarea type="text" style="height: 40px; width: 400px;" name="Description"><?php if (!empty($edit_info['Description'])) {echo htmlspecialchars($edit_info['Description']);} ?></textarea>
 							</div>
 						</div>
 						<br />
+<?php
+						if (DCRM_MULTIINFO == 2) {
+?>
 						<div class="group-control">
 							<label class="control-label">详细描述</label>
 							<div class="controls">
@@ -154,6 +162,9 @@
 							</div>
 						</div>
 						<br />
+<?php
+						}
+?>
 						<div class="form-actions">
 							<div class="controls">
 								<button type="submit" class="btn btn-success">保存</button>　
@@ -421,7 +432,7 @@
 			}
 		} else if (opt == 5) {
 			if (document.getElementsByName("Section")[0].value.length == 0) {
-				document.getElementsByName("Section")[0].value = "<?php echo AUTOFILL_SECTION; ?>";
+				document.getElementsByName("Section")[0].value = "<?php echo defined("AUTOFILL_SECTION") ? AUTOFILL_SECTION : ''; ?>";
 			}
 		} else if (opt == 6) {
 			var pstr = document.getElementsByName("Maintainer")[0].value;
@@ -447,10 +458,10 @@
 				if (pstr.indexOf("http://") == -1) {
 					document.getElementsByName("Depiction")[0].value = "http://" + pstr;
 				} else {
-					document.getElementsByName("Depiction")[0].value = "NULL";
+					document.getElementsByName("Depiction")[0].value = "";
 				}
 			} else {
-				document.getElementsByName("Depiction")[0].value = "<?php echo(base64_decode(DCRM_REPOURL)."/index.php?pid=".$_GET['id']); ?>";
+				document.getElementsByName("Depiction")[0].value = "<?php echo($depiction_url); ?>";
 			}
 		} else if (opt == 9) {
 			if (document.getElementsByName("Description")[0].value.length > 0) {
