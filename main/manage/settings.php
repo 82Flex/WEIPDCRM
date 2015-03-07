@@ -73,7 +73,7 @@
 						<h3><?php _e( 'General' ); ?></h3>
 						<br />
 						<div class="group-control">
-							<label class="control-label"><?php _e( 'Language' ); ?></label>
+							<label class="control-label"><?php _e( 'Language' ); if ( substr( $locale, 0, 2 ) != 'en' ) { ?><br /> Language<?php } ?></label>
 							<div class="controls">
 								<select name="language">
 <?php
@@ -81,7 +81,10 @@
 										$langtext = '<option value="Detect"';
 										if (defined("DCRM_LANG") && DCRM_LANG == 'Detect')
 											$langtext .= ' selected="selected"';
-										$langtext .= '>'._x( 'Detect', 'language' )."</option>\n";
+										$langtext .= '>'._x( 'Detect', 'language' );
+										if ( substr( $locale, 0, 2 ) != 'en' )
+											$langtext .= ' - Detect';
+										$langtext .= "</option>\n";
 
 										$languages_list = languages_list();
 										foreach( $languages as $language ) {
@@ -90,19 +93,19 @@
 												$langtext .= ' selected="selected"';
 											$langtext .= '>';
 											$langtext .= isset($languages_list[$language]) ? $languages_list[$language] : $language;
-											$langtext .= "</option>\n";
+											$langtext .= " - " . $language . "</option>\n";
 										}
 										
 										if(!in_array('en', $languages) && !in_array('en_US', $languages) && !in_array('en_GB', $languages)){
 											$langtext .= "<option value=\"en_US\"";
 											if (defined("DCRM_LANG") && DCRM_LANG == 'en_US')
 												$langtext .= ' selected="selected"';
-											$langtext .= '>'._x('English', 'language')."</option>\n";
+											$langtext .= '>'._x('English', 'language')." - en_US</option>\n";
 										}
 										echo $langtext;
 									?>
 								</select>
-								<p class="help-block"><?php _e('If you want system auto detect users browser language to show pages please select "Detect" option.'); ?></p>
+								<p class="help-block"><?php _e('If you want system auto detect users browser language to show pages please select "Detect" option.'); if ( substr( $locale, 0, 2 ) != 'en' ) { ?><br />If you want system auto detect users browser language to show pages please select "Detect" option.<?php } ?></p>
 							</div>
 						</div>
 						<br />
