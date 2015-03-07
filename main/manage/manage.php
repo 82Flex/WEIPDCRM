@@ -1,6 +1,6 @@
 <?php
 	/*
-		This file is part of WEIPDCRM.
+	    This file is part of WEIPDCRM.
 	
 	    WEIPDCRM is free software: you can redistribute it and/or modify
 	    it under the terms of the GNU General Public License as published by
@@ -57,8 +57,8 @@
 						<table class="table"><thead><tr>
 						<th><ul class="ctl">删除</ul></th>
 						<th><ul class="ctl">继承</ul></th>
-						<th><ul class="ctl">名称</ul></th>
-						<th><ul class="ctl">尺寸</ul></th>
+						<th><ul class="ctl" style="width:20%;">名称</ul></th>
+						<th><ul class="ctl" style="width:100px;">尺寸</ul></th>
 						</tr></thead><tbody>
 				<?php
 							foreach ($files as $file) {
@@ -68,8 +68,8 @@
 						<tr>
 						<td><a href="manage.php?action=delete_confirmation&file=<?php echo(urlencode($file)); ?>" class="close" style="line-height: 12px;">&times;</a></td>
 						<td><a href="manage.php?action=force&file=<?php echo(urlencode($file)); ?>" class="close" style="line-height: 12px;">&equiv;</a></td>
-						<td><a href = "import.php?filename=<?php echo(urlencode($file)); ?>"><ul class="ctl" style="width:450px;"><?php echo($file); ?></a></ul></td>
-						<td><ul class="ctl" style="width:100px;"><?php echo($filesize_withext); ?></ul></td>
+						<td><a href = "import.php?filename=<?php echo(urlencode($file)); ?>"><ul class="ctl"><?php echo($file); ?></a></ul></td>
+						<td><ul class="ctl"><?php echo($filesize_withext); ?></ul></td>
 						</tr>
 				<?php
 							}

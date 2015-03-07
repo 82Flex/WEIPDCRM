@@ -118,13 +118,13 @@
 							else {
 ?>
 								<table class="table"><thead><tr>
-									<th></th>
+									<th style="width:13px;"></th>
 									<th><ul class="ctl">名称</ul></th>
-									<th><ul class="ctl">版本</ul></th>
-									<th><ul class="ctl">尺寸</ul></th>
-									<th><ul class="ctl">下载次数</ul></th>
-									<th><ul class="ctl">删除</ul></th>
-									<th><ul class="ctl">历史</ul></th>
+									<th style="width:20%;"><ul class="ctl">版本</ul></th>
+									<th style="width:20%;"><ul class="ctl">尺寸</ul></th>
+									<th style="width:10%;"><ul class="ctl">下载次数</ul></th>
+									<th style="width:5%;"><ul class="ctl">删除</ul></th>
+									<th style="width:5%;"><ul class="ctl">历史</ul></th>
 								</tr></thead><tbody>
 <?php
 								$i = 0;
@@ -139,21 +139,21 @@
 									}
 									if ($list['Stat'] == 1) {
 ?>
-									<td><a href = "view.php?id=<?php echo $list['ID']; ?>"><ul class="ctl" style="width:240px;"><?php echo htmlspecialchars($list['Name']); ?></ul></a></td>
+									<td><a href = "view.php?id=<?php echo $list['ID']; ?>"><ul class="ctl"><?php echo htmlspecialchars($list['Name']); ?></ul></a></td>
 <?php
 									} elseif ($list['Stat'] == 2) {
 ?>
-									<td><a href = "view.php?id=<?php echo $list['ID']; ?>"><ul class="ctl" style="width:240px; color: green;"><?php echo htmlspecialchars($list['Name']); ?></ul></a></td>
+									<td><a href = "view.php?id=<?php echo $list['ID']; ?>"><ul class="ctl" style="color: green;"><?php echo htmlspecialchars($list['Name']); ?></ul></a></td>
 <?php
 									} else {
 ?>
-									<td><a href = "view.php?id=<?php echo $list['ID']; ?>"><ul class="ctl" style="width:240px; color: gray;"><?php echo htmlspecialchars($list['Name']); ?></ul></a></td>
+									<td><a href = "view.php?id=<?php echo $list['ID']; ?>"><ul class="ctl" style="color: gray;"><?php echo htmlspecialchars($list['Name']); ?></ul></a></td>
 <?php
 									}
 ?>
-									<td><ul class="ctl" style="width:80px;"><?php echo htmlspecialchars($list['Version']); ?></ul></td>
-									<td><ul class="ctl" style="width:80px;"><?php echo sizeext($list['Size']); ?></ul></td>
-									<td><ul class="ctl" style="width:50px;"><?php echo $list['DownloadTimes']; ?></ul></td>
+									<td><ul class="ctl"><?php echo htmlspecialchars($list['Version']); ?></ul></td>
+									<td><ul class="ctl"><?php echo sizeext($list['Size']); ?></ul></td>
+									<td><ul class="ctl"><?php echo $list['DownloadTimes']; ?></ul></td>
 									<td><a href="center.php?action=delete_confirm&name=<?php echo $list['Package']; ?>&id=<?php echo $list['ID']; ?>" class="close">&times;</a></td>
 									<td><a href="center.php?action=search&contents=<?php echo $list['Package']; ?>&type=1" class="close">&raquo;</a></td>
 								</tr>

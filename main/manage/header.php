@@ -70,6 +70,7 @@ $sidebars = array(
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 	<title>DCRM - <?php _e('Repository Manager');?></title>
+	<meta name="viewport" content="width=600px, minimal-ui">
 	<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
 	<script type="text/javascript" src="http://libs.useso.com/js/jquery/1.4.2/jquery.min.js"></script>
 	<script type="text/javascript">
@@ -109,7 +110,7 @@ if ( isset($activeid) && ( 'view' == $activeid || 'edit' == $activeid || 'center
 <body>
 	<div class="container">
 		<div class="row">
-			<div class="span6" id="logo">
+			<div class="span" id="logo">
 				<p class="title">DCRM</p>
 				<h6 class="underline">Darwin Cydia Repository Manager</h6>
 			</div>
