@@ -353,7 +353,24 @@
 				</a>
 <?php
 				}
+				if (defined("AUTOFILL_ALIPAY")) {
 ?>
+				<a href="<?php echo(AUTOFILL_ALIPAY); ?>" target="_blank">
+				<img class="icon" src="icons/default/alipay.png" />
+					<div>
+						<div>
+							<label>
+								<p>
+									<?php _e('Donate via <span style="font-style: italic; font-weight: bold"><img class="alipay" src="icons/default/alipay_text_en.png" /><sup><small >™</small></sup></span>'); ?>
+								</p>
+							</label>
+						</div>
+					</div>
+				</a>
+<?php
+				}
+?>
+
 			</fieldset>
 <?php
 		if (DCRM_SHOWLIST == 2) {
@@ -724,6 +741,22 @@
 							<label>
 								<p>
 									<?php _e('Donate via <span style="font-style: italic; font-weight: bold"><span style="color: #1a3665">Pay</span><span style="color: #32689a">Pal</span><sup><small>™</small></sup></span>'); ?>
+								</p>
+							</label>
+						</div>
+					</div>
+				</a>
+<?php
+				}
+				if (defined("AUTOFILL_ALIPAY")) {
+?>
+				<a href="<?php echo(AUTOFILL_ALIPAY); ?>" target="_blank">
+				<img class="icon" src="icons/default/alipay.png" />
+					<div>
+						<div>
+							<label>
+								<p>
+									<?php _e('Donate via <span style="font-style: italic; font-weight: bold"><img class="alipay" src="icons/default/alipay_text_en.png" /><sup><small >™</small></sup></span>'); ?>
 								</p>
 							</label>
 						</div>

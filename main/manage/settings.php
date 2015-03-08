@@ -613,6 +613,13 @@
 							</div>
 						</div>
 						<br />
+						<div class="group-control">
+							<label class="control-label">支付宝捐助地址</label>
+							<div class="controls">
+								<input type="text" name="ALIPAY" style="width: 400px;" value="<?php if(defined("AUTOFILL_ALIPAY")){echo(htmlspecialchars(stripslashes(AUTOFILL_ALIPAY)));} ?>"/>
+							</div>
+						</div>
+						<br />
 						<h3>统计与广告</h3>
 						<br />
 						<div class="group-control">
@@ -790,7 +797,7 @@
 							$config_text .= "\tdefine(\"DCRM_LOGINFAILRESETTIME\", ".($_POST['resettime']*60).");\n";
 							$config_text .= "?>";
 							$autofill_text = "<?php\n\tif (!defined(\"DCRM\")) {\n\t\texit;\n\t}\n";
-							$autofill_list = array("EMERGENCY", "PRE", "NONAME", "MASTER", "FULLNAME", "EMAIL", "SITE", "WEIBO", "WEIBO_NAME", "TWITTER", "TWITTER_NAME", "FACEBOOK", "FACEBOOK_NAME", "DESCRIPTION", "SEO", "KEYWORDS", "PAYPAL", "STATISTICS", "STATISTICS_INFO", "ADVERTISEMENT", "TENCENT", "TENCENT_NAME", "DUOSHUO_KEY", "FOOTER_YEAR", "FOOTER_CODE", "FOOTER_NAME");
+							$autofill_list = array("EMERGENCY", "PRE", "NONAME", "MASTER", "FULLNAME", "EMAIL", "SITE", "WEIBO", "WEIBO_NAME", "TWITTER", "TWITTER_NAME", "FACEBOOK", "FACEBOOK_NAME", "DESCRIPTION", "SEO", "KEYWORDS", "PAYPAL", "ALIPAY", "STATISTICS", "STATISTICS_INFO", "ADVERTISEMENT", "TENCENT", "TENCENT_NAME", "DUOSHUO_KEY", "FOOTER_YEAR", "FOOTER_CODE", "FOOTER_NAME");
 							foreach ($autofill_list as $value) {
 								if (!empty($_POST[$value])) {
 									$autofill_text .= "\tdefine(\"AUTOFILL_".$value."\", \"".addslashes(str_replace(array("\r","\n"), '',nl2br(htmlspecialchars_decode($_POST[$value]))))."\");\n";
