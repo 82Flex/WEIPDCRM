@@ -124,8 +124,9 @@
 				$t_package[$t_key] .= "\n".$t_value;
 			} else {
 				if(preg_match("#^Package|Source|Version|Priority|Section|Essential|Maintainer|Pre-Depends|Depends|Recommends|Suggests|Conflicts|Provides|Replaces|Enhances|Architecture|Filename|Size|Installed-Size|Description|Origin|Bugs|Name|Author|Homepage|Website|Depiction|Icon|Tag|Sponsor#",$line)) {
-					$t_key = trim(preg_replace("#^(.+):\\s*(.+)#", "$1", $line));
-					$t_value = trim(preg_replace("#^(.+):\\s*(.+)#", "$2", $line));
+					preg_match("#^([^:]*?):(.*)#", $line, $t_matches);
+					$t_key = trim($t_matches[1]);
+					$t_value = trim($t_matches[2]);
 					$t_package[$t_key] = $t_value;
 				}
 			}
