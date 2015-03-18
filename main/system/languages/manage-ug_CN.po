@@ -1,0 +1,1661 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: DCRM Manager\n"
+"POT-Creation-Date: 2015-03-16 22:31+0800\n"
+"PO-Revision-Date: 2015-03-16 22:43+0800\n"
+"Last-Translator: Hintay <hintay@me.com>\n"
+"Language-Team: Shiraq\n"
+"Language: ug_CN\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 1.6.6\n"
+"X-Poedit-Basepath: ../../\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"X-Poedit-KeywordsList: __;_e;_n:1,2;_x:1,2c;_ex:1,2c;_nx:4c,1,2;esc_attr__;"
+"esc_attr_e;esc_attr_x:1,2c;esc_html__;esc_html_e;esc_html_x:1,2c;_n_noop:1,2;"
+"_nx_noop:3c,1,2;__ngettext_noop:1,2\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"X-Poedit-SearchPath-0: ./manage\n"
+"X-Poedit-SearchPath-1: ./system/languages\n"
+
+#: manage/about.php:31
+msgctxt "About Page"
+msgid "About"
+msgstr "ئىزاھات"
+
+#: manage/about.php:34
+msgid "Version: "
+msgstr "نەشىرى："
+
+#: manage/about.php:35
+msgid "Open source Repository Manager for Cydia™/APT."
+msgstr "开源的 Cydia™/APT 个人源解决方案"
+
+#: manage/about.php:36
+msgid "Developer"
+msgstr ""
+
+#: manage/about.php:37
+msgid "Main Program: "
+msgstr ""
+
+#: manage/about.php:37 manage/about.php:43
+msgid "WeiPhone Test Group"
+msgstr ""
+
+#: manage/about.php:37 manage/about.php:39 manage/about.php:42
+#: manage/about.php:43
+msgctxt "Punctuation"
+msgid ", "
+msgstr ""
+
+#: manage/about.php:38
+msgid "Contributors: "
+msgstr ""
+
+#: manage/about.php:39
+msgid "UI Design:"
+msgstr ""
+
+#: manage/about.php:40
+msgid "Credits"
+msgstr ""
+
+#: manage/about.php:41
+msgid "WeiPhone"
+msgstr ""
+
+#: manage/about.php:41
+msgctxt "Credits"
+msgid "support"
+msgstr ""
+
+#: manage/about.php:42
+msgid "E-pal"
+msgstr ""
+
+#: manage/about.php:43 manage/about.php:44
+msgid "WeiPhone Technology Group"
+msgstr ""
+
+#: manage/about.php:43
+msgid "provide viewpoints"
+msgstr ""
+
+#: manage/about.php:44 manage/about.php:45
+msgid "'s articles: "
+msgstr ""
+
+#: manage/about.php:45
+msgid "Also, and the father of the Cydia™"
+msgstr ""
+
+#: manage/about.php:46
+msgid "Mobile Home Page Style From Saurik IT."
+msgstr ""
+
+#: manage/about.php:47
+msgid "Copyright"
+msgstr "نەشىر ھوقۇقى"
+
+#: manage/about.php:48
+msgid ""
+"This program is free software, you can redistribute it and/or modify it "
+"under the terms of the <a href=\"http://www.gnu.org/licenses\">GNU General "
+"Public License</a> as published by the Free Software Foundation either "
+"version 3 of the License."
+msgstr ""
+
+#: manage/bak/settings.php:30 manage/settings.php:38
+msgid "Preferences"
+msgstr "سېستىما تەڭشىكى"
+
+#: manage/bak/settings.php:42 manage/settings.php:42
+msgid "General"
+msgstr "ئورتاق"
+
+#: manage/bak/settings.php:45 manage/settings.php:45
+msgid "Language"
+msgstr "تىل تاللاش"
+
+#: manage/bak/settings.php:53 manage/settings.php:53
+msgctxt "language"
+msgid "Detect"
+msgstr "ئاپتوماتىك تەكشۈرۈش"
+
+#: manage/bak/settings.php:72 manage/settings.php:72
+#: system/languages/l10n.php:746
+msgctxt "language"
+msgid "English"
+msgstr "英语"
+
+#: manage/bak/settings.php:77 manage/settings.php:77
+msgid ""
+"If you want system auto detect users browser language to show pages please "
+"select \"Detect\" option."
+msgstr ""
+"ئەگەر سىزئىشلەتكەن تور كۆرگۈچتە ھەرقايسى تىللارنى ئاپتوماتىك تاللايدىغان "
+"ئىقتىدار بولسا ئاپتوماتىك تاللاش ئىقتىدارىنى ئىشلىتىڭ"
+
+#: manage/bak/settings.php:81 manage/settings.php:81
+msgid "Login Information"
+msgstr "تىزىملىتىش ئۇچۇرى"
+
+#: manage/bak/settings.php:84 manage/login.php:146 manage/settings.php:84
+msgid "Username"
+msgstr "ئابونىت نامى"
+
+#: manage/bak/settings.php:91 manage/settings.php:91
+msgid "New Password"
+msgstr "يېڭى مەخپىي نومۇر"
+
+#: manage/bak/settings.php:94 manage/settings.php:94
+msgid ""
+"If you would like to change the password type a new one. Otherwise leave "
+"this blank."
+msgstr "مەخىي نومۇرنى ئۆزگەرتمىسىڭىز ئۇنداقتا تولدۇرماي بوش قويۇڭ"
+
+#: manage/bak/settings.php:99 manage/settings.php:99
+msgid "Repeat New Password"
+msgstr "يېڭى مەخپىي نومۇرنى قايتىلاڭ"
+
+#: manage/bak/settings.php:102 manage/settings.php:102
+msgid "Type your new password again."
+msgstr "يېڭى مەخپىينومۇرنى قايتا كىر گۈزۈش"
+
+#: manage/bak/settings.php:103 manage/bak/settings.php:815
+#: manage/settings.php:103 manage/settings.php:722
+msgid "Strength indicator"
+msgstr "مەخپىي نومۇر كۈلۈك ئاجىزلىقى"
+
+#: manage/bak/settings.php:639 manage/settings.php:579
+msgid "You entered your new password only once."
+msgstr "سىزنىڭ پەقەت بىرلا قېتىم يېڭى مەخپىي نومۇر كىر گۈزۈش پۇرسىتىڭىز بار"
+
+#: manage/bak/settings.php:642 manage/settings.php:582
+msgid "Your passwords do not match. Please try again."
+msgstr "ئىككى قېتىملىق مەخپىي نومۇر ماسلاشمىدى"
+
+#: manage/bak/settings.php:815 manage/settings.php:722
+msgctxt "Password"
+msgid "Short"
+msgstr "بەك ئاجىز"
+
+#: manage/bak/settings.php:815 manage/settings.php:722
+msgctxt "Password"
+msgid "Bad"
+msgstr "ئاجىز"
+
+#: manage/bak/settings.php:815 manage/settings.php:722
+msgctxt "Password"
+msgid "Good"
+msgstr "ئوتتۇرھال"
+
+#: manage/bak/settings.php:815 manage/settings.php:722
+msgctxt "Password"
+msgid "Strong"
+msgstr "كۈچلۈك"
+
+#: manage/bak/settings.php:815 manage/settings.php:722
+msgctxt "Password"
+msgid "Mismatch"
+msgstr "ماسلاشمىدى"
+
+#: manage/build.php:47
+msgid "Database Error!"
+msgstr ""
+
+#: manage/build.php:66
+msgid "Find the number of records: "
+msgstr ""
+
+#: manage/build.php:68
+msgid ""
+"No record in data table ` Packages `! Please import package and allow it to "
+"display first."
+msgstr ""
+
+#: manage/build.php:74
+msgid "Warning: "
+msgstr ""
+
+#: manage/build.php:74
+msgid "release.save file does not exist! Please config release information."
+msgstr ""
+
+#: manage/build.php:76
+msgid "The Release configuration file exists."
+msgstr ""
+
+#: manage/build.php:88
+msgid "Write to the Packages file: "
+msgstr ""
+
+#: manage/build.php:100
+msgid "Write to the Packages.bz file: "
+msgstr ""
+
+#: manage/build.php:112
+msgid "Write to the Packages.bz2 file: "
+msgstr ""
+
+#: manage/build.php:129 manage/header.php:114
+msgid "Rebuild the list"
+msgstr "تىزىملىك يېڭىلاش"
+
+#: manage/build.php:131
+msgid ""
+"List rebuild request submitted successfully, it is recommended that you <a "
+"href=\"stats.php?action=clean\">Clear the Cache</a> to free up disk space."
+msgstr ""
+
+#: manage/build.php:133
+#, fuzzy
+msgctxt "Rebuild the list"
+msgid "Information"
+msgstr "تىزىملىتىش ئۇچۇرى"
+
+#: manage/build.php:139
+msgid "Preview of Packages file"
+msgstr ""
+
+#: manage/build.php:141
+msgid "File does not exist."
+msgstr ""
+
+#: manage/header.php:18
+msgid "Upload Packages"
+msgstr "قىستۇرما يوللاش"
+
+#: manage/header.php:23
+msgid "Import Packages"
+msgstr "قىستۇرما كىر گۈزۈش"
+
+#: manage/header.php:28
+msgid "Manage Packages"
+msgstr "قىستۇرما باشقۇرۇش"
+
+#: manage/header.php:37
+msgid "Manage Sections"
+msgstr "تۈرلەرگە ئايرىش"
+
+#: manage/header.php:42
+msgid "Manage Repository"
+msgstr "مەنبە ئۇچۇر تەڭشىكى"
+
+#: manage/header.php:51 manage/stats.php:30
+msgid "Running Status"
+msgstr "ئىقىرا بولۇش ھالىتى"
+
+#: manage/header.php:56
+msgid "About"
+msgstr "ئىزاھات"
+
+#: manage/header.php:66
+msgid "Repository Manager"
+msgstr "مەنبە باشقۇرۇش سېستىمىسى"
+
+#: manage/header.php:115
+msgctxt "Header"
+msgid "Preferences"
+msgstr "تەڭشەك"
+
+#: manage/header.php:116
+msgid "Logout"
+msgstr "چىقىر ۋىتىش"
+
+#: manage/header.php:149
+msgid "View Details"
+msgstr "تەپسىلى ئۇچۇرى"
+
+#: manage/header.php:150
+msgid "General Editor"
+msgstr "دائىملىق تەھرىرلەش"
+
+#: manage/header.php:151
+msgid "Advance Editor"
+msgstr "ئالىي تەھرىرلەش"
+
+#: manage/login.php:114 manage/login.php:142
+msgid "Login"
+msgstr "كىرىش"
+
+#: manage/login.php:147
+msgid "Password"
+msgstr "مەخپىي نومۇر"
+
+#: manage/login.php:148
+msgid "Verify Code"
+msgstr "دەلىللەش نومۇرى"
+
+#: manage/login.php:150
+msgctxt "Buttom"
+msgid "Login"
+msgstr "كىرىش"
+
+#: manage/login.php:156
+msgid "Error"
+msgstr "خاتالىق كۆرۈلدى"
+
+#: manage/release.php:39
+#, fuzzy
+msgid "Repository Settings"
+msgstr "مەنبە باشقۇرۇش سېستىمىسى"
+
+#: manage/release.php:44
+msgid "Origin"
+msgstr "ئىسمى"
+
+#: manage/release.php:47
+msgid "This name will be displayed in the sources interface of Cydia."
+msgstr ""
+
+#: manage/release.php:52
+msgid "Label"
+msgstr ""
+
+#: manage/release.php:55
+msgid "This name will be displayed at the top of the package list interface."
+msgstr ""
+
+#: manage/release.php:60
+#, fuzzy
+msgid "Codename"
+msgstr "ئابونىت نامى"
+
+#: manage/release.php:67
+msgid "Description"
+msgstr "تەپسىلاتى"
+
+#: manage/release.php:74
+msgid "Version"
+msgstr "نەشىرى"
+
+#: manage/release.php:81
+msgid "Repository Icon"
+msgstr "مەنبە سىنبەلگىسى"
+
+#: manage/release.php:84
+#, php-format
+msgid "Allowed upload format: png, save as %s in root directory."
+msgstr "غول مۇندەرىجىدە ساقلىنىدۇpng，يوللاشقا بولدىغا ھۆججەت فورماتى %s"
+
+#: manage/release.php:90 manage/settings.php:556
+msgid "Save"
+msgstr "ساقلاش"
+
+#: manage/release.php:117 manage/settings.php:670 manage/settings.php:707
+#: manage/stats.php:97
+msgid "Back"
+msgstr "قايتىش"
+
+#: manage/settings.php:32
+msgid "Enabled"
+msgstr ""
+
+#: manage/settings.php:32 manage/settings.php:34
+msgid "Disabled"
+msgstr ""
+
+#: manage/settings.php:108
+msgid "The maximum number of attempts"
+msgstr "ئەڭ كۆپ سىناش قېتىم سانى"
+
+#: manage/settings.php:115
+msgid "Login Fail Reset Time"
+msgstr "尝试次数重置时间"
+
+#: manage/settings.php:118
+msgid "Unit: Minutes"
+msgstr "مىنۇت：بىرلىكى"
+
+#: manage/settings.php:123
+msgid "Repository URL"
+msgstr "مەنبە ئادرېسى"
+
+#: manage/settings.php:126
+msgid "Displayed on the homepage for the user to add."
+msgstr "展示在首页供用户添加"
+
+#: manage/settings.php:130
+msgid "PC Site"
+msgstr "كومپىيوتۇر نۇسقىسنىڭ ئىقتىدارى"
+
+#: manage/settings.php:133 manage/settings.php:145
+msgid "Master Switch"
+msgstr "باش ئۈزچات"
+
+#: manage/settings.php:138
+msgid "Non-apple owners will automatically jump if enabled."
+msgstr "开启后非苹果用户将自动跳转"
+
+#: manage/settings.php:142
+msgid "Mobile Site"
+msgstr "كۆچمە ئۈسكۈنىدىكى ئىقتىدارى"
+
+#: manage/settings.php:154 manage/settings.php:638
+msgid "Show Latest List"
+msgstr "展示最新列表"
+
+#: manage/settings.php:163
+msgid "Number of Latest List"
+msgstr "最新列表数量"
+
+#: manage/settings.php:166
+msgid "The maximum must not exceed 20."
+msgstr "最大不得超过 20 条"
+
+#: manage/settings.php:171 manage/settings.php:647
+msgid "Full List of Sections"
+msgstr "分类完整列表"
+
+#: manage/settings.php:180 manage/settings.php:610
+msgctxt "Settings"
+msgid "Screenshorts"
+msgstr "预览截图"
+
+#: manage/settings.php:189 manage/settings.php:614
+msgid "Report Problems"
+msgstr "报告问题"
+
+#: manage/settings.php:198
+msgid "Limit Number of Report"
+msgstr "限制报告次数"
+
+#: manage/settings.php:201
+msgid "The maximum not more than 10 times."
+msgstr "最大不得超过 10 次"
+
+#: manage/settings.php:206 manage/settings.php:622
+msgid "Update Logs"
+msgstr "更新日志"
+
+#: manage/settings.php:211
+msgid "Displayed in the Version History."
+msgstr "显示在历史版本中的更新日志"
+
+#: manage/settings.php:216 manage/settings.php:626
+#, fuzzy
+msgid "More Information"
+msgstr "تىزىملىتىش ئۇچۇرى"
+
+#: manage/settings.php:225 manage/settings.php:630
+#, fuzzy
+msgid "Multiple Information"
+msgstr "تىزىملىتىش ئۇچۇرى"
+
+#: manage/settings.php:233
+msgid "Download"
+msgstr "下载设置"
+
+#: manage/settings.php:236 manage/settings.php:598
+msgid "HotLink Protection"
+msgstr "防盗链"
+
+#: manage/settings.php:245
+msgid "Max Download Speed"
+msgstr "最大下载速度"
+
+#: manage/settings.php:248
+msgid "B/s, please input '0' if you do not want limit."
+msgstr "字节每秒，不限制请填写 0"
+
+#: manage/settings.php:252
+msgid "Lists"
+msgstr "列表设置"
+
+#: manage/settings.php:255
+msgid "Packages File Compression"
+msgstr "Packages 压缩"
+
+#: manage/settings.php:262
+#, fuzzy
+msgid "Hide list"
+msgstr "تىزىملىك يېڭىلاش"
+
+#: manage/settings.php:265
+msgid "Only text"
+msgstr "仅文本"
+
+#: manage/settings.php:268
+msgid "Only gz"
+msgstr "仅 gz"
+
+#: manage/settings.php:271
+msgid "Text and gz"
+msgstr "文本与 gz"
+
+#: manage/settings.php:274
+msgid "Only bz2"
+msgstr "仅 bz2"
+
+#: manage/settings.php:277
+msgid "Text and bz2"
+msgstr "文本与 bz2"
+
+#: manage/settings.php:280
+msgid "gz and bz2"
+msgstr "gz 与 bz2"
+
+#: manage/settings.php:283
+msgid "All"
+msgstr "全部"
+
+#: manage/settings.php:299
+msgid ""
+"Please change the compression method if error occurred trying rebuild the "
+"list."
+msgstr "若修改后发现刷新列表出错，请更换压缩方式"
+
+#: manage/settings.php:304
+msgid "Packages Validation "
+msgstr "软件包验证"
+
+#: manage/settings.php:311
+msgid "No validation"
+msgstr "不验证"
+
+#: manage/settings.php:336
+msgid "Take effect when write to Packages."
+msgstr "仅在写入软件包时生效"
+
+#: manage/settings.php:340
+msgid "Autofill"
+msgstr "自动填充"
+
+#: manage/settings.php:343
+msgid "Default Identifier of Packages"
+msgstr "软件包默认标识符"
+
+#: manage/settings.php:350
+#, fuzzy
+msgid "Default Name of Packages"
+msgstr "قىستۇرما باشقۇرۇش"
+
+#: manage/settings.php:357
+msgid "Default Depiction of Packages"
+msgstr "软件包默认名称"
+
+#: manage/settings.php:363
+msgid "SEO"
+msgstr "SEO 优化"
+
+#: manage/settings.php:366
+msgctxt "SEO"
+msgid "Site Name"
+msgstr "SEO 名称"
+
+#: manage/settings.php:373
+msgctxt "SEO"
+msgid "Site Address"
+msgstr "SEO 域名"
+
+#: manage/settings.php:380
+msgctxt "SEO"
+msgid "Site Keyword"
+msgstr "SEO 关键词"
+
+#: manage/settings.php:383
+msgid "Separated by commas."
+msgstr "以英文半角逗号分隔"
+
+#: manage/settings.php:387
+#, fuzzy
+msgid "Administrator Informations"
+msgstr "تىزىملىتىش ئۇچۇرى"
+
+#: manage/settings.php:390
+msgctxt "Administrator"
+msgid "Name"
+msgstr "管理员名称"
+
+#: manage/settings.php:397
+msgctxt "Administrator"
+msgid "Full Name"
+msgstr "管理员全名"
+
+#: manage/settings.php:404
+msgctxt "Administrator"
+msgid "Email Address"
+msgstr "管理员邮箱"
+
+#: manage/settings.php:410
+msgid "Footer"
+msgstr "底部设置"
+
+#: manage/settings.php:413
+msgid "Starting Year of Copyright"
+msgstr "版权起始年份"
+
+#: manage/settings.php:416
+#, php-format
+msgid ""
+"If input 2010, the final display is © 2010-%d, leave a blank will only "
+"displays the current year."
+msgstr "如输入 2010，最终显示为 © 2010-%d，留空则只显示当前年份。"
+
+#: manage/settings.php:421
+msgid "Copyright Name"
+msgstr "版权名称"
+
+#: manage/settings.php:424
+msgid ""
+"Displayed on the website at the bottom. If you not input anything will "
+"display the repository name."
+msgstr "显示在网站底部。如不填写则显示源名称。"
+
+#: manage/settings.php:429
+#, fuzzy
+msgid "Footer Code"
+msgstr "دەلىللەش نومۇرى"
+
+#: manage/settings.php:432
+msgid ""
+"You can input ICP number, site information etc. Please use <code>·</code> as "
+"the separator. "
+msgstr "可填写备案号、网站信息等，请使用 <code>·</code> 作为分隔符。"
+
+#: manage/settings.php:436
+msgid "Social"
+msgstr "社会化分享"
+
+#: manage/settings.php:439
+msgid "Duoshuo Social Comments KEY"
+msgstr "多说社会化评论框 Key"
+
+#: manage/settings.php:442
+msgid ""
+"Please goto <a href=\"http://duoshuo.com/\">http://duoshuo.com</a> for get "
+"key (registration required), leave a blank will disabled comment function."
+msgstr ""
+"请前往 <a href=\"http://duoshuo.com/\">http://duoshuo.com</a> 获取 Key（需要"
+"注册），留空关闭评论功能。"
+
+#: manage/settings.php:447
+msgid "QQ Group Name"
+msgstr "QQ群名称"
+
+#: manage/settings.php:454
+msgid "QQ Group Number"
+msgstr "QQ群地址"
+
+#: manage/settings.php:457
+msgid "Need the new mobile client."
+msgstr "需要新版手机客户端支持"
+
+#: manage/settings.php:462
+msgid "Weibo Name"
+msgstr "微博名称"
+
+#: manage/settings.php:469
+msgid "Weibo Address"
+msgstr "微博地址"
+
+#: manage/settings.php:472
+msgid "Please input the mobile version homepage."
+msgstr "请填写移动版主页"
+
+#: manage/settings.php:477
+msgid "Twitter Name"
+msgstr "Twitter 名称"
+
+#: manage/settings.php:484
+msgid "Twitter Address"
+msgstr ""
+
+#: manage/settings.php:487 manage/settings.php:502
+msgid "Need login for visit."
+msgstr ""
+
+#: manage/settings.php:492
+msgid "Facebook Name"
+msgstr ""
+
+#: manage/settings.php:499
+msgid "Facebook Address"
+msgstr ""
+
+#: manage/settings.php:507
+msgid "Paypal Donate Address"
+msgstr ""
+
+#: manage/settings.php:514
+msgid "Alipay Donate Address"
+msgstr ""
+
+#: manage/settings.php:520
+msgid "Statistics And Advertisement"
+msgstr ""
+
+#: manage/settings.php:523
+msgid "External Statistics"
+msgstr ""
+
+#: manage/settings.php:526
+msgid "Invisible statistic code."
+msgstr ""
+
+#: manage/settings.php:531
+msgid "Internal Statistics"
+msgstr ""
+
+#: manage/settings.php:534
+msgid "Statistics code of view information."
+msgstr ""
+
+#: manage/settings.php:539
+msgid "Advertisement"
+msgstr ""
+
+#: manage/settings.php:545
+msgid "Notice"
+msgstr ""
+
+#: manage/settings.php:548
+msgid "Emergency Notice"
+msgstr ""
+
+#: manage/settings.php:567
+msgid "Please provide a valid username."
+msgstr ""
+
+#: manage/settings.php:571
+msgid "Username length must be between 4-20 characters!"
+msgstr ""
+
+#: manage/settings.php:575
+msgid "Username can only use numbers, letters and underline!"
+msgstr ""
+
+#: manage/settings.php:586
+msgid "The maximum number of attempts must be an integer!"
+msgstr ""
+
+#: manage/settings.php:590
+msgid "Login fail reset time must be an integer!"
+msgstr ""
+
+#: manage/settings.php:594
+msgid "Max download speed must be an integer!"
+msgstr ""
+
+#: manage/settings.php:598 manage/settings.php:610 manage/settings.php:614
+#: manage/settings.php:622 manage/settings.php:626 manage/settings.php:630
+#: manage/settings.php:638 manage/settings.php:647
+#, php-format
+msgid "Please set the correct %s switch!"
+msgstr ""
+
+#: manage/settings.php:602
+msgid "Please set the correct PC Site Master Switch!"
+msgstr ""
+
+#: manage/settings.php:606
+msgid "Please set the correct Mobile Site Master Switch!"
+msgstr ""
+
+#: manage/settings.php:618
+msgid ""
+"Please set the correct Limit Number of Report, the maximum not more than 10 "
+"times!"
+msgstr ""
+
+#: manage/settings.php:634
+msgid "Please set the correct Packages compression method!"
+msgstr ""
+
+#: manage/settings.php:642
+msgid ""
+"Please set the correct number of latest list, the maximum must not exceed "
+"20 !"
+msgstr ""
+
+#: manage/settings.php:651
+msgid "Please provide a valid repository URL!"
+msgstr ""
+
+#: manage/settings.php:657
+msgid "There is a same username!"
+msgstr ""
+
+#: manage/settings.php:707
+msgid "Amendments to the success of settings!"
+msgstr ""
+
+#: manage/stats.php:33
+msgid "Database Status"
+msgstr ""
+
+#: manage/stats.php:39
+#, fuzzy
+msgid "Service Information"
+msgstr "تىزىملىتىش ئۇچۇرى"
+
+#: manage/stats.php:51
+msgid "Server information: "
+msgstr ""
+
+#: manage/stats.php:51
+msgid "Database version: "
+msgstr ""
+
+#: manage/stats.php:51
+msgid "GD library version: "
+msgstr ""
+
+#: manage/stats.php:51
+msgid "Upload max filesize: "
+msgstr ""
+
+#: manage/stats.php:51
+msgid "Max execution time: "
+msgstr ""
+
+#: manage/stats.php:51
+#, php-format
+msgid "%d second"
+msgid_plural "%d seconds"
+msgstr[0] ""
+
+#: manage/stats.php:51
+msgid "Server time: "
+msgstr ""
+
+#: manage/stats.php:57
+msgid "Management Statistics"
+msgstr "ئىستاتسىكا باشقۇرۇش"
+
+#: manage/stats.php:78
+msgid "Total download times: "
+msgstr "ئومۇمىي چۈشۈرۈش سانى："
+
+#: manage/stats.php:78
+msgid "Number of packages: "
+msgstr "قىستۇرما سانى："
+
+#: manage/stats.php:78
+msgid "Number of non-hidden packages: "
+msgstr "يوشۇرۇلمىغان قىستۇرما سانى："
+
+#: manage/stats.php:78
+msgid "Number of sections: "
+msgstr "تۈرلەرگە ئايرىلىش سانى："
+
+#: manage/stats.php:78
+msgid "Download pool size: "
+msgstr "چۈشۈرۈش سىغىمى："
+
+#: manage/stats.php:78
+msgid "Cache pool size: "
+msgstr "缓存池尺寸："
+
+#: manage/stats.php:78
+msgid "Clean cache"
+msgstr "清理缓存"
+
+#: manage/stats.php:95
+msgid "Clean Cache"
+msgstr "قالدۇق تازلاش"
+
+#: manage/stats.php:96
+msgid "Cache cleanup completed!"
+msgstr "قالدۇق تازلاش تاماملاندى"
+
+#: system/languages/l10n.php:693
+msgctxt "language"
+msgid "Afrikaans"
+msgstr "Afrikaans"
+
+#: system/languages/l10n.php:694
+msgctxt "language"
+msgid "Albanian"
+msgstr "Albanian"
+
+#: system/languages/l10n.php:695
+msgctxt "language"
+msgid "Arabic (Algeria)"
+msgstr "Arabic (Algeria)"
+
+#: system/languages/l10n.php:696
+msgctxt "language"
+msgid "Arabic (Bahrain)"
+msgstr "Arabic (Bahrain)"
+
+#: system/languages/l10n.php:697
+msgctxt "language"
+msgid "Arabic (Egypt)"
+msgstr "Arabic (Egypt)"
+
+#: system/languages/l10n.php:698
+msgctxt "language"
+msgid "Arabic (Iraq)"
+msgstr "Arabic (Iraq)"
+
+#: system/languages/l10n.php:699
+msgctxt "language"
+msgid "Arabic (Jordan)"
+msgstr "Arabic (Jordan)"
+
+#: system/languages/l10n.php:700
+msgctxt "language"
+msgid "Arabic (Kuwait)"
+msgstr "Arabic (Kuwait)"
+
+#: system/languages/l10n.php:701
+msgctxt "language"
+msgid "Arabic (Lebanon)"
+msgstr "Arabic (Lebanon)"
+
+#: system/languages/l10n.php:702
+msgctxt "language"
+msgid "Arabic (libya)"
+msgstr "Arabic (libya)"
+
+#: system/languages/l10n.php:703
+msgctxt "language"
+msgid "Arabic (Morocco)"
+msgstr "Arabic (Morocco)"
+
+#: system/languages/l10n.php:704
+msgctxt "language"
+msgid "Arabic (Oman)"
+msgstr "Arabic (Oman)"
+
+#: system/languages/l10n.php:705
+msgctxt "language"
+msgid "Arabic (Qatar)"
+msgstr "Arabic (Qatar)"
+
+#: system/languages/l10n.php:706
+msgctxt "language"
+msgid "Arabic (Saudi Arabia)"
+msgstr "Arabic (Saudi Arabia)"
+
+#: system/languages/l10n.php:707
+msgctxt "language"
+msgid "Arabic (Syria)"
+msgstr "Arabic (Syria)"
+
+#: system/languages/l10n.php:708
+msgctxt "language"
+msgid "Arabic (Tunisia)"
+msgstr "Arabic (Tunisia)"
+
+#: system/languages/l10n.php:709
+msgctxt "language"
+msgid "Arabic (U.A.E.)"
+msgstr "阿拉伯文 (阿拉伯联合酋长国) "
+
+#: system/languages/l10n.php:710
+msgctxt "language"
+msgid "Arabic (Yemen)"
+msgstr "阿拉伯文 (也门)"
+
+#: system/languages/l10n.php:711
+msgctxt "language"
+msgid "Arabic"
+msgstr "阿拉伯文"
+
+#: system/languages/l10n.php:712
+msgctxt "language"
+msgid "Armenian"
+msgstr "Armenian"
+
+#: system/languages/l10n.php:713
+msgctxt "language"
+msgid "Assamese"
+msgstr "Assamese"
+
+#: system/languages/l10n.php:714
+msgctxt "language"
+msgid "Azeri"
+msgstr "Azeri"
+
+#: system/languages/l10n.php:715
+msgctxt "language"
+msgid "Basque"
+msgstr "Basque"
+
+#: system/languages/l10n.php:716
+msgctxt "language"
+msgid "Belarusian"
+msgstr "Belarusian"
+
+#: system/languages/l10n.php:717
+msgctxt "language"
+msgid "Bengali"
+msgstr "Bengali"
+
+#: system/languages/l10n.php:718
+msgctxt "language"
+msgid "Bulgarian"
+msgstr "Bulgarian"
+
+#: system/languages/l10n.php:719
+msgctxt "language"
+msgid "Catalan"
+msgstr "Catalan"
+
+#: system/languages/l10n.php:720
+msgctxt "language"
+msgid "Chinese (China)"
+msgstr "中文 (中国)"
+
+#: system/languages/l10n.php:721
+msgctxt "language"
+msgid "Chinese (Hong Kong SAR)"
+msgstr "中文 (香港特别行政区)"
+
+#: system/languages/l10n.php:722
+msgctxt "language"
+msgid "Chinese (Macau SAR)"
+msgstr "中文 (澳门特别行政区)"
+
+#: system/languages/l10n.php:723
+msgctxt "language"
+msgid "Chinese (Singapore)"
+msgstr "中文 (新加坡)"
+
+#: system/languages/l10n.php:724
+msgctxt "language"
+msgid "Chinese (Taiwan)"
+msgstr "中文 (台湾)"
+
+#: system/languages/l10n.php:725
+msgctxt "language"
+msgid "Chinese (Simplified)"
+msgstr "中文 (简体)"
+
+#: system/languages/l10n.php:726
+msgctxt "language"
+msgid "Chinese (Traditional)"
+msgstr "中文 (繁体)"
+
+#: system/languages/l10n.php:727
+msgctxt "language"
+msgid "Chinese"
+msgstr "中文"
+
+#: system/languages/l10n.php:728
+msgctxt "language"
+msgid "Croatian"
+msgstr "Croatian"
+
+#: system/languages/l10n.php:729
+msgctxt "language"
+msgid "Czech"
+msgstr "Czech"
+
+#: system/languages/l10n.php:730
+msgctxt "language"
+msgid "Danish"
+msgstr "Danish"
+
+#: system/languages/l10n.php:731
+msgctxt "language"
+msgid "Divehi"
+msgstr "Divehi"
+
+#: system/languages/l10n.php:732
+msgctxt "language"
+msgid "Dutch (Belgium)"
+msgstr "荷兰语 (比利时)"
+
+#: system/languages/l10n.php:733
+msgctxt "language"
+msgid "Dutch (Netherlands)"
+msgstr "荷兰语 (荷兰)"
+
+#: system/languages/l10n.php:734
+msgctxt "language"
+msgid "English (Australia)"
+msgstr "English (Australia)"
+
+#: system/languages/l10n.php:735
+msgctxt "language"
+msgid "English (Belize)"
+msgstr "English (Belize)"
+
+#: system/languages/l10n.php:736
+msgctxt "language"
+msgid "English (Canada)"
+msgstr "English (Canada)"
+
+#: system/languages/l10n.php:737
+msgctxt "language"
+msgid "English (Ireland)"
+msgstr "English (Ireland)"
+
+#: system/languages/l10n.php:738
+msgctxt "language"
+msgid "English (Jamaica)"
+msgstr "English (Jamaica)"
+
+#: system/languages/l10n.php:739
+msgctxt "language"
+msgid "English (New Zealand)"
+msgstr "英语 (新西兰)"
+
+#: system/languages/l10n.php:740
+msgctxt "language"
+msgid "English (Philippines)"
+msgstr "English (Philippines)"
+
+#: system/languages/l10n.php:741
+msgctxt "language"
+msgid "English (South Africa)"
+msgstr "English (South Africa)"
+
+#: system/languages/l10n.php:742
+msgctxt "language"
+msgid "English (Trinidad)"
+msgstr "English (Trinidad)"
+
+#: system/languages/l10n.php:743
+msgctxt "language"
+msgid "English (United Kingdom)"
+msgstr "英文 (英国)"
+
+#: system/languages/l10n.php:744 system/languages/l10n.php:747
+msgctxt "language"
+msgid "English (United States)"
+msgstr "英文 (美国)"
+
+#: system/languages/l10n.php:745
+msgctxt "language"
+msgid "English (Zimbabwe)"
+msgstr "英语 (津巴布韦)"
+
+#: system/languages/l10n.php:748
+msgctxt "language"
+msgid "Estonian"
+msgstr "Estonian"
+
+#: system/languages/l10n.php:749
+msgctxt "language"
+msgid "Faeroese"
+msgstr "Faeroese"
+
+#: system/languages/l10n.php:750
+msgctxt "language"
+msgid "Farsi"
+msgstr "Farsi"
+
+#: system/languages/l10n.php:751
+msgctxt "language"
+msgid "Finnish"
+msgstr "芬兰语"
+
+#: system/languages/l10n.php:752
+msgctxt "language"
+msgid "French (Belgium)"
+msgstr "French (Belgium)"
+
+#: system/languages/l10n.php:753
+msgctxt "language"
+msgid "French (Canada)"
+msgstr "French (Canada)"
+
+#: system/languages/l10n.php:754
+msgctxt "language"
+msgid "French (Luxembourg)"
+msgstr "French (Luxembourg)"
+
+#: system/languages/l10n.php:755
+msgctxt "language"
+msgid "French (Monaco)"
+msgstr "French (Monaco)"
+
+#: system/languages/l10n.php:756
+msgctxt "language"
+msgid "French (Switzerland)"
+msgstr "French (Switzerland)"
+
+#: system/languages/l10n.php:757
+msgctxt "language"
+msgid "French (France)"
+msgstr "法语 (法国)"
+
+#: system/languages/l10n.php:758
+msgctxt "language"
+msgid "FYRO Macedonian"
+msgstr "马其顿文"
+
+#: system/languages/l10n.php:759
+msgctxt "language"
+msgid "Gaelic"
+msgstr "Gaelic"
+
+#: system/languages/l10n.php:760
+msgctxt "language"
+msgid "Georgian"
+msgstr "Georgian"
+
+#: system/languages/l10n.php:761
+msgctxt "language"
+msgid "German (Austria)"
+msgstr "German (Austria)"
+
+#: system/languages/l10n.php:762
+msgctxt "language"
+msgid "German (Liechtenstein)"
+msgstr "German (Liechtenstein)"
+
+#: system/languages/l10n.php:763
+msgctxt "language"
+msgid "German (Luxembourg)"
+msgstr "German (Luxembourg)"
+
+#: system/languages/l10n.php:764
+msgctxt "language"
+msgid "German (Switzerland)"
+msgstr "German (Switzerland)"
+
+#: system/languages/l10n.php:765
+msgctxt "language"
+msgid "German (Germany)"
+msgstr "德语 (德国)"
+
+#: system/languages/l10n.php:766
+msgctxt "language"
+msgid "Greek"
+msgstr "Greek"
+
+#: system/languages/l10n.php:767
+msgctxt "language"
+msgid "Gujarati"
+msgstr "Gujarati"
+
+#: system/languages/l10n.php:768
+msgctxt "language"
+msgid "Hebrew"
+msgstr "Hebrew"
+
+#: system/languages/l10n.php:769
+msgctxt "language"
+msgid "Hindi"
+msgstr "Hindi"
+
+#: system/languages/l10n.php:770
+msgctxt "language"
+msgid "Hungarian"
+msgstr "Hungarian"
+
+#: system/languages/l10n.php:771
+msgctxt "language"
+msgid "Icelandic"
+msgstr "Icelandic"
+
+#: system/languages/l10n.php:772
+msgctxt "language"
+msgid "Indonesian"
+msgstr "Indonesian"
+
+#: system/languages/l10n.php:773
+msgctxt "language"
+msgid "Italian (Switzerland)"
+msgstr "Italian (Switzerland)"
+
+#: system/languages/l10n.php:774
+msgctxt "language"
+msgid "Italian (Italy)"
+msgstr "意大利语 (意大利)"
+
+#: system/languages/l10n.php:775
+msgctxt "language"
+msgid "Japanese"
+msgstr "日语"
+
+#: system/languages/l10n.php:776
+msgctxt "language"
+msgid "Kannada"
+msgstr "Kannada"
+
+#: system/languages/l10n.php:777
+msgctxt "language"
+msgid "Kazakh"
+msgstr "Kazakh"
+
+#: system/languages/l10n.php:778
+msgctxt "language"
+msgid "Konkani"
+msgstr "Konkani"
+
+#: system/languages/l10n.php:779
+msgctxt "language"
+msgid "Korean"
+msgstr "韩语"
+
+#: system/languages/l10n.php:780
+msgctxt "language"
+msgid "Kyrgyz"
+msgstr "Kyrgyz"
+
+#: system/languages/l10n.php:781
+msgctxt "language"
+msgid "Latvian"
+msgstr "Latvian"
+
+#: system/languages/l10n.php:782
+msgctxt "language"
+msgid "Lithuanian"
+msgstr "Lithuanian"
+
+#: system/languages/l10n.php:783
+msgctxt "language"
+msgid "Malay"
+msgstr "Malay"
+
+#: system/languages/l10n.php:784
+msgctxt "language"
+msgid "Malayalam"
+msgstr "Malayalam"
+
+#: system/languages/l10n.php:785
+msgctxt "language"
+msgid "Maltese"
+msgstr "Maltese"
+
+#: system/languages/l10n.php:786
+msgctxt "language"
+msgid "Marathi"
+msgstr "Marathi"
+
+#: system/languages/l10n.php:787
+msgctxt "language"
+msgid "Mongolian (Cyrillic)"
+msgstr "Mongolian (Cyrillic)"
+
+#: system/languages/l10n.php:788
+msgctxt "language"
+msgid "Nepali (India)"
+msgstr "Nepali (India)"
+
+#: system/languages/l10n.php:789 system/languages/l10n.php:791
+msgctxt "language"
+msgid "Norwegian (Bokmal)"
+msgstr "Norwegian (Bokmal)"
+
+#: system/languages/l10n.php:790
+msgctxt "language"
+msgid "Norwegian (Nynorsk)"
+msgstr "Norwegian (Nynorsk)"
+
+#: system/languages/l10n.php:792
+msgctxt "language"
+msgid "Oriya"
+msgstr "Oriya"
+
+#: system/languages/l10n.php:793
+msgctxt "language"
+msgid "Polish"
+msgstr "波兰语"
+
+#: system/languages/l10n.php:794
+msgctxt "language"
+msgid "Portuguese (Brazil)"
+msgstr "Portuguese (Brazil)"
+
+#: system/languages/l10n.php:795
+msgctxt "language"
+msgid "Portuguese (Portugal)"
+msgstr "Portuguese (Portugal)"
+
+#: system/languages/l10n.php:796
+msgctxt "language"
+msgid "Punjabi"
+msgstr "Punjabi"
+
+#: system/languages/l10n.php:797
+msgctxt "language"
+msgid "Rhaeto-Romanic"
+msgstr "Rhaeto-Romanic"
+
+#: system/languages/l10n.php:798
+msgctxt "language"
+msgid "Romanian (Moldova)"
+msgstr "Romanian (Moldova)"
+
+#: system/languages/l10n.php:799
+msgctxt "language"
+msgid "Romanian"
+msgstr "Romanian"
+
+#: system/languages/l10n.php:800
+msgctxt "language"
+msgid "Russian (Moldova)"
+msgstr "Russian (Moldova)"
+
+#: system/languages/l10n.php:801
+msgctxt "language"
+msgid "Russian"
+msgstr "俄语"
+
+#: system/languages/l10n.php:802
+msgctxt "language"
+msgid "Sanskrit"
+msgstr "Sanskrit"
+
+#: system/languages/l10n.php:803
+msgctxt "language"
+msgid "Serbian"
+msgstr "Serbian"
+
+#: system/languages/l10n.php:804
+msgctxt "language"
+msgid "Slovak"
+msgstr "Slovak"
+
+#: system/languages/l10n.php:805
+msgctxt "language"
+msgid "Slovenian"
+msgstr "Slovenian"
+
+#: system/languages/l10n.php:806
+msgctxt "language"
+msgid "Sorbian"
+msgstr "Sorbian"
+
+#: system/languages/l10n.php:807
+msgctxt "language"
+msgid "Spanish (Argentina)"
+msgstr "Spanish (Argentina)"
+
+#: system/languages/l10n.php:808
+msgctxt "language"
+msgid "Spanish (Bolivia)"
+msgstr "Spanish (Bolivia)"
+
+#: system/languages/l10n.php:809
+msgctxt "language"
+msgid "Spanish (Chile)"
+msgstr "Spanish (Chile)"
+
+#: system/languages/l10n.php:810
+msgctxt "language"
+msgid "Spanish (Colombia)"
+msgstr "Spanish (Colombia)"
+
+#: system/languages/l10n.php:811
+msgctxt "language"
+msgid "Spanish (Costa Rica)"
+msgstr "Spanish (Costa Rica)"
+
+#: system/languages/l10n.php:812
+msgctxt "language"
+msgid "Spanish (Dominican Republic)"
+msgstr "Spanish (Dominican Republic)"
+
+#: system/languages/l10n.php:813
+msgctxt "language"
+msgid "Spanish (Ecuador)"
+msgstr "Spanish (Ecuador)"
+
+#: system/languages/l10n.php:814
+msgctxt "language"
+msgid "Spanish (El Salvador)"
+msgstr "Spanish (El Salvador)"
+
+#: system/languages/l10n.php:815
+msgctxt "language"
+msgid "Spanish (Guatemala)"
+msgstr "Spanish (Guatemala)"
+
+#: system/languages/l10n.php:816
+msgctxt "language"
+msgid "Spanish (Honduras)"
+msgstr "Spanish (Honduras)"
+
+#: system/languages/l10n.php:817
+msgctxt "language"
+msgid "Spanish (Mexico)"
+msgstr "Spanish (Mexico)"
+
+#: system/languages/l10n.php:818
+msgctxt "language"
+msgid "Spanish (Nicaragua)"
+msgstr "Spanish (Nicaragua)"
+
+#: system/languages/l10n.php:819
+msgctxt "language"
+msgid "Spanish (Panama)"
+msgstr "Spanish (Panama)"
+
+#: system/languages/l10n.php:820
+msgctxt "language"
+msgid "Spanish (Paraguay)"
+msgstr "Spanish (Paraguay)"
+
+#: system/languages/l10n.php:821
+msgctxt "language"
+msgid "Spanish (Peru)"
+msgstr "Spanish (Peru)"
+
+#: system/languages/l10n.php:822
+msgctxt "language"
+msgid "Spanish (Puerto Rico)"
+msgstr "Spanish (Puerto Rico)"
+
+#: system/languages/l10n.php:823
+msgctxt "language"
+msgid "Spanish (United States)"
+msgstr "Spanish (United States)"
+
+#: system/languages/l10n.php:824
+msgctxt "language"
+msgid "Spanish (Uruguay)"
+msgstr "Spanish (Uruguay)"
+
+#: system/languages/l10n.php:825
+msgctxt "language"
+msgid "Spanish (Venezuela)"
+msgstr "Spanish (Venezuela)"
+
+#: system/languages/l10n.php:826
+msgctxt "language"
+msgid "Spanish (Traditional Sort)"
+msgstr "Spanish (Traditional Sort)"
+
+#: system/languages/l10n.php:827
+msgctxt "language"
+msgid "Sutu"
+msgstr "Sutu"
+
+#: system/languages/l10n.php:828
+msgctxt "language"
+msgid "Swahili"
+msgstr "Swahili"
+
+#: system/languages/l10n.php:829
+msgctxt "language"
+msgid "Swedish (Finland)"
+msgstr "Swedish (Finland)"
+
+#: system/languages/l10n.php:830
+msgctxt "language"
+msgid "Swedish"
+msgstr "Swedish"
+
+#: system/languages/l10n.php:831
+msgctxt "language"
+msgid "Syriac"
+msgstr "Syriac"
+
+#: system/languages/l10n.php:832
+msgctxt "language"
+msgid "Tamil"
+msgstr "Tamil"
+
+#: system/languages/l10n.php:833
+msgctxt "language"
+msgid "Tatar"
+msgstr "Tatar"
+
+#: system/languages/l10n.php:834
+msgctxt "language"
+msgid "Telugu"
+msgstr "Telugu"
+
+#: system/languages/l10n.php:835
+msgctxt "language"
+msgid "Thai"
+msgstr "Thai"
+
+#: system/languages/l10n.php:836
+msgctxt "language"
+msgid "Tsonga"
+msgstr "Tsonga"
+
+#: system/languages/l10n.php:837
+msgctxt "language"
+msgid "Tswana"
+msgstr "Tswana"
+
+#: system/languages/l10n.php:838
+msgctxt "language"
+msgid "Turkish"
+msgstr "Turkish"
+
+#: system/languages/l10n.php:839
+msgctxt "language"
+msgid "Ukrainian"
+msgstr "Ukrainian"
+
+#: system/languages/l10n.php:840
+msgctxt "language"
+msgid "Urdu"
+msgstr "Urdu"
+
+#: system/languages/l10n.php:841
+msgctxt "language"
+msgid "Uzbek"
+msgstr "Uzbek"
+
+#: system/languages/l10n.php:842
+msgctxt "language"
+msgid "Uyghurche (China)"
+msgstr ""
+
+#: system/languages/l10n.php:843
+msgctxt "language"
+msgid "Vietnamese"
+msgstr "Vietnamese"
+
+#: system/languages/l10n.php:844
+msgctxt "language"
+msgid "Xhosa"
+msgstr "Xhosa"
+
+#: system/languages/l10n.php:845
+msgctxt "language"
+msgid "Yiddish"
+msgstr "Yiddish"
+
+#: system/languages/l10n.php:846
+msgctxt "language"
+msgid "Zulu"
+msgstr "祖鲁语"
+
+#~ msgid "Settings"
+#~ msgstr "تەڭشەك"

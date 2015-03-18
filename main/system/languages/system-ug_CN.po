@@ -1,0 +1,305 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: DCRM System\n"
+"POT-Creation-Date: 2015-03-15 17:45+0800\n"
+"PO-Revision-Date: 2015-03-15 17:46+0800\n"
+"Last-Translator: Hintay <hintay@me.com>\n"
+"Language-Team: Hintay <hintay@me.com>\n"
+"Language: zh_CN\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 1.6.6\n"
+"X-Poedit-Basepath: ../\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"X-Poedit-KeywordsList: __;_e;_n:1,2;_x:1,2c;_ex:1,2c;_nx:4c,1,2;esc_attr__;"
+"esc_attr_e;esc_attr_x:1,2c;esc_html__;esc_html_e;esc_html_x:1,2c;_n_noop:1,2;"
+"_nx_noop:3c,1,2;__ngettext_noop:1,2\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"X-Poedit-SearchPath-0: .\n"
+"X-Poedit-SearchPathExcluded-0: languages\n"
+
+#. translators: weekday
+#: class/locale.php:106 class/locale.php:116 class/locale.php:129
+msgid "Sunday"
+msgstr "يەكشەنبە"
+
+#. translators: weekday
+#: class/locale.php:107 class/locale.php:117 class/locale.php:130
+msgid "Monday"
+msgstr "دۈشەنبە"
+
+#. translators: weekday
+#: class/locale.php:108 class/locale.php:118 class/locale.php:131
+msgid "Tuesday"
+msgstr "سەيشەنبە"
+
+#. translators: weekday
+#: class/locale.php:109 class/locale.php:119 class/locale.php:132
+msgid "Wednesday"
+msgstr "چارشەنبە"
+
+#. translators: weekday
+#: class/locale.php:110 class/locale.php:120 class/locale.php:133
+msgid "Thursday"
+msgstr "پەيشەنبە"
+
+#. translators: weekday
+#: class/locale.php:111 class/locale.php:121 class/locale.php:134
+msgid "Friday"
+msgstr "جۈمە"
+
+#. translators: weekday
+#: class/locale.php:112 class/locale.php:122 class/locale.php:135
+msgid "Saturday"
+msgstr "شەنبە"
+
+#. translators: one-letter abbreviation of the weekday
+#: class/locale.php:116
+msgid "S_Sunday_initial"
+msgstr "يە"
+
+#. translators: one-letter abbreviation of the weekday
+#: class/locale.php:117
+msgid "M_Monday_initial"
+msgstr "دۈ"
+
+#. translators: one-letter abbreviation of the weekday
+#: class/locale.php:118
+msgid "T_Tuesday_initial"
+msgstr "سە"
+
+#. translators: one-letter abbreviation of the weekday
+#: class/locale.php:119
+msgid "W_Wednesday_initial"
+msgstr "چا"
+
+#. translators: one-letter abbreviation of the weekday
+#: class/locale.php:120
+msgid "T_Thursday_initial"
+msgstr "پە"
+
+#. translators: one-letter abbreviation of the weekday
+#: class/locale.php:121
+msgid "F_Friday_initial"
+msgstr "جۈ"
+
+#. translators: one-letter abbreviation of the weekday
+#: class/locale.php:122
+msgid "S_Saturday_initial"
+msgstr "شە"
+
+#. translators: three-letter abbreviation of the weekday
+#: class/locale.php:129
+msgid "Sun"
+msgstr "يە"
+
+#. translators: three-letter abbreviation of the weekday
+#: class/locale.php:130
+msgid "Mon"
+msgstr "دۈ"
+
+#. translators: three-letter abbreviation of the weekday
+#: class/locale.php:131
+msgid "Tue"
+msgstr "سە"
+
+#. translators: three-letter abbreviation of the weekday
+#: class/locale.php:132
+msgid "Wed"
+msgstr "چا"
+
+#. translators: three-letter abbreviation of the weekday
+#: class/locale.php:133
+msgid "Thu"
+msgstr "پە"
+
+#. translators: three-letter abbreviation of the weekday
+#: class/locale.php:134
+msgid "Fri"
+msgstr "جۈ"
+
+#. translators: three-letter abbreviation of the weekday
+#: class/locale.php:135
+msgid "Sat"
+msgstr "شە"
+
+#. translators: month name
+#: class/locale.php:138 class/locale.php:153
+msgid "January"
+msgstr "يانۋار"
+
+#. translators: month name
+#: class/locale.php:139 class/locale.php:154
+msgid "February"
+msgstr "فېۋرال"
+
+#. translators: month name
+#: class/locale.php:140 class/locale.php:155
+msgid "March"
+msgstr "مارت"
+
+#. translators: month name
+#: class/locale.php:141 class/locale.php:156
+msgid "April"
+msgstr "ئاپرېل"
+
+#. translators: month name
+#: class/locale.php:142 class/locale.php:157
+msgid "May"
+msgstr "ماي"
+
+#. translators: month name
+#: class/locale.php:143 class/locale.php:158
+msgid "June"
+msgstr "ئىيۇن"
+
+#. translators: month name
+#: class/locale.php:144 class/locale.php:159
+msgid "July"
+msgstr "ئىيۇل"
+
+#. translators: month name
+#: class/locale.php:145 class/locale.php:160
+msgid "August"
+msgstr "ئاۋغۇست"
+
+#. translators: month name
+#: class/locale.php:146 class/locale.php:161
+msgid "September"
+msgstr "سېنتەبىر"
+
+#. translators: month name
+#: class/locale.php:147 class/locale.php:162
+msgid "October"
+msgstr "ئۆكتەبىر"
+
+#. translators: month name
+#: class/locale.php:148 class/locale.php:163
+msgid "November"
+msgstr "نويابىر"
+
+#. translators: month name
+#: class/locale.php:149 class/locale.php:164
+msgid "December"
+msgstr "دېكابىر"
+
+#. translators: three-letter abbreviation of the month
+#: class/locale.php:153
+msgid "Jan_January_abbreviation"
+msgstr "يانۋار"
+
+#. translators: three-letter abbreviation of the month
+#: class/locale.php:154
+msgid "Feb_February_abbreviation"
+msgstr "فېۋرال"
+
+#. translators: three-letter abbreviation of the month
+#: class/locale.php:155
+msgid "Mar_March_abbreviation"
+msgstr "مارت"
+
+#. translators: three-letter abbreviation of the month
+#: class/locale.php:156
+msgid "Apr_April_abbreviation"
+msgstr "ئاپرېل"
+
+#. translators: three-letter abbreviation of the month
+#: class/locale.php:157
+msgid "May_May_abbreviation"
+msgstr "ماي"
+
+#. translators: three-letter abbreviation of the month
+#: class/locale.php:158
+msgid "Jun_June_abbreviation"
+msgstr "ئىيۇن"
+
+#. translators: three-letter abbreviation of the month
+#: class/locale.php:159
+msgid "Jul_July_abbreviation"
+msgstr "ئىيۇل"
+
+#. translators: three-letter abbreviation of the month
+#: class/locale.php:160
+msgid "Aug_August_abbreviation"
+msgstr "ئاۋغۇست"
+
+#. translators: three-letter abbreviation of the month
+#: class/locale.php:161
+msgid "Sep_September_abbreviation"
+msgstr "سېنتەبىر"
+
+#. translators: three-letter abbreviation of the month
+#: class/locale.php:162
+msgid "Oct_October_abbreviation"
+msgstr "ئۆكتەبىر"
+
+#. translators: three-letter abbreviation of the month
+#: class/locale.php:163
+msgid "Nov_November_abbreviation"
+msgstr "نويابىر"
+
+#. translators: three-letter abbreviation of the month
+#: class/locale.php:164
+msgid "Dec_December_abbreviation"
+msgstr "دېكابىر"
+
+#: class/locale.php:171
+msgid "am"
+msgstr "am"
+
+#: class/locale.php:172
+msgid "pm"
+msgstr "pm"
+
+#: class/locale.php:173
+msgid "AM"
+msgstr "چۈشتىن بۇرۇن"
+
+#: class/locale.php:174
+msgid "PM"
+msgstr "چۈشتىن كېيىن"
+
+#. translators: $thousands_sep argument for http://php.net/number_format, default is ,
+#: class/locale.php:180
+msgid "number_format_thousands_sep"
+msgstr ","
+
+#. translators: $dec_point argument for http://php.net/number_format, default is .
+#: class/locale.php:184
+msgid "number_format_decimal_point"
+msgstr "."
+
+#. translators: 'rtl' or 'ltr'. This sets the text direction for WordPress.
+#: class/locale.php:191
+msgctxt "text direction"
+msgid "ltr"
+msgstr "rtl"
+
+#. translators: localized date format, see http://php.net/date
+#: class/locale.php:349
+msgid "F j, Y"
+msgstr "Y-يىل j-F"
+
+#. translators: localized time format, see http://php.net/date
+#: class/locale.php:351
+msgid "g:i a"
+msgstr "ag:i"
+
+#. translators: localized date and time format, see http://php.net/date
+#: class/locale.php:353
+msgid "F j, Y g:i a"
+msgstr "F j, Y g:i a"
+
+#: function/core.php:9 function/core.php:23
+msgid "System Message"
+msgstr "系统消息"
+
+#: function/core.php:27
+msgid "If your browser does not automatically redirect, please click here."
+msgstr "如果您的浏览器没有自动跳转，请点击这里"
+
+#: function/core.php:42
+#, php-format
+msgid "Successfully updated to %s"
+msgstr "成功更新到 %s"

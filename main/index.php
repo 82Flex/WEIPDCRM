@@ -1,152 +1,122 @@
 <?php
-	/*
-		This file is part of WEIPDCRM.
-	
-		WEIPDCRM is free software: you can redistribute it and/or modify
-		it under the terms of the GNU General Public License as published by
-		the Free Software Foundation, either version 3 of the License, or
-		(at your option) any later version.
-	
-		WEIPDCRM is distributed in the hope that it will be useful,
-		but WITHOUT ANY WARRANTY; without even the implied warranty of
-		MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-		GNU General Public License for more details.
-	
-		You should have received a copy of the GNU General Public License
-		along with WEIPDCRM.  If not, see <http://www.gnu.org/licenses/>.
-	*/
+/**
+ * This file is part of WEIPDCRM.
+ * 
+ * WEIPDCRM is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * WEIPDCRM is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ * 
+ * You should have received a copy of the GNU General Public License
+ * along with WEIPDCRM.  If not, see <http://www.gnu.org/licenses/>.
+ */
 
-	/* Base Configuration File Check */
-	if (!file_exists('./manage/include/connect.inc.php')) {
-		$root .= ($directory = trim(dirname($_SERVER["SCRIPT_NAME"]), "/\,")) ? "/$directory/" : "/";
+/* DCRM Mobile Page */
 
-		header('Location: '.$root.'init');
-		exit;
+require_once('system/common.inc.php');
+
+class_loader('Mobile_Detect');
+$detect = new Mobile_Detect;
+if(!$detect->isiOS()){
+	if (DCRM_PCINDEX == 2) {
+		header('Location: misc.php');
+		exit();
+	} else {
+		$isCydia = false;
 	}
-
-	/* DCRM Mobile Page */
-	error_reporting(0);
-	ob_start();
-	define('DCRM',true);
-	require_once('manage/include/config.inc.php');
-	require_once('manage/include/connect.inc.php');
-	require_once('manage/include/autofill.inc.php');
-	require_once('manage/include/func.php');
-	require_once('manage/include/Mobile_Detect.php');
-
-	/* Language Switch */
-	require_once("lang/l10n.php");
-	$link_language = localization_load();
-
-	header('Content-Type: text/html; charset=UTF-8');
-	date_default_timezone_set('Asia/Shanghai');
-	$detect = new Mobile_Detect;
-	if(!$detect->isiOS()){
-		if (DCRM_PCINDEX == 2) {
-			header('Location: misc.php');
-			exit();
-		} else {
+} else {
+	if (DCRM_MOBILE == 2) {
+		if (!strpos($detect->getUserAgent(), 'Cydia')) {
 			$isCydia = false;
-		}
-	} else {
-		if (DCRM_MOBILE == 2) {
-			if (!strpos($detect->getUserAgent(), 'Cydia')) {
-				$isCydia = false;
-			} else {
-				$isCydia = true;
-			}
 		} else {
-			exit();	
-		}
-	}
-	$con = mysql_connect(DCRM_CON_SERVER, DCRM_CON_USERNAME, DCRM_CON_PASSWORD);
-	if (!$con) {
-		httpinfo(500);
-		exit();
-	}
-	mysql_query('SET NAMES utf8');
-	$select = mysql_select_db(DCRM_CON_DATABASE);
-	if (!$select) {
-		httpinfo(500);
-		exit();
-	}
-	if (file_exists('Release')) {
-		$release = file('Release');
-		$release_origin = __('No Name');
-		$release_mtime = filemtime('Release');
-		$release_time = date('Y-m-d H:i:s',$release_mtime);
-		foreach ($release as $line) {
-			if(preg_match('#^Origin#', $line)) {
-				$release_origin = trim(preg_replace("#^(.+):\\s*(.+)#","$2", $line));
-			}
-			if(preg_match("#^Description#", $line)) {
-				$release_description = trim(preg_replace("#^(.+):\\s*(.+)#","$2", $line));
-			}
+			$isCydia = true;
 		}
 	} else {
-		$release_origin = __('Empty Page');
+		exit('Access Denied');	
 	}
-	if (isset($_GET['pid'])) {
-		if (ctype_digit($_GET['pid']) && intval($_GET['pid']) <= 10000) {
-			if (isset($_GET['method']) && $_GET['method'] == 'screenshot') {
-				$index = 2;
-				$title = __('View Screenshots');
-			} elseif (isset($_GET['method']) && $_GET['method'] == 'report') {
-				$device_type = array('iPhone','iPod','iPad');
-				for ($i = 0; $i < count($device_type); $i++) {
-					$check = $detect->version($device_type[$i]);
-					if ($check !== false) {
-						if (isset($_SERVER['HTTP_X_MACHINE'])) {
-							$DEVICE = substr($_SERVER['HTTP_X_MACHINE'],0,-3);
-						} else {
-							$DEVICE = 'Unknown';
-						}
-						$OS = str_replace('_', '.', $check);
-						break;
-					}
-				}
-				if (!isset($_GET['support'])) {
-					$index = 3;
-				} else {
-					if ($_GET['support'] == '1') {
-						$support = 1;
-					} elseif ($_GET['support'] == '2') {
-						$support = 2;
-					} elseif ($_GET['support'] == '3') {
-						$support = 3;
+}
+if (file_exists('Release')) {
+	$release = file('Release');
+	$release_origin = __('No Name');
+	$release_mtime = filemtime('Release');
+	$release_time = date('Y-m-d H:i:s',$release_mtime);
+	foreach ($release as $line) {
+		if(preg_match('#^Origin#', $line)) {
+			$release_origin = trim(preg_replace("#^(.+):\\s*(.+)#","$2", $line));
+		}
+		if(preg_match("#^Description#", $line)) {
+			$release_description = trim(preg_replace("#^(.+):\\s*(.+)#","$2", $line));
+		}
+	}
+} else {
+	$release_origin = __('Empty Page');
+}
+if (isset($_GET['pid'])) {
+	if (ctype_digit($_GET['pid']) && intval($_GET['pid']) <= 10000) {
+		if (isset($_GET['method']) && $_GET['method'] == 'screenshot') {
+			$index = 2;
+			$title = __('View Screenshots');
+		} elseif (isset($_GET['method']) && $_GET['method'] == 'report') {
+			$device_type = array('iPhone','iPod','iPad');
+			for ($i = 0; $i < count($device_type); $i++) {
+				$check = $detect->version($device_type[$i]);
+				if ($check !== false) {
+					if (isset($_SERVER['HTTP_X_MACHINE'])) {
+						$DEVICE = substr($_SERVER['HTTP_X_MACHINE'],0,-3);
 					} else {
-						$support = 0;
+						$DEVICE = 'Unknown';
 					}
-					$index = 4;
+					$OS = str_replace('_', '.', $check);
+					break;
 				}
-				$title = __('Report Problems');
-			} elseif (isset($_GET['method']) && $_GET['method'] == 'history') {
-				$index = 5;
-				$title = __('Version History');
-			} elseif (isset($_GET['method']) && $_GET['method'] == 'contact') {
-				$index = 6;
-				$title = __('Contact us');
-			} elseif (isset($_GET['method']) && $_GET['method'] == 'section') {
-				$index = 7;
-				$title = __('Package Category');
-			} elseif (!isset($_GET['method']) || (isset($_GET['method']) && $_GET['method'] == 'view')) {
-				$index = 1;
-				$title = __('View Package');
-			} else {
-				httpinfo(405);
-				exit();
 			}
+			if (!isset($_GET['support'])) {
+				$index = 3;
+			} else {
+				if ($_GET['support'] == '1') {
+					$support = 1;
+				} elseif ($_GET['support'] == '2') {
+					$support = 2;
+				} elseif ($_GET['support'] == '3') {
+					$support = 3;
+				} else {
+					$support = 0;
+				}
+				$index = 4;
+			}
+			$title = __('Report Problems');
+		} elseif (isset($_GET['method']) && $_GET['method'] == 'history') {
+			$index = 5;
+			$title = __('Version History');
+		} elseif (isset($_GET['method']) && $_GET['method'] == 'contact') {
+			$index = 6;
+			$title = __('Contact us');
+		} elseif (isset($_GET['method']) && $_GET['method'] == 'section') {
+			$index = 7;
+			$title = __('Package Category');
+		} elseif (!isset($_GET['method']) || (isset($_GET['method']) && $_GET['method'] == 'view')) {
+			$index = 1;
+			$title = __('View Package');
 		} else {
 			httpinfo(405);
 			exit();
 		}
-	} elseif (!isset($_GET['method'])) {
-		$index = 0;
-		$title = $release_origin;
 	} else {
 		httpinfo(405);
 		exit();
 	}
+} elseif (!isset($_GET['method'])) {
+	$index = 0;
+	$title = $release_origin;
+} else {
+	httpinfo(405);
+	exit();
+}
 ?>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -160,35 +130,36 @@
 		<meta name="format-detection" content="telephone=no" />
 		<meta name="robots" content="index, follow" />
 <?php
-	if (defined("AUTOFILL_SEO")) {
+if (defined("AUTOFILL_SEO")) {
 ?>
 		<meta name="title" content="<?php echo(AUTOFILL_SEO); ?>" />
 <?php
-	}
-	if (!empty($release_description)) {
+}
+if (!empty($release_description)) {
 ?>
 		<meta name="description" content="<?php echo($release_description); ?>" />
 <?php
-	}
-	if (defined("AUTOFILL_KEYWORDS")) {
+}
+if (defined("AUTOFILL_KEYWORDS")) {
 ?>
 		<meta name ="keywords" content="<?php echo(AUTOFILL_KEYWORDS); ?>" />
 <?php
-	}
-	if ($isCydia) {
+}
+if ($isCydia) {
 ?>
 		<base target="_blank">
 <?php
-	} else {
+} else {
 ?>
 		<base target="_top">
 <?php
-	}
+}
 ?>
 		<link rel="apple-touch-icon" href="CydiaIcon.png">
 		<link rel="shortcut icon" href="favicon.ico">
 		<link rel="stylesheet" href="css/menes.min.css">
 		<link rel="stylesheet" href="css/scroll.min.css">
+		<?php if(is_rtl()){ ?><link rel="stylesheet" href="css/menes-rtl.min.css"><?php } ?>
 		<script src="js/fastclick.js" type="text/javascript"></script>
 		<script src="js/menes.js" type="text/javascript"></script>
 		<script src="js/cytyle.js" type="text/javascript"></script>
@@ -196,8 +167,8 @@
 	<body class="pinstripe">
 		<panel>
 <?php
-	if ($index == 0) {
-		if (!$isCydia) {
+if ($index == 0) {
+	if (!$isCydia) {
 ?>
 			<fieldset>
 				<a href="cydia://sources/add" target="_blank">
@@ -214,8 +185,8 @@
 				</a>
 			</fieldset>
 <?php
-		}
-		$repo_url = base64_decode(DCRM_REPOURL);
+	}
+	$repo_url = base64_decode(DCRM_REPOURL);
 ?>
 			<fieldset>
 				<div>
@@ -240,9 +211,9 @@
 				</div>
 			</fieldset>
 <?php
-		$q_info = mysql_query("SELECT count(*) FROM `".DCRM_CON_PREFIX."Packages` WHERE `Stat` = '1'");
-		$info = mysql_fetch_row($q_info);
-		$num = (int)$info[0];
+	$q_info = DB::query("SELECT count(*) FROM `".DCRM_CON_PREFIX."Packages` WHERE `Stat` = '1'");
+	$info = mysql_fetch_row($q_info);
+	$num = (int)$info[0];
 ?>
 			<block>
 				<p>
@@ -254,7 +225,7 @@
 			</block>
 			<fieldset>
 <?php
-				if (defined("AUTOFILL_SITE")) {
+	if (defined("AUTOFILL_SITE")) {
 ?>
 				<a href="<?php echo(AUTOFILL_SITE); ?>" target="_blank">
 				<img class="icon" src="CydiaIcon.png" />
@@ -266,8 +237,8 @@
 						</div>
 					</div>
 				</a><?php
-				}
-				if (defined("AUTOFILL_EMAIL")) {
+	}
+	if (defined("AUTOFILL_EMAIL")) {
 ?>
 				<a href="mailto:<?php echo(AUTOFILL_EMAIL); ?>?subject=<?php echo($release_origin); ?>" target="_blank">
 				<img class="icon" src="icons/default/mail_forward.png" />
@@ -280,8 +251,8 @@
 					</div>
 				</a>
 <?php
-				}
-				if (defined("AUTOFILL_TENCENT") && defined("AUTOFILL_TENCENT_NAME")) {
+	}
+	if (defined("AUTOFILL_TENCENT") && defined("AUTOFILL_TENCENT_NAME")) {
 ?>
 				<a href="<?php echo(AUTOFILL_TENCENT); ?>" target="_blank">
 				<img class="icon" src="icons/default/qq.png" />
@@ -294,8 +265,8 @@
 					</div>
 				</a>
 <?php
-				}
-				if (defined("AUTOFILL_WEIBO") && defined("AUTOFILL_WEIBO_NAME")) {
+	}
+	if (defined("AUTOFILL_WEIBO") && defined("AUTOFILL_WEIBO_NAME")) {
 ?>
 				<a href="<?php echo(AUTOFILL_WEIBO); ?>" target="_blank">
 				<img class="icon" src="icons/default/weibo.png" />
@@ -308,8 +279,8 @@
 					</div>
 				</a>
 <?php
-				}
-				if (defined("AUTOFILL_TWITTER") && defined("AUTOFILL_TWITTER_NAME")) {
+	}
+	if (defined("AUTOFILL_TWITTER") && defined("AUTOFILL_TWITTER_NAME")) {
 ?>
 				<a href="<?php echo(AUTOFILL_TWITTER); ?>" target="_blank">
 				<img class="icon" src="icons/default/twitter.png" />
@@ -322,8 +293,8 @@
 					</div>
 				</a>
 <?php
-				}
-				if (defined("AUTOFILL_FACEBOOK") && defined("AUTOFILL_FACEBOOK_NAME")) {
+	}
+	if (defined("AUTOFILL_FACEBOOK") && defined("AUTOFILL_FACEBOOK_NAME")) {
 ?>
 				<a href="<?php echo(AUTOFILL_FACEBOOK); ?>" target="_blank">
 				<img class="icon" src="icons/default/facebook.png" />
@@ -336,8 +307,8 @@
 					</div>
 				</a>
 <?php
-				}
-				if (defined("AUTOFILL_PAYPAL")) {
+	}
+	if (defined("AUTOFILL_PAYPAL")) {
 ?>
 				<a href="<?php echo(AUTOFILL_PAYPAL); ?>" target="_blank">
 				<img class="icon" src="icons/default/paypal.png" />
@@ -352,8 +323,8 @@
 					</div>
 				</a>
 <?php
-				}
-				if (defined("AUTOFILL_ALIPAY")) {
+	}
+	if (defined("AUTOFILL_ALIPAY")) {
 ?>
 				<a href="<?php echo(AUTOFILL_ALIPAY); ?>" target="_blank">
 				<img class="icon" src="icons/default/alipay.png" />
@@ -368,14 +339,14 @@
 					</div>
 				</a>
 <?php
-				}
+	}
 ?>
 
 			</fieldset>
 <?php
-		if (DCRM_SHOWLIST == 2) {
-			$section_query = mysql_query("SELECT `ID`, `Name`, `Icon` FROM `".DCRM_CON_PREFIX."Sections`");
-			if (!$section_query) {
+	if (DCRM_SHOWLIST == 2) {
+		$section_query = DB::query("SELECT `ID`, `Name`, `Icon` FROM `".DCRM_CON_PREFIX."Sections`");
+		if (!$section_query) {
 ?>
 			<block>
 				<p>
@@ -383,32 +354,32 @@
 				</p>
 			</block>
 <?php
-			} else {
-				while ($section_assoc = mysql_fetch_assoc($section_query)) {
+		} else {
+			while ($section_assoc = mysql_fetch_assoc($section_query)) {
 ?>
-			<label><?php echo($section_assoc['Name']); ?></label>
+			<label><p><?php echo($section_assoc['Name']); ?></p></label>
 			<fieldset>
 <?php
-					$package_query = mysql_query("SELECT `ID`, `Name`, `Package` FROM `".DCRM_CON_PREFIX."Packages` WHERE (`Stat` = '1' AND `Section` = '".mysql_real_escape_string($section_assoc['Name'])."') ORDER BY `ID` DESC LIMIT " . DCRM_SHOW_NUM);
-					while ($package_assoc = mysql_fetch_assoc($package_query)) {
-						if ($isCydia) {
+				$package_query = DB::query("SELECT `ID`, `Name`, `Package` FROM `".DCRM_CON_PREFIX."Packages` WHERE (`Stat` = '1' AND `Section` = '".DB::real_escape_string($section_assoc['Name'])."') ORDER BY `ID` DESC LIMIT " . DCRM_SHOW_NUM);
+				while ($package_assoc = mysql_fetch_assoc($package_query)) {
+					if ($isCydia) {
 ?>
 				<a href="cydia://package/<?php echo($package_assoc['Package']); ?>" target="_blank">
 <?php
-						} else {
+					} else {
 ?>
 				<a href="index.php?pid=<?php echo($package_assoc['ID']); ?>">
 <?php
-						}
-						if (!empty($section_assoc['Icon'])) {
+					}
+					if (!empty($section_assoc['Icon'])) {
 ?>
 					<img class="icon" src="icons/<?php echo($section_assoc['Icon']); ?>" />
 <?php
-						} else {
+					} else {
 ?>
 					<img class="icon" src="icons/default/unknown.png" />
 <?php
-						}
+					}
 ?>
 					<div>
 						<div>
@@ -419,10 +390,10 @@
 					</div>
 				</a>
 <?php
-					}
-					if (DCRM_ALLOW_FULLLIST == 2) {
+				}
+				if (DCRM_ALLOW_FULLLIST == 2) {
 ?>
-				<a href="index.php?pid=<?php echo($section_assoc['ID']); ?>&method=section">
+				<a href="index.php?pid=<?php echo($section_assoc['ID']); ?>&amp;method=section">
 					<img class="icon" src="icons/default/moreinfo.png" />
 					<div>
 						<div>
@@ -433,16 +404,16 @@
 					</div>
 				</a>
 <?php
-					}
+				}
 ?>
 			</fieldset>
 <?php
-				}
 			}
-		} else {
-			if (DCRM_ALLOW_FULLLIST == 2) {
-				$section_query = mysql_query("SELECT `ID`, `Name`, `Icon` FROM `".DCRM_CON_PREFIX."Sections`");
-				if (!$section_query) {
+		}
+	} else {
+		if (DCRM_ALLOW_FULLLIST == 2) {
+			$section_query = DB::query("SELECT `ID`, `Name`, `Icon` FROM `".DCRM_CON_PREFIX."Sections`");
+			if (!$section_query) {
 ?>
 			<block>
 				<p>
@@ -450,24 +421,24 @@
 				</p>
 			</block>
 <?php
-				} else {
+			} else {
 ?>
 			<label><?php _e('Package Category'); ?></label>
 			<fieldset>
 <?php
-					while ($section_assoc = mysql_fetch_assoc($section_query)) {
+				while ($section_assoc = mysql_fetch_assoc($section_query)) {
 ?>
-				<a href="index.php?pid=<?php echo($section_assoc['ID']); ?>&method=section">
+				<a href="index.php?pid=<?php echo($section_assoc['ID']); ?>&amp;method=section">
 <?php
-						if (!empty($section_assoc['Icon'])) {
+					if (!empty($section_assoc['Icon'])) {
 ?>
 					<img class="icon" src="icons/<?php echo($section_assoc['Icon']); ?>" />
 <?php
-						} else {
+					} else {
 ?>
 					<img class="icon" src="icons/default/unknown.png" />
 <?php
-						}
+					}
 ?>
 					<div>
 						<div>
@@ -478,14 +449,14 @@
 					</div>
 				</a>
 <?php
-					}
+				}
 ?>
 			</fieldset>
 <?php
-				}
 			}
 		}
-		if (!$isCydia) {
+	}
+	if (!$isCydia) {
 ?>
 			<label class="source">
 				<p><?php _e('Source Info'); ?></p>
@@ -520,11 +491,11 @@
 				</p>
 			</footer>
 <?php
-		}
-	} elseif ($index == 1) {
-		$pkg = (int)mysql_real_escape_string($_GET['pid']);
-		$pkg_query = mysql_query("SELECT `Name`, `Version`, `Author`, `Package`, `Description`, `DownloadTimes`, `Multi`, `CreateStamp`, `Size`, `Installed-Size`, `Section`, `Homepage` FROM `".DCRM_CON_PREFIX."Packages` WHERE `ID` = '".$pkg."' LIMIT 1");
-		if (!$pkg_query) {
+	}
+} elseif ($index == 1) {
+		$pkg = (int)DB::real_escape_string($_GET['pid']);
+		$pkg_query = DB::query("SELECT `Name`, `Version`, `Author`, `Package`, `Description`, `DownloadTimes`, `Multi`, `CreateStamp`, `Size`, `Installed-Size`, `Section`, `Homepage` FROM `".DCRM_CON_PREFIX."Packages` WHERE `ID` = '".$pkg."' LIMIT 1");
+	if (!$pkg_query) {
 ?>
 			<block>
 				<p>
@@ -532,9 +503,9 @@
 				</p>
 			</block>
 <?php
-		} else {
-			$pkg_assoc = mysql_fetch_assoc($pkg_query);
-			if (!$pkg_assoc) {
+	} else {
+		$pkg_assoc = mysql_fetch_assoc($pkg_query);
+		if (!$pkg_assoc) {
 ?>
 			<block>
 				<p>
@@ -542,8 +513,8 @@
 				</p>
 			</block>
 <?php
-			} else {
-				if (!$isCydia) {
+		} else {
+			if (!$isCydia) {
 ?>
 			<fieldset id="cydialink" style="display: none;">
 				<a href="cydia://package/<?php echo($pkg_assoc['Package']); ?>" target="_blank">
@@ -558,26 +529,26 @@
 				</a>
 			</fieldset>
 <?php
-					if (!empty($pkg_assoc['Section'])) {
-						$section_query = mysql_query("SELECT `Name`, `Icon` FROM `".DCRM_CON_PREFIX."Sections` WHERE `Name` = '".$pkg_assoc['Section']."' LIMIT 1");
-						if (!$section_query) {
-							$icon_url = "";
-						} else {
-							$section_assoc = mysql_fetch_assoc($section_query);
-						}
+				if (!empty($pkg_assoc['Section'])) {
+					$section_query = DB::query("SELECT `Name`, `Icon` FROM `".DCRM_CON_PREFIX."Sections` WHERE `Name` = '".$pkg_assoc['Section']."' LIMIT 1");
+					if (!$section_query) {
+						$icon_url = "";
+					} else {
+						$section_assoc = mysql_fetch_assoc($section_query);
 					}
+				}
 ?>
 			<div id="header" style="display: none;">
 <?php
-						if (!empty($section_assoc['Icon'])) {
+				if (!empty($section_assoc['Icon'])) {
 ?>
 				<img class="icon" src="icons/<?php echo($section_assoc['Icon']); ?>" style="width: 64px; height: 64px; vertical-align: top;" />
 <?php
-						} else {
+				} else {
 ?>
 				<img class="icon" src="icons/default/unknown.png" style="width: 64px; height: 64px; vertical-align: top;" />
 <?php
-						}
+				}
 ?>
 				<div id="content">
 					<p id="name"><?php echo($pkg_assoc['Name']); ?></p>
@@ -588,13 +559,13 @@
 				</div>
 			</div>
 <?php
-					if (!empty($pkg_assoc['Author'])) {
-						$author_name = trim(preg_replace("#^(.+)<(.+)>#","$1", $pkg_assoc['Author']));
-						$author_mail = trim(preg_replace("#^(.+)<(.+)>#","$2", $pkg_assoc['Author']));
-					}
+				if (!empty($pkg_assoc['Author'])) {
+					$author_name = trim(preg_replace("#^(.+)<(.+)>#","$1", $pkg_assoc['Author']));
+					$author_mail = trim(preg_replace("#^(.+)<(.+)>#","$2", $pkg_assoc['Author']));
+				}
 ?>
 			<fieldset id="contact" style="display: none;">
-				<a href="index.php?pid=<?php echo($_GET['pid']); ?>&method=contact">
+				<a href="index.php?pid=<?php echo($_GET['pid']); ?>&amp;method=contact">
 					<img class="icon" src="icons/default/mail_forward.png" />
 					<div>
 						<div>
@@ -611,8 +582,8 @@
 				</a>
 			</fieldset>
 <?php
-				}
-				if (DCRM_DIRECT_DOWN == 1 && !$isCydia) {
+			}
+			if (DCRM_DIRECT_DOWN == 1 && !$isCydia) {
 ?>
 			<fieldset>
 				<a href="debs/<?php echo($_GET['pid']); ?>.deb" id="downloadlink" style="display: none;" target="_blank">
@@ -632,13 +603,13 @@
 				</a>
 			</fieldset>
 <?php
-				}
+			}
 ?>
 			<fieldset>
 <?php
-				if (DCRM_SCREENSHOTS == 2) {
+			if (DCRM_SCREENSHOTS == 2) {
 ?>
-				<a href="index.php?pid=<?php echo($_GET['pid']); ?>&method=screenshot">
+				<a href="index.php?pid=<?php echo($_GET['pid']); ?>&amp;method=screenshot">
 				<img class="icon" src="icons/default/screenshots.png" />
 					<div>
 						<div>
@@ -649,9 +620,9 @@
 					</div>
 				</a>
 <?php
-				}
+			}
 ?>
-				<a href="index.php?pid=<?php echo($_GET['pid']); ?>&method=history" id="historylink">
+				<a href="index.php?pid=<?php echo($_GET['pid']); ?>&amp;method=history" id="historylink">
 				<img class="icon" src="icons/default/changelog.png" />
 					<div>
 						<div>
@@ -662,9 +633,9 @@
 					</div>
 				</a>
 <?php
-				if ($isCydia && DCRM_REPORTING == 2) {
+			if ($isCydia && DCRM_REPORTING == 2) {
 ?>
-				<a href="index.php?pid=<?php echo($_GET['pid']); ?>&method=report" id="reportlink">
+				<a href="index.php?pid=<?php echo($_GET['pid']); ?>&amp;method=report" id="reportlink">
 				<img class="icon" src="icons/default/report.png" />
 					<div>
 						<div>
@@ -675,8 +646,8 @@
 					</div>
 				</a>
 <?php
-				}
-				if (defined("AUTOFILL_TENCENT") && defined("AUTOFILL_TENCENT_NAME")) {
+			}
+			if (defined("AUTOFILL_TENCENT") && defined("AUTOFILL_TENCENT_NAME")) {
 ?>
 				<a href="<?php echo(AUTOFILL_TENCENT); ?>" target="_blank">
 				<img class="icon" src="icons/default/qq.png" />
@@ -689,8 +660,8 @@
 					</div>
 				</a>
 <?php
-				}
-				if (defined("AUTOFILL_WEIBO") && defined("AUTOFILL_WEIBO_NAME")) {
+			}
+			if (defined("AUTOFILL_WEIBO") && defined("AUTOFILL_WEIBO_NAME")) {
 ?>
 				<a href="<?php echo(AUTOFILL_WEIBO); ?>" target="_blank">
 				<img class="icon" src="icons/default/weibo.png" />
@@ -703,8 +674,8 @@
 					</div>
 				</a>
 <?php
-				}
-				if (defined("AUTOFILL_TWITTER") && defined("AUTOFILL_TWITTER_NAME")) {
+			}
+			if (defined("AUTOFILL_TWITTER") && defined("AUTOFILL_TWITTER_NAME")) {
 ?>
 				<a href="<?php echo(AUTOFILL_TWITTER); ?>" target="_blank">
 				<img class="icon" src="icons/default/twitter.png" />
@@ -717,8 +688,8 @@
 					</div>
 				</a>
 <?php
-				}
-				if (defined("AUTOFILL_FACEBOOK") && defined("AUTOFILL_FACEBOOK_NAME")) {
+			}
+			if (defined("AUTOFILL_FACEBOOK") && defined("AUTOFILL_FACEBOOK_NAME")) {
 ?>
 				<a href="<?php echo(AUTOFILL_FACEBOOK); ?>" target="_blank">
 				<img class="icon" src="icons/default/facebook.png" />
@@ -731,8 +702,8 @@
 					</div>
 				</a>
 <?php
-				}
-				if (defined("AUTOFILL_PAYPAL")) {
+			}
+			if (defined("AUTOFILL_PAYPAL")) {
 ?>
 				<a href="<?php echo(AUTOFILL_PAYPAL); ?>" target="_blank">
 				<img class="icon" src="icons/default/paypal.png" />
@@ -747,8 +718,8 @@
 					</div>
 				</a>
 <?php
-				}
-				if (defined("AUTOFILL_ALIPAY")) {
+			}
+			if (defined("AUTOFILL_ALIPAY")) {
 ?>
 				<a href="<?php echo(AUTOFILL_ALIPAY); ?>" target="_blank">
 				<img class="icon" src="icons/default/alipay.png" />
@@ -763,8 +734,8 @@
 					</div>
 				</a>
 <?php
-				}
-				if (!empty($pkg_assoc['Homepage']) && DCRM_MOREINFO == 2) {
+			}
+			if (!empty($pkg_assoc['Homepage']) && DCRM_MOREINFO == 2) {
 ?>
 				<a href="<?php echo($pkg_assoc['Homepage']); ?>" target="_blank">
 				<img class="icon" src="icons/default/moreinfo.png" />
@@ -777,8 +748,8 @@
 					</div>
 				</a>
 <?php
-				}
-				if (defined("EMERGENCY")) {
+			}
+			if (defined("EMERGENCY")) {
 ?>
 				<a>
 					<div>
@@ -788,11 +759,11 @@
 					</div>
 				</a>
 <?php
-				}
+			}
 ?>
 			</fieldset>
 <?php
-				if (defined("AUTOFILL_ADVERTISEMENT") && $isCydia) {
+			if (defined("AUTOFILL_ADVERTISEMENT") && $isCydia) {
 ?>
 			<block id="advertisement">
 				<div style="position: relative; text-align: center;">
@@ -805,22 +776,22 @@
 				</div>
 			</block>
 <?php	
-				}
+			}
 ?>
 			<block>
 <?php
-					if (DCRM_MULTIINFO == 2) {
+			if (DCRM_MOREINFO == 2) {
 ?>
-					<p><?php _e('Version'); ?> <strong><?php echo($pkg_assoc['Version']); ?></strong> | <?php _e('Download Times'); ?> <strong><?php echo($pkg_assoc['DownloadTimes']); ?></strong></p>
+					<p><?php _e('Version'); ?> <strong><?php echo($pkg_assoc['Version']); ?></strong> | <?php _e('Downloads'); ?> <strong><?php echo($pkg_assoc['DownloadTimes']); ?></strong></p>
 					<p><?php _e('Last Updated'); ?> <strong><?php echo($pkg_assoc['CreateStamp']); ?></strong></p>
 					<hr />
 <?php
-					}
+			}
 ?>
 					<p><?php echo(nl2br($pkg_assoc['Description'])); ?></p>
 			</block>
 <?php
-				if (!empty($pkg_assoc['Multi']) && DCRM_MULTIINFO == 2) {
+			if (!empty($pkg_assoc['Multi']) && DCRM_MULTIINFO == 2) {
 ?>
 			<fieldset>
 				<div>
@@ -830,8 +801,8 @@
 				</div>
 			</fieldset>
 <?php
-				}
-				if (defined("AUTOFILL_DUOSHUO_KEY")) {
+			}
+			if (defined("AUTOFILL_DUOSHUO_KEY")) {
 ?>
 			<fieldset>
 				<div class="ds-thread" data-thread-key="<?php echo($pkg_assoc['Package']); ?>" data-title="<?php echo($pkg_assoc['Name']); ?>" data-url="<?php echo('http://'.$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI']); ?>"></div>
@@ -848,7 +819,7 @@
 				})();
 			</script>
 <?php
-				}
+			}
 ?>
 			<label class="source">
 				<p><?php _e('Source Info'); ?></p>
@@ -873,7 +844,7 @@
 				</div>
 			</fieldset>
 <?php
-				if (!$isCydia) {
+			if (!$isCydia) {
 ?>
 			<footer id="footer" style="display: none;">
 				<p>
@@ -888,14 +859,14 @@
 				</p>
 			</footer>
 <?php
-				}
 			}
 		}
-	} elseif ($index == 2) {
-		if (DCRM_SCREENSHOTS == 2) {
-			$pkg = (int)mysql_real_escape_string($_GET['pid']);
-			$pkg_query = mysql_query("SELECT `PID`, `Image` FROM `".DCRM_CON_PREFIX."ScreenShots` WHERE `PID` = '".$pkg."'");
-			if (!$pkg_query) {
+	}
+} elseif ($index == 2) {
+	if (DCRM_SCREENSHOTS == 2) {
+		$pkg = (int)DB::real_escape_string($_GET['pid']);
+		$pkg_query = DB::query("SELECT `PID`, `Image` FROM `".DCRM_CON_PREFIX."ScreenShots` WHERE `PID` = '".$pkg."'");
+		if (!$pkg_query) {
 ?>
 			<block>
 				<p>
@@ -903,15 +874,15 @@
 				</p>
 			</block>
 <?php
-			} else {
-				$num = mysql_affected_rows();
-				if ($num != 0) {
-					$preview = array();
-					$i = 0;
-					while ($pkg_assoc = mysql_fetch_assoc($pkg_query)) {
-						$preview[$i] = $pkg_assoc['Image'];
-						$i++;
-					}
+		} else {
+			$num = mysql_affected_rows();
+			if ($num != 0) {
+				$preview = array();
+				$i = 0;
+				while ($pkg_assoc = mysql_fetch_assoc($pkg_query)) {
+					$preview[$i] = $pkg_assoc['Image'];
+					$i++;
+				}
 ?>
 			<!--label><?php _e('View Screenshots'); ?></label-->
 			<div class="horizontal-scroll-wrapper" style="background: transparent; position: relative;">
@@ -919,66 +890,66 @@
 				<div class="horizontal-scroll-wrapper" id="scroller" style="background: transparent; position: absolute; z-index: 2;">
 					<div class="horizontal-scroll-area" style="width:<?php echo($num * 240); ?>px;">
 <?php
-					for ($t = 0; $t < count($preview); $t++) {
+				for ($t = 0; $t < count($preview); $t++) {
 ?>
 						<img src="<?php echo($preview[$t]); ?>" />
 <?php
-					}
+				}
 ?>
 					</div>
 					<div class="horizontal-scroll-pips"></div>
 				</div>
 			</div>
 <?php
-				} else {
+			} else {
 ?>
 			<label><?php _e('No screenshots now.'); ?></label>
 <?php
-				}
 			}
-		} else {
+		}
+	} else {
 ?>
 			<label><?php printf( __( 'The %s function is disabled.' ) , __('View Screenshots') ); ?></label>
 <?php
-		}
-	} elseif ($index == 3) {
+	}
+} elseif ($index == 3) {
 ?>
 			<label><?php _e('Device Info'); ?></label>
 <?php
-		if (DCRM_REPORTING == 2) {
-			$q_count = mysql_query("SELECT `Support`, COUNT(*) AS 'num' FROM `".DCRM_CON_PREFIX."Reports` WHERE (`Device` = '".$DEVICE."' AND `iOS` = '".$OS."' AND `PID` = '".$_GET['pid']."') GROUP BY `Support`");
-			if (mysql_affected_rows() > 0) {
-				while ($s_count = mysql_fetch_assoc($q_count)) {
-					switch ($s_count['Support']) {
-						case 1:
-							$s_1 = " (".$s_count['num'].")";
-							$i_1 = $s_count['num'];
-							break;
-						case 2:
-							$s_2 = " (".$s_count['num'].")";
-							$i_2 = $s_count['num'];
-							break;
-						case 0:
-							$s_0 = " (".$s_count['num'].")";
-							$i_0 = $s_count['num'];
-							break;
-					}
+	if (DCRM_REPORTING == 2) {
+		$q_count = DB::query("SELECT `Support`, COUNT(*) AS 'num' FROM `".DCRM_CON_PREFIX."Reports` WHERE (`Device` = '".$DEVICE."' AND `iOS` = '".$OS."' AND `PID` = '".$_GET['pid']."') GROUP BY `Support`");
+		if (mysql_affected_rows() > 0) {
+			while ($s_count = mysql_fetch_assoc($q_count)) {
+				switch ($s_count['Support']) {
+					case 1:
+						$s_1 = " (".$s_count['num'].")";
+						$i_1 = $s_count['num'];
+						break;
+					case 2:
+						$s_2 = " (".$s_count['num'].")";
+						$i_2 = $s_count['num'];
+						break;
+					case 0:
+						$s_0 = " (".$s_count['num'].")";
+						$i_0 = $s_count['num'];
+						break;
 				}
 			}
-			$check_int = $i_1 * 3 + $i_2 - $i_0 * 2;
-			if ($check_int >= 10) {
+		}
+		$check_int = $i_1 * 3 + $i_2 - $i_0 * 2;
+		if ($check_int >= 10) {
 ?>
 			<fieldset style="background-color: #ccffcc;">
 <?php
-			} elseif ($check_int <= -6) {
+		} elseif ($check_int <= -6) {
 ?>
 			<fieldset style="background-color: #ffdddd;">
 <?php
-			} else {
+		} else {
 ?>
 			<fieldset>
 <?php
-			}
+		}
 ?>
 				<div>
 					<p>
@@ -992,7 +963,7 @@
 			</fieldset>
 			<label><?php _e('Submit Your Request'); ?></label>
 			<fieldset>
-				<a href="index.php?pid=<?php echo($_GET['pid']); ?>&method=report&support=3">
+				<a href="index.php?pid=<?php echo($_GET['pid']); ?>&amp;method=report&amp;support=3">
 					<img class="icon" src="icons/default/support_3.png" />
 					<div>
 						<div>
@@ -1005,7 +976,7 @@
 			</fieldset>
 			<label><?php _e('Compatibility Reports'); ?></label>
 			<fieldset>
-				<a href="index.php?pid=<?php echo($_GET['pid']); ?>&method=report&support=1">
+				<a href="index.php?pid=<?php echo($_GET['pid']); ?>&amp;method=report&amp;support=1">
 					<img class="icon" src="icons/default/support_1.png" />
 					<div>
 						<div>
@@ -1015,7 +986,7 @@
 						</div>
 					</div>
 				</a>
-				<a href="index.php?pid=<?php echo($_GET['pid']); ?>&method=report&support=0">
+				<a href="index.php?pid=<?php echo($_GET['pid']); ?>&amp;method=report&amp;support=0">
 					<img class="icon" src="icons/default/support_0.png" />
 					<div>
 						<div>
@@ -1025,7 +996,7 @@
 						</div>
 					</div>
 				</a>
-				<a href="index.php?pid=<?php echo($_GET['pid']); ?>&method=report&support=2">
+				<a href="index.php?pid=<?php echo($_GET['pid']); ?>&amp;method=report&amp;support=2">
 					<img class="icon" src="icons/default/support_2.png" />
 					<div>
 						<div>
@@ -1042,17 +1013,17 @@
 				</div>
 			</fieldset>
 <?php
-		} else {
+	} else {
 ?>
 			<label><?php printf( __( 'The %s function is disabled.' ) , __('Report Problems') ); ?></label>
 <?php
-		}
-	} elseif ($index == 4) {
-		if (DCRM_REPORTING == 2) {
-			$result = mysql_query("SELECT `ID` FROM `".DCRM_CON_PREFIX."Reports` WHERE (`Remote` = '".mysql_real_escape_string($_SERVER['REMOTE_ADDR'])."' AND `PID`='".$_GET['pid']."') LIMIT 3");
-			if (mysql_affected_rows() < DCRM_REPORT_LIMIT) {
-				if (!empty($_SERVER['REMOTE_ADDR']) && !empty($DEVICE) && !empty($OS) && $isCydia) {
-					$result = mysql_query("INSERT INTO `".DCRM_CON_PREFIX."Reports`(`Remote`, `Device`, `iOS`, `Support`, `TimeStamp`, `PID`) VALUES('".mysql_real_escape_string($_SERVER['REMOTE_ADDR'])."', '".$DEVICE."', '".$OS."', '".$support."', '".date('Y-m-d H:i:s')."', '".(int)$_GET['pid']."')");
+	}
+} elseif ($index == 4) {
+	if (DCRM_REPORTING == 2) {
+		$result = DB::query("SELECT `ID` FROM `".DCRM_CON_PREFIX."Reports` WHERE (`Remote` = '".DB::real_escape_string($_SERVER['REMOTE_ADDR'])."' AND `PID`='".$_GET['pid']."') LIMIT 3");
+		if (mysql_affected_rows() < DCRM_REPORT_LIMIT) {
+			if (!empty($_SERVER['REMOTE_ADDR']) && !empty($DEVICE) && !empty($OS) && $isCydia) {
+				$result = DB::query("INSERT INTO `".DCRM_CON_PREFIX."Reports`(`Remote`, `Device`, `iOS`, `Support`, `TimeStamp`, `PID`) VALUES('".DB::real_escape_string($_SERVER['REMOTE_ADDR'])."', '".$DEVICE."', '".$OS."', '".$support."', '".date('Y-m-d H:i:s')."', '".(int)$_GET['pid']."')");
 ?>
 			<fieldset style="background-color: #ccffcc;">
 				<div>
@@ -1062,7 +1033,7 @@
 						</strong>
 					</p>
 <?php
-				} else {
+			} else {
 ?>
 			<fieldset style="background-color: #ffdddd;">
 				<div>
@@ -1072,8 +1043,8 @@
 						</strong>
 					</p>
 <?php
-				}
-			} else {
+			}
+		} else {
 ?>
 			<fieldset style="background-color: #ffdddd;">
 				<div>
@@ -1083,26 +1054,26 @@
 						</strong>
 					</p>
 <?php
-			}
+		}
 ?>
 				</div>
 			</fieldset>
 <?php
-		} else {
+	} else {
 ?>
 			<label><?php printf( __( 'The %s function is disabled.' ) , __('Report Problems') ); ?></label>
 <?php
-		}
-	} elseif ($index == 5) {
-		$history_query = mysql_query("SELECT `ID`, `Version` FROM `".DCRM_CON_PREFIX."Packages` WHERE `Package` = (SELECT `Package` FROM `".DCRM_CON_PREFIX."Packages` WHERE `ID` = '".(int)$_GET['pid']."' LIMIT 1) ORDER BY `ID` DESC LIMIT 1,20");
-		if (mysql_affected_rows() > 0) {
+	}
+} elseif ($index == 5) {
+	$history_query = DB::query("SELECT `ID`, `Version` FROM `".DCRM_CON_PREFIX."Packages` WHERE `Package` = (SELECT `Package` FROM `".DCRM_CON_PREFIX."Packages` WHERE `ID` = '".(int)$_GET['pid']."' LIMIT 1) ORDER BY `ID` DESC LIMIT 1,20");
+	if (mysql_affected_rows() > 0) {
 ?>
 			<label><?php _e('Version History'); ?></label>
 			<fieldset>
 <?php
-			while ($history = mysql_fetch_assoc($history_query)) {
+		while ($history = mysql_fetch_assoc($history_query)) {
 ?>
-				<a href="index.php?pid=<?php echo($history['ID']); ?>&addr=nohistory">
+				<a href="index.php?pid=<?php echo($history['ID']); ?>&amp;addr=nohistory">
 					<img class="icon" src="icons/default/changelog.png">
 					<div>
 						<div>
@@ -1115,20 +1086,20 @@
 					</div>
 				</a>
 <?php
-			}
+		}
 ?>
 			</fieldset>
 <?php
-		} else {
+	} else {
 ?>
 			<label><?php _e('No version history now.'); ?></label>
 			<br />
 <?php
-		}
-	} elseif ($index == 6) {
-		$pkg = (int)mysql_real_escape_string($_GET['pid']);
-		$pkg_query = mysql_query("SELECT `Name`, `Version`, `Author`, `Sponsor`, `Maintainer` FROM `".DCRM_CON_PREFIX."Packages` WHERE `ID` = '".$pkg."' LIMIT 1");
-		if (!$pkg_query) {
+	}
+} elseif ($index == 6) {
+		$pkg = (int)DB::real_escape_string($_GET['pid']);
+		$pkg_query = DB::query("SELECT `Name`, `Version`, `Author`, `Sponsor`, `Maintainer` FROM `".DCRM_CON_PREFIX."Packages` WHERE `ID` = '".$pkg."' LIMIT 1");
+	if (!$pkg_query) {
 ?>
 			<block>
 				<p>
@@ -1136,9 +1107,9 @@
 				</p>
 			</block>
 <?php
-		} else {
-			$pkg_assoc = mysql_fetch_assoc($pkg_query);
-			if (!$pkg_assoc) {
+	} else {
+		$pkg_assoc = mysql_fetch_assoc($pkg_query);
+		if (!$pkg_assoc) {
 ?>
 			<block>
 				<p>
@@ -1146,10 +1117,10 @@
 				</p>
 			</block>
 <?php
-			} else {
-				if (!empty($pkg_assoc['Author'])) {
-					$author_name = trim(preg_replace("#^(.+)<(.+)>#","$1", $pkg_assoc['Author']));
-					$author_mail = trim(preg_replace("#^(.+)<(.+)>#","$2", $pkg_assoc['Author']));
+		} else {
+			if (!empty($pkg_assoc['Author'])) {
+				$author_name = trim(preg_replace("#^(.+)<(.+)>#","$1", $pkg_assoc['Author']));
+				$author_mail = trim(preg_replace("#^(.+)<(.+)>#","$2", $pkg_assoc['Author']));
 ?>
 			<fieldset class="author">
 				<div>
@@ -1170,10 +1141,10 @@
 				</a>
 			</fieldset>
 <?php
-				}
-				if (!empty($pkg_assoc['Sponsor'])) {
-					$sponsor_name = trim(preg_replace("#^(.+)<(.+)>#","$1", $pkg_assoc['Sponsor']));
-					$sponsor_url = trim(preg_replace("#^(.+)<(.+)>#","$2", $pkg_assoc['Sponsor']));
+			}
+			if (!empty($pkg_assoc['Sponsor'])) {
+				$sponsor_name = trim(preg_replace("#^(.+)<(.+)>#","$1", $pkg_assoc['Sponsor']));
+				$sponsor_url = trim(preg_replace("#^(.+)<(.+)>#","$2", $pkg_assoc['Sponsor']));
 ?>
 			<fieldset class="maintainer">
 				<div>
@@ -1194,10 +1165,10 @@
 				</a>
 			</fieldset>
 <?php
-				}
-				if (!empty($pkg_assoc['Maintainer'])) {
-					$maintainer_name = trim(preg_replace("#^(.+)<(.+)>#","$1", $pkg_assoc['Maintainer']));
-					$maintainer_mail = trim(preg_replace("#^(.+)<(.+)>#","$2", $pkg_assoc['Maintainer']));
+			}
+			if (!empty($pkg_assoc['Maintainer'])) {
+				$maintainer_name = trim(preg_replace("#^(.+)<(.+)>#","$1", $pkg_assoc['Maintainer']));
+				$maintainer_mail = trim(preg_replace("#^(.+)<(.+)>#","$2", $pkg_assoc['Maintainer']));
 ?>
 			<fieldset class="maintainer">
 				<div>
@@ -1216,13 +1187,13 @@
 				</a>
 			</fieldset>
 <?php
-				}
 			}
 		}
-	} elseif ($index == 7) {
-		if (DCRM_ALLOW_FULLLIST == 2) {
-			$section_query = mysql_query("SELECT `Name`, `Icon`, `TimeStamp` FROM `".DCRM_CON_PREFIX."Sections` WHERE `ID` = '".(int)$_GET['pid']."'");
-			if (!$section_query) {
+	}
+} elseif ($index == 7) {
+	if (DCRM_ALLOW_FULLLIST == 2) {
+		$section_query = DB::query("SELECT `Name`, `Icon`, `TimeStamp` FROM `".DCRM_CON_PREFIX."Sections` WHERE `ID` = '".(int)$_GET['pid']."'");
+		if (!$section_query) {
 ?>
 			<block>
 				<p>
@@ -1230,9 +1201,9 @@
 				</p>
 			</block>
 <?php
-			} else {
-				$section_assoc = mysql_fetch_assoc($section_query);
-				if (!$section_assoc) {
+		} else {
+			$section_assoc = mysql_fetch_assoc($section_query);
+			if (!$section_assoc) {
 ?>
 			<block>
 				<p>
@@ -1240,12 +1211,12 @@
 				</p>
 			</block>
 <?php
-				} else {
+			} else {
 ?>
-			<label><?php echo($section_assoc['Name']); ?></label>
+			<label><p><?php echo($section_assoc['Name']); ?></p></label>
 <?php
-					$package_query = mysql_query("SELECT `ID`, `Name`, `Package` FROM `".DCRM_CON_PREFIX."Packages` WHERE (`Stat` = '1' AND `Section` = '".mysql_real_escape_string($section_assoc['Name'])."') ORDER BY `ID` DESC");
-					$s_num = mysql_affected_rows();
+				$package_query = DB::query("SELECT `ID`, `Name`, `Package` FROM `".DCRM_CON_PREFIX."Packages` WHERE (`Stat` = '1' AND `Section` = '".DB::real_escape_string($section_assoc['Name'])."') ORDER BY `ID` DESC");
+				$s_num = mysql_affected_rows();
 ?>
 			<block>
 					<p><?php printf( __( '<strong>%s</strong> packages in this section.' ) , $s_num ); ?></p>
@@ -1253,25 +1224,25 @@
 			</block>
 			<fieldset>
 <?php
-					while ($package_assoc = mysql_fetch_assoc($package_query)) {
-						if ($isCydia) {
+				while ($package_assoc = mysql_fetch_assoc($package_query)) {
+					if ($isCydia) {
 ?>
 				<a href="cydia://package/<?php echo($package_assoc['Package']); ?>" target="_blank">
 <?php
-						} else {
+					} else {
 ?>
 				<a href="index.php?pid=<?php echo($package_assoc['ID']); ?>">
 <?php
-						}
-						if (!empty($section_assoc['Icon'])) {
+					}
+					if (!empty($section_assoc['Icon'])) {
 ?>
 					<img class="icon" src="icons/<?php echo($section_assoc['Icon']); ?>">
 <?php
-						} else {
+					} else {
 ?>
 					<img class="icon" src="icons/default/unknown.png">
 <?php
-						}
+					}
 ?>
 					<div>
 						<div>
@@ -1282,36 +1253,36 @@
 					</div>
 				</a>
 <?php
-					}
+				}
 ?>
 			</fieldset>
 <?php
-				}
 			}
-		} else {
+		}
+	} else {
 ?>
 			<label><?php printf( __( 'The %s function is disabled.' ) , __('Package Category') ); ?></label>
 <?php
-		}
 	}
+}
 ?>
 		</panel>
 <?php
-	if ($index == 2) {
+if ($index == 2) {
 ?>
 		<script src="js/scroll.js" type="text/javascript"></script>
 <?php
-	}
+}
 ?>
 		<script src="js/main.js" type="text/javascript"></script>
 <?php
-	if (defined("AUTOFILL_STATISTICS")) {
+if (defined("AUTOFILL_STATISTICS")) {
 ?>
 		<div style="text-align: center; display: none;">
 			<?php echo(AUTOFILL_STATISTICS); ?>
 		</div>
 <?php
-	}
+}
 ?>
 	</body>
 </html>

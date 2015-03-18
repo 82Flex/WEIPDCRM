@@ -1,167 +1,151 @@
 <?php
-	/*
-		This file is part of WEIPDCRM.
-	
-	    WEIPDCRM is free software: you can redistribute it and/or modify
-	    it under the terms of the GNU General Public License as published by
-	    the Free Software Foundation, either version 3 of the License, or
-	    (at your option) any later version.
-	
-	    WEIPDCRM is distributed in the hope that it will be useful,
-	    but WITHOUT ANY WARRANTY; without even the implied warranty of
-	    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-	    GNU General Public License for more details.
-	
-	    You should have received a copy of the GNU General Public License
-	    along with WEIPDCRM.  If not, see <http://www.gnu.org/licenses/>.
-	*/
-	
-	/* DCRM Debian Output */
-	
-	session_start();
-	ob_start();
-	define("DCRM",true);
-	require_once("include/config.inc.php");
-	require_once('include/connect.inc.php');
-	require_once('include/func.php');
-	require_once('include/tar.php');
-	header("Content-Type: text/html; charset=UTF-8");
-	$activeid = 'output';
-	$highactiveid = 'center';
-	$alert = "";
-	
-	if (!isset($_SESSION['connected']) || $_SESSION['connected'] != true) {
-		header("Location: login.php");
-		exit();
+/**
+ * This file is part of WEIPDCRM.
+ * 
+ * WEIPDCRM is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * WEIPDCRM is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ * 
+ * You should have received a copy of the GNU General Public License
+ * along with WEIPDCRM.  If not, see <http://www.gnu.org/licenses/>.
+ */
+
+/* DCRM Debian Output */
+
+session_start();
+define("DCRM",true);
+$localetype = 'manage';
+define('MANAGE_ROOT', dirname(__FILE__).'/');
+define('ABSPATH', dirname(MANAGE_ROOT).'/');
+require_once ABSPATH.'system/common.inc.php';
+class_loader('tar');
+$activeid = 'output';
+$highactiveid = 'center';
+$alert = "";
+
+if (!isset($_SESSION['connected']) || $_SESSION['connected'] != true) {
+	header("Location: login.php");
+	exit();
+}
+$request_id = (int)$_GET['id'];
+if ($request_id <= 0) {
+	$alert = __('Invalid arguments!');
+	goto endlabel;
+}
+$m_query = DB::query("SELECT `Package`, `Source`, `Version`, `Priority`, `Section`, `Essential`, `Maintainer`, `Pre-Depends`, `Depends`, `Recommends`, `Suggests`, `Conflicts`, `Provides`, `Replaces`, `Enhances`, `Architecture`, `Installed-Size`, `Origin`, `Bugs`, `Name`, `Author`, `Sponsor`, `Icon`, `Tag`, `Filename` FROM `".DCRM_CON_PREFIX."Packages` WHERE `ID` = '" . (string)$request_id . "' LIMIT 1");
+if ($m_query == false) {
+	$alert = sprintf(__('Database Error: %s'), DB::error());
+	goto endlabel;
+}
+$m_array = mysql_fetch_assoc($m_query);
+if ($m_array == false) {
+	$alert = __('Cannot find the content specified!');
+	goto endlabel;
+}
+$deb_path = $m_array['Filename'];
+if (!file_exists($deb_path)) {
+	$alert = __('Cannot find the file specified!');
+	goto endlabel;
+}
+unset($m_array['Filename']);
+$f_Package = "";
+foreach ($m_array as $m_key => $m_value) {
+	if (strlen($m_value) > 0 AND $m_value != NULL) {
+		$f_Package .= $m_key . ": " . trim(str_replace("\n","\n ",$m_value)) . "\n";
 	}
-	$con = mysql_connect(DCRM_CON_SERVER, DCRM_CON_USERNAME, DCRM_CON_PASSWORD);
-	if (!$con) {
-		$alert = "数据库错误！";
-		goto endlabel;
+}
+$r_id = randstr(40);
+if (!is_dir("../tmp/")) {
+	mkdir("../tmp/");
+}
+if (!is_dir("../tmp/" . $r_id)) {
+	mkdir("../tmp/" . $r_id);
+}
+$raw_data = new phpAr($deb_path);
+$filename_array = $raw_data -> listfiles();
+foreach ($filename_array as $filename) {
+	if (is_int(stripos($filename, 'control.tar.gz'))) {
+		$control_c_raw_data = $raw_data -> getfile($filename);
+		$innername = $filename;
+		goto nextstep;
 	}
-	mysql_query("SET NAMES utf8");
-	$select  = mysql_select_db(DCRM_CON_DATABASE);
-	if (!$select) {
-		$alert = mysql_error();
-		goto endlabel;
-	}
-	$request_id = (int)$_GET['id'];
-	if ($request_id <= 0) {
-		$alert = "无效的参数。";
-		goto endlabel;
-	}
-	$m_query = mysql_query("SELECT `Package`, `Source`, `Version`, `Priority`, `Section`, `Essential`, `Maintainer`, `Pre-Depends`, `Depends`, `Recommends`, `Suggests`, `Conflicts`, `Provides`, `Replaces`, `Enhances`, `Architecture`, `Installed-Size`, `Origin`, `Bugs`, `Name`, `Author`, `Sponsor`, `Icon`, `Tag`, `Filename` FROM `".DCRM_CON_PREFIX."Packages` WHERE `ID` = '" . (string)$request_id . "' LIMIT 1");
-	if ($m_query == false) {
-		$alert = "数据库错误： " . mysql_error();
-		goto endlabel;
-	}
-	$m_array = mysql_fetch_assoc($m_query);
-	if ($m_array == false) {
-		$alert = "找不到指定的内容。";
-		goto endlabel;
-	}
-	$deb_path = $m_array['Filename'];
-	if (!file_exists($deb_path)) {
-		$alert = "找不到指定的文件！";
-		goto endlabel;
-	}
-	unset($m_array['Filename']);
-	$f_Package = "";
-	foreach ($m_array as $m_key => $m_value) {
-		if (strlen($m_value) > 0 AND $m_value != NULL) {
-			$f_Package .= $m_key . ": " . trim(str_replace("\n","\n ",$m_value)) . "\n";
+}
+nextstep:
+if (is_int(stripos($control_c_raw_data[0][0], 'control.tar.gz'))) {
+	$control_tar_path = "../tmp/" . $r_id . "/old.tar.gz";
+	$control_tar_handle = fopen($control_tar_path, 'w');
+	fputs($control_tar_handle, $control_c_raw_data[0][6]);
+	fclose($control_tar_handle);
+	$control_tar = new Tar();
+	$new_tar = new Tar();
+	$control_tar -> load($control_tar_path);
+	$control_array = $control_tar -> contents();
+	foreach ($control_array as $c_key => $c_value) {
+		$alert .= "· ".sprintf(__('Processing file: %s'), htmlspecialchars($c_key))."<br />";
+		if ($c_key != "control") {
+			$new_tar -> add_file($c_key, "", $control_array[$c_key]['data']);
 		}
 	}
-	$r_id = randstr(40);
-	if (!is_dir("../tmp/")) {
-		mkdir("../tmp/");
+	$new_path = "../tmp/" . $r_id . "/control.tar.gz";
+	$new_tar -> add_file("control", "", $f_Package);
+	$new_tar -> save($new_path);
+}
+$replace_result = $raw_data -> replace($innername,$new_path);
+$success = true;
+if ($replace_result) {
+	$alert .= "· ".__('Package has been successfully written!')."<br />";
+} else {
+	$alert .= "· ".__('Warning: Writting to package failed!')."<br />";
+	$success = false;
+}
+$chk_success = true;
+if ((int)DCRM_CHECK_METHOD != 0) {
+	$new_md5 = md5_file($deb_path);
+	if (!$new_md5) {
+		$chk_success = false;
+	} else {
+		$md5_query = DB::query("UPDATE `".DCRM_CON_PREFIX."Packages` SET `MD5sum` = '" . $new_md5 . "' WHERE `ID` = '" . (string)$request_id . "'");
 	}
-	if (!is_dir("../tmp/" . $r_id)) {
-		mkdir("../tmp/" . $r_id);
+}
+if ((int)DCRM_CHECK_METHOD == 2 || (int)DCRM_CHECK_METHOD == 3) {
+	$new_sha1 = sha1_file($deb_path);
+	if (!$new_sha1) {
+		$chk_success = false;
+	} else {
+		$sha1_query = DB::query("UPDATE `".DCRM_CON_PREFIX."Packages` SET `SHA1` = '" . $new_sha1 . "' WHERE `ID` = '" . (string)$request_id . "'");
 	}
-	$raw_data = new phpAr($deb_path);
-	$filename_array = $raw_data -> listfiles();
-	foreach ($filename_array as $filename) {
-		if (is_int(stripos($filename, 'control.tar.gz'))) {
-			$control_c_raw_data = $raw_data -> getfile($filename);
-			$innername = $filename;
-			goto nextstep;
-		}
+}
+if ((int)DCRM_CHECK_METHOD == 3) {
+	$new_sha256 = hash("sha256",file_get_contents($deb_path));
+	if (!$new_sha256) {
+		$chk_success = false;
+	} else {
+		$sha256_query = DB::query("UPDATE `".DCRM_CON_PREFIX."Packages` SET `SHA256` = '" . $new_sha256 . "' WHERE `ID` = '" . (string)$request_id . "'");
 	}
-	nextstep:
-	if (is_int(stripos($control_c_raw_data[0][0], 'control.tar.gz'))) {
-		$control_tar_path = "../tmp/" . $r_id . "/old.tar.gz";
-		$control_tar_handle = fopen($control_tar_path, 'w');
-		fputs($control_tar_handle, $control_c_raw_data[0][6]);
-		fclose($control_tar_handle);
-		$control_tar = new Tar();
-		$new_tar = new Tar();
-		$control_tar -> load($control_tar_path);
-		$control_array = $control_tar -> contents();
-		foreach ($control_array as $c_key => $c_value) {
-			$alert .= "· 处理文件：".htmlspecialchars($c_key)."<br />";
-			if ($c_key != "control") {
-				$new_tar -> add_file($c_key, "", $control_array[$c_key]['data']);
-			}
-		}
-		$new_path = "../tmp/" . $r_id . "/control.tar.gz";
-		$new_tar -> add_file("control", "", $f_Package);
-		$new_tar -> save($new_path);
-	}
-	$replace_result = $raw_data -> replace($innername,$new_path);
-	$success = true;
-	if ($replace_result) {
-		$alert .= "· 安装包写入成功！<br />";
-	}
-	else {
-		$alert .= "· 警告：安装包写入失败！<br />";
-		$success = false;
-	}
-	$chk_success = true;
-	if ((int)DCRM_CHECK_METHOD != 0) {
-		$new_md5 = md5_file($deb_path);
-		if (!$new_md5) {
-			$chk_success = false;
-		} else {
-			$md5_query = mysql_query("UPDATE `".DCRM_CON_PREFIX."Packages` SET `MD5sum` = '" . $new_md5 . "' WHERE `ID` = '" . (string)$request_id . "'");
-		}
-	}
-	if ((int)DCRM_CHECK_METHOD == 2 || (int)DCRM_CHECK_METHOD == 3) {
-		$new_sha1 = sha1_file($deb_path);
-		if (!$new_sha1) {
-			$chk_success = false;
-		} else {
-			$sha1_query = mysql_query("UPDATE `".DCRM_CON_PREFIX."Packages` SET `SHA1` = '" . $new_sha1 . "' WHERE `ID` = '" . (string)$request_id . "'");
-		}
-	}
-	if ((int)DCRM_CHECK_METHOD == 3) {
-		$new_sha256 = hash("sha256",file_get_contents($deb_path));
-		if (!$new_sha256) {
-			$chk_success = false;
-		} else {
-			$sha256_query = mysql_query("UPDATE `".DCRM_CON_PREFIX."Packages` SET `SHA256` = '" . $new_sha256 . "' WHERE `ID` = '" . (string)$request_id . "'");
-		}
-	}
-	$new_size = filesize($deb_path);
-	$size_query = mysql_query("UPDATE `".DCRM_CON_PREFIX."Packages` SET `Size` = '" . $new_size . "' WHERE `ID` = '" . (string)$request_id . "'");
-	if ($chk_success == false || $size_query == false) {
-		$alert .= "· 验证信息更新失败！请检查安装包是否成功生成！<br />";
-		$success = false;
-	}
-	else {
-		$alert .= "· 验证信息更新成功！<br />";
-	}
-	
-	endlabel:
-	mysql_close($con);
-	
-	require_once("header.php");
+}
+$new_size = filesize($deb_path);
+$size_query = DB::query("UPDATE `".DCRM_CON_PREFIX."Packages` SET `Size` = '" . $new_size . "' WHERE `ID` = '" . (string)$request_id . "'");
+if ($chk_success == false || $size_query == false) {
+	$alert .= "· ".__('Verification information update failed! Please check the package is successfully generated!')."<br />";
+	$success = false;
+} else {
+	$alert .= "· ".__('Verification information has been successfully updated!')."<br />";
+}
+
+endlabel:
+require_once("header.php");
 ?>
-			<h2>更新软件包</h2>
+			<h2><?php _e('Update Packages'); ?></h2>
 			<br />
-			<h3 class="alert alert-<?php if($success){echo("success");}else{echo("error");} ?>">提示：该操作不会自动修改安装包文件名，升级时请上传新的软件包项目。<br />
-			<?php echo $alert; ?>
-			<a href="javascript:history.go(-2);">返回</a></h3>
+			<h4 class="alert alert-<?php if($success) echo("success"); else echo("error"); ?>"><?php _e('Tip: This operation does not automatically modify the software package file name, please upload the new name package when upgrade.'); ?><br /><br />
+			<?php echo $alert; ?><br />
+			<a href="javascript:history.go(-2);"><?php _e('Back'); ?></a></h4>
 			</div>
 		</div>
 	</div>

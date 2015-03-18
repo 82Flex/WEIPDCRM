@@ -1,0 +1,18 @@
+html{direction:rtl;}
+input{text-align:right;}
+.nav-list{text-align:right;}
+.wrap{text-align:right;margin: 0 2px 0 2px;}
+.form-horizontal .control-label{float: right;}
+.row {margin-right: 60px;}
+#sidebar{float: right;}
+.content {margin-left: 0px; padding-left: 20px; margin-right: 100px; padding-right: 20px;}
+#logo{float: right;}
+.pull-right { float: left !important; }
+.btn-group .btn:first-child{-webkit-border-radius:0 4px 4px 0;-moz-border-radius:0 4px 4px 0;border-radius:0 4px 4px 0}
+.btn-group .btn {margin-right: -5px;margin-left: 0px;}
+.btn-group .btn:last-child,.btn-group .dropdown-toggle{-webkit-border-radius:4px 0 0 4px;-moz-border-radius:4px 0 0 4px;border-radius:4px 0 0 4px}
+.table th, .table td{text-align: right;}
+.btn-success{display:inline-block;}
+.navbar span{display:inline-block;}
+.subtitle h2{display:inline-block;}
+.wrapper > .item > span{display:inline-block;}

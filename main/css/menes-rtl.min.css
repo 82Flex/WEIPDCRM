@@ -1,0 +1,5 @@
+p{text-align:right;}
+panel > footer  > p{text-align: center;}
+panel > block{direction:rtl;}
+panel > label{direction:rtl;}
+.author p, .maintainer p{direction:rtl;}

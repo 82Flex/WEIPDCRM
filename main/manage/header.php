@@ -1,19 +1,13 @@
 <?php
 if (!defined("DCRM")) {
 	header('HTTP/1.1 403 Forbidden');
-	exit();
+	exit('HTTP/1.1 403 Forbidden');
 }
-header("Content-Type: text/html; charset=UTF-8");
 
-// 设定绝对目录
-$root = str_replace('/manage/', '', str_replace('\\', '/', dirname(__FILE__).'/')).'/';
-define('ABSPATH', $root);
-unset( $root );
-
-// 载入语言
 $localetype = 'manage';
-include_once ABSPATH . 'lang/l10n.php';
-localization_load();
+define('MANAGE_ROOT', dirname(__FILE__).'/');
+define('ABSPATH', dirname(MANAGE_ROOT).'/');
+require_once ABSPATH.'system/common.inc.php';
 
 $sidebars = array(
 	array(
@@ -54,7 +48,7 @@ $sidebars = array(
         'type'  => 'title'
     ),
 	array(
-        'name'  => __('Running State'),
+        'name'  => __('Running Status'),
         'id'    => 'stats',
         'type'  => 'subtitle',
     ),
@@ -72,6 +66,7 @@ $sidebars = array(
 	<title>DCRM - <?php _e('Repository Manager');?></title>
 	<meta name="viewport" content="width=600px, minimal-ui">
 	<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+	<?php if(is_rtl()){ ?><link rel="stylesheet" type="text/css" href="css/bootstrap-rtl.min.css"><?php } ?>
 	<script type="text/javascript" src="http://libs.useso.com/js/jquery/1.4.2/jquery.min.js"></script>
 	<script type="text/javascript">
 	$(document).ready(function(){
@@ -96,7 +91,7 @@ $sidebars = array(
 	function setmargin(){
 		var div = document.getElementById('sidebar');
 		var width = div.style.width || div.clientWidth || div.offsetWidth || div.scrollWidth;
-		document.getElementById('content').style.marginLeft = width+1+'px';
+		<?php if(is_rtl()){ ?>document.getElementById('content').style.marginRight = width+1+'px';<?php } else { ?>document.getElementById('content').style.marginLeft = width+1+'px';<?php } ?>
 	}
 	window.onload=setmargin;
 	</script>
@@ -116,8 +111,8 @@ if ( isset($activeid) && ( 'view' == $activeid || 'edit' == $activeid || 'center
 			</div>
 			<div class="top-secondary">
 				<div class="btn-group pull-right">
-					<a href="build.php" class="btn btn-inverse"><?php _e('Refresh the list');?></a>
-					<a href="settings.php" class="btn btn-info<?php if ( isset($activeid) && 'settings' == $activeid ) echo ' disabled'; ?>"><?php _e('Settings');?></a>
+					<a href="build.php" class="btn btn-inverse"><?php _e('Rebuild the list');?></a>
+					<a href="settings.php" class="btn btn-info<?php if ( isset($activeid) && 'settings' == $activeid ) echo ' disabled'; ?>"><?php _ex('Preferences', 'Header');?></a>
 					<a href="login.php?action=logout" class="btn btn-info"><?php _e('Logout');?></a>
 				</div>
 			</div>
@@ -131,15 +126,15 @@ if ( isset($activeid) && ( 'view' == $activeid || 'edit' == $activeid || 'center
 foreach ($sidebars as $value) {
 	switch ( $value['type'] ) {
 		case 'title':
-			echo '<li class="nav-header">' . $value['title'] . '</li>';
+			echo "\t\t\t\t\t\t<li class=\"nav-header\">" . $value['title'] . "</li>\n";
 			break;
 		case 'subtitle':
 			if( ( isset($activeid) && $value['id'] == $activeid ) || ( isset($highactiveid) && $value['id'] == $highactiveid ) ){
-				echo '<li class="active">';
+				echo "\t\t\t\t\t\t\t<li class=\"active\">";
 			} else {
-				echo '<li>';
+				echo "\t\t\t\t\t\t\t<li>";
 			}
-			echo '<a href="' . $value['id'] . '.php">' . $value['name'] . '</a></li>';
+			echo '<a href="' . $value['id'] . '.php">' . $value['name'] . "</a></li>\n";
 	}
 }
 ?>
@@ -152,9 +147,12 @@ if ( isset($activeid) && ( 'view' == $activeid || 'edit' == $activeid || 'center
 					<ul class="nav nav-list">
 						<li class="nav-header">OPERATIONS</li>
 							<li<?php if ( isset($activeid) && 'view' == $activeid ) echo ' class="active"'; ?>><a href="javascript:opt(1)"><?php _e('View Details'); ?></a></li>
-							<li<?php if ( isset($activeid) && 'edit' == $activeid && !isset($_GET['action']) ) echo ' class="active"'?>><a href="javascript:opt(2)"><?php _e('General Editor'); ?></a></li>
-							<li<?php if ( isset($activeid) && 'edit' == $activeid && isset($_GET['action']) && ($_GET['action'] == 'advance' || $_GET['action'] == 'advance_set') ) echo ' class="active"'?>><a href="javascript:opt(3)"><?php _e('Advance Editor'); ?></a></li>
-							<?php if ( isset($activeid) && 'center' == $activeid ) echo '<li id="sli"></li>'; ?>
+							<li<?php if ( isset($activeid) && 'edit' == $activeid && !isset($_GET['action']) ) echo ' class="active"'?>><a href="javascript:opt(2)"><?php _e('General Editing'); ?></a></li>
+							<li<?php if ( isset($activeid) && 'edit' == $activeid && isset($_GET['action']) && ($_GET['action'] == 'advance' || $_GET['action'] == 'advance_set') ) echo ' class="active"'?>><a href="javascript:opt(3)"><?php _e('Advance Editing'); ?></a></li>
+<?php 
+	if ( isset($activeid) && 'center' == $activeid )
+		echo "\t\t\t\t\t\t\t<li id=\"sli\"></li>"; 
+?>
 					</ul>
 				</div>
 <?php

@@ -1,56 +1,53 @@
 <?php
-	/*
-	    This file is part of WEIPDCRM.
-	
-	    WEIPDCRM is free software: you can redistribute it and/or modify
-	    it under the terms of the GNU General Public License as published by
-	    the Free Software Foundation, either version 3 of the License, or
-	    (at your option) any later version.
-	
-	    WEIPDCRM is distributed in the hope that it will be useful,
-	    but WITHOUT ANY WARRANTY; without even the implied warranty of
-	    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-	    GNU General Public License for more details.
-	
-	    You should have received a copy of the GNU General Public License
-	    along with WEIPDCRM.  If not, see <http://www.gnu.org/licenses/>.
-	*/
-	
-	/* DCRM Upload Page */
-	
-	session_start();
-	ob_start();
-	define("DCRM",true);
-	require_once("include/config.inc.php");
-	header("Content-Type: text/html; charset=UTF-8");
-	$activeid = 'upload';
-	
-	function upload($file, $path = '../upload/', $name = '') {
-		if ($file["size"] <= 0) {
-			return "文件尺寸错误！";
-		}
-		if (pathinfo($_FILES['deb']['name'], PATHINFO_EXTENSION) != "deb") {
-			return "文件类型错误！";
-		}
-		if ($file["error"] > 0) {
-			return "上传失败，错误代码：" . $file["error"];
-		}
-		if (file_exists($path . $file["name"])) {
-			return $file["name"] . " 已经存在";
-		}
-		$name = ($name == '') ? $file["name"] : $name;
-		move_uploaded_file($file["tmp_name"], $path . $name);
-		return "上传成功：". $path . $name;
+/**
+ * This file is part of WEIPDCRM.
+ * 
+ * WEIPDCRM is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * WEIPDCRM is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ * 
+ * You should have received a copy of the GNU General Public License
+ * along with WEIPDCRM.  If not, see <http://www.gnu.org/licenses/>.
+ */
+
+/* DCRM Upload Page */
+
+session_start();
+define("DCRM",true);
+$activeid = 'upload';
+
+function upload($file, $path = '../upload/', $name = '') {
+	if ($file["size"] <= 0) {
+		return __('File size incorrect!');
+	}
+	if (pathinfo($_FILES['deb']['name'], PATHINFO_EXTENSION) != "deb") {
+		return __('File type incorrect!');
+	}
+	if ($file["error"] > 0) {
+		return sprintf(__('Upload failed, Error Code: %s.'), $file["error"]);
+	}
+	if (file_exists($path . $file["name"])) {
+		return sprintf(__('%s already exists.'), $file["name"]);
+	}
+	$name = ($name == '') ? $file["name"] : $name;
+	move_uploaded_file($file["tmp_name"], $path . $name);
+	return sprintf(__('Uploaded successfully: %s.'), $path . $name);
+}
+
+if (isset($_SESSION['connected']) && $_SESSION['connected'] === true) {
+	if (isset($_GET['action']) && $_GET['action'] == "upload" && !empty($_FILES)) {
+		echo upload($_FILES["deb"]);
+		exit();
 	}
 
-	if (isset($_SESSION['connected']) && $_SESSION['connected'] === true) {
-		if (isset($_GET['action']) && $_GET['action'] == "upload" && !empty($_FILES)) {
-			echo upload($_FILES["deb"]);
-			exit();
-		}
-
-		require_once("header.php");
-		if (!isset($_GET['action']) && !isset($_GET['mode'])) {
+	require_once("header.php");
+	if (!isset($_GET['action']) && !isset($_GET['mode'])) {
 ?>
 <script type="text/javascript">
 function flashChecker(){
@@ -79,35 +76,35 @@ else window.location.replace('./upload.php?mode=classic');
 </script>
 <?php
 		exit();
-		}
-		if (isset($_GET['mode']) && $_GET['mode'] == 'multiple') {
+	}
+	if (isset($_GET['mode']) && $_GET['mode'] == 'multiple') {
 ?>
-				<div class="subtitle"><h2>上传软件包</h2><span>无法上传文件？尝试<a href="./upload.php?mode=classic">普通方式上传</a></span></div>
+				<div class="subtitle"><h2><?php _e('Upload Packages'); ?></h2><span><?php printf(__('Unable to upload files? Try %s.'), '<a href="./upload.php?mode=classic">'.__('classic uploader').'</a>'); ?></span></div>
 				<br />
 				<div class="form-horizontal">
 					<fieldset>
 						<div class="group-control">
-							<label class="control-label">请选择要上传的软件包</label>
+							<label class="control-label"><?php _e('Please select packages'); ?></label>
 							<div class="controls" style="width: 400px;">
 								<input type="file" name="file_upload" id="file_upload" />
-								<p class="help-block" id="tips">提示：按住Ctrl(⌘)键可多选</p>
+								<p class="help-block" id="tips"><?php _e('Tip: Select multiple packages by hold down Ctrl(⌘) key while you click the packages.'); ?></p>
 							</div>
 						</div>
 						<div class="form-actions">
 							<div class="controls">
-								<a class="btn btn-success" href="javascript:$('#file_upload').uploadify('settings', 'formData', {'typeCode':document.getElementById('id_file').value});$('#file_upload').uploadify('upload','*')">上传</a>
-								<a class="btn btn-success" href="javascript:$('#file_upload').uploadify('cancel','*')">重置上传队列</a>
+								<a class="btn btn-success" href="javascript:$('#file_upload').uploadify('settings', 'formData', {'typeCode':document.getElementById('id_file').value});$('#file_upload').uploadify('upload','*')"><?php _e('Upload'); ?></a>
+								<a class="btn btn-success" href="javascript:$('#file_upload').uploadify('cancel','*')"><?php _ex('Reset', 'Upload'); ?></a>
 							</div>
 							<input type="hidden" value="1215154" name="tmpdir" id="id_file">
 						</div>
 					</fieldset>
 				</div>
-				<h3>操作提示</h3>
+				<h3><?php _e('Tips'); ?></h3>
 				<br />
-				<h4 class="alert alert-info">· 允许的数据类型：application/x-deb；
-				<br />· 单文件最大上传限制：10M
-				<br />· 请勿上传可能扰乱互联网安全秩序的数据；
-				<br />· 请上传标准封装的 Debian 软件包，否则可能会导致数据丢失。</h4>
+				<h4 class="alert alert-info">· <?php _e('Allowed data type: '); ?>application/x-deb<?php _ex(';', 'Separator'); ?>
+				<br />· <?php _e('Upload max filesize: '); ?>10M<?php _ex(';', 'Separator'); ?>
+				<br />· <?php _e('Please do not upload disrupt the Internet security data'); _ex(';', 'Separator'); ?>
+				<br />· <?php _e('Please upload the standard package of Debian software package, otherwise it may cause loss of data.'); ?></h4>
 			</div>
 		</div>
 	</div>
@@ -124,7 +121,7 @@ $(function() {
         'swf'      : 'js/uploadify.swf',
         'uploader' : 'js/uploadify.php',
         'method'   : 'post',//方法，服务端可以用$_POST数组获取数据
-        'buttonText' : '选择文件',//设置按钮文本
+        'buttonText' : '<?php _e('SELECT FILES'); ?>',//设置按钮文本
         'multi'    : true,//允许同时上传多文件
         'uploadLimit' : 10,//一次最多只允许上传10个文件
         'fileTypeDesc' : 'Debian Software Package',//只允许上传的文件种类
@@ -144,35 +141,35 @@ $(function() {
 });
 </script>
 <?php
-		}
-		if (isset($_GET['mode']) && $_GET['mode'] == 'classic') {
+	}
+	if (isset($_GET['mode']) && $_GET['mode'] == 'classic') {
 ?>
-				<div class="subtitle"><h2>上传软件包</h2><span>无法上传文件？尝试<a href="./upload.php?mode=multiple">更多方式上传</a></span></div>
+				<div class="subtitle"><h2><?php _e('Upload Packages'); ?></h2><span><?php printf(__('Unable to upload files? Try %s.'), '<a href="./upload.php?mode=multiple">'.__('multiple uploader').'</a>'); ?></span></div>
 				<br />
-				<h3>选择文件</h3>
+				<h3><?php _e('Select File'); ?></h3>
 				<br />
 				<form class="form-horizontal" method="POST" enctype="multipart/form-data" action="upload.php?action=upload">
 					<fieldset>
 						<div class="group-control">
-							<label class="control-label">请选择一个软件包</label>
+							<label class="control-label"><?php _e('Please select a package'); ?></label>
 							<div class="controls">
 								<input type="file" id="deb" class="span6" name="deb" accept="application/x-deb" />
-								<p class="help-block" id="tips">准备就绪</p>
+								<p class="help-block" id="tips"><?php _e('Ready'); ?></p>
 							</div>
 						</div>
 						<div class="form-actions">
 							<div class="controls">
-								<button type="button" class="btn btn-success" onclick="return ajaxFileUpload();">上传</button>
+								<button type="button" class="btn btn-success" onclick="return ajaxFileUpload();"><?php _e('Upload'); ?></button>
 							</div>
 						</div>
 					</fieldset>
 				</form>
-				<h3>操作提示</h3>
+				<h3><?php _e('Tips'); ?></h3>
 				<br />
-				<h4 class="alert alert-info">· 允许的数据类型：application/x-deb；
-				<br />· 服务器最大上传限制：<?php echo(ini_get("file_uploads") ? ini_get("upload_max_filesize") : "Disabled"); ?>
-				<br />· 请勿上传可能扰乱互联网安全秩序的数据；
-				<br />· 请上传标准封装的 Debian 软件包，否则可能会导致数据丢失。</h4>
+				<h4 class="alert alert-info">· <?php _e('Allowed data type: '); ?>application/x-deb<?php _ex(';', 'Separator'); ?>
+				<br />· <?php _e('Upload max filesize: '); ?><?php echo(ini_get("file_uploads") ? ini_get("upload_max_filesize") : __('Disabled')); _ex(';', 'Separator'); ?>
+				<br />· <?php _e('Please do not upload disrupt the Internet security data'); _ex(';', 'Separator'); ?>
+				<br />· <?php _e('Please upload the standard package of Debian software package, otherwise it may cause loss of data.'); ?></h4>
 			</div>
 		</div>
 	</div>
@@ -183,7 +180,7 @@ $(function() {
 			fakepath = document.getElementById("deb").value;
 			if (fakepath != "") {
 				if (/\.[^\.]+$/.exec(fakepath) == ".deb") {
-					$("#tips").html("上传中，请稍等……");
+					$("#tips").html("<?php _e('Please wait for uploading...'); ?>");
 					$.ajaxFileUpload(
 						{
 							url: "upload.php?action=upload",
@@ -197,24 +194,23 @@ $(function() {
 					);
 					return true;
 				} else {
-					$("#tips").html("不允许的文件类型！");
+					$("#tips").html("<?php _e('Invalid file type!'); ?>");
 					return false;
 				}
 			} else {
-				$("#tips").html("请选择一个软件包！");
+				$("#tips").html("<?php _e('Please select a package!');?>");
 				return false;
 			}
 		}
 	</script>
 <?php
-		}
+	}
 ?>
 </body>
 </html>
 <?php
-	}
-	else {
-		header("Location: login.php");
-		exit();
-	}
+} else {
+	header("Location: login.php");
+	exit();
+}
 ?>

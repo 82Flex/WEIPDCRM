@@ -492,7 +492,8 @@ input,textarea,.uneditable-input,.btn:first-child,.btn-group:first-child{margin-
 .subtitle span{margin-left: 10px;}
 .table .close{float:none;text-align:center;margin:0 10px}
 .table ul{margin: 0 0 9px 0;}
+.language optgroup{font-style: normal;}
 @media only screen and (max-width:830px){
 .form-horizontal .control-label{width:auto;float: none;text-align: left;}
-.form-horizontal .controls{display: block;width:100%;}
+.form-horizontal .controls{display: block;width:100%;position: relative;}
 }

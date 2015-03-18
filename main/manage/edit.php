@@ -1,229 +1,210 @@
 <?php
-	/*
-		This file is part of WEIPDCRM.
-	
-	    WEIPDCRM is free software: you can redistribute it and/or modify
-	    it under the terms of the GNU General Public License as published by
-	    the Free Software Foundation, either version 3 of the License, or
-	    (at your option) any later version.
-	
-	    WEIPDCRM is distributed in the hope that it will be useful,
-	    but WITHOUT ANY WARRANTY; without even the implied warranty of
-	    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-	    GNU General Public License for more details.
-	
-	    You should have received a copy of the GNU General Public License
-	    along with WEIPDCRM.  If not, see <http://www.gnu.org/licenses/>.
-	*/
-	
-	/* DCRM Debian Edit */
-	
-	session_start();
-	ob_start();
-	define("DCRM",true);
-	require_once("include/config.inc.php");
-	require_once("include/autofill.inc.php");
-	require_once("include/connect.inc.php");
-	require_once("include/func.php");
-	header("Content-Type: text/html; charset=UTF-8");
-	$activeid = 'edit';
-	
-	if (isset($_SESSION['connected']) && $_SESSION['connected'] === true) {
-		$con = mysql_connect(DCRM_CON_SERVER, DCRM_CON_USERNAME, DCRM_CON_PASSWORD);
-		if (is_numeric($_GET['id'])) {
-			$request_id = (int)$_GET['id'];
-			if ($request_id < 1) {
-				echo("非法请求！");
-				exit();
-			}
-		} else {
-			echo("非法请求！");
+/**
+ * This file is part of WEIPDCRM.
+ * 
+ * WEIPDCRM is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * WEIPDCRM is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ * 
+ * You should have received a copy of the GNU General Public License
+ * along with WEIPDCRM.  If not, see <http://www.gnu.org/licenses/>.
+ */
+
+/* DCRM Debian Edit */
+
+session_start();
+define("DCRM",true);
+$activeid = 'edit';
+
+if (isset($_SESSION['connected']) && $_SESSION['connected'] === true) {
+	if (is_numeric($_GET['id'])) {
+		$request_id = (int)$_GET['id'];
+		if ($request_id < 1) {
+			_e('Illegal request!');
 			exit();
 		}
-		if (!$con) {
-			echo("数据库出现错误：".mysql_error());
-			exit();
-		}
-		mysql_query("SET NAMES utf8");
-		$select  = mysql_select_db(DCRM_CON_DATABASE);
-		if (!$select) {
-			echo("数据库出现错误：".mysql_error());
-			exit();
-		}
-		
-		require_once("header.php");
+	} else {
+		_e('Illegal request!');
+		exit();
+	}
+
+	require_once("header.php");
 ?>
 			<input type="radio" name="package" value="<?php echo($request_id); ?>" style="display: none;" checked="checked" />
-				<?php
-					if (!isset($_GET['action']) AND !empty($_GET['id'])) {
-						$e_query = mysql_query("SELECT * FROM `".DCRM_CON_PREFIX."Packages` WHERE `ID` = '" . $request_id . "'",$con);
-						if (!$e_query) {
-							goto endlabel;
-						}
-						$edit_info = mysql_fetch_assoc($e_query);
-						if (!$edit_info) {
-							goto endlabel;
-						}
-				?>
-				<h2>常规编辑</h2>
+<?php
+	if (!isset($_GET['action']) AND !empty($_GET['id'])) {
+		$e_query = DB::query("SELECT * FROM `".DCRM_CON_PREFIX."Packages` WHERE `ID` = '" . $request_id . "'",$con);
+		if (!$e_query) {
+			goto endlabel;
+		}
+		$edit_info = mysql_fetch_assoc($e_query);
+		if (!$edit_info) {
+			goto endlabel;
+		}
+?>
+				<h2><?php _e('General Editing'); ?></h2>
 				<br />
 				<form class="form-horizontal" method="POST" action="edit.php?action=set&id=<?php echo $request_id; ?>">
 					<fieldset>
 						<div class="group-control">
-							<label class="control-label">* <a onclick="javascript:autofill(1);" href="#">标识符</a></label>
+							<label class="control-label">* <a onclick="javascript:autofill(1);" href="#"><?php _e('Identifier'); ?></a></label>
 							<div class="controls">
 								<input type="text" style="width: 400px;" required="required" name="Package" value="<?php if (!empty($edit_info['Package'])) {echo htmlspecialchars($edit_info['Package']);} ?>"/>
 							</div>
 						</div>
 						<br />
 						<div class="group-control">
-							<label class="control-label">* <a onclick="javascript:autofill(2);" href="#">名称</a></label>
+							<label class="control-label">* <a onclick="javascript:autofill(2);" href="#"><?php _e('Name'); ?></a></label>
 							<div class="controls">
 								<input type="text" style="width: 400px;" required="required" name="Name" value="<?php if (!empty($edit_info['Name'])) {echo htmlspecialchars($edit_info['Name']);} ?>"/>
 							</div>
 						</div>
 						<br />
 						<div class="group-control">
-							<label class="control-label">* <a onclick="javascript:autofill(3);" href="#">版本</a></label>
+							<label class="control-label">* <a onclick="javascript:autofill(3);" href="#"><?php _e('Version'); ?></a></label>
 							<div class="controls">
 								<input type="text" style="width: 400px;" required="required" name="Version" value="<?php if (!empty($edit_info['Version'])) {echo htmlspecialchars($edit_info['Version']);} ?>"/>
 							</div>
 						</div>
 						<br />
 						<div class="group-control">
-							<label class="control-label">* <a onclick="javascript:autofill(4);" href="#">作者</a></label>
+							<label class="control-label">* <a onclick="javascript:autofill(4);" href="#"><?php _e('Author'); ?></a></label>
 							<div class="controls">
 								<input type="text" style="width: 400px;" required="required" name="Author" value="<?php if (!empty($edit_info['Author'])) {echo htmlspecialchars($edit_info['Author']);} ?>"/>
 							</div>
 						</div>
 						<br />
 						<div class="group-control">
-							<label class="control-label" required="required">* <a onclick="javascript:autofill(5);" href="#">分类</a></label>
+							<label class="control-label" required="required">* <a onclick="javascript:autofill(5);" href="#"><?php _e('Section'); ?></a></label>
 							<div class="controls">
 								<select name="Section" style="width: 400px;">
-								<?php
-									$s_query = mysql_query("SELECT `ID`, `Name` FROM `".DCRM_CON_PREFIX."Sections` ORDER BY `ID` ASC",$con);
-									if (!$s_query) {
-										goto endlabel;
-									}
-									echo '<option value="' . htmlspecialchars($edit_info['Section']) . '" selected="selected">' . htmlspecialchars($edit_info['Section']) . '</option>';
-									while($s_list = mysql_fetch_assoc($s_query)) {
-										if ($s_list['Name'] != $edit_info['Section']) {
-											echo '<option value="' . htmlspecialchars($s_list['Name']) . '">' . htmlspecialchars($s_list['Name']) . '</option>';
-										}
-									}
-								?>
+<?php
+		$s_query = DB::query("SELECT `ID`, `Name` FROM `".DCRM_CON_PREFIX."Sections` ORDER BY `ID` ASC",$con);
+		if (!$s_query) {
+			goto endlabel;
+		}
+		echo '<option value="' . htmlspecialchars($edit_info['Section']) . '" selected="selected">' . htmlspecialchars($edit_info['Section']) . '</option>';
+		while($s_list = mysql_fetch_assoc($s_query)) {
+			if ($s_list['Name'] != $edit_info['Section']) {
+				echo '<option value="' . htmlspecialchars($s_list['Name']) . '">' . htmlspecialchars($s_list['Name']) . '</option>';
+			}
+		}
+?>
 								</select>
 							</div>
 						</div>
 						<br />
 						<div class="group-control">
-							<label class="control-label"><a onclick="javascript:autofill(6);" href="#">提供者</a></label>
+							<label class="control-label"><a onclick="javascript:autofill(6);" href="#"><?php _e('Maintainer'); ?></a></label>
 							<div class="controls">
 								<input type="text" style="width: 400px;" name="Maintainer" value="<?php if (!empty($edit_info['Maintainer'])) {echo htmlspecialchars($edit_info['Maintainer']);} ?>"/>
 							</div>
 						</div>
 						<br />
 						<div class="group-control">
-							<label class="control-label"><a onclick="javascript:autofill(7);" href="#">保证人</a></label>
+							<label class="control-label"><a onclick="javascript:autofill(7);" href="#"><?php _e('Sponsor'); ?></a></label>
 							<div class="controls">
 								<input type="text" style="width: 400px;" name="Sponsor" value="<?php if (!empty($edit_info['Sponsor'])) {echo htmlspecialchars($edit_info['Sponsor']);} ?>"/>
 							</div>
 						</div>
 						<br />
 						<div class="group-control">
-							<label class="control-label"><a onclick="javascript:autofill(8);" href="#">预览页</a></label>
+							<label class="control-label"><a onclick="javascript:autofill(8);" href="#"><?php _e('Depiction'); ?></a></label>
 							<div class="controls">
-							<?php
-							$repourl = base64_decode(DCRM_REPOURL);
-							$repourl = substr($repourl, -1) == '/' ? $repourl : $repourl.'/'; 
-							$depiction_url = $repourl . 'index.php?pid=' . $request_id;
-							?>
+<?php
+		$repourl = base64_decode(DCRM_REPOURL);
+		$repourl = substr($repourl, -1) == '/' ? $repourl : $repourl.'/'; 
+		$depiction_url = $repourl . 'index.php?pid=' . $request_id;
+?>
 								<input id="urlinput" type="text" style="width: 400px;" name="Depiction" value="<?php echo !empty($edit_info['Depiction']) ? htmlspecialchars($edit_info['Depiction']) : '' ?>"/>
-								<p class="help-block">默认预览页为：<?php echo($depiction_url); ?></p>
-								<p class="help-block"><a class="btn btn-warning" href="<?php echo($depiction_url); ?>" target="_blank">单击预览默认预览页</a></p>
+								<p class="help-block"><?php printf(__('Default Depiction: %s'), $depiction_url); ?></p>
+								<p class="help-block"><a class="btn btn-warning" href="<?php echo($depiction_url); ?>" target="_blank"><?php _e('Preview Default Depiction'); ?></a></p>
 							</div>
 						</div>
 						<br />
 						<div class="group-control">
-							<label class="control-label"><a onclick="javascript:autofill(9);" href="#">描述</a></label>
+							<label class="control-label"><a onclick="javascript:autofill(9);" href="#"><?php _e('Description'); ?></a></label>
 							<div class="controls">
 								<textarea type="text" style="height: 40px; width: 400px;" name="Description"><?php if (!empty($edit_info['Description'])) {echo htmlspecialchars($edit_info['Description']);} ?></textarea>
 							</div>
 						</div>
 						<br />
 <?php
-						if (DCRM_MULTIINFO == 2) {
+		if (DCRM_MULTIINFO == 2) {
 ?>
 						<div class="group-control">
-							<label class="control-label">详细描述</label>
+							<label class="control-label"><?php _e('Detailed Description'); ?></label>
 							<div class="controls">
 								<textarea id="kind" type="text" style="height: 400px; width: 408px; visibility: hidden;" name="Multi"><?php if (!empty($edit_info['Multi'])) {echo htmlspecialchars($edit_info['Multi']);} ?></textarea>
 							</div>
 						</div>
 						<br />
 <?php
-						}
+		}
 ?>
 						<div class="form-actions">
 							<div class="controls">
-								<button type="submit" class="btn btn-success">保存</button>　
+								<button type="submit" class="btn btn-success"><?php _e('Save'); ?></button>　
 							</div>
 						</div>
 					</fieldset>
 				</form>
-				<?php
-					}
-					elseif (!empty($_GET['action']) AND $_GET['action'] == "set" AND !empty($_GET['id'])) {
-						foreach ($_POST AS $p_key => $p_value) {
-							$new_key = mysql_real_escape_string($p_key);
-							$new_value = mysql_real_escape_string($p_value);
-							$new_id = (int)$_GET['id'];
-							if (strlen($new_value) >= 1 AND strlen($new_key) >= 1 AND $new_id >= 1) {
-								if ($new_value == 'NULL') {
-									$new_value = '';
-								}
-								$new_query = mysql_query("UPDATE `".DCRM_CON_PREFIX."Packages` SET `" . $new_key . "` = '" . $new_value . "' WHERE `ID` = '" . $new_id . "'",$con);
-								if (!$new_query) {
-									goto endlabel;
-								}
-							}
-						}
-						echo '<h2>更新数据库</h2><br />';
-						echo '<h3 class="alert">软件包信息常规编辑完成！<br />修改带星号的字段后，您必须将其写入安装包才能安全地刷新列表。';
-						echo '<br /><a href="output.php?id='.$new_id.'">立即写入</a>　<a href="javascript:history.go(-1);">返回</a></h3>';
-					}
-					elseif (!empty($_GET['action']) AND $_GET['action'] == "advance" AND !empty($_GET['id'])) {
-						$e_query = mysql_query("SELECT * FROM `".DCRM_CON_PREFIX."Packages` WHERE `ID` = '" . $request_id . "'",$con);
-						if (!$e_query) {
-							goto endlabel;
-						}
-						$edit_info = mysql_fetch_assoc($e_query);
-						if (!$edit_info) {
-							goto endlabel;
-						}
-						?>
-				<h2>高级编辑</h2>
+<?php
+	} elseif (!empty($_GET['action']) AND $_GET['action'] == "set" AND !empty($_GET['id'])) {
+		foreach ($_POST AS $p_key => $p_value) {
+			$new_key = DB::real_escape_string($p_key);
+			$new_value = DB::real_escape_string($p_value);
+			$new_id = (int)$_GET['id'];
+			if (strlen($new_value) >= 1 AND strlen($new_key) >= 1 AND $new_id >= 1) {
+				if ($new_value == 'NULL') {
+					$new_value = '';
+				}
+				$new_query = DB::query("UPDATE `".DCRM_CON_PREFIX."Packages` SET `" . $new_key . "` = '" . $new_value . "' WHERE `ID` = '" . $new_id . "'",$con);
+				if (!$new_query) {
+					goto endlabel;
+				}
+			}
+		}
+		echo '<h2>'.__('Update Database').'</h2><br />';
+		echo '<h3 class="alert">'.__('The package information edited!').'<br />'.__('After modify the fields with an asterisk, you must write into package then safely rebuild list.');
+		echo '<br /><a href="output.php?id='.$new_id.'">'.__('Write Now').'</a>　<a href="javascript:history.go(-1);">'.__('Back').'</a></h3>';
+	} elseif (!empty($_GET['action']) AND $_GET['action'] == "advance" AND !empty($_GET['id'])) {
+		$e_query = DB::query("SELECT * FROM `".DCRM_CON_PREFIX."Packages` WHERE `ID` = '" . $request_id . "'",$con);
+		if (!$e_query) {
+			goto endlabel;
+		}
+		$edit_info = mysql_fetch_assoc($e_query);
+		if (!$edit_info) {
+			goto endlabel;
+		}
+?>
+				<h2><?php _e('Advance Editing'); ?></h2>
 				<br />
 				<form class="form-horizontal" method="POST" action="edit.php?action=advance_set&id=<?php echo $request_id; ?>">
 					<fieldset>
 						<div class="group-control">
-							<label class="control-label">* 修改字段</label>
+							<label class="control-label">* <?php _ex('Field', 'Advance Editing'); ?></label>
 							<div class="controls">
 								<input type="hidden" id="item_id" value="<?php echo $request_id; ?>" />
 								<select id="item_adv" style="width: 400px;" name="Advance" onChange="javascript:ajax();" >
-								<?php
-									$z_query = mysql_query("SELECT `COLUMN_NAME` FROM `information_schema`.`COLUMNS` WHERE `TABLE_SCHEMA`='".DCRM_CON_DATABASE."' and `TABLE_NAME`='".DCRM_CON_PREFIX."Packages' order by COLUMN_NAME");
-									while($z_list = mysql_fetch_assoc($z_query)) {
-										echo '<option value="'.$z_list['COLUMN_NAME'].'">'.$z_list['COLUMN_NAME'].'</option>';
-									}
-								?>
+<?php
+		$z_query = DB::query("SELECT `COLUMN_NAME` FROM `information_schema`.`COLUMNS` WHERE `TABLE_SCHEMA`='".DCRM_CON_DATABASE."' and `TABLE_NAME`='".DCRM_CON_PREFIX."Packages' order by COLUMN_NAME");
+		while($z_list = mysql_fetch_assoc($z_query)) {
+			echo '<option value="'.$z_list['COLUMN_NAME'].'">'.$z_list['COLUMN_NAME'].'</option>';
+		}
+?>
 								</select>
 							</div>
 						</div>
 						<br />
 						<div class="group-control">
-							<label class="control-label">* <a href="javascript:autofill(10)">修改内容</a></label>
+							<label class="control-label">* <a href="javascript:autofill(10)"><?php _ex('Content', 'Advance Editing'); ?></a></label>
 							<div class="controls">
 								<textarea type="text" style="height: 200px; width: 400px;" required="required" name="NewContents" id="contents" >iphoneos-arm</textarea>
 							</div>
@@ -231,67 +212,60 @@
 						<br />
 						<div class="form-actions">
 							<div class="controls">
-								<button type="submit" class="btn btn-success">保存</button>　
+								<button type="submit" class="btn btn-success"><?php _e('Save'); ?></button>　
 							</div>
 						</div>
 					</fieldset>
 				</form>
-						<?php
-					}
-					elseif (!empty($_GET['action']) AND $_GET['action'] == "advance_set" AND !empty($_GET['id'])) {
-						$a_key = mysql_real_escape_string($_POST['Advance']);
-						$a_value = mysql_real_escape_string($_POST['NewContents']);
-						$a_id = (int)$_GET['id'];
-						if (strlen($a_value) >= 1 AND strlen($a_key) >= 1 AND $a_id >= 1) {
-							if ($a_value == 'NULL') {
-								$a_value = '';
-							}
-							$a_query = mysql_query("UPDATE `".DCRM_CON_PREFIX."Packages` SET `" . $a_key . "` = '" . $a_value . "' WHERE `ID` = '" . $a_id . "'",$con);
-							if (!$a_query) {
-								goto endlabel;
-							}
-						}
-						echo '<h2>更新数据库</h2><br />';
-						echo '<h3 class="alert">软件包信息高级编辑完成！<br />修改带星号的字段后，您必须将其写入安装包才能安全地刷新列表。';
-						echo '<br /><a href="output.php?id='.$a_id.'">立即写入</a>　<a href="javascript:history.go(-1);">返回</a></h3>';
-					}
-					if (!$con) {
-						endlabel:
-						echo '<h3 class="alert alert-error">数据库出现错误！<br /><a href="javascript:history.go(-2);">返回</a></h3>';
-					}
-					else {
-						mysql_close($con);
-					}
-				?>
+<?php
+	} elseif (!empty($_GET['action']) AND $_GET['action'] == "advance_set" AND !empty($_GET['id'])) {
+		$a_key = DB::real_escape_string($_POST['Advance']);
+		$a_value = DB::real_escape_string($_POST['NewContents']);
+		$a_id = (int)$_GET['id'];
+		if (strlen($a_value) >= 1 AND strlen($a_key) >= 1 AND $a_id >= 1) {
+			if ($a_value == 'NULL') {
+				$a_value = '';
+			}
+			$a_query = DB::query("UPDATE `".DCRM_CON_PREFIX."Packages` SET `" . $a_key . "` = '" . $a_value . "' WHERE `ID` = '" . $a_id . "'",$con);
+			if (!$a_query) {
+				goto endlabel;
+			}
+		}
+		echo '<h2>'.__('Update Database').'</h2><br />';
+		echo '<h3 class="alert">'.__('The package information edited!').'<br />'.__('After modify the fields with an asterisk, you must write into package then safely rebuild list.');
+		echo '<br /><a href="output.php?id='.$new_id.'">'.__('Write Now').'</a>　<a href="javascript:history.go(-1);">'.__('Back').'</a></h3>';
+	}
+	endlabel:
+?>
 			</div>
 		</div>
 	</div>
 	</div>
 	<script charset="utf-8" src="js/kindeditor.min.js"></script>
-	<script charset="utf-8" src="js/lang/zh_CN.js"></script>
+	<script charset="utf-8" src="js/lang/<?php echo $kdlang = check_languages(array($locale), true);?>.js"></script>
 	<script type="text/javascript">
 	KindEditor.ready(function(K) {
 		K.each({
 			'plug-align' : {
-				name : '对齐方式',
+				name : '<?php _e('Align'); ?>',
 				method : {
-					'justifyleft' : '左对齐',
-					'justifycenter' : '居中对齐',
-					'justifyright' : '右对齐'
+					'justifyleft' : '<?php _ex('Left', 'Align'); ?>',
+					'justifycenter' : '<?php _ex('Center', 'Align'); ?>',
+					'justifyright' : '<?php _ex('Right', 'Align'); ?>'
 				}
 			},
 			'plug-order' : {
-				name : '编号',
+				name : '<?php _ex('List', 'Edit'); ?>',
 				method : {
-					'insertorderedlist' : '数字编号',
-					'insertunorderedlist' : '项目编号'
+					'insertorderedlist' : '<?php _e('Ordered list'); ?>',
+					'insertunorderedlist' : '<?php _e('Unordered list'); ?>'
 				}
 			},
 			'plug-indent' : {
-				name : '缩进',
+				name : '<?php _e('Indent'); ?>',
 				method : {
-					'indent' : '向右缩进',
-					'outdent' : '向左缩进'
+					'indent' : '<?php _e('Increase indent'); ?>',
+					'outdent' : '<?php _e('Decrease indent'); ?>'
 				}
 			}
 		},function( pluginName, pluginData ){
@@ -319,6 +293,7 @@
 			});
 		});
 		K.create('#kind', {
+			langType : '<?php echo $kdlang; ?>',
 			themeType : 'qq',
 			items : [
 				'source','bold','italic','underline','fontname','fontsize','forecolor','hilitecolor','plug-align','plug-order','plug-indent','link','removeformat'
@@ -331,7 +306,7 @@
 		return 0;
 	}
 	function ajax() {
-		document.getElementById("contents").innerHTML="数据加载中";
+		document.getElementById("contents").innerHTML="<?php _e('Data loading'); ?>";
 		xmlhttp = new XMLHttpRequest();
 		xmlhttp.open("POST","hint.php",true);
 		xmlhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
@@ -341,7 +316,7 @@
 				if (xmlhttp.status == 200) {
 					document.getElementById("contents").innerHTML=xmlhttp.responseText;
 				} else {
-					document.getElementById("contents").innerHTML="数据库错误";
+					document.getElementById("contents").innerHTML="<?php _e('Database Error'); ?>";
 				}
 				xmlhttp.close();
 			}
@@ -480,9 +455,8 @@
 </body>
 </html>
 <?php
-	}
-	else {
-		header("Location: login.php");
-		exit();
-	}
+} else {
+	header("Location: login.php");
+	exit();
+}
 ?>
