@@ -159,7 +159,9 @@ if ($isCydia) {
 		<link rel="shortcut icon" href="favicon.ico">
 		<link rel="stylesheet" href="css/menes.min.css">
 		<link rel="stylesheet" href="css/scroll.min.css">
-		<?php if(is_rtl()){ ?><link rel="stylesheet" href="css/menes-rtl.min.css"><?php } ?>
+<?php if(is_rtl()){ ?>		<link rel="stylesheet" href="css/menes-rtl.min.css"><?php } ?>
+<?php if(file_exists(ROOT.'css/font/'.substr($locale, 0, 2).'.css')){ ?>		<link rel="stylesheet" type="text/css" href="./css/font/<?php echo substr($locale, 0, 2); ?>.css"><?php echo "\n"; } ?>
+<?php if(file_exists(ROOT.'css/font/'.$locale.'.css')){ ?>		<link rel="stylesheet" type="text/css" href="./css/font/<?php echo $locale; ?>.css"><?php echo "\n"; } ?>
 		<script src="js/fastclick.js" type="text/javascript"></script>
 		<script src="js/menes.js" type="text/javascript"></script>
 		<script src="js/cytyle.js" type="text/javascript"></script>

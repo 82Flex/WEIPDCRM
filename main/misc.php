@@ -67,7 +67,9 @@ if (defined("AUTOFILL_KEYWORDS")) {
 		<link rel="shortcut icon" href="favicon.ico" />
 		<link href="css/bootstrap.min.css" rel="stylesheet">
 		<link href="css/misc.min.css" rel="stylesheet" media="screen">
-		<?php if(is_rtl()){ ?><link href="css/misc-rtl.min.css" rel="stylesheet" media="screen"><?php } ?>
+<?php if(is_rtl()){ ?>		<link rel="stylesheet" type="text/css" href="css/bootstrap-rtl.min.css"><?php } ?>
+<?php if(file_exists(ROOT.'css/font/'.substr($locale, 0, 2).'.css')){ ?>		<link rel="stylesheet" type="text/css" href="./css/font/<?php echo substr($locale, 0, 2); ?>.css"><?php echo "\n"; } ?>
+<?php if(file_exists(ROOT.'css/font/'.$locale.'.css')){ ?>		<link rel="stylesheet" type="text/css" href="./css/font/<?php echo $locale; ?>.css"><?php echo "\n"; } ?>
 	</head>
 	<body>
 		<div class="well">

@@ -66,7 +66,9 @@ $sidebars = array(
 	<title>DCRM - <?php _e('Repository Manager');?></title>
 	<meta name="viewport" content="width=600px, minimal-ui">
 	<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
-	<?php if(is_rtl()){ ?><link rel="stylesheet" type="text/css" href="css/bootstrap-rtl.min.css"><?php } ?>
+<?php if(is_rtl()){ ?>	<link rel="stylesheet" type="text/css" href="css/bootstrap-rtl.min.css"><?php echo "\n"; } ?>
+<?php if(file_exists(ROOT.'css/font/'.substr($locale, 0, 2).'.css')){ ?>	<link rel="stylesheet" type="text/css" href="../css/font/<?php echo substr($locale, 0, 2); ?>.css"><?php echo "\n"; } ?>
+<?php if(file_exists(ROOT.'css/font/'.$locale.'.css')){ ?>	<link rel="stylesheet" type="text/css" href="../css/font/<?php echo $locale; ?>.css"><?php echo "\n"; } ?>
 	<script type="text/javascript" src="http://libs.useso.com/js/jquery/1.4.2/jquery.min.js"></script>
 	<script type="text/javascript">
 	$(document).ready(function(){
@@ -102,7 +104,7 @@ if ( isset($activeid) && ( 'view' == $activeid || 'edit' == $activeid || 'center
 	echo '	<script src="js/mbar.js" type="text/javascript"></script>';
 ?>
 </head>
-<body>
+<body class="manage">
 	<div class="container">
 		<div class="row">
 			<div class="span" id="logo">
