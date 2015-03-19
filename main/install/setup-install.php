@@ -26,7 +26,7 @@ header('Content-Type: text/html; charset=utf-8');
 define("DCRM",true);
 
 error_reporting(E_ALL ^ E_WARNING);
-include_once 'function.php';
+require_once('function.php');
 
 $header_title = __( 'Installer' );
 
@@ -355,13 +355,16 @@ if(isset($_GET['redirect']) && $_GET['redirect'] ){
 			mkdir("../tmp");
 			if (!file_exists(ABSPATH.'CydiaIcon.png'))
 				copy("CydiaIcon.png", "../CydiaIcon.png");
+			if (!file_exists(ABSPATH.'favicon.ico'))
+				copy("favicon.ico", "../favicon.ico");
 
-			if ( file_exists(CONF_PATH.'config.inc.php') && file_exists(CONF_PATH.'gnupg.inc.php') && file_exists(CONF_PATH.'autofill.inc.php') && file_exists(ABSPATH.'system/version.inc.php') && file_exists(ABSPATH.'CydiaIcon.png') && file_exists(ABSPATH.'tmp') ){
+			if ( file_exists(CONF_PATH.'config.inc.php') && file_exists(CONF_PATH.'gnupg.inc.php') && file_exists(CONF_PATH.'autofill.inc.php') && file_exists(ABSPATH.'system/version.inc.php') && file_exists(ABSPATH.'CydiaIcon.png') && file_exists(ABSPATH.'favicon.ico') && file_exists(ABSPATH.'tmp') ){
 				@chmod( $autofill_new, 0666 );
 				@chmod( $config_new, 0666 );
 				@chmod( CONF_PATH.'gnupg.inc.php', 0666 );
 				@chmod( $version_file, 0666 );
 				@chmod( ABSPATH.'CydiaIcon.png', 0666 );
+				@chmod( ABSPATH.'favicon.ico', 0666 );
 				@chmod( ABSPATH.'tmp', 0755 );
 ?>
 

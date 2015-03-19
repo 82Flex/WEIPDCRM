@@ -9,7 +9,7 @@ header('Content-Type: text/html; charset=utf-8');
 define("DCRM",true);
 
 error_reporting(E_ALL ^ E_WARNING);
-include_once 'function.php';
+require_once('function.php');
 $header_title = __('Configuration Wizard');
 
 $notice = check_notice( $install = false );
@@ -193,7 +193,16 @@ switch($step) {
 			fwrite( $handle, $line );
 		}
 		fclose( $handle );
-		chmod( $path_to_config, 0666 );
+		@chmod( $path_to_config, 0666 );
+		
+		if (!file_exists(ABSPATH.'CydiaIcon.png'))
+			copy("CydiaIcon.png", "../CydiaIcon.png");
+		if (!file_exists(ABSPATH.'favicon.ico'))
+			copy("favicon.ico", "../favicon.ico");
+		if ( file_exists(ABSPATH.'CydiaIcon.png') && file_exists(ABSPATH.'favicon.ico') ){
+			@chmod( ABSPATH.'CydiaIcon.png', 0666 );
+			@chmod( ABSPATH.'favicon.ico', 0666 );
+		}
 ?>
 <p><?php _e("All right, sparky! You&#8217;ve made it through this part of the installation. DCRM can now communicate with your database. If you are ready, time now to&hellip;"); ?></p>
 
