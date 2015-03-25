@@ -679,8 +679,8 @@ function localization_load( $setlang = null ) {
 	$language = '';
 	if ( $setlang != null) {
 		$language = $setlang;
-	} elseif ( ! empty( $_REQUEST['language'] ) ) {
-		$language = preg_replace( '/[^a-zA-Z_]/', '', $_REQUEST['language'] );
+	} elseif ( ! empty( $_GET['language'] ) ) {
+		$language = preg_replace( '/[^a-zA-Z_]/', '', $_GET['language'] );
 	} else {
 		$language = get_locale();
 	}

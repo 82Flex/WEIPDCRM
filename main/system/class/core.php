@@ -3,7 +3,6 @@ if (!defined('IN_DCRM')) exit();
 class core {
 	function init() {
 		global $_version;
-		require_once(CONF_PATH.'connect.inc.php');
 		require_once(CONF_PATH.'autofill.inc.php');
 		$this->init_header();
 		Updater::init();

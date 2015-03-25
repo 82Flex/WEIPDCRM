@@ -4,7 +4,7 @@ if (!defined("DCRM")) {
 }
 
 /**
- * The base configurations of the WordPress.
+ * The base configurations of the DCRM.
  * DCRM»ù´¡ÅäÖÃÎÄ¼ş¡£
  *
  * This file has the following configurations: MySQL settings, Table Prefix.

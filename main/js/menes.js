@@ -43,7 +43,24 @@ var $ = function (arg, doc) {
     } else _assert(false, "unknown argument to $: " + typeof arg);
 };
 
+$.handlers = [];
+
+$.check = function(code) {
+    return function(arg0, arg1, arg2) { try {
+        code(arg0, arg1, arg2);
+    } catch (e) {
+        var handlers = $.handlers;
+        for (var i = 0; i != handlers.length; ++i) {
+            var handler = handlers[i];
+            handler(e);
+        }
+    } };
+};
+
 $.xml = function (value) {
+    if (typeof value == 'undefined' || value == null)
+        return value;
+
     return value
         .replace(/&/, "&amp;")
         .replace(/</, "&lt;")
@@ -51,7 +68,14 @@ $.xml = function (value) {
         .replace(/"/, "&quot;")
         .replace(/'/, "&apos;")
     ;
-}
+};
+
+$.uri = function(value) {
+    if (typeof value == 'undefined' || value == null)
+        return value;
+
+    return encodeURI(value);
+};
 
 $.type = function (value) {
     var type = typeof value;
@@ -73,8 +97,10 @@ $.type = function (value) {
             ready_ = [];
 
             document.addEventListener("DOMContentLoaded", function () {
-                for (var i = 0; i != ready_.length; ++i)
-                    ready_[i]();
+                for (var i = 0; i != ready_.length; ++i) {
+                    var ready = ready_[i];
+                    $.check(ready)();
+                }
             }, false);
         }
 
@@ -133,7 +159,7 @@ $.prototype = {
             });
         else if (value == null)
             $.each(this, function (node) {
-                node.removeAttribute();
+                node.removeAttribute(name);
             });
         else
             $.each(this, function (node) {
@@ -191,6 +217,8 @@ $.prototype = {
     },
 
     append: function (children) {
+        var value = $([]);
+
         if ($.type(children) == "string")
             $.each(this, function (node) {
                 var doc = $.document(node);
@@ -202,14 +230,18 @@ $.prototype = {
                 while (div.childNodes.length != 0) {
                     var child = div.childNodes[0];
                     node.appendChild(child);
+                    value.add([child]);
                 }
             });
         else
             $.each(this, function (node) {
                 $.each(children, function (child) {
                     node.appendChild(child);
+                    value.add([child]);
                 });
             });
+
+        return value;
     },
 
     xpath: function (expression) {
@@ -414,6 +446,8 @@ $.query = function (search) {
 // Event Registration {{{
 // XXX: unable to remove registration
 $.prototype.event = function (event, _function) {
+    _function = $.check(_function);
+
     $.each(this, function (node) {
         // XXX: smooth over this pointer ugliness
         if (node.addEventListener)
@@ -461,6 +495,9 @@ $.interpolate = function (duration, event) {
 // }}}
 // AJAX Requests {{{
 // XXX: abstract and implement other cases
+$.noop = function() {
+};
+
 $.xhr = function (url, method, headers, data, events) {
     var xhr = new XMLHttpRequest();
     xhr.open(method, url, true);
@@ -479,11 +516,14 @@ $.xhr = function (url, method, headers, data, events) {
                 events.response(status, text);
             if (status == 200) {
                 if (events.success != null)
-                    events.success(text);
+                    $.check(events.success)(text);
             } else {
                 if (events.failure != null)
                     events.failure(status);
             }
+
+            xhr.onreadystatechange = $.noop;
+            xhr = null;
         }
     };
 
@@ -495,7 +535,7 @@ $.call = function (url, post, onsuccess) {
 
     if (onsuccess != null)
         events.complete = function (text) {
-            onsuccess(eval(text));
+            $.check(onsuccess)(eval(text));
         };
 
     if (post == null)
@@ -541,7 +581,9 @@ $.json = function (value) {
 
     var type = $.type(value);
 
-    if (type == "number")
+    if (type == "undefined")
+        return "undefined";
+    else if (type == "number")
         return value;
     else if (type == "string")
         return "\"" + value
@@ -578,7 +620,7 @@ $.json = function (value) {
             else
                 json += ",";
 
-            json += name + ":" + $.json(value[name]);
+            json += $.json(name) + ":" + $.json(value[name]);
         }
         return json + "}";
     } else {

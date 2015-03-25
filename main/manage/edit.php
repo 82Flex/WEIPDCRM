@@ -39,7 +39,7 @@ if (isset($_SESSION['connected']) && $_SESSION['connected'] === true) {
 			<input type="radio" name="package" value="<?php echo($request_id); ?>" style="display: none;" checked="checked" />
 <?php
 	if (!isset($_GET['action']) AND !empty($_GET['id'])) {
-		$e_query = DB::query("SELECT * FROM `".DCRM_CON_PREFIX."Packages` WHERE `ID` = '" . $request_id . "'",$con);
+		$e_query = DB::query("SELECT * FROM `".DCRM_CON_PREFIX."Packages` WHERE `ID` = '" . $request_id . "'");
 		if (!$e_query) {
 			goto endlabel;
 		}
@@ -85,7 +85,7 @@ if (isset($_SESSION['connected']) && $_SESSION['connected'] === true) {
 							<div class="controls">
 								<select name="Section" style="width: 400px;">
 <?php
-		$s_query = DB::query("SELECT `ID`, `Name` FROM `".DCRM_CON_PREFIX."Sections` ORDER BY `ID` ASC",$con);
+		$s_query = DB::query("SELECT `ID`, `Name` FROM `".DCRM_CON_PREFIX."Sections` ORDER BY `ID` ASC");
 		if (!$s_query) {
 			goto endlabel;
 		}
@@ -135,19 +135,15 @@ if (isset($_SESSION['connected']) && $_SESSION['connected'] === true) {
 							</div>
 						</div>
 						<br />
-<?php
-		if (DCRM_MULTIINFO == 2) {
-?>
-						<div class="group-control">
-							<label class="control-label"><?php _e('Detailed Description'); ?></label>
-							<div class="controls">
-								<textarea id="kind" type="text" style="height: 400px; width: 408px; visibility: hidden;" name="Multi"><?php if (!empty($edit_info['Multi'])) {echo htmlspecialchars($edit_info['Multi']);} ?></textarea>
+						<div <?php if (DCRM_MULTIINFO != 2){ ?> hidden="hidden"<?php } ?>>
+							<div class="group-control">
+								<label class="control-label"><?php _e('Detailed Description'); ?></label>
+								<div class="controls">
+									<textarea id="kind" type="text" style="height: 400px; width: 408px; visibility: hidden;" name="Multi"><?php if (!empty($edit_info['Multi'])) {echo htmlspecialchars($edit_info['Multi']);} ?></textarea>
+								</div>
 							</div>
+							<br />
 						</div>
-						<br />
-<?php
-		}
-?>
 						<div class="form-actions">
 							<div class="controls">
 								<button type="submit" class="btn btn-success"><?php _e('Save'); ?></button>　
@@ -157,29 +153,13 @@ if (isset($_SESSION['connected']) && $_SESSION['connected'] === true) {
 				</form>
 <?php
 	} elseif (!empty($_GET['action']) AND $_GET['action'] == "set" AND !empty($_GET['id'])) {
-		foreach ($_POST AS $p_key => $p_value) {
-			$new_key = DB::real_escape_string($p_key);
-			$new_value = DB::real_escape_string($p_value);
-			$new_id = (int)$_GET['id'];
-			if (strlen($new_value) >= 1 AND strlen($new_key) >= 1 AND $new_id >= 1) {
-				if ($new_value == 'NULL') {
-					$new_value = '';
-				}
-				$new_query = DB::query("UPDATE `".DCRM_CON_PREFIX."Packages` SET `" . $new_key . "` = '" . $new_value . "' WHERE `ID` = '" . $new_id . "'",$con);
-				if (!$new_query) {
-					goto endlabel;
-				}
-			}
-		}
+		$new_id = (int)$_GET['id'];
+		DB::update(DCRM_CON_PREFIX.'Packages', $_POST, array('ID' => $new_id));
 		echo '<h2>'.__('Update Database').'</h2><br />';
 		echo '<h3 class="alert">'.__('The package information edited!').'<br />'.__('After modify the fields with an asterisk, you must write into package then safely rebuild list.');
 		echo '<br /><a href="output.php?id='.$new_id.'">'.__('Write Now').'</a>　<a href="javascript:history.go(-1);">'.__('Back').'</a></h3>';
 	} elseif (!empty($_GET['action']) AND $_GET['action'] == "advance" AND !empty($_GET['id'])) {
-		$e_query = DB::query("SELECT * FROM `".DCRM_CON_PREFIX."Packages` WHERE `ID` = '" . $request_id . "'",$con);
-		if (!$e_query) {
-			goto endlabel;
-		}
-		$edit_info = mysql_fetch_assoc($e_query);
+		$edit_info = DB::fetch_first("SELECT * FROM `".DCRM_CON_PREFIX."Packages` WHERE `ID` = '" . $request_id . "'");
 		if (!$edit_info) {
 			goto endlabel;
 		}
@@ -226,10 +206,7 @@ if (isset($_SESSION['connected']) && $_SESSION['connected'] === true) {
 			if ($a_value == 'NULL') {
 				$a_value = '';
 			}
-			$a_query = DB::query("UPDATE `".DCRM_CON_PREFIX."Packages` SET `" . $a_key . "` = '" . $a_value . "' WHERE `ID` = '" . $a_id . "'",$con);
-			if (!$a_query) {
-				goto endlabel;
-			}
+			DB::update(DCRM_CON_PREFIX.'Packages', array($a_key => $a_value), array('ID' => $a_id));
 		}
 		echo '<h2>'.__('Update Database').'</h2><br />';
 		echo '<h3 class="alert">'.__('The package information edited!').'<br />'.__('After modify the fields with an asterisk, you must write into package then safely rebuild list.');

@@ -9,8 +9,8 @@ define('VERSION', '1.6.15.3.18');
 define('UI_VERSION', '1.0');
 
 define('DEBUG_ENABLED', isset($_GET['debug']));
-/*error_reporting(DEBUG_ENABLED ? E_ALL & !E_NOTICE & !E_STRICT : E_ERROR | E_PARSE);
-@ini_set('display_errors', DEBUG_ENABLED);*/
+error_reporting(DEBUG_ENABLED ? E_ALL & !E_NOTICE & !E_STRICT : E_ERROR | E_PARSE);
+@ini_set('display_errors', DEBUG_ENABLED);
 
 require_once SYSTEM_ROOT.'./class/error.php';
 set_exception_handler(array('error', 'exception_error'));
@@ -35,6 +35,7 @@ if(file_exists(ROOT.'manage/include/connect.inc.php')){
 	header('Location: /'.$root.'install');
 	exit();
 }
+require_once(CONF_PATH.'connect.inc.php');
 
 /* Language Switch */
 if(file_exists(CONF_PATH.'config.inc.php')){

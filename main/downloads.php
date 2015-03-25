@@ -38,17 +38,8 @@ if (!empty($_GET['request']) AND (!empty($_SERVER['HTTP_X_UNIQUE_ID']) OR DCRM_D
 			exit();
 		}
 	}
-	$a_query = DB::query("UPDATE `".DCRM_CON_PREFIX."Packages` SET `DownloadTimes` = `DownloadTimes` + 1 WHERE `ID` = '" . (string)$request_id . "'");
-	if (!$a_query) {
-		httpinfo(500);
-	} else {
-		$m_query = DB::query("SELECT `Package`, `Version`, `Architecture`, `Filename` FROM `".DCRM_CON_PREFIX."Packages` WHERE `ID` = '" . (string)$request_id . "'");
-	}
-	if (!$m_query) {
-		httpinfo(500);
-	} else {
-		$m_row = mysql_fetch_assoc($m_query);
-	}
+	$m_row = DB::fetch_first("SELECT `Package`, `Version`, `Architecture`, `Filename`, `Tag`, `DownloadTimes`, `Level` FROM `".DCRM_CON_PREFIX."Packages` WHERE `ID` = '" . (string)$request_id . "'");
+	
 	if (!$m_row) {
 		httpinfo(404);
 	} else {

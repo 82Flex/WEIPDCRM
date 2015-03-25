@@ -51,7 +51,7 @@ if (isset($_SESSION['connected']) && $_SESSION['connected'] === true) {
 		} else {
 			$page_b = $page - 1;
 		}
-		$list_query = DB::query("SELECT * FROM `".DCRM_CON_PREFIX."Sections` ORDER BY `ID` DESC LIMIT ".(string)$page_a.",10",$con);
+		$list_query = DB::query("SELECT * FROM `".DCRM_CON_PREFIX."Sections` ORDER BY `ID` DESC LIMIT ".(string)$page_a.",10");
 		if ($list_query == FALSE) {
 			goto endlabel;
 		} else {
@@ -95,7 +95,7 @@ if (isset($_SESSION['connected']) && $_SESSION['connected'] === true) {
 		}
 	} elseif (!empty($_GET['action']) AND $_GET['action'] == "add") {
 ?>
-						<h2></h2>
+						<h2><?php _e('Manage Sections'); ?></h2>
 						<br />
 						<h3 class="navbar"><span><a href="sections.php"><?php _e('Sections List'); ?></a></span>　<span><?php _e('Add Section'); ?></span>　<span><a href="sections.php?action=create"><?php _e('Create Icon Package'); ?></a></span></h3>
 						<br />
@@ -234,10 +234,7 @@ if (isset($_SESSION['connected']) && $_SESSION['connected'] === true) {
 <?php
 	} elseif (!empty($_GET['action']) AND $_GET['action'] == "delete" AND !empty($_GET['id'])) {
 		$delete_id = (int)$_GET['id'];
-		$d_query = DB::query("DELETE FROM `".DCRM_CON_PREFIX."Sections` WHERE `ID` = '" . $delete_id . "'",$con);
-		if (!$d_query) {
-			goto endlabel;
-		}
+		DB::delete(DCRM_CON_PREFIX.'Sections', array('ID' => $delete_id));
 		header("Location: sections.php");
 		exit();
 	}

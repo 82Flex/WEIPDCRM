@@ -55,11 +55,11 @@ switch($step) {
 	<p><?php _e('Recommendations before the installation read the accompanying documentation (readme.html), if still not understand of place, can post them to <a href="https://github.com/Lessica/WEIPDCRM/issues/new">GitHub Issues</a>.'); ?></p>
 	<p><?php _e('If you&#8217;re all ready&hellip;'); ?></p>
 
-		<? if ($notice != '') { ?>
+	<?php if ($notice != '') { ?>
 			<p class="step"><a href="setup-config.php?<?php echo $step_language; ?>" class="button"><?php _e('Can&#8217;t start!'); ?></a></p>
-		<? } else { ?>
+	<?php } else { ?>
 			<p class="step"><a href="setup-config.php?step=1&amp;<?php echo $step_language; ?>" class="button"><?php _e('Let&#8217;s go!'); ?></a></p>
-		<?}
+	<?php }
 		
 		break;
 
@@ -75,12 +75,12 @@ switch($step) {
 	<?php endif;?>
 	</p>
 
-	<?
+<?php
 		break;
 
 	case 2:
 		display_header($notice);		
-	?>
+?>
 	<form method="post" action="setup-config.php?step=3&amp;<?php echo $step_language; ?>">
 	<p><?php _e('Below you should enter your database connection details. If you&#8217;re not sure about these, contact your host.') ?></p>
 	<table class="form-table">
@@ -92,15 +92,15 @@ switch($step) {
 		<tr><th scope="row"><label for="prefix"><?php _e( 'Table Prefix' ); ?></label></th><td><input name="prefix" id="prefix" type="text" size="35" value="apt_" /></td><td><?php _e( 'If you want to run multiple DCRM installations in a single database, change this.' ); ?></td></tr>
 		<?php if(function_exists('mysql_pconnect')){ ?><tr><th scope="row"></th><td><input type="checkbox" value="1" name="pconnect"><?php _e( 'Keep the connection to the database server' ); ?></td><td></td></tr><?php } ?>
 	</table>
-	<? if ($notice !== '') { ?>
+	<?php if ($notice !== '') { ?>
 		<p class="step"><a href="setup-config.php?<?php echo $step_language; ?>" class="button"><?php _e( 'Error!' ); ?></a></p>
-	<? } else { ?>
+	<?php } else { ?>
 		<p class="step"><input name="submit" type="submit" value="<?php _e('Submit'); ?>" class="button" /></p>
-	<? } ?>
+	<?php } ?>
 
 	</form>
 
-<?
+<?php
 		break;
 
 	case 3:
@@ -207,6 +207,7 @@ switch($step) {
 <p><?php _e("All right, sparky! You&#8217;ve made it through this part of the installation. DCRM can now communicate with your database. If you are ready, time now to&hellip;"); ?></p>
 
 <p class="step"><a href="setup-install.php?<?php echo $step_language; ?>" class="button button-large"><?php _e('Run the install'); ?></a></p>
-<?
+<?php
 		break;
 }
+?>

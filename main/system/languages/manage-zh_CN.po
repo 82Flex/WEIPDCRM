@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: DCRM Manager\n"
-"POT-Creation-Date: 2015-03-19 12:49+0800\n"
-"PO-Revision-Date: 2015-03-19 12:49+0800\n"
+"POT-Creation-Date: 2015-03-25 15:54+0800\n"
+"PO-Revision-Date: 2015-03-25 15:55+0800\n"
 "Last-Translator: Hintay <hintay@me.com>\n"
 "Language-Team: Hintay <hintay@me.com>\n"
 "Language: zh_CN\n"
@@ -113,99 +113,6 @@ msgstr ""
 "本程序是自由软件，修改和重新发布应该遵照自由软件基金会出版的 <a href="
 "\"http://www.gnu.org/licenses\">GNU 通用公共许可证条款第三版</a>。"
 
-#: manage/bak/settings.php:30 manage/settings.php:38
-msgid "Preferences"
-msgstr "系统设置"
-
-#: manage/bak/settings.php:42 manage/settings.php:42
-msgid "General"
-msgstr "通用"
-
-#: manage/bak/settings.php:45 manage/settings.php:45
-msgid "Language"
-msgstr "显示语言"
-
-#: manage/bak/settings.php:53 manage/settings.php:53
-msgctxt "language"
-msgid "Detect"
-msgstr "自动检测"
-
-#: manage/bak/settings.php:72 manage/settings.php:76
-#: system/languages/l10n.php:754
-msgctxt "language"
-msgid "English"
-msgstr "英语"
-
-#: manage/bak/settings.php:77 manage/settings.php:81
-msgid ""
-"If you want system auto detect users browser language to show pages please "
-"select \"Detect\" option."
-msgstr "如果您想让系统自动匹配浏览器语言来显示页面，请选择“自动检测”。"
-
-#: manage/bak/settings.php:81 manage/settings.php:85
-msgid "Login Information"
-msgstr "登录信息"
-
-#: manage/bak/settings.php:84 manage/login.php:148 manage/settings.php:88
-msgid "Username"
-msgstr "用户名"
-
-#: manage/bak/settings.php:91 manage/settings.php:95
-msgid "New Password"
-msgstr "新密码"
-
-#: manage/bak/settings.php:94 manage/settings.php:98
-msgid ""
-"If you would like to change the password type a new one. Otherwise leave "
-"this blank."
-msgstr "如果您想修改您的密码，请在此输入新密码。不然请留空。"
-
-#: manage/bak/settings.php:99 manage/settings.php:103
-msgid "Repeat New Password"
-msgstr "重复新密码"
-
-#: manage/bak/settings.php:102 manage/settings.php:106
-msgid "Type your new password again."
-msgstr "再输入一遍新密码。"
-
-#: manage/bak/settings.php:103 manage/bak/settings.php:815
-#: manage/settings.php:107 manage/settings.php:726
-msgid "Strength indicator"
-msgstr "强度评估"
-
-#: manage/bak/settings.php:639 manage/settings.php:583
-msgid "You entered your new password only once."
-msgstr "您只输入了一次新密码。"
-
-#: manage/bak/settings.php:642 manage/settings.php:586
-msgid "Your passwords do not match. Please try again."
-msgstr "您两次输入的密码不符，请重试。"
-
-#: manage/bak/settings.php:815 manage/settings.php:726
-msgctxt "Password"
-msgid "Short"
-msgstr "极弱"
-
-#: manage/bak/settings.php:815 manage/settings.php:726
-msgctxt "Password"
-msgid "Bad"
-msgstr "弱"
-
-#: manage/bak/settings.php:815 manage/settings.php:726
-msgctxt "Password"
-msgid "Good"
-msgstr "中等"
-
-#: manage/bak/settings.php:815 manage/settings.php:726
-msgctxt "Password"
-msgid "Strong"
-msgstr "强"
-
-#: manage/bak/settings.php:815 manage/settings.php:726
-msgctxt "Password"
-msgid "Mismatch"
-msgstr "不匹配"
-
 #: manage/build.php:47
 msgid "Database Error!"
 msgstr "数据库错误！"
@@ -303,15 +210,15 @@ msgstr "名称"
 msgid "Author"
 msgstr "作者"
 
-#: manage/center.php:52 manage/edit.php:141 manage/release.php:67
+#: manage/center.php:52 manage/edit.php:132 manage/release.php:67
 msgid "Description"
 msgstr "描述"
 
-#: manage/center.php:53 manage/edit.php:113
+#: manage/center.php:53 manage/edit.php:104
 msgid "Maintainer"
 msgstr "提供者"
 
-#: manage/center.php:54 manage/edit.php:120
+#: manage/center.php:54 manage/edit.php:111
 msgid "Sponsor"
 msgstr "保证人"
 
@@ -379,129 +286,116 @@ msgstr "非法请求！"
 msgid "General Editing"
 msgstr "常规编辑"
 
-#: manage/edit.php:104
-msgid "Commercial"
-msgstr ""
-
-#: manage/edit.php:107 manage/settings.php:32 manage/settings.php:34
-msgid "Enabled"
-msgstr "启用"
-
-#: manage/edit.php:107 manage/settings.php:32 manage/settings.php:34
-#: manage/upload.php:170
-msgid "Disabled"
-msgstr "禁用"
-
-#: manage/edit.php:127
+#: manage/edit.php:118
 msgid "Depiction"
 msgstr "预览页"
 
-#: manage/edit.php:135
+#: manage/edit.php:126
 #, php-format
 msgid "Default Depiction: %s"
 msgstr "默认预览页为：%s"
 
-#: manage/edit.php:136
+#: manage/edit.php:127
 msgid "Preview Default Depiction"
 msgstr "预览默认预览页"
 
-#: manage/edit.php:151 manage/settings.php:229
+#: manage/edit.php:142 manage/settings.php:229
 msgid "Detailed Description"
 msgstr "详细描述"
 
-#: manage/edit.php:162 manage/edit.php:239 manage/release.php:90
+#: manage/edit.php:153 manage/edit.php:215 manage/release.php:90
 #: manage/settings.php:560
 msgid "Save"
 msgstr "保存"
 
-#: manage/edit.php:198 manage/edit.php:258
+#: manage/edit.php:174 manage/edit.php:234
 msgid "Update Database"
 msgstr "更新数据库"
 
-#: manage/edit.php:199 manage/edit.php:259
+#: manage/edit.php:175 manage/edit.php:235
 msgid "The package information edited!"
 msgstr "软件包信息编辑完成！"
 
-#: manage/edit.php:199 manage/edit.php:259
+#: manage/edit.php:175 manage/edit.php:235
 msgid ""
 "After modify the fields with an asterisk, you must write into package then "
 "safely rebuild list."
 msgstr "修改带星号的字段后，您必须将其写入软件包才能安全地刷新列表。"
 
-#: manage/edit.php:200 manage/edit.php:260
+#: manage/edit.php:176 manage/edit.php:236
 msgid "Write Now"
 msgstr "立即写入"
 
-#: manage/edit.php:200 manage/edit.php:260 manage/import.php:269
+#: manage/edit.php:176 manage/edit.php:236 manage/import.php:269
 #: manage/manage.php:116 manage/manage.php:124 manage/output.php:148
 #: manage/release.php:115 manage/release.php:117 manage/release.php:120
 #: manage/settings.php:674 manage/settings.php:711 manage/stats.php:97
 msgid "Back"
 msgstr "返回"
 
-#: manage/edit.php:211 manage/header.php:153
+#: manage/edit.php:187 manage/header.php:153
 msgid "Advance Editing"
 msgstr "高级编辑"
 
-#: manage/edit.php:216
+#: manage/edit.php:192
 msgctxt "Advance Editing"
 msgid "Field"
 msgstr "修改字段"
 
-#: manage/edit.php:231
+#: manage/edit.php:207
 msgctxt "Advance Editing"
 msgid "Content"
 msgstr "修改内容"
 
-#: manage/edit.php:274
+#: manage/edit.php:250
 msgid "Align"
 msgstr "对齐方式"
 
-#: manage/edit.php:276
+#: manage/edit.php:252
 msgctxt "Align"
 msgid "Left"
 msgstr "左对齐"
 
-#: manage/edit.php:277
+#: manage/edit.php:253
 msgctxt "Align"
 msgid "Center"
 msgstr "居中对齐"
 
-#: manage/edit.php:278
+#: manage/edit.php:254
 msgctxt "Align"
 msgid "Right"
 msgstr "右对齐"
 
-#: manage/edit.php:282
+#: manage/edit.php:258
 msgctxt "Edit"
 msgid "List"
 msgstr "编号"
 
-#: manage/edit.php:284
+#: manage/edit.php:260
 msgid "Ordered list"
 msgstr "数字编号"
 
-#: manage/edit.php:285
+#: manage/edit.php:261
 msgid "Unordered list"
 msgstr "项目编号"
 
-#: manage/edit.php:289
+#: manage/edit.php:265
 msgid "Indent"
 msgstr "缩进"
 
-#: manage/edit.php:291
+#: manage/edit.php:267
 msgid "Increase indent"
 msgstr "向右缩进"
 
-#: manage/edit.php:292
+#: manage/edit.php:268
 msgid "Decrease indent"
 msgstr "向左缩进"
 
-#: manage/edit.php:333
+#: manage/edit.php:309
 msgid "Data loading"
 msgstr "数据加载中"
 
-#: manage/edit.php:343
+#: manage/edit.php:319
 msgid "Database Error"
 msgstr "数据库错误"
 
@@ -692,6 +586,10 @@ msgstr "熊出没注意！"
 #: manage/login.php:142
 msgid "Verification code error!"
 msgstr "验证码错误！"
+
+#: manage/login.php:148 manage/settings.php:88
+msgid "Username"
+msgstr "用户名"
 
 #: manage/login.php:149
 msgid "Password"
@@ -941,6 +839,68 @@ msgstr "图标包重定位失败！"
 msgid "Icon package template missing, please upload DCRM Pro again!"
 msgstr "图标包模板丢失，请重新安装 DCRM 专业版！"
 
+#: manage/settings.php:32 manage/settings.php:34
+msgid "Enabled"
+msgstr "启用"
+
+#: manage/settings.php:32 manage/settings.php:34 manage/upload.php:170
+msgid "Disabled"
+msgstr "禁用"
+
+#: manage/settings.php:38
+msgid "Preferences"
+msgstr "系统设置"
+
+#: manage/settings.php:42
+msgid "General"
+msgstr "通用"
+
+#: manage/settings.php:45
+msgid "Language"
+msgstr "显示语言"
+
+#: manage/settings.php:53
+msgctxt "language"
+msgid "Detect"
+msgstr "自动检测"
+
+#: manage/settings.php:76 system/languages/l10n.php:754
+msgctxt "language"
+msgid "English"
+msgstr "英语"
+
+#: manage/settings.php:81
+msgid ""
+"If you want system auto detect users browser language to show pages please "
+"select \"Detect\" option."
+msgstr "如果您想让系统自动匹配浏览器语言来显示页面，请选择“自动检测”。"
+
+#: manage/settings.php:85
+msgid "Login Information"
+msgstr "登录信息"
+
+#: manage/settings.php:95
+msgid "New Password"
+msgstr "新密码"
+
+#: manage/settings.php:98
+msgid ""
+"If you would like to change the password type a new one. Otherwise leave "
+"this blank."
+msgstr "如果您想修改您的密码，请在此输入新密码。不然请留空。"
+
+#: manage/settings.php:103
+msgid "Repeat New Password"
+msgstr "重复新密码"
+
+#: manage/settings.php:106
+msgid "Type your new password again."
+msgstr "再输入一遍新密码。"
+
+#: manage/settings.php:107 manage/settings.php:726
+msgid "Strength indicator"
+msgstr "强度评估"
+
 #: manage/settings.php:112
 msgid "The maximum number of attempts"
 msgstr "最大尝试次数"
@@ -1124,7 +1084,7 @@ msgstr "SEO 名称"
 #: manage/settings.php:377
 msgctxt "SEO"
 msgid "Site Address"
-msgstr "Twitter 地址"
+msgstr "SEO 地址"
 
 #: manage/settings.php:384
 msgctxt "SEO"
@@ -1301,6 +1261,14 @@ msgstr "用户名长度必须在 4 - 20 个字符之间！"
 msgid "Username can only use numbers, letters and underline!"
 msgstr "用户名只能使用数字、字母、下划线的组合！"
 
+#: manage/settings.php:583
+msgid "You entered your new password only once."
+msgstr "您只输入了一次新密码。"
+
+#: manage/settings.php:586
+msgid "Your passwords do not match. Please try again."
+msgstr "您两次输入的密码不符，请重试。"
+
 #: manage/settings.php:590
 msgid "The maximum number of attempts must be an integer!"
 msgstr "最大尝试次数必须为整数！"
@@ -1359,6 +1327,31 @@ msgstr "存在相同的用户名！"
 #: manage/settings.php:711
 msgid "Amendments to the success of settings!"
 msgstr "设置修改成功！"
+
+#: manage/settings.php:726
+msgctxt "Password"
+msgid "Short"
+msgstr "极弱"
+
+#: manage/settings.php:726
+msgctxt "Password"
+msgid "Bad"
+msgstr "弱"
+
+#: manage/settings.php:726
+msgctxt "Password"
+msgid "Good"
+msgstr "中等"
+
+#: manage/settings.php:726
+msgctxt "Password"
+msgid "Strong"
+msgstr "强"
+
+#: manage/settings.php:726
+msgctxt "Password"
+msgid "Mismatch"
+msgstr "不匹配"
 
 #: manage/stats.php:33
 msgid "Database Status"

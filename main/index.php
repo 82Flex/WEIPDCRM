@@ -243,7 +243,7 @@ if ($index == 0) {
 	if (defined("AUTOFILL_EMAIL")) {
 ?>
 				<a href="mailto:<?php echo(AUTOFILL_EMAIL); ?>?subject=<?php echo($release_origin); ?>" target="_blank">
-				<img class="icon" src="icons/default/mail_forward.png" />
+				<img class="icon" src="icons/default/email.png" />
 					<div>
 						<div>
 							<label>
@@ -496,18 +496,8 @@ if ($index == 0) {
 	}
 } elseif ($index == 1) {
 		$pkg = (int)DB::real_escape_string($_GET['pid']);
-		$pkg_query = DB::query("SELECT `Name`, `Version`, `Author`, `Package`, `Description`, `DownloadTimes`, `Multi`, `CreateStamp`, `Size`, `Installed-Size`, `Section`, `Homepage` FROM `".DCRM_CON_PREFIX."Packages` WHERE `ID` = '".$pkg."' LIMIT 1");
-	if (!$pkg_query) {
-?>
-			<block>
-				<p>
-					<?php _e('MySQL Error!'); ?>
-				</p>
-			</block>
-<?php
-	} else {
-		$pkg_assoc = mysql_fetch_assoc($pkg_query);
-		if (!$pkg_assoc) {
+		$pkg_assoc = DB::fetch_first("SELECT `Name`, `Version`, `Author`, `Package`, `Description`, `DownloadTimes`, `Multi`, `CreateStamp`, `Size`, `Installed-Size`, `Section`, `Homepage`, `Tag`, `Level`, `Price`, `Purchase_Link`  FROM `".DCRM_CON_PREFIX."Packages` WHERE `ID` = '".$pkg."' LIMIT 1");
+	if (!$pkg_assoc) {
 ?>
 			<block>
 				<p>
@@ -515,8 +505,8 @@ if ($index == 0) {
 				</p>
 			</block>
 <?php
-		} else {
-			if (!$isCydia) {
+	} else {
+		if (!$isCydia) {
 ?>
 			<fieldset id="cydialink" style="display: none;">
 				<a href="cydia://package/<?php echo($pkg_assoc['Package']); ?>" target="_blank">
@@ -531,26 +521,21 @@ if ($index == 0) {
 				</a>
 			</fieldset>
 <?php
-				if (!empty($pkg_assoc['Section'])) {
-					$section_query = DB::query("SELECT `Name`, `Icon` FROM `".DCRM_CON_PREFIX."Sections` WHERE `Name` = '".$pkg_assoc['Section']."' LIMIT 1");
-					if (!$section_query) {
-						$icon_url = "";
-					} else {
-						$section_assoc = mysql_fetch_assoc($section_query);
-					}
-				}
+			if (!empty($pkg_assoc['Section'])) {
+				$section_icon = DB::result_first("SELECT `Icon` FROM `".DCRM_CON_PREFIX."Sections` WHERE `Name` = '".$pkg_assoc['Section']."' LIMIT 1");
+			}
 ?>
 			<div id="header" style="display: none;">
 <?php
-				if (!empty($section_assoc['Icon'])) {
+			if (!empty($section_icon)) {
 ?>
-				<img class="icon" src="icons/<?php echo($section_assoc['Icon']); ?>" style="width: 64px; height: 64px; vertical-align: top;" />
+				<img class="icon" src="icons/<?php echo($section_icon); ?>" style="width: 64px; height: 64px; vertical-align: top;" />
 <?php
-				} else {
+			} else {
 ?>
 				<img class="icon" src="icons/default/unknown.png" style="width: 64px; height: 64px; vertical-align: top;" />
 <?php
-				}
+			}
 ?>
 				<div id="content">
 					<p id="name"><?php echo($pkg_assoc['Name']); ?></p>
@@ -561,14 +546,14 @@ if ($index == 0) {
 				</div>
 			</div>
 <?php
-				if (!empty($pkg_assoc['Author'])) {
-					$author_name = trim(preg_replace("#^(.+)<(.+)>#","$1", $pkg_assoc['Author']));
-					$author_mail = trim(preg_replace("#^(.+)<(.+)>#","$2", $pkg_assoc['Author']));
-				}
+			if (!empty($pkg_assoc['Author'])) {
+				$author_name = trim(preg_replace("#^(.+)<(.+)>#","$1", $pkg_assoc['Author']));
+				$author_mail = trim(preg_replace("#^(.+)<(.+)>#","$2", $pkg_assoc['Author']));
+			}
 ?>
 			<fieldset id="contact" style="display: none;">
 				<a href="index.php?pid=<?php echo($_GET['pid']); ?>&amp;method=contact">
-					<img class="icon" src="icons/default/mail_forward.png" />
+					<img class="icon" src="icons/default/email.png" />
 					<div>
 						<div>
 							<label>
@@ -584,8 +569,8 @@ if ($index == 0) {
 				</a>
 			</fieldset>
 <?php
-			}
-			if (DCRM_DIRECT_DOWN == 1 && !$isCydia) {
+		}
+		if (DCRM_DIRECT_DOWN == 1 && !$isCydia) {
 ?>
 			<fieldset>
 				<a href="debs/<?php echo($_GET['pid']); ?>.deb" id="downloadlink" style="display: none;" target="_blank">
@@ -605,11 +590,11 @@ if ($index == 0) {
 				</a>
 			</fieldset>
 <?php
-			}
+		}
 ?>
 			<fieldset>
 <?php
-			if (DCRM_SCREENSHOTS == 2) {
+		if (DCRM_SCREENSHOTS == 2) {
 ?>
 				<a href="index.php?pid=<?php echo($_GET['pid']); ?>&amp;method=screenshot">
 				<img class="icon" src="icons/default/screenshots.png" />
@@ -622,7 +607,7 @@ if ($index == 0) {
 					</div>
 				</a>
 <?php
-			}
+		}
 ?>
 				<a href="index.php?pid=<?php echo($_GET['pid']); ?>&amp;method=history" id="historylink">
 				<img class="icon" src="icons/default/changelog.png" />
@@ -635,7 +620,7 @@ if ($index == 0) {
 					</div>
 				</a>
 <?php
-			if ($isCydia && DCRM_REPORTING == 2) {
+		if ($isCydia && DCRM_REPORTING == 2) {
 ?>
 				<a href="index.php?pid=<?php echo($_GET['pid']); ?>&amp;method=report" id="reportlink">
 				<img class="icon" src="icons/default/report.png" />
@@ -648,8 +633,8 @@ if ($index == 0) {
 					</div>
 				</a>
 <?php
-			}
-			if (defined("AUTOFILL_TENCENT") && defined("AUTOFILL_TENCENT_NAME")) {
+		}
+		if (defined("AUTOFILL_TENCENT") && defined("AUTOFILL_TENCENT_NAME")) {
 ?>
 				<a href="<?php echo(AUTOFILL_TENCENT); ?>" target="_blank">
 				<img class="icon" src="icons/default/qq.png" />
@@ -662,8 +647,8 @@ if ($index == 0) {
 					</div>
 				</a>
 <?php
-			}
-			if (defined("AUTOFILL_WEIBO") && defined("AUTOFILL_WEIBO_NAME")) {
+		}
+		if (defined("AUTOFILL_WEIBO") && defined("AUTOFILL_WEIBO_NAME")) {
 ?>
 				<a href="<?php echo(AUTOFILL_WEIBO); ?>" target="_blank">
 				<img class="icon" src="icons/default/weibo.png" />
@@ -676,8 +661,8 @@ if ($index == 0) {
 					</div>
 				</a>
 <?php
-			}
-			if (defined("AUTOFILL_TWITTER") && defined("AUTOFILL_TWITTER_NAME")) {
+		}
+		if (defined("AUTOFILL_TWITTER") && defined("AUTOFILL_TWITTER_NAME")) {
 ?>
 				<a href="<?php echo(AUTOFILL_TWITTER); ?>" target="_blank">
 				<img class="icon" src="icons/default/twitter.png" />
@@ -690,8 +675,8 @@ if ($index == 0) {
 					</div>
 				</a>
 <?php
-			}
-			if (defined("AUTOFILL_FACEBOOK") && defined("AUTOFILL_FACEBOOK_NAME")) {
+		}
+		if (defined("AUTOFILL_FACEBOOK") && defined("AUTOFILL_FACEBOOK_NAME")) {
 ?>
 				<a href="<?php echo(AUTOFILL_FACEBOOK); ?>" target="_blank">
 				<img class="icon" src="icons/default/facebook.png" />
@@ -704,8 +689,8 @@ if ($index == 0) {
 					</div>
 				</a>
 <?php
-			}
-			if (defined("AUTOFILL_PAYPAL")) {
+		}
+		if (defined("AUTOFILL_PAYPAL")) {
 ?>
 				<a href="<?php echo(AUTOFILL_PAYPAL); ?>" target="_blank">
 				<img class="icon" src="icons/default/paypal.png" />
@@ -720,8 +705,8 @@ if ($index == 0) {
 					</div>
 				</a>
 <?php
-			}
-			if (defined("AUTOFILL_ALIPAY")) {
+		}
+		if (defined("AUTOFILL_ALIPAY")) {
 ?>
 				<a href="<?php echo(AUTOFILL_ALIPAY); ?>" target="_blank">
 				<img class="icon" src="icons/default/alipay.png" />
@@ -736,11 +721,11 @@ if ($index == 0) {
 					</div>
 				</a>
 <?php
-			}
-			if (!empty($pkg_assoc['Homepage']) && DCRM_MOREINFO == 2) {
+		}
+		if (!empty($pkg_assoc['Homepage']) && DCRM_MOREINFO == 2) {
 ?>
 				<a href="<?php echo($pkg_assoc['Homepage']); ?>" target="_blank">
-				<img class="icon" src="icons/default/moreinfo.png" />
+				<img class="icon" src="icons/default/web.png" />
 					<div>
 						<div>
 							<label>
@@ -750,8 +735,8 @@ if ($index == 0) {
 					</div>
 				</a>
 <?php
-			}
-			if (defined("EMERGENCY")) {
+		}
+		if (defined("EMERGENCY")) {
 ?>
 				<a>
 					<div>
@@ -761,11 +746,11 @@ if ($index == 0) {
 					</div>
 				</a>
 <?php
-			}
+		}
 ?>
 			</fieldset>
 <?php
-			if (defined("AUTOFILL_ADVERTISEMENT") && $isCydia) {
+		if (defined("AUTOFILL_ADVERTISEMENT") && $isCydia) {
 ?>
 			<block id="advertisement">
 				<div style="position: relative; text-align: center;">
@@ -778,22 +763,22 @@ if ($index == 0) {
 				</div>
 			</block>
 <?php	
-			}
+		}
 ?>
 			<block>
 <?php
-			if (DCRM_MOREINFO == 2) {
+		if (DCRM_MOREINFO == 2) {
 ?>
 					<p><?php _e('Version'); ?> <strong><?php echo($pkg_assoc['Version']); ?></strong> | <?php _e('Downloads'); ?> <strong><?php echo($pkg_assoc['DownloadTimes']); ?></strong></p>
 					<p><?php _e('Last Updated'); ?> <strong><?php echo($pkg_assoc['CreateStamp']); ?></strong></p>
 					<hr />
 <?php
-			}
+		}
 ?>
 					<p><?php echo(nl2br($pkg_assoc['Description'])); ?></p>
 			</block>
 <?php
-			if (!empty($pkg_assoc['Multi']) && DCRM_MULTIINFO == 2) {
+		if (!empty($pkg_assoc['Multi']) && DCRM_MULTIINFO == 2) {
 ?>
 			<fieldset>
 				<div>
@@ -803,8 +788,8 @@ if ($index == 0) {
 				</div>
 			</fieldset>
 <?php
-			}
-			if (defined("AUTOFILL_DUOSHUO_KEY")) {
+		}
+		if (defined("AUTOFILL_DUOSHUO_KEY")) {
 ?>
 			<fieldset>
 				<div class="ds-thread" data-thread-key="<?php echo($pkg_assoc['Package']); ?>" data-title="<?php echo($pkg_assoc['Name']); ?>" data-url="<?php echo('http://'.$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI']); ?>"></div>
@@ -821,7 +806,7 @@ if ($index == 0) {
 				})();
 			</script>
 <?php
-			}
+		}
 ?>
 			<label class="source">
 				<p><?php _e('Source Info'); ?></p>
@@ -846,7 +831,7 @@ if ($index == 0) {
 				</div>
 			</fieldset>
 <?php
-			if (!$isCydia) {
+		if (!$isCydia) {
 ?>
 			<footer id="footer" style="display: none;">
 				<p>
@@ -861,7 +846,6 @@ if ($index == 0) {
 				</p>
 			</footer>
 <?php
-			}
 		}
 	}
 } elseif ($index == 2) {
@@ -1131,7 +1115,7 @@ if ($index == 0) {
 					</p>
 				</div>
 				<a href="mailto:<?php echo($author_mail); ?>?subject=<?php echo(urlencode("Cydia/APT(A): ".$pkg_assoc['Name']." (".$pkg_assoc['Version'].")")); ?>" target="_blank">
-				<img class="icon" src="icons/default/mail_forward.png">
+				<img class="icon" src="icons/default/email.png">
 					<div>
 						<div>
 							<label><p><?php _e('Author'); ?></p></label>
@@ -1155,7 +1139,7 @@ if ($index == 0) {
 					</p>
 				</div>
 				<a href="<?php echo($sponsor_url); ?>" target="_blank">
-				<img class="icon" src="icons/default/mail_forward.png">
+				<img class="icon" src="icons/default/email.png">
 					<div>
 						<div>
 							<label><p><?php _e('Sponsor'); ?></p></label>
@@ -1177,7 +1161,7 @@ if ($index == 0) {
 					<p><?php _e('If you have questions when install or uninstall this package, please contact the maintainer.'); ?></p>
 				</div>
 				<a href="mailto:<?php echo($maintainer_mail); ?>?subject=<?php echo(urlencode("Cydia/APT(A): ".$pkg_assoc['Name']." (".$pkg_assoc['Version'].")")); ?>" target="_blank">
-				<img class="icon" src="icons/default/mail_forward.png">
+				<img class="icon" src="icons/default/email.png">
 					<div>
 						<div>
 							<label><p><?php _e('Maintainer'); ?></p></label>

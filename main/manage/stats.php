@@ -30,13 +30,13 @@ if (isset($_SESSION['connected']) && $_SESSION['connected'] === true) {
 				<h2><?php _e('Running Status'); ?></h2>
 				<br />
 				<div class="wrapper">
-					<ul class="breadcrumb" onclick="return false;"><i class="icon" id="triangle_mysql" onclick="wrapper('triangle_mysql','item_mysql'); return false;">▼</i>&nbsp;<?php _e('Database Status'); ?></ul>
+					<ul class="breadcrumb" onclick="wrapper('triangle_mysql','item_mysql'); return false;"><i class="icon" id="triangle_mysql">▼</i>&nbsp;<?php _e('Database Status'); ?></ul>
 					<div class="item" style="display:block;" id="item_mysql">
 						<?php echo nl2br(htmlspecialchars(str_replace("  ","\n\t\t\t\t\t\t",DB::stat())))."\n"; ?>
 					</div>
 				</div>
 				<div class="wrapper">
-					<ul class="breadcrumb" onclick="return false;"><i class="icon" id="triangle_server" onclick="wrapper('triangle_server','item_server'); return false;">▼</i>&nbsp;<?php _e('Service Information'); ?></ul>
+					<ul class="breadcrumb" onclick="wrapper('triangle_server','item_server'); return false;"><i class="icon" id="triangle_server">▼</i>&nbsp;<?php _e('Service Information'); ?></ul>
 					<div class="item" style="display:block;" id="item_server">
 <?php
 		if(function_exists("gd_info")){                  
@@ -54,7 +54,7 @@ if (isset($_SESSION['connected']) && $_SESSION['connected'] === true) {
 					</div>
 				</div>
 				<div class="wrapper">
-					<ul class="breadcrumb" onclick="return false;"><i class="icon" id="triangle_manage" onclick="wrapper('triangle_manage','item_manage'); return false;">▼</i>&nbsp;<?php _e('Management Statistics'); ?></ul>
+					<ul class="breadcrumb" onclick="wrapper('triangle_manage','item_manage'); return false;"><i class="icon" id="triangle_manage">▼</i>&nbsp;<?php _e('Management Statistics'); ?></ul>
 					<div class="item" style="display:block;" id="item_manage">
 <?php
 		$q_info = DB::query("SELECT sum(`DownloadTimes`) FROM `".DCRM_CON_PREFIX."Packages`");

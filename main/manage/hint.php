@@ -25,26 +25,13 @@ define('ABSPATH', dirname(MANAGE_ROOT).'/');
 require_once ABSPATH.'system/common.inc.php';
 
 if (isset($_SESSION['connected']) && $_SESSION['connected'] === true) {
-	$con = mysql_connect(DCRM_CON_SERVER, DCRM_CON_USERNAME, DCRM_CON_PASSWORD);
-	if (!$con) {
-		die("MYSQL Error!");
-	}
-	mysql_query("SET NAMES utf8");
-	$select  = mysql_select_db(DCRM_CON_DATABASE);
-	if (!$select) {
-		die("MYSQL Error!");
-	}
 	if (isset($_POST['action']) && $_POST['action'] == "adv_info") {
 		$item_id = (int)$_POST['item'];
-		$item_col = mysql_real_escape_string($_POST['col']);
+		$item_col = DB::real_escape_string($_POST['col']);
 		if (empty($item_col) || $item_id == 0) {
 			die("NULL");
 		}
-		$item_query = mysql_query("SELECT * FROM `".DCRM_CON_PREFIX."Packages` WHERE `ID` = '" . $item_id . "'");
-		if (!$item_query) {
-			die("MYSQL Error.");
-		}
-		$item = mysql_fetch_assoc($item_query);
+		$item = DB::fetch_first("SELECT * FROM `".DCRM_CON_PREFIX."Packages` WHERE `ID` = '" . $item_id . "'");
 		if (empty($item[$item_col])) {
 			die("NULL");
 		} else {

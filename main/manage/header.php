@@ -69,7 +69,7 @@ $sidebars = array(
 <?php if(is_rtl()){ ?>	<link rel="stylesheet" type="text/css" href="css/bootstrap-rtl.min.css"><?php echo "\n"; } ?>
 <?php if(file_exists(ROOT.'css/font/'.substr($locale, 0, 2).'.css')){ ?>	<link rel="stylesheet" type="text/css" href="../css/font/<?php echo substr($locale, 0, 2); ?>.css"><?php echo "\n"; } ?>
 <?php if(file_exists(ROOT.'css/font/'.$locale.'.css')){ ?>	<link rel="stylesheet" type="text/css" href="../css/font/<?php echo $locale; ?>.css"><?php echo "\n"; } ?>
-	<script type="text/javascript" src="http://libs.useso.com/js/jquery/1.4.2/jquery.min.js"></script>
+	<script src="http://cdn.bootcss.com/jquery/1.11.2/jquery.min.js"></script>
 	<script type="text/javascript">
 	$(document).ready(function(){
 		var loaded = true;
@@ -151,10 +151,7 @@ if ( isset($activeid) && ( 'view' == $activeid || 'edit' == $activeid || 'center
 							<li<?php if ( isset($activeid) && 'view' == $activeid ) echo ' class="active"'; ?>><a href="javascript:opt(1)"><?php _e('View Details'); ?></a></li>
 							<li<?php if ( isset($activeid) && 'edit' == $activeid && !isset($_GET['action']) ) echo ' class="active"'?>><a href="javascript:opt(2)"><?php _e('General Editing'); ?></a></li>
 							<li<?php if ( isset($activeid) && 'edit' == $activeid && isset($_GET['action']) && ($_GET['action'] == 'advance' || $_GET['action'] == 'advance_set') ) echo ' class="active"'?>><a href="javascript:opt(3)"><?php _e('Advance Editing'); ?></a></li>
-<?php 
-	if ( isset($activeid) && 'center' == $activeid )
-		echo "\t\t\t\t\t\t\t<li id=\"sli\"></li>"; 
-?>
+							<li id="sli"></li>
 					</ul>
 				</div>
 <?php

@@ -21,6 +21,10 @@
 session_start();
 define("DCRM",true);
 $activeid = 'upload';
+$localetype = 'manage';
+define('MANAGE_ROOT', dirname(__FILE__).'/');
+define('ABSPATH', dirname(MANAGE_ROOT).'/');
+require_once ABSPATH.'system/common.inc.php';
 
 function upload($file, $path = '../upload/', $name = '') {
 	if ($file["size"] <= 0) {

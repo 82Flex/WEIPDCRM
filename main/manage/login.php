@@ -26,7 +26,7 @@ $localetype = 'manage';
 define('ROOT_PATH', dirname(__FILE__));
 define('ABSPATH', dirname(ROOT_PATH).'/');
 include_once ABSPATH.'system/common.inc.php';
-header("Cache-Control: max-age=0");
+header("Cache-Control: nocache");
 class_loader('ValidateCode');
 
 if (isset($_GET['authpic'])) {
