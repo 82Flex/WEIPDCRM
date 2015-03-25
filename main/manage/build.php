@@ -130,13 +130,15 @@ require_once("header.php");
 			<br>
 			<h4 class="alert alert-success"><?php _e('List rebuild request submitted successfully, it is recommended that you <a href="stats.php?action=clean">Clear the Cache</a> to free up disk space.'); ?></h4>
 				<div class="wrapper">
-					<ul class="breadcrumb"><i class="icon" id="triangle_errors" onclick="wrapper('triangle_errors','item_errors'); return false;">▼</i>　<?php _ex('Information', 'Rebuild the list') ?></ul>
+					<ul class="breadcrumb" onclick="wrapper('triangle_errors','item_errors'); return false;"><i class="icon" id="triangle_errors">▼</i>　<?php _ex('Information', 'Rebuild the list') ?></ul>
 					<div class="item" style="display:block;" id="item_errors">
 						<?php
 							if (!empty($alert)) {echo nl2br($alert);}
 						?>
 					</div>
-					<ul class="breadcrumb" onclick="return false;"><i class="icon" id="triangle_packages" onclick="wrapper('triangle_packages','item_packages'); return false;">▼</i>　<?php _e('Preview of Packages file'); ?></ul>
+				</div>
+				<div class="wrapper">
+					<ul class="breadcrumb" onclick="wrapper('triangle_packages','item_packages'); return false;"><i class="icon" id="triangle_packages">▼</i>　<?php _e('Preview of Packages file'); ?></ul>
 					<div class="item" style="display:block;" id="item_packages">
 						<?php if (!empty($Packages)) echo nl2br(htmlspecialchars(mb_substr($Packages,0,2048,"UTF-8"))); else _e('File does not exist.'); ?>
 					</div>
