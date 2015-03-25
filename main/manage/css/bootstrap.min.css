@@ -428,7 +428,7 @@ a:hover,a:active,.btn-group .dropdown-toggle:active,.btn-group.open .dropdown-to
 button::-moz-focus-inner,input::-moz-focus-inner,button.btn::-moz-focus-inner,input[type=submit].btn::-moz-focus-inner{border:0;padding:0}
 .clearfix,.nav-tabs,.nav-pills,.tabbable{zoom:1}
 .clearfix:before,.clearfix:after,.row:before,.row:after,.container:before,.container:after,.form-actions:before,.form-actions:after,.form-horizontal .control-group:before,.form-horizontal .control-group:after,.btn-group:before,.btn-group:after,.nav-tabs:before,.nav-pills:before,.nav-tabs:after,.nav-pills:after,.tabbable:before,.tabbable:after,.navbar-form:before,.navbar-form:after,.pager:before,.pager:after,.thumbnails:before,.thumbnails:after{display:table;content:""}
-.clearfix:after,.row:after,.container:after,.form-actions:after,.form-horizontal .control-group:after,.btn-group:after,.nav-tabs:after,.nav-pills:after,.tabbable:after,.navbar-form:after,.pager:after,.thumbnails:after{clear:both}
+.clearfix:after,.row:after,.container:after,.form-actions:after,.btn-group:after,.nav-tabs:after,.nav-pills:after,.tabbable:after,.navbar-form:after,.pager:after,.thumbnails:after{clear:both}
 .span1,.input-mini{width:60px}
 h1 small,h2 small{font-size:18px}
 h3 small,h4{font-size:14px}
@@ -493,6 +493,8 @@ input,textarea,.uneditable-input,.btn:first-child,.btn-group:first-child{margin-
 .table .close{float:none;text-align:center;margin:0 10px}
 .table ul{margin: 0 0 9px 0;}
 .language optgroup{font-style: normal;}
+.wrapper{margin-bottom: 18px;}
+.settingsform .control-group{margin-bottom: 0;}
 @media only screen and (max-width:830px){
 .form-horizontal .control-label{width:auto;float: none;text-align: left;}
 .form-horizontal .controls{display: block;width:100%;position: relative;}

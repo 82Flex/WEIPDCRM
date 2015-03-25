@@ -37,11 +37,11 @@ if (isset($_SESSION['connected']) && $_SESSION['connected'] === true) {
 ?>
 				<h2><?php _e( 'Preferences' ); ?></h2>
 				<br />
-				<form class="form-horizontal" method="POST" action="settings.php?action=set">
+				<form class="form-horizontal settingsform" method="POST" action="settings.php?action=set">
 					<fieldset>
 						<h3><?php _e( 'General' ); ?></h3>
 						<br />
-						<div class="group-control">
+						<div class="control-group">
 							<label class="control-label"><?php _e( 'Language' ); if ( substr( $locale, 0, 2 ) != 'en' ) { ?><br /> Language<?php } ?></label>
 							<div class="controls">
 								<select name="language" class="language">
@@ -84,14 +84,15 @@ if (isset($_SESSION['connected']) && $_SESSION['connected'] === true) {
 						<br />
 						<h3><?php _e('Login Information');?></h3>
 						<br />
-						<div class="group-control">
+						<div class="control-group">
 							<label class="control-label"><?php _e('Username');?></label>
 							<div class="controls">
-								<input type="text" required="required" name="username" value="<?php echo htmlspecialchars($_SESSION['username']); ?>"/>
+								<input type="text" required="required" name="username" minlength="4" maxlength="20" data-validation-minlength-message="<?php _e('Username length must be between 4-20 characters!'); ?>" value="<?php echo htmlspecialchars($_SESSION['username']); ?>"/>
+								<p class="help-block"></p>
 							</div>
 						</div>
 						<br />
-						<div class="group-control">
+						<div class="control-group">
 							<label class="control-label"><?php _e('New Password');?></label>
 							<div class="controls">
 								<input type="password" name="pass1" id="pass1"/>
@@ -99,7 +100,7 @@ if (isset($_SESSION['connected']) && $_SESSION['connected'] === true) {
 							</div>
 						</div>
 						<br />
-						<div class="group-control">
+						<div class="control-group">
 							<label class="control-label"><?php _e('Repeat New Password');?></label>
 							<div class="controls">
 								<input type="password" name="pass2" id="pass2"/>
@@ -108,32 +109,32 @@ if (isset($_SESSION['connected']) && $_SESSION['connected'] === true) {
 							</div>
 						</div>
 						<br />
-						<div class="group-control">
+						<div class="control-group">
 							<label class="control-label"><?php _e('The maximum number of attempts');?></label>
 							<div class="controls">
-								<input type="text" required="required" name="trials" value="<?php echo htmlspecialchars(DCRM_MAXLOGINFAIL); ?>"/>
+								<input type="number" required="required" name="trials" value="<?php echo htmlspecialchars(DCRM_MAXLOGINFAIL); ?>"/>
 							</div>
 						</div>
 						<br />
-						<div class="group-control">
+						<div class="control-group">
 							<label class="control-label"><?php _e('Login Fail Reset Time');?></label>
 							<div class="controls">
-								<input type="text" required="required" name="resettime" value="<?php if(defined(DCRM_LOGINFAILRESETTIME)){echo(htmlspecialchars(DCRM_LOGINFAILRESETTIME)/60);}else{echo(10);} ?>"/>
+								<input type="number" required="required" name="resettime" value="<?php if(defined(DCRM_LOGINFAILRESETTIME)){echo(htmlspecialchars(DCRM_LOGINFAILRESETTIME)/60);}else{echo(10);} ?>"/>
 								<p class="help-block"><?php _e('Unit: Minutes');?></p>
 							</div>
 						</div>
 						<br />
-						<div class="group-control">
+						<div class="control-group">
 							<label class="control-label" style="color: red;"><?php _e( 'Repository URL' ); ?></label>
 							<div class="controls">
-								<input type="text" required="required" name="url_repo" style="width: 400px;" value="<?php echo htmlspecialchars(base64_decode(DCRM_REPOURL)); ?>"/>
+								<input type="text" required="required" name="url_repo" style="width: 400px;" data-validation-regex-regex="((https?):\/\/)?([a-z]([a-z0-9\-]*[\.。])+([a-z]*)|(([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])\.){3}([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5]))(\/[a-z0-9_\-\.~]+)*(\/([a-z0-9_\-\.]*)(\?[a-z0-9+_\-\.%=&]*)?)?(#[a-z][a-z0-9_]*)?" data-validation-regex-message="<?php _e('Not a valid website address'); ?>" value="<?php echo htmlspecialchars(base64_decode(DCRM_REPOURL)); ?>"/>
 								<p class="help-block"><?php _e( 'Displayed on the homepage for the user to add.' ); ?></p>
 							</div>
 						</div>
 						<br />
 						<h3><?php _e('PC Site');?></h3>
 						<br />
-						<div class="group-control">
+						<div class="control-group">
 							<label class="control-label" style="color: red;"><?php _e('Master Switch');?></label>
 							<div class="controls">
 								<select name="pcindex">
@@ -145,7 +146,7 @@ if (isset($_SESSION['connected']) && $_SESSION['connected'] === true) {
 						<br />
 						<h3><?php _e('Mobile Site');?></h3>
 						<br />
-						<div class="group-control">
+						<div class="control-group">
 							<label class="control-label" style="color: red;"><?php _e('Master Switch');?></label>
 							<div class="controls">
 								<select name="mobile">
@@ -154,7 +155,7 @@ if (isset($_SESSION['connected']) && $_SESSION['connected'] === true) {
 							</div>
 						</div>
 						<br />
-						<div class="group-control">
+						<div class="control-group">
 							<label class="control-label"><?php _e('Show Latest List');?></label>
 							<div class="controls">
 								<select name="list">
@@ -163,15 +164,15 @@ if (isset($_SESSION['connected']) && $_SESSION['connected'] === true) {
 							</div>
 						</div>
 						<br />
-						<div class="group-control">
+						<div class="control-group">
 							<label class="control-label"><?php _e('Number of Latest List');?></label>
 							<div class="controls">
-								<input type="text"  name="listnum" value="<?php echo htmlspecialchars(DCRM_SHOW_NUM); ?>"/>
-								<p class="help-block"><?php _e('The maximum must not exceed 20.');?></p>
+								<input type="number" name="listnum" max="20" data-validation-max-message="<?php printf(__('Too high: Maximum of \'%s\''), '20'); ?>" value="<?php echo htmlspecialchars(DCRM_SHOW_NUM); ?>"/>
+								<p class="help-block"><?php _e('Must be lower than 20.');?></p>
 							</div>
 						</div>
 						<br />
-						<div class="group-control">
+						<div class="control-group">
 							<label class="control-label"><?php _e('Full List of Sections');?></label>
 							<div class="controls">
 								<select name="allowfulllist">
@@ -180,7 +181,7 @@ if (isset($_SESSION['connected']) && $_SESSION['connected'] === true) {
 							</div>
 						</div>
 						<br />
-						<div class="group-control">
+						<div class="control-group">
 							<label class="control-label"><?php _ex('Screenshorts', 'Settings');?></label>
 							<div class="controls">
 								<select name="screenshots">
@@ -189,7 +190,7 @@ if (isset($_SESSION['connected']) && $_SESSION['connected'] === true) {
 							</div>
 						</div>
 						<br />
-						<div class="group-control">
+						<div class="control-group">
 							<label class="control-label"><?php _e('Report Problems');?></label>
 							<div class="controls">
 								<select name="reporting">
@@ -198,15 +199,15 @@ if (isset($_SESSION['connected']) && $_SESSION['connected'] === true) {
 							</div>
 						</div>
 						<br />
-						<div class="group-control">
+						<div class="control-group">
 							<label class="control-label"><?php _e('Limit Number of Report');?></label>
 							<div class="controls">
-								<input type="text"  name="reportlimit" value="<?php echo htmlspecialchars(DCRM_REPORT_LIMIT); ?>"/>
+								<input type="number" name="reportlimit" max="10" data-validation-max-message="<?php printf(__('Too high: Maximum of \'%s\''), '10'); ?>" value="<?php echo htmlspecialchars(DCRM_REPORT_LIMIT); ?>"/>
 								<p class="help-block"><?php _e('The maximum not more than 10 times.'); ?></p>
 							</div>
 						</div>
 						<br />
-						<div class="group-control">
+						<div class="control-group">
 							<label class="control-label"><?php _e('Update Logs');?></label>
 							<div class="controls">
 								<select name="updatelogs">
@@ -216,7 +217,7 @@ if (isset($_SESSION['connected']) && $_SESSION['connected'] === true) {
 							</div>
 						</div>
 						<br />
-						<div class="group-control">
+						<div class="control-group">
 							<label class="control-label"><?php _e('More Information');?></label>
 							<div class="controls">
 								<select name="moreinfo">
@@ -225,7 +226,7 @@ if (isset($_SESSION['connected']) && $_SESSION['connected'] === true) {
 							</div>
 						</div>
 						<br />
-						<div class="group-control">
+						<div class="control-group">
 							<label class="control-label"><?php _e('Detailed Description'); ?></label>
 							<div class="controls">
 								<select name="multiinfo">
@@ -236,7 +237,7 @@ if (isset($_SESSION['connected']) && $_SESSION['connected'] === true) {
 						<br />
 						<h3><?php _e('Download');?></h3>
 						<br />
-						<div class="group-control">
+						<div class="control-group">
 							<label class="control-label"><?php _e('HotLink Protection');?></label>
 							<div class="controls">
 								<select name="directdown">
@@ -245,17 +246,17 @@ if (isset($_SESSION['connected']) && $_SESSION['connected'] === true) {
 							</div>
 						</div>
 						<br />
-						<div class="group-control">
+						<div class="control-group">
 							<label class="control-label" style="color: red;"><?php _e('Max Download Speed');?></label>
 							<div class="controls">
-								<input type="text" required="required" name="speedlimit" value="<?php echo htmlspecialchars(DCRM_SPEED_LIMIT); ?>"/>
+								<input type="number" required="required" name="speedlimit" value="<?php echo htmlspecialchars(DCRM_SPEED_LIMIT); ?>"/>
 								<p class="help-block"><?php _e('B/s, please input \'0\' if you do not want limit.');?></p>
 							</div>
 						</div>
 						<br />
 						<h3><?php _e('Lists');?></h3>
 						<br />
-						<div class="group-control">
+						<div class="control-group">
 							<label class="control-label" style="color: red;"><?php _e('Packages File Compression');?></label>
 							<div class="controls">
 								<select name="listsmethod">
@@ -304,7 +305,7 @@ if (isset($_SESSION['connected']) && $_SESSION['connected'] === true) {
 							</div>
 						</div>
 						<br />
-						<div class="group-control">
+						<div class="control-group">
 							<label class="control-label" style="color: red;"><?php _e('Packages Validation ');?></label>
 							<div class="controls">
 								<select name="checkmethod">
@@ -343,21 +344,21 @@ if (isset($_SESSION['connected']) && $_SESSION['connected'] === true) {
 						<br />
 						<h3><?php _e('Autofill');?></h3>
 						<br />
-						<div class="group-control">
+						<div class="control-group">
 							<label class="control-label"><?php _e('Default Identifier of Packages');?></label>
 							<div class="controls">
 								<input type="text" name="PRE" style="width: 400px;" value="<?php if(defined("AUTOFILL_PRE")){echo(htmlspecialchars(stripslashes(AUTOFILL_PRE)));} ?>"/>
 							</div>
 						</div>
 						<br />
-						<div class="group-control">
+						<div class="control-group">
 							<label class="control-label"><?php _e('Default Name of Packages');?></label>
 							<div class="controls">
 								<input type="text" name="NONAME" style="width: 400px;" value="<?php if(defined("AUTOFILL_NONAME")){echo(htmlspecialchars(stripslashes(AUTOFILL_NONAME)));} ?>"/>
 							</div>
 						</div>
 						<br />
-						<div class="group-control">
+						<div class="control-group">
 							<label class="control-label"><?php _e('Default Depiction of Packages');?></label>
 							<div class="controls">
 								<textarea type="text" name="DESCRIPTION" style="height: 40px; width: 400px;"><?php if(defined("AUTOFILL_DESCRIPTION")){echo(htmlspecialchars(stripslashes(AUTOFILL_DESCRIPTION)));} ?></textarea>
@@ -366,21 +367,21 @@ if (isset($_SESSION['connected']) && $_SESSION['connected'] === true) {
 						<br />
 						<h3><?php _e('SEO');?></h3>
 						<br />
-						<div class="group-control">
+						<div class="control-group">
 							<label class="control-label"><?php _ex('Site Name', 'SEO');?></label>
 							<div class="controls">
 								<input type="text" name="SEO" value="<?php if(defined("AUTOFILL_SEO")){echo(htmlspecialchars(stripslashes(AUTOFILL_SEO)));} ?>"/>
 							</div>
 						</div>
 						<br />
-						<div class="group-control">
+						<div class="control-group">
 							<label class="control-label"><?php _ex('Site Address', 'SEO');?></label>
 							<div class="controls">
 								<input type="text" name="SITE" style="width: 400px;" value="<?php if(defined("AUTOFILL_SITE")){echo(htmlspecialchars(stripslashes(AUTOFILL_SITE)));} ?>"/>
 							</div>
 						</div>
 						<br />
-						<div class="group-control">
+						<div class="control-group">
 							<label class="control-label"><?php _ex('Site Keyword', 'SEO');?></label>
 							<div class="controls">
 								<textarea type="text" name="KEYWORDS" style="height: 40px; width: 400px;"><?php if(defined("AUTOFILL_KEYWORDS")){echo(htmlspecialchars(stripslashes(AUTOFILL_KEYWORDS)));} ?></textarea>
@@ -390,30 +391,30 @@ if (isset($_SESSION['connected']) && $_SESSION['connected'] === true) {
 						<br />
 						<h3><?php _e('Administrator Informations');?></h3>
 						<br />
-						<div class="group-control">
+						<div class="control-group">
 							<label class="control-label"><?php _ex('Name', 'Administrator');?></label>
 							<div class="controls">
 								<input type="text" name="MASTER" value="<?php if(defined("AUTOFILL_MASTER")){echo(htmlspecialchars(stripslashes(AUTOFILL_MASTER)));} ?>"/>
 							</div>
 						</div>
 						<br />
-						<div class="group-control">
+						<div class="control-group">
 							<label class="control-label"><?php _ex('Full Name', 'Administrator');?></label>
 							<div class="controls">
 								<input type="text" name="FULLNAME" style="width: 400px;" value="<?php if(defined("AUTOFILL_FULLNAME")){echo(htmlspecialchars(stripslashes(AUTOFILL_FULLNAME)));} ?>"/>
 							</div>
 						</div>
 						<br />
-						<div class="group-control">
+						<div class="control-group">
 							<label class="control-label"><?php _ex('Email Address', 'Administrator');?></label>
 							<div class="controls">
-								<input type="text" name="EMAIL" style="width: 400px;" value="<?php if(defined("AUTOFILL_EMAIL")){echo(htmlspecialchars(stripslashes(AUTOFILL_EMAIL)));} ?>"/>
+								<input type="email" name="EMAIL" style="width: 400px;" data-validation-email-message="<?php _e('Not a valid email address'); ?>" value="<?php if(defined("AUTOFILL_EMAIL")){echo(htmlspecialchars(stripslashes(AUTOFILL_EMAIL)));} ?>"/>
 							</div>
 						</div>
 						<br />
 						<h3><?php _e('Footer');?></h3>
 						<br />
-						<div class="group-control">
+						<div class="control-group">
 							<label class="control-label"><?php _e('Starting Year of Copyright');?></label>
 							<div class="controls">
 								<input type="number" name="FOOTER_YEAR" style="width: 65px;" value="<?php if(defined("AUTOFILL_FOOTER_YEAR")){echo(htmlspecialchars(stripslashes(AUTOFILL_FOOTER_YEAR)));} ?>" />
@@ -421,7 +422,7 @@ if (isset($_SESSION['connected']) && $_SESSION['connected'] === true) {
 							</div>
 						</div>
 						<br />
-						<div class="group-control">
+						<div class="control-group">
 							<label class="control-label"><?php _e('Copyright Name');?></label>
 							<div class="controls">
 								<input type="text" name="FOOTER_NAME" value="<?php if(defined("AUTOFILL_FOOTER_NAME")){echo(htmlspecialchars(stripslashes(AUTOFILL_FOOTER_NAME)));} ?>"/>
@@ -429,7 +430,7 @@ if (isset($_SESSION['connected']) && $_SESSION['connected'] === true) {
 							</div>
 						</div>
 						<br />
-						<div class="group-control">
+						<div class="control-group">
 							<label class="control-label"><?php _e('Footer Code');?></label>
 							<div class="controls">
 								<textarea cols="50" rows="10" name="FOOTER_CODE" style="height: 80px; width: 400px;"><?php if(defined("AUTOFILL_FOOTER_CODE")){echo(htmlspecialchars(stripslashes(AUTOFILL_FOOTER_CODE)));} ?></textarea>
@@ -439,7 +440,7 @@ if (isset($_SESSION['connected']) && $_SESSION['connected'] === true) {
 						<br />
 						<h3><?php _e('Social');?></h3>
 						<br />
-						<div class="group-control">
+						<div class="control-group">
 							<label class="control-label"><?php _e('Duoshuo Social Comments KEY');?></label>
 							<div class="controls">
 								<input type="text" name="DUOSHUO_KEY" value="<?php if(defined("AUTOFILL_DUOSHUO_KEY")){echo(htmlspecialchars(stripslashes(AUTOFILL_DUOSHUO_KEY)));} ?>"/>
@@ -447,14 +448,14 @@ if (isset($_SESSION['connected']) && $_SESSION['connected'] === true) {
 							</div>
 						</div>
 						<br />
-						<div class="group-control">
+						<div class="control-group">
 							<label class="control-label"><?php _e('QQ Group Name');?></label>
 							<div class="controls">
 								<input type="text" name="TENCENT_NAME" value="<?php if(defined("AUTOFILL_TENCENT_NAME")){echo(htmlspecialchars(stripslashes(AUTOFILL_TENCENT_NAME)));} ?>"/>
 							</div>
 						</div>
 						<br />
-						<div class="group-control">
+						<div class="control-group">
 							<label class="control-label"><?php _e('QQ Group Number');?></label>
 							<div class="controls">
 								<input type="text" name="TENCENT" style="width: 400px;" value="<?php if(defined("AUTOFILL_TENCENT")){echo(htmlspecialchars(stripslashes(AUTOFILL_TENCENT)));} ?>"/>
@@ -462,68 +463,70 @@ if (isset($_SESSION['connected']) && $_SESSION['connected'] === true) {
 							</div>
 						</div>
 						<br />
-						<div class="group-control">
+						<div class="control-group">
 							<label class="control-label"><?php _e('Weibo Name');?></label>
 							<div class="controls">
 								<input type="text" name="WEIBO_NAME" value="<?php if(defined("AUTOFILL_WEIBO_NAME")){echo(htmlspecialchars(stripslashes(AUTOFILL_WEIBO_NAME)));} ?>"/>
 							</div>
 						</div>
 						<br />
-						<div class="group-control">
+						<div class="control-group">
 							<label class="control-label"><?php _e('Weibo Address');?></label>
 							<div class="controls">
-								<input type="text" name="WEIBO" style="width: 400px;" value="<?php if(defined("AUTOFILL_WEIBO")){echo(htmlspecialchars(stripslashes(AUTOFILL_WEIBO)));} ?>"/>
+								<input type="text" name="WEIBO" style="width: 400px;" data-validation-regex-regex="((https?):\/\/)?((m\.weibo\.(cn|com)\/))([a-z0-9_\-\.~]+)*(\/([a-z0-9_\-\.]*)(\?[a-z0-9+_\-\.%=&]*)?)?(#[a-z][a-z0-9_]*)?" data-validation-regex-message="<?php _e('Not a valid mobile weibo address. Example: <code>http://m.weibo.com/hintay</code>'); ?>" value="<?php if(defined("AUTOFILL_WEIBO")){echo(htmlspecialchars(stripslashes(AUTOFILL_WEIBO)));} ?>"/>
 								<p class="help-block"><?php _e('Please input the mobile version homepage.');?></p>
 							</div>
 						</div>
 						<br />
-						<div class="group-control">
+						<div class="control-group">
 							<label class="control-label"><?php _e('Twitter Name');?></label>
 							<div class="controls">
 								<input type="text" name="TWITTER_NAME" value="<?php if(defined("AUTOFILL_TWITTER_NAME")){echo(htmlspecialchars(stripslashes(AUTOFILL_TWITTER_NAME)));} ?>"/>
 							</div>
 						</div>
 						<br />
-						<div class="group-control">
+						<div class="control-group">
 							<label class="control-label"><?php _e('Twitter Address');?></label>
 							<div class="controls">
-								<input type="text" name="TWITTER" style="width: 400px;" value="<?php if(defined("AUTOFILL_TWITTER")){echo(htmlspecialchars(stripslashes(AUTOFILL_TWITTER)));} ?>"/>
+								<input type="text" name="TWITTER" style="width: 400px;" data-validation-regex-regex="((https?):\/\/)?((www.)*(twitter.com\/))([a-z0-9_\-\.~]+)*(\/([a-z0-9_\-\.]*)(\?[a-z0-9+_\-\.%=&]*)?)?(#[a-z][a-z0-9_]*)?" data-validation-regex-message="<?php _e('Not a valid website address'); ?>" value="<?php if(defined("AUTOFILL_TWITTER")){echo(htmlspecialchars(stripslashes(AUTOFILL_TWITTER)));} ?>"/>
 								<p class="help-block"><?php _e('Need login for visit.');?></p>
 							</div>
 						</div>
 						<br />
-						<div class="group-control">
+						<div class="control-group">
 							<label class="control-label"><?php _e('Facebook Name');?></label>
 							<div class="controls">
 								<input type="text" name="FACEBOOK_NAME" value="<?php if(defined("AUTOFILL_FACEBOOK_NAME")){echo(htmlspecialchars(stripslashes(AUTOFILL_FACEBOOK_NAME)));} ?>"/>
 							</div>
 						</div>
 						<br />
-						<div class="group-control">
+						<div class="control-group">
 							<label class="control-label"><?php _e('Facebook Address');?></label>
 							<div class="controls">
-								<input type="text" name="FACEBOOK" style="width: 400px;" value="<?php if(defined("AUTOFILL_FACEBOOK")){echo(htmlspecialchars(stripslashes(AUTOFILL_FACEBOOK)));} ?>"/>
+								<input type="text" name="FACEBOOK" style="width: 400px;" data-validation-regex-regex="^((https?):\/\/)?((www.)*(facebook.com\/))([a-z0-9_\-\.~]+)*(\/([a-z0-9_\-\.]*)(\?[a-z0-9+_\-\.%=&]*)?)?(#[a-z][a-z0-9_]*)?$" data-validation-regex-message="<?php _e('Not a valid website address'); ?>" value="<?php if(defined("AUTOFILL_FACEBOOK")){echo(htmlspecialchars(stripslashes(AUTOFILL_FACEBOOK)));} ?>"/>
 								<p class="help-block"><?php _e('Need login for visit.');?></p>
 							</div>
 						</div>
 						<br />
-						<div class="group-control">
+						<div class="control-group">
 							<label class="control-label"><?php _e('Paypal Donate Address');?></label>
 							<div class="controls">
-								<input type="text" name="PAYPAL" style="width: 400px;" value="<?php if(defined("AUTOFILL_PAYPAL")){echo(htmlspecialchars(stripslashes(AUTOFILL_PAYPAL)));} ?>"/>
+								<input type="text" name="PAYPAL" style="width: 400px;" data-validation-regex-regex="((https?|ftp|news):\/\/)?([a-z]([a-z0-9\-]*[\.。])+([a-z]{2}|aero|arpa|biz|com|coop|edu|gov|info|int|jobs|mil|museum|name|nato|net|org|pro|travel)|(([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])\.){3}([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5]))(\/[a-z0-9_\-\.~]+)*(\/([a-z0-9_\-\.]*)(\?[a-z0-9+_\-\.%=&]*)?)?(#[a-z][a-z0-9_]*)?" data-validation-regex-message="<?php _e('Not a valid website address'); ?>" value="<?php if(defined("AUTOFILL_PAYPAL")){echo(htmlspecialchars(stripslashes(AUTOFILL_PAYPAL)));} ?>"/>
+								<p class="help-block"></p>
 							</div>
 						</div>
 						<br />
-						<div class="group-control">
+						<div class="control-group">
 							<label class="control-label"><?php _e('Alipay Donate Address');?></label>
 							<div class="controls">
-								<input type="text" name="ALIPAY" style="width: 400px;" value="<?php if(defined("AUTOFILL_ALIPAY")){echo(htmlspecialchars(stripslashes(AUTOFILL_ALIPAY)));} ?>"/>
+								<input type="text" name="ALIPAY" style="width: 400px;" data-validation-regex-regex="((https?|ftp|news):\/\/)?([a-z]([a-z0-9\-]*[\.。])+([a-z]{2}|aero|arpa|biz|com|coop|edu|gov|info|int|jobs|mil|museum|name|nato|net|org|pro|travel)|(([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])\.){3}([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5]))(\/[a-z0-9_\-\.~]+)*(\/([a-z0-9_\-\.]*)(\?[a-z0-9+_\-\.%=&]*)?)?(#[a-z][a-z0-9_]*)?" data-validation-regex-message="<?php _e('Not a valid website address'); ?>" value="<?php if(defined("AUTOFILL_ALIPAY")){echo(htmlspecialchars(stripslashes(AUTOFILL_ALIPAY)));} ?>"/>
+								<p class="help-block"></p>
 							</div>
 						</div>
 						<br />
 						<h3><?php _e('Statistics And Advertisement');?></h3>
 						<br />
-						<div class="group-control">
+						<div class="control-group">
 							<label class="control-label"><?php _e('External Statistics');?></label>
 							<div class="controls">
 								<textarea type="text" style="height: 80px; width: 400px;" name="STATISTICS" ><?php if(defined("AUTOFILL_STATISTICS")){echo(htmlspecialchars(stripslashes(AUTOFILL_STATISTICS)));} ?></textarea>
@@ -531,7 +534,7 @@ if (isset($_SESSION['connected']) && $_SESSION['connected'] === true) {
 							</div>
 						</div>
 						<br />
-						<div class="group-control">
+						<div class="control-group">
 							<label class="control-label"><?php _e('Internal Statistics');?></label>
 							<div class="controls">
 								<textarea type="text" style="height: 80px; width: 400px;" name="STATISTICS_INFO" ><?php if(defined("AUTOFILL_STATISTICS_INFO")){echo(htmlspecialchars(stripslashes(AUTOFILL_STATISTICS_INFO)));} ?></textarea>
@@ -539,7 +542,7 @@ if (isset($_SESSION['connected']) && $_SESSION['connected'] === true) {
 							</div>
 						</div>
 						<br />
-						<div class="group-control">
+						<div class="control-group">
 							<label class="control-label"><?php _e('Advertisement');?></label>
 							<div class="controls">
 								<textarea type="text" style="height: 80px; width: 400px;" name="ADVERTISEMENT" ><?php if(defined("AUTOFILL_ADVERTISEMENT")){echo(htmlspecialchars(stripslashes(AUTOFILL_ADVERTISEMENT)));} ?></textarea>
@@ -548,7 +551,7 @@ if (isset($_SESSION['connected']) && $_SESSION['connected'] === true) {
 						<br />
 						<h3><?php _e('Notice');?></h3>
 						<br />
-						<div class="group-control">
+						<div class="control-group">
 							<label class="control-label"><?php _e('Emergency Notice');?></label>
 							<div class="controls">
 								<textarea type="text" style="height: 80px; width: 400px;" name="EMERGENCY" ><?php if(defined("AUTOFILL_EMERGENCY")){echo(htmlspecialchars(stripslashes(AUTOFILL_EMERGENCY)));} ?></textarea>
@@ -722,8 +725,10 @@ if (isset($_SESSION['connected']) && $_SESSION['connected'] === true) {
 	<script src="../js/password-strength.min.js" type="text/javascript"></script>
 	<script src="../js/zxcvbn-async.min.js" type="text/javascript"></script>
 	<script src="../js/zxcvbn.min.js" type="text/javascript"></script>
+	<script src="./js/jqBootstrapValidation.min.js"></script>
 	<script type='text/javascript'>
 	var pwsL10n = {"empty":"<?php echo( utf8_unicode( __( 'Strength indicator' ) ) ); ?>","short":"<?php echo( utf8_unicode( _x( 'Short', 'Password' ) ) ); ?>","bad":"<?php echo( utf8_unicode( _x( 'Bad', 'Password' ) ) ); ?>","good":"<?php echo( _x( 'Good', 'Password' ) ); ?>","strong":"<?php echo( utf8_unicode( _x( 'Strong', 'Password' ) ) ); ?>","mismatch":"<?php echo( utf8_unicode( _x( 'Mismatch', 'Password' ) ) ); ?>"};
+	$(function () { $("input,select,textarea").not("[type=submit]").jqBootstrapValidation(); } );
 	</script>
 </body>
 </html>
