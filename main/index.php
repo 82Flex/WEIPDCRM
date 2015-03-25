@@ -165,6 +165,7 @@ if ($isCydia) {
 		<script src="js/fastclick.js" type="text/javascript"></script>
 		<script src="js/menes.js" type="text/javascript"></script>
 		<script src="js/cytyle.js" type="text/javascript"></script>
+		<script src="http://cdn.bootcss.com/jquery/1.11.2/jquery.min.js"></script>
 	</head>
 	<body class="pinstripe">
 		<panel>
@@ -792,18 +793,37 @@ if ($index == 0) {
 		if (defined("AUTOFILL_DUOSHUO_KEY")) {
 ?>
 			<fieldset>
-				<div class="ds-thread" data-thread-key="<?php echo($pkg_assoc['Package']); ?>" data-title="<?php echo($pkg_assoc['Name']); ?>" data-url="<?php echo('http://'.$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI']); ?>"></div>
+				<div id="foldcomments">
+					<p style="height: 21px;"><span class="cmsswitch"><?php _e('Fold Comments'); ?></span></p>
+				</div>
+				<div id="comments">
+					<div class="ds-thread" data-thread-key="<?php echo($pkg_assoc['Package']); ?>" data-title="<?php echo($pkg_assoc['Name']); ?>" data-url="<?php echo('http://'.$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI']); ?>"></div>
+				</div>
 			</fieldset>
 			<script type="text/javascript">
 			var duoshuoQuery = {short_name:"<?php echo(AUTOFILL_DUOSHUO_KEY); ?>"};
-				(function() {
-					var ds = document.createElement('script');
-					ds.type = 'text/javascript';ds.async = true;
-					ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
-					ds.charset = 'UTF-8';
-					(document.getElementsByTagName('head')[0] 
-					 || document.getElementsByTagName('body')[0]).appendChild(ds);
-				})();
+			(function() {
+				var ds = document.createElement('script');
+				ds.type = 'text/javascript';ds.async = true;
+				ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+				ds.charset = 'UTF-8';
+				(document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(ds);
+			})();
+
+			$(document).ready(function(){
+				var comments = $("#comments");
+				var cmsswitch = $(".cmsswitch");
+				$("#foldcomments").click(function(){
+					cmsswitch.fadeOut(400);
+					if(comments.css("display")=="none"){
+						comments.slideDown(800);
+						setTimeout(function(){cmsswitch.html('<?php _e('Fold Comments'); ?>').fadeIn(400);}, 400);
+					} else {
+						comments.slideUp(800);
+						setTimeout(function(){cmsswitch.html('<?php _e('Unfold Comments'); ?>').fadeIn(400);}, 400);
+					}
+				});
+			});
 			</script>
 <?php
 		}

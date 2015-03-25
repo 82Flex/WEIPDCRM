@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: DCRM Manager\n"
-"POT-Creation-Date: 2015-03-25 15:54+0800\n"
-"PO-Revision-Date: 2015-03-25 15:55+0800\n"
+"POT-Creation-Date: 2015-03-25 19:48+0800\n"
+"PO-Revision-Date: 2015-03-25 19:48+0800\n"
 "Last-Translator: Hintay <hintay@me.com>\n"
 "Language-Team: Hintay <hintay@me.com>\n"
 "Language: zh_CN\n"
@@ -299,107 +299,107 @@ msgstr "默认预览页为：%s"
 msgid "Preview Default Depiction"
 msgstr "预览默认预览页"
 
-#: manage/edit.php:142 manage/settings.php:229
+#: manage/edit.php:140 manage/settings.php:230
 msgid "Detailed Description"
 msgstr "详细描述"
 
-#: manage/edit.php:153 manage/edit.php:215 manage/release.php:90
-#: manage/settings.php:560
+#: manage/edit.php:149 manage/edit.php:195 manage/release.php:90
+#: manage/settings.php:563
 msgid "Save"
 msgstr "保存"
 
-#: manage/edit.php:174 manage/edit.php:234
+#: manage/edit.php:158 manage/edit.php:211
 msgid "Update Database"
 msgstr "更新数据库"
 
-#: manage/edit.php:175 manage/edit.php:235
+#: manage/edit.php:159 manage/edit.php:212
 msgid "The package information edited!"
 msgstr "软件包信息编辑完成！"
 
-#: manage/edit.php:175 manage/edit.php:235
+#: manage/edit.php:159 manage/edit.php:212
 msgid ""
 "After modify the fields with an asterisk, you must write into package then "
 "safely rebuild list."
 msgstr "修改带星号的字段后，您必须将其写入软件包才能安全地刷新列表。"
 
-#: manage/edit.php:176 manage/edit.php:236
+#: manage/edit.php:160 manage/edit.php:213
 msgid "Write Now"
 msgstr "立即写入"
 
-#: manage/edit.php:176 manage/edit.php:236 manage/import.php:269
+#: manage/edit.php:160 manage/edit.php:213 manage/import.php:269
 #: manage/manage.php:116 manage/manage.php:124 manage/output.php:148
 #: manage/release.php:115 manage/release.php:117 manage/release.php:120
-#: manage/settings.php:674 manage/settings.php:711 manage/stats.php:97
+#: manage/settings.php:677 manage/settings.php:714 manage/stats.php:97
 msgid "Back"
 msgstr "返回"
 
-#: manage/edit.php:187 manage/header.php:153
+#: manage/edit.php:167 manage/header.php:153
 msgid "Advance Editing"
 msgstr "高级编辑"
 
-#: manage/edit.php:192
+#: manage/edit.php:172
 msgctxt "Advance Editing"
 msgid "Field"
 msgstr "修改字段"
 
-#: manage/edit.php:207
+#: manage/edit.php:187
 msgctxt "Advance Editing"
 msgid "Content"
 msgstr "修改内容"
 
-#: manage/edit.php:250
+#: manage/edit.php:227
 msgid "Align"
 msgstr "对齐方式"
 
-#: manage/edit.php:252
+#: manage/edit.php:229
 msgctxt "Align"
 msgid "Left"
 msgstr "左对齐"
 
-#: manage/edit.php:253
+#: manage/edit.php:230
 msgctxt "Align"
 msgid "Center"
 msgstr "居中对齐"
 
-#: manage/edit.php:254
+#: manage/edit.php:231
 msgctxt "Align"
 msgid "Right"
 msgstr "右对齐"
 
-#: manage/edit.php:258
+#: manage/edit.php:235
 msgctxt "Edit"
 msgid "List"
 msgstr "编号"
 
-#: manage/edit.php:260
+#: manage/edit.php:237
 msgid "Ordered list"
 msgstr "数字编号"
 
-#: manage/edit.php:261
+#: manage/edit.php:238
 msgid "Unordered list"
 msgstr "项目编号"
 
-#: manage/edit.php:265
+#: manage/edit.php:242
 msgid "Indent"
 msgstr "缩进"
 
-#: manage/edit.php:267
+#: manage/edit.php:244
 msgid "Increase indent"
 msgstr "向右缩进"
 
-#: manage/edit.php:268
+#: manage/edit.php:245
 msgid "Decrease indent"
 msgstr "向左缩进"
 
-#: manage/edit.php:309
+#: manage/edit.php:286
 msgid "Data loading"
 msgstr "数据加载中"
 
-#: manage/edit.php:319
+#: manage/edit.php:296
 msgid "Database Error"
 msgstr "数据库错误"
 
-#: manage/header.php:18 manage/upload.php:82 manage/upload.php:147
+#: manage/header.php:18 manage/upload.php:86 manage/upload.php:151
 msgid "Upload Packages"
 msgstr "上传软件包"
 
@@ -407,7 +407,7 @@ msgstr "上传软件包"
 msgid "Import Packages"
 msgstr "导入软件包"
 
-#: manage/header.php:37 manage/sections.php:36
+#: manage/header.php:37 manage/sections.php:36 manage/sections.php:98
 msgid "Manage Sections"
 msgstr "分类管理"
 
@@ -444,7 +444,7 @@ msgstr "查看详情"
 msgid "Invalid argument: `Filename`"
 msgstr "无效的参数：`Filename`"
 
-#: manage/import.php:46 manage/upload.php:197
+#: manage/import.php:46 manage/upload.php:201
 msgid "Invalid file type!"
 msgstr "不允许的文件类型！"
 
@@ -843,7 +843,7 @@ msgstr "图标包模板丢失，请重新安装 DCRM 专业版！"
 msgid "Enabled"
 msgstr "启用"
 
-#: manage/settings.php:32 manage/settings.php:34 manage/upload.php:170
+#: manage/settings.php:32 manage/settings.php:34 manage/upload.php:174
 msgid "Disabled"
 msgstr "禁用"
 
@@ -879,285 +879,303 @@ msgstr "如果您想让系统自动匹配浏览器语言来显示页面，请选
 msgid "Login Information"
 msgstr "登录信息"
 
-#: manage/settings.php:95
+#: manage/settings.php:90 manage/settings.php:578
+msgid "Username length must be between 4-20 characters!"
+msgstr "用户名长度必须在 4 - 20 个字符之间！"
+
+#: manage/settings.php:96
 msgid "New Password"
 msgstr "新密码"
 
-#: manage/settings.php:98
+#: manage/settings.php:99
 msgid ""
 "If you would like to change the password type a new one. Otherwise leave "
 "this blank."
 msgstr "如果您想修改您的密码，请在此输入新密码。不然请留空。"
 
-#: manage/settings.php:103
+#: manage/settings.php:104
 msgid "Repeat New Password"
 msgstr "重复新密码"
 
-#: manage/settings.php:106
+#: manage/settings.php:107
 msgid "Type your new password again."
 msgstr "再输入一遍新密码。"
 
-#: manage/settings.php:107 manage/settings.php:726
+#: manage/settings.php:108 manage/settings.php:730
 msgid "Strength indicator"
 msgstr "强度评估"
 
-#: manage/settings.php:112
+#: manage/settings.php:113
 msgid "The maximum number of attempts"
 msgstr "最大尝试次数"
 
-#: manage/settings.php:119
+#: manage/settings.php:120
 msgid "Login Fail Reset Time"
 msgstr "尝试次数重置时间"
 
-#: manage/settings.php:122
+#: manage/settings.php:123
 msgid "Unit: Minutes"
 msgstr "单位：分钟"
 
-#: manage/settings.php:127
+#: manage/settings.php:128
 msgid "Repository URL"
 msgstr "源管理系统源地址"
 
-#: manage/settings.php:130
+#: manage/settings.php:130 manage/settings.php:491 manage/settings.php:506
+#: manage/settings.php:514 manage/settings.php:522
+msgid "Not a valid website address"
+msgstr "无效的网址"
+
+#: manage/settings.php:131
 msgid "Displayed on the homepage for the user to add."
 msgstr "展示在首页供用户添加"
 
-#: manage/settings.php:134
+#: manage/settings.php:135
 msgid "PC Site"
 msgstr "电脑版功能"
 
-#: manage/settings.php:137 manage/settings.php:149
+#: manage/settings.php:138 manage/settings.php:150
 msgid "Master Switch"
 msgstr "总开关"
 
-#: manage/settings.php:142
+#: manage/settings.php:143
 msgid "Non-apple owners will automatically jump if enabled."
 msgstr "开启后非苹果用户将自动跳转"
 
-#: manage/settings.php:146
+#: manage/settings.php:147
 msgid "Mobile Site"
 msgstr "移动版功能"
 
-#: manage/settings.php:158 manage/settings.php:642
+#: manage/settings.php:159 manage/settings.php:645
 msgid "Show Latest List"
 msgstr "展示最新列表"
 
-#: manage/settings.php:167
+#: manage/settings.php:168
 msgid "Number of Latest List"
 msgstr "最新列表数量"
 
-#: manage/settings.php:170
-msgid "The maximum must not exceed 20."
+#: manage/settings.php:170 manage/settings.php:205
+#, php-format
+msgid "Too high: Maximum of '%s'"
+msgstr "过高：最大不得超过 '%s'"
+
+#: manage/settings.php:171
+msgid "Must be lower than 20."
 msgstr "最大不得超过 20 条"
 
-#: manage/settings.php:175 manage/settings.php:651
+#: manage/settings.php:176 manage/settings.php:654
 msgid "Full List of Sections"
 msgstr "分类完整列表"
 
-#: manage/settings.php:184 manage/settings.php:614
+#: manage/settings.php:185 manage/settings.php:617
 msgctxt "Settings"
 msgid "Screenshorts"
 msgstr "预览截图"
 
-#: manage/settings.php:193 manage/settings.php:618
+#: manage/settings.php:194 manage/settings.php:621
 msgid "Report Problems"
 msgstr "报告问题"
 
-#: manage/settings.php:202
+#: manage/settings.php:203
 msgid "Limit Number of Report"
 msgstr "限制报告次数"
 
-#: manage/settings.php:205
+#: manage/settings.php:206
 msgid "The maximum not more than 10 times."
 msgstr "最大不得超过 10 次"
 
-#: manage/settings.php:210 manage/settings.php:626
+#: manage/settings.php:211 manage/settings.php:629
 msgid "Update Logs"
 msgstr "更新日志"
 
-#: manage/settings.php:215
+#: manage/settings.php:216
 msgid "Displayed in the Version History."
 msgstr "显示在历史版本中的更新日志"
 
-#: manage/settings.php:220 manage/settings.php:630
+#: manage/settings.php:221 manage/settings.php:633
 msgid "More Information"
 msgstr "更多信息"
 
-#: manage/settings.php:237
+#: manage/settings.php:238
 msgid "Download"
 msgstr "下载设置"
 
-#: manage/settings.php:240 manage/settings.php:602
+#: manage/settings.php:241 manage/settings.php:605
 msgid "HotLink Protection"
 msgstr "防盗链"
 
-#: manage/settings.php:249
+#: manage/settings.php:250
 msgid "Max Download Speed"
 msgstr "最大下载速度"
 
-#: manage/settings.php:252
+#: manage/settings.php:253
 msgid "B/s, please input '0' if you do not want limit."
 msgstr "字节每秒，不限制请填写 0"
 
-#: manage/settings.php:256
+#: manage/settings.php:257
 msgid "Lists"
 msgstr "列表设置"
 
-#: manage/settings.php:259
+#: manage/settings.php:260
 msgid "Packages File Compression"
 msgstr "Packages 压缩"
 
-#: manage/settings.php:266
+#: manage/settings.php:267
 msgid "Hide list"
 msgstr "隐藏列表"
 
-#: manage/settings.php:269
+#: manage/settings.php:270
 msgid "Only text"
 msgstr "仅文本"
 
-#: manage/settings.php:272
+#: manage/settings.php:273
 msgid "Only gz"
 msgstr "仅 gz"
 
-#: manage/settings.php:275
+#: manage/settings.php:276
 msgid "Text and gz"
 msgstr "文本与 gz"
 
-#: manage/settings.php:278
+#: manage/settings.php:279
 msgid "Only bz2"
 msgstr "仅 bz2"
 
-#: manage/settings.php:281
+#: manage/settings.php:282
 msgid "Text and bz2"
 msgstr "文本与 bz2"
 
-#: manage/settings.php:284
+#: manage/settings.php:285
 msgid "gz and bz2"
 msgstr "gz 与 bz2"
 
-#: manage/settings.php:287
+#: manage/settings.php:288
 msgid "All"
 msgstr "全部"
 
-#: manage/settings.php:303
+#: manage/settings.php:304
 msgid ""
 "Please change the compression method if error occurred trying rebuild the "
 "list."
 msgstr "若修改后发现刷新列表出错，请更换压缩方式"
 
-#: manage/settings.php:308
+#: manage/settings.php:309
 msgid "Packages Validation "
 msgstr "软件包验证"
 
-#: manage/settings.php:315
+#: manage/settings.php:316
 msgid "No validation"
 msgstr "不验证"
 
-#: manage/settings.php:340
+#: manage/settings.php:341
 msgid "Take effect when write to Packages."
 msgstr "仅在写入软件包时生效"
 
-#: manage/settings.php:344
+#: manage/settings.php:345
 msgid "Autofill"
 msgstr "自动填充"
 
-#: manage/settings.php:347
+#: manage/settings.php:348
 msgid "Default Identifier of Packages"
 msgstr "软件包默认标识符"
 
-#: manage/settings.php:354
+#: manage/settings.php:355
 msgid "Default Name of Packages"
 msgstr "软件包默认描述"
 
-#: manage/settings.php:361
+#: manage/settings.php:362
 msgid "Default Depiction of Packages"
 msgstr "软件包默认名称"
 
-#: manage/settings.php:367
+#: manage/settings.php:368
 msgid "SEO"
 msgstr "SEO 优化"
 
-#: manage/settings.php:370
+#: manage/settings.php:371
 msgctxt "SEO"
 msgid "Site Name"
 msgstr "SEO 名称"
 
-#: manage/settings.php:377
+#: manage/settings.php:378
 msgctxt "SEO"
 msgid "Site Address"
 msgstr "SEO 地址"
 
-#: manage/settings.php:384
+#: manage/settings.php:385
 msgctxt "SEO"
 msgid "Site Keyword"
 msgstr "SEO 关键词"
 
-#: manage/settings.php:387
+#: manage/settings.php:388
 msgid "Separated by commas."
 msgstr "以英文半角逗号分隔"
 
-#: manage/settings.php:391
+#: manage/settings.php:392
 msgid "Administrator Informations"
 msgstr "管理员信息"
 
-#: manage/settings.php:394
+#: manage/settings.php:395
 msgctxt "Administrator"
 msgid "Name"
 msgstr "管理员名称"
 
-#: manage/settings.php:401
+#: manage/settings.php:402
 msgctxt "Administrator"
 msgid "Full Name"
 msgstr "管理员全名"
 
-#: manage/settings.php:408
+#: manage/settings.php:409
 msgctxt "Administrator"
 msgid "Email Address"
 msgstr "管理员邮箱"
 
-#: manage/settings.php:414
+#: manage/settings.php:411
+msgid "Not a valid email address"
+msgstr "无效的电子邮件地址。"
+
+#: manage/settings.php:415
 msgid "Footer"
 msgstr "底部设置"
 
-#: manage/settings.php:417
+#: manage/settings.php:418
 msgid "Starting Year of Copyright"
 msgstr "版权起始年份"
 
-#: manage/settings.php:420
+#: manage/settings.php:421
 #, php-format
 msgid ""
 "If input 2010, the final display is © 2010-%d, leave a blank will only "
 "displays the current year."
 msgstr "如输入 2010，最终显示为 © 2010-%d，留空则只显示当前年份。"
 
-#: manage/settings.php:425
+#: manage/settings.php:426
 msgid "Copyright Name"
 msgstr "版权名称"
 
-#: manage/settings.php:428
+#: manage/settings.php:429
 msgid ""
 "Displayed on the website at the bottom. If you not input anything will "
 "display the repository name."
 msgstr "显示在网站底部。如不填写则显示源名称。"
 
-#: manage/settings.php:433
+#: manage/settings.php:434
 msgid "Footer Code"
 msgstr "页脚信息"
 
-#: manage/settings.php:436
+#: manage/settings.php:437
 msgid ""
 "You can input ICP number, site information etc. Please use <code>·</code> as "
 "the separator. "
 msgstr "可填写备案号、网站信息等，请使用 <code>·</code> 作为分隔符。"
 
-#: manage/settings.php:440
+#: manage/settings.php:441
 msgid "Social"
 msgstr "社会化分享"
 
-#: manage/settings.php:443
+#: manage/settings.php:444
 msgid "Duoshuo Social Comments KEY"
 msgstr "多说社会化评论框 KEY"
 
-#: manage/settings.php:446
+#: manage/settings.php:447
 msgid ""
 "Please goto <a href=\"http://duoshuo.com/\">http://duoshuo.com</a> for get "
 "key (registration required), leave a blank will disabled comment function."
@@ -1165,190 +1183,192 @@ msgstr ""
 "请前往 <a href=\"http://duoshuo.com/\">http://duoshuo.com</a> 获取 Key（需要"
 "注册），留空关闭评论功能。"
 
-#: manage/settings.php:451
+#: manage/settings.php:452
 msgid "QQ Group Name"
 msgstr "QQ群名称"
 
-#: manage/settings.php:458
+#: manage/settings.php:459
 msgid "QQ Group Number"
 msgstr "QQ群地址"
 
-#: manage/settings.php:461
+#: manage/settings.php:462
 msgid "Need the new mobile client."
 msgstr "需要新版手机客户端支持"
 
-#: manage/settings.php:466
+#: manage/settings.php:467
 msgid "Weibo Name"
 msgstr "微博名称"
 
-#: manage/settings.php:473
+#: manage/settings.php:474
 msgid "Weibo Address"
 msgstr "微博地址"
 
 #: manage/settings.php:476
+msgid ""
+"Not a valid mobile weibo address. Example: <code>http://m.weibo.com/hintay</"
+"code>"
+msgstr "不是有效的微博手机版地址。示例：<code>http://m.weibo.com/hintay</code>"
+
+#: manage/settings.php:477
 msgid "Please input the mobile version homepage."
 msgstr "请填写移动版主页"
 
-#: manage/settings.php:481
+#: manage/settings.php:482
 msgid "Twitter Name"
 msgstr "Twitter 名称"
 
-#: manage/settings.php:488
+#: manage/settings.php:489
 msgid "Twitter Address"
 msgstr "Twitter 地址"
 
-#: manage/settings.php:491 manage/settings.php:506
+#: manage/settings.php:492 manage/settings.php:507
 msgid "Need login for visit."
 msgstr "登录后方可查看"
 
-#: manage/settings.php:496
+#: manage/settings.php:497
 msgid "Facebook Name"
 msgstr "Facebook 名称"
 
-#: manage/settings.php:503
+#: manage/settings.php:504
 msgid "Facebook Address"
 msgstr "Facebook 地址"
 
-#: manage/settings.php:511
+#: manage/settings.php:512
 msgid "Paypal Donate Address"
 msgstr "Paypal 捐助地址"
 
-#: manage/settings.php:518
+#: manage/settings.php:520
 msgid "Alipay Donate Address"
 msgstr "支付宝捐助地址"
 
-#: manage/settings.php:524
+#: manage/settings.php:527
 msgid "Statistics And Advertisement"
 msgstr "统计与广告"
 
-#: manage/settings.php:527
+#: manage/settings.php:530
 msgid "External Statistics"
 msgstr "外部统计代码"
 
-#: manage/settings.php:530
+#: manage/settings.php:533
 msgid "Invisible statistic code."
 msgstr "不可见的统计代码"
 
-#: manage/settings.php:535
+#: manage/settings.php:538
 msgid "Internal Statistics"
 msgstr "内部统计代码"
 
-#: manage/settings.php:538
+#: manage/settings.php:541
 msgid "Statistics code of view information at Running Status."
 msgstr "查看信息的统计代码"
 
-#: manage/settings.php:543
+#: manage/settings.php:546
 msgid "Advertisement"
 msgstr "广告支持"
 
-#: manage/settings.php:549
+#: manage/settings.php:552
 msgid "Notice"
 msgstr "通知"
 
-#: manage/settings.php:552
+#: manage/settings.php:555
 msgid "Emergency Notice"
 msgstr "紧急通知"
 
-#: manage/settings.php:571
+#: manage/settings.php:574
 msgid "Please provide a valid username."
 msgstr "用户名不得设置为空！"
 
-#: manage/settings.php:575
-msgid "Username length must be between 4-20 characters!"
-msgstr "用户名长度必须在 4 - 20 个字符之间！"
-
-#: manage/settings.php:579
+#: manage/settings.php:582
 msgid "Username can only use numbers, letters and underline!"
 msgstr "用户名只能使用数字、字母、下划线的组合！"
 
-#: manage/settings.php:583
+#: manage/settings.php:586
 msgid "You entered your new password only once."
 msgstr "您只输入了一次新密码。"
 
-#: manage/settings.php:586
+#: manage/settings.php:589
 msgid "Your passwords do not match. Please try again."
 msgstr "您两次输入的密码不符，请重试。"
 
-#: manage/settings.php:590
+#: manage/settings.php:593
 msgid "The maximum number of attempts must be an integer!"
 msgstr "最大尝试次数必须为整数！"
 
-#: manage/settings.php:594
+#: manage/settings.php:597
 msgid "Login fail reset time must be an integer!"
 msgstr "尝试次数重置时间必须为整数！"
 
-#: manage/settings.php:598
+#: manage/settings.php:601
 msgid "Max download speed must be an integer!"
 msgstr "下载限速必须为整数！"
 
-#: manage/settings.php:602 manage/settings.php:614 manage/settings.php:618
-#: manage/settings.php:626 manage/settings.php:630 manage/settings.php:634
-#: manage/settings.php:642 manage/settings.php:651
+#: manage/settings.php:605 manage/settings.php:617 manage/settings.php:621
+#: manage/settings.php:629 manage/settings.php:633 manage/settings.php:637
+#: manage/settings.php:645 manage/settings.php:654
 #, php-format
 msgid "Please set the correct %s switch!"
 msgstr "请正确设置%s开关！"
 
-#: manage/settings.php:606
+#: manage/settings.php:609
 msgid "Please set the correct PC Site Master Switch!"
 msgstr "请正确设置电脑版总开关！"
 
-#: manage/settings.php:610
+#: manage/settings.php:613
 msgid "Please set the correct Mobile Site Master Switch!"
 msgstr "请正确设置移动版总开关！"
 
-#: manage/settings.php:622
+#: manage/settings.php:625
 msgid ""
 "Please set the correct Limit Number of Report, the maximum not more than 10 "
 "times!"
 msgstr "请正确设置报告问题限制次数，最大不得超过 10 次！"
 
-#: manage/settings.php:634
+#: manage/settings.php:637
 msgid "Multiple Information"
 msgstr "详细描述"
 
-#: manage/settings.php:638
+#: manage/settings.php:641
 msgid "Please set the correct Packages compression method!"
 msgstr "请正确设置正确的 Packages 压缩方式！"
 
-#: manage/settings.php:646
+#: manage/settings.php:649
 msgid ""
 "Please set the correct number of latest list, the maximum must not exceed "
 "20 !"
 msgstr "请正确设置首页更新列表数量，最大不得超过 20 条！"
 
-#: manage/settings.php:655
+#: manage/settings.php:658
 msgid "Please provide a valid repository URL!"
 msgstr "源地址不得设置为空！"
 
-#: manage/settings.php:661
+#: manage/settings.php:664
 msgid "There is a same username!"
 msgstr "存在相同的用户名！"
 
-#: manage/settings.php:711
+#: manage/settings.php:714
 msgid "Amendments to the success of settings!"
 msgstr "设置修改成功！"
 
-#: manage/settings.php:726
+#: manage/settings.php:730
 msgctxt "Password"
 msgid "Short"
 msgstr "极弱"
 
-#: manage/settings.php:726
+#: manage/settings.php:730
 msgctxt "Password"
 msgid "Bad"
 msgstr "弱"
 
-#: manage/settings.php:726
+#: manage/settings.php:730
 msgctxt "Password"
 msgid "Good"
 msgstr "中等"
 
-#: manage/settings.php:726
+#: manage/settings.php:730
 msgctxt "Password"
 msgid "Strong"
 msgstr "强"
 
-#: manage/settings.php:726
+#: manage/settings.php:730
 msgctxt "Password"
 msgid "Mismatch"
 msgstr "不匹配"
@@ -1373,7 +1393,7 @@ msgstr "数据库版本："
 msgid "GD library version: "
 msgstr "GD 库版本："
 
-#: manage/stats.php:51 manage/upload.php:105 manage/upload.php:170
+#: manage/stats.php:51 manage/upload.php:109 manage/upload.php:174
 msgid "Upload max filesize: "
 msgstr "最大上传限制："
 
@@ -1431,106 +1451,106 @@ msgstr "清理缓存"
 msgid "Cache cleanup completed!"
 msgstr "缓存清理完成！"
 
-#: manage/upload.php:27
+#: manage/upload.php:31
 msgid "File size incorrect!"
 msgstr "文件尺寸错误！"
 
-#: manage/upload.php:30
+#: manage/upload.php:34
 msgid "File type incorrect!"
 msgstr "文件类型错误！"
 
-#: manage/upload.php:33
+#: manage/upload.php:37
 #, php-format
 msgid "Upload failed, Error Code: %s."
 msgstr "上传失败，错误代码：%s"
 
-#: manage/upload.php:36
+#: manage/upload.php:40
 #, php-format
 msgid "%s already exists."
 msgstr "%s  已经存在"
 
-#: manage/upload.php:40
+#: manage/upload.php:44
 #, php-format
 msgid "Uploaded successfully: %s."
 msgstr "上传成功：%s"
 
-#: manage/upload.php:82 manage/upload.php:147
+#: manage/upload.php:86 manage/upload.php:151
 #, php-format
 msgid "Unable to upload files? Try %s."
 msgstr "无法上传文件？尝试%s."
 
-#: manage/upload.php:82
+#: manage/upload.php:86
 msgid "classic uploader"
 msgstr "普通方式上传"
 
-#: manage/upload.php:87
+#: manage/upload.php:91
 msgid "Please select packages"
 msgstr "请选择要上传的软件包"
 
-#: manage/upload.php:90
+#: manage/upload.php:94
 msgid ""
 "Tip: Select multiple packages by hold down Ctrl(⌘) key while you click the "
 "packages."
 msgstr "提示：按住Ctrl(⌘)键可多选"
 
-#: manage/upload.php:95 manage/upload.php:162
+#: manage/upload.php:99 manage/upload.php:166
 msgid "Upload"
 msgstr "上传"
 
-#: manage/upload.php:96
+#: manage/upload.php:100
 msgctxt "Upload"
 msgid "Reset"
 msgstr "重置上传队列"
 
-#: manage/upload.php:102 manage/upload.php:167
+#: manage/upload.php:106 manage/upload.php:171
 msgid "Tips"
 msgstr "操作提示"
 
-#: manage/upload.php:104 manage/upload.php:169
+#: manage/upload.php:108 manage/upload.php:173
 msgid "Allowed data type: "
 msgstr "允许的数据类型："
 
-#: manage/upload.php:104 manage/upload.php:105 manage/upload.php:106
-#: manage/upload.php:169 manage/upload.php:170 manage/upload.php:171
+#: manage/upload.php:108 manage/upload.php:109 manage/upload.php:110
+#: manage/upload.php:173 manage/upload.php:174 manage/upload.php:175
 msgctxt "Separator"
 msgid ";"
 msgstr "；"
 
-#: manage/upload.php:106 manage/upload.php:171
+#: manage/upload.php:110 manage/upload.php:175
 msgid "Please do not upload disrupt the Internet security data"
 msgstr "请勿上传可能扰乱互联网安全秩序的数据"
 
-#: manage/upload.php:107 manage/upload.php:172
+#: manage/upload.php:111 manage/upload.php:176
 msgid ""
 "Please upload the standard package of Debian software package, otherwise it "
 "may cause loss of data."
 msgstr "请上传标准封装的 Debian 软件包，否则可能会导致数据丢失。"
 
-#: manage/upload.php:124
+#: manage/upload.php:128
 msgid "SELECT FILES"
 msgstr "选择文件"
 
-#: manage/upload.php:147
+#: manage/upload.php:151
 msgid "multiple uploader"
 msgstr "更多方式上传"
 
-#: manage/upload.php:149
+#: manage/upload.php:153
 msgid "Select File"
 msgstr "选择文件"
 
-#: manage/upload.php:154
+#: manage/upload.php:158
 msgid "Please select a package"
 msgstr "请选择一个软件包"
 
-#: manage/upload.php:157
+#: manage/upload.php:161
 msgid "Ready"
 msgstr "准备就绪"
 
-#: manage/upload.php:183
+#: manage/upload.php:187
 msgid "Please wait for uploading..."
 msgstr "上传中，请稍等……"
 
-#: manage/upload.php:201
+#: manage/upload.php:205
 msgid "Please select a package!"
 msgstr "请选择一个软件包！"
 
@@ -2314,6 +2334,9 @@ msgstr "依地文"
 msgctxt "language"
 msgid "Zulu"
 msgstr "祖鲁语"
+
+#~ msgid "The maximum must not exceed 20."
+#~ msgstr "最大不得超过 20 条"
 
 #~ msgid "General Editor"
 #~ msgstr "常规编辑"
