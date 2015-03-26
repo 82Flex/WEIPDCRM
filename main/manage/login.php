@@ -55,7 +55,7 @@ if (isset($_SESSION['connected']) && $_SESSION['connected'] === true) {
 	header("Location: center.php");
 	exit();
 }
-if(isset($_POST['submit'])) {
+if(isset($_POST['username'])) {
 	if (!empty($_POST['username']) AND !empty($_POST['password'])) {
 		if (empty($_POST['authcode'])) {
 			unset($_SESSION['VCODE']);
@@ -114,42 +114,46 @@ endlabel:
 		<title>DCRM - <?php _e('Login'); ?></title>
 		<link href="css/bootstrap.min.css" rel="stylesheet">
 		<link href="css/misc.min.css" rel="stylesheet" media="screen">
+		<link href="css/animation-shake.css" rel="stylesheet" media="screen">
 <?php if(is_rtl()){ ?>		<link rel="stylesheet" type="text/css" href="css/bootstrap-rtl.min.css"><?php } ?>
 <?php if(file_exists(ROOT.'css/font/'.substr($locale, 0, 2).'.css')){ ?>		<link rel="stylesheet" type="text/css" href="../css/font/<?php echo substr($locale, 0, 2); ?>.css"><?php echo "\n"; } ?>
 <?php if(file_exists(ROOT.'css/font/'.$locale.'.css')){ ?>		<link rel="stylesheet" type="text/css" href="../css/font/<?php echo $locale; ?>.css"><?php echo "\n"; } ?>
+		<script src="http://cdn.bootcss.com/jquery/1.11.2/jquery.min.js"></script>
 	</head>
 	<body>
 <?php
 if (!isset($_SESSION['try']) OR $_SESSION['try'] <= DCRM_MAXLOGINFAIL) {
 ?>
-		<form class="well" action="login.php" method="POST">
+		<form class="well" name="form-login" action="login.php" method="POST">
 <?php
 if (file_exists('../CydiaIcon.png')) {
 ?>
 		<p><img src="<?php echo(base64_decode(DCRM_REPOURL)); ?>/CydiaIcon.png" style="width: 72px; height: 72px; border-radius: 6px;" /></p>
+		<div id="error-container" class="mb15">
 <?php
 }
 if (isset($_GET['error'])) {
 	$error = $_GET['error'];
 }
 if ($error == "notenough") {
-	_e('Please input your username and password!');
+	echo '<ul class="parsley-errors-list filled"><li>'.__('Please input your username and password!').'</li></ul>';
 } elseif ($error == "badlogin") {
-	_e('Unknown username or bad password!');
+	echo '<ul class="parsley-errors-list filled"><li>'.__('Unknown username or bad password!').'</li></ul>';
 } elseif ($error == "bear") {
-	_e('Bear!');
+	echo '<ul class="parsley-errors-list filled"><li>'.__('Bear!').'</li></ul>';
 } elseif ($error == "authcode") {
-	_e('Verification code error!');
+	echo '<ul class="parsley-errors-list filled"><li>'.__('Verification code error!').'</li></ul>';
 } else {
-	echo 'DCRM - ' . __('Login');
+	echo '<div id="loginlogo">DCRM - ' . __('Login').'</div>';
 }
 ?>
+			</div>
 			<hr />
-			<p><input type="text" name="username" placeholder="<?php _e('Username'); ?>" required="required" /></p>
-			<p><input type="password" name="password" placeholder="<?php _e('Password'); ?>" required="required" /></p>
-			<p><input type="text" name="authcode" placeholder="<?php _e('Verify Code'); ?>" required="required" style="margin-top: 8px; height: 24px; width:120px;" />&nbsp;<img src="login.php?authpic=png&amp;rand=<?php echo(time()); ?>" style="height: 36px; width: 88px; border-radius: 6px;" onclick="this.src='login.php?authpic=png&amp;rand=' + new Date().getTime();" /></p>
+			<p><input type="text" name="username" placeholder="<?php _e('Username'); ?>"  data-parsley-errors-container="#error-container" data-parsley-error-message="<?php _e('Please fill in your username'); ?>" data-parsley-required /></p>
+			<p><input type="password" name="password" placeholder="<?php _e('Password'); ?>" data-parsley-errors-container="#error-container" data-parsley-error-message="<?php _e('Please fill in your password'); ?>" data-parsley-required /></p>
+			<p><input type="text" name="authcode" placeholder="<?php _e('Verify Code'); ?>" style="margin-top: 8px; height: 24px; width:120px;" data-parsley-errors-container="#error-container" data-parsley-error-message="<?php _e('Please fill in the verify code'); ?>" data-parsley-required />&nbsp;<img src="login.php?authpic=png&amp;rand=<?php echo(time()); ?>" style="height: 36px; width: 88px; border-radius: 6px;" onclick="this.src='login.php?authpic=png&amp;rand=' + new Date().getTime();" /></p>
 			<hr />
-			<input type="submit" class="btn btn-success" name="submit" value="<?php _ex('Login', 'Buttom'); ?>" />
+			<button type="submit" class="btn btn-block btn-success"><?php _ex('Login', 'Buttom'); ?></button>
 		</form>
 <?php
 } else {
@@ -160,6 +164,13 @@ if ($error == "notenough") {
 		</div>
 <?php
 }
+?>
+	<script type="text/javascript" src="./js/pace.min.js"></script>
+	<script type="text/javascript" src="./js/parsley.min.js"></script>
+	<script type="text/javascript" src="./js/login.min.js"></script>
+<?php
+if(isset($error))
+	echo '<script type="text/javascript">$(document).ready(function(){animation();});</script>'
 ?>
 	</body>
 </html>

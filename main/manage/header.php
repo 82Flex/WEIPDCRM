@@ -70,6 +70,7 @@ $sidebars = array(
 <?php if(file_exists(ROOT.'css/font/'.substr($locale, 0, 2).'.css')){ ?>	<link rel="stylesheet" type="text/css" href="../css/font/<?php echo substr($locale, 0, 2); ?>.css"><?php echo "\n"; } ?>
 <?php if(file_exists(ROOT.'css/font/'.$locale.'.css')){ ?>	<link rel="stylesheet" type="text/css" href="../css/font/<?php echo $locale; ?>.css"><?php echo "\n"; } ?>
 	<script src="http://cdn.bootcss.com/jquery/1.11.2/jquery.min.js"></script>
+	<script type="text/javascript" src="./js/pace.min.js"></script>
 	<script type="text/javascript">
 	$(document).ready(function(){
 		var loaded = true;

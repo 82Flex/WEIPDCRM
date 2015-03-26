@@ -1,0 +1,11 @@
+/*  Animation - http://daneden.me/animate */
+.animation{visibility:hidden}
+.animation.delay{-webkit-animation-delay:1.5s;-o-animation-delay:1.5s;animation-delay:1.5s}
+.animation.infinite{-webkit-animation-iteration-count:infinite;-o-animation-iteration-count:infinite;animation-iteration-count:infinite}
+.animation.animating{visibility:visible;-webkit-animation-duration:800ms;-o-animation-duration:800ms;animation-duration:800ms;-webkit-animation-fill-mode:both;-o-animation-fill-mode:both;animation-fill-mode:both}
+.animation.animated{visibility:visible}
+.animation.hinge{-webkit-animation-duration:2s;-o-animation-duration:2s;animation-duration:2s}
+@-webkit-keyframes shake{0%,100%{-webkit-transform:translateX(0);transform:translateX(0)}10%,30%,50%,70%,90%{-webkit-transform:translateX(-10px);transform:translateX(-10px)}20%,40%,60%,80%{-webkit-transform:translateX(10px);transform:translateX(10px)}}
+@-o-keyframes shake{0%,100%{-webkit-transform:translateX(0);-ms-transform:translateX(0);-o-transform:translateX(0);transform:translateX(0)}10%,30%,50%,70%,90%{-webkit-transform:translateX(-10px);-ms-transform:translateX(-10px);-o-transform:translateX(-10px);transform:translateX(-10px)}20%,40%,60%,80%{-webkit-transform:translateX(10px);-ms-transform:translateX(10px);-o-transform:translateX(10px);transform:translateX(10px)}}
+@keyframes shake{0%,100%{-webkit-transform:translateX(0);-ms-transform:translateX(0);-o-transform:translateX(0);transform:translateX(0)}10%,30%,50%,70%,90%{-webkit-transform:translateX(-10px);-ms-transform:translateX(-10px);-o-transform:translateX(-10px);transform:translateX(-10px)}20%,40%,60%,80%{-webkit-transform:translateX(10px);-ms-transform:translateX(10px);-o-transform:translateX(10px);transform:translateX(10px)}}
+.shake{-webkit-animation-name:shake;-o-animation-name:shake;animation-name:shake}
