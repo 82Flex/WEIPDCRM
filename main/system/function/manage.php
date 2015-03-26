@@ -57,7 +57,7 @@ function _execInBackground($cmd) {
  * @param string $name 
  * @return string 
  */  
-function _utf8_unicode($name){  
+function _utf8_unicode($name){
 	$name = iconv('UTF-8', 'UCS-2', $name);  
 	$len  = strlen($name);  
 	$str  = '';  
@@ -71,5 +71,39 @@ function _utf8_unicode($name){
 		}  
 	}  
 	return $str;  
+}
+function _TrimArray($input){
+	if(!is_array($input))
+		return trim($input);
+	return array_map('TrimArray', $input);
+}
+/**
+ * 字符串处理
+ *
+ * 用于商业软件包处理，可在标签中添加或删除cydia::commercial等
+ * 
+ * @param string $input 输入字符串
+ * @param bool $switch 在字符串中添加(true)或删除(false)$switch_string
+ * @param string $switch_string 要添加或删除的字符串
+ * @param string $separator 分隔符
+ * @return string 处理完成的字符串
+ */
+function _string_handle($input, $switch, $switch_string = 'cydia::commercial', $separator = ' '){
+	if(is_array($input)) $input = $input[0];
+	$input_array = TrimArray(explode($separator, $input));
+
+	if($switch){
+		if(!in_array($switch_string, $input_array, true))
+			$input_array[] = $switch_string;
+	} else {
+		if(in_array($switch_string, $input_array, true))
+			$input_array = array_diff($input_array, array($switch_string));
+	}
+	if(!strpos(' ', $separator)) $separator = $separator.' ';
+	return trim(implode($separator, array_filter($input_array)));
+}
+function _check_commercial_tag($tag){
+	if(false === strpos($tag, 'cydia::commercial')) return false;
+	else return true;
 }
 ?>

@@ -39,14 +39,7 @@ if (isset($_SESSION['connected']) && $_SESSION['connected'] === true) {
 			<input type="radio" name="package" value="<?php echo($request_id); ?>" style="display: none;" checked="checked" />
 <?php
 	if (!isset($_GET['action']) AND !empty($_GET['id'])) {
-		$e_query = DB::query("SELECT * FROM `".DCRM_CON_PREFIX."Packages` WHERE `ID` = '" . $request_id . "'");
-		if (!$e_query) {
-			goto endlabel;
-		}
-		$edit_info = mysql_fetch_assoc($e_query);
-		if (!$edit_info) {
-			goto endlabel;
-		}
+		$edit_info = DB::fetch_first("SELECT * FROM `".DCRM_CON_PREFIX."Packages` WHERE `ID` = '" . $request_id . "'");
 ?>
 				<h2><?php _e('General Editing'); ?></h2>
 				<br />
@@ -101,6 +94,53 @@ if (isset($_SESSION['connected']) && $_SESSION['connected'] === true) {
 						</div>
 						<br />
 						<div class="group-control">
+							<label class="control-label">* <a onclick="javascript:autofill(10);" href="#"><?php _e('Protection'); ?></a></label>
+							<div class="controls">
+								<select name="Protection" style="width: 400px;" onchange="show_commercial(this.options[this.options.selectedIndex].value)">
+									<?php if($protection_status = check_commercial_tag($edit_info['Tag'])) echo '<option value="1"  selected="selected">'.__('Enabled').'</option><option value="0">'.__('Disabled').'</option>';else echo '<option value="0" selected="selected">'.__('Disabled').'</option><option value="1">'.__('Enabled').'</option>' ?>
+								</select>
+							</div>
+						</div>
+						<br />
+						<div id="commercial" <?php if(!$protection_status) echo 'style="display: none;"';?>>
+							<div class="group-control">
+								<label class="control-label"><?php _e('Level'); ?></label>
+								<div class="controls">
+									<input type="number" style="width: 400px;" name="Level" value="<?php echo empty($edit_info['Level']) ? '0' : htmlspecialchars($edit_info['Level']); ?>"/>
+									<p class="help-block"><?php _e('Level take precedence over UDID Binding.') ?></p>
+								</div>
+							</div>
+							<br />
+							<div class="group-control">
+								<label class="control-label"><?php _e('Price'); ?></label>
+								<div class="controls">
+									<input type="text" style="width: 400px;" name="Price" value="<?php if (!empty($edit_info['Price'])) {echo htmlspecialchars($edit_info['Price']);} ?>"/>
+									<p class="help-block"><?php _e('Example: <code>$0.99</code>. If leave a blank will do not display the purchase link.'); ?></p>
+								</div>
+							</div>
+							<br />
+							<div class="group-control">
+								<label class="control-label"><?php _e('Purchase Link'); ?></label>
+								<div class="controls">
+									<select name="Purchase_Link_Stat" style="width: 400px;" onchange="show_custom_link(this.options[this.options.selectedIndex].value)">
+										<option value="1" <?php if($edit_info['Purchase_Link_Stat'] === '1') echo('selected="selected"');?>><?php _e('Custom'); ?></option>
+										<option value="0" <?php if($edit_info['Purchase_Link_Stat'] === '0') echo('selected="selected"');?>><?php _e('Alipay'); ?></option>
+									</select>
+									<p class="help-block"><?php _e('Using non-custom options after <a href="settings.php#Commercial">Settings</a>.'); ?></a></p>
+								</div>
+							</div>
+							<br />
+							<div id="custom_link" <?php if(isset($edit_info['Purchase_Link_Stat']) && $edit_info['Purchase_Link_Stat'] != '1') echo 'style="display: none;"';?>>
+								<div class="group-control">
+									<label class="control-label"><?php _e('Custom Link'); ?></label>
+									<div class="controls">
+										<input type="text" style="width: 400px;" name="Custom_Purchase_Link" value="<?php if (!empty($edit_info['Purchase_Link'])) {echo htmlspecialchars($edit_info['Purchase_Link']);} ?>"/>
+									</div>
+								</div>
+								<br />
+							</div>
+						</div>
+						<div class="group-control">
 							<label class="control-label"><a onclick="javascript:autofill(6);" href="#"><?php _e('Maintainer'); ?></a></label>
 							<div class="controls">
 								<input type="text" style="width: 400px;" name="Maintainer" value="<?php if (!empty($edit_info['Maintainer'])) {echo htmlspecialchars($edit_info['Maintainer']);} ?>"/>
@@ -154,7 +194,28 @@ if (isset($_SESSION['connected']) && $_SESSION['connected'] === true) {
 <?php
 	} elseif (!empty($_GET['action']) AND $_GET['action'] == "set" AND !empty($_GET['id'])) {
 		$new_id = (int)$_GET['id'];
+		$tag = DB::result_first("SELECT `Tag` FROM `".DCRM_CON_PREFIX."Packages` WHERE `ID` = '" . $new_id . "'");
+		$_POST['Tag'] = string_handle($tag, $_POST['Protection']);
+		unset($_POST['Protection']);
+
+		switch($_POST['Purchase_Link_Stat']){
+			case '1':
+			// 自定义链接
+				$_POST['Purchase_Link'] = $_POST['Custom_Purchase_Link'];
+				break;
+			case '0':
+			// 支付宝
+				$alipay_account = urlencode(get_option('alipay_account'));
+				$price = '';
+				if(preg_match('/(\d.*)/', $_POST['Price'], $arr))
+					$price = $arr[0];
+				$_POST['Purchase_Link'] = "commercial.php?action=alipay_go&title={$_POST['Package']}&optEmail={$alipay_account}&payAmount={$price}";
+				break;
+		}
+		unset($_POST['Custom_Purchase_Link']);
+
 		DB::update(DCRM_CON_PREFIX.'Packages', $_POST, array('ID' => $new_id));
+
 		echo '<h2>'.__('Update Database').'</h2><br />';
 		echo '<h3 class="alert">'.__('The package information edited!').'<br />'.__('After modify the fields with an asterisk, you must write into package then safely rebuild list.');
 		echo '<br /><a href="output.php?id='.$new_id.'">'.__('Write Now').'</a>　<a href="javascript:history.go(-1);">'.__('Back').'</a></h3>';
@@ -163,6 +224,7 @@ if (isset($_SESSION['connected']) && $_SESSION['connected'] === true) {
 		if (!$edit_info) {
 			goto endlabel;
 		}
+		$protection_status = check_commercial_tag($edit_info['Tag']);
 ?>
 				<h2><?php _e('Advance Editing'); ?></h2>
 				<br />
@@ -221,6 +283,10 @@ if (isset($_SESSION['connected']) && $_SESSION['connected'] === true) {
 	<script charset="utf-8" src="js/kindeditor.min.js"></script>
 	<script charset="utf-8" src="js/lang/<?php echo $kdlang = check_languages(array($locale), true);?>.js"></script>
 	<script type="text/javascript">
+	<?php if($protection_status): ?>
+	sli = document.getElementById('sli');
+	sli.innerHTML = '<a href="udid.php?package=<?php echo htmlspecialchars($edit_info['Package']);?>"><?php _e('Binding UDID');?></a>';
+	<?php endif; ?>
 	KindEditor.ready(function(K) {
 		K.each({
 			'plug-align' : {
@@ -297,6 +363,25 @@ if (isset($_SESSION['connected']) && $_SESSION['connected'] === true) {
 				}
 				xmlhttp.close();
 			}
+		}
+	}
+	function show_commercial(stat) {
+		commercial = document.getElementById('commercial');
+		sli = document.getElementById('sli');
+		if (stat == 1) {
+			commercial.style.display = "";
+			sli.innerHTML = '<a href="udid.php?package=<?php echo htmlspecialchars($edit_info['Package']);?>"><?php _e('Binding UDID');?></a>';
+		} else {
+			commercial.style.display = "none";
+			sli.innerHTML = '';
+		}
+	}
+	function show_custom_link(stat) {
+		custom_link = document.getElementById('custom_link');
+		if (stat == 1) {
+			custom_link.style.display = "";
+		} else {
+			custom_link.style.display = "none";
 		}
 	}
 	function changeCase(frmObj) {

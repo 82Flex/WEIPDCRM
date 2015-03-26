@@ -38,7 +38,7 @@ if (!empty($_GET['request']) AND (!empty($_SERVER['HTTP_X_UNIQUE_ID']) OR DCRM_D
 			exit();
 		}
 	}
-	$m_row = DB::fetch_first("SELECT `Package`, `Version`, `Architecture`, `Filename`, `Tag`, `DownloadTimes`, `Level` FROM `".DCRM_CON_PREFIX."Packages` WHERE `ID` = '" . (string)$request_id . "'");
+	$m_row = DB::fetch_first("SELECT `Package`, `Version`, `Architecture`, `Filename`, `Tag`, `DownloadTimes`, `Level`, `Price` FROM `".DCRM_CON_PREFIX."Packages` WHERE `ID` = '" . (string)$request_id . "'");
 	
 	if (!$m_row) {
 		httpinfo(404);
@@ -48,7 +48,41 @@ if (!empty($_GET['request']) AND (!empty($_SERVER['HTTP_X_UNIQUE_ID']) OR DCRM_D
 	if (!empty($download_path)) {
 		if (file_exists($download_path)) {
 			$fake_name = $m_row['Package'] . "_" . $m_row['Version'] . "_" . $m_row['Architecture'] . ".deb";
-			downFile($download_path,$fake_name);
+			if(check_commercial_tag($m_row['Tag'])){
+				if(isset($_SERVER['HTTP_X_UNIQUE_ID'])) {
+					$udid_status = DB::fetch_first("SELECT `Packages`, `Level`, `Downloads` FROM `".DCRM_CON_PREFIX."UDID` WHERE `UDID` = '".$_SERVER['HTTP_X_UNIQUE_ID']."' LIMIT 1");
+					if(!empty($udid_status)){
+						if(!empty($udid_status['Packages'])) {
+							$udid_packages = TrimArray(explode(',', $udid_status['Packages']));
+							if(!in_array($m_row['Package'], $udid_packages, true)) {
+								if(empty($m_row['Price']))
+									httpinfo(4033);
+								else
+									httpinfo(4032);
+							}
+						} else {
+							$udid_level = (int)$udid_status['Level'];
+							$package_level = (int)$m_row['Level'];
+							if($udid_level <= $package_level) {
+								if(empty($m_row['Price']))
+									httpinfo(4033);
+								else
+									httpinfo(4032);
+							}
+						}
+						DB::update(DCRM_CON_PREFIX.'UDID', array('Downloads' => ((int)$udid_status['Downloads'] + 1)), array('UDID' => $_SERVER['HTTP_X_UNIQUE_ID']));
+					} else {
+						if(empty($m_row['Price']))
+							httpinfo(4033);
+						else
+							httpinfo(4032);
+					}
+				} else {
+					httpinfo(4030);
+				}
+			}
+			DB::update(DCRM_CON_PREFIX.'Packages', array('DownloadTimes' => ((int)$m_row['Downloads'] + 1)), array('ID' => (string)$request_id));
+			downFile($download_path, $fake_name);
 		} else {
 			httpinfo(404);
 		}

@@ -30,6 +30,11 @@ $sidebars = array(
         'type'  => 'subtitle',
     ),
 	array(
+        'name'  => __('Manage UDID'),
+        'id'    => 'udid',
+        'type'  => 'subtitle',
+    ),
+	array(
         'title' => 'REPOSITORY',
         'type'  => 'title'
     ),

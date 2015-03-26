@@ -27,8 +27,8 @@
 
             //运行parsley验证
             if ($form.parsley().validate()) {
-                // 禁用提交按钮
-                $this.prop('disabled', true);
+                // 禁用提交按钮(Safari支持有问题？)
+                //$this.prop('disabled', true);
 
                 // start nprogress bar
                 NProgress.start();

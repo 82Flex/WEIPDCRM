@@ -128,7 +128,7 @@ if (isset($_SESSION['connected']) && $_SESSION['connected'] === true) {
 							<label class="control-label" style="color: red;"><?php _e( 'Repository URL' ); ?></label>
 							<div class="controls">
 								<input type="text" required="required" name="url_repo" style="width: 400px;" data-validation-regex-regex="((https?):\/\/)?([a-z]([a-z0-9\-]*[\.。])+([a-z]*)|(([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])\.){3}([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5]))(\/[a-z0-9_\-\.~]+)*(\/([a-z0-9_\-\.]*)(\?[a-z0-9+_\-\.%=&]*)?)?(#[a-z][a-z0-9_]*)?" data-validation-regex-message="<?php _e('Not a valid website address'); ?>" value="<?php echo htmlspecialchars(base64_decode(DCRM_REPOURL)); ?>"/>
-								<p class="help-block"><?php _e( 'Displayed on the homepage for the user to add.' ); ?></p>
+								<p class="help-block"><?php _e( 'Displayed on the homepage for the user to add, and used for the autofill package\'s Depiction when import.' ); ?></p>
 							</div>
 						</div>
 						<br />
@@ -232,6 +232,16 @@ if (isset($_SESSION['connected']) && $_SESSION['connected'] === true) {
 								<select name="multiinfo">
 									<?php show_select(DCRM_MULTIINFO); ?>
 								</select>
+							</div>
+						</div>
+						<br />
+						<h3 id="Commercial"><?php _e('Commercial');?></h3>
+						<br />
+						<div class="control-group">
+							<label class="control-label"><?php _e('Alipay Account');?></label>
+							<div class="controls">
+								<input type="text" name="alipay_account" value="<?php echo(get_option('alipay_account')); ?>"/>
+								<p class="help-block"><?php _e('This is used to auto generate Alipay link for commercial package.');?></p>
 							</div>
 						</div>
 						<br />
@@ -343,6 +353,16 @@ if (isset($_SESSION['connected']) && $_SESSION['connected'] === true) {
 						</div>
 						<br />
 						<h3><?php _e('Autofill');?></h3>
+						<br />
+						<div class="control-group">
+							<label class="control-label"><?php _e('Autofill Depiction');?></label>
+							<div class="controls">
+								<select name="autofill_depiction">
+									<?php $autofill_depiction = get_option('autofill_depiction'); if(empty($autofill_depiction)) $autofill_depiction = '2';show_select($autofill_depiction); ?>
+								</select>
+								<p class="help-block"><?php _e('Autofill package\'s Depiction when import if enabled.');?></p>
+							</div>
+						</div>
 						<br />
 						<div class="control-group">
 							<label class="control-label"><?php _e('Default Identifier of Packages');?></label>
@@ -676,6 +696,9 @@ if (isset($_SESSION['connected']) && $_SESSION['connected'] === true) {
 			echo $error_text;
 			echo '<br /><a href="settings.php" onclick="javascript:history.go(-1);return false;">'.__('Back').'</a></h3>';
 		} else {
+			if(isset($_POST['alipay_account']) && !empty($_POST['alipay_account']))
+				update_option('alipay_account', $_POST['alipay_account']);
+			update_option('autofill_depiction', $_POST['autofill_depiction']);
 			$config_text = "<?php\nif (!defined(\"DCRM\")) {\n\texit;\n}\n";
 			$config_text .= "define(\"DCRM_LANG\", \"".$_POST['language']."\");\n";
 			$config_text .= "define(\"DCRM_MAXLOGINFAIL\", ".$_POST['trials'].");\n";

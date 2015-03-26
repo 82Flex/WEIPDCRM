@@ -1,15 +1,15 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: DCRM Installer\n"
-"POT-Creation-Date: 2015-03-15 17:42+0800\n"
-"PO-Revision-Date: 2015-03-15 17:42+0800\n"
+"POT-Creation-Date: 2015-03-27 00:15+0800\n"
+"PO-Revision-Date: 2015-03-27 00:27+0800\n"
 "Last-Translator: Hintay <hintay@me.com>\n"
 "Language-Team: Hintay <hintay@me.com>\n"
 "Language: zh_CN\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 1.6.6\n"
+"X-Generator: Poedit 1.7.5\n"
 "X-Poedit-Basepath: ../../\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Poedit-KeywordsList: __;_e;_n:1,2;_x:1,2c;_ex:1,2c;_nx:4c,1,2;esc_attr__;"
@@ -376,12 +376,12 @@ msgstr "还不能开始！"
 msgid "Let&#8217;s go!"
 msgstr "现在就开始吧！"
 
-#: install/setup-config.php:70 install/setup-install.php:407
+#: install/setup-config.php:70 install/setup-install.php:410
 msgid "Check again"
 msgstr "重新检测"
 
 #: install/setup-config.php:72 install/setup-config.php:96
-#: install/setup-install.php:409
+#: install/setup-install.php:412
 msgid "Error!"
 msgstr "出错了！"
 
@@ -420,7 +420,7 @@ msgstr "用户名"
 msgid "Your MySQL username"
 msgstr "您的 MySQL 用户名"
 
-#: install/setup-config.php:90 install/setup-install.php:387
+#: install/setup-config.php:90 install/setup-install.php:390
 msgid "Password"
 msgstr "密码"
 
@@ -484,7 +484,7 @@ msgid ""
 "information."
 msgstr "<strong>错误</strong>: 无法选择数据库，请确认您的信息是否有误。"
 
-#: install/setup-config.php:198
+#: install/setup-config.php:207
 msgid ""
 "All right, sparky! You&#8217;ve made it through this part of the "
 "installation. DCRM can now communicate with your database. If you are ready, "
@@ -493,7 +493,7 @@ msgstr ""
 "好极了。您完成了安装过程中的重要一步，DCRM 现在可以连接数据库了。如果您准备好"
 "了，那就&hellip;"
 
-#: install/setup-config.php:200
+#: install/setup-config.php:209
 msgid "Run the install"
 msgstr "进行安装"
 
@@ -511,7 +511,7 @@ msgid ""
 "old database tables first."
 msgstr "您已经安装了 DCRM。如果需要重新安装请先移除您的旧数据表。"
 
-#: install/setup-install.php:64 install/setup-install.php:397
+#: install/setup-install.php:64 install/setup-install.php:400
 msgid "Log In"
 msgstr "登录"
 
@@ -524,10 +524,12 @@ msgid "Repository URL"
 msgstr "源地址"
 
 #: install/setup-install.php:100
-msgid "Displayed on the homepage for the user to add."
-msgstr "展示在首页供用户添加"
+msgid ""
+"Displayed on the homepage for the user to add, and used for the autofill "
+"package's Depiction when import."
+msgstr "展示在首页供用户添加，并用于在导入软件包时自动填充详情页。"
 
-#: install/setup-install.php:104 install/setup-install.php:383
+#: install/setup-install.php:104 install/setup-install.php:386
 msgid "Username"
 msgstr "用户名"
 
@@ -656,21 +658,21 @@ msgstr ""
 msgid "Your chosen password."
 msgstr "您输入的密码。"
 
-#: install/setup-install.php:368
+#: install/setup-install.php:371
 msgid "Success!"
 msgstr "成功！"
 
-#: install/setup-install.php:370
+#: install/setup-install.php:373
 msgid ""
 "DCRM has been installed. Were you expecting more steps? Sorry to disappoint."
 msgstr ""
 "DCRM 安装完成。您是否还沉浸在愉悦的安装过程中？很遗憾，一切皆已完成！ :)"
 
-#: install/setup-install.php:375
+#: install/setup-install.php:378
 msgid "Something wrong..."
 msgstr "出了一点小错误..."
 
-#: install/setup-install.php:377
+#: install/setup-install.php:380
 msgid ""
 "DCRM has been installed, but some files have not been copied. Please copy "
 "all <code>*.inc.default.php</code> to <code>*.inc.php</code> in <code>/"
@@ -680,9 +682,12 @@ msgstr ""
 "文件夹中所有的 <code>*.inc.default.php</code> 文件为 <code>*.inc.php</code>"
 "并 chmod 0666。"
 
-#: install/setup-install.php:411
+#: install/setup-install.php:414
 msgid "Continue"
 msgstr "继续"
+
+#~ msgid "Displayed on the homepage for the user to add."
+#~ msgstr "展示在首页供用户添加"
 
 #~ msgid "No './manage/include' directory read-write permissions"
 #~ msgstr "没有./manage/include目录的读写权限 "

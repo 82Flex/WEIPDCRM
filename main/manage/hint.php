@@ -32,7 +32,7 @@ if (isset($_SESSION['connected']) && $_SESSION['connected'] === true) {
 			die("NULL");
 		}
 		$item = DB::fetch_first("SELECT * FROM `".DCRM_CON_PREFIX."Packages` WHERE `ID` = '" . $item_id . "'");
-		if (empty($item[$item_col])) {
+		if (empty($item[$item_col]) && $item[$item_col] !== '0') {
 			die("NULL");
 		} else {
 			die($item[$item_col]);

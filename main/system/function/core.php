@@ -61,6 +61,14 @@ function httpinfo($info_type) {
 		case 4031:
 			$info = "403 Payment Required";
 			break;
+		case 4032:
+			if(!defined("AUTOFILL_EMAIL"))
+				require_once(CONF_PATH.'autofill.inc.php');
+			$info = sprintf('403 Payment Required: This package is either paid or requires a paid package to function. If you already paid for this package, try again later, or email %s if this problem keeps happening.', AUTOFILL_EMAIL);
+			break;
+		case 4033:
+			$info = '403 Forbidden: This package protected.';
+			break;
 		case 405:
 			$info = "405 Method Not Allowed";
 			break; 
@@ -90,6 +98,222 @@ function httpinfo($info_type) {
 <?php
 	exit();
 }
+function _ip2long( $ip_address ) {
+	return sprintf("%u",ip2long($ip_address));
+}
+function getIp(){ 
+	$onlineip=''; 
+	if(getenv('HTTP_CLIENT_IP')&&strcasecmp(getenv('HTTP_CLIENT_IP'),'unknown')){ 
+		$onlineip=getenv('HTTP_CLIENT_IP'); 
+	} elseif(getenv('HTTP_X_FORWARDED_FOR')&&strcasecmp(getenv('HTTP_X_FORWARDED_FOR'),'unknown')){ 
+		$onlineip=getenv('HTTP_X_FORWARDED_FOR'); 
+	} elseif(getenv('REMOTE_ADDR')&&strcasecmp(getenv('REMOTE_ADDR'),'unknown')){ 
+		$onlineip=getenv('REMOTE_ADDR'); 
+	} elseif(isset($_SERVER['REMOTE_ADDR'])&&$_SERVER['REMOTE_ADDR']&&strcasecmp($_SERVER['REMOTE_ADDR'],'unknown')){ 
+		$onlineip=$_SERVER['REMOTE_ADDR']; 
+	}
+	return $onlineip; 
+} 
+/**
+ * Check value to find if it was serialized.
+ *
+ * If $data is not an string, then returned value will always be false.
+ * Serialized data is always a string.
+ *
+ * @param string $data   Value to check to see if was serialized.
+ * @param bool   $strict Optional. Whether to be strict about the end of the string. Default true.
+ * @return bool False if not serialized and true if it was.
+ */
+function is_serialized( $data, $strict = true ) {
+	// if it isn't a string, it isn't serialized.
+	if ( ! is_string( $data ) ) {
+		return false;
+	}
+	$data = trim( $data );
+ 	if ( 'N;' == $data ) {
+		return true;
+	}
+	if ( strlen( $data ) < 4 ) {
+		return false;
+	}
+	if ( ':' !== $data[1] ) {
+		return false;
+	}
+	if ( $strict ) {
+		$lastc = substr( $data, -1 );
+		if ( ';' !== $lastc && '}' !== $lastc ) {
+			return false;
+		}
+	} else {
+		$semicolon = strpos( $data, ';' );
+		$brace     = strpos( $data, '}' );
+		// Either ; or } must exist.
+		if ( false === $semicolon && false === $brace )
+			return false;
+		// But neither must be in the first X characters.
+		if ( false !== $semicolon && $semicolon < 3 )
+			return false;
+		if ( false !== $brace && $brace < 4 )
+			return false;
+	}
+	$token = $data[0];
+	switch ( $token ) {
+		case 's' :
+			if ( $strict ) {
+				if ( '"' !== substr( $data, -2, 1 ) ) {
+					return false;
+				}
+			} elseif ( false === strpos( $data, '"' ) ) {
+				return false;
+			}
+			// or else fall through
+		case 'a' :
+		case 'O' :
+			return (bool) preg_match( "/^{$token}:[0-9]+:/s", $data );
+		case 'b' :
+		case 'i' :
+		case 'd' :
+			$end = $strict ? '$' : '';
+			return (bool) preg_match( "/^{$token}:[0-9.E-]+;$end/", $data );
+	}
+	return false;
+}
+/**
+ * Serialize data, if needed.
+ *
+ * @param string|array|object $data Data that might be serialized.
+ * @return mixed A scalar data
+ */
+function maybe_serialize( $data ) {
+	if ( is_array( $data ) || is_object( $data ) )
+		return serialize( $data );
+
+	if ( is_serialized( $data, false ) )
+		return serialize( $data );
+
+	return $data;
+}
+/**
+ * Unserialize value only if it was serialized.
+ *
+ * @param string $original Maybe unserialized original, if is needed.
+ * @return mixed Unserialized data can be any type.
+ */
+function maybe_unserialize( $original ) {
+	if ( is_serialized( $original ) ) // don't attempt to unserialize data that wasn't serialized going in
+		return @unserialize( $original );
+	return $original;
+}
+/**
+ * Retrieve option value based on name of option.
+ *
+ * If the option does not exist or does not have a value, then the return value
+ * will be false. This is useful to check whether you need to install an option
+ * and is commonly used during installation of plugin options and to test
+ * whether upgrading is required.
+ *
+ * If the option was serialized then it will be unserialized when it is returned.
+ *
+ * @param string $option Name of option to retrieve. Expected to not be SQL-escaped.
+ * @param mixed $default Optional. Default value to return if the option does not exist.
+ * @return mixed Value set for the option.
+ */
+function get_option( $option, $default = false ) {
+	$option = trim( $option );
+	if ( empty( $option ) )
+		return false;
+
+	//$row = mysql_fetch_object( DB::query( DB::prepare( "SELECT option_value FROM `".DCRM_CON_PREFIX."options` WHERE option_name = %s LIMIT 1", $option ) ) );
+	$row = DB::result_first( DB::prepare( "SELECT option_value FROM `".DCRM_CON_PREFIX."Options` WHERE option_name = %s LIMIT 1", $option ) );
+
+	/*if ( is_object( $row ) ) {
+		$value = $row->option_value;
+	} else { // option does not exist
+		return $default;
+	}*/
+	if ($row) {
+		$value = $row;
+	} else {
+		return $default;
+	}
+
+	return maybe_unserialize( $value );
+}
+/**
+ * Update the value of an option that was already added.
+ *
+ * You do not need to serialize values. If the value needs to be serialized, then
+ * it will be serialized before it is inserted into the database. Remember,
+ * resources can not be serialized or added as an option.
+ *
+ * If the option does not exist, then the option will be added with the option
+ * value, but you will not be able to set whether it is autoloaded. If you want
+ * to set whether an option is autoloaded, then you need to use the add_option().
+ *
+ * @param string $option Option name. Expected to not be SQL-escaped.
+ * @param mixed $value Option value. Must be serializable if non-scalar. Expected to not be SQL-escaped.
+ * @return bool False if value was not updated and true if value was updated.
+ */
+function update_option( $option, $value ) {
+	$option = trim($option);
+	if ( empty($option) )
+		return false;
+
+	if ( is_object( $value ) )
+		$value = clone $value;
+
+	$old_value = get_option( $option );
+
+	// If the new and old values are the same, no need to update.
+	if ( $value === $old_value )
+		return false;
+
+	if ( false === $old_value )
+		return add_option( $option, $value );
+
+	$serialized_value = maybe_serialize( $value );
+
+	$result = DB::update( DCRM_CON_PREFIX.'Options', array( 'option_value' => $serialized_value ), array( 'option_name' => $option ) );
+	if ( ! $result )
+		return false;
+
+	return true;
+}
+/**
+ * Add a new option.
+ *
+ * You do not need to serialize values. If the value needs to be serialized, then
+ * it will be serialized before it is inserted into the database. Remember,
+ * resources can not be serialized or added as an option.
+ *
+ * You can create options without values and then update the values later.
+ * Existing options will not be updated and checks are performed to ensure that you
+ * aren't adding a protected WordPress option. Care should be taken to not name
+ * options the same as the ones which are protected.
+ *
+ * @param string         $option      Name of option to add. Expected to not be SQL-escaped.
+ * @param mixed          $value       Optional. Option value. Must be serializable if non-scalar. Expected to not be SQL-escaped.
+ * @param string         $deprecated  Optional. Description. Not used anymore.
+ * @return bool False if option was not added and true if option was added.
+ */
+function add_option( $option, $value = '', $deprecated = '') {
+	$option = trim($option);
+	if ( empty($option) )
+		return false;
+
+	if ( is_object($value) )
+		$value = clone $value;
+
+	//$value = sanitize_option( $option, $value );
+
+	$serialized_value = maybe_serialize( $value );
+
+	$result = DB::query( DB::prepare( "INSERT INTO `".DCRM_CON_PREFIX."Options` (`option_name`, `option_value`) VALUES (%s, %s) ON DUPLICATE KEY UPDATE `option_name` = VALUES(`option_name`), `option_value` = VALUES(`option_value`)", $option, $serialized_value) );
+	if ( ! $result )
+		return false;
+
+	return true;
+}
 // Function link
 function randstr($len = 40) {
 	require_once SYSTEM_ROOT.'./function/manage.php';
@@ -110,6 +334,18 @@ function execInBackground($cmd) {
 function utf8_unicode($name){
 	require_once SYSTEM_ROOT.'./function/manage.php';
 	return _utf8_unicode($name);
+}
+function TrimArray($input){
+	require_once SYSTEM_ROOT.'./function/manage.php';
+	return _TrimArray($input);
+}
+function string_handle($input, $switch, $switch_string = 'cydia::commercial', $separator = ' '){
+	require_once SYSTEM_ROOT.'./function/manage.php';
+	return _string_handle($input, $switch, $switch_string, $separator);
+}
+function check_commercial_tag($tag){
+	require_once SYSTEM_ROOT.'./function/manage.php';
+	return _check_commercial_tag($tag);
 }
 function downFile($fileName, $fancyName = '', $forceDownload = true, $speedLimit = DCRM_SPEED_LIMIT, $contentType = '') {
 	require_once SYSTEM_ROOT.'./function/downfile.php';

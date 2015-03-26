@@ -571,7 +571,7 @@ if ($index == 0) {
 			</fieldset>
 <?php
 		}
-		if (DCRM_DIRECT_DOWN == 1 && !$isCydia) {
+		if (DCRM_DIRECT_DOWN == 1 && !$isCydia && !check_commercial_tag($pkg_assoc['Tag'])) {
 ?>
 			<fieldset>
 				<a href="debs/<?php echo($_GET['pid']); ?>.deb" id="downloadlink" style="display: none;" target="_blank">
@@ -592,6 +592,8 @@ if ($index == 0) {
 			</fieldset>
 <?php
 		}
+		$package_info = $pkg_assoc;
+		require_once('commercial.php');
 ?>
 			<fieldset>
 <?php

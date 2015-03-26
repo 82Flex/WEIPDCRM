@@ -97,7 +97,7 @@ function display_setup_form( $error = null ) {
 			<th scope="row"><label for="repo_url"><?php _e( 'Repository URL' ); ?></label></th>
 			<td>
 				<input name="repo_url" type="text" id="repo_url" size="25" value="<?php echo($repo_url); ?>" />
-				<p><?php _e( 'Displayed on the homepage for the user to add.' ); ?></p>
+				<p><?php _e( 'Displayed on the homepage for the user to add, and used for the autofill package\'s Depiction when import.' ); ?></p>
 			</td>
 		</tr>
 		<tr>

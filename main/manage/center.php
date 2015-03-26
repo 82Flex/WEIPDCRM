@@ -53,6 +53,7 @@ if (isset($_SESSION['connected']) && $_SESSION['connected'] === true) {
 							<option value="5"><?php _e('Maintainer'); ?></option>
 							<option value="6"><?php _e('Sponsor'); ?></option>
 							<option value="7"><?php _e('Section'); ?></option>
+							<option value="8"><?php _e('Tag'); ?></option>
 							</select>
 						</div>
 					</div>
@@ -170,7 +171,7 @@ if (isset($_SESSION['connected']) && $_SESSION['connected'] === true) {
 ?>
 				<h2><?php _e('Manage Packages'); ?></h2>
 				<br />
-				<h3 class="navbar"><?php printf(__('Search Packages: %s'), $_GET['contents']); ?></h3>
+				<h3 class="navbar"><?php $contents = isset($_GET['udid']) ? __('Protection Packages') : $_GET['contents']; printf(__('Search Packages: %s'), $contents); ?></h3>
 <?php
 		$search_type = (int)$_GET['type'];
 		switch ($search_type) {
@@ -195,6 +196,9 @@ if (isset($_SESSION['connected']) && $_SESSION['connected'] === true) {
 			case 7:
 				$t = 'Section';
 				break;
+			case 8:
+				$t = 'Tag';
+				break;
 			default:
 				goto endlabel;
 		}
@@ -209,38 +213,54 @@ if (isset($_SESSION['connected']) && $_SESSION['connected'] === true) {
 									<th style="width:10%;"><ul class="ctl"><?php _e('Downloads'); ?></ul></th>
 									<th style="width:5%;"><ul class="ctl"><?php _e('Delete'); ?></ul></th>
 									<th style="width:5%;"><ul class="ctl"><?php _e('History'); ?></ul></th>
+<?php 	if(isset($_GET['udid'])) { ?><th style="width:5%;"><ul class="ctl"><?php _e('Binding'); ?></ul></th><?php } ?>
 								</tr></thead><tbody>
 <?php
-			while ($list = mysql_fetch_assoc($list_query)) {
+		if(isset($_GET['udid'])) {
+			$e_query = DB::result_first("SELECT `Packages` FROM `".DCRM_CON_PREFIX."UDID` WHERE `UDID` = '" . $_GET['udid'] . "'");
+			$packages_udid = TrimArray(explode(',', $e_query));
+		}
+		while ($list = mysql_fetch_assoc($list_query)) {
 ?>
 								<tr>
 									<td height="20"><input type="radio" name="package" value="<?php echo $list['ID']; ?>" onclick="javascript:show(<?php echo $list['Stat']; ?>);" /></td>
 <?php
-				if (empty($list['Name'])) {
-					$list['Name'] = AUTOFILL_NONAME;
-				}
-				if ($list['Stat'] == 1) {
+			if (empty($list['Name'])) {
+				$list['Name'] = AUTOFILL_NONAME;
+			}
+			if ($list['Stat'] == 1) {
 ?>
 									<td><a href = "view.php?id=<?php echo $list['ID']; ?>"><ul class="ctl"><?php echo htmlspecialchars($list['Name']); ?></ul></a></td>
 <?php
-				} elseif ($list['Stat'] == 2) {
+			} elseif ($list['Stat'] == 2) {
 ?>
 									<td><a href = "view.php?id=<?php echo $list['ID']; ?>"><ul class="ctl" style="color: green;"><?php echo htmlspecialchars($list['Name']); ?></ul></a></td>
 <?php
-				} else {
+			} else {
 ?>
 									<td><a href = "view.php?id=<?php echo $list['ID']; ?>"><ul class="ctl" style="color: gray;"><?php echo htmlspecialchars($list['Name']); ?></ul></a></td>
 <?php
-				}
+			}
 ?>
 									<td><ul class="ctl"><?php echo htmlspecialchars($list['Version']); ?></ul></td>
 									<td><ul class="ctl"><?php echo sizeext($list['Size']); ?></ul></td>
 									<td><ul class="ctl"><?php echo $list['DownloadTimes']; ?></ul></td>
 									<td><a href="center.php?action=delete_confirm&name=<?php echo $list['Package']; ?>&id=<?php echo $list['ID']; ?>" class="close">&times;</a></td>
 									<td><a href="center.php?action=search&contents=<?php echo $list['Package']; ?>&type=1" class="close">&raquo;</a></td>
+<?php
+			if(isset($_GET['udid'])) {
+				if(in_array($list['Package'], $packages_udid, true)) {
+?>
+									<td><a href="udid.php?action=binding&contents=<?php echo $list['Package']; ?>&amp;udid=<?php echo $_GET['udid']; ?>&amp;delete=true" class="close" title="<?php _e('Delete'); ?>">&times;</a></td>
+<?php			} else { ?>
+									<td><a href="udid.php?action=binding&contents=<?php echo $list['Package']; ?>&amp;udid=<?php echo $_GET['udid']; ?>" class="close" title="<?php _e('Binding'); ?>">※</a></td>
+<?php
+				}
+			} 
+?>
 								</tr>
 <?php
-			}
+		}
 ?>
 								</tbody></table>
 <?php

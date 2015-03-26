@@ -135,21 +135,15 @@ goto endlabel;
 vaildPackage:
 if (isset($_GET['force'])) {
 	if (is_numeric($_GET['force'])) {
-		$same_query = DB::query("SELECT `ID`, `Package`, `Name`, `Version`, `CreateStamp`, `MD5sum` FROM `".DCRM_CON_PREFIX."Packages` WHERE `ID` = '" . DB::real_escape_string($_GET['force']) . "' LIMIT 1");
+		$same_row = DB::fetch_first("SELECT `ID`, `Package`, `Name`, `Version`, `CreateStamp`, `MD5sum` FROM `".DCRM_CON_PREFIX."Packages` WHERE `ID` = '" . DB::real_escape_string($_GET['force']) . "' LIMIT 1");
 	} else {
 		$alert = __('Forced inherit failed: invalid inherited package ID.');
 		$success = false;
 		goto endlabel;
 	}
 } else {
-	$same_query = DB::query("SELECT `ID`, `Package`, `Name`, `Version`, `CreateStamp`, `MD5sum` FROM `".DCRM_CON_PREFIX."Packages` WHERE `Package` = '" . DB::real_escape_string($t_package['Package']) . "' ORDER BY `ID` DESC LIMIT 1");
+	$same_row = DB::fetch_first("SELECT `ID`, `Package`, `Name`, `Version`, `CreateStamp`, `MD5sum` FROM `".DCRM_CON_PREFIX."Packages` WHERE `Package` = '" . DB::real_escape_string($t_package['Package']) . "' ORDER BY `ID` DESC LIMIT 1");
 }
-if ($same_query == false) {
-	$alert = sprintf(__('Database Error: %s'), DB::error());
-	$success = false;
-	goto endlabel;
-}
-$same_row = mysql_fetch_assoc($same_query);
 if ($same_row != false) {
 	if (!isset($_GET['type'])) {
 		$ver_compare = version_compare($t_package['Version'], $same_row['Version']);
@@ -216,25 +210,26 @@ if (!rename($r_path,$new_path)) {
 if (file_exists($r_path)) {
 	unlink($r_path);
 }
-$query = DB::query("INSERT INTO `".DCRM_CON_PREFIX."Packages`(`UUID`) VALUES('" . $r_id . "')");
-if ($query != false) {
+$new_id = DB::insert(DCRM_CON_PREFIX.'Packages', array('UUID' => $r_id));
+if ($new_id != false) {
 	$t_package['Size'] = filesize($new_path);
 	$t_package['Filename'] = $new_path;
 	$t_package['MD5sum'] = $file_md5;
 	$t_package['CreateStamp'] = date('Y-m-d H:i:s');
 	$t_package['Stat'] = 2;
-	$new_id = DB::insert_id();
-	foreach ($t_package as $t_key => $t_value) {
-		if (strlen($t_key) > 0) {
-			$main_query = DB::query("UPDATE `".DCRM_CON_PREFIX."Packages` SET `" . DB::real_escape_string($t_key) . "` = '" . DB::real_escape_string($t_value) . "' WHERE `ID` = '" . (string)$new_id . "'");
-		}
+	$autofill_depiction = get_option('autofill_depiction');
+	if(defined('DCRM_REPOURL') && (!isset($t_package['Depiction']) || empty($t_package['Depiction'])) && ($autofill_depiction === '2' || empty($autofill_depiction))){
+		$repourl = base64_decode(DCRM_REPOURL);
+		$repourl = substr($repourl, -1) == '/' ? $repourl : $repourl.'/'; 
+		$t_package['Depiction'] = $repourl . 'index.php?pid='.$new_id;
 	}
+	DB::update(DCRM_CON_PREFIX.'Packages', $t_package, array('ID' => $new_id));
 } else {
 	$alert = __('Import failed! Please check the database configuration!');
 	$success = false;
 }
 if ($replace == true) {
-	DB::query("UPDATE `".DCRM_CON_PREFIX."Packages` SET `Stat` = '-1' WHERE (`Package` = '" . $same_row['Package'] . "' AND `Version` = '" . $same_row['Version'] . "')");
+	DB::update(DCRM_CON_PREFIX.'Packages', array('Stat' => '-1'), array('Package' => $same_row['Package'], 'Version' => $same_row['Version']));
 	DB::query("INSERT INTO `".DCRM_CON_PREFIX."ScreenShots`(`PID`, `Image`) SELECT '".(int)$new_id."', `Image` FROM `".DCRM_CON_PREFIX."ScreenShots` WHERE `PID` = '".(int)$same_row['ID']."'");
 	header("Location: output.php?id=".(string)$new_id);
 	exit();

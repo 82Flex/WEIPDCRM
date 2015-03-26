@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: DCRM System\n"
-"POT-Creation-Date: 2015-03-25 23:04+0800\n"
-"PO-Revision-Date: 2015-03-25 23:04+0800\n"
+"POT-Creation-Date: 2015-03-25 22:35+0800\n"
+"PO-Revision-Date: 2015-03-25 22:35+0800\n"
 "Last-Translator: Hintay <hintay@me.com>\n"
 "Language-Team: Hintay <hintay@me.com>\n"
 "Language: zh_CN\n"
@@ -307,3 +307,18 @@ msgstr "如果您的浏览器没有自动跳转，请点击这里"
 #, php-format
 msgid "Successfully updated to %s"
 msgstr "成功更新到 %s"
+
+#: function/updater/1.6.php:32
+msgid "Guest"
+msgstr "游客"
+
+#~ msgid ""
+#~ "403 Payment Required: This package is either paid or requires a paid "
+#~ "package to function. If you already paid for this package, try again "
+#~ "later, or email %s if this problem keeps happening."
+#~ msgstr ""
+#~ "403 要求付款: 此软件包需要支付或需要一个需支付的软件包。如果您已经买了这"
+#~ "个软件包请稍后再试，如果一直存在此问题请发电子邮件至 %s。"
+
+#~ msgid "403 Forbidden: This package protected."
+#~ msgstr "403 禁止访问: 此软件包受保护。"
