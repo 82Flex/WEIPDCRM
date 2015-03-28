@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: DCRM Manager\n"
-"POT-Creation-Date: 2015-03-27 00:16+0800\n"
-"PO-Revision-Date: 2015-03-27 00:17+0800\n"
+"POT-Creation-Date: 2015-03-28 16:10+0800\n"
+"PO-Revision-Date: 2015-03-28 16:11+0800\n"
 "Last-Translator: Hintay <hintay@me.com>\n"
 "Language-Team: Hintay <hintay@me.com>\n"
 "Language: zh_CN\n"
@@ -152,7 +152,7 @@ msgstr "写入 Packages.gz 文件："
 msgid "Write to the Packages.bz2 file: "
 msgstr "写入 Packages.bz2 文件："
 
-#: manage/build.php:129 manage/header.php:122
+#: manage/build.php:129 manage/header.php:120
 msgid "Rebuild the list"
 msgstr "刷新列表"
 
@@ -298,7 +298,7 @@ msgstr "显示软件包"
 msgid "Illegal request!"
 msgstr "非法请求！"
 
-#: manage/edit.php:44 manage/header.php:158
+#: manage/edit.php:44 manage/header.php:156
 msgid "General Editing"
 msgstr "常规编辑"
 
@@ -396,14 +396,14 @@ msgstr "修改带星号的字段后，您必须将其写入软件包才能安全
 msgid "Write Now"
 msgstr "立即写入"
 
-#: manage/edit.php:221 manage/edit.php:275 manage/import.php:263
+#: manage/edit.php:221 manage/edit.php:275 manage/import.php:264
 #: manage/manage.php:116 manage/manage.php:124 manage/output.php:148
 #: manage/release.php:115 manage/release.php:117 manage/release.php:120
-#: manage/settings.php:697 manage/settings.php:736 manage/stats.php:97
+#: manage/settings.php:697 manage/settings.php:737 manage/stats.php:97
 msgid "Back"
 msgstr "返回"
 
-#: manage/edit.php:229 manage/header.php:159
+#: manage/edit.php:229 manage/header.php:157
 msgid "Advance Editing"
 msgstr "高级编辑"
 
@@ -508,16 +508,16 @@ msgstr "关于"
 msgid "Repository Manager"
 msgstr "源管理系统"
 
-#: manage/header.php:123
+#: manage/header.php:121
 msgctxt "Header"
 msgid "Preferences"
 msgstr "设置"
 
-#: manage/header.php:124
+#: manage/header.php:122
 msgid "Logout"
 msgstr "注销"
 
-#: manage/header.php:157 manage/view.php:54
+#: manage/header.php:155 manage/view.php:54
 msgid "View Details"
 msgstr "查看详情"
 
@@ -601,21 +601,21 @@ msgstr "新建目录失败： %s"
 msgid "Move file failed: %s"
 msgstr "文件移动失败： %s"
 
-#: manage/import.php:227
+#: manage/import.php:228
 msgid "Import failed! Please check the database configuration!"
 msgstr "导入失败！请检查数据库配置！"
 
-#: manage/import.php:236
+#: manage/import.php:237
 msgid ""
 "Import was successful! Now you can enter the Manage Packages page to review!"
 msgstr "导入成功！现在您可以进入数据库管理页面对其进行审核！"
 
-#: manage/import.php:236
+#: manage/import.php:237
 #, php-format
 msgid "Package address: %s"
 msgstr "软件包地址：%s"
 
-#: manage/import.php:241
+#: manage/import.php:242
 msgid ""
 "Invalid package: Unable to find `Package`, `Version`, `Architecture` fields "
 "in package information."
@@ -623,23 +623,23 @@ msgstr ""
 "无效的软件包：在软件包信息中找不到 `Package`、`Version`、`Architecture` 字"
 "段。"
 
-#: manage/import.php:248
+#: manage/import.php:249
 msgid "Import Package"
 msgstr "导入软件包"
 
-#: manage/import.php:274
+#: manage/import.php:275
 msgid "Inherit And Replace"
 msgstr "继承并替换"
 
-#: manage/import.php:275
+#: manage/import.php:276
 msgid "Direct Replace"
 msgstr "直接替换"
 
-#: manage/import.php:276
+#: manage/import.php:277
 msgid "Add New"
 msgstr "新增条目"
 
-#: manage/import.php:277 manage/manage.php:105 manage/sections.php:233
+#: manage/import.php:278 manage/manage.php:105 manage/sections.php:233
 #: manage/udid.php:310 manage/udid.php:392 manage/udid.php:401
 msgid "Cancel"
 msgstr "取消"
@@ -664,40 +664,50 @@ msgstr "熊出没注意！"
 msgid "Verification code error!"
 msgstr "验证码错误！"
 
-#: manage/login.php:153 manage/settings.php:88
+#: manage/login.php:158
+msgctxt "language"
+msgid "Select language"
+msgstr "选择语言"
+
+#: manage/login.php:166 manage/settings.php:76 system/languages/l10n.php:754
+msgctxt "language"
+msgid "English"
+msgstr "英语"
+
+#: manage/login.php:182 manage/settings.php:88
 msgid "Username"
 msgstr "用户名"
 
-#: manage/login.php:153
+#: manage/login.php:182
 msgid "Please fill in your username"
 msgstr "请填写您的用户名"
 
-#: manage/login.php:154
+#: manage/login.php:183
 msgid "Password"
 msgstr "密码"
 
-#: manage/login.php:154
+#: manage/login.php:183
 msgid "Please fill in your password"
 msgstr "请填写您的密码"
 
-#: manage/login.php:155
+#: manage/login.php:184
 msgid "Verify Code"
 msgstr "验证码"
 
-#: manage/login.php:155
+#: manage/login.php:184
 msgid "Please fill in the verify code"
 msgstr "请填写验证码"
 
-#: manage/login.php:157
+#: manage/login.php:186
 msgctxt "Buttom"
 msgid "Login"
 msgstr "立即登录"
 
-#: manage/login.php:163
+#: manage/login.php:192
 msgid "Error"
 msgstr "错误"
 
-#: manage/login.php:164
+#: manage/login.php:193
 #, php-format
 msgid ""
 "Your login wrong too many times , close the session or wait %s minutes and "
@@ -951,11 +961,6 @@ msgctxt "language"
 msgid "Detect"
 msgstr "自动检测"
 
-#: manage/settings.php:76 system/languages/l10n.php:754
-msgctxt "language"
-msgid "English"
-msgstr "英语"
-
 #: manage/settings.php:81
 msgid ""
 "If you want system auto detect users browser language to show pages please "
@@ -988,7 +993,7 @@ msgstr "重复新密码"
 msgid "Type your new password again."
 msgstr "再输入一遍新密码。"
 
-#: manage/settings.php:108 manage/settings.php:752
+#: manage/settings.php:108 manage/settings.php:753
 msgid "Strength indicator"
 msgstr "强度评估"
 
@@ -1453,31 +1458,31 @@ msgstr "源地址不得设置为空！"
 msgid "There is a same username!"
 msgstr "存在相同的用户名！"
 
-#: manage/settings.php:736
+#: manage/settings.php:737
 msgid "Amendments to the success of settings!"
 msgstr "设置修改成功！"
 
-#: manage/settings.php:752
+#: manage/settings.php:753
 msgctxt "Password"
 msgid "Short"
 msgstr "极弱"
 
-#: manage/settings.php:752
+#: manage/settings.php:753
 msgctxt "Password"
 msgid "Bad"
 msgstr "弱"
 
-#: manage/settings.php:752
+#: manage/settings.php:753
 msgctxt "Password"
 msgid "Good"
 msgstr "中等"
 
-#: manage/settings.php:752
+#: manage/settings.php:753
 msgctxt "Password"
 msgid "Strong"
 msgstr "强"
 
-#: manage/settings.php:752
+#: manage/settings.php:753
 msgctxt "Password"
 msgid "Mismatch"
 msgstr "不匹配"

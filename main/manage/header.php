@@ -72,15 +72,14 @@ $sidebars = array(
 	<meta name="viewport" content="width=600px, minimal-ui">
 	<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
 <?php if(is_rtl()){ ?>	<link rel="stylesheet" type="text/css" href="css/bootstrap-rtl.min.css"><?php echo "\n"; } ?>
-<?php if(file_exists(ROOT.'css/font/'.substr($locale, 0, 2).'.css')){ ?>	<link rel="stylesheet" type="text/css" href="../css/font/<?php echo substr($locale, 0, 2); ?>.css"><?php echo "\n"; } ?>
-<?php if(file_exists(ROOT.'css/font/'.$locale.'.css')){ ?>	<link rel="stylesheet" type="text/css" href="../css/font/<?php echo $locale; ?>.css"><?php echo "\n"; } ?>
+<?php if(file_exists(ROOT.'css/font/'.($local_css = substr($locale, 0, 2)).'.css') || file_exists(ROOT.'css/font/' . ($local_css = $locale) . '.css')): ?>	<link rel="stylesheet" type="text/css" href="../css/font/<?php echo $local_css; ?>.css"><?php echo("\n"); endif; ?>
 	<script src="http://cdn.bootcss.com/jquery/1.11.2/jquery.min.js"></script>
 	<script type="text/javascript" src="./js/pace.min.js"></script>
 	<script type="text/javascript">
 	$(document).ready(function(){
 		var loaded = true;
 		var top = $("#sidebar").offset().top;
-		function Add_Data() {              
+		function Add_Data() {
 			var scrolla=$(window).scrollTop();
 			var cha=parseInt(top)-parseInt(scrolla)-10;
 			if(loaded && cha<=0) {                
@@ -94,14 +93,11 @@ $sidebars = array(
 		}
 		$(window).scroll(Add_Data);
 	});
-	</script>
-	<script type="text/javascript">
-	function setmargin(){
+	$(document).ready(function setmargin(){
 		var div = document.getElementById('sidebar');
 		var width = div.style.width || div.clientWidth || div.offsetWidth || div.scrollWidth;
 		<?php if(is_rtl()){ ?>document.getElementById('content').style.marginRight = width+1+'px';<?php } else { ?>document.getElementById('content').style.marginLeft = width+1+'px';<?php } ?>
-	}
-	window.onload=setmargin;
+	});
 	</script>
 <?php
 if ( isset($activeid) && ( 'manage' == $activeid || 'sections' == $activeid || 'center' == $activeid) ) 
@@ -127,7 +123,7 @@ if ( isset($activeid) && ( 'view' == $activeid || 'edit' == $activeid || 'center
 		</div>
 		<br />
 		<div class="row">
-			<div class="span2.5" id="sidebar" style="margin-left:0!important;">
+			<div class="span2.5" id="sidebar" style="margin-left:0 !important;">
 				<div class="well sidebar-nav">
 					<ul class="nav nav-list">
 <?php

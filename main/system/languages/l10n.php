@@ -677,13 +677,18 @@ function localization_load( $setlang = null ) {
 	global $locale, $localetype;
 
 	$language = '';
-	if ( $setlang != null) {
+	if ( $setlang != null)
 		$language = $setlang;
-	} elseif ( ! empty( $_GET['language'] ) ) {
+	elseif ( ! empty( $_GET['language'] ) )
 		$language = preg_replace( '/[^a-zA-Z_]/', '', $_GET['language'] );
-	} else {
+	elseif ( isset( $_SESSION['language'] ) )
+		$language = preg_replace( '/[^a-zA-Z_]/', '', $_SESSION['language'] );
+	else
 		$language = get_locale();
-	}
+
+	if($language == 'Detect')
+		$language = get_locale();
+
 	if ( ! empty( $language ) ) {
 		$locale = check_languages(array($language));
 		$link_text = 'language=' . $locale;

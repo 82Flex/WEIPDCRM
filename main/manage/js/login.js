@@ -22,7 +22,7 @@
         var $form    = $('form[name=form-login]');
 
         // 点击提交按钮
-        $form.on('click', 'button[type=submit]', function (e) {
+        $form.on('click', 'input[type=submit]', function (e) {
             var $this = $(this);
 
             //运行parsley验证
@@ -53,10 +53,18 @@
 }));
 function animation(){
 	// 切换动画
-	$('form[name=form-login]')
+	$('.well')
 		.removeClass('animation animating shake')
 		.addClass('animation animating shake')
 		.one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function () {
 			$(this).removeClass('animation animating shake');
 		});
+}
+// 选择语言后POST
+function set_language(){
+	var selectedValue = $("select[name=language]").val();
+	selectedValue = typeof selectedValue == "object" ? selectedValue[0] : selectedValue;
+	$.post("login.php", {language: selectedValue}, function(){
+		window.location.reload();
+	});
 }

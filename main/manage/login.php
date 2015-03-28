@@ -26,7 +26,7 @@ $localetype = 'manage';
 define('ROOT_PATH', dirname(__FILE__));
 define('ABSPATH', dirname(ROOT_PATH).'/');
 include_once ABSPATH.'system/common.inc.php';
-header("Cache-Control: nocache");
+header("Cache-Control: no-store");
 class_loader('ValidateCode');
 
 if (isset($_GET['authpic'])) {
@@ -55,7 +55,12 @@ if (isset($_SESSION['connected']) && $_SESSION['connected'] === true) {
 	header("Location: center.php");
 	exit();
 }
-if(isset($_POST['username'])) {
+if(isset($_POST['language']) && !empty($_POST['language'])) {
+	$_SESSION['language'] = $_POST['language'];
+	if(!isset($_POST['submit']))
+		exit();
+}
+if(isset($_POST['submit'])) {
 	if (!empty($_POST['username']) AND !empty($_POST['password'])) {
 		if (empty($_POST['authcode'])) {
 			unset($_SESSION['VCODE']);
@@ -116,20 +121,19 @@ endlabel:
 		<link href="css/misc.min.css" rel="stylesheet" media="screen">
 		<link href="css/animation-shake.css" rel="stylesheet" media="screen">
 <?php if(is_rtl()){ ?>		<link rel="stylesheet" type="text/css" href="css/bootstrap-rtl.min.css"><?php } ?>
-<?php if(file_exists(ROOT.'css/font/'.substr($locale, 0, 2).'.css')){ ?>		<link rel="stylesheet" type="text/css" href="../css/font/<?php echo substr($locale, 0, 2); ?>.css"><?php echo "\n"; } ?>
-<?php if(file_exists(ROOT.'css/font/'.$locale.'.css')){ ?>		<link rel="stylesheet" type="text/css" href="../css/font/<?php echo $locale; ?>.css"><?php echo "\n"; } ?>
+<?php if(file_exists(ROOT.'css/font/'.($local_css = substr($locale, 0, 2)).'.css') || file_exists(ROOT.'css/font/' . ($local_css = $locale) . '.css')): ?>	<link rel="stylesheet" type="text/css" href="../css/font/<?php echo $local_css; ?>.css"><?php echo("\n"); endif; ?>
 		<script src="http://cdn.bootcss.com/jquery/1.11.2/jquery.min.js"></script>
 	</head>
 	<body>
 <?php
 if (!isset($_SESSION['try']) OR $_SESSION['try'] <= DCRM_MAXLOGINFAIL) {
 ?>
-		<form class="well" name="form-login" action="login.php" method="POST">
+		<div class="well">
 <?php
 if (file_exists('../CydiaIcon.png')) {
 ?>
-		<p><img src="<?php echo(base64_decode(DCRM_REPOURL)); ?>/CydiaIcon.png" style="width: 72px; height: 72px; border-radius: 6px;" /></p>
-		<div id="error-container" class="mb15">
+			<p><img src="<?php echo(base64_decode(DCRM_REPOURL)); ?>/CydiaIcon.png" style="width: 72px; height: 72px; border-radius: 6px;" /></p>
+			<div id="error-container" class="mb15">
 <?php
 }
 if (isset($_GET['error'])) {
@@ -149,12 +153,47 @@ if ($error == "notenough") {
 ?>
 			</div>
 			<hr />
-			<p><input type="text" name="username" placeholder="<?php _e('Username'); ?>"  data-parsley-errors-container="#error-container" data-parsley-error-message="<?php _e('Please fill in your username'); ?>" data-parsley-required /></p>
-			<p><input type="password" name="password" placeholder="<?php _e('Password'); ?>" data-parsley-errors-container="#error-container" data-parsley-error-message="<?php _e('Please fill in your password'); ?>" data-parsley-required /></p>
-			<p><input type="text" name="authcode" placeholder="<?php _e('Verify Code'); ?>" style="margin-top: 8px; height: 24px; width:120px;" data-parsley-errors-container="#error-container" data-parsley-error-message="<?php _e('Please fill in the verify code'); ?>" data-parsley-required />&nbsp;<img src="login.php?authpic=png&amp;rand=<?php echo(time()); ?>" style="height: 36px; width: 88px; border-radius: 6px;" onclick="this.src='login.php?authpic=png&amp;rand=' + new Date().getTime();" /></p>
-			<hr />
-			<button type="submit" class="btn btn-block btn-success"><?php _ex('Login', 'Buttom'); ?></button>
-		</form>
+			<p class="form-group">
+				<select name="language" class="form-control" onchange="set_language()">
+<?php
+$languages = get_available_languages();
+$langtext = '<option value="Detect"';
+if (!isset($_SESSION['language']) || $_SESSION['language'] == 'Detect')
+	$langtext .= ' selected="selected"';
+$langtext .= '>'._x( 'Select language', 'language' );
+if ( substr( $locale, 0, 2 ) != 'en' )
+	$langtext .= ' - Languages';
+$langtext .= "</option>\n";
+
+$languages_list = languages_list();
+$languages_self_list = languages_self_list();
+if(!in_array('en', $languages, true) && !in_array('en_US', $languages, true) && !in_array('en_GB', $languages, true)){
+	$langtext .= '<option value="en_US"';
+	if ($_SESSION['language'] == 'en_US')
+		$langtext .= ' selected="selected"';
+	$langtext .= '>' . _x('English', 'language') . " - English</option>\n";
+}
+
+foreach( $languages as $language ) {
+	$langtext .= "<option value=\"$language\"";
+	if ($_SESSION['language'] == $language)
+		$langtext .= ' selected="selected"';;
+	$langtext .= '>' . (isset($languages_list[$language]) ? $languages_list[$language] : $language);
+	$langtext .= " - " . (isset($languages_self_list[$language]) ? $languages_self_list[$language] : $languages_list[$language]) . "</option>\n";
+}
+		
+echo $langtext;
+?>
+				</select>
+			</p>
+			<form name="form-login" action="login.php" method="POST">
+				<p><input type="text" name="username" placeholder="<?php _e('Username'); ?>"  data-parsley-errors-container="#error-container" data-parsley-error-message="<?php _e('Please fill in your username'); ?>" data-parsley-required /></p>
+				<p><input type="password" name="password" placeholder="<?php _e('Password'); ?>" data-parsley-errors-container="#error-container" data-parsley-error-message="<?php _e('Please fill in your password'); ?>" data-parsley-required /></p>
+				<p><input type="text" name="authcode" placeholder="<?php _e('Verify Code'); ?>" style="margin-top: 8px; height: 24px; width:120px;" data-parsley-errors-container="#error-container" data-parsley-error-message="<?php _e('Please fill in the verify code'); ?>" data-parsley-required />&nbsp;<img src="login.php?authpic=png&amp;rand=<?php echo(time()); ?>" style="height: 36px; width: 88px; border-radius: 6px;" onclick="this.src='login.php?authpic=png&amp;rand=' + new Date().getTime();" /></p>
+				<hr />
+				<input type="submit" class="btn btn-success" name="submit" value="<?php _ex('Login', 'Buttom'); ?>" />
+			</form>
+		</div>
 <?php
 } else {
 ?>

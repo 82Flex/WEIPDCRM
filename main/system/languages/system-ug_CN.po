@@ -1,23 +1,27 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: DCRM System\n"
-"POT-Creation-Date: 2015-03-15 17:45+0800\n"
-"PO-Revision-Date: 2015-03-15 17:46+0800\n"
+"POT-Creation-Date: 2015-03-25 22:35+0800\n"
+"PO-Revision-Date: 2015-03-27 15:25+0800\n"
 "Last-Translator: Hintay <hintay@me.com>\n"
-"Language-Team: Hintay <hintay@me.com>\n"
-"Language: zh_CN\n"
+"Language-Team: shiraq\n"
+"Language: ug_CN\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 1.6.6\n"
+"X-Generator: Poedit 1.7.5\n"
 "X-Poedit-Basepath: ../\n"
-"Plural-Forms: nplurals=1; plural=0;\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
 "X-Poedit-KeywordsList: __;_e;_n:1,2;_x:1,2c;_ex:1,2c;_nx:4c,1,2;esc_attr__;"
-"esc_attr_e;esc_attr_x:1,2c;esc_html__;esc_html_e;esc_html_x:1,2c;_n_noop:1,2;"
-"_nx_noop:3c,1,2;__ngettext_noop:1,2\n"
+"esc_attr_e;esc_attr_x:1,2c;esc_html__;esc_html_e;esc_html_x:1,2c;"
+"_n_noop:1,2;_nx_noop:3c,1,2;__ngettext_noop:1,2\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 "X-Poedit-SearchPath-0: .\n"
 "X-Poedit-SearchPathExcluded-0: languages\n"
+
+#: class/db.php:253
+msgid "The query argument of DB::prepare() must have a placeholder."
+msgstr "DB::prepare() 必须要有一个参数。"
 
 #. translators: weekday
 #: class/locale.php:106 class/locale.php:116 class/locale.php:129
@@ -246,11 +250,11 @@ msgstr "دېكابىر"
 
 #: class/locale.php:171
 msgid "am"
-msgstr "am"
+msgstr "چۈشتىن بۇرۇن"
 
 #: class/locale.php:172
 msgid "pm"
-msgstr "pm"
+msgstr "چۈشتىن كېيىن"
 
 #: class/locale.php:173
 msgid "AM"
@@ -263,7 +267,7 @@ msgstr "چۈشتىن كېيىن"
 #. translators: $thousands_sep argument for http://php.net/number_format, default is ,
 #: class/locale.php:180
 msgid "number_format_thousands_sep"
-msgstr ","
+msgstr "number_format_thousands_sep"
 
 #. translators: $dec_point argument for http://php.net/number_format, default is .
 #: class/locale.php:184
@@ -289,17 +293,32 @@ msgstr "ag:i"
 #. translators: localized date and time format, see http://php.net/date
 #: class/locale.php:353
 msgid "F j, Y g:i a"
-msgstr "F j, Y g:i a"
+msgstr "Yيىلnئايjكۈنag:i"
 
 #: function/core.php:9 function/core.php:23
 msgid "System Message"
-msgstr "系统消息"
+msgstr "سېستىما ئۇچۇرى"
 
 #: function/core.php:27
 msgid "If your browser does not automatically redirect, please click here."
-msgstr "如果您的浏览器没有自动跳转，请点击这里"
+msgstr "ئەگەر توركۆرگۈچ ئاپتوماتىك ئاتلىيالمىسا ئۇنداقتا بۇيەرنى بېسىڭ!"
 
 #: function/core.php:42
 #, php-format
 msgid "Successfully updated to %s"
-msgstr "成功更新到 %s"
+msgstr "يېڭىلاش تاماملاندى %s"
+
+#: function/updater/1.6.php:32
+msgid "Guest"
+msgstr "مېھمان"
+
+#~ msgid ""
+#~ "403 Payment Required: This package is either paid or requires a paid "
+#~ "package to function. If you already paid for this package, try again "
+#~ "later, or email %s if this problem keeps happening."
+#~ msgstr ""
+#~ "403 要求付款: 此软件包需要支付或需要一个需支付的软件包。如果您已经买了这"
+#~ "个软件包请稍后再试，如果一直存在此问题请发电子邮件至 %s。"
+
+#~ msgid "403 Forbidden: This package protected."
+#~ msgstr "403 禁止访问: 此软件包受保护。"
