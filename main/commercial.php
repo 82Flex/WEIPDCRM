@@ -57,46 +57,46 @@ if(!isset($package_info)){
 <body class="pinstripe">
 <?php
 }
-$nowip = _ip2long(getIp());
-$commercial_status = check_commercial_tag($package_info['Tag']);
+if(check_commercial_tag($package_info['Tag'])):
+	$nowip = _ip2long(getIp());
 
-if(isset($_GET['udid']))
-	$udid_status = DB::fetch_first("SELECT `Packages`, `Level`, `IP` FROM `".DCRM_CON_PREFIX."UDID` WHERE `UDID` = '".$_GET['udid']."' LIMIT 1");
-else
-	$udid_status = DB::fetch_first("SELECT `Packages`, `Level`, `IP` FROM `".DCRM_CON_PREFIX."UDID` WHERE `IP` = '".$nowip."' LIMIT 1");
-$purchased = false;
-if(!empty($udid_status)){
-	if(!empty($udid_status['Packages'])) {
-		$udid_packages = TrimArray(explode(',', $udid_status['Packages']));
-		if(in_array($package_info['Package'], $udid_packages, true))
-			$purchased = true;
-	} else {
-		$udid_level = (int)$udid_status['Level'];
-		$package_level = (int)$package_info['Level'];
-		if($udid_level > $package_level)
-			$purchased = true;
+	if(isset($_GET['udid']))
+		$udid_status = DB::fetch_first("SELECT `Packages`, `Level`, `IP` FROM `".DCRM_CON_PREFIX."UDID` WHERE `UDID` = '".$_GET['udid']."' LIMIT 1");
+	else
+		$udid_status = DB::fetch_first("SELECT `Packages`, `Level`, `IP` FROM `".DCRM_CON_PREFIX."UDID` WHERE `IP` = '".$nowip."' LIMIT 1");
+	$purchased = false;
+	if(!empty($udid_status)){
+		if(!empty($udid_status['Packages'])) {
+			$udid_packages = TrimArray(explode(',', $udid_status['Packages']));
+			if(in_array($package_info['Package'], $udid_packages, true))
+				$purchased = true;
+		} else {
+			$udid_level = (int)$udid_status['Level'];
+			$package_level = (int)$package_info['Level'];
+			if($udid_level > $package_level)
+				$purchased = true;
+		}
 	}
-}
 
-if($purchased) {
-	//$not_installed_button = 'null, null, null';
-	$purchase_status = 'purchased';
-	$fieldset_color = '#eefff0';
-	$fieldset_icons = 'https://cache.saurik.com/crystal/256x256/actions/agt_action_success.png';
-	if(empty($package_info['Price']))
-		$purchase_status = 'candownload';
-} else {
-	$fieldset_color = '#ffc040';
-	if(!empty($package_info['Price'])):
-		//$not_installed_button = '"'.__('Purchase').'", "Highlighted", function(){buy();}';
-		$purchase_status = 'notpurchase';
-		$fieldset_icons = 'https://cache.saurik.com/crystal/64x64/apps/kwallet.png';
-	else:
-		//$not_installed_button = '"'.__('Recheck').'", "Highlighted", function(){reload_();}';
-		$purchase_status = 'protection';
-		$fieldset_icons = 'https://cache.saurik.com/crystal/64x64/apps/alert.png';
-	endif;
-}
+	if($purchased) {
+		//$not_installed_button = 'null, null, null';
+		$purchase_status = 'purchased';
+		$fieldset_color = '#eefff0';
+		$fieldset_icons = 'https://cache.saurik.com/crystal/256x256/actions/agt_action_success.png';
+		if(empty($package_info['Price']))
+			$purchase_status = 'candownload';
+	} else {
+		$fieldset_color = '#ffc040';
+		if(!empty($package_info['Price'])):
+			//$not_installed_button = '"'.__('Purchase').'", "Highlighted", function(){buy();}';
+			$purchase_status = 'notpurchase';
+			$fieldset_icons = 'https://cache.saurik.com/crystal/64x64/apps/kwallet.png';
+		else:
+			//$not_installed_button = '"'.__('Recheck').'", "Highlighted", function(){reload_();}';
+			$purchase_status = 'protection';
+			$fieldset_icons = 'https://cache.saurik.com/crystal/64x64/apps/alert.png';
+		endif;
+	}
 ?>
 <panel>
 	<fieldset style="background-color:<?php echo($fieldset_color); ?>">
@@ -105,8 +105,8 @@ if($purchased) {
 			<div>
 				<div>
 <?php 
-switch($purchase_status){
-	case 'notpurchase':
+	switch($purchase_status){
+		case 'notpurchase':
 ?>
 					<label>
 						<p><?php _e('Purchase Product'); ?></p>
@@ -115,28 +115,28 @@ switch($purchase_status){
 						<p><?php echo($package_info['Price']); ?></p>
 					</label>
 <?php
-		break;
-	case 'protection':
+			break;
+		case 'protection':
 ?>
 					<label>
 						<p><?php _e('Package Protected'); ?></p>
 					</label>
 <?php
-		break;
-	case 'purchased':
+			break;
+		case 'purchased':
 ?>
 					<label>
 						<p><?php _e('Package Officially Purchased'); ?></p>
 					</label>
 <?php
-		break;
-	case 'candownload':
+			break;
+		case 'candownload':
 ?>
 					<label>
 						<p><?php _e('Allowed To Download'); ?></p>
 					</label>
 <?php
-		break;
+			break;
 }
 ?>
 				</div>
@@ -144,3 +144,6 @@ switch($purchase_status){
 		</a>
 	</fieldset>
 </panel>
+<?php
+endif;
+?>
