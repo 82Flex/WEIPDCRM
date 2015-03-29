@@ -37,3 +37,8 @@ if($current_version == '1.6.15.3.18' || $current_version == '1.6.15.3.25' ){
 	update_option('autofill_depiction', '2');
 	update_final('1.6.15.3.26');
 }
+if($current_version == '1.6.15.3.26'){
+	if(file_exists(ROOT.'manage/js/'))
+		deldir(ROOT.'manage/js/');
+	update_final('1.6.15.3.29');
+}

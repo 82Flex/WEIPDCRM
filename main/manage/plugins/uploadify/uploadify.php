@@ -7,7 +7,7 @@ uploadify 后台处理！
 */
 header("Content-Type: text/html; charset=UTF-8");
 //设置上传目录
-$path = "../../upload/";	
+$path = "../../../upload/";	
 
 if (!empty($_FILES)) {
 
@@ -19,7 +19,6 @@ if (!empty($_FILES)) {
 	
 	//得到文件原名
 	$fileName = $_FILES["Filedata"]["name"];
-	//$fileName = iconv("UTF-8","GB2312",$_FILES["Filedata"]["name"]);
 	$fileParts = pathinfo($fileName);
 	if (file_exists($path . $fileName)) {
 		echo $_FILES["Filedata"]["name"] . " 已经存在";

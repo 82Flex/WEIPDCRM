@@ -104,7 +104,7 @@ if (isset($_SESSION['connected']) && $_SESSION['connected'] === true) {
 		</div>
 	</div>
 	</div>
-	<script src="js/misc.js" type="text/javascript"></script>
+	<script src="javascript/backend/misc.js" type="text/javascript"></script>
 </body>
 </html>
 <?php

@@ -1,5 +1,8 @@
 <?php
 /**
+ * Copyright (c) 2015 Hintay <hintay@me.com>
+ * Copyright (c) 2014 i_82 <i.82@me.com>
+ **
  * This file is part of WEIPDCRM.
  * 
  * WEIPDCRM is free software: you can redistribute it and/or modify
@@ -112,104 +115,188 @@ if(isset($_POST['submit'])) {
 }
 endlabel:
 ?>
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
+<!DOCTYPE html>
+<html class="backend">
+	<!-- 开始 头部 -->
 	<head>
-		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-		<title>DCRM - <?php _e('Login'); ?></title>
-		<link href="css/bootstrap.min.css" rel="stylesheet">
-		<link href="css/misc.min.css" rel="stylesheet" media="screen">
-		<link href="css/animation-shake.css" rel="stylesheet" media="screen">
-<?php if(is_rtl()){ ?>		<link rel="stylesheet" type="text/css" href="css/bootstrap-rtl.min.css"><?php } ?>
-<?php if(file_exists(ROOT.'css/font/'.($local_css = substr($locale, 0, 2)).'.css') || file_exists(ROOT.'css/font/' . ($local_css = $locale) . '.css')): ?>	<link rel="stylesheet" type="text/css" href="../css/font/<?php echo $local_css; ?>.css"><?php echo("\n"); endif; ?>
-		<script src="http://cdn.bootcss.com/jquery/1.11.2/jquery.min.js"></script>
-	</head>
+		<!-- 开始 META 标签 -->
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<title><?php _e('Login'); ?></title>
+		<meta name="author" content="WEIPDCRM">
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+		<link rel="shortcut icon" href="../favicon.ico">
+		<!--/ 结束 META 标签 -->
+
+		<!-- 开始 样式表 -->
+		<!--  插件样式表：可选 -->
+		<!--/ 插件样式表 -->
+
+		<!-- 应用样式表：强制 -->
+		<link rel="stylesheet" href="http://cdn.bootcss.com/bootstrap/3.3.4/css/bootstrap.min.css">
+		<link rel="stylesheet" href="./stylesheet/layout.min.css">
+		<link rel="stylesheet" href="./stylesheet/uielement.min.css">
+<?php if(is_rtl()){ ?>		<link rel="stylesheet" type="text/css" href="./stylesheet/uielement-rtl.min.css"><?php } ?>
+<?php if(file_exists(ROOT.'css/font/'.($local_css = substr($locale, 0, 2)).'.css') || file_exists(ROOT.'css/font/' . ($local_css = $locale) . '.css')): ?>		<link rel="stylesheet" type="text/css" href="../css/font/<?php echo $local_css; ?>.css"><?php echo("\n"); endif; ?>
+		<!--/ 应用样式表 -->
+
+		<!-- modernizr 脚本 -->
+		<script type="text/javascript" src="./plugins/modernizr/modernizr.min.js"></script>
+		<!--/ modernizr 脚本-->
+		<!-- 结束 样式表 -->
+    </head>
+	<!--/ 结束 头部 -->
+
+	<!-- 开始 页面主体 -->
 	<body>
+		<!-- 开始 模板主内容 -->
+		<section id="main" role="main">
+			<!-- 开始 模板容器 -->
+			<section class="container">
+				<!-- 开始 行 -->
+				<div class="row">
+					<div class="col-lg-4 col-lg-offset-4">
+						<!-- 商标 -->
+						<div class="text-center" style="margin-bottom:10px; margin-top:30px;">
+<?php
+if (file_exists('../CydiaIcon.png')) :
+?>
+							<img src="../CydiaIcon.png" style="width: 72px; height: 72px; border-radius: 6px; margin-bottom:10px;" />
+<?php
+endif;
+?>
+							<h5 class="semibold text-muted mt-5"><?php _e('Login'); ?></h5>
+						</div>
+						<!--/ 商标 -->
+
+						<hr><!-- 水平线 -->
+
+						<!-- 登录表单 -->
 <?php
 if (!isset($_SESSION['try']) OR $_SESSION['try'] <= DCRM_MAXLOGINFAIL) {
 ?>
-		<div class="well">
+						<div class="panel">
+							<div class="panel-body">
+								<div class="form-group">
+									<select name="language" class="form-control" onchange="set_language()">
 <?php
-if (file_exists('../CydiaIcon.png')) {
-?>
-			<p><img src="<?php echo(base64_decode(DCRM_REPOURL)); ?>/CydiaIcon.png" style="width: 72px; height: 72px; border-radius: 6px;" /></p>
-			<div id="error-container" class="mb15">
-<?php
-}
-if (isset($_GET['error'])) {
-	$error = $_GET['error'];
-}
-if ($error == "notenough") {
-	echo '<ul class="parsley-errors-list filled"><li>'.__('Please input your username and password!').'</li></ul>';
-} elseif ($error == "badlogin") {
-	echo '<ul class="parsley-errors-list filled"><li>'.__('Unknown username or bad password!').'</li></ul>';
-} elseif ($error == "bear") {
-	echo '<ul class="parsley-errors-list filled"><li>'.__('Bear!').'</li></ul>';
-} elseif ($error == "authcode") {
-	echo '<ul class="parsley-errors-list filled"><li>'.__('Verification code error!').'</li></ul>';
-} else {
-	echo '<div id="loginlogo">DCRM - ' . __('Login').'</div>';
-}
-?>
-			</div>
-			<hr />
-			<p class="form-group">
-				<select name="language" class="form-control" onchange="set_language()">
-<?php
-$languages = get_available_languages();
-$langtext = '<option value="Detect"';
-if (!isset($_SESSION['language']) || $_SESSION['language'] == 'Detect')
-	$langtext .= ' selected="selected"';
-$langtext .= '>'._x( 'Select language', 'language' );
-if ( substr( $locale, 0, 2 ) != 'en' )
-	$langtext .= ' - Languages';
-$langtext .= "</option>\n";
-
-$languages_list = languages_list();
-$languages_self_list = languages_self_list();
-if(!in_array('en', $languages, true) && !in_array('en_US', $languages, true) && !in_array('en_GB', $languages, true)){
-	$langtext .= '<option value="en_US"';
-	if ($_SESSION['language'] == 'en_US')
+	$languages = get_available_languages();
+	$langtext = '<option value="Detect"';
+	if (!isset($_SESSION['language']) || $_SESSION['language'] == 'Detect')
 		$langtext .= ' selected="selected"';
-	$langtext .= '>' . _x('English', 'language') . " - English</option>\n";
-}
+	$langtext .= '>'._x( 'Select language', 'language' );
+	if ( substr( $locale, 0, 2 ) != 'en' )
+		$langtext .= ' - Languages';
+	$langtext .= "</option>\n";
 
-foreach( $languages as $language ) {
-	$langtext .= "<option value=\"$language\"";
-	if ($_SESSION['language'] == $language)
-		$langtext .= ' selected="selected"';;
-	$langtext .= '>' . (isset($languages_list[$language]) ? $languages_list[$language] : $language);
-	$langtext .= " - " . (isset($languages_self_list[$language]) ? $languages_self_list[$language] : $languages_list[$language]) . "</option>\n";
-}
-		
-echo $langtext;
+	$languages_list = languages_list();
+	$languages_self_list = languages_self_list();
+	if(!in_array('en', $languages, true) && !in_array('en_US', $languages, true) && !in_array('en_GB', $languages, true)){
+		$langtext .= '<option value="en_US"';
+		if ($_SESSION['language'] == 'en_US')
+			$langtext .= ' selected="selected"';
+		$langtext .= '>' . _x('English', 'language') . " - English</option>\n";
+	}
+
+	foreach( $languages as $language ) {
+		$langtext .= "<option value=\"$language\"";
+		if ($_SESSION['language'] == $language)
+			$langtext .= ' selected="selected"';;
+		$langtext .= '>' . (isset($languages_list[$language]) ? $languages_list[$language] : $language);
+		$langtext .= " - " . (isset($languages_self_list[$language]) ? $languages_self_list[$language] : $languages_list[$language]) . "</option>\n";
+	}
+
+	echo $langtext;
 ?>
-				</select>
-			</p>
-			<form name="form-login" action="login.php" method="POST">
-				<p><input type="text" name="username" placeholder="<?php _e('Username'); ?>"  data-parsley-errors-container="#error-container" data-parsley-error-message="<?php _e('Please fill in your username'); ?>" data-parsley-required /></p>
-				<p><input type="password" name="password" placeholder="<?php _e('Password'); ?>" data-parsley-errors-container="#error-container" data-parsley-error-message="<?php _e('Please fill in your password'); ?>" data-parsley-required /></p>
-				<p><input type="text" name="authcode" placeholder="<?php _e('Verify Code'); ?>" style="margin-top: 8px; height: 24px; width:120px;" data-parsley-errors-container="#error-container" data-parsley-error-message="<?php _e('Please fill in the verify code'); ?>" data-parsley-required />&nbsp;<img src="login.php?authpic=png&amp;rand=<?php echo(time()); ?>" style="height: 36px; width: 88px; border-radius: 6px;" onclick="this.src='login.php?authpic=png&amp;rand=' + new Date().getTime();" /></p>
-				<hr />
-				<input type="submit" class="btn btn-success" name="submit" value="<?php _ex('Login', 'Buttom'); ?>" />
-			</form>
-		</div>
+									</select>
+                                </div>
+								<form name="form-login" action="login.php" method="POST">
+									<div class="form-group">
+										<div class="form-stack has-icon pull-left">
+											<input name="username" type="text" class="form-control input-lg" placeholder="<?php _e('Username'); ?>" data-parsley-errors-container="#error-container" data-parsley-error-message="<?php _e('Please fill in your username'); ?>" data-parsley-required>
+											<i class="ico-user2 form-control-icon"></i>
+										</div>
+										<div class="form-stack has-icon pull-left">
+											<input name="password" type="password" class="form-control input-lg" placeholder="<?php _e('Password'); ?>" data-parsley-errors-container="#error-container" data-parsley-error-message="<?php _e('Please fill in your password'); ?>" data-parsley-required>
+											<i class="ico-lock2 form-control-icon"></i>
+										</div>
+										<div class="form-stack has-icon pull-left">
+											<div class="input-group image-input-group">
+												<input type="text" name="authcode" class="form-control input-lg" placeholder="<?php _e('Verify Code'); ?>" data-parsley-errors-container="#error-container" data-parsley-error-message="<?php _e('Please fill in the verify code'); ?>" data-parsley-required />
+												<span class="input-group-addon verifycode">
+													<img src="login.php?authpic=png&amp;rand=<?php echo(time()); ?>" style="height: 44px;" onclick="this.src='login.php?authpic=png&amp;rand=' + new Date().getTime();" />
+												</span>
+											</div>
+											<i class="ico-quill3 form-control-icon"></i>
+										</div>
+									</div>
+
+									<!-- 错误容器 -->
+									<div id="error-container" class="mb15">
+<?php
+	if (isset($_GET['error'])) {
+		$error = $_GET['error'];
+	}
+	if ($error == "notenough") {
+		echo '<ul class="parsley-errors-list filled"><li>'.__('Please input your username and password!').'</li></ul>';
+	} elseif ($error == "badlogin") {
+		echo '<ul class="parsley-errors-list filled"><li>'.__('Unknown username or bad password!').'</li></ul>';
+	} elseif ($error == "bear") {
+		echo '<ul class="parsley-errors-list filled"><li>'.__('Bear!').'</li></ul>';
+	} elseif ($error == "authcode") {
+		echo '<ul class="parsley-errors-list filled"><li>'.__('Verification code error!').'</li></ul>';
+	}
+?>
+									</div>
+									<!--/ 错误容器 -->
+
+									<input name="submit" style="display: none;"/>
+									<div class="form-group nm">
+										<button type="submit" class="btn btn-block btn-success"><span class="semibold"><?php _ex('Login', 'Buttom'); ?></span></button>
+									</div>
+								</form>
+                            </div>
+						</div>
+						<!-- 登录表单 -->
 <?php
 } else {
 ?>
-		<div class="well">
-			<?php _e('Error'); ?><hr />
-			<?php printf(__('Your login wrong too many times , close the session or wait %s minutes and try again later.'), ceil(($_SESSION['lasttry']+DCRM_LOGINFAILRESETTIME - time())/60)); ?>
-		</div>
+						<div class="panel-body">
+							<h1 class="text-center"><?php _e('Error'); ?></h1>
+							<p><?php printf(__('Your login wrong too many times , close the session or wait %s minutes and try again later.'), ceil(($_SESSION['lasttry']+DCRM_LOGINFAILRESETTIME - time())/60)); ?></p>
+						</div>
 <?php
 }
 ?>
-	<script type="text/javascript" src="./js/pace.min.js"></script>
-	<script type="text/javascript" src="./js/parsley.min.js"></script>
-	<script type="text/javascript" src="./js/login.min.js"></script>
+						<hr><!-- 水平线 -->
+
+						<p class="text-muted text-center">Copyrght &copy; <?php echo(date('Y')); echo defined("AUTOFILL_SEO") ? ' '.htmlspecialchars(AUTOFILL_SEO) : ''; ?></p>
+						<p class="text-muted text-center">Powered by WEIPDCRM</p>
+					</div>
+				</div>
+				<!--/ 结束 行 -->
+			</section>
+			<!--/ 结束 模板容器 -->
+		</section>
+		<!--/ 结束 模板主内容 -->
+
+		<!-- 开始 JAVASCRIPT 部分 (底部加载javascript以减少载入时间) -->
+		<!-- 应用及底层脚本：强制 -->
+		<script src="http://cdn.bootcss.com/jquery/1.11.2/jquery.min.js"></script>
+		<script src="http://cdn.bootcss.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+		<!--/ 应用及底层脚本：强制 -->
+
+		<!-- 插件及页面脚本：可选 -->
+		<script type="text/javascript" src="./javascript/pace.min.js"></script>
+		<script type="text/javascript" src="./plugins/parsley/parsley.min.js"></script>
+		<script type="text/javascript" src="./javascript/backend/login.js"></script>
 <?php
 if(isset($error))
 	echo '<script type="text/javascript">$(document).ready(function(){animation();});</script>'
 ?>
+		<!--/ 插件及页面脚本：可选 -->
+		<!--/ 结束 JAVASCRIPT 部分 -->
 	</body>
+	<!--/ 结束 页面主体 -->
 </html>

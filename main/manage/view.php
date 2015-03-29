@@ -123,9 +123,9 @@ if (DB::affected_rows() <= 0) {
 			}
 		}
 	</script>
-	<link rel="stylesheet" href="js/themes/default/default.css" />
-	<script charset="utf-8" src="js/kindeditor.min.js"></script>
-	<script charset="utf-8" src="js/lang/<?php echo $kdlang = check_languages(array($locale), true);?>.js"></script>
+	<link rel="stylesheet" href="./plugins/kindeditor/themes/default/default.css" />
+	<script charset="utf-8" src="./plugins/kindeditor/kindeditor.min.js"></script>
+	<script charset="utf-8" src="./plugins/kindeditor/lang/<?php echo $kdlang = check_languages(array($locale), true);?>.js"></script>
 	<script>
 		KindEditor.ready(function(K) {
 			var editor = K.editor({

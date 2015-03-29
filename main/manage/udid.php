@@ -276,7 +276,7 @@ if (isset($_SESSION['connected']) && $_SESSION['connected'] === true) {
 								</div>
 							</div>
 						</form>
-<script src="./js/jqBootstrapValidation.min.js"></script>
+<script src="./plugins/jqBootstrapValidation/jqBootstrapValidation.min.js"></script>
 <script language="javascript">
 $(function () { $("input,select,textarea").not("[type=submit]").jqBootstrapValidation(); } );
 </script>

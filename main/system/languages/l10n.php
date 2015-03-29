@@ -103,7 +103,7 @@ function check_languages( $localelist, $kindeditorlang = false) {
 		if ( $kindeditorlang != false ) {
 			$localetypehandle = '';
 			$langsuffix = '.js';
-			$langdir = ROOT . 'manage/js/lang/';
+			$langdir = ROOT . 'manage/plugins/kindeditor/lang/';
 		} else {
 			$localetypehandle = $localetype . '-';
 		}

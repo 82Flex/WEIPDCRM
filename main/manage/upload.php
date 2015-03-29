@@ -113,8 +113,8 @@ else window.location.replace('./upload.php?mode=classic');
 		</div>
 	</div>
 	</div>
-<script charset='utf-8' type="text/javascript" src="js/jquery.uploadify.js"></script>
-<link rel="stylesheet" type="text/css" href="css/uploadify.css"/>
+<script charset='utf-8' type="text/javascript" src="./plugins/uploadify/js/jquery.uploadify.js"></script>
+<link rel="stylesheet" type="text/css" href="./plugins/uploadify/css/uploadify.css"/>
 <script charset='utf-8' type="text/javascript">
 var img_id_upload=new Array();//初始化数组，存储已经上传的图片名
 var i=0;//初始化数组下标
@@ -122,8 +122,8 @@ $(function() {
     $('#file_upload').uploadify({
     	'auto'     : false,//关闭自动上传
     	'removeTimeout' : 1,//文件队列上传完成1秒后删除
-        'swf'      : 'js/uploadify.swf',
-        'uploader' : 'js/uploadify.php',
+        'swf'      : 'plugins/uploadify/uploadify.swf',
+        'uploader' : 'plugins/uploadify/uploadify.php',
         'method'   : 'post',//方法，服务端可以用$_POST数组获取数据
         'buttonText' : '<?php _e('SELECT FILES'); ?>',//设置按钮文本
         'multi'    : true,//允许同时上传多文件
@@ -178,7 +178,7 @@ $(function() {
 		</div>
 	</div>
 	</div>
-	<script type="text/javascript" src="js/ajaxfileupload.js"></script>
+	<script type="text/javascript" src="plugins/ajaxfileupload/ajaxfileupload.min.js"></script>
 	<script type="text/javascript">
 		function ajaxFileUpload() {
 			fakepath = document.getElementById("deb").value;

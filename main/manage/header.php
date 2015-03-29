@@ -74,7 +74,7 @@ $sidebars = array(
 <?php if(is_rtl()){ ?>	<link rel="stylesheet" type="text/css" href="css/bootstrap-rtl.min.css"><?php echo "\n"; } ?>
 <?php if(file_exists(ROOT.'css/font/'.($local_css = substr($locale, 0, 2)).'.css') || file_exists(ROOT.'css/font/' . ($local_css = $locale) . '.css')): ?>	<link rel="stylesheet" type="text/css" href="../css/font/<?php echo $local_css; ?>.css"><?php echo("\n"); endif; ?>
 	<script src="http://cdn.bootcss.com/jquery/1.11.2/jquery.min.js"></script>
-	<script type="text/javascript" src="./js/pace.min.js"></script>
+	<script type="text/javascript" src="./javascript/pace.min.js"></script>
 	<script type="text/javascript">
 	$(document).ready(function(){
 		var loaded = true;
@@ -103,7 +103,7 @@ $sidebars = array(
 if ( isset($activeid) && ( 'manage' == $activeid || 'sections' == $activeid || 'center' == $activeid) ) 
 	echo '	<link rel="stylesheet" type="text/css" href="css/corepage.css">';
 if ( isset($activeid) && ( 'view' == $activeid || 'edit' == $activeid || 'center' == $activeid) ) 
-	echo '	<script src="js/mbar.js" type="text/javascript"></script>';
+	echo '	<script src="javascript/backend/mbar.js" type="text/javascript"></script>';
 ?>
 </head>
 <body class="manage">

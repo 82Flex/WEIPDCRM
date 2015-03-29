@@ -280,8 +280,8 @@ if (isset($_SESSION['connected']) && $_SESSION['connected'] === true) {
 		</div>
 	</div>
 	</div>
-	<script charset="utf-8" src="js/kindeditor.min.js"></script>
-	<script charset="utf-8" src="js/lang/<?php echo $kdlang = check_languages(array($locale), true);?>.js"></script>
+	<script charset="utf-8" src="./plugins/kindeditor/kindeditor.min.js"></script>
+	<script charset="utf-8" src="./plugins/kindeditor/lang/<?php echo $kdlang = check_languages(array($locale), true);?>.js"></script>
 	<script type="text/javascript">
 	<?php if($protection_status): ?>
 	sli = document.getElementById('sli');
