@@ -3,7 +3,7 @@
  * DCRM Localization System
  * Base On WordPress 4.1 Translation API
  *
- * Modify by Hintay
+ * Port by Hintay
  * 
  * Keywords: __ , _e , _n:1,2 , _x:1,2c , _ex:1,2c , _nx:4c,1,2 , esc_attr__ , 
  * esc_attr_e , esc_attr_x:1,2c , esc_html__ , esc_html_e , esc_html_x:1,2c , 

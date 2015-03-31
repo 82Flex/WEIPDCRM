@@ -1,4 +1,24 @@
 <?php
+/**
+ * DCRM Installer Functions
+ * Copyright (c) 2015 Hintay <hintay@me.com>
+ *
+ * This file is part of WEIPDCRM.
+ * 
+ * WEIPDCRM is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU Affero General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * WEIPDCRM is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU Affero General Public License for more details.
+ * 
+ * You should have received a copy of the GNU Affero General Public License
+ * along with WEIPDCRM.  If not, see <http://www.gnu.org/licenses/>.
+ */
+
 // 设定参数
 define('ABSPATH', dirname(dirname(__FILE__)).'/');
 define('CONF_PATH', ABSPATH.'system/config/');
@@ -219,7 +239,7 @@ function display_header($n='') {
 }
 
 function base_url(){
-	$sitepath = '/'.str_replace($_SERVER['DOCUMENT_ROOT'], '', str_replace('\\', '/', ABSPATH));
+	$sitepath = str_replace($_SERVER['DOCUMENT_ROOT'], '', str_replace('\\', '/', ABSPATH));
 	$siteurl = htmlspecialchars(($_SERVER['SERVER_PORT'] == '443' ? 'https://' : 'http://').$_SERVER['HTTP_HOST'].$sitepath);
 	define('BASE_URL', $siteurl);
 }

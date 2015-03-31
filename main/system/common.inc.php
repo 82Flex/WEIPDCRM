@@ -1,4 +1,21 @@
 <?php
+/**
+ * This file is part of WEIPDCRM.
+ * 
+ * WEIPDCRM is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU Affero General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * WEIPDCRM is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU Affero General Public License for more details.
+ * 
+ * You should have received a copy of the GNU Affero General Public License
+ * along with WEIPDCRM.  If not, see <http://www.gnu.org/licenses/>.
+ */
+
 error_reporting(E_ALL ^ E_NOTICE);
 define("DCRM",true);
 define('IN_DCRM', true);
@@ -32,7 +49,7 @@ if(file_exists(ROOT.'manage/include/connect.inc.php')){
 	define('CONF_PATH', SYSTEM_ROOT.'config/');
 } else {
 	$root = str_replace($_SERVER['DOCUMENT_ROOT'], '', str_replace('\\', '/', ROOT));
-	header('Location: /'.$root.'install');
+	header('Location: '.$root.'install');
 	exit();
 }
 require_once(CONF_PATH.'connect.inc.php');

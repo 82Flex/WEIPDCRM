@@ -1,25 +1,24 @@
 <?php
 /**
+ * DCRM Login Page
  * Copyright (c) 2015 Hintay <hintay@me.com>
  * Copyright (c) 2014 i_82 <i.82@me.com>
- **
+ *
  * This file is part of WEIPDCRM.
  * 
  * WEIPDCRM is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
+ * it under the terms of the GNU Affero General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
  *
  * WEIPDCRM is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU General Public License for more details.
+ * GNU Affero General Public License for more details.
  * 
- * You should have received a copy of the GNU General Public License
+ * You should have received a copy of the GNU Affero General Public License
  * along with WEIPDCRM.  If not, see <http://www.gnu.org/licenses/>.
  */
-
-/* DCRM Login Page */
 
 session_cache_expire(30);
 session_cache_limiter("private");
@@ -124,6 +123,7 @@ endlabel:
 		<meta http-equiv="X-UA-Compatible" content="IE=edge">
 		<title><?php _e('Login'); ?></title>
 		<meta name="author" content="WEIPDCRM">
+		<meta name="license" content="AGPLv3">
 		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 
 		<link rel="shortcut icon" href="../favicon.ico">

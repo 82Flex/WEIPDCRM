@@ -3,16 +3,16 @@
  * This file is part of WEIPDCRM.
  * 
  * WEIPDCRM is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
+ * it under the terms of the GNU Affero General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
  *
  * WEIPDCRM is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU General Public License for more details.
+ * GNU Affero General Public License for more details.
  * 
- * You should have received a copy of the GNU General Public License
+ * You should have received a copy of the GNU Affero General Public License
  * along with WEIPDCRM.  If not, see <http://www.gnu.org/licenses/>.
  */
 
@@ -76,14 +76,31 @@ if (defined("AUTOFILL_KEYWORDS")) {
 <?php
 if (file_exists('CydiaIcon.png')) {
 ?>
-			<p><img src="CydiaIcon.png" style="width: 72px; height: 72px; border-radius: 6px;" /></p>
+		  <p><img src="CydiaIcon.png" style="width: 72px; height: 72px; border-radius: 6px;" /></p>
 <?php
 }
 ?>
 			<p><?php echo $release_origin; ?></p>
 			<hr />
 			<p><?php printf( __( 'Welcome to <a href="cydia://sources/add">Add</a> <code>%s</code> via Cydia.' ) , $release_url ); ?></p>
-			<p><img src="css/preview.png" alt="preview" style="width: 300px; border-radius: 6px;" /></p>
+		  	<div class="add_image">
+            	<div class="input_text"><?php _e('Enter Cydia/APT URL'); ?></div>
+            	<div class="repo_text">http://<span class="txt"><?php echo $release_url; ?></span></div>
+                <div class="cancel button">
+                	<div class="text"><?php _e('Cancel'); ?></div>
+                </div>
+                <div class="add button">
+                	<div class="text"><?php _e('Add Source'); ?></div>
+                </div>
+                <div class="repo">
+                	<span class="repo_image">
+                    	<span class="mask"> </span>
+                    	<img src="CydiaIcon.png"/>
+                    </span>
+                    <span class="repo_title"><?php echo $release_origin; ?></span>
+                    <span class="repo_url"><?php echo $release_url; ?></span>
+                </div>
+            </div>
 			<hr />
 			<p><?php _e('This page is available to Safari only.'); ?></p>
 <?php
@@ -120,7 +137,7 @@ if ($first) {
 <?php
 if (defined("AUTOFILL_STATISTICS")) {
 ?>
-		<div style="text-align: center; display: none;"><?php echo AUTOFILL_STATISTICS; ?></div>
+	<div style="text-align: center; display: none;"><?php echo AUTOFILL_STATISTICS; ?></div>
 <?php
 }
 if (defined("AUTOFILL_DUOSHUO_KEY")) {
@@ -139,5 +156,7 @@ if (defined("AUTOFILL_DUOSHUO_KEY")) {
 <?php
 }
 ?>
+	<script src="http://cdn.bootcss.com/jquery/1.11.2/jquery.min.js"></script>
+	<script src="./js/misc.js"></script>
 	</body>
 </html>

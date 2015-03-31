@@ -10,11 +10,11 @@ class core {
 	}
 	function init_header() {
 		ob_start();
-		header('Content-type: text/html; charset=utf-8');
+		header('Content-type: charset=utf-8');
 		header('Expires: Mon, 26 Jul 1997 05:00:00 GMT');
 		header('Cache-Control: no-cache');
 		header('Pragma: no-cache');
-		@date_default_timezone_set('Asia/Shanghai');
+		//@date_default_timezone_set('Asia/Shanghai');
 	}
 	function init_final() {
 		define('SYSTEM_STARTED', true);

@@ -28,14 +28,14 @@ if($redirect)
 ?>
 </body>
 </html>
-<?
+<?php 
 	exit();
 }
 function saveVersion($version){
 	if (!$version) return;
 	$content = '<?php'.PHP_EOL.'/* Auto-generated version file */'.PHP_EOL.'$_version = \''.$version.'\';'.PHP_EOL.'?>';
 	if(!is_writable(SYSTEM_ROOT.'./version.inc.php')) throw new Exception('Version file is not writable!');
-	file_put_contents(SYSTEM_ROOT.'./version.inc.php', $content);
+	if(!file_put_contents(SYSTEM_ROOT.'./version.inc.php', $content)) throw new Exception('Version file is not writable, please change $_version to '.$version.'in version.inc.php');
 }
 function update_final($version){
 	saveVersion($version);

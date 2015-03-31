@@ -1,24 +1,23 @@
 <?php
 /**
+ * DCRM UDID Manage Page
  * Copyright (c) 2015 Hintay <hintay@me.com>
  *
  * This file is part of WEIPDCRM.
  * 
  * WEIPDCRM is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
+ * it under the terms of the GNU Affero General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
  *
  * WEIPDCRM is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU General Public License for more details.
+ * GNU Affero General Public License for more details.
  * 
- * You should have received a copy of the GNU General Public License
+ * You should have received a copy of the GNU Affero General Public License
  * along with WEIPDCRM.  If not, see <http://www.gnu.org/licenses/>.
  */
-
-/* DCRM UDID List */
 
 session_start();
 define("DCRM",true);
