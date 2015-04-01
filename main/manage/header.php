@@ -27,6 +27,7 @@ $localetype = 'manage';
 define('MANAGE_ROOT', dirname(__FILE__).'/');
 define('ABSPATH', dirname(MANAGE_ROOT).'/');
 require_once ABSPATH.'system/common.inc.php';
+header('Content-type: text/html; charset=utf-8');
 
 $sidebars = array(
 	array(

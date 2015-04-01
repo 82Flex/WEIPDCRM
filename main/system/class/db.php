@@ -210,6 +210,10 @@ class DB {
 		if (empty($db)) $db = new db_mysql();
 		return $db;
 	}
+	public function escape_by_ref( &$string ) {
+		if ( ! is_float( $string ) )
+			$string = DB::real_escape_string( $string );
+	}
 	/**
 	 * Prepares a SQL query for safe execution. Uses sprintf()-like syntax.
 	 *
@@ -262,6 +266,7 @@ class DB {
 		$query = str_replace( '"%s"', '%s', $query ); // doublequote unquoting
 		$query = preg_replace( '|(?<!%)%f|' , '%F', $query ); // Force floats to be locale unaware
 		$query = preg_replace( '|(?<!%)%s|', "'%s'", $query ); // quote the strings, avoiding escaped strings like %%s
+		array_walk( $args, "DB::escape_by_ref" );
 		return @vsprintf( $query, $args );
 	}
 }

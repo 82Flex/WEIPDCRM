@@ -72,6 +72,7 @@ if(isset($_POST['submit'])) {
 		if (strtolower($_POST['authcode']) != strtolower($_SESSION['VCODE'])) {
 			unset($_SESSION['VCODE']);
 			$_SESSION['try'] = $_SESSION['try'] + 1;
+			$_SESSION['lasttry'] = time();
 			$error = "authcode";
 			goto endlabel;
 		} else {
@@ -79,6 +80,7 @@ if(isset($_POST['submit'])) {
 		}
 		if (!preg_match("#^[0-9a-zA-Z\_]*$#i", $_POST['username'])) {
 			$_SESSION['try'] = $_SESSION['try'] + 1;
+			$_SESSION['lasttry'] = time();
 			$error = "badlogin";
 			goto endlabel;
 		}
@@ -86,7 +88,7 @@ if(isset($_POST['submit'])) {
 		if (DB::affected_rows() > 0) {
 			$login = mysql_fetch_assoc($login_query);
 			if ($login['Username'] === $_POST['username'] AND strtoupper($login['SHA1']) === strtoupper(sha1($_POST['password']))) {
-				$login_query = DB::query("UPDATE `".DCRM_CON_PREFIX."Users` SET `LastLoginTime` = '".date('Y-m-d H:i:s')."' WHERE `ID` = '".$login['ID']."'");
+				$login_query = DB::update(DCRM_CON_PREFIX.'Users', array('LastLoginTime' => date('Y-m-d H:i:s')), array('ID' => $login['ID']));
 				$_SESSION['power'] = $login['Power'];
 				$_SESSION['userid'] = $login['ID'];
 				$_SESSION['username'] = $login['Username'];

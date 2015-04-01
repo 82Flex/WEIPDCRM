@@ -24,6 +24,11 @@ define('ABSPATH', dirname(dirname(__FILE__)).'/');
 define('CONF_PATH', ABSPATH.'system/config/');
 define('VERSION', '1.6.15.3.18');
 
+// 错误抑制
+define('DEBUG_ENABLED', isset($_GET['debug']));
+error_reporting(DEBUG_ENABLED ? E_ALL & !E_NOTICE & !E_STRICT : E_ERROR | E_PARSE);
+@ini_set('display_errors', DEBUG_ENABLED);
+
 /* 载入语言 */
 $localetype = 'install';
 include_once ABSPATH . 'system/languages/l10n.php';

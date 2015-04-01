@@ -18,18 +18,22 @@
  * You should have received a copy of the GNU Affero General Public License
  * along with WEIPDCRM.  If not, see <http://www.gnu.org/licenses/>.
  */
-//This file is vulnerable, PLEASE CHECK IT AT ONCE.
-exit();
+
+
 if(isset($_GET['action'])){
 	switch($_GET['action']){
 		// 支付宝跳转
 		case 'alipay_go':
+			// XSS过滤
+			foreach($_GET as $key => $value){
+				$clan_data[$key] = xss_clean($value);
+			}
 ?>
 <form id="alipay" accept-charset="GBK" method="POST" action="https://shenghuo.alipay.com/send/payment/fill.htm">
-	<?php if(isset($_GET['optEmail'])): ?><input type="hidden" value="<?php echo($_GET['optEmail']); ?>" name="optEmail"><?php endif; ?>
-	<?php if(isset($_GET['payAmount'])): ?><input type="hidden" value="<?php echo($_GET['payAmount']); ?>" name="payAmount"><?php endif; ?>
-	<?php if(isset($_GET['title'])): ?><input id="title" type="hidden" value="<?php echo($_GET['title']); ?>" name="title"><?php endif; ?>
-	<?php if(isset($_GET['memo'])): ?><input name="memo" type="hidden" value="<?php echo($_GET['memo']); ?>" /><?php endif; ?>
+	<?php if(isset($_GET['optEmail'])): ?><input type="hidden" value="<?php echo($clan_data['optEmail']); ?>" name="optEmail"><?php endif; ?>
+	<?php if(isset($_GET['payAmount'])): ?><input type="hidden" value="<?php echo($clan_data['payAmount']); ?>" name="payAmount"><?php endif; ?>
+	<?php if(isset($_GET['title'])): ?><input id="title" type="hidden" value="<?php echo($clan_data['title']); ?>" name="title"><?php endif; ?>
+	<?php if(isset($_GET['memo'])): ?><input name="memo" type="hidden" value="<?php echo($clan_data['memo']); ?>" /><?php endif; ?>
 </form>
 <script type="text/javascript">
 var postForm = document.getElementById('alipay');
@@ -52,7 +56,7 @@ if (!isset($package_info)) {
 		class_loader('Mobile_Detect');
 		$detect = new Mobile_Detect;
 	}
-	$package_info = DB::fetch_first("SELECT `Package`, `Name`, `Tag`, `Level`, `Price`, `Purchase_Link` FROM `".DCRM_CON_PREFIX."Packages` WHERE `Package` = '".$_GET['Package']."' AND `Stat` = '1'");
+	$package_info = DB::fetch_first(DB::prepare("SELECT `Package`, `Name`, `Tag`, `Level`, `Price`, `Purchase_Link` FROM `".DCRM_CON_PREFIX."Packages` WHERE `Package` = '%s' AND `Stat` = '1'", $_GET['Package']));
 	if(!$package_info)
 		exit();
 ?>
@@ -75,7 +79,7 @@ if(check_commercial_tag($package_info['Tag'])):
 	$nowip = _ip2long(getIp());
 
 	if(isset($_GET['udid']))
-		$udid_status = DB::fetch_first("SELECT `Packages`, `Level`, `IP` FROM `".DCRM_CON_PREFIX."UDID` WHERE `UDID` = '".$_GET['udid']."' LIMIT 1");
+		$udid_status = DB::fetch_first(DB::prepare("SELECT `Packages`, `Level`, `IP` FROM `".DCRM_CON_PREFIX."UDID` WHERE `UDID` = '%s' LIMIT 1", $_GET['udid']));
 	else
 		$udid_status = DB::fetch_first("SELECT `Packages`, `Level`, `IP` FROM `".DCRM_CON_PREFIX."UDID` WHERE `IP` = '".$nowip."' LIMIT 1");
 	$purchased = false;
