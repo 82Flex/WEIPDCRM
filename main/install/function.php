@@ -130,7 +130,7 @@ function check_func(&$result)
 	$func_items = array('mysql' => 'mysql_connect',
 						'file' => 'file_get_contents',
 						'bz2' => 'bzcompress',
-						'zlib' => 'zlib_encode',
+						'zlib' => 'gzcompress',
 						'mhash' => array('mhash', 'hash_hmac')
 						);
 	$check_func_items = array();
