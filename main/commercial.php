@@ -18,9 +18,8 @@
  * You should have received a copy of the GNU Affero General Public License
  * along with WEIPDCRM.  If not, see <http://www.gnu.org/licenses/>.
  */
- */
-
-
+//This file is vulnerable, PLEASE CHECK IT AT ONCE.
+exit();
 if(isset($_GET['action'])){
 	switch($_GET['action']){
 		// 支付宝跳转
@@ -44,7 +43,7 @@ postForm.submit();
 	}
 }
 
-if(!isset($package_info)){
+if (!isset($package_info)) {
 	if(!isset($_GET['Package']))
 		exit();
 

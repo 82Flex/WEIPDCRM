@@ -592,7 +592,7 @@ if ($index == 0) {
 <?php
 		}
 		$package_info = $pkg_assoc;
-		require_once('commercial.php');
+		//require_once('commercial.php');
 ?>
 			<fieldset>
 <?php
