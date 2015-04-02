@@ -126,7 +126,7 @@ if (isset($_SESSION['connected']) && $_SESSION['connected'] === true) {
 										<option value="1" <?php if($edit_info['Purchase_Link_Stat'] === '1') echo('selected="selected"');?>><?php _e('Custom'); ?></option>
 										<option value="0" <?php if($edit_info['Purchase_Link_Stat'] === '0') echo('selected="selected"');?>><?php _e('Alipay'); ?></option>
 									</select>
-									<p class="help-block"><?php _e('Using non-custom options after <a href="settings.php#Commercial">Settings</a>.'); ?></a></p>
+									<p class="help-block"><?php _e('Using non-custom options after <a href="settings.php#Commercial">Settings</a>.'); ?></p>
 								</div>
 							</div>
 							<br />
@@ -184,6 +184,22 @@ if (isset($_SESSION['connected']) && $_SESSION['connected'] === true) {
 							</div>
 							<br />
 						</div>
+						<div class="group-control">
+							<label class="control-label"><?php _e('Changelog'); ?></label>
+							<div class="controls">
+								<textarea id="Changelog" type="text" style="height: 200px; width: 408px; visibility: hidden;" name="Changelog"><?php if (!empty($edit_info['Changelog'])) {echo htmlspecialchars($edit_info['Changelog']);} ?></textarea>
+								<p class="help-block"><?php _e('If leave a blank will do not display.'); ?></p>
+							</div>
+						</div>
+						<br />
+						<div class="group-control">
+							<label class="control-label"><?php _e('Old Changelogs'); ?></label>
+							<div class="controls">
+								<input type="number" style="width: 400px;" name="Changelog_Older_Shows" value="<?php if (!empty($edit_info['Changelog_Older_Shows'])) {echo htmlspecialchars($edit_info['Changelog_Older_Shows']);} ?>"/>
+								<p class="help-block"><?php _e('Please fill the number you want to display for old changelog, If leave a blank or zero will only display this version changelog.'); ?></p>
+							</div>
+						</div>
+						<br />
 						<div class="form-actions">
 							<div class="controls">
 								<button type="submit" class="btn btn-success"><?php _e('Save'); ?></button>　
@@ -338,6 +354,14 @@ if (isset($_SESSION['connected']) && $_SESSION['connected'] === true) {
 		K.create('#kind', {
 			langType : '<?php echo $kdlang; ?>',
 			themeType : 'qq',
+			items : [
+				'source','bold','italic','underline','fontname','fontsize','forecolor','hilitecolor','plug-align','plug-order','plug-indent','link','removeformat'
+			]
+		});
+		K.create('#Changelog', {
+			langType : '<?php echo $kdlang; ?>',
+			themeType : 'qq',
+			newlineTag : 'br',
 			items : [
 				'source','bold','italic','underline','fontname','fontsize','forecolor','hilitecolor','plug-align','plug-order','plug-indent','link','removeformat'
 			]

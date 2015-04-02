@@ -90,6 +90,11 @@ class Locale {
 	 * @var array
 	 */
 	var $number_format;
+
+	/**
+	 * @var array
+	 */
+	var $date_format;
 	
 	/**
 	 * Sets up the translated strings and object properties.
@@ -183,6 +188,14 @@ class Locale {
 		/* translators: $dec_point argument for http://php.net/number_format, default is . */
 		$trans = __('number_format_decimal_point');
 		$this->number_format['decimal_point'] = ('number_format_decimal_point' == $trans) ? '.' : $trans;
+
+		// Date formatting
+		/* translators: localized date format, see http://php.net/date */
+		$this->date_format['date']      = __( 'F j, Y' );
+		/* translators: localized time format, see http://php.net/date */
+		$this->date_format['time']      = __( 'g:i a' );
+		/* translators: localized date and time format, see http://php.net/date */
+		$this->date_format['date_time']      = __( 'F j, Y g:i a' );
 
 		// Set text direction.
 		if ( isset( $GLOBALS['text_direction'] ) )
@@ -309,6 +322,7 @@ class Locale {
 		$GLOBALS['weekday_abbrev']  = $this->weekday_abbrev;
 		$GLOBALS['month']           = $this->month;
 		$GLOBALS['month_abbrev']    = $this->month_abbrev;
+		$GLOBALS['date_format']     = $this->date_format;
 	}
 
 	/**

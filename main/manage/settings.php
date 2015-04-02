@@ -734,6 +734,7 @@ if (isset($_SESSION['connected']) && $_SESSION['connected'] === true) {
 			$autofill_handle = fopen(CONF_PATH.'autofill.inc.php', "w");
 			fputs($autofill_handle,$autofill_text);
 			fclose($autofill_handle);
+			unset($_SESSION['language']);
 			echo '<h3 class="alert alert-success">'.__('Amendments to the success of settings!').'<br/><a href="settings.php">'.__('Back').'</a></h3>';
 			if ($logout) {
 				header("Location: login.php?action=logout");

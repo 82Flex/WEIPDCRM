@@ -42,3 +42,10 @@ if($current_version == '1.6.15.3.26'){
 		deldir(ROOT.'manage/js/');
 	update_final('1.6.15.3.29');
 }
+if($current_version == '1.6.15.3.29'){
+	$exists = DB::fetch_first("Describe `".DCRM_CON_PREFIX."Packages` `Changelog`");
+	if(empty($exists))
+		DB::query("ALTER TABLE `".DCRM_CON_PREFIX."Packages` ADD `Changelog` varchar( 512 ) NOT NULL AFTER `Purchase_Link_Stat`,
+					ADD `Changelog_Older_Shows` INT NOT NULL DEFAULT '0' AFTER `Changelog`");
+	update_final('1.6.15.4.2');
+}

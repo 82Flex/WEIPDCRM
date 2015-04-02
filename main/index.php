@@ -125,7 +125,7 @@ if (isset($_GET['pid'])) {
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 		<meta name="apple-mobile-web-app-title" content="<?php echo($release_origin); ?>" />
 		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
-		<meta name="viewport" content="minimum-scale=1.0, width=device-width, maximum-scale=0.6667, user-scalable=no" />
+		<meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" />
 		<meta name="HandheldFriendly" content="true" />
 		<meta name="format-detection" content="telephone=no" />
 		<meta name="robots" content="index, follow" />
@@ -496,7 +496,7 @@ if ($index == 0) {
 	}
 } elseif ($index == 1) {
 		$pkg = (int)DB::real_escape_string($_GET['pid']);
-		$pkg_assoc = DB::fetch_first("SELECT `Name`, `Version`, `Author`, `Package`, `Description`, `DownloadTimes`, `Multi`, `CreateStamp`, `Size`, `Installed-Size`, `Section`, `Homepage`, `Tag`, `Level`, `Price`, `Purchase_Link`  FROM `".DCRM_CON_PREFIX."Packages` WHERE `ID` = '".$pkg."' LIMIT 1");
+		$pkg_assoc = DB::fetch_first("SELECT `Name`, `Version`, `Author`, `Package`, `Description`, `DownloadTimes`, `Multi`, `CreateStamp`, `Size`, `Installed-Size`, `Section`, `Homepage`, `Tag`, `Level`, `Price`, `Purchase_Link`, `Changelog`, `Changelog_Older_Shows` FROM `".DCRM_CON_PREFIX."Packages` WHERE `ID` = '".$pkg."' LIMIT 1");
 	if (!$pkg_assoc) {
 ?>
 			<block>
@@ -791,6 +791,53 @@ if ($index == 0) {
 			</fieldset>
 <?php
 		}
+		if($pkg_assoc['Changelog_Older_Shows'] == 0 && !empty($pkg_assoc['Changelog'])) {
+?>
+			<label><p><?php _e('In this version'); ?></p></label>
+			<fieldset class="changelog">
+				<a>
+					<div>
+						<div>
+							<label>
+								<p>
+									<?php echo($pkg_assoc['Changelog']); ?>
+								</p>
+							</label>
+						</div>
+					</div>
+				</a>
+			</fieldset>
+<?php
+		} elseif($pkg_assoc['Changelog_Older_Shows'] !== 0) {
+			$changelogs = DB::fetch_all("SELECT `Version`, `Changelog` FROM `".DCRM_CON_PREFIX."Packages` WHERE `Package` = '".$pkg_assoc['Package']."' ORDER BY `Version` DESC LIMIT 0,".(int)$pkg_assoc['Changelog_Older_Shows']);
+			if(count($changelogs) > 0){
+?>			
+			<label><p><?php _e('Changelogs'); ?></p></label>
+			<fieldset class="changelog">
+<?php
+				foreach ($changelogs as $changelog) {
+					if(!empty($changelog['Changelog'])){
+?>
+				<a>
+					<div>
+						<div>
+							<label>
+								<p>
+									<strong><?php echo($changelog['Version']); ?>:</strong><br/>
+									<?php echo($changelog['Changelog']); ?>
+								</p>
+							</label>
+						</div>
+					</div>
+				</a>
+<?php
+					}
+				}
+?>
+			</fieldset>
+<?php
+			}
+		}
 		if (defined("AUTOFILL_DUOSHUO_KEY")) {
 ?>
 			<fieldset>
@@ -1072,30 +1119,42 @@ if ($index == 0) {
 <?php
 	}
 } elseif ($index == 5) {
-	$history_query = DB::query("SELECT `ID`, `Version` FROM `".DCRM_CON_PREFIX."Packages` WHERE `Package` = (SELECT `Package` FROM `".DCRM_CON_PREFIX."Packages` WHERE `ID` = '".(int)$_GET['pid']."' LIMIT 1) ORDER BY `ID` DESC LIMIT 1,20");
-	if (mysql_affected_rows() > 0) {
+	$historys = DB::fetch_all("SELECT `ID`, `Version`, UNIX_TIMESTAMP(`CreateStamp`), `Changelog` FROM `".DCRM_CON_PREFIX."Packages` WHERE `Package` = (SELECT `Package` FROM `".DCRM_CON_PREFIX."Packages` WHERE `ID` = '".(int)$_GET['pid']."' LIMIT 1) ORDER BY `Version` DESC LIMIT 0,20");
+	if (count($historys) > 0) {
 ?>
-			<label><?php _e('Version History'); ?></label>
-			<fieldset>
+			<!--<label><?php _e('Version History'); ?></label>-->
 <?php
-		while ($history = mysql_fetch_assoc($history_query)) {
+		foreach ($historys as $history) {
 ?>
+			<label><p><?php echo($history['Version']); ?>: <?php echo(date($dcrm_locale->date_format['date'], $history['UNIX_TIMESTAMP(`CreateStamp`)'])); ?></p></label>
+			<fieldset class="changelog">
+				<a>
+					<div>
+						<div>
+							<label>
+								<p>
+									<?php echo empty($history['Changelog'])?'- '.__('Unknown change.'):$history['Changelog']; ?>
+								</p>
+							</label>
+						</div>
+					</div>
+				</a>
 				<a href="index.php?pid=<?php echo($history['ID']); ?>&amp;addr=nohistory">
 					<img class="icon" src="icons/default/changelog.png">
 					<div>
 						<div>
 							<label>
 								<p>
-									<?php _e('Version'); ?> <?php echo($history['Version']); ?>
+									<?php _e('View This Version'); ?>
 								</p>
 							</label>
 						</div>
 					</div>
 				</a>
+			</fieldset>
 <?php
 		}
 ?>
-			</fieldset>
 <?php
 	} else {
 ?>

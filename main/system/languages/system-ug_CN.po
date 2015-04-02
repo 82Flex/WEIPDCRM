@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: DCRM System\n"
 "POT-Creation-Date: 2015-03-25 22:35+0800\n"
-"PO-Revision-Date: 2015-03-27 15:25+0800\n"
+"PO-Revision-Date: 2015-04-02 15:37+0800\n"
 "Last-Translator: Hintay <hintay@me.com>\n"
 "Language-Team: shiraq\n"
 "Language: ug_CN\n"
@@ -283,7 +283,7 @@ msgstr "rtl"
 #. translators: localized date format, see http://php.net/date
 #: class/locale.php:349
 msgid "F j, Y"
-msgstr "Y-يىل j-F"
+msgstr "Yيىلnئايjكۈن"
 
 #. translators: localized time format, see http://php.net/date
 #: class/locale.php:351

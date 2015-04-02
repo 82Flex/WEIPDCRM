@@ -14,7 +14,8 @@ class core {
 		header('Expires: Mon, 26 Jul 1997 05:00:00 GMT');
 		header('Cache-Control: no-cache');
 		header('Pragma: no-cache');
-		//@date_default_timezone_set('Asia/Shanghai');
+		header('Powered: WEIPDCRM');
+		header('License: AGPL');
 	}
 	function init_final() {
 		define('SYSTEM_STARTED', true);

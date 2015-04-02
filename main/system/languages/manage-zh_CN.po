@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: DCRM Manager\n"
-"POT-Creation-Date: 2015-03-29 17:12+0800\n"
-"PO-Revision-Date: 2015-03-29 17:14+0800\n"
+"POT-Creation-Date: 2015-04-02 15:10+0800\n"
+"PO-Revision-Date: 2015-04-02 15:10+0800\n"
 "Last-Translator: Hintay <hintay@me.com>\n"
 "Language-Team: Hintay <hintay@me.com>\n"
 "Language: zh_CN\n"
@@ -152,7 +152,7 @@ msgstr "写入 Packages.gz 文件："
 msgid "Write to the Packages.bz2 file: "
 msgstr "写入 Packages.bz2 文件："
 
-#: manage/build.php:129 manage/header.php:118
+#: manage/build.php:129 manage/header.php:138
 msgid "Rebuild the list"
 msgstr "刷新列表"
 
@@ -178,7 +178,7 @@ msgid "File does not exist."
 msgstr "文件不存在。"
 
 #: manage/center.php:32 manage/center.php:71 manage/center.php:172
-#: manage/header.php:28
+#: manage/header.php:48
 msgid "Manage Packages"
 msgstr "管理软件包"
 
@@ -190,11 +190,11 @@ msgstr "所有软件包"
 msgid "Search Packages"
 msgstr "搜索软件包"
 
-#: manage/center.php:38 manage/udid.php:96
+#: manage/center.php:38 manage/udid.php:95
 msgid "Search Content"
 msgstr "搜索内容"
 
-#: manage/center.php:46 manage/udid.php:104
+#: manage/center.php:46 manage/udid.php:103
 msgid "Search Type"
 msgstr "搜索类型"
 
@@ -231,7 +231,7 @@ msgstr "分类"
 msgid "Tag"
 msgstr "标签"
 
-#: manage/center.php:63 manage/udid.php:118
+#: manage/center.php:63 manage/udid.php:117
 msgid "Search"
 msgstr "搜索"
 
@@ -244,13 +244,13 @@ msgstr "版本"
 msgid "Size"
 msgstr "尺寸"
 
-#: manage/center.php:101 manage/center.php:213 manage/udid.php:40
+#: manage/center.php:101 manage/center.php:213 manage/udid.php:39
 msgid "Downloads"
 msgstr "下载次数"
 
 #: manage/center.php:102 manage/center.php:214 manage/center.php:254
 #: manage/center.php:276 manage/manage.php:52 manage/sections.php:60
-#: manage/udid.php:43 manage/udid.php:63
+#: manage/udid.php:42 manage/udid.php:62
 msgid "Delete"
 msgstr "删除"
 
@@ -267,17 +267,17 @@ msgstr "受保护的软件包"
 msgid "Search Packages: %s"
 msgstr "搜索软件包：%s"
 
-#: manage/center.php:216 manage/center.php:256 manage/udid.php:44
-#: manage/udid.php:65
+#: manage/center.php:216 manage/center.php:256 manage/udid.php:43
+#: manage/udid.php:64
 msgid "Binding"
 msgstr "绑定"
 
-#: manage/center.php:275 manage/udid.php:301
+#: manage/center.php:275 manage/udid.php:300
 #, php-format
 msgid "Are you sure you want to delete: %s?"
 msgstr "您确定要执行删除操作：%s？"
 
-#: manage/center.php:275 manage/udid.php:301
+#: manage/center.php:275 manage/udid.php:300
 msgid "This operation is irreversible, all related data will be delete!"
 msgstr "该操作不可逆，该条目所有相关数据都将被清空！"
 
@@ -293,12 +293,12 @@ msgstr "隐藏软件包"
 msgid "Display Package"
 msgstr "显示软件包"
 
-#: manage/edit.php:29 manage/edit.php:33 manage/udid.php:223
-#: manage/udid.php:227 manage/udid.php:232
+#: manage/edit.php:29 manage/edit.php:33 manage/udid.php:222
+#: manage/udid.php:226 manage/udid.php:231
 msgid "Illegal request!"
 msgstr "非法请求！"
 
-#: manage/edit.php:44 manage/header.php:154
+#: manage/edit.php:44 manage/header.php:174
 msgid "General Editing"
 msgstr "常规编辑"
 
@@ -315,8 +315,8 @@ msgstr "启用"
 msgid "Disabled"
 msgstr "禁用"
 
-#: manage/edit.php:107 manage/udid.php:37 manage/udid.php:108
-#: manage/udid.php:251 manage/udid.php:342
+#: manage/edit.php:107 manage/udid.php:36 manage/udid.php:107
+#: manage/udid.php:250 manage/udid.php:341
 msgid "Level"
 msgstr "等级"
 
@@ -350,7 +350,8 @@ msgstr "支付宝"
 msgid ""
 "Using non-custom options after <a href=\"settings.php#Commercial\">Settings</"
 "a>."
-msgstr "使用非自定义选项前请先进行 <a href=\"settings.php#Commercial\">设置"
+msgstr ""
+"使用非自定义选项前请先进行 <a href=\"settings.php#Commercial\">设置</a>"
 
 #: manage/edit.php:135
 msgid "Custom Link"
@@ -373,151 +374,169 @@ msgstr "预览默认预览页"
 msgid "Detailed Description"
 msgstr "详细描述"
 
-#: manage/edit.php:189 manage/edit.php:257 manage/release.php:90
-#: manage/settings.php:583 manage/udid.php:352
+#: manage/edit.php:188
+msgid "Changelog"
+msgstr "更新日志"
+
+#: manage/edit.php:191
+msgid "If leave a blank will do not display."
+msgstr "留空则不显示"
+
+#: manage/edit.php:196
+msgid "Old Changelogs"
+msgstr "旧版更新日志"
+
+#: manage/edit.php:199
+msgid ""
+"Please fill the number you want to display for old changelog, If leave a "
+"blank or zero will only display this version changelog."
+msgstr "请输入要显示前几个老版本更新日志，留空或输入0则只显示本版更新"
+
+#: manage/edit.php:205 manage/edit.php:273 manage/release.php:90
+#: manage/settings.php:583 manage/udid.php:351
 msgid "Save"
 msgstr "保存"
 
-#: manage/edit.php:219 manage/edit.php:273
+#: manage/edit.php:235 manage/edit.php:289
 msgid "Update Database"
 msgstr "更新数据库"
 
-#: manage/edit.php:220 manage/edit.php:274
+#: manage/edit.php:236 manage/edit.php:290
 msgid "The package information edited!"
 msgstr "软件包信息编辑完成！"
 
-#: manage/edit.php:220 manage/edit.php:274
+#: manage/edit.php:236 manage/edit.php:290
 msgid ""
 "After modify the fields with an asterisk, you must write into package then "
 "safely rebuild list."
 msgstr "修改带星号的字段后，您必须将其写入软件包才能安全地刷新列表。"
 
-#: manage/edit.php:221 manage/edit.php:275
+#: manage/edit.php:237 manage/edit.php:291
 msgid "Write Now"
 msgstr "立即写入"
 
-#: manage/edit.php:221 manage/edit.php:275 manage/import.php:264
+#: manage/edit.php:237 manage/edit.php:291 manage/import.php:264
 #: manage/manage.php:116 manage/manage.php:124 manage/output.php:148
 #: manage/release.php:115 manage/release.php:117 manage/release.php:120
 #: manage/settings.php:697 manage/settings.php:737 manage/stats.php:97
 msgid "Back"
 msgstr "返回"
 
-#: manage/edit.php:229 manage/header.php:155
+#: manage/edit.php:245 manage/header.php:175
 msgid "Advance Editing"
 msgstr "高级编辑"
 
-#: manage/edit.php:234
+#: manage/edit.php:250
 msgctxt "Advance Editing"
 msgid "Field"
 msgstr "修改字段"
 
-#: manage/edit.php:249
+#: manage/edit.php:265
 msgctxt "Advance Editing"
 msgid "Content"
 msgstr "修改内容"
 
-#: manage/edit.php:288 manage/edit.php:373 manage/udid.php:389
+#: manage/edit.php:304 manage/edit.php:396 manage/udid.php:388
 #: manage/view.php:118
 msgid "Binding UDID"
 msgstr "绑定UDID"
 
-#: manage/edit.php:293
+#: manage/edit.php:309
 msgid "Align"
 msgstr "对齐方式"
 
-#: manage/edit.php:295
+#: manage/edit.php:311
 msgctxt "Align"
 msgid "Left"
 msgstr "左对齐"
 
-#: manage/edit.php:296
+#: manage/edit.php:312
 msgctxt "Align"
 msgid "Center"
 msgstr "居中对齐"
 
-#: manage/edit.php:297
+#: manage/edit.php:313
 msgctxt "Align"
 msgid "Right"
 msgstr "右对齐"
 
-#: manage/edit.php:301
+#: manage/edit.php:317
 msgctxt "Edit"
 msgid "List"
 msgstr "编号"
 
-#: manage/edit.php:303
+#: manage/edit.php:319
 msgid "Ordered list"
 msgstr "数字编号"
 
-#: manage/edit.php:304
+#: manage/edit.php:320
 msgid "Unordered list"
 msgstr "项目编号"
 
-#: manage/edit.php:308
+#: manage/edit.php:324
 msgid "Indent"
 msgstr "缩进"
 
-#: manage/edit.php:310
+#: manage/edit.php:326
 msgid "Increase indent"
 msgstr "向右缩进"
 
-#: manage/edit.php:311
+#: manage/edit.php:327
 msgid "Decrease indent"
 msgstr "向左缩进"
 
-#: manage/edit.php:352
+#: manage/edit.php:375
 msgid "Data loading"
 msgstr "数据加载中"
 
-#: manage/edit.php:362
+#: manage/edit.php:385
 msgid "Database Error"
 msgstr "数据库错误"
 
-#: manage/header.php:18 manage/upload.php:86 manage/upload.php:151
+#: manage/header.php:38 manage/upload.php:86 manage/upload.php:151
 msgid "Upload Packages"
 msgstr "上传软件包"
 
-#: manage/header.php:23 manage/manage.php:30 manage/manage.php:76
+#: manage/header.php:43 manage/manage.php:30 manage/manage.php:76
 msgid "Import Packages"
 msgstr "导入软件包"
 
-#: manage/header.php:33 manage/udid.php:90 manage/udid.php:127
-#: manage/udid.php:181 manage/udid.php:237 manage/udid.php:330
-#: manage/udid.php:387 manage/udid.php:396
+#: manage/header.php:53 manage/udid.php:89 manage/udid.php:126
+#: manage/udid.php:180 manage/udid.php:236 manage/udid.php:329
+#: manage/udid.php:386 manage/udid.php:395
 msgid "Manage UDID"
 msgstr "管理UDID"
 
-#: manage/header.php:42 manage/sections.php:36 manage/sections.php:98
+#: manage/header.php:62 manage/sections.php:36 manage/sections.php:98
 msgid "Manage Sections"
 msgstr "分类管理"
 
-#: manage/header.php:47
+#: manage/header.php:67
 msgid "Manage Repository"
 msgstr "源信息设置"
 
-#: manage/header.php:56 manage/stats.php:30
+#: manage/header.php:76 manage/stats.php:30
 msgid "Running Status"
 msgstr "运行状态"
 
-#: manage/header.php:61
+#: manage/header.php:81
 msgid "About"
 msgstr "关于"
 
-#: manage/header.php:71
+#: manage/header.php:91
 msgid "Repository Manager"
 msgstr "源管理系统"
 
-#: manage/header.php:119
+#: manage/header.php:139
 msgctxt "Header"
 msgid "Preferences"
 msgstr "设置"
 
-#: manage/header.php:120
+#: manage/header.php:140
 msgid "Logout"
 msgstr "注销"
 
-#: manage/header.php:153 manage/view.php:54
+#: manage/header.php:173 manage/view.php:54
 msgid "View Details"
 msgstr "查看详情"
 
@@ -640,76 +659,76 @@ msgid "Add New"
 msgstr "新增条目"
 
 #: manage/import.php:278 manage/manage.php:105 manage/sections.php:233
-#: manage/udid.php:310 manage/udid.php:392 manage/udid.php:401
+#: manage/udid.php:309 manage/udid.php:391 manage/udid.php:400
 msgid "Cancel"
 msgstr "取消"
 
-#: manage/login.php:125 manage/login.php:169 manage/login3.php:119
+#: manage/login.php:126 manage/login.php:171 manage/login3.php:119
 #: manage/login3.php:151
 msgid "Login"
 msgstr "登录"
 
-#: manage/login.php:188 manage/login3.php:163
+#: manage/login.php:190 manage/login3.php:163
 msgctxt "language"
 msgid "Select language"
 msgstr "选择语言"
 
-#: manage/login.php:199 manage/login3.php:174 manage/settings.php:76
+#: manage/login.php:201 manage/login3.php:174 manage/settings.php:76
 #: system/languages/l10n.php:759
 msgctxt "language"
 msgid "English"
 msgstr "英语"
 
-#: manage/login.php:217 manage/login3.php:190 manage/settings.php:88
+#: manage/login.php:219 manage/login3.php:190 manage/settings.php:88
 msgid "Username"
 msgstr "用户名"
 
-#: manage/login.php:217 manage/login3.php:190
+#: manage/login.php:219 manage/login3.php:190
 msgid "Please fill in your username"
 msgstr "请填写您的用户名"
 
-#: manage/login.php:221 manage/login3.php:191
+#: manage/login.php:223 manage/login3.php:191
 msgid "Password"
 msgstr "密码"
 
-#: manage/login.php:221 manage/login3.php:191
+#: manage/login.php:223 manage/login3.php:191
 msgid "Please fill in your password"
 msgstr "请填写您的密码"
 
-#: manage/login.php:226 manage/login3.php:192
+#: manage/login.php:228 manage/login3.php:192
 msgid "Verify Code"
 msgstr "验证码"
 
-#: manage/login.php:226 manage/login3.php:192
+#: manage/login.php:228 manage/login3.php:192
 msgid "Please fill in the verify code"
 msgstr "请填写验证码"
 
-#: manage/login.php:242 manage/login3.php:143
+#: manage/login.php:244 manage/login3.php:143
 msgid "Please input your username and password!"
 msgstr "请填写用户名和密码！"
 
-#: manage/login.php:244 manage/login3.php:145
+#: manage/login.php:246 manage/login3.php:145
 msgid "Unknown username or bad password!"
 msgstr "用户名或密码错误！"
 
-#: manage/login.php:246 manage/login3.php:147
+#: manage/login.php:248 manage/login3.php:147
 msgid "Bear!"
 msgstr "熊出没注意！"
 
-#: manage/login.php:248 manage/login3.php:149
+#: manage/login.php:250 manage/login3.php:149
 msgid "Verification code error!"
 msgstr "验证码错误！"
 
-#: manage/login.php:256 manage/login3.php:194
+#: manage/login.php:258 manage/login3.php:194
 msgctxt "Buttom"
 msgid "Login"
 msgstr "立即登录"
 
-#: manage/login.php:266 manage/login3.php:201
+#: manage/login.php:268 manage/login3.php:201
 msgid "Error"
 msgstr "错误"
 
-#: manage/login.php:267 manage/login3.php:202
+#: manage/login.php:269 manage/login3.php:202
 #, php-format
 msgid ""
 "Your login wrong too many times , close the session or wait %s minutes and "
@@ -746,7 +765,7 @@ msgstr "文件名"
 msgid "Target ID"
 msgstr "目标编号"
 
-#: manage/manage.php:96 manage/sections.php:121 manage/udid.php:275
+#: manage/manage.php:96 manage/sections.php:121 manage/udid.php:274
 msgid "Submit"
 msgstr "提交"
 
@@ -755,12 +774,12 @@ msgstr "提交"
 msgid "Are you sure delete: %s ?"
 msgstr "您确定要删除：%s？"
 
-#: manage/manage.php:103 manage/udid.php:399
+#: manage/manage.php:103 manage/udid.php:398
 msgid "You will not be able to undo this operation!"
 msgstr "该操作无法撤销！"
 
-#: manage/manage.php:104 manage/sections.php:232 manage/udid.php:302
-#: manage/udid.php:391 manage/udid.php:400 manage/view.php:106
+#: manage/manage.php:104 manage/sections.php:232 manage/udid.php:301
+#: manage/udid.php:390 manage/udid.php:399 manage/view.php:106
 msgid "Confirm"
 msgstr "确定"
 
@@ -817,21 +836,6 @@ msgid ""
 "Tip: This operation does not automatically modify the software package file "
 "name, please upload the new name package when upgrade."
 msgstr "提示：该操作不会自动修改安装包文件名，升级时请上传新的软件包项目。"
-
-#: manage/plugins/uploadify/uploadify.php:30
-#, php-format
-msgid "'%s' already exists"
-msgstr "'%s' 已经存在"
-
-#: manage/plugins/uploadify/uploadify.php:40
-#, php-format
-msgid "'%s' uploaded successfully!"
-msgstr "'%s' 上传成功！"
-
-#: manage/plugins/uploadify/uploadify.php:43
-#, php-format
-msgid "'%s' upload failed!"
-msgstr "'%s' 上传失败！"
 
 #: manage/release.php:39
 msgid "Repository Settings"
@@ -1236,7 +1240,7 @@ msgctxt "SEO"
 msgid "Site Keyword"
 msgstr "SEO 关键词"
 
-#: manage/settings.php:408 manage/udid.php:269
+#: manage/settings.php:408 manage/udid.php:268
 msgid "Separated by commas."
 msgstr "以英文半角逗号分隔"
 
@@ -1582,90 +1586,90 @@ msgstr "清理缓存"
 msgid "Cache cleanup completed!"
 msgstr "缓存清理完成！"
 
-#: manage/udid.php:36 manage/udid.php:107 manage/udid.php:243
+#: manage/udid.php:35 manage/udid.php:106 manage/udid.php:242
 msgid "UDID"
 msgstr "UDID"
 
-#: manage/udid.php:38 manage/udid.php:111 manage/udid.php:259
-#: manage/udid.php:343
+#: manage/udid.php:37 manage/udid.php:110 manage/udid.php:258
+#: manage/udid.php:342
 msgid "Comment"
 msgstr "备注"
 
-#: manage/udid.php:39 manage/udid.php:266
+#: manage/udid.php:38 manage/udid.php:265
 msgid "Packages"
 msgstr "软件包"
 
-#: manage/udid.php:41 manage/udid.php:110
+#: manage/udid.php:40 manage/udid.php:109
 msgid "Last IP"
 msgstr "最后登录IP"
 
-#: manage/udid.php:42
+#: manage/udid.php:41
 msgid "Create Time"
 msgstr "创建时间"
 
-#: manage/udid.php:92 manage/udid.php:129 manage/udid.php:239
-#: manage/udid.php:332
+#: manage/udid.php:91 manage/udid.php:128 manage/udid.php:238
+#: manage/udid.php:331
 msgid "All UDID"
 msgstr "所有UDID"
 
-#: manage/udid.php:92 manage/udid.php:129 manage/udid.php:239
-#: manage/udid.php:332
+#: manage/udid.php:91 manage/udid.php:128 manage/udid.php:238
+#: manage/udid.php:331
 msgid "Add UDID"
 msgstr "添加UDID"
 
-#: manage/udid.php:92 manage/udid.php:129 manage/udid.php:239
-#: manage/udid.php:332
+#: manage/udid.php:91 manage/udid.php:128 manage/udid.php:238
+#: manage/udid.php:331
 msgid "Search UDID"
 msgstr "搜索UDID"
 
-#: manage/udid.php:92 manage/udid.php:129 manage/udid.php:239
-#: manage/udid.php:332
+#: manage/udid.php:91 manage/udid.php:128 manage/udid.php:238
+#: manage/udid.php:331
 msgid "Manage Level"
 msgstr "管理等级"
 
-#: manage/udid.php:109
+#: manage/udid.php:108
 msgid "Package"
 msgstr "软件包"
 
-#: manage/udid.php:183
+#: manage/udid.php:182
 #, php-format
 msgid "Search UDID: %s"
 msgstr "搜索UDID：%s"
 
-#: manage/udid.php:245
+#: manage/udid.php:244
 msgid "UDID must be 40 characters!"
 msgstr "UDID必须为40位字符！"
 
-#: manage/udid.php:245
+#: manage/udid.php:244
 msgid "UDID must be number or letter!!"
 msgstr "UDID必须为数字或字母!"
 
-#: manage/udid.php:335
+#: manage/udid.php:334
 msgid "Lowest Protection Level"
 msgstr "最低保护等级"
 
-#: manage/udid.php:353
+#: manage/udid.php:352
 msgid "Add Row"
 msgstr "添加一行"
 
-#: manage/udid.php:354
+#: manage/udid.php:353
 msgid "Delete Row"
 msgstr "删除一行"
 
-#: manage/udid.php:367
+#: manage/udid.php:366
 msgid "Guest"
 msgstr "游客"
 
-#: manage/udid.php:390
+#: manage/udid.php:389
 #, php-format
 msgid "Are you sure you want to binding '%1$s' to UDID '%2$s'?"
 msgstr "您真的想将 '%1$s' 与UDID '%2$s' 绑定吗？"
 
-#: manage/udid.php:398
+#: manage/udid.php:397
 msgid "Unbinding UDID"
 msgstr "解绑UDID"
 
-#: manage/udid.php:399
+#: manage/udid.php:398
 #, php-format
 msgid "Are you sure you want to unbinding '%1$s' from UDID '%2$s'?"
 msgstr "您真的想将 '%1$s' 与UDID '%2$s' 解绑吗？"
@@ -2553,6 +2557,18 @@ msgstr "依地文"
 msgctxt "language"
 msgid "Zulu"
 msgstr "祖鲁语"
+
+#~ msgid "Older Changelogs"
+#~ msgstr "旧版更新日志"
+
+#~ msgid "'%s' already exists"
+#~ msgstr "'%s' 已经存在"
+
+#~ msgid "'%s' uploaded successfully!"
+#~ msgstr "'%s' 上传成功！"
+
+#~ msgid "'%s' upload failed!"
+#~ msgstr "'%s' 上传失败！"
 
 #~ msgid "Displayed on the homepage for the user to add."
 #~ msgstr "展示在首页供用户添加"
