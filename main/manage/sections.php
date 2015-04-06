@@ -239,6 +239,8 @@ if (isset($_SESSION['connected']) && $_SESSION['connected'] === true) {
 		exit();
 	}
 	endlabel:
+	if (isset($alert))
+		echo '<h3 class="alert alert-error">'.$alert.'<br /><a href="sections.php">'.__('Back').'</a></h3>';
 ?>
 			</div>
 		</div>
