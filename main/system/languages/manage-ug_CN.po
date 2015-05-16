@@ -1,15 +1,15 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: DCRM Manager\n"
-"POT-Creation-Date: 2015-03-27 15:55+0800\n"
-"PO-Revision-Date: 2015-03-28 18:08+0800\n"
+"POT-Creation-Date: 2015-05-16 22:14+0800\n"
+"PO-Revision-Date: 2015-05-16 22:15+0800\n"
 "Last-Translator: Hintay <hintay@me.com>\n"
 "Language-Team: shiraq\n"
 "Language: ug_CN\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 1.7.5\n"
+"X-Generator: Poedit 1.7.6\n"
 "X-Poedit-Basepath: ../../\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Poedit-KeywordsList: __;_e;_n:1,2;_x:1,2c;_ex:1,2c;_nx:4c,1,2;esc_attr__;"
@@ -45,8 +45,8 @@ msgstr "ئاساسىي پىروگىرامما :"
 msgid "WeiPhone Test Group"
 msgstr "ۋېيفىڭ تېخنىكا سىناق گۇرپپىسى"
 
-#: manage/about.php:37 manage/about.php:39 manage/about.php:42
-#: manage/about.php:43 manage/about.php:48 manage/about.php:49
+#: manage/about.php:37 manage/about.php:41 manage/about.php:42
+#: manage/about.php:43 manage/about.php:49 manage/about.php:50
 msgctxt "Punctuation"
 msgid ", "
 msgstr "،"
@@ -62,6 +62,10 @@ msgstr "ئۇسلۇب ياسىغۇچى :"
 #: manage/about.php:40
 msgid "Credits"
 msgstr "ئالاھىدە رەخمەت ئېيتىدىغان شەخسلەر"
+
+#: manage/about.php:41
+msgid "Touch Sprite Team"
+msgstr ""
 
 #: manage/about.php:41
 msgid "WeiPhone"
@@ -89,7 +93,7 @@ msgid "'s articles: "
 msgstr " مەنبە سۇپىسىنى ياساشقا قاتناشقۇچىلار："
 
 #: manage/about.php:45
-msgid "Also, and the father of the Cydia™"
+msgid "Also, the father of the Cydia™"
 msgstr ""
 "بۇيەردە ئەلۋەتتە Cydia™ نىڭ  ئەسلى قۇر غۇچىسىنىڭ رولى ھەم ئۇيازغان كودلار "
 "ھەممىدىن مۇھىم   "
@@ -102,11 +106,11 @@ msgstr " كۆچمە نۇسقىنىڭ باش بەت نۇسقىسىSaurik IT نى�
 msgid "Translator"
 msgstr "تەرجىمە قىلغۇچىلار"
 
-#: manage/about.php:52
+#: manage/about.php:53
 msgid "Copyright"
 msgstr "نەشىر ھوقۇقى"
 
-#: manage/about.php:53
+#: manage/about.php:54
 msgid ""
 "This program is free software, you can redistribute it and/or modify it "
 "under the terms of the <a href=\"http://www.gnu.org/licenses\">GNU General "
@@ -156,7 +160,7 @@ msgstr " Packages.gz  نى يېزىش："
 msgid "Write to the Packages.bz2 file: "
 msgstr " Packages.bz2   نى يېزىش："
 
-#: manage/build.php:129 manage/header.php:122
+#: manage/build.php:129 manage/header.php:137
 msgid "Rebuild the list"
 msgstr "تىزىملىك يېڭىلاش"
 
@@ -182,7 +186,7 @@ msgid "File does not exist."
 msgstr "ھۆججەت مەۋجۇت ئەمەس"
 
 #: manage/center.php:32 manage/center.php:71 manage/center.php:172
-#: manage/header.php:28
+#: manage/header.php:47
 msgid "Manage Packages"
 msgstr "قىستۇرما باشقۇرۇش"
 
@@ -194,11 +198,11 @@ msgstr "بارلىق قىستۇرمىلار"
 msgid "Search Packages"
 msgstr "قىستۇرما ئىزدەش"
 
-#: manage/center.php:38 manage/udid.php:96
+#: manage/center.php:38 manage/udid.php:95
 msgid "Search Content"
 msgstr "ئىزدەش مەزمۇنى"
 
-#: manage/center.php:46 manage/udid.php:104
+#: manage/center.php:46 manage/udid.php:103
 msgid "Search Type"
 msgstr "ئىزدەش تۈرى"
 
@@ -207,7 +211,7 @@ msgid "Identifier"
 msgstr "پەرىقلەندۈرۈش بەلگىسى"
 
 #: manage/center.php:50 manage/center.php:98 manage/center.php:210
-#: manage/edit.php:56 manage/manage.php:54 manage/sections.php:61
+#: manage/edit.php:56 manage/manage.php:54 manage/sections.php:62
 msgid "Name"
 msgstr "ئىسمى "
 
@@ -235,7 +239,7 @@ msgstr "تۈرى"
 msgid "Tag"
 msgstr "خەتكۈچ"
 
-#: manage/center.php:63 manage/udid.php:118
+#: manage/center.php:63 manage/udid.php:117
 msgid "Search"
 msgstr "ئىزدەش"
 
@@ -248,13 +252,13 @@ msgstr "نەشىرى"
 msgid "Size"
 msgstr "سىغىمى"
 
-#: manage/center.php:101 manage/center.php:213 manage/udid.php:40
+#: manage/center.php:101 manage/center.php:213 manage/udid.php:39
 msgid "Downloads"
 msgstr "چۈشۈرۈش قېتىم سانى"
 
 #: manage/center.php:102 manage/center.php:214 manage/center.php:254
 #: manage/center.php:276 manage/manage.php:52 manage/sections.php:60
-#: manage/udid.php:43 manage/udid.php:63
+#: manage/udid.php:42 manage/udid.php:62
 msgid "Delete"
 msgstr "ئۆچۈرۈش"
 
@@ -271,17 +275,17 @@ msgstr "قوغدىلىۋاتقان قىستۇرما"
 msgid "Search Packages: %s"
 msgstr "قىستۇرما ئىزدەش：%s"
 
-#: manage/center.php:216 manage/center.php:256 manage/udid.php:44
-#: manage/udid.php:65
+#: manage/center.php:216 manage/center.php:256 manage/udid.php:43
+#: manage/udid.php:64
 msgid "Binding"
 msgstr "باغلاش"
 
-#: manage/center.php:275 manage/udid.php:301
+#: manage/center.php:275 manage/udid.php:300
 #, php-format
 msgid "Are you sure you want to delete: %s?"
 msgstr "ئۆچۈرۈش مەشغۇلاتىنى موقۇملاشتۇرامسىز؟：%s？"
 
-#: manage/center.php:275 manage/udid.php:301
+#: manage/center.php:275 manage/udid.php:300
 msgid "This operation is irreversible, all related data will be delete!"
 msgstr ""
 "بۇ مەشغۇلاتنى قايتۇرۋالغىنى بولمايدۇ، بۇتۇردىكى بارلىق سانلىق مالوماتلار "
@@ -299,12 +303,13 @@ msgstr "قىستۇرمىنى يوشۇرۇش"
 msgid "Display Package"
 msgstr "قىستۇرمىنى كۆرسىتىش"
 
-#: manage/edit.php:29 manage/edit.php:33 manage/udid.php:223
-#: manage/udid.php:227 manage/udid.php:232
+#: manage/edit.php:29 manage/edit.php:33 manage/sections.php:104
+#: manage/sections.php:108 manage/sections.php:113 manage/udid.php:222
+#: manage/udid.php:226 manage/udid.php:231
 msgid "Illegal request!"
 msgstr "ئورۇنسىز تەلەپ"
 
-#: manage/edit.php:44 manage/header.php:158
+#: manage/edit.php:44 manage/header.php:173
 msgid "General Editing"
 msgstr "دائىملىق تەھرىرلەش"
 
@@ -321,8 +326,8 @@ msgstr "قوزغۇتۇش"
 msgid "Disabled"
 msgstr "چەكلەش"
 
-#: manage/edit.php:107 manage/udid.php:37 manage/udid.php:108
-#: manage/udid.php:251 manage/udid.php:342
+#: manage/edit.php:107 manage/udid.php:36 manage/udid.php:107
+#: manage/udid.php:250 manage/udid.php:341
 msgid "Level"
 msgstr "دەرىجىسى"
 
@@ -381,20 +386,38 @@ msgstr "سۈكۈتتىكى بېتىنى كۆرۈش"
 msgid "Detailed Description"
 msgstr "تەپسىلى ئۇچۇرلىرى"
 
-#: manage/edit.php:189 manage/edit.php:257 manage/release.php:90
-#: manage/settings.php:583 manage/udid.php:352
+#: manage/edit.php:188
+msgid "Changelog"
+msgstr ""
+
+#: manage/edit.php:191
+msgid "If leave a blank will do not display."
+msgstr ""
+
+#: manage/edit.php:196
+msgid "Old Changelogs"
+msgstr ""
+
+#: manage/edit.php:199
+msgid ""
+"Please fill the number you want to display for old changelog, If leave a "
+"blank or zero will only display this version changelog."
+msgstr ""
+
+#: manage/edit.php:205 manage/edit.php:273 manage/release.php:90
+#: manage/settings.php:583 manage/udid.php:351
 msgid "Save"
 msgstr "ساقلاش"
 
-#: manage/edit.php:219 manage/edit.php:273
+#: manage/edit.php:235 manage/edit.php:289
 msgid "Update Database"
 msgstr "ساندان يېڭىلاش"
 
-#: manage/edit.php:220 manage/edit.php:274
+#: manage/edit.php:236 manage/edit.php:290
 msgid "The package information edited!"
 msgstr "قىستۇرما ئۇچۇرلىرىنى تەھرىرلەش تاماملاندى "
 
-#: manage/edit.php:220 manage/edit.php:274
+#: manage/edit.php:236 manage/edit.php:290
 msgid ""
 "After modify the fields with an asterisk, you must write into package then "
 "safely rebuild list."
@@ -402,132 +425,133 @@ msgstr ""
 "يۇلتۇز بەلگىسى بار ئورۇن لارنى ئۆزگەرتكەندە،قىستۇرما يېزىشقا بۇيرۇق "
 "بىرشىڭىزلازىم ،ئاندىن بىخەتەر تىزىملىك يېڭىلىيالايسىز."
 
-#: manage/edit.php:221 manage/edit.php:275
+#: manage/edit.php:237 manage/edit.php:291
 msgid "Write Now"
 msgstr "دەرھال يېزىش"
 
-#: manage/edit.php:221 manage/edit.php:275 manage/import.php:264
+#: manage/edit.php:237 manage/edit.php:291 manage/import.php:264
 #: manage/manage.php:116 manage/manage.php:124 manage/output.php:148
 #: manage/release.php:115 manage/release.php:117 manage/release.php:120
-#: manage/settings.php:697 manage/settings.php:737 manage/stats.php:97
+#: manage/sections.php:311 manage/settings.php:697 manage/settings.php:738
+#: manage/stats.php:97
 msgid "Back"
 msgstr "قايتىش"
 
-#: manage/edit.php:229 manage/header.php:159
+#: manage/edit.php:245 manage/header.php:174
 msgid "Advance Editing"
 msgstr "ئالىي تەھرىرلەش"
 
-#: manage/edit.php:234
+#: manage/edit.php:250
 msgctxt "Advance Editing"
 msgid "Field"
 msgstr "سۆز بۆلىكى ئوڭشاش"
 
-#: manage/edit.php:249
+#: manage/edit.php:265
 msgctxt "Advance Editing"
 msgid "Content"
 msgstr "مەنزمۇن ئۆزگەرتىش"
 
-#: manage/edit.php:288 manage/edit.php:373 manage/udid.php:389
+#: manage/edit.php:304 manage/edit.php:397 manage/udid.php:388
 #: manage/view.php:118
 msgid "Binding UDID"
 msgstr "باغلاش UDID"
 
-#: manage/edit.php:293
+#: manage/edit.php:309
 msgid "Align"
 msgstr "تەكشىلەش ئۇسۇلى"
 
-#: manage/edit.php:295
+#: manage/edit.php:311
 msgctxt "Align"
 msgid "Left"
 msgstr "سولغا تەكشىلەش"
 
-#: manage/edit.php:296
+#: manage/edit.php:312
 msgctxt "Align"
 msgid "Center"
 msgstr "ئوتتۇرغا تەكشىلەش"
 
-#: manage/edit.php:297
+#: manage/edit.php:313
 msgctxt "Align"
 msgid "Right"
 msgstr "ئوڭغا تەكشىلەش"
 
-#: manage/edit.php:301
+#: manage/edit.php:317
 msgctxt "Edit"
 msgid "List"
 msgstr "تەرتىپ نومۇرى"
 
-#: manage/edit.php:303
+#: manage/edit.php:319
 msgid "Ordered list"
 msgstr "رەقەملىك تەرتىپ نومۇرى"
 
-#: manage/edit.php:304
+#: manage/edit.php:320
 msgid "Unordered list"
 msgstr "تۈر تەرتىپ نومۇرى"
 
-#: manage/edit.php:308
+#: manage/edit.php:324
 msgid "Indent"
 msgstr "قىسقارتىش"
 
-#: manage/edit.php:310
+#: manage/edit.php:326
 msgid "Increase indent"
 msgstr "ئوڭغا قىسقارتىش"
 
-#: manage/edit.php:311
+#: manage/edit.php:327
 msgid "Decrease indent"
 msgstr "سولغا قىسقارتىش"
 
-#: manage/edit.php:352
+#: manage/edit.php:376
 msgid "Data loading"
 msgstr "سانلىق مەلوماتلار يۈكلىنىۋاتىدۇ"
 
-#: manage/edit.php:362
+#: manage/edit.php:386
 msgid "Database Error"
 msgstr "ساندان خاتا"
 
-#: manage/header.php:18 manage/upload.php:86 manage/upload.php:151
+#: manage/header.php:37 manage/upload.php:86 manage/upload.php:151
 msgid "Upload Packages"
 msgstr "قىستۇرما يوللاش"
 
-#: manage/header.php:23 manage/manage.php:30 manage/manage.php:76
+#: manage/header.php:42 manage/manage.php:30 manage/manage.php:76
 msgid "Import Packages"
 msgstr "قىستۇرما كىر گۈزۈش"
 
-#: manage/header.php:33 manage/udid.php:90 manage/udid.php:127
-#: manage/udid.php:181 manage/udid.php:237 manage/udid.php:330
-#: manage/udid.php:387 manage/udid.php:396
+#: manage/header.php:52 manage/udid.php:89 manage/udid.php:126
+#: manage/udid.php:180 manage/udid.php:236 manage/udid.php:329
+#: manage/udid.php:386 manage/udid.php:395
 msgid "Manage UDID"
 msgstr "UDID باشقۇرۇش"
 
-#: manage/header.php:42 manage/sections.php:36 manage/sections.php:98
+#: manage/header.php:61 manage/sections.php:36 manage/sections.php:118
 msgid "Manage Sections"
 msgstr "تۈرلەرگە ئايرىشنى باشقۇرۇش"
 
-#: manage/header.php:47
+#: manage/header.php:66
 msgid "Manage Repository"
 msgstr "مەنبە ئۇچۇر تەڭشىكى"
 
-#: manage/header.php:56 manage/stats.php:30
+#: manage/header.php:75 manage/stats.php:30
 msgid "Running Status"
 msgstr "ئىجىرا بولۇش ھالىتى"
 
-#: manage/header.php:61
+#: manage/header.php:80
 msgid "About"
 msgstr "ئىزاھات"
 
-#: manage/header.php:71
+#: manage/header.php:90
 msgid "Repository Manager"
 msgstr "مەنبە باشقۇرۇش  سىستېمىسى"
 
-#: manage/header.php:123
+#: manage/header.php:138
 msgctxt "Header"
 msgid "Preferences"
 msgstr "تەڭشەش"
 
-#: manage/header.php:124
+#: manage/header.php:139
 msgid "Logout"
 msgstr "چېكىنىش"
 
-#: manage/header.php:157 manage/view.php:54
+#: manage/header.php:172 manage/view.php:54
 msgid "View Details"
 msgstr "تەپسىلاتىنى كۆرۈش"
 
@@ -650,65 +674,76 @@ msgstr "بىۋاستە ئالماشتۇرۇش"
 msgid "Add New"
 msgstr "تارمەق قوشۇش"
 
-#: manage/import.php:278 manage/manage.php:105 manage/sections.php:233
-#: manage/udid.php:310 manage/udid.php:392 manage/udid.php:401
+#: manage/import.php:278 manage/manage.php:105 manage/sections.php:287
+#: manage/sections.php:305 manage/udid.php:309 manage/udid.php:391
+#: manage/udid.php:400
 msgid "Cancel"
 msgstr "بىكارقىلىش"
 
-#: manage/login.php:114 manage/login.php:147
+#: manage/login.php:126 manage/login.php:171
 msgid "Login"
 msgstr "كىرىش"
 
-#: manage/login.php:139
-msgid "Please input your username and password!"
-msgstr "ئابونت نامى ۋە پارول كىر گۈزۈڭ"
+#: manage/login.php:190
+msgctxt "language"
+msgid "Select language"
+msgstr ""
 
-#: manage/login.php:141
-msgid "Unknown username or bad password!"
-msgstr "ئابونت نامى ياكى پارول خاتا"
+#: manage/login.php:201 manage/settings.php:76 system/languages/l10n.php:759
+msgctxt "language"
+msgid "English"
+msgstr "ئىنگىلىزچە"
 
-#: manage/login.php:143
-msgid "Bear!"
-msgstr "ئوبدانراق بىر قاراپ بېقىڭ خاتاقىلغان يەر لەر بارمىكەن !!!"
-
-#: manage/login.php:145
-msgid "Verification code error!"
-msgstr "دەلىللەش كودى خاتا"
-
-#: manage/login.php:152 manage/settings.php:88
+#: manage/login.php:219 manage/settings.php:88
 msgid "Username"
 msgstr "ئاپونت نامى"
 
-#: manage/login.php:152
+#: manage/login.php:219
 msgid "Please fill in your username"
 msgstr ""
 
-#: manage/login.php:153
+#: manage/login.php:223
 msgid "Password"
 msgstr "پارول"
 
-#: manage/login.php:153
+#: manage/login.php:223
 msgid "Please fill in your password"
 msgstr ""
 
-#: manage/login.php:156
+#: manage/login.php:228
 msgid "Verify Code"
 msgstr "دەلىللەش كودى"
 
-#: manage/login.php:156
+#: manage/login.php:228
 msgid "Please fill in the verify code"
 msgstr ""
 
-#: manage/login.php:159
+#: manage/login.php:244
+msgid "Please input your username and password!"
+msgstr "ئابونت نامى ۋە پارول كىر گۈزۈڭ"
+
+#: manage/login.php:246
+msgid "Unknown username or bad password!"
+msgstr "ئابونت نامى ياكى پارول خاتا"
+
+#: manage/login.php:248
+msgid "Bear!"
+msgstr "ئوبدانراق بىر قاراپ بېقىڭ خاتاقىلغان يەر لەر بارمىكەن !!!"
+
+#: manage/login.php:250
+msgid "Verification code error!"
+msgstr "دەلىللەش كودى خاتا"
+
+#: manage/login.php:258
 msgctxt "Buttom"
 msgid "Login"
 msgstr "كىرىش"
 
-#: manage/login.php:165
+#: manage/login.php:268
 msgid "Error"
 msgstr "خاتا"
 
-#: manage/login.php:166
+#: manage/login.php:269
 #, php-format
 msgid ""
 "Your login wrong too many times , close the session or wait %s minutes and "
@@ -747,21 +782,22 @@ msgstr "ھۆججەت ئىسمى"
 msgid "Target ID"
 msgstr "نىشان نومۇرى "
 
-#: manage/manage.php:96 manage/sections.php:121 manage/udid.php:275
+#: manage/manage.php:96 manage/sections.php:154 manage/udid.php:274
 msgid "Submit"
 msgstr "تاپشۇرۇش"
 
-#: manage/manage.php:103 manage/sections.php:231
+#: manage/manage.php:103 manage/sections.php:285
 #, php-format
 msgid "Are you sure delete: %s ?"
 msgstr "  %s : نى ئۆچۈرۈشنى موقۇملاشتۇرامسىز؟"
 
-#: manage/manage.php:103 manage/udid.php:399
+#: manage/manage.php:103 manage/udid.php:398
 msgid "You will not be able to undo this operation!"
 msgstr "بۇ مەشغۇلاتنى قايتۇرۋالغىلى بولمايدۇ"
 
-#: manage/manage.php:104 manage/sections.php:232 manage/udid.php:302
-#: manage/udid.php:391 manage/udid.php:400 manage/view.php:106
+#: manage/manage.php:104 manage/sections.php:286 manage/sections.php:304
+#: manage/udid.php:301 manage/udid.php:390 manage/udid.php:399
+#: manage/view.php:106
 msgid "Confirm"
 msgstr "موقۇملاش"
 
@@ -856,7 +892,7 @@ msgstr "مەنبە سىنبەلگىسى"
 msgid "Allowed upload format: png, save as %s in root directory."
 msgstr "ماس كېلىدىغان ھۆججەت فورماتى：.png，ساقلىنىش ئورنى %s"
 
-#: manage/release.php:115 manage/sections.php:141
+#: manage/release.php:115 manage/sections.php:180
 msgid "Upload failed, please check the file permissions."
 msgstr "يوللاش مەغلۇب بولدى،ھۆججەت ھوقۇقىنى تەكشۈرۈڭ!"
 
@@ -869,57 +905,93 @@ msgid ""
 "Repository settings save complete, rebuild the list to apply the changes."
 msgstr "مەنبە ئۇچۇرىنى ئۆزگەرتىش تاماملاندى ،تىزىملىك يېڭىلاش ئېلىپ بېرىڭ ."
 
-#: manage/sections.php:38 manage/sections.php:100
+#: manage/sections.php:38 manage/sections.php:120
 msgid "Sections List"
 msgstr "تۈر لەرگە ئايلىشى تېزىملىكى"
 
-#: manage/sections.php:38 manage/sections.php:100
+#: manage/sections.php:38 manage/sections.php:120
 msgid "Add Section"
 msgstr "تۈر قوشۇش "
 
-#: manage/sections.php:38 manage/sections.php:100
+#: manage/sections.php:38 manage/sections.php:120
 msgid "Create Icon Package"
 msgstr "سىنبەلگە بولىقى ھاسىل قىلىش"
 
-#: manage/sections.php:62
+#: manage/sections.php:61
+msgid "Edit"
+msgstr "编辑"
+
+#: manage/sections.php:63
 msgid "Icon"
 msgstr "سىنبەلگە "
 
-#: manage/sections.php:63
+#: manage/sections.php:64
 msgid "Last Change"
 msgstr "ئەڭ ئاخىرقى قېتىم ئۆزگەرتكىنى"
 
-#: manage/sections.php:78
+#: manage/sections.php:72
+msgid "Click to view packages in this section."
+msgstr ""
+
+#: manage/sections.php:80
 msgid "No Icon"
 msgstr "سىنبەلگە يوق"
 
-#: manage/sections.php:104
+#: manage/sections.php:120
+msgid "Edit Section"
+msgstr ""
+
+#: manage/sections.php:124
 msgid "Section Name"
 msgstr "تۈر ئىسمى"
 
-#: manage/sections.php:112
+#: manage/sections.php:131
 msgid "Section Icon"
 msgstr "تۈرلەرنىڭ سىنبەلگىسى"
 
-#: manage/sections.php:115
+#: manage/sections.php:138
+#, php-format
+msgid "The current icon is %s."
+msgstr ""
+
+#: manage/sections.php:140
+#, php-format
+msgid "You can click <a href=\"%s\">Here</a> to delete current icon."
+msgstr ""
+
+#: manage/sections.php:143
+msgid "There are currently no icon."
+msgstr ""
+
+#: manage/sections.php:158 manage/upload.php:106 manage/upload.php:171
+msgid "Tips"
+msgstr "مەشغۇلات ئەسكەرتمىسى"
+
+#: manage/sections.php:161
 #, php-format
 msgid "Allowed upload format: png, save in %s directory of root directory."
 msgstr "قوللايدىغان ھۆججەت فورماتى :png  ساقلاش ئورنى %s مۇندەرىجە ئچىدە "
 
-#: manage/sections.php:150
+#: manage/sections.php:162
+msgid ""
+"If you change the section name, you may need to change section option in "
+"package infomation for many packages."
+msgstr ""
+
+#: manage/sections.php:201
 msgid "You can add a maximum of 50 sections!"
 msgstr "ئەڭ كۆپ بولغان 50 خىل تۈر قوشۇشقا بولىدۇ"
 
-#: manage/sections.php:161
+#: manage/sections.php:212
 #, php-format
 msgid "Are you sure want to create the %s icon package?"
 msgstr " نىڭ سىنبەلگە بولىقىنى ھاسىل قىلىشنى موقۇملاشتۇرامسىز؟%sسىز "
 
-#: manage/sections.php:161
+#: manage/sections.php:212
 msgid "Create Now"
 msgstr "دەر ھال ھاسىل قىلىش"
 
-#: manage/sections.php:163
+#: manage/sections.php:215
 msgid ""
 "You have not filled in SEO and autofill information, unable to use this "
 "function!"
@@ -927,34 +999,39 @@ msgstr ""
 "سىزتوربەت  SEO ئۇچۇرى ھەم ئۇچۇر ئاپتوماتىك تولۇقلاش تۈرىنى تولدۇرماپسىز ،"
 "شۇڭا بۇئىقتىدارنى ئىشلىتەلمەيسىز. "
 
-#: manage/sections.php:175
+#: manage/sections.php:224
 msgid ""
 "Cannot find any existing icon of section, please add an icon first, then "
 "create icon package."
 msgstr ""
 "سىنبەلگە تۈرى مەۋجۇت ئەمەس ،سىنبەلگگ قوشۇڭ ،ئاندىن قايتىدىن ھاسىل قىلىڭ ."
 
-#: manage/sections.php:186
+#: manage/sections.php:235
 msgid "Cannot create temporary directory, please check the file permissions!"
 msgstr "ۋاقىتلىق مۇندەرىجە قۇرۇش مەغلۇب بولدى ،ھۆججەت ھوقۇقىنى تەكشۈرۈڭ !"
 
-#: manage/sections.php:193
+#: manage/sections.php:242
 msgid "Icon package template copy failed, please check the file permissions!"
 msgstr "سىنبەلگە ئۇسلۇبىنى كۆچۈرۈش مەغلۇب بولدى ، ھۆججەت ھوقۇقىنى تەكشۈرۈڭ ! "
 
-#: manage/sections.php:214
+#: manage/sections.php:268
 msgid "Icon package template rewriting failed!"
 msgstr "سىنبەلگە  بولىقى ئۇسلۇبىنى ئۆزگەرتىپ يېزىش مەغلۇب بولدى !"
 
-#: manage/sections.php:219
+#: manage/sections.php:273
 msgid "Icon package template repositioning failed!"
 msgstr "سىنبەلگە بولىقىنى قايتا بېكىتىش مەغلۇب بولدى !"
 
-#: manage/sections.php:226
+#: manage/sections.php:280
 msgid "Icon package template missing, please upload DCRM Pro again!"
 msgstr ""
 "سىن بەلگە بولىقى  ئۇسلۇبى يوق  سىيدىيا مەنبە سۇپىسىننىڭ كەسپىي نۇسخىسىنى "
 "قايتا قاچىلاڭ !"
+
+#: manage/sections.php:303
+#, php-format
+msgid "Are you sure delete the section icon for %s ?"
+msgstr ""
 
 #: manage/settings.php:38
 msgid "Preferences"
@@ -972,11 +1049,6 @@ msgstr "تىل تاللاش"
 msgctxt "language"
 msgid "Detect"
 msgstr "ئاپتوماتىك ئالماشتۇرۇش"
-
-#: manage/settings.php:76 system/languages/l10n.php:754
-msgctxt "language"
-msgid "English"
-msgstr "ئىنگىلىزچە"
 
 #: manage/settings.php:81
 msgid ""
@@ -1014,7 +1086,7 @@ msgstr "يېڭى پارولنى قايتىلاڭ"
 msgid "Type your new password again."
 msgstr "پارولنى يەنە بىر قېتىم كىر گۈزۈڭ"
 
-#: manage/settings.php:108 manage/settings.php:753
+#: manage/settings.php:108 manage/settings.php:754
 msgid "Strength indicator"
 msgstr " كۈچلۈكلۈك باھاسى "
 
@@ -1243,7 +1315,7 @@ msgctxt "SEO"
 msgid "Site Keyword"
 msgstr "SEO ھالقىلىق سۆز"
 
-#: manage/settings.php:408 manage/udid.php:269
+#: manage/settings.php:408 manage/udid.php:268
 msgid "Separated by commas."
 msgstr "چىكىت بەلگىسى ئارقىلىق ئايرىڭ "
 
@@ -1489,31 +1561,31 @@ msgstr "مەنبە ئادرېسى قۇرۇق بولسا بولمايدۇ"
 msgid "There is a same username!"
 msgstr "بۇئابونت تىزىملىتىپ بولغان "
 
-#: manage/settings.php:737
+#: manage/settings.php:738
 msgid "Amendments to the success of settings!"
 msgstr "تەڭشەك ئۆزگەرتىش تاماملاندى !"
 
-#: manage/settings.php:753
+#: manage/settings.php:754
 msgctxt "Password"
 msgid "Short"
 msgstr "ئىنتايىن ئاجىز"
 
-#: manage/settings.php:753
+#: manage/settings.php:754
 msgctxt "Password"
 msgid "Bad"
 msgstr "ئاجىز"
 
-#: manage/settings.php:753
+#: manage/settings.php:754
 msgctxt "Password"
 msgid "Good"
 msgstr "ئوتتۇرھال"
 
-#: manage/settings.php:753
+#: manage/settings.php:754
 msgctxt "Password"
 msgid "Strong"
 msgstr "كۈچلۈك"
 
-#: manage/settings.php:753
+#: manage/settings.php:754
 msgctxt "Password"
 msgid "Mismatch"
 msgstr "ماسلاشمىدى"
@@ -1596,90 +1668,90 @@ msgstr "قالدۇق تازلاش"
 msgid "Cache cleanup completed!"
 msgstr "قالدۇق تازلاش تاماملاندى !"
 
-#: manage/udid.php:36 manage/udid.php:107 manage/udid.php:243
+#: manage/udid.php:35 manage/udid.php:106 manage/udid.php:242
 msgid "UDID"
 msgstr "UDID"
 
-#: manage/udid.php:38 manage/udid.php:111 manage/udid.php:259
-#: manage/udid.php:343
+#: manage/udid.php:37 manage/udid.php:110 manage/udid.php:258
+#: manage/udid.php:342
 msgid "Comment"
 msgstr "ئىزاھات"
 
-#: manage/udid.php:39 manage/udid.php:266
+#: manage/udid.php:38 manage/udid.php:265
 msgid "Packages"
 msgstr "قىستۇرما"
 
-#: manage/udid.php:41 manage/udid.php:110
+#: manage/udid.php:40 manage/udid.php:109
 msgid "Last IP"
 msgstr "ئەڭ ئاخرقى قېتىم كىرگەن ip"
 
-#: manage/udid.php:42
+#: manage/udid.php:41
 msgid "Create Time"
 msgstr "قۇرۇلغان ۋاقتى"
 
-#: manage/udid.php:92 manage/udid.php:129 manage/udid.php:239
-#: manage/udid.php:332
+#: manage/udid.php:91 manage/udid.php:128 manage/udid.php:238
+#: manage/udid.php:331
 msgid "All UDID"
 msgstr " بارلىق UDID"
 
-#: manage/udid.php:92 manage/udid.php:129 manage/udid.php:239
-#: manage/udid.php:332
+#: manage/udid.php:91 manage/udid.php:128 manage/udid.php:238
+#: manage/udid.php:331
 msgid "Add UDID"
 msgstr " UDIDقوشۇش"
 
-#: manage/udid.php:92 manage/udid.php:129 manage/udid.php:239
-#: manage/udid.php:332
+#: manage/udid.php:91 manage/udid.php:128 manage/udid.php:238
+#: manage/udid.php:331
 msgid "Search UDID"
 msgstr "UDIDئىزدەش "
 
-#: manage/udid.php:92 manage/udid.php:129 manage/udid.php:239
-#: manage/udid.php:332
+#: manage/udid.php:91 manage/udid.php:128 manage/udid.php:238
+#: manage/udid.php:331
 msgid "Manage Level"
 msgstr "باشقۇرۇش دەرىجىسى"
 
-#: manage/udid.php:109
+#: manage/udid.php:108
 msgid "Package"
 msgstr "قىستۇرما"
 
-#: manage/udid.php:183
+#: manage/udid.php:182
 #, php-format
 msgid "Search UDID: %s"
 msgstr "ئىزدەشUDID：%s"
 
-#: manage/udid.php:245
+#: manage/udid.php:244
 msgid "UDID must be 40 characters!"
 msgstr "UDIDچوقۇم 40 خانە بولىشى لازىم"
 
-#: manage/udid.php:245
+#: manage/udid.php:244
 msgid "UDID must be number or letter!!"
 msgstr "UDIDسان ياكى ھەرىپ بولىشى لازىم "
 
-#: manage/udid.php:335
+#: manage/udid.php:334
 msgid "Lowest Protection Level"
 msgstr "ئەڭ تۆۋەن قوغداش دەرىجىسى"
 
-#: manage/udid.php:353
+#: manage/udid.php:352
 msgid "Add Row"
 msgstr "قۇر قوشۇش"
 
-#: manage/udid.php:354
+#: manage/udid.php:353
 msgid "Delete Row"
 msgstr "قۇر ئۆچۈرۈش"
 
-#: manage/udid.php:367
+#: manage/udid.php:366
 msgid "Guest"
 msgstr "مېھمان"
 
-#: manage/udid.php:390
+#: manage/udid.php:389
 #, php-format
 msgid "Are you sure you want to binding '%1$s' to UDID '%2$s'?"
 msgstr "سىز '%1$s'   بىلەن  UDID    نى    '%2$s'  غا باغلىماقچىمۇ ؟"
 
-#: manage/udid.php:398
+#: manage/udid.php:397
 msgid "Unbinding UDID"
 msgstr "بىكار قىلىشUDID"
 
-#: manage/udid.php:399
+#: manage/udid.php:398
 #, php-format
 msgid "Are you sure you want to unbinding '%1$s' from UDID '%2$s'?"
 msgstr ""
@@ -1736,10 +1808,6 @@ msgstr "يوللاش"
 msgctxt "Upload"
 msgid "Reset"
 msgstr "يوللاش تىزىملىكىنى قايتا تەڭشەش"
-
-#: manage/upload.php:106 manage/upload.php:171
-msgid "Tips"
-msgstr "مەشغۇلات ئەسكەرتمىسى"
 
 #: manage/upload.php:108 manage/upload.php:173
 msgid "Allowed data type: "
@@ -1818,760 +1886,765 @@ msgstr "رەسىم تاللاش"
 msgid "Are you sure you want to delete this screenshot?"
 msgstr "سىز بۇ رەسىمنى راستىلا ئۆچۈرەمسىز؟"
 
-#: system/languages/l10n.php:701
+#: system/languages/l10n.php:706
 msgctxt "language"
 msgid "Afrikaans"
 msgstr "南非文"
 
-#: system/languages/l10n.php:702
+#: system/languages/l10n.php:707
 msgctxt "language"
 msgid "Albanian"
 msgstr "阿尔巴尼亚文"
 
-#: system/languages/l10n.php:703
+#: system/languages/l10n.php:708
 msgctxt "language"
 msgid "Arabic (Algeria)"
 msgstr "阿拉伯文 (阿尔及利亚)"
 
-#: system/languages/l10n.php:704
+#: system/languages/l10n.php:709
 msgctxt "language"
 msgid "Arabic (Bahrain)"
 msgstr "阿拉伯文 (巴林)"
 
-#: system/languages/l10n.php:705
+#: system/languages/l10n.php:710
 msgctxt "language"
 msgid "Arabic (Egypt)"
 msgstr "阿拉伯文 (埃及)"
 
-#: system/languages/l10n.php:706
+#: system/languages/l10n.php:711
 msgctxt "language"
 msgid "Arabic (Iraq)"
 msgstr "阿拉伯文 (伊拉克)"
 
-#: system/languages/l10n.php:707
+#: system/languages/l10n.php:712
 msgctxt "language"
 msgid "Arabic (Jordan)"
 msgstr "阿拉伯文 (约旦)"
 
-#: system/languages/l10n.php:708
+#: system/languages/l10n.php:713
 msgctxt "language"
 msgid "Arabic (Kuwait)"
 msgstr "阿拉伯文 (科威特)"
 
-#: system/languages/l10n.php:709
+#: system/languages/l10n.php:714
 msgctxt "language"
 msgid "Arabic (Lebanon)"
 msgstr "阿拉伯文 (黎巴嫩)"
 
-#: system/languages/l10n.php:710
+#: system/languages/l10n.php:715
 msgctxt "language"
 msgid "Arabic (libya)"
 msgstr "阿拉伯文 (利比亚)"
 
-#: system/languages/l10n.php:711
+#: system/languages/l10n.php:716
 msgctxt "language"
 msgid "Arabic (Morocco)"
 msgstr "阿拉伯文 (摩洛哥)"
 
-#: system/languages/l10n.php:712
+#: system/languages/l10n.php:717
 msgctxt "language"
 msgid "Arabic (Oman)"
 msgstr "阿拉伯文 (阿曼)"
 
-#: system/languages/l10n.php:713
+#: system/languages/l10n.php:718
 msgctxt "language"
 msgid "Arabic (Qatar)"
 msgstr "阿拉伯文 (卡塔尔)"
 
-#: system/languages/l10n.php:714
+#: system/languages/l10n.php:719
 msgctxt "language"
 msgid "Arabic (Saudi Arabia)"
 msgstr "阿拉伯文 (沙特阿拉伯)"
 
-#: system/languages/l10n.php:715
+#: system/languages/l10n.php:720
 msgctxt "language"
 msgid "Arabic (Syria)"
 msgstr "阿拉伯文 (叙利亚)"
 
-#: system/languages/l10n.php:716
+#: system/languages/l10n.php:721
 msgctxt "language"
 msgid "Arabic (Tunisia)"
 msgstr "阿拉伯文 (突尼斯)"
 
-#: system/languages/l10n.php:717
+#: system/languages/l10n.php:722
 msgctxt "language"
 msgid "Arabic (U.A.E.)"
 msgstr "阿拉伯文 (阿拉伯联合酋长国) "
 
-#: system/languages/l10n.php:718
+#: system/languages/l10n.php:723
 msgctxt "language"
 msgid "Arabic (Yemen)"
 msgstr "阿拉伯文 (也门)"
 
-#: system/languages/l10n.php:719
+#: system/languages/l10n.php:724
 msgctxt "language"
 msgid "Arabic"
 msgstr "阿拉伯文"
 
-#: system/languages/l10n.php:720
+#: system/languages/l10n.php:725
 msgctxt "language"
 msgid "Armenian"
 msgstr "亚美尼亚文"
 
-#: system/languages/l10n.php:721
+#: system/languages/l10n.php:726
 msgctxt "language"
 msgid "Assamese"
 msgstr "阿萨姆文"
 
-#: system/languages/l10n.php:722
+#: system/languages/l10n.php:727
 msgctxt "language"
 msgid "Azeri"
 msgstr "阿塞拜疆文"
 
-#: system/languages/l10n.php:723
+#: system/languages/l10n.php:728
 msgctxt "language"
 msgid "Basque"
 msgstr "巴斯克文"
 
-#: system/languages/l10n.php:724
+#: system/languages/l10n.php:729
 msgctxt "language"
 msgid "Belarusian"
 msgstr "白俄罗斯文"
 
-#: system/languages/l10n.php:725
+#: system/languages/l10n.php:730
 msgctxt "language"
 msgid "Bengali"
 msgstr "孟加拉文"
 
-#: system/languages/l10n.php:726
+#: system/languages/l10n.php:731
 msgctxt "language"
 msgid "Bulgarian"
 msgstr "保加利亚文"
 
-#: system/languages/l10n.php:727
+#: system/languages/l10n.php:732
 msgctxt "language"
 msgid "Catalan"
 msgstr "加泰隆文"
 
-#: system/languages/l10n.php:728
+#: system/languages/l10n.php:733
 msgctxt "language"
 msgid "Chinese (China)"
 msgstr "خەنزۇچە (جوڭگۇ)"
 
-#: system/languages/l10n.php:729
+#: system/languages/l10n.php:734
 msgctxt "language"
 msgid "Chinese (Hong Kong SAR)"
 msgstr "中文 (香港特别行政区)"
 
-#: system/languages/l10n.php:730
+#: system/languages/l10n.php:735
 msgctxt "language"
 msgid "Chinese (Macau SAR)"
 msgstr "中文 (澳门特别行政区)"
 
-#: system/languages/l10n.php:731
+#: system/languages/l10n.php:736
 msgctxt "language"
 msgid "Chinese (Singapore)"
 msgstr "中文 (新加坡)"
 
-#: system/languages/l10n.php:732
+#: system/languages/l10n.php:737
 msgctxt "language"
 msgid "Chinese (Taiwan)"
 msgstr "خەنزۇچە-تەيۋەن يېزىقى"
 
-#: system/languages/l10n.php:733
+#: system/languages/l10n.php:738
 msgctxt "language"
 msgid "Chinese (Simplified)"
 msgstr "خەنزۇچە -ئاددي يېزىقى"
 
-#: system/languages/l10n.php:734
+#: system/languages/l10n.php:739
 msgctxt "language"
 msgid "Chinese (Traditional)"
 msgstr "خەنزۇچە مۇرەككەپ يېزىق"
 
-#: system/languages/l10n.php:735
+#: system/languages/l10n.php:740
 msgctxt "language"
 msgid "Chinese"
 msgstr "خەنزۇچە"
 
-#: system/languages/l10n.php:736
+#: system/languages/l10n.php:741
 msgctxt "language"
 msgid "Croatian"
 msgstr "克罗地亚文"
 
-#: system/languages/l10n.php:737
+#: system/languages/l10n.php:742
 msgctxt "language"
 msgid "Czech"
 msgstr "捷克文"
 
-#: system/languages/l10n.php:738
+#: system/languages/l10n.php:743
 msgctxt "language"
 msgid "Danish"
 msgstr "丹麦文"
 
-#: system/languages/l10n.php:739
+#: system/languages/l10n.php:744
 msgctxt "language"
 msgid "Divehi"
 msgstr "迪维希文"
 
-#: system/languages/l10n.php:740
+#: system/languages/l10n.php:745
 msgctxt "language"
 msgid "Dutch (Belgium)"
 msgstr "荷兰文 (比利时)"
 
-#: system/languages/l10n.php:741
+#: system/languages/l10n.php:746
 msgctxt "language"
 msgid "Dutch (Netherlands)"
 msgstr "荷兰文 (荷兰)"
 
-#: system/languages/l10n.php:742
+#: system/languages/l10n.php:747
 msgctxt "language"
 msgid "English (Australia)"
 msgstr "英文 (澳大利亚)"
 
-#: system/languages/l10n.php:743
+#: system/languages/l10n.php:748
 msgctxt "language"
 msgid "English (Belize)"
 msgstr "英文 (伯利兹)"
 
-#: system/languages/l10n.php:744
+#: system/languages/l10n.php:749
 msgctxt "language"
 msgid "English (Canada)"
 msgstr "英文 (加拿大)"
 
-#: system/languages/l10n.php:745
+#: system/languages/l10n.php:750
 msgctxt "language"
 msgid "English (Ireland)"
 msgstr "英文 (爱尔兰)"
 
-#: system/languages/l10n.php:746
+#: system/languages/l10n.php:751
 msgctxt "language"
 msgid "English (Jamaica)"
 msgstr "英文 (牙买加)"
 
-#: system/languages/l10n.php:747
+#: system/languages/l10n.php:752
 msgctxt "language"
 msgid "English (New Zealand)"
 msgstr "英文 (新西兰)"
 
-#: system/languages/l10n.php:748
+#: system/languages/l10n.php:753
 msgctxt "language"
 msgid "English (Philippines)"
 msgstr "英文 (菲律宾)"
 
-#: system/languages/l10n.php:749
+#: system/languages/l10n.php:754
 msgctxt "language"
 msgid "English (South Africa)"
 msgstr "英文 (南非)"
 
-#: system/languages/l10n.php:750
+#: system/languages/l10n.php:755
 msgctxt "language"
 msgid "English (Trinidad)"
 msgstr "英文 (特立尼达)"
 
-#: system/languages/l10n.php:751
+#: system/languages/l10n.php:756
 msgctxt "language"
 msgid "English (United Kingdom)"
 msgstr "英文 (英国)"
 
-#: system/languages/l10n.php:752 system/languages/l10n.php:755
+#: system/languages/l10n.php:757 system/languages/l10n.php:760
 msgctxt "language"
 msgid "English (United States)"
 msgstr "ئىنگىلىزچە(ئامرېكا)"
 
-#: system/languages/l10n.php:753
+#: system/languages/l10n.php:758
 msgctxt "language"
 msgid "English (Zimbabwe)"
 msgstr "英语 (津巴布韦)"
 
-#: system/languages/l10n.php:756
+#: system/languages/l10n.php:761
 msgctxt "language"
 msgid "Estonian"
 msgstr "爱沙尼亚文"
 
-#: system/languages/l10n.php:757
+#: system/languages/l10n.php:762
 msgctxt "language"
 msgid "Faeroese"
 msgstr "法罗文"
 
-#: system/languages/l10n.php:758
+#: system/languages/l10n.php:763
 msgctxt "language"
 msgid "Farsi"
 msgstr "波斯文"
 
-#: system/languages/l10n.php:759
+#: system/languages/l10n.php:764
 msgctxt "language"
 msgid "Finnish"
 msgstr "芬兰文"
 
-#: system/languages/l10n.php:760
+#: system/languages/l10n.php:765
 msgctxt "language"
 msgid "French (Belgium)"
 msgstr "法文 (比利时)"
 
-#: system/languages/l10n.php:761
+#: system/languages/l10n.php:766
 msgctxt "language"
 msgid "French (Canada)"
 msgstr "法文 (加拿大)"
 
-#: system/languages/l10n.php:762
+#: system/languages/l10n.php:767
 msgctxt "language"
 msgid "French (Luxembourg)"
 msgstr "法文 (卢森堡)"
 
-#: system/languages/l10n.php:763
+#: system/languages/l10n.php:768
 msgctxt "language"
 msgid "French (Monaco)"
 msgstr "法文 (摩纳哥)"
 
-#: system/languages/l10n.php:764
+#: system/languages/l10n.php:769
 msgctxt "language"
 msgid "French (Switzerland)"
 msgstr "法文 (瑞士)"
 
-#: system/languages/l10n.php:765
+#: system/languages/l10n.php:770
 msgctxt "language"
 msgid "French (France)"
 msgstr "法语 (法国)"
 
-#: system/languages/l10n.php:766
+#: system/languages/l10n.php:771
 msgctxt "language"
 msgid "FYRO Macedonian"
 msgstr "马其顿文"
 
-#: system/languages/l10n.php:767
+#: system/languages/l10n.php:772
 msgctxt "language"
 msgid "Gaelic"
 msgstr "苏格兰盖尔文"
 
-#: system/languages/l10n.php:768
+#: system/languages/l10n.php:773
 msgctxt "language"
 msgid "Georgian"
 msgstr "格鲁吉亚文"
 
-#: system/languages/l10n.php:769
+#: system/languages/l10n.php:774
 msgctxt "language"
 msgid "German (Austria)"
 msgstr "德文 (奥地利)"
 
-#: system/languages/l10n.php:770
+#: system/languages/l10n.php:775
 msgctxt "language"
 msgid "German (Liechtenstein)"
 msgstr "德文 (列支敦士登)"
 
-#: system/languages/l10n.php:771
+#: system/languages/l10n.php:776
 msgctxt "language"
 msgid "German (Luxembourg)"
 msgstr "德文 (卢森堡)"
 
-#: system/languages/l10n.php:772
+#: system/languages/l10n.php:777
 msgctxt "language"
 msgid "German (Switzerland)"
 msgstr "德文 (瑞士)"
 
-#: system/languages/l10n.php:773
+#: system/languages/l10n.php:778
 msgctxt "language"
 msgid "German (Germany)"
 msgstr "德文 (德国)"
 
-#: system/languages/l10n.php:774
+#: system/languages/l10n.php:779
 msgctxt "language"
 msgid "Greek"
 msgstr "现代希腊语"
 
-#: system/languages/l10n.php:775
+#: system/languages/l10n.php:780
 msgctxt "language"
 msgid "Gujarati"
 msgstr "古吉拉特文"
 
-#: system/languages/l10n.php:776
+#: system/languages/l10n.php:781
 msgctxt "language"
 msgid "Hebrew"
 msgstr "希伯来文"
 
-#: system/languages/l10n.php:777
+#: system/languages/l10n.php:782
 msgctxt "language"
 msgid "Hindi"
 msgstr "印地文"
 
-#: system/languages/l10n.php:778
+#: system/languages/l10n.php:783
 msgctxt "language"
 msgid "Hungarian"
 msgstr "希里莫图文"
 
-#: system/languages/l10n.php:779
+#: system/languages/l10n.php:784
 msgctxt "language"
 msgid "Icelandic"
 msgstr "冰岛文"
 
-#: system/languages/l10n.php:780
+#: system/languages/l10n.php:785
 msgctxt "language"
 msgid "Indonesian"
 msgstr "印尼文"
 
-#: system/languages/l10n.php:781
+#: system/languages/l10n.php:786
 msgctxt "language"
 msgid "Italian (Switzerland)"
 msgstr "意大利文 (瑞士)"
 
-#: system/languages/l10n.php:782
+#: system/languages/l10n.php:787
 msgctxt "language"
 msgid "Italian (Italy)"
 msgstr "意大利文 (意大利)"
 
-#: system/languages/l10n.php:783
+#: system/languages/l10n.php:788
 msgctxt "language"
 msgid "Japanese"
 msgstr "日文"
 
-#: system/languages/l10n.php:784
+#: system/languages/l10n.php:789
 msgctxt "language"
 msgid "Kannada"
 msgstr "坎纳达文"
 
-#: system/languages/l10n.php:785
+#: system/languages/l10n.php:790
 msgctxt "language"
 msgid "Kazakh"
 msgstr "哈萨克文"
 
-#: system/languages/l10n.php:786
+#: system/languages/l10n.php:791
 msgctxt "language"
 msgid "Konkani"
 msgstr "孔卡尼文"
 
-#: system/languages/l10n.php:787
+#: system/languages/l10n.php:792
 msgctxt "language"
 msgid "Korean"
 msgstr "韩文"
 
-#: system/languages/l10n.php:788
+#: system/languages/l10n.php:793
 msgctxt "language"
 msgid "Kyrgyz"
 msgstr "吉尔吉斯斯坦语"
 
-#: system/languages/l10n.php:789
+#: system/languages/l10n.php:794
 msgctxt "language"
 msgid "Latvian"
 msgstr "拉脱维亚文"
 
-#: system/languages/l10n.php:790
+#: system/languages/l10n.php:795
 msgctxt "language"
 msgid "Lithuanian"
 msgstr "立陶宛文"
 
-#: system/languages/l10n.php:791
+#: system/languages/l10n.php:796
 msgctxt "language"
 msgid "Malay"
 msgstr "马来文"
 
-#: system/languages/l10n.php:792
+#: system/languages/l10n.php:797
 msgctxt "language"
 msgid "Malayalam"
 msgstr "马拉亚拉姆文"
 
-#: system/languages/l10n.php:793
+#: system/languages/l10n.php:798
 msgctxt "language"
 msgid "Maltese"
 msgstr "马耳他文"
 
-#: system/languages/l10n.php:794
+#: system/languages/l10n.php:799
 msgctxt "language"
 msgid "Marathi"
 msgstr "马拉提文"
 
-#: system/languages/l10n.php:795
+#: system/languages/l10n.php:800
 msgctxt "language"
 msgid "Mongolian (Cyrillic)"
 msgstr "蒙古文 (西里尔字母)"
 
-#: system/languages/l10n.php:796
+#: system/languages/l10n.php:801
 msgctxt "language"
 msgid "Nepali (India)"
 msgstr "尼泊尔文 (印度)"
 
-#: system/languages/l10n.php:797 system/languages/l10n.php:799
+#: system/languages/l10n.php:802 system/languages/l10n.php:804
 msgctxt "language"
 msgid "Norwegian (Bokmal)"
 msgstr "挪威布克莫尔文"
 
-#: system/languages/l10n.php:798
+#: system/languages/l10n.php:803
 msgctxt "language"
 msgid "Norwegian (Nynorsk)"
 msgstr "新挪威文"
 
-#: system/languages/l10n.php:800
+#: system/languages/l10n.php:805
 msgctxt "language"
 msgid "Oriya"
 msgstr "奥利亚文"
 
-#: system/languages/l10n.php:801
+#: system/languages/l10n.php:806
 msgctxt "language"
 msgid "Polish"
 msgstr "پولەكچە"
 
-#: system/languages/l10n.php:802
+#: system/languages/l10n.php:807
 msgctxt "language"
 msgid "Portuguese (Brazil)"
 msgstr "葡萄牙文 (巴西)"
 
-#: system/languages/l10n.php:803
+#: system/languages/l10n.php:808
 msgctxt "language"
 msgid "Portuguese (Portugal)"
 msgstr "葡萄牙文 (葡萄牙)"
 
-#: system/languages/l10n.php:804
+#: system/languages/l10n.php:809
 msgctxt "language"
 msgid "Punjabi"
 msgstr "旁遮普文"
 
-#: system/languages/l10n.php:805
+#: system/languages/l10n.php:810
 msgctxt "language"
 msgid "Rhaeto-Romanic"
 msgstr "利托-罗曼文"
 
-#: system/languages/l10n.php:806
+#: system/languages/l10n.php:811
 msgctxt "language"
 msgid "Romanian (Moldova)"
 msgstr "罗马尼亚文 (摩尔多瓦)"
 
-#: system/languages/l10n.php:807
+#: system/languages/l10n.php:812
 msgctxt "language"
 msgid "Romanian"
 msgstr "罗马尼亚文"
 
-#: system/languages/l10n.php:808
+#: system/languages/l10n.php:813
 msgctxt "language"
 msgid "Russian (Moldova)"
 msgstr "俄文 (摩尔多瓦)"
 
-#: system/languages/l10n.php:809
+#: system/languages/l10n.php:814
 msgctxt "language"
 msgid "Russian"
 msgstr "روسچە"
 
-#: system/languages/l10n.php:810
+#: system/languages/l10n.php:815
 msgctxt "language"
 msgid "Sanskrit"
 msgstr "梵文"
 
-#: system/languages/l10n.php:811
+#: system/languages/l10n.php:816
 msgctxt "language"
 msgid "Serbian"
 msgstr "塞尔维亚文"
 
-#: system/languages/l10n.php:812
+#: system/languages/l10n.php:817
 msgctxt "language"
 msgid "Slovak"
 msgstr "斯洛伐克文"
 
-#: system/languages/l10n.php:813
+#: system/languages/l10n.php:818
 msgctxt "language"
 msgid "Slovenian"
 msgstr "斯洛文尼亚文"
 
-#: system/languages/l10n.php:814
+#: system/languages/l10n.php:819
 msgctxt "language"
 msgid "Sorbian"
 msgstr "索布文"
 
-#: system/languages/l10n.php:815
+#: system/languages/l10n.php:820
 msgctxt "language"
 msgid "Spanish (Argentina)"
 msgstr "西班牙文 (阿根廷)"
 
-#: system/languages/l10n.php:816
+#: system/languages/l10n.php:821
 msgctxt "language"
 msgid "Spanish (Bolivia)"
 msgstr "西班牙文 (玻利维亚)"
 
-#: system/languages/l10n.php:817
+#: system/languages/l10n.php:822
 msgctxt "language"
 msgid "Spanish (Chile)"
 msgstr "西班牙文 (智利)"
 
-#: system/languages/l10n.php:818
+#: system/languages/l10n.php:823
 msgctxt "language"
 msgid "Spanish (Colombia)"
 msgstr "西班牙文 (哥伦比亚)"
 
-#: system/languages/l10n.php:819
+#: system/languages/l10n.php:824
 msgctxt "language"
 msgid "Spanish (Costa Rica)"
 msgstr "西班牙文 (哥斯达黎加)"
 
-#: system/languages/l10n.php:820
+#: system/languages/l10n.php:825
 msgctxt "language"
 msgid "Spanish (Dominican Republic)"
 msgstr "西班牙文 (多米尼加)"
 
-#: system/languages/l10n.php:821
+#: system/languages/l10n.php:826
 msgctxt "language"
 msgid "Spanish (Ecuador)"
 msgstr "西班牙文 (厄瓜多尔)"
 
-#: system/languages/l10n.php:822
+#: system/languages/l10n.php:827
 msgctxt "language"
 msgid "Spanish (El Salvador)"
 msgstr "西班牙文 (萨尔瓦多)"
 
-#: system/languages/l10n.php:823
+#: system/languages/l10n.php:828
 msgctxt "language"
 msgid "Spanish (Guatemala)"
 msgstr "西班牙文 (危地马拉)"
 
-#: system/languages/l10n.php:824
+#: system/languages/l10n.php:829
 msgctxt "language"
 msgid "Spanish (Honduras)"
 msgstr "西班牙文 (洪都拉斯)"
 
-#: system/languages/l10n.php:825
+#: system/languages/l10n.php:830
 msgctxt "language"
 msgid "Spanish (Mexico)"
 msgstr "西班牙文 (墨西哥)"
 
-#: system/languages/l10n.php:826
+#: system/languages/l10n.php:831
 msgctxt "language"
 msgid "Spanish (Nicaragua)"
 msgstr "西班牙文 (尼加拉瓜)"
 
-#: system/languages/l10n.php:827
+#: system/languages/l10n.php:832
 msgctxt "language"
 msgid "Spanish (Panama)"
 msgstr "西班牙文 (巴拿马)"
 
-#: system/languages/l10n.php:828
+#: system/languages/l10n.php:833
 msgctxt "language"
 msgid "Spanish (Paraguay)"
 msgstr "西班牙文 (巴拉圭)"
 
-#: system/languages/l10n.php:829
+#: system/languages/l10n.php:834
 msgctxt "language"
 msgid "Spanish (Peru)"
 msgstr "西班牙文 (秘鲁)"
 
-#: system/languages/l10n.php:830
+#: system/languages/l10n.php:835
 msgctxt "language"
 msgid "Spanish (Puerto Rico)"
 msgstr "西班牙文 (波多黎各)"
 
-#: system/languages/l10n.php:831
+#: system/languages/l10n.php:836
 msgctxt "language"
 msgid "Spanish (United States)"
 msgstr "西班牙文 (美国)"
 
-#: system/languages/l10n.php:832
+#: system/languages/l10n.php:837
 msgctxt "language"
 msgid "Spanish (Uruguay)"
 msgstr "西班牙文 (乌拉圭)"
 
-#: system/languages/l10n.php:833
+#: system/languages/l10n.php:838
 msgctxt "language"
 msgid "Spanish (Venezuela)"
 msgstr "西班牙文 (委内瑞拉)"
 
-#: system/languages/l10n.php:834
+#: system/languages/l10n.php:839
 msgctxt "language"
 msgid "Spanish (Traditional Sort)"
 msgstr "西班牙文 (传统排序)"
 
-#: system/languages/l10n.php:835
+#: system/languages/l10n.php:840
 msgctxt "language"
 msgid "Sutu"
 msgstr "Sutu"
 
-#: system/languages/l10n.php:836
+#: system/languages/l10n.php:841
 msgctxt "language"
 msgid "Swahili"
 msgstr "斯瓦希里文"
 
-#: system/languages/l10n.php:837
+#: system/languages/l10n.php:842
 msgctxt "language"
 msgid "Swedish (Finland)"
 msgstr "瑞典文 (芬兰)"
 
-#: system/languages/l10n.php:838
+#: system/languages/l10n.php:843
 msgctxt "language"
 msgid "Swedish"
 msgstr "瑞典文"
 
-#: system/languages/l10n.php:839
+#: system/languages/l10n.php:844
 msgctxt "language"
 msgid "Syriac"
 msgstr "古叙利亚文"
 
-#: system/languages/l10n.php:840
+#: system/languages/l10n.php:845
 msgctxt "language"
 msgid "Tamil"
 msgstr "泰米尔文"
 
-#: system/languages/l10n.php:841
+#: system/languages/l10n.php:846
 msgctxt "language"
 msgid "Tatar"
 msgstr "塔塔尔文"
 
-#: system/languages/l10n.php:842
+#: system/languages/l10n.php:847
 msgctxt "language"
 msgid "Telugu"
 msgstr "泰卢固文"
 
-#: system/languages/l10n.php:843
+#: system/languages/l10n.php:848
 msgctxt "language"
 msgid "Thai"
 msgstr "泰文"
 
-#: system/languages/l10n.php:844
+#: system/languages/l10n.php:849
 msgctxt "language"
 msgid "Tsonga"
 msgstr "宗加文"
 
-#: system/languages/l10n.php:845
+#: system/languages/l10n.php:850
 msgctxt "language"
 msgid "Tswana"
 msgstr "塞茨瓦纳文"
 
-#: system/languages/l10n.php:846
+#: system/languages/l10n.php:851
 msgctxt "language"
 msgid "Turkish"
 msgstr "土耳其文"
 
-#: system/languages/l10n.php:847
+#: system/languages/l10n.php:852
 msgctxt "language"
 msgid "Ukrainian"
 msgstr "乌克兰文"
 
-#: system/languages/l10n.php:848
+#: system/languages/l10n.php:853
 msgctxt "language"
 msgid "Urdu"
 msgstr "乌尔都文"
 
-#: system/languages/l10n.php:849
+#: system/languages/l10n.php:854
 msgctxt "language"
 msgid "Uzbek"
 msgstr "乌兹别克文"
 
-#: system/languages/l10n.php:850
+#: system/languages/l10n.php:855
 msgctxt "language"
 msgid "Uyghurche (China)"
 msgstr "ئۇيغۇرچە"
 
-#: system/languages/l10n.php:851
+#: system/languages/l10n.php:856
 msgctxt "language"
 msgid "Vietnamese"
 msgstr "越南文"
 
-#: system/languages/l10n.php:852
+#: system/languages/l10n.php:857
 msgctxt "language"
 msgid "Xhosa"
 msgstr "科萨文"
 
-#: system/languages/l10n.php:853
+#: system/languages/l10n.php:858
 msgctxt "language"
 msgid "Yiddish"
 msgstr "依地文"
 
-#: system/languages/l10n.php:854
+#: system/languages/l10n.php:859
 msgctxt "language"
 msgid "Zulu"
 msgstr "祖鲁语"
+
+#~ msgid "Also, and the father of the Cydia™"
+#~ msgstr ""
+#~ "بۇيەردە ئەلۋەتتە Cydia™ نىڭ  ئەسلى قۇر غۇچىسىنىڭ رولى ھەم ئۇيازغان كودلار "
+#~ "ھەممىدىن مۇھىم   "
 
 #~ msgid "Displayed on the homepage for the user to add."
 #~ msgstr "باش بەتتىكى قوشۇلغان ئەزالارنى كۆرسۈتۈش"
@@ -2584,9 +2657,6 @@ msgstr "祖鲁语"
 
 #~ msgid "General Editor"
 #~ msgstr "常规编辑"
-
-#~ msgid "Edit"
-#~ msgstr "编辑"
 
 #~ msgid "Settings"
 #~ msgstr "设置"

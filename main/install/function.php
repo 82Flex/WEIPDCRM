@@ -22,7 +22,7 @@
 // 设定参数
 define('ABSPATH', dirname(dirname(__FILE__)).'/');
 define('CONF_PATH', ABSPATH.'system/config/');
-define('VERSION', '1.6.15.3.18');
+define('VERSION', '1.6.15.5.16');
 
 // 错误抑制
 define('DEBUG_ENABLED', isset($_GET['debug']));

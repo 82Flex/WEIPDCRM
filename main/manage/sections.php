@@ -58,6 +58,7 @@ if (isset($_SESSION['connected']) && $_SESSION['connected'] === true) {
 ?>
 					<table class="table"><thead><tr>
 					<th><ul class="ctl"><?php _e('Delete'); ?></ul></th>
+					<th><ul class="ctl"><?php _e('Edit'); ?></ul></th>
 					<th><ul class="ctl"><?php _e('Name'); ?></ul></th>
 					<th><ul class="ctl"><?php _e('Icon'); ?></ul></th>
 					<th><ul class="ctl"><?php _e('Last Change'); ?></ul></th>
@@ -67,7 +68,8 @@ if (isset($_SESSION['connected']) && $_SESSION['connected'] === true) {
 ?>
 					<tr>
 					<td><a href="sections.php?action=delete_confirmation&amp;id=<?php echo($list['ID']); ?>&amp;name=<?php echo($list['Name']); ?>" class="close" style="line-height: 12px;">&times;</a></td>
-					<td><ul class="ctl" style="width:400px;"><a href="center.php?action=search&amp;contents=<?php echo(urlencode($list['Name'])); ?>&amp;type=7"><?php echo(htmlspecialchars($list['Name'])); ?></a></ul></td>
+					<td><a href="sections.php?action=edit&amp;id=<?php echo($list['ID']); ?>" class="close">✎</a></td>
+					<td><ul class="ctl" style="width:400px;"><a title="<?php _e('Click to view packages in this section.'); ?>" href="center.php?action=search&amp;contents=<?php echo(urlencode($list['Name'])); ?>&amp;type=7"><?php echo(htmlspecialchars($list['Name'])); ?></a></ul></td>
 <?php
 				if ($list['Icon'] != "") {
 ?>
@@ -93,26 +95,57 @@ if (isset($_SESSION['connected']) && $_SESSION['connected'] === true) {
 			$page = new Core_Lib_Page($params);
 			echo '<div class="page">' . $page->show(2) . '</div>';
 		}
-	} elseif (!empty($_GET['action']) AND $_GET['action'] == "add") {
+	} elseif (!empty($_GET['action']) AND ($_GET['action'] == "add" || $_GET['action'] == "edit")) {
+		// 获取编辑信息
+		if($_GET['action'] == "edit"){
+			if (isset($_GET['id']) && is_numeric($_GET['id'])) {
+				$request_id = (int)$_GET['id'];
+				if ($request_id < 1) {
+					_e('Illegal request!');
+					goto endlabel;
+				}
+			} else {
+				_e('Illegal request!');
+				goto endlabel;
+			}
+			$edit_info = DB::fetch_first("SELECT * FROM `".DCRM_CON_PREFIX."Sections` WHERE `ID` = '" . $request_id . "'");
+			if (null == $edit_info) {
+				_e('Illegal request!');
+				goto endlabel;
+			}
+		}
 ?>
 						<h2><?php _e('Manage Sections'); ?></h2>
 						<br />
-						<h3 class="navbar"><span><a href="sections.php"><?php _e('Sections List'); ?></a></span>　<span><?php _e('Add Section'); ?></span>　<span><a href="sections.php?action=create"><?php _e('Create Icon Package'); ?></a></span></h3>
+						<h3 class="navbar"><span><a href="sections.php"><?php _e('Sections List'); ?></a></span>　<span><?php $_GET['action'] == "edit" ? _e('Edit Section') : _e('Add Section'); ?></span>　<span><a href="sections.php?action=create"><?php _e('Create Icon Package'); ?></a></span></h3>
 						<br />
 						<form class="form-horizontal" method="POST" enctype="multipart/form-data" action="sections.php?action=add_now" >
 						<div class="group-control">
 							<label class="control-label"><?php _e('Section Name'); ?></label>
 							<div class="controls">
-								<input class="input-xlarge" name="contents" required="required" />
-								<input type="hidden" name="action" value="add_now" />
+								<input class="input-xlarge" name="contents" required="required"  value="<?php if (!empty($edit_info['Name'])) echo $edit_info['Name']; ?>"/>
 							</div>
 						</div>
-						<br />
+						<br/>
 						<div class="group-control">
 							<label class="control-label"><?php _e('Section Icon'); ?></label>
 							<div class="controls">
 								<input type="file" class="span6" name="icon" accept="image/x-png" />
-								<p class="help-block"><?php printf(__('Allowed upload format: png, save in %s directory of root directory.'), 'icons'); ?></p>
+								<p class="help-block">
+<?php
+		if($_GET['action'] == "edit"){
+			if ($edit_info['Icon'] != "") {
+				printf(__('The current icon is %s.'), "<a href='".base64_decode(DCRM_REPOURL)."/icons/{$edit_info['Icon']}'>{$edit_info['Icon']}</a>");
+				echo('<br/>');
+				printf(__('You can click <a href="%s">Here</a> to delete current icon.'), "sections.php?action=delete_icon&amp;id={$edit_info['ID']}&amp;name={$edit_info['Name']}");
+				echo("<input type='hidden' name='exist_icon' value='{$edit_info['Icon']}' />");
+			} else {
+				_e('There are currently no icon.');
+			}
+			echo("<input type='hidden' name='id' value='{$edit_info['ID']}' />");
+		}
+?>
+								</p>
 							</div>
 						</div>
 						<br />
@@ -122,7 +155,13 @@ if (isset($_SESSION['connected']) && $_SESSION['connected'] === true) {
 							</div>
 						</div>
 						</form>
-<?php
+						<h3><?php _e('Tips'); ?></h3>
+						<br />
+						<h4 class="alert alert-info">
+							· <?php printf(__('Allowed upload format: png, save in %s directory of root directory.'), 'icons'); ?>
+							<?php if($_GET['action'] == "edit"){ ?><br/>· <?php _e('If you change the section name, you may need to change section option in package infomation for many packages.'); ?><?php } ?>
+						</h4>
+<?php 
 	} elseif (!empty($_GET['action']) AND $_GET['action'] == "add_now" AND !empty($_POST['contents'])) {
 		$new_name = DB::real_escape_string($_POST['contents']);
 		$q_info = DB::query("SELECT count(*) FROM `".DCRM_CON_PREFIX."Sections`");
@@ -141,10 +180,22 @@ if (isset($_SESSION['connected']) && $_SESSION['connected'] === true) {
 					$alert = __('Upload failed, please check the file permissions.');
 					goto endlabel;
 				} else {
-					$n_query = DB::query("INSERT INTO `".DCRM_CON_PREFIX."Sections`(`Name`, `Icon`) VALUES('" . $new_name . "', '" . $_FILES['icon']['name'] . "')");
+					if(isset($_POST['id'])){
+						$n_query = DB::query("UPDATE `".DCRM_CON_PREFIX."Sections` SET `Name` = '{$new_name}', `Icon` = '{$_FILES['icon']['name']}' WHERE `ID` = ".$_POST['id']);
+					} else {
+						$n_query = DB::query("INSERT INTO `".DCRM_CON_PREFIX."Sections`(`Name`, `Icon`) VALUES('" . $new_name . "', '" . $_FILES['icon']['name'] . "')");
+					}
 				}
 			} else {
-				$n_query = DB::query("INSERT INTO `".DCRM_CON_PREFIX."Sections`(`Name`) VALUES('" . $new_name . "')");
+				if(isset($_POST['id'])){
+					if(isset($_POST['exist_icon'])){
+						$n_query = DB::query("UPDATE `".DCRM_CON_PREFIX."Sections` SET `Name` = '{$new_name}', `Icon` = '{$_POST['exist_icon']}' WHERE `ID` = ".$_POST['id']);
+					} else {
+						$n_query = DB::query("UPDATE `".DCRM_CON_PREFIX."Sections` SET `Name` = '{$new_name}' WHERE `ID` = ".$_POST['id']);
+					}
+				} else {
+					$n_query = DB::query("INSERT INTO `".DCRM_CON_PREFIX."Sections`(`Name`) VALUES('" . $new_name . "')");
+				}
 			}
 		} else {
 			$alert = __('You can add a maximum of 50 sections!');
@@ -159,6 +210,7 @@ if (isset($_SESSION['connected']) && $_SESSION['connected'] === true) {
 	} elseif (!empty($_GET['action']) AND $_GET['action'] == "create") {
 		if (defined("AUTOFILL_SEO") && defined("AUTOFILL_PRE")) {
 			$alert = sprintf(__('Are you sure want to create the %s icon package?'), AUTOFILL_SEO) . '<br /><a href="sections.php?action=createnow">'.__('Create Now').'</a>';
+			$alert_tag = 'alert-success';
 		} else {
 			$alert = __('You have not filled in SEO and autofill information, unable to use this function!');
 		}
@@ -166,9 +218,6 @@ if (isset($_SESSION['connected']) && $_SESSION['connected'] === true) {
 	} elseif (!empty($_GET['action']) AND $_GET['action'] == "createnow") {
 		$new_name = DB::real_escape_string($_POST['contents']);
 		$q_info = DB::query("SELECT count(*) FROM `".DCRM_CON_PREFIX."Sections` WHERE `Icon` != ''");
-		if (!$q_info) {
-			goto endlabel;
-		}
 		$info = DB::fetch_row($q_info);
 		$num = (int)$info[0];
 		if ($num < 1) {
@@ -196,16 +245,21 @@ if (isset($_SESSION['connected']) && $_SESSION['connected'] === true) {
 			$raw_data = new phpAr($deb_path);
 			$new_tar = new Tar();
 			$new_path = "../tmp/" . $r_id . "/data.tar.gz";
-			$icon_query = DB::query("SELECT * FROM `".DCRM_CON_PREFIX."Sections`");
-			while ($icon_assoc = mysql_fetch_assoc($icon_query)) {
-				mkdir("../tmp/" . $r_id . "/Applications");
-				mkdir("../tmp/" . $r_id . "/Applications/Cydia.app");
-				mkdir("../tmp/" . $r_id . "/Applications/Cydia.app/Sections");
+			$icon_query = DB::fetch_all("SELECT * FROM `".DCRM_CON_PREFIX."Sections`");
+			mkdir("../tmp/" . $r_id . "/Applications");
+			mkdir("../tmp/" . $r_id . "/Applications/Cydia.app");
+			mkdir("../tmp/" . $r_id . "/Applications/Cydia.app/Sections");
+			foreach($icon_query as $icon_assoc){
 				if ($icon_assoc['Icon'] != "") {
-					$new_filename = str_replace("[", "", str_replace("]", "", str_replace(" ", "_", $icon_assoc['Name']))) . ".png";
+					// Compatible with earlier Cydia version and special situations
+					$new_filename = $new_filenames[] = str_replace(" ", "_", $icon_assoc['Name']) . '.png';
+					if(substr($new_filename, 0, 1) == '[' && substr($new_filename, -5, -4) == ']')
+						$new_filenames[] = substr($new_filename, 1, -5) . '.png';
 					$new_filepath = "../tmp/" . $r_id . "/Applications/Cydia.app/Sections/" . $new_filename;
 					copy("../icons/" . $icon_assoc['Icon'], $new_filepath);
-					$new_tar -> add_file("/Applications/Cydia.app/Sections/" . $new_filename, "", file_get_contents($new_filepath));
+					foreach($new_filenames as $filename){
+						$new_tar -> add_file("/Applications/Cydia.app/Sections/" . $filename, "", file_get_contents($new_filepath));
+					}
 				}
 			}
 			$new_tar -> save($new_path);
@@ -237,10 +291,24 @@ if (isset($_SESSION['connected']) && $_SESSION['connected'] === true) {
 		DB::delete(DCRM_CON_PREFIX.'Sections', array('ID' => $delete_id));
 		header("Location: sections.php");
 		exit();
+	} elseif (!empty($_GET['action']) AND $_GET['action'] == "delete_icon" AND !empty($_GET['id'])){
+		if(isset($_GET['delete_now'])){
+			$delete_id = (int)$_GET['id'];
+			$n_query = DB::query("UPDATE `".DCRM_CON_PREFIX."Sections` SET `Icon` = '' WHERE `ID` = {$delete_id}");
+			header("Location: sections.php?action=edit&id={$_GET['id']}");
+			exit();
+		}
+		if(!empty($_GET['name'])){
+?>
+						<h3 class="alert"><?php printf(__('Are you sure delete the section icon for %s ?'), htmlspecialchars($_GET['name'])); ?></h3>
+						<a class="btn btn-warning" href="sections.php?action=delete_icon&amp;id=<?php echo($_GET['id']); ?>&amp;delete_now=true"><?php _e('Confirm'); ?></a>　
+						<a class="btn btn-success" href="sections.php"><?php _e('Cancel'); ?></a>
+<?php
+		}
 	}
 	endlabel:
 	if (isset($alert))
-		echo '<h3 class="alert alert-error">'.$alert.'<br /><a href="sections.php">'.__('Back').'</a></h3>';
+		echo '<h3 class="alert '.(isset($alert_tag) ? $alert_tag : 'alert-error').'">'.$alert.'<br /><a href="sections.php">'.__('Back').'</a></h3>';
 ?>
 			</div>
 		</div>

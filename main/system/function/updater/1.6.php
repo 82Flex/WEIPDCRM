@@ -49,3 +49,6 @@ if($current_version == '1.6.15.3.29'){
 					ADD `Changelog_Older_Shows` INT NOT NULL DEFAULT '0' AFTER `Changelog`");
 	update_final('1.6.15.4.2');
 }
+if($current_version == '1.6.15.4.2'){
+	update_final('1.6.15.5.16');
+}

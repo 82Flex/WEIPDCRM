@@ -17,9 +17,9 @@ This program is re-designed from tibounise's "[DCRM](https://github.com/tibounis
 3. Nginx, Apache or Lighttpd
 
 ##How To Install And Use:
-1.  Upload `/main/*` to your wwwroot then give them read & write privileges;
-2.  **Nginx:** Move `/readme.files/dcrm_nginx.conf` to Nginx's config directory, then include it in your website's config.<br/>**Apache:** Rename `/readme.files/dcrm_apache.htaccess` to `$wwwroot/.htaccess`;
-3.  Restart Nginx if you are;
+1.  Upload `/main/*` to your wwwroot then give them read & write privileges.
+2.  **Nginx:** Move `/readme.files/dcrm_nginx.conf` to Nginx's config directory, then include it in your website's config.<br/>**Apache:** Rename `/readme.files/dcrm_apache.htaccess` to `$wwwroot/.htaccess`.<br/>**Lighttpd:** Include `/readme.files/dcrm_lighttpd.conf`.
+3.  Restart your web server if you need.
 4.  Open `http://{YOUR_REPO_URL}/install` to create MYSQL tables.
 5.  Then login at `http://{YOUR_REPO_URL}/manage`.
 6.  Fill blanks in `http://{YOUR_REPO_URL}/manage/settings.php` and `http://{YOUR_REPO_URL}/manage/release.php`
@@ -30,9 +30,9 @@ This program is re-designed from tibounise's "[DCRM](https://github.com/tibounis
 11.  Add your repository in Cydia™.
 
 ##How To Upgrade
-####1.5 Pro and latter
+####1.5 Pro or latter
 Just upload files you get to replace. Then visit your repository homepage. It will auto update the database and configuration.
-####Lower 1.5 Pro
+####Earlier than 1.5 Pro
 Upload and replace files without `init` directory, `config.inc.php` and `connect.php` to Site Directory.
 Depending on the order execution database commands from `update.log`.
 

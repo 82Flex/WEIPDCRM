@@ -50,11 +50,11 @@ switch($step) {
 		<p><?php _e('If you pay close attention to <a href="http://weibo.cn/u/3246210680">i_82</a> and some of his <a href="http://82flex.com/projects">projects</a>. Also wanted to help him, welcome to donate him.'); ?></p>
 	<blockquote class="thanks">
 		<font color="#4169e1" size="3"><strong><?php _e('Credits'); ?></strong></font>
-		<br><?php _e('WeiPhone'); ?> <a target="_blank" href="http://weibo.cn/375584554">北国飘雪</a> <?php _ex('support' , 'Credits'); ?>
-		<br><?php _e('E-pal'); ?> <a target="_blank" href="http://weibo.com/u/1766730601">zsm1703</a><?php _ex(', ' , 'Punctuation'); ?><a target="_blank" href="http://weibo.com/u/2175594103">Naville</a><?php _ex(', ' , 'Punctuation'); ?><a target="_blank" href="http://weibo.com/u/1931192555">Q某某某某</a><?php _ex(', ' , 'Punctuation'); ?><a target="_blank" href="http://weibo.com/u/3254325910">摇滚米饭_</a>
+		<br><?php _e('Touch Sprite Team'); ?> Z<?php _ex(', ' , 'Punctuation'); ?>F<?php _ex(', ' , 'Punctuation'); ?>K<?php _ex(', ' , 'Punctuation'); ?><?php _e('WeiPhone'); ?> <a target="_blank" href="http://weibo.cn/375584554">北国飘雪</a> <?php _ex('support' , 'Credits'); ?>
+		<br><?php _e('E-pal'); ?> <a target="_blank" href="http://weibo.com/u/1766730601">zsm1703</a><?php _ex(', ' , 'Punctuation'); ?><a target="_blank" href="http://weibo.com/u/2175594103">Naville</a><?php _ex(', ' , 'Punctuation'); ?><a target="_blank" href="http://weibo.com/u/1931192555">Q某某某某</a><?php _ex(', ' , 'Punctuation'); ?><a target="_blank" href="http://weibo.com/u/3254325910">摇滚米饭_</a><?php _ex(', ' , 'Punctuation'); ?>
 		<br><?php _e('WeiPhone Test Group'); ?> <a target="_blank" href="http://weibo.com/u/1675423275">Sunbelife</a><?php _ex(', ' , 'Punctuation'); ?><?php _e('WeiPhone Technology Group'); ?> <a target="_blank" href="http://weibo.cn/nivalxer">NivalXer</a><?php _ex(', ' , 'Punctuation'); ?><a target="_blank" href="http://weibo.com/u/1417725530">ioshack</a> <?php _e('provide viewpoints'); ?>
 		<br><?php _e('WeiPhone Technology Group'); ?> <a target="_blank" href="http://weibo.com/u/2004244347">autopear</a><?php _e('\'s articles: '); ?><a target="_blank" href="http://bbs.feng.com/read-htm-tid-669283.html">从零开始搭建 Cydia™ 软件源，制作 Debian 安装包</a>
-		<br><?php _e('Also, and the father of the Cydia™'); ?> <a target="_blank" href="http://www.saurik.com/">Saurik</a><?php _e('\'s articles: '); ?><a target="_blank" href="http://www.saurik.com/id/7">How to host a Cydia™ Repository</a>
+		<br><?php _e('Also, the father of the Cydia™'); ?> <a target="_blank" href="http://www.saurik.com/">Saurik</a><?php _e('\'s articles: '); ?><a target="_blank" href="http://www.saurik.com/id/7">How to host a Cydia™ Repository</a>
 	</blockquote>
 	<br/>
 	<p><?php _e('Before getting started, you will need to know the following items before proceeding.'); ?></p>
@@ -73,9 +73,9 @@ switch($step) {
 			<p class="step"><a href="setup-config.php?<?php echo $step_language; ?>" class="button"><?php _e('Can&#8217;t start!'); ?></a></p>
 	<?php } else { ?>
 			<p class="step"><a href="setup-config.php?step=1&amp;<?php echo $step_language; ?>" class="button"><?php _e('Let&#8217;s go!'); ?></a></p>
-	<?php }
-		
-		break;
+	<?php } ?>
+			<div align="center"><small>Copyright&copy; 2013–<?php echo date('Y'); ?> <strong>i_82</strong> &amp; <strong>Hintay</strong>. All rights reserved.</small></div>
+	<?PHP break;
 
 	case 1:
 		display_header($notice);

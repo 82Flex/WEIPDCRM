@@ -1,15 +1,15 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: DCRM Manager\n"
-"POT-Creation-Date: 2015-04-02 15:10+0800\n"
-"PO-Revision-Date: 2015-04-02 15:10+0800\n"
+"POT-Creation-Date: 2015-05-16 22:15+0800\n"
+"PO-Revision-Date: 2015-05-16 22:15+0800\n"
 "Last-Translator: Hintay <hintay@me.com>\n"
 "Language-Team: Hintay <hintay@me.com>\n"
 "Language: zh_CN\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 1.7.5\n"
+"X-Generator: Poedit 1.7.6\n"
 "X-Poedit-Basepath: ../../\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Poedit-KeywordsList: __;_e;_n:1,2;_x:1,2c;_ex:1,2c;_nx:4c,1,2;esc_attr__;"
@@ -45,8 +45,8 @@ msgstr "主程序："
 msgid "WeiPhone Test Group"
 msgstr "威锋网测试组"
 
-#: manage/about.php:37 manage/about.php:39 manage/about.php:42
-#: manage/about.php:43 manage/about.php:48 manage/about.php:49
+#: manage/about.php:37 manage/about.php:41 manage/about.php:42
+#: manage/about.php:43 manage/about.php:49 manage/about.php:50
 msgctxt "Punctuation"
 msgid ", "
 msgstr "、"
@@ -62,6 +62,10 @@ msgstr "界面风格："
 #: manage/about.php:40
 msgid "Credits"
 msgstr "特别感谢"
+
+#: manage/about.php:41
+msgid "Touch Sprite Team"
+msgstr "触动精灵团队"
 
 #: manage/about.php:41
 msgid "WeiPhone"
@@ -89,8 +93,8 @@ msgid "'s articles: "
 msgstr " 所撰写的："
 
 #: manage/about.php:45
-msgid "Also, and the father of the Cydia™"
-msgstr "当然，还有 Cydia™ 之父"
+msgid "Also, the father of the Cydia™"
+msgstr "以及 Cydia™ 之父"
 
 #: manage/about.php:46
 msgid "Mobile Home Page Style From Saurik IT."
@@ -100,11 +104,11 @@ msgstr "移动版首页样式来自 Saurik IT."
 msgid "Translator"
 msgstr "翻译人员"
 
-#: manage/about.php:52
+#: manage/about.php:53
 msgid "Copyright"
 msgstr "版权所有"
 
-#: manage/about.php:53
+#: manage/about.php:54
 msgid ""
 "This program is free software, you can redistribute it and/or modify it "
 "under the terms of the <a href=\"http://www.gnu.org/licenses\">GNU General "
@@ -152,7 +156,7 @@ msgstr "写入 Packages.gz 文件："
 msgid "Write to the Packages.bz2 file: "
 msgstr "写入 Packages.bz2 文件："
 
-#: manage/build.php:129 manage/header.php:138
+#: manage/build.php:129 manage/header.php:137
 msgid "Rebuild the list"
 msgstr "刷新列表"
 
@@ -178,7 +182,7 @@ msgid "File does not exist."
 msgstr "文件不存在。"
 
 #: manage/center.php:32 manage/center.php:71 manage/center.php:172
-#: manage/header.php:48
+#: manage/header.php:47
 msgid "Manage Packages"
 msgstr "管理软件包"
 
@@ -203,7 +207,7 @@ msgid "Identifier"
 msgstr "标识符"
 
 #: manage/center.php:50 manage/center.php:98 manage/center.php:210
-#: manage/edit.php:56 manage/manage.php:54 manage/sections.php:61
+#: manage/edit.php:56 manage/manage.php:54 manage/sections.php:62
 msgid "Name"
 msgstr "名称"
 
@@ -293,12 +297,13 @@ msgstr "隐藏软件包"
 msgid "Display Package"
 msgstr "显示软件包"
 
-#: manage/edit.php:29 manage/edit.php:33 manage/udid.php:222
+#: manage/edit.php:29 manage/edit.php:33 manage/sections.php:104
+#: manage/sections.php:108 manage/sections.php:113 manage/udid.php:222
 #: manage/udid.php:226 manage/udid.php:231
 msgid "Illegal request!"
 msgstr "非法请求！"
 
-#: manage/edit.php:44 manage/header.php:174
+#: manage/edit.php:44 manage/header.php:173
 msgid "General Editing"
 msgstr "常规编辑"
 
@@ -418,11 +423,12 @@ msgstr "立即写入"
 #: manage/edit.php:237 manage/edit.php:291 manage/import.php:264
 #: manage/manage.php:116 manage/manage.php:124 manage/output.php:148
 #: manage/release.php:115 manage/release.php:117 manage/release.php:120
-#: manage/settings.php:697 manage/settings.php:737 manage/stats.php:97
+#: manage/sections.php:311 manage/settings.php:697 manage/settings.php:738
+#: manage/stats.php:97
 msgid "Back"
 msgstr "返回"
 
-#: manage/edit.php:245 manage/header.php:175
+#: manage/edit.php:245 manage/header.php:174
 msgid "Advance Editing"
 msgstr "高级编辑"
 
@@ -436,7 +442,7 @@ msgctxt "Advance Editing"
 msgid "Content"
 msgstr "修改内容"
 
-#: manage/edit.php:304 manage/edit.php:396 manage/udid.php:388
+#: manage/edit.php:304 manage/edit.php:397 manage/udid.php:388
 #: manage/view.php:118
 msgid "Binding UDID"
 msgstr "绑定UDID"
@@ -485,58 +491,58 @@ msgstr "向右缩进"
 msgid "Decrease indent"
 msgstr "向左缩进"
 
-#: manage/edit.php:375
+#: manage/edit.php:376
 msgid "Data loading"
 msgstr "数据加载中"
 
-#: manage/edit.php:385
+#: manage/edit.php:386
 msgid "Database Error"
 msgstr "数据库错误"
 
-#: manage/header.php:38 manage/upload.php:86 manage/upload.php:151
+#: manage/header.php:37 manage/upload.php:86 manage/upload.php:151
 msgid "Upload Packages"
 msgstr "上传软件包"
 
-#: manage/header.php:43 manage/manage.php:30 manage/manage.php:76
+#: manage/header.php:42 manage/manage.php:30 manage/manage.php:76
 msgid "Import Packages"
 msgstr "导入软件包"
 
-#: manage/header.php:53 manage/udid.php:89 manage/udid.php:126
+#: manage/header.php:52 manage/udid.php:89 manage/udid.php:126
 #: manage/udid.php:180 manage/udid.php:236 manage/udid.php:329
 #: manage/udid.php:386 manage/udid.php:395
 msgid "Manage UDID"
 msgstr "管理UDID"
 
-#: manage/header.php:62 manage/sections.php:36 manage/sections.php:98
+#: manage/header.php:61 manage/sections.php:36 manage/sections.php:118
 msgid "Manage Sections"
 msgstr "分类管理"
 
-#: manage/header.php:67
+#: manage/header.php:66
 msgid "Manage Repository"
 msgstr "源信息设置"
 
-#: manage/header.php:76 manage/stats.php:30
+#: manage/header.php:75 manage/stats.php:30
 msgid "Running Status"
 msgstr "运行状态"
 
-#: manage/header.php:81
+#: manage/header.php:80
 msgid "About"
 msgstr "关于"
 
-#: manage/header.php:91
+#: manage/header.php:90
 msgid "Repository Manager"
 msgstr "源管理系统"
 
-#: manage/header.php:139
+#: manage/header.php:138
 msgctxt "Header"
 msgid "Preferences"
 msgstr "设置"
 
-#: manage/header.php:140
+#: manage/header.php:139
 msgid "Logout"
 msgstr "注销"
 
-#: manage/header.php:173 manage/view.php:54
+#: manage/header.php:172 manage/view.php:54
 msgid "View Details"
 msgstr "查看详情"
 
@@ -658,77 +664,76 @@ msgstr "直接替换"
 msgid "Add New"
 msgstr "新增条目"
 
-#: manage/import.php:278 manage/manage.php:105 manage/sections.php:233
-#: manage/udid.php:309 manage/udid.php:391 manage/udid.php:400
+#: manage/import.php:278 manage/manage.php:105 manage/sections.php:287
+#: manage/sections.php:305 manage/udid.php:309 manage/udid.php:391
+#: manage/udid.php:400
 msgid "Cancel"
 msgstr "取消"
 
-#: manage/login.php:126 manage/login.php:171 manage/login3.php:119
-#: manage/login3.php:151
+#: manage/login.php:126 manage/login.php:171
 msgid "Login"
 msgstr "登录"
 
-#: manage/login.php:190 manage/login3.php:163
+#: manage/login.php:190
 msgctxt "language"
 msgid "Select language"
 msgstr "选择语言"
 
-#: manage/login.php:201 manage/login3.php:174 manage/settings.php:76
-#: system/languages/l10n.php:759
+#: manage/login.php:201 manage/settings.php:76 system/languages/l10n.php:759
 msgctxt "language"
 msgid "English"
 msgstr "英语"
 
-#: manage/login.php:219 manage/login3.php:190 manage/settings.php:88
+#: manage/login.php:219 manage/settings.php:88
 msgid "Username"
 msgstr "用户名"
 
-#: manage/login.php:219 manage/login3.php:190
+#: manage/login.php:219
 msgid "Please fill in your username"
 msgstr "请填写您的用户名"
 
-#: manage/login.php:223 manage/login3.php:191
+#: manage/login.php:223
 msgid "Password"
 msgstr "密码"
 
-#: manage/login.php:223 manage/login3.php:191
+#: manage/login.php:223
 msgid "Please fill in your password"
 msgstr "请填写您的密码"
 
-#: manage/login.php:228 manage/login3.php:192
+#: manage/login.php:228
 msgid "Verify Code"
 msgstr "验证码"
 
-#: manage/login.php:228 manage/login3.php:192
+#: manage/login.php:228
 msgid "Please fill in the verify code"
 msgstr "请填写验证码"
 
-#: manage/login.php:244 manage/login3.php:143
+#: manage/login.php:244
 msgid "Please input your username and password!"
 msgstr "请填写用户名和密码！"
 
-#: manage/login.php:246 manage/login3.php:145
+#: manage/login.php:246
 msgid "Unknown username or bad password!"
 msgstr "用户名或密码错误！"
 
-#: manage/login.php:248 manage/login3.php:147
+#: manage/login.php:248
 msgid "Bear!"
 msgstr "熊出没注意！"
 
-#: manage/login.php:250 manage/login3.php:149
+#: manage/login.php:250
 msgid "Verification code error!"
 msgstr "验证码错误！"
 
-#: manage/login.php:258 manage/login3.php:194
+#: manage/login.php:258
 msgctxt "Buttom"
 msgid "Login"
 msgstr "立即登录"
 
-#: manage/login.php:268 manage/login3.php:201
+#: manage/login.php:268
 msgid "Error"
 msgstr "错误"
 
-#: manage/login.php:269 manage/login3.php:202
+#: manage/login.php:269
 #, php-format
 msgid ""
 "Your login wrong too many times , close the session or wait %s minutes and "
@@ -765,11 +770,11 @@ msgstr "文件名"
 msgid "Target ID"
 msgstr "目标编号"
 
-#: manage/manage.php:96 manage/sections.php:121 manage/udid.php:274
+#: manage/manage.php:96 manage/sections.php:154 manage/udid.php:274
 msgid "Submit"
 msgstr "提交"
 
-#: manage/manage.php:103 manage/sections.php:231
+#: manage/manage.php:103 manage/sections.php:285
 #, php-format
 msgid "Are you sure delete: %s ?"
 msgstr "您确定要删除：%s？"
@@ -778,8 +783,9 @@ msgstr "您确定要删除：%s？"
 msgid "You will not be able to undo this operation!"
 msgstr "该操作无法撤销！"
 
-#: manage/manage.php:104 manage/sections.php:232 manage/udid.php:301
-#: manage/udid.php:390 manage/udid.php:399 manage/view.php:106
+#: manage/manage.php:104 manage/sections.php:286 manage/sections.php:304
+#: manage/udid.php:301 manage/udid.php:390 manage/udid.php:399
+#: manage/view.php:106
 msgid "Confirm"
 msgstr "确定"
 
@@ -870,7 +876,7 @@ msgstr "源图标"
 msgid "Allowed upload format: png, save as %s in root directory."
 msgstr "允许上传的格式：png，保存为根目录 %s"
 
-#: manage/release.php:115 manage/sections.php:141
+#: manage/release.php:115 manage/sections.php:180
 msgid "Upload failed, please check the file permissions."
 msgstr "上传失败，请检查文件权限。"
 
@@ -883,87 +889,128 @@ msgid ""
 "Repository settings save complete, rebuild the list to apply the changes."
 msgstr "源信息设置修改完成，刷新列表以应用更改。"
 
-#: manage/sections.php:38 manage/sections.php:100
+#: manage/sections.php:38 manage/sections.php:120
 msgid "Sections List"
 msgstr "分类列表"
 
-#: manage/sections.php:38 manage/sections.php:100
+#: manage/sections.php:38 manage/sections.php:120
 msgid "Add Section"
 msgstr "添加分类"
 
-#: manage/sections.php:38 manage/sections.php:100
+#: manage/sections.php:38 manage/sections.php:120
 msgid "Create Icon Package"
 msgstr "生成图标包"
 
-#: manage/sections.php:62
+#: manage/sections.php:61
+msgid "Edit"
+msgstr "编辑"
+
+#: manage/sections.php:63
 msgid "Icon"
 msgstr "图标"
 
-#: manage/sections.php:63
+#: manage/sections.php:64
 msgid "Last Change"
 msgstr "最后修改"
 
-#: manage/sections.php:78
+#: manage/sections.php:72
+msgid "Click to view packages in this section."
+msgstr "点击查看该分类下的软件包"
+
+#: manage/sections.php:80
 msgid "No Icon"
 msgstr "无图标"
 
-#: manage/sections.php:104
+#: manage/sections.php:120
+msgid "Edit Section"
+msgstr "编辑分类"
+
+#: manage/sections.php:124
 msgid "Section Name"
 msgstr "分类名称"
 
-#: manage/sections.php:112
+#: manage/sections.php:131
 msgid "Section Icon"
 msgstr "分类图标"
 
-#: manage/sections.php:115
+#: manage/sections.php:138
+#, php-format
+msgid "The current icon is %s."
+msgstr "当前图标为 %s"
+
+#: manage/sections.php:140
+#, php-format
+msgid "You can click <a href=\"%s\">Here</a> to delete current icon."
+msgstr "您可以点击 <a href=\"%s\">这里</a> 删除当前图标"
+
+#: manage/sections.php:143
+msgid "There are currently no icon."
+msgstr "当前无图标"
+
+#: manage/sections.php:158 manage/upload.php:106 manage/upload.php:171
+msgid "Tips"
+msgstr "操作提示"
+
+#: manage/sections.php:161
 #, php-format
 msgid "Allowed upload format: png, save in %s directory of root directory."
-msgstr "允许上传的格式：png，保存到根目录的 %s 目录下"
+msgstr "允许上传的格式：png，保存到根目录的 %s 目录下。"
 
-#: manage/sections.php:150
+#: manage/sections.php:162
+msgid ""
+"If you change the section name, you may need to change section option in "
+"package infomation for many packages."
+msgstr "如果更改分类名称，您可能需要修改部分软件包的分类选项。"
+
+#: manage/sections.php:201
 msgid "You can add a maximum of 50 sections!"
 msgstr "您最多只能添加 50 个分类！"
 
-#: manage/sections.php:161
+#: manage/sections.php:212
 #, php-format
 msgid "Are you sure want to create the %s icon package?"
-msgstr "您确定要生成 %s 图标包 吗？"
+msgstr "您确定要生成 %s 的图标包吗？"
 
-#: manage/sections.php:161
+#: manage/sections.php:212
 msgid "Create Now"
 msgstr "立即生成"
 
-#: manage/sections.php:163
+#: manage/sections.php:215
 msgid ""
 "You have not filled in SEO and autofill information, unable to use this "
 "function!"
 msgstr "您尚未填写站点SEO以及自动填充信息，无法使用该功能！"
 
-#: manage/sections.php:175
+#: manage/sections.php:224
 msgid ""
 "Cannot find any existing icon of section, please add an icon first, then "
 "create icon package."
 msgstr "找不到存在图标的分类条目，请先添加一个图标，再执行生成。"
 
-#: manage/sections.php:186
+#: manage/sections.php:235
 msgid "Cannot create temporary directory, please check the file permissions!"
 msgstr "临时目录创建失败，请检查文件权限！"
 
-#: manage/sections.php:193
+#: manage/sections.php:242
 msgid "Icon package template copy failed, please check the file permissions!"
 msgstr "图标包模板复制失败，请检查文件权限！"
 
-#: manage/sections.php:214
+#: manage/sections.php:268
 msgid "Icon package template rewriting failed!"
 msgstr "图标包模板改写失败！"
 
-#: manage/sections.php:219
+#: manage/sections.php:273
 msgid "Icon package template repositioning failed!"
 msgstr "图标包重定位失败！"
 
-#: manage/sections.php:226
+#: manage/sections.php:280
 msgid "Icon package template missing, please upload DCRM Pro again!"
 msgstr "图标包模板丢失，请重新安装 DCRM 专业版！"
+
+#: manage/sections.php:303
+#, php-format
+msgid "Are you sure delete the section icon for %s ?"
+msgstr "您真的想要删除分类 %s 的图标吗？"
 
 #: manage/settings.php:38
 msgid "Preferences"
@@ -1014,7 +1061,7 @@ msgstr "重复新密码"
 msgid "Type your new password again."
 msgstr "再输入一遍新密码。"
 
-#: manage/settings.php:108 manage/settings.php:753
+#: manage/settings.php:108 manage/settings.php:754
 msgid "Strength indicator"
 msgstr "强度评估"
 
@@ -1479,31 +1526,31 @@ msgstr "源地址不得设置为空！"
 msgid "There is a same username!"
 msgstr "存在相同的用户名！"
 
-#: manage/settings.php:737
+#: manage/settings.php:738
 msgid "Amendments to the success of settings!"
 msgstr "设置修改成功！"
 
-#: manage/settings.php:753
+#: manage/settings.php:754
 msgctxt "Password"
 msgid "Short"
 msgstr "极弱"
 
-#: manage/settings.php:753
+#: manage/settings.php:754
 msgctxt "Password"
 msgid "Bad"
 msgstr "弱"
 
-#: manage/settings.php:753
+#: manage/settings.php:754
 msgctxt "Password"
 msgid "Good"
 msgstr "中等"
 
-#: manage/settings.php:753
+#: manage/settings.php:754
 msgctxt "Password"
 msgid "Strong"
 msgstr "强"
 
-#: manage/settings.php:753
+#: manage/settings.php:754
 msgctxt "Password"
 msgid "Mismatch"
 msgstr "不匹配"
@@ -1724,10 +1771,6 @@ msgstr "上传"
 msgctxt "Upload"
 msgid "Reset"
 msgstr "重置上传队列"
-
-#: manage/upload.php:106 manage/upload.php:171
-msgid "Tips"
-msgstr "操作提示"
 
 #: manage/upload.php:108 manage/upload.php:173
 msgid "Allowed data type: "
@@ -2558,6 +2601,9 @@ msgctxt "language"
 msgid "Zulu"
 msgstr "祖鲁语"
 
+#~ msgid "Also, and the father of the Cydia™"
+#~ msgstr "当然，还有 Cydia™ 之父"
+
 #~ msgid "Older Changelogs"
 #~ msgstr "旧版更新日志"
 
@@ -2581,9 +2627,6 @@ msgstr "祖鲁语"
 
 #~ msgid "General Editor"
 #~ msgstr "常规编辑"
-
-#~ msgid "Edit"
-#~ msgstr "编辑"
 
 #~ msgid "Settings"
 #~ msgstr "设置"

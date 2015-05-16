@@ -44,13 +44,13 @@ require_once('function.php');
 
 $header_title = __( 'Installer' );
 
-//检查数据库配置文件
+// 检查数据库配置文件
 if( !file_exists(CONF_PATH.'connect.inc.php') ){
 	header('location: setup-config.php?'.$step_language);
 	exit();
 }
 
-//检查环境
+// 检查环境
 $disabled = true;
 $env_vars = check_env($disabled);
 $dir_file_vars = check_dir($disabled);
@@ -202,16 +202,17 @@ if(isset($_GET['redirect']) && $_GET['redirect'] ){
 		
 		if ( $error === false ) {
 			dcrm_query("SET FOREIGN_KEY_CHECKS=0");
-			
+			dcrm_query("SET character_set_connection=utf8, character_set_results=utf8, character_set_client=binary");
+
 			dcrm_query("CREATE DATABASE IF NOT EXISTS `".DCRM_CON_DATABASE."`");
-			
+
 			$result = mysql_select_db(DCRM_CON_DATABASE);
 			if (!$result) {
 				$inst_alert = mysql_error();
 				echo $inst_alert; 
 				exit();
 			}
-			
+
 			dcrm_query("DROP TABLE IF EXISTS `".DCRM_CON_PREFIX."Packages`");
 			dcrm_query("CREATE TABLE `".DCRM_CON_PREFIX."Packages` (
 			 `ID` int(8) NOT NULL AUTO_INCREMENT,
@@ -251,12 +252,17 @@ if(isset($_GET['redirect']) && $_GET['redirect'] ){
 			 `Stat` int(1) NOT NULL,
 			 `Tag` varchar(512) NOT NULL,
 			 `UUID` varchar(512) NOT NULL,
+			 `Price` CHAR( 8 ) NOT NULL,
+			 `Purchase_Link` VARCHAR( 512 ) NOT NULL,
+			 `Purchase_Link_Stat` INT NOT NULL DEFAULT '0',
+			 `Changelog` varchar( 512 ) NOT NULL,
+			 `Changelog_Older_Shows` INT NOT NULL DEFAULT '0',
 			 `TimeStamp` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
 			 `DownloadTimes` int(8) NOT NULL,
 			 `CreateStamp` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
 			 PRIMARY KEY (`ID`)
 			) ENGINE=MyISAM AUTO_INCREMENT=0 DEFAULT CHARSET=utf8");
-	
+
 			dcrm_query("DROP TABLE IF EXISTS `".DCRM_CON_PREFIX."Sections`");
 			dcrm_query("CREATE TABLE `".DCRM_CON_PREFIX."Sections` (
 			 `ID` int(8) NOT NULL AUTO_INCREMENT,
@@ -265,7 +271,7 @@ if(isset($_GET['redirect']) && $_GET['redirect'] ){
 			 `TimeStamp` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
 			 PRIMARY KEY (`ID`)
 			) ENGINE=MyISAM AUTO_INCREMENT=0 DEFAULT CHARSET=utf8");
-	
+
 			dcrm_query("DROP TABLE IF EXISTS `".DCRM_CON_PREFIX."ScreenShots`");
 			dcrm_query("CREATE TABLE `".DCRM_CON_PREFIX."ScreenShots` (
 			 `ID` int(8) NOT NULL AUTO_INCREMENT,
@@ -273,7 +279,7 @@ if(isset($_GET['redirect']) && $_GET['redirect'] ){
 			 `Image` varchar(512) NOT NULL,
 			 PRIMARY KEY (`ID`)
 			) ENGINE=MyISAM AUTO_INCREMENT=0 DEFAULT CHARSET=utf8");
-	
+
 			dcrm_query("DROP TABLE IF EXISTS `".DCRM_CON_PREFIX."Reports`");
 			dcrm_query("CREATE TABLE `".DCRM_CON_PREFIX."Reports` (
 			 `ID` int(8) NOT NULL AUTO_INCREMENT,
@@ -286,7 +292,7 @@ if(isset($_GET['redirect']) && $_GET['redirect'] ){
 			 `TimeStamp` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
 			 PRIMARY KEY (`ID`)
 			) ENGINE=MyISAM AUTO_INCREMENT=0 DEFAULT CHARSET=utf8");
-	
+
 			dcrm_query("DROP TABLE IF EXISTS `".DCRM_CON_PREFIX."Users`");
 			dcrm_query("CREATE TABLE `".DCRM_CON_PREFIX."Users` (
 			 `ID` int(8) NOT NULL AUTO_INCREMENT PRIMARY KEY,
@@ -295,7 +301,33 @@ if(isset($_GET['redirect']) && $_GET['redirect'] ){
 			 `LastLoginTime` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
 			 `Power` int(8) NOT NULL
 			) ENGINE=MyISAM AUTO_INCREMENT=0 DEFAULT CHARSET=utf8");
-	
+
+			dcrm_query("DROP TABLE IF EXISTS `".DCRM_CON_PREFIX."UDID`");
+			dcrm_query('CREATE TABLE `'.DCRM_CON_PREFIX.'UDID` (
+				`ID` int(8) NOT NULL AUTO_INCREMENT,
+				`UDID` varchar(128) NOT NULL,
+				`Level` int(8) NOT NULL DEFAULT \'0\',
+				`Packages` text NOT NULL,
+				`Comment` varchar(512) NOT NULL,
+				`TimeStamp` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+				`Downloads` int(8) NOT NULL,
+				`IP` bigint NOT NULL,
+				`CreateStamp` timestamp NOT NULL DEFAULT \'0000-00-00 00:00:00\',
+				PRIMARY KEY (`ID`)
+				) ENGINE=MyISAM AUTO_INCREMENT=0 DEFAULT CHARSET=utf8');
+
+			dcrm_query("DROP TABLE IF EXISTS `".DCRM_CON_PREFIX."Options`");
+			dcrm_query('CREATE TABLE `'.DCRM_CON_PREFIX.'Options` (
+				`option_id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT,
+				`option_name` varchar(64) NOT NULL,
+				`option_value` longtext NOT NULL,
+				`autoload` varchar(20) NOT NULL DEFAULT \'yes\',
+				PRIMARY KEY (`option_id`)
+				) ENGINE=MyISAM AUTO_INCREMENT=0 DEFAULT CHARSET=utf8');
+
+			dcrm_query("INSERT INTO `".DCRM_CON_PREFIX."Options` (`option_name`, `option_value`) VALUES ('udid_level', '" . serialize(array( __('Guest'), '')) . "') ON DUPLICATE KEY UPDATE `option_name` = VALUES(`option_name`), `option_value` = VALUES(`option_value`)");
+			dcrm_query("INSERT INTO `".DCRM_CON_PREFIX."Options` (`option_name`, `option_value`) VALUES ('autofill_depiction', '2') ON DUPLICATE KEY UPDATE `option_name` = VALUES(`option_name`), `option_value` = VALUES(`option_value`)");
+
 			if ( empty($admin_password) ) {
 				$admin_password = dcrm_generate_password( 12, false );
 				$password_message = ('<strong><em>Note that password</em></strong> carefully! It is a <em>random</em> password that was generated just for you.');
