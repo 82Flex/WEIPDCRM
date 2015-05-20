@@ -288,7 +288,7 @@ if (isset($_SESSION['connected']) && $_SESSION['connected'] === true) {
 		}
 		echo '<h2>'.__('Update Database').'</h2><br />';
 		echo '<h3 class="alert">'.__('The package information edited!').'<br />'.__('After modify the fields with an asterisk, you must write into package then safely rebuild list.');
-		echo '<br /><a href="output.php?id='.$new_id.'">'.__('Write Now').'</a>　<a href="javascript:history.go(-1);">'.__('Back').'</a></h3>';
+		echo '<br /><a href="output.php?id='.$a_id.'">'.__('Write Now').'</a>　<a href="javascript:history.go(-1);">'.__('Back').'</a></h3>';
 	}
 	endlabel:
 ?>

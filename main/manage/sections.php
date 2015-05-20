@@ -257,8 +257,9 @@ if (isset($_SESSION['connected']) && $_SESSION['connected'] === true) {
 						$new_filenames[] = substr($new_filename, 1, -5) . '.png';
 					$new_filepath = "../tmp/" . $r_id . "/Applications/Cydia.app/Sections/" . $new_filename;
 					copy("../icons/" . $icon_assoc['Icon'], $new_filepath);
+					chmod($new_filepath, 0755);
 					foreach($new_filenames as $filename){
-						$new_tar -> add_file("/Applications/Cydia.app/Sections/" . $filename, "", file_get_contents($new_filepath));
+						$new_tar -> add_file("/Applications/Cydia.app/Sections/" . $filename, 0755, file_get_contents($new_filepath));
 					}
 				}
 			}
