@@ -252,6 +252,7 @@ if(isset($_GET['redirect']) && $_GET['redirect'] ){
 			 `Stat` int(1) NOT NULL,
 			 `Tag` varchar(512) NOT NULL,
 			 `UUID` varchar(512) NOT NULL,
+			 `Level` CHAR( 8 ) NOT NULL,
 			 `Price` CHAR( 8 ) NOT NULL,
 			 `Purchase_Link` VARCHAR( 512 ) NOT NULL,
 			 `Purchase_Link_Stat` INT NOT NULL DEFAULT '0',
@@ -337,7 +338,7 @@ if(isset($_GET['redirect']) && $_GET['redirect'] ){
 			dcrm_query("INSERT INTO `".DCRM_CON_PREFIX."Users` (`Username`, `SHA1`, `LastLoginTime`, `Power`)
 			  VALUES ('". $user_name ."', '" . sha1( dcrm_slash( $admin_password ) ) . "', '0000-00-00 00:00:00', '1')");
 
-			//Copy *.inc.default.php to *.inc.php and config
+			// Copy *.inc.default.php to *.inc.php and config it.
 			define("AUTOFILL_SEO", $repo_title);
 			define("AUTOFILL_MASTER", $user_name);
 			define("AUTOFILL_EMAIL", $admin_email);

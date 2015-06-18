@@ -52,3 +52,9 @@ if($current_version == '1.6.15.3.29'){
 if($current_version == '1.6.15.4.2'){
 	update_final('1.6.15.5.16');
 }
+if($current_version == '1.6.15.5.16'){
+	$exist = DB::fetch_first("Describe `".DCRM_CON_PREFIX."Packages` `Level`");
+	if(empty($exist))
+		DB::query("ALTER TABLE `".DCRM_CON_PREFIX."Packages` ADD `Level` INT NOT NULL DEFAULT '0' AFTER `UUID`");
+	update_final('1.6.15.6.18');
+}
