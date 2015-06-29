@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: DCRM Manager\n"
-"POT-Creation-Date: 2015-05-16 22:14+0800\n"
-"PO-Revision-Date: 2015-05-16 22:15+0800\n"
+"POT-Creation-Date: 2015-06-29 23:44+0800\n"
+"PO-Revision-Date: 2015-06-29 23:44+0800\n"
 "Last-Translator: Hintay <hintay@me.com>\n"
 "Language-Team: shiraq\n"
 "Language: ug_CN\n"
@@ -432,7 +432,7 @@ msgstr "دەرھال يېزىش"
 #: manage/edit.php:237 manage/edit.php:291 manage/import.php:264
 #: manage/manage.php:116 manage/manage.php:124 manage/output.php:148
 #: manage/release.php:115 manage/release.php:117 manage/release.php:120
-#: manage/sections.php:311 manage/settings.php:697 manage/settings.php:738
+#: manage/sections.php:312 manage/settings.php:697 manage/settings.php:738
 #: manage/stats.php:97
 msgid "Back"
 msgstr "قايتىش"
@@ -674,8 +674,8 @@ msgstr "بىۋاستە ئالماشتۇرۇش"
 msgid "Add New"
 msgstr "تارمەق قوشۇش"
 
-#: manage/import.php:278 manage/manage.php:105 manage/sections.php:287
-#: manage/sections.php:305 manage/udid.php:309 manage/udid.php:391
+#: manage/import.php:278 manage/manage.php:105 manage/sections.php:288
+#: manage/sections.php:306 manage/udid.php:309 manage/udid.php:391
 #: manage/udid.php:400
 msgid "Cancel"
 msgstr "بىكارقىلىش"
@@ -786,7 +786,7 @@ msgstr "نىشان نومۇرى "
 msgid "Submit"
 msgstr "تاپشۇرۇش"
 
-#: manage/manage.php:103 manage/sections.php:285
+#: manage/manage.php:103 manage/sections.php:286
 #, php-format
 msgid "Are you sure delete: %s ?"
 msgstr "  %s : نى ئۆچۈرۈشنى موقۇملاشتۇرامسىز؟"
@@ -795,7 +795,7 @@ msgstr "  %s : نى ئۆچۈرۈشنى موقۇملاشتۇرامسىز؟"
 msgid "You will not be able to undo this operation!"
 msgstr "بۇ مەشغۇلاتنى قايتۇرۋالغىلى بولمايدۇ"
 
-#: manage/manage.php:104 manage/sections.php:286 manage/sections.php:304
+#: manage/manage.php:104 manage/sections.php:287 manage/sections.php:305
 #: manage/udid.php:301 manage/udid.php:390 manage/udid.php:399
 #: manage/view.php:106
 msgid "Confirm"
@@ -1014,21 +1014,21 @@ msgstr "ۋاقىتلىق مۇندەرىجە قۇرۇش مەغلۇب بولدى �
 msgid "Icon package template copy failed, please check the file permissions!"
 msgstr "سىنبەلگە ئۇسلۇبىنى كۆچۈرۈش مەغلۇب بولدى ، ھۆججەت ھوقۇقىنى تەكشۈرۈڭ ! "
 
-#: manage/sections.php:268
+#: manage/sections.php:269
 msgid "Icon package template rewriting failed!"
 msgstr "سىنبەلگە  بولىقى ئۇسلۇبىنى ئۆزگەرتىپ يېزىش مەغلۇب بولدى !"
 
-#: manage/sections.php:273
+#: manage/sections.php:274
 msgid "Icon package template repositioning failed!"
 msgstr "سىنبەلگە بولىقىنى قايتا بېكىتىش مەغلۇب بولدى !"
 
-#: manage/sections.php:280
+#: manage/sections.php:281
 msgid "Icon package template missing, please upload DCRM Pro again!"
 msgstr ""
 "سىن بەلگە بولىقى  ئۇسلۇبى يوق  سىيدىيا مەنبە سۇپىسىننىڭ كەسپىي نۇسخىسىنى "
 "قايتا قاچىلاڭ !"
 
-#: manage/sections.php:303
+#: manage/sections.php:304
 #, php-format
 msgid "Are you sure delete the section icon for %s ?"
 msgstr ""
@@ -1419,11 +1419,11 @@ msgstr "مىكرو بىلوگ ئادرېسى"
 
 #: manage/settings.php:496
 msgid ""
-"Not a valid mobile weibo address. Example: <code>http://m.weibo.com/hintay</"
+"Not a valid mobile weibo address. Example: <code>http://weibo.cn/hintay</"
 "code>"
 msgstr ""
 "ئەسكەرتىش: مىكرو بىلوگ ئادرېسى كۆچمە نۇسخىسىنىڭ ئەمەس ئىكەن توغرا بولغان "
-"يېزىلىشى <code>http://m.weibo.com/hintay</code> "
+"يېزىلىشى <code>http://weibo.cn/hintay</code> "
 
 #: manage/settings.php:497
 msgid "Please input the mobile version homepage."
@@ -2640,6 +2640,13 @@ msgstr "依地文"
 msgctxt "language"
 msgid "Zulu"
 msgstr "祖鲁语"
+
+#~ msgid ""
+#~ "Not a valid mobile weibo address. Example: <code>http://m.weibo.com/"
+#~ "hintay</code>"
+#~ msgstr ""
+#~ "ئەسكەرتىش: مىكرو بىلوگ ئادرېسى كۆچمە نۇسخىسىنىڭ ئەمەس ئىكەن توغرا بولغان "
+#~ "يېزىلىشى <code>http://weibo.cn/hintay</code> "
 
 #~ msgid "Also, and the father of the Cydia™"
 #~ msgstr ""

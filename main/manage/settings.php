@@ -493,7 +493,7 @@ if (isset($_SESSION['connected']) && $_SESSION['connected'] === true) {
 						<div class="control-group">
 							<label class="control-label"><?php _e('Weibo Address');?></label>
 							<div class="controls">
-								<input type="text" name="WEIBO" style="width: 400px;" data-validation-regex-regex="((https?):\/\/)?((m\.weibo\.(cn|com)\/))([a-z0-9_\-\.~]+)*(\/([a-z0-9_\-\.]*)(\?[a-z0-9+_\-\.%=&]*)?)?(#[a-z][a-z0-9_]*)?" data-validation-regex-message="<?php _e('Not a valid mobile weibo address. Example: <code>http://m.weibo.com/hintay</code>'); ?>" value="<?php if(defined("AUTOFILL_WEIBO")){echo(htmlspecialchars(stripslashes(AUTOFILL_WEIBO)));} ?>"/>
+								<input type="text" name="WEIBO" style="width: 400px;" data-validation-regex-regex="((https?):\/\/)?((weibo\.cn\/))([a-z0-9_\-\.~]+)*(\/([a-z0-9_\-\.]*)(\?[a-z0-9+_\-\.%=&]*)?)?(#[a-z][a-z0-9_]*)?" data-validation-regex-message="<?php _e('Not a valid mobile weibo address. Example: <code>http://weibo.cn/hintay</code>'); ?>" value="<?php if(defined("AUTOFILL_WEIBO")){echo(htmlspecialchars(stripslashes(AUTOFILL_WEIBO)));} ?>"/>
 								<p class="help-block"><?php _e('Please input the mobile version homepage.');?></p>
 							</div>
 						</div>

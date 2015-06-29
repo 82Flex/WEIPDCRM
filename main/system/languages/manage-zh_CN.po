@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: DCRM Manager\n"
-"POT-Creation-Date: 2015-05-16 22:15+0800\n"
-"PO-Revision-Date: 2015-05-16 22:15+0800\n"
+"POT-Creation-Date: 2015-06-29 23:43+0800\n"
+"PO-Revision-Date: 2015-06-29 23:44+0800\n"
 "Last-Translator: Hintay <hintay@me.com>\n"
 "Language-Team: Hintay <hintay@me.com>\n"
 "Language: zh_CN\n"
@@ -423,7 +423,7 @@ msgstr "立即写入"
 #: manage/edit.php:237 manage/edit.php:291 manage/import.php:264
 #: manage/manage.php:116 manage/manage.php:124 manage/output.php:148
 #: manage/release.php:115 manage/release.php:117 manage/release.php:120
-#: manage/sections.php:311 manage/settings.php:697 manage/settings.php:738
+#: manage/sections.php:312 manage/settings.php:697 manage/settings.php:738
 #: manage/stats.php:97
 msgid "Back"
 msgstr "返回"
@@ -664,8 +664,8 @@ msgstr "直接替换"
 msgid "Add New"
 msgstr "新增条目"
 
-#: manage/import.php:278 manage/manage.php:105 manage/sections.php:287
-#: manage/sections.php:305 manage/udid.php:309 manage/udid.php:391
+#: manage/import.php:278 manage/manage.php:105 manage/sections.php:288
+#: manage/sections.php:306 manage/udid.php:309 manage/udid.php:391
 #: manage/udid.php:400
 msgid "Cancel"
 msgstr "取消"
@@ -774,7 +774,7 @@ msgstr "目标编号"
 msgid "Submit"
 msgstr "提交"
 
-#: manage/manage.php:103 manage/sections.php:285
+#: manage/manage.php:103 manage/sections.php:286
 #, php-format
 msgid "Are you sure delete: %s ?"
 msgstr "您确定要删除：%s？"
@@ -783,7 +783,7 @@ msgstr "您确定要删除：%s？"
 msgid "You will not be able to undo this operation!"
 msgstr "该操作无法撤销！"
 
-#: manage/manage.php:104 manage/sections.php:286 manage/sections.php:304
+#: manage/manage.php:104 manage/sections.php:287 manage/sections.php:305
 #: manage/udid.php:301 manage/udid.php:390 manage/udid.php:399
 #: manage/view.php:106
 msgid "Confirm"
@@ -995,19 +995,19 @@ msgstr "临时目录创建失败，请检查文件权限！"
 msgid "Icon package template copy failed, please check the file permissions!"
 msgstr "图标包模板复制失败，请检查文件权限！"
 
-#: manage/sections.php:268
+#: manage/sections.php:269
 msgid "Icon package template rewriting failed!"
 msgstr "图标包模板改写失败！"
 
-#: manage/sections.php:273
+#: manage/sections.php:274
 msgid "Icon package template repositioning failed!"
 msgstr "图标包重定位失败！"
 
-#: manage/sections.php:280
+#: manage/sections.php:281
 msgid "Icon package template missing, please upload DCRM Pro again!"
 msgstr "图标包模板丢失，请重新安装 DCRM 专业版！"
 
-#: manage/sections.php:303
+#: manage/sections.php:304
 #, php-format
 msgid "Are you sure delete the section icon for %s ?"
 msgstr "您真的想要删除分类 %s 的图标吗？"
@@ -1387,9 +1387,9 @@ msgstr "微博地址"
 
 #: manage/settings.php:496
 msgid ""
-"Not a valid mobile weibo address. Example: <code>http://m.weibo.com/hintay</"
+"Not a valid mobile weibo address. Example: <code>http://weibo.cn/hintay</"
 "code>"
-msgstr "不是有效的微博手机版地址。示例：<code>http://m.weibo.com/hintay</code>"
+msgstr "不是有效的微博手机版地址。示例：<code>http://weibo.cn/hintay</code>"
 
 #: manage/settings.php:497
 msgid "Please input the mobile version homepage."
@@ -2600,6 +2600,12 @@ msgstr "依地文"
 msgctxt "language"
 msgid "Zulu"
 msgstr "祖鲁语"
+
+#~ msgid ""
+#~ "Not a valid mobile weibo address. Example: <code>http://m.weibo.com/"
+#~ "hintay</code>"
+#~ msgstr ""
+#~ "不是有效的微博手机版地址。示例：<code>http://m.weibo.com/hintay</code>"
 
 #~ msgid "Also, and the father of the Cydia™"
 #~ msgstr "当然，还有 Cydia™ 之父"
