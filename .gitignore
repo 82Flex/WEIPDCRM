@@ -25,3 +25,5 @@ main/icons/*
 !main/icons/default/
 main/upload/*.deb
 main/downloads/*/
+
+main/.idea/*

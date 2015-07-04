@@ -99,6 +99,50 @@ if (isset($_GET['pid'])) {
 		} elseif (isset($_GET['method']) && $_GET['method'] == 'section') {
 			$index = 7;
 			$title = __('Package Category');
+		} elseif (isset($_GET['method']) && $_GET['method'] == 'packages') {
+			$index = 8;
+				$section_query = DB::query("SELECT `Name`, `Icon`, `TimeStamp` FROM `".DCRM_CON_PREFIX."Sections` WHERE `ID` = '".(int)$_GET['pid']."'");
+				if (!$section_query) {exit();}
+				$section_assoc = mysql_fetch_assoc($section_query);
+				if (!$section_assoc) {exit();}
+				$q_name = DB::real_escape_string($section_assoc['Name']);
+				if (isset($_GET['offset']) && !empty($_GET['offset']) && ctype_digit($_GET['offset'])) {
+					$offset = intval($_GET['offset']);
+				} else {
+					$offset = 0;
+				}
+				$package_query = DB::query("SELECT `ID`, `Name`, `Package` FROM `".DCRM_CON_PREFIX."Packages` WHERE (`Stat` = '1' AND `Section` = '".$q_name."') ORDER BY `ID` DESC LIMIT 10 OFFSET ".$offset);
+				while ($package_assoc = mysql_fetch_assoc($package_query)) {
+					if ($isCydia) {
+?>
+				<a href="cydia://package/<?php echo($package_assoc['Package']); ?>" target="_blank">
+<?php
+					} else {
+?>
+				<a href="index.php?pid=<?php echo($package_assoc['ID']); ?>">
+<?php
+					}
+					if (!empty($section_assoc['Icon'])) {
+?>
+					<img class="icon" src="icons/<?php echo($section_assoc['Icon']); ?>">
+<?php
+					} else {
+?>
+					<img class="icon" src="icons/default/unknown.png">
+<?php
+					}
+?>
+					<div>
+						<div>
+							<label>
+								<p><?php echo($package_assoc['Name']); ?></p>
+							</label>
+						</div>
+					</div>
+				</a>
+<?php
+				}
+			exit();
 		} elseif (!isset($_GET['method']) || (isset($_GET['method']) && $_GET['method'] == 'view')) {
 			$index = 1;
 			$title = __('View Package');
@@ -1281,46 +1325,27 @@ if ($index == 0) {
 ?>
 			<label><p><?php echo($section_assoc['Name']); ?></p></label>
 <?php
-				$package_query = DB::query("SELECT `ID`, `Name`, `Package` FROM `".DCRM_CON_PREFIX."Packages` WHERE (`Stat` = '1' AND `Section` = '".DB::real_escape_string($section_assoc['Name'])."') ORDER BY `ID` DESC");
-				$s_num = mysql_affected_rows();
+				$q_name = DB::real_escape_string($section_assoc['Name']);
+				$q_info = DB::query("SELECT count(*) FROM `".DCRM_CON_PREFIX."Packages` WHERE (`Stat` = '1' AND `Section` = '".$q_name."')");
+				$info = mysql_fetch_row($q_info);
+				$s_num = (int)$info[0];
 ?>
 			<block>
 					<p><?php printf( __( '<strong>%s</strong> packages in this section.' ) , $s_num ); ?></p>
 					<p><?php printf( __( 'Create time: <strong>%s</strong>' ) , $section_assoc['TimeStamp'] ); ?></strong></p>
 			</block>
+			<fieldset id="section"></fieldset>
 			<fieldset>
-<?php
-				while ($package_assoc = mysql_fetch_assoc($package_query)) {
-					if ($isCydia) {
-?>
-				<a href="cydia://package/<?php echo($package_assoc['Package']); ?>" target="_blank">
-<?php
-					} else {
-?>
-				<a href="index.php?pid=<?php echo($package_assoc['ID']); ?>">
-<?php
-					}
-					if (!empty($section_assoc['Icon'])) {
-?>
-					<img class="icon" src="icons/<?php echo($section_assoc['Icon']); ?>">
-<?php
-					} else {
-?>
-					<img class="icon" src="icons/default/unknown.png">
-<?php
-					}
-?>
+				<a href="javascript:loadPackages();">
+					<img class="icon" src="icons/default/moreinfo.png" />
 					<div>
 						<div>
 							<label>
-								<p><?php echo($package_assoc['Name']); ?></p>
+								<p><?php _e('More...'); ?></p>
 							</label>
 						</div>
 					</div>
 				</a>
-<?php
-				}
-?>
 			</fieldset>
 <?php
 			}

@@ -1,3 +1,20 @@
+var isCydia = navigator.userAgent.search(/Cydia/);
+var isHistory = window.location.href.search(/nohistory/);
+var isAdv = window.location.href.search(/advertisement/);
+(function($){$.extend({Request:function(m){var sValue=location.search.match(new RegExp("[\?\&]"+m+"=([^\&]*)(\&?)","i"));return sValue?sValue[1]:sValue;},UrlUpdateParams:function(url,name,value){var r=url;if(r!=null&&r!='undefined'&&r!=""){value=encodeURIComponent(value);var reg=new RegExp("(^|)"+name+"=([^&]*)(|$)");var tmp=name+"="+value;if(url.match(reg)!=null){r=url.replace(eval(reg),tmp);}else{if(url.match("[\?]")){r=url+"&"+tmp;}else{r=url+"?"+tmp;}}}return r;}});})(jQuery);
+function loadPackages() {
+	var offset = 0;
+	offset = document.getElementById("section").children.length;
+	$.ajax({
+		type: 'GET',
+		url: '/index.php?pid=' + $.Request('pid') + '&method=packages' + '&offset=' + offset,
+		dataType: 'html',
+		cache: true,
+		success: function (data) {
+			$('#section').append(data);
+		}
+	});
+}
 function setCookie(c_name, value, expiredays) {
 	var exdate = new Date()
 	exdate.setDate(exdate.getDate() + expiredays);
@@ -76,9 +93,6 @@ function show() {
 			document.getElementById("advertisement").style.display = "none";
 	}
 }
-isCydia = navigator.userAgent.search(/Cydia/);
-isHistory = window.location.href.search(/nohistory/);
-isAdv = window.location.href.search(/advertisement/);
 if (isCydia != -1) {
 	document.body.classList.add("cydia");
 } else {
@@ -121,5 +135,8 @@ if (isAdv != -1) {
 }
 if (document.getElementById("scroller")) {
 	new iScroll(document.getElementById("scroller"));
+}
+if (document.getElementById("section")) {
+	loadPackages();
 }
 show();
