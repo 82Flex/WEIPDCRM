@@ -1335,7 +1335,7 @@ if ($index == 0) {
 					<p><?php printf( __( 'Create time: <strong>%s</strong>' ) , $section_assoc['TimeStamp'] ); ?></strong></p>
 			</block>
 			<fieldset id="section"></fieldset>
-			<fieldset>
+			<fieldset id="loadmore">
 				<a href="javascript:loadPackages();">
 					<img class="icon" src="icons/default/moreinfo.png" />
 					<div>
