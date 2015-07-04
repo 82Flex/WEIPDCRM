@@ -213,11 +213,12 @@ if ($isCydia) {
 	<body class="pinstripe">
 		<panel>
 <?php
+$repo_url = base64_decode(DCRM_REPOURL);
 if ($index == 0) {
 	if (!$isCydia) {
 ?>
 			<fieldset>
-				<a href="cydia://sources/add" target="_blank">
+				<a href="cydia://url/https://cydia.saurik.com/api/share#?source=<?php echo($repo_url); ?>" target="_blank">
 				<img class="icon" src="icons/default/cydia.png" />
 					<div>
 						<div>
@@ -232,7 +233,6 @@ if ($index == 0) {
 			</fieldset>
 <?php
 	}
-	$repo_url = base64_decode(DCRM_REPOURL);
 ?>
 			<fieldset>
 				<div>
@@ -553,7 +553,7 @@ if ($index == 0) {
 		if (!$isCydia) {
 ?>
 			<fieldset id="cydialink" style="display: none;">
-				<a href="cydia://package/<?php echo($pkg_assoc['Package']); ?>" target="_blank">
+				<a href="cydia://url/https://cydia.saurik.com/api/share#?source=<?php echo($repo_url); ?>/&package=<?php echo($pkg_assoc['Package']); ?>" target="_blank">
 				<img class="icon" src="icons/default/cydia.png" />
 					<div>
 						<div>
