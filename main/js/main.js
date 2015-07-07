@@ -1,19 +1,19 @@
 var isCydia = navigator.userAgent.search(/Cydia/);
 var isHistory = window.location.href.search(/nohistory/);
 var isAdv = window.location.href.search(/advertisement/);
-(function($){$.extend({Request:function(m){var sValue=location.search.match(new RegExp("[\?\&]"+m+"=([^\&]*)(\&?)","i"));return sValue?sValue[1]:sValue;},UrlUpdateParams:function(url,name,value){var r=url;if(r!=null&&r!='undefined'&&r!=""){value=encodeURIComponent(value);var reg=new RegExp("(^|)"+name+"=([^&]*)(|$)");var tmp=name+"="+value;if(url.match(reg)!=null){r=url.replace(eval(reg),tmp);}else{if(url.match("[\?]")){r=url+"&"+tmp;}else{r=url+"?"+tmp;}}}return r;}});})(jQuery);
 function loadPackages() {
 	var offset = 0;
 	offset = document.getElementById("section").children.length;
 	$.ajax({
 		type: 'GET',
-		url: '/index.php?pid=' + $.Request('pid') + '&method=packages' + '&offset=' + offset,
+		url: '/more/' + $('#loadmore').attr("name") + '/' + offset,
 		dataType: 'html',
 		cache: true,
 		success: function (data) {
-			if (data.length == 0) {
+			if ($(data).length < 10) {
 				$('#loadmore').fadeOut();
-			} else {
+			}
+			if (data.length != 0) {
 				$('#section').append(data);
 			}
 		}
@@ -92,7 +92,7 @@ if (isAdv != -1) {
 if ($("#scroller")[0]) {
 	new iScroll(document.getElementById("scroller"));
 }
-if ($("#section")[0]) {
+if ($("#loadmore")[0]) {
 	loadPackages();
 }
 show();

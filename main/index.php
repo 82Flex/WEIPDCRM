@@ -24,7 +24,7 @@ class_loader('Mobile_Detect');
 $detect = new Mobile_Detect;
 if(!$detect->isiOS()){
 	if (DCRM_PCINDEX == 2) {
-		header('Location: misc.php');
+		header('Location: /misc.php');
 		exit();
 	} else {
 		$isCydia = false;
@@ -67,7 +67,7 @@ if (isset($_GET['pid'])) {
 				$check = $detect->version($device_type[$i]);
 				if ($check !== false) {
 					if (isset($_SERVER['HTTP_X_MACHINE'])) {
-						$DEVICE = substr($_SERVER['HTTP_X_MACHINE'],0,-3);
+						$DEVICE = $_SERVER['HTTP_X_MACHINE'];
 					} else {
 						$DEVICE = 'Unknown';
 					}
@@ -99,7 +99,7 @@ if (isset($_GET['pid'])) {
 		} elseif (isset($_GET['method']) && $_GET['method'] == 'section') {
 			$index = 7;
 			$title = __('Package Category');
-		} elseif (isset($_GET['method']) && $_GET['method'] == 'packages') {
+		} elseif (isset($_GET['method']) && $_GET['method'] == 'more') {
 			$index = 8;
 				$section_query = DB::query("SELECT `Name`, `Icon`, `TimeStamp` FROM `".DCRM_CON_PREFIX."Sections` WHERE `ID` = '".(int)$_GET['pid']."'");
 				if (!$section_query) {exit();}
@@ -119,16 +119,16 @@ if (isset($_GET['pid'])) {
 <?php
 					} else {
 ?>
-				<a href="index.php?pid=<?php echo($package_assoc['ID']); ?>">
+				<a href="/view/<?php echo($package_assoc['ID']); ?>">
 <?php
 					}
 					if (!empty($section_assoc['Icon'])) {
 ?>
-					<img class="icon" src="icons/<?php echo($section_assoc['Icon']); ?>">
+					<img class="icon" src="/icons/<?php echo($section_assoc['Icon']); ?>">
 <?php
 					} else {
 ?>
-					<img class="icon" src="icons/default/unknown.png">
+					<img class="icon" src="/icons/default/unknown.png">
 <?php
 					}
 ?>
@@ -199,15 +199,15 @@ if ($isCydia) {
 <?php
 }
 ?>
-		<link rel="apple-touch-icon" href="CydiaIcon.png">
-		<link rel="shortcut icon" href="favicon.ico">
-		<link rel="stylesheet" href="css/menes.min.css">
-		<link rel="stylesheet" href="css/scroll.min.css">
-<?php if(is_rtl()){ ?>		<link rel="stylesheet" href="css/menes-rtl.min.css"><?php } ?>
-<?php if(file_exists(ROOT.'css/font/'.($local_css = substr($locale, 0, 2)).'.css') || file_exists(ROOT.'css/font/' . ($local_css = $locale) . '.css')): ?>	<link rel="stylesheet" type="text/css" href="./css/font/<?php echo $local_css; ?>.css"><?php echo("\n"); endif; ?>
-		<script src="js/fastclick.js" type="text/javascript"></script>
-		<script src="js/menes.js" type="text/javascript"></script>
-		<script src="js/cytyle.js" type="text/javascript"></script>
+		<link rel="apple-touch-icon" href="/CydiaIcon.png">
+		<link rel="shortcut icon" href="/favicon.ico">
+		<link rel="stylesheet" href="/css/menes.min.css">
+		<link rel="stylesheet" href="/css/scroll.min.css">
+<?php if(is_rtl()){ ?>		<link rel="stylesheet" href="/css/menes-rtl.min.css"><?php } ?>
+<?php if(file_exists(ROOT.'css/font/'.($local_css = substr($locale, 0, 2)).'.css') || file_exists(ROOT.'css/font/' . ($local_css = $locale) . '.css')): ?>	<link rel="stylesheet" type="text/css" href="/css/font/<?php echo $local_css; ?>.css"><?php echo("\n"); endif; ?>
+		<script src="/js/fastclick.js" type="text/javascript"></script>
+		<script src="/js/menes.js" type="text/javascript"></script>
+		<script src="/js/cytyle.js" type="text/javascript"></script>
 		<script src="http://cdn.bootcss.com/jquery/1.11.2/jquery.min.js"></script>
 	</head>
 	<body class="pinstripe">
@@ -219,7 +219,7 @@ if ($index == 0) {
 ?>
 			<fieldset>
 				<a href="cydia://url/https://cydia.saurik.com/api/share#?source=<?php echo($repo_url); ?>" target="_blank">
-				<img class="icon" src="icons/default/cydia.png" />
+				<img class="icon" src="/icons/default/cydia.png" />
 					<div>
 						<div>
 							<label>
@@ -274,7 +274,7 @@ if ($index == 0) {
 	if (defined("AUTOFILL_SITE")) {
 ?>
 				<a href="<?php echo(AUTOFILL_SITE); ?>" target="_blank">
-				<img class="icon" src="CydiaIcon.png" />
+				<img class="icon" src="/CydiaIcon.png" />
 					<div>
 						<div>
 							<label>
@@ -287,7 +287,7 @@ if ($index == 0) {
 	if (defined("AUTOFILL_EMAIL")) {
 ?>
 				<a href="mailto:<?php echo(AUTOFILL_EMAIL); ?>?subject=<?php echo($release_origin); ?>" target="_blank">
-				<img class="icon" src="icons/default/email.png" />
+				<img class="icon" src="/icons/default/email.png" />
 					<div>
 						<div>
 							<label>
@@ -301,7 +301,7 @@ if ($index == 0) {
 	if (defined("AUTOFILL_TENCENT") && defined("AUTOFILL_TENCENT_NAME")) {
 ?>
 				<a href="<?php echo(AUTOFILL_TENCENT); ?>" target="_blank">
-				<img class="icon" src="icons/default/qq.png" />
+				<img class="icon" src="/icons/default/qq.png" />
 					<div>
 						<div>
 							<label>
@@ -315,7 +315,7 @@ if ($index == 0) {
 	if (defined("AUTOFILL_WEIBO") && defined("AUTOFILL_WEIBO_NAME")) {
 ?>
 				<a href="<?php echo(AUTOFILL_WEIBO); ?>" target="_blank">
-				<img class="icon" src="icons/default/weibo.png" />
+				<img class="icon" src="/icons/default/weibo.png" />
 					<div>
 						<div>
 							<label>
@@ -329,7 +329,7 @@ if ($index == 0) {
 	if (defined("AUTOFILL_TWITTER") && defined("AUTOFILL_TWITTER_NAME")) {
 ?>
 				<a href="<?php echo(AUTOFILL_TWITTER); ?>" target="_blank">
-				<img class="icon" src="icons/default/twitter.png" />
+				<img class="icon" src="/icons/default/twitter.png" />
 					<div>
 						<div>
 							<label>
@@ -343,7 +343,7 @@ if ($index == 0) {
 	if (defined("AUTOFILL_FACEBOOK") && defined("AUTOFILL_FACEBOOK_NAME")) {
 ?>
 				<a href="<?php echo(AUTOFILL_FACEBOOK); ?>" target="_blank">
-				<img class="icon" src="icons/default/facebook.png" />
+				<img class="icon" src="/icons/default/facebook.png" />
 					<div>
 						<div>
 							<label>
@@ -357,7 +357,7 @@ if ($index == 0) {
 	if (defined("AUTOFILL_PAYPAL")) {
 ?>
 				<a href="<?php echo(AUTOFILL_PAYPAL); ?>" target="_blank">
-				<img class="icon" src="icons/default/paypal.png" />
+				<img class="icon" src="/icons/default/paypal.png" />
 					<div>
 						<div>
 							<label>
@@ -373,12 +373,12 @@ if ($index == 0) {
 	if (defined("AUTOFILL_ALIPAY")) {
 ?>
 				<a href="<?php echo(AUTOFILL_ALIPAY); ?>" target="_blank">
-				<img class="icon" src="icons/default/alipay.png" />
+				<img class="icon" src="/icons/default/alipay.png" />
 					<div>
 						<div>
 							<label>
 								<p>
-									<?php _e('Donate via <span style="font-style: italic; font-weight: bold"><img class="alipay" src="icons/default/alipay_text_en.png" /><sup><small >™</small></sup></span>'); ?>
+									<?php _e('Donate via <span style="font-style: italic; font-weight: bold"><img class="alipay" src="/icons/default/alipay_text_en.png" /><sup><small >™</small></sup></span>'); ?>
 								</p>
 							</label>
 						</div>
@@ -414,16 +414,16 @@ if ($index == 0) {
 <?php
 					} else {
 ?>
-				<a href="index.php?pid=<?php echo($package_assoc['ID']); ?>">
+				<a href="/view/<?php echo($package_assoc['ID']); ?>">
 <?php
 					}
 					if (!empty($section_assoc['Icon'])) {
 ?>
-					<img class="icon" src="icons/<?php echo($section_assoc['Icon']); ?>" />
+					<img class="icon" src="/icons/<?php echo($section_assoc['Icon']); ?>" />
 <?php
 					} else {
 ?>
-					<img class="icon" src="icons/default/unknown.png" />
+					<img class="icon" src="/icons/default/unknown.png" />
 <?php
 					}
 ?>
@@ -439,8 +439,8 @@ if ($index == 0) {
 				}
 				if (DCRM_ALLOW_FULLLIST == 2) {
 ?>
-				<a href="index.php?pid=<?php echo($section_assoc['ID']); ?>&amp;method=section">
-					<img class="icon" src="icons/default/moreinfo.png" />
+				<a href="/section/<?php echo($section_assoc['ID']); ?>">
+					<img class="icon" src="/icons/default/moreinfo.png" />
 					<div>
 						<div>
 							<label>
@@ -474,15 +474,15 @@ if ($index == 0) {
 <?php
 				while ($section_assoc = mysql_fetch_assoc($section_query)) {
 ?>
-				<a href="index.php?pid=<?php echo($section_assoc['ID']); ?>&amp;method=section">
+				<a href="/section/<?php echo($section_assoc['ID']); ?>">
 <?php
 					if (!empty($section_assoc['Icon'])) {
 ?>
-					<img class="icon" src="icons/<?php echo($section_assoc['Icon']); ?>" />
+					<img class="icon" src="/icons/<?php echo($section_assoc['Icon']); ?>" />
 <?php
 					} else {
 ?>
-					<img class="icon" src="icons/default/unknown.png" />
+					<img class="icon" src="/icons/default/unknown.png" />
 <?php
 					}
 ?>
@@ -509,7 +509,7 @@ if ($index == 0) {
 			</label>
 			<fieldset class="source">
 				<a href="/">
-					<img class="icon" src="CydiaIcon.png" />
+					<img class="icon" src="/CydiaIcon.png" />
 					<div>
 						<div>
 							<label>
@@ -554,7 +554,7 @@ if ($index == 0) {
 ?>
 			<fieldset id="cydialink" style="display: none;">
 				<a href="cydia://url/https://cydia.saurik.com/api/share#?source=<?php echo($repo_url); ?>/&package=<?php echo($pkg_assoc['Package']); ?>" target="_blank">
-				<img class="icon" src="icons/default/cydia.png" />
+				<img class="icon" src="/icons/default/cydia.png" />
 					<div>
 						<div>
 							<label>
@@ -573,11 +573,11 @@ if ($index == 0) {
 <?php
 			if (!empty($section_icon)) {
 ?>
-				<img class="icon" src="icons/<?php echo($section_icon); ?>" style="width: 64px; height: 64px; vertical-align: top;" />
+				<img class="icon" src="/icons/<?php echo($section_icon); ?>" style="width: 64px; height: 64px; vertical-align: top;" />
 <?php
 			} else {
 ?>
-				<img class="icon" src="icons/default/unknown.png" style="width: 64px; height: 64px; vertical-align: top;" />
+				<img class="icon" src="/icons/default/unknown.png" style="width: 64px; height: 64px; vertical-align: top;" />
 <?php
 			}
 ?>
@@ -596,8 +596,8 @@ if ($index == 0) {
 			}
 ?>
 			<fieldset id="contact" style="display: none;">
-				<a href="index.php?pid=<?php echo($_GET['pid']); ?>&amp;method=contact">
-					<img class="icon" src="icons/default/email.png" />
+				<a href="/contact/<?php echo($_GET['pid']); ?>">
+					<img class="icon" src="/icons/default/email.png" />
 					<div>
 						<div>
 							<label>
@@ -617,8 +617,8 @@ if ($index == 0) {
 		if (DCRM_DIRECT_DOWN == 1 && !$isCydia && !check_commercial_tag($pkg_assoc['Tag'])) {
 ?>
 			<fieldset>
-				<a href="debs/<?php echo($_GET['pid']); ?>.deb" id="downloadlink" style="display: none;" target="_blank">
-				<img class="icon" src="icons/default/packages.png" />
+				<a href="/debs/<?php echo($_GET['pid']); ?>.deb" id="downloadlink" style="display: none;" target="_blank">
+				<img class="icon" src="/icons/default/packages.png" />
 					<div>
 						<div>
 							<label>
@@ -642,8 +642,8 @@ if ($index == 0) {
 <?php
 		if (DCRM_SCREENSHOTS == 2) {
 ?>
-				<a href="index.php?pid=<?php echo($_GET['pid']); ?>&amp;method=screenshot">
-				<img class="icon" src="icons/default/screenshots.png" />
+				<a href="/screenshot/<?php echo($_GET['pid']); ?>">
+				<img class="icon" src="/icons/default/screenshots.png" />
 					<div>
 						<div>
 							<label>
@@ -655,8 +655,8 @@ if ($index == 0) {
 <?php
 		}
 ?>
-				<a href="index.php?pid=<?php echo($_GET['pid']); ?>&amp;method=history" id="historylink">
-				<img class="icon" src="icons/default/changelog.png" />
+				<a href="/history/<?php echo($_GET['pid']); ?>" id="historylink">
+				<img class="icon" src="/icons/default/changelog.png" />
 					<div>
 						<div>
 							<label>
@@ -668,8 +668,8 @@ if ($index == 0) {
 <?php
 		if ($isCydia && DCRM_REPORTING == 2) {
 ?>
-				<a href="index.php?pid=<?php echo($_GET['pid']); ?>&amp;method=report" id="reportlink">
-				<img class="icon" src="icons/default/report.png" />
+				<a href="/report/<?php echo($_GET['pid']); ?>" id="reportlink">
+				<img class="icon" src="/icons/default/report.png" />
 					<div>
 						<div>
 							<label>
@@ -683,7 +683,7 @@ if ($index == 0) {
 		if (defined("AUTOFILL_TENCENT") && defined("AUTOFILL_TENCENT_NAME")) {
 ?>
 				<a href="<?php echo(AUTOFILL_TENCENT); ?>" target="_blank">
-				<img class="icon" src="icons/default/qq.png" />
+				<img class="icon" src="/icons/default/qq.png" />
 					<div>
 						<div>
 							<label>
@@ -697,7 +697,7 @@ if ($index == 0) {
 		if (defined("AUTOFILL_WEIBO") && defined("AUTOFILL_WEIBO_NAME")) {
 ?>
 				<a href="<?php echo(AUTOFILL_WEIBO); ?>" target="_blank">
-				<img class="icon" src="icons/default/weibo.png" />
+				<img class="icon" src="/icons/default/weibo.png" />
 					<div>
 						<div>
 							<label>
@@ -711,7 +711,7 @@ if ($index == 0) {
 		if (defined("AUTOFILL_TWITTER") && defined("AUTOFILL_TWITTER_NAME")) {
 ?>
 				<a href="<?php echo(AUTOFILL_TWITTER); ?>" target="_blank">
-				<img class="icon" src="icons/default/twitter.png" />
+				<img class="icon" src="/icons/default/twitter.png" />
 					<div>
 						<div>
 							<label>
@@ -725,7 +725,7 @@ if ($index == 0) {
 		if (defined("AUTOFILL_FACEBOOK") && defined("AUTOFILL_FACEBOOK_NAME")) {
 ?>
 				<a href="<?php echo(AUTOFILL_FACEBOOK); ?>" target="_blank">
-				<img class="icon" src="icons/default/facebook.png" />
+				<img class="icon" src="/icons/default/facebook.png" />
 					<div>
 						<div>
 							<label>
@@ -739,7 +739,7 @@ if ($index == 0) {
 		if (defined("AUTOFILL_PAYPAL")) {
 ?>
 				<a href="<?php echo(AUTOFILL_PAYPAL); ?>" target="_blank">
-				<img class="icon" src="icons/default/paypal.png" />
+				<img class="icon" src="/icons/default/paypal.png" />
 					<div>
 						<div>
 							<label>
@@ -755,7 +755,7 @@ if ($index == 0) {
 		if (defined("AUTOFILL_ALIPAY")) {
 ?>
 				<a href="<?php echo(AUTOFILL_ALIPAY); ?>" target="_blank">
-				<img class="icon" src="icons/default/alipay.png" />
+				<img class="icon" src="/icons/default/alipay.png" />
 					<div>
 						<div>
 							<label>
@@ -771,7 +771,7 @@ if ($index == 0) {
 		if (!empty($pkg_assoc['Homepage']) && DCRM_MOREINFO == 2) {
 ?>
 				<a href="<?php echo($pkg_assoc['Homepage']); ?>" target="_blank">
-				<img class="icon" src="icons/default/web.png" />
+				<img class="icon" src="/icons/default/web.png" />
 					<div>
 						<div>
 							<label>
@@ -801,7 +801,7 @@ if ($index == 0) {
 			<block id="advertisement">
 				<div style="position: relative; text-align: center;">
 					<div style="position: absolute; right: 10px; top: 2px;">
-						<img src="css/closebox@2x.png" style="width: 30px; height: 29px;" onclick="hide()" />
+						<img src="/css/closebox@2x.png" style="width: 30px; height: 29px;" onclick="hide()" />
 					</div>
 					<div>
 						<?php echo(AUTOFILL_ADVERTISEMENT); ?>
@@ -925,7 +925,7 @@ if ($index == 0) {
 			</label>
 			<fieldset class="source">
 				<a href="/">
-					<img class="icon" src="CydiaIcon.png" />
+					<img class="icon" src="/CydiaIcon.png" />
 					<div>
 						<div>
 							<label>
@@ -1012,7 +1012,7 @@ if ($index == 0) {
 	}
 } elseif ($index == 3) {
 ?>
-			<label><?php _e('Device Info'); ?></label>
+			<label><?php _e('Current Device Info'); ?></label>
 <?php
 	if (DCRM_REPORTING == 2) {
 		$q_count = DB::query("SELECT `Support`, COUNT(*) AS 'num' FROM `".DCRM_CON_PREFIX."Reports` WHERE (`Device` = '".$DEVICE."' AND `iOS` = '".$OS."' AND `PID` = '".$_GET['pid']."') GROUP BY `Support`");
@@ -1051,18 +1051,14 @@ if ($index == 0) {
 ?>
 				<div>
 					<p>
-						<strong><?php _e('Current Device Info'); ?></strong>
-					</p>
-					<hr />
-					<p>
-						<?php echo($DEVICE." &amp; ".$OS); ?>
+						<?php echo($DEVICE." &amp; iOS ".$OS."<br />IP: ".$_SERVER['REMOTE_ADDR']); ?>
 					</p>
 				</div>
 			</fieldset>
 			<label><?php _e('Submit Your Request'); ?></label>
 			<fieldset>
-				<a href="index.php?pid=<?php echo($_GET['pid']); ?>&amp;method=report&amp;support=3">
-					<img class="icon" src="icons/default/support_3.png" />
+				<a href="/report/<?php echo($_GET['pid']); ?>/3">
+					<img class="icon" src="/icons/default/support_3.png" />
 					<div>
 						<div>
 							<label>
@@ -1074,8 +1070,8 @@ if ($index == 0) {
 			</fieldset>
 			<label><?php _e('Compatibility Reports'); ?></label>
 			<fieldset>
-				<a href="index.php?pid=<?php echo($_GET['pid']); ?>&amp;method=report&amp;support=1">
-					<img class="icon" src="icons/default/support_1.png" />
+				<a href="/report/<?php echo($_GET['pid']); ?>/1">
+					<img class="icon" src="/icons/default/support_1.png" />
 					<div>
 						<div>
 							<label>
@@ -1084,8 +1080,8 @@ if ($index == 0) {
 						</div>
 					</div>
 				</a>
-				<a href="index.php?pid=<?php echo($_GET['pid']); ?>&amp;method=report&amp;support=0">
-					<img class="icon" src="icons/default/support_0.png" />
+				<a href="/report/<?php echo($_GET['pid']); ?>/0">
+					<img class="icon" src="/icons/default/support_0.png" />
 					<div>
 						<div>
 							<label>
@@ -1094,8 +1090,8 @@ if ($index == 0) {
 						</div>
 					</div>
 				</a>
-				<a href="index.php?pid=<?php echo($_GET['pid']); ?>&amp;method=report&amp;support=2">
-					<img class="icon" src="icons/default/support_2.png" />
+				<a href="/report/<?php echo($_GET['pid']); ?>/2">
+					<img class="icon" src="/icons/default/support_2.png" />
 					<div>
 						<div>
 							<label>
@@ -1183,8 +1179,8 @@ if ($index == 0) {
 						</div>
 					</div>
 				</a>
-				<a href="index.php?pid=<?php echo($history['ID']); ?>&amp;addr=nohistory">
-					<img class="icon" src="icons/default/changelog.png">
+				<a href="/view/<?php echo($history['ID']); ?>/nohistory">
+					<img class="icon" src="/icons/default/changelog.png">
 					<div>
 						<div>
 							<label>
@@ -1239,7 +1235,7 @@ if ($index == 0) {
 					</p>
 				</div>
 				<a href="mailto:<?php echo($author_mail); ?>?subject=<?php echo(urlencode("Cydia/APT(A): ".$pkg_assoc['Name']." (".$pkg_assoc['Version'].")")); ?>" target="_blank">
-				<img class="icon" src="icons/default/email.png">
+				<img class="icon" src="/icons/default/email.png">
 					<div>
 						<div>
 							<label><p><?php _e('Author'); ?></p></label>
@@ -1263,7 +1259,7 @@ if ($index == 0) {
 					</p>
 				</div>
 				<a href="<?php echo($sponsor_url); ?>" target="_blank">
-				<img class="icon" src="icons/default/email.png">
+				<img class="icon" src="/icons/default/email.png">
 					<div>
 						<div>
 							<label><p><?php _e('Sponsor'); ?></p></label>
@@ -1285,7 +1281,7 @@ if ($index == 0) {
 					<p><?php _e('If you have questions when install or uninstall this package, please contact the maintainer.'); ?></p>
 				</div>
 				<a href="mailto:<?php echo($maintainer_mail); ?>?subject=<?php echo(urlencode("Cydia/APT(A): ".$pkg_assoc['Name']." (".$pkg_assoc['Version'].")")); ?>" target="_blank">
-				<img class="icon" src="icons/default/email.png">
+				<img class="icon" src="/icons/default/email.png">
 					<div>
 						<div>
 							<label><p><?php _e('Maintainer'); ?></p></label>
@@ -1335,9 +1331,9 @@ if ($index == 0) {
 					<p><?php printf( __( 'Create time: <strong>%s</strong>' ) , $section_assoc['TimeStamp'] ); ?></strong></p>
 			</block>
 			<fieldset id="section"></fieldset>
-			<fieldset id="loadmore">
+			<fieldset id="loadmore" name="<?php echo($_GET['pid']); ?>">
 				<a href="javascript:loadPackages();">
-					<img class="icon" src="icons/default/moreinfo.png" />
+					<img class="icon" src="/icons/default/moreinfo.png" />
 					<div>
 						<div>
 							<label>
@@ -1361,11 +1357,11 @@ if ($index == 0) {
 <?php
 if ($index == 2) {
 ?>
-		<script src="js/scroll.js" type="text/javascript"></script>
+		<script src="/js/scroll.js" type="text/javascript"></script>
 <?php
 }
 ?>
-		<script src="js/main.js" type="text/javascript"></script>
+		<script src="/js/main.js" type="text/javascript"></script>
 <?php
 if (defined("AUTOFILL_STATISTICS")) {
 ?>

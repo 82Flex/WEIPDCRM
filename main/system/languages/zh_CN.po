@@ -1,15 +1,15 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: DCRM Front\n"
-"POT-Creation-Date: 2015-04-02 15:24+0800\n"
-"PO-Revision-Date: 2015-04-02 15:24+0800\n"
+"POT-Creation-Date: 2015-07-05 11:22+0800\n"
+"PO-Revision-Date: 2015-07-05 11:34+0800\n"
 "Last-Translator: Hintay <hintay@me.com>\n"
 "Language-Team: Hintay <hintay@me.com>\n"
 "Language: zh_CN\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 1.7.5\n"
+"X-Generator: Poedit 1.7.3\n"
 "X-Poedit-Basepath: ../../\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Poedit-KeywordsList: __;_e;_n:1,2;_x:1,2c;_ex:1,2c;_nx:4c,1,2;esc_attr__;"
@@ -46,53 +46,53 @@ msgstr "未命名"
 msgid "Empty Page"
 msgstr "空白页"
 
-#: index.php:63 index.php:606 index.php:942 index.php:967
+#: index.php:63 index.php:650 index.php:985 index.php:1010
 msgid "View Screenshots"
 msgstr "预览截图"
 
-#: index.php:92 index.php:632 index.php:1073 index.php:1119
+#: index.php:92 index.php:676 index.php:1116 index.php:1162
 msgid "Report Problems"
 msgstr "报告问题"
 
-#: index.php:95 index.php:619 index.php:1126
+#: index.php:95 index.php:663 index.php:1169
 msgid "Version History"
 msgstr "版本历史"
 
-#: index.php:98 index.php:250
+#: index.php:98 index.php:294
 msgid "Contact us"
 msgstr "联系我们"
 
-#: index.php:101 index.php:428 index.php:1331
+#: index.php:101 index.php:472 index.php:1355
 msgid "Package Category"
 msgstr "软件包分类"
 
-#: index.php:104
+#: index.php:148
 msgid "View Package"
 msgstr "查看软件包"
 
-#: index.php:182
+#: index.php:227
 msgid "Add in Cydia<sup><small>™</small></sup>"
 msgstr "在 Cydia<sup><small>™</small></sup> 中添加"
 
-#: index.php:209
+#: index.php:253
 msgid "Add this URL via Cydia<sup><small>™</small></sup>: "
 msgstr "请使用 Cydia<sup><small>™</small></sup> 添加地址"
 
-#: index.php:222
+#: index.php:266
 #, php-format
 msgid "<strong>%d</strong> packages in total."
 msgstr "全源总计 <strong>%d</strong> 个软件包。"
 
-#: index.php:225
+#: index.php:269
 #, php-format
 msgid "Last updated: <strong>%s</strong>"
 msgstr "更新时间：<strong>%s</strong>"
 
-#: index.php:237
+#: index.php:281
 msgid "Visit Home Page"
 msgstr "访问首页"
 
-#: index.php:321 index.php:703
+#: index.php:365 index.php:747
 msgid ""
 "Donate via <span style=\"font-style: italic; font-weight: bold\"><span style="
 "\"color: #1a3665\">Pay</span><span style=\"color: #32689a\">Pal</"
@@ -102,128 +102,138 @@ msgstr ""
 "\"color: #1a3665\">Pay</span><span style=\"color: #32689a\">Pal</"
 "span><sup><small>™</small></sup></span> 捐助"
 
-#: index.php:337 index.php:719
+#: index.php:381
+msgid ""
+"Donate via <span style=\"font-style: italic; font-weight: bold\"><img class="
+"\"alipay\" src=\"/icons/default/alipay_text_en.png\" /><sup><small >™</"
+"small></sup></span>"
+msgstr ""
+"前往 <span style=\"font-style: italic; font-weight: bold\"><img class="
+"\"alipay\" src=\"/icons/default/alipay_text.png\" /><sup><small >™</small></"
+"sup></span> 捐助"
+
+#: index.php:399 index.php:466 index.php:971 index.php:1216 index.php:1310
+msgid "MySQL Error!"
+msgstr "数据库错误！"
+
+#: index.php:447 index.php:1344
+msgid "More..."
+msgstr "更多…"
+
+#: index.php:508 index.php:924
+msgid "Source Info"
+msgstr "软件源信息"
+
+#: index.php:529
+msgid "Index"
+msgstr "首页"
+
+#: index.php:532
+#, php-format
+msgid "Copyright &copy; %s"
+msgstr "版权所有 &copy; %s"
+
+#: index.php:548 index.php:1226
+msgid "Invalid package!<br />Perhaps this package has been deleted by us."
+msgstr ""
+"无效的软件包信息！<br />可能是该软件包已被删除，如有疑问，请联系管理员。"
+
+#: index.php:561
+msgid "View in Cydia<sup><small>™</small></sup>"
+msgstr "在 Cydia<sup><small>™</small></sup> 中查看"
+
+#: index.php:604 index.php:1245
+msgid "Author"
+msgstr "作者"
+
+#: index.php:625
+msgid "Download"
+msgstr "下载软件包"
+
+#: index.php:763
 msgid ""
 "Donate via <span style=\"font-style: italic; font-weight: bold\"><img class="
 "\"alipay\" src=\"icons/default/alipay_text_en.png\" /><sup><small >™</"
 "small></sup></span>"
 msgstr ""
 "前往 <span style=\"font-style: italic; font-weight: bold\"><img class="
-"\"alipay\" src=\"icons/default/alipay_text.png\" /><sup><small >™</small></"
+"\"alipay\" src=\"/icons/default/alipay_text.png\" /><sup><small >™</small></"
 "sup></span> 捐助"
 
-#: index.php:355 index.php:422 index.php:928 index.php:1173 index.php:1267
-msgid "MySQL Error!"
-msgstr "数据库错误！"
-
-#: index.php:403
-msgid "More..."
-msgstr "更多…"
-
-#: index.php:464 index.php:881
-msgid "Source Info"
-msgstr "软件源信息"
-
-#: index.php:485
-msgid "Index"
-msgstr "首页"
-
-#: index.php:488
-#, php-format
-msgid "Copyright &copy; %s"
-msgstr "版权所有 &copy; %s"
-
-#: index.php:504 index.php:1183
-msgid "Invalid package!<br />Perhaps this package has been deleted by us."
-msgstr ""
-"无效的软件包信息！<br />可能是该软件包已被删除，如有疑问，请联系管理员。"
-
-#: index.php:517
-msgid "View in Cydia<sup><small>™</small></sup>"
-msgstr "在 Cydia<sup><small>™</small></sup> 中查看"
-
-#: index.php:560 index.php:1202
-msgid "Author"
-msgstr "作者"
-
-#: index.php:581
-msgid "Download"
-msgstr "下载软件包"
-
-#: index.php:734
+#: index.php:778
 msgid "More Info"
 msgstr "更多信息"
 
-#: index.php:774
+#: index.php:818
 msgid "Version"
 msgstr "版本"
 
-#: index.php:774
+#: index.php:818
 msgid "Downloads"
 msgstr "下载次数"
 
-#: index.php:775
+#: index.php:819
 msgid "Last Updated"
 msgstr "更新时间"
 
-#: index.php:797
+#: index.php:840
 msgid "In this version"
 msgstr "本版更新"
 
-#: index.php:816
+#: index.php:859
 msgid "Changelogs"
 msgstr "更新日志"
 
-#: index.php:846 index.php:869
+#: index.php:889 index.php:912
 msgid "Fold Comments"
 msgstr "折叠评论"
 
-#: index.php:872
+#: index.php:915
 msgid "Unfold Comments"
 msgstr "展开评论"
 
-#: index.php:961
+#: index.php:1004
 msgid "No screenshots now."
 msgstr "该软件包暂无截图"
 
-#: index.php:967 index.php:1073 index.php:1119 index.php:1331
+#: index.php:1010 index.php:1116 index.php:1162 index.php:1355
 #, php-format
 msgid "The %s function is disabled."
 msgstr "管理员关闭了 %s 功能"
 
-#: index.php:972
+#: index.php:1015
 msgid "Device Info"
 msgstr "设备信息"
 
-#: index.php:1011
+#: index.php:1054
 msgid "Current Device Info"
 msgstr "当前设备信息"
 
-#: index.php:1019
+#: index.php:1062
 msgid "Submit Your Request"
 msgstr "提交请求"
 
-#: index.php:1026
+#: index.php:1069
 msgid "Request for updating"
 msgstr "请求升级"
 
-#: index.php:1032
+#: index.php:1075
 msgid "Compatibility Reports"
 msgstr "兼容性报告"
 
-#: index.php:1039
+#: index.php:1082
 msgid "Fully Compatibile"
 msgstr "完全兼容"
 
-#: index.php:1049
+#: index.php:1092
 msgid "Partly Compatibile"
 msgstr "部分兼容"
 
-#: index.php:1059
+#: index.php:1102
 msgid "Not Compatibile"
 msgstr "不兼容"
 
-#: index.php:1067
+#: index.php:1110
 msgid ""
 "<p><strong>The software package compatibility report is voted by the "
 "majority of users, and we generated these statistical data, for reference "
@@ -236,32 +246,32 @@ msgstr ""
 "千上万的用户免于安全模式、白苹果等诸多威胁。</p><p>当然，如果您安装以后能够完"
 "美使用，也请您投上一票，它能够让大家更放心地安装软件包。</p>"
 
-#: index.php:1087
+#: index.php:1130
 msgid "Your report has been submitted.<br />Thanks for your support!"
 msgstr "您的报告已经提交完成。<br />感谢您的支持！"
 
-#: index.php:1097
+#: index.php:1140
 msgid ""
 "Please use Cydia to vote.<br />Each device is limited to vote for 2 times!"
 msgstr "请使用 Cydia 进行投票。<br />每台设备限制投票 2 次！"
 
-#: index.php:1108
+#: index.php:1151
 msgid "You have reached the voting limit."
 msgstr "投票次数超过系统限制。<br />请稍后再试！"
 
-#: index.php:1137
+#: index.php:1180
 msgid "Unknown change."
 msgstr "未知更新"
 
-#: index.php:1149
+#: index.php:1192
 msgid "View This Version"
 msgstr "查看此版本"
 
-#: index.php:1162
+#: index.php:1205
 msgid "No version history now."
 msgstr "该软件包暂无历史版本"
 
-#: index.php:1195
+#: index.php:1238
 msgid ""
 "Source manager can <strong>NOT</strong> solve the function problem of "
 "package: you <strong>MUST</strong> contact the author."
@@ -269,36 +279,36 @@ msgstr ""
 "源管理者<strong>无法</strong>为你解决软件包功能上出现的问题：你<strong>必须</"
 "strong>联系其开发者或设计者。"
 
-#: index.php:1219
+#: index.php:1262
 msgid ""
 "If the package is a commercial package, you can contact the sponsor to "
 "obtain commercial support."
 msgstr "如果该软件包为商业软件包，你可以联系其担保人获取商业支持。"
 
-#: index.php:1226
+#: index.php:1269
 msgid "Sponsor"
 msgstr "担保人"
 
-#: index.php:1242
+#: index.php:1285
 msgid ""
 "If you have questions when install or uninstall this package, please contact "
 "the maintainer."
 msgstr "安装、卸载过程中出现的问题，你需要将其发送给制作软件包的提供者。"
 
-#: index.php:1248
+#: index.php:1291
 msgid "Maintainer"
 msgstr "提供者"
 
-#: index.php:1277
+#: index.php:1320
 msgid "Invalid section!<br />Perhaps this section has been deleted by us."
 msgstr "无效的分类信息！<br />可能是该分类已被删除，如有疑问，请联系管理员。"
 
-#: index.php:1289
+#: index.php:1334
 #, php-format
 msgid "<strong>%s</strong> packages in this section."
 msgstr "该分类总计 <strong>%s</strong> 个软件包"
 
-#: index.php:1290
+#: index.php:1335
 #, php-format
 msgid "Create time: <strong>%s</strong>"
 msgstr "创建时间：<strong>%s</strong>"
