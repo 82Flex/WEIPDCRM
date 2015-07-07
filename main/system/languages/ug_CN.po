@@ -1,15 +1,15 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: DCRM Front\n"
-"POT-Creation-Date: 2015-03-25 21:47+0800\n"
-"PO-Revision-Date: 2015-03-26 19:51+0800\n"
+"POT-Creation-Date: 2015-07-05 11:29+0800\n"
+"PO-Revision-Date: 2015-07-05 11:34+0800\n"
 "Last-Translator: Hintay <hintay@me.com>\n"
 "Language-Team: shiraq\n"
 "Language: ug_CN\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 1.7.5\n"
+"X-Generator: Poedit 1.7.3\n"
 "X-Poedit-Basepath: ../../\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
 "X-Poedit-KeywordsList: __;_e;_n:1,2;_x:1,2c;_ex:1,2c;_nx:4c,1,2;esc_attr__;"
@@ -22,19 +22,19 @@ msgstr ""
 "X-Poedit-SearchPathExcluded-2: system\n"
 "X-Poedit-SearchPathExcluded-3: bak\n"
 
-#: commercial.php:89
+#: commercial.php:130
 msgid "Purchase Product"
 msgstr "قىستۇرما سېتىۋېلىش"
 
-#: commercial.php:99
+#: commercial.php:140
 msgid "Package Protected"
 msgstr "بۇ قىستۇرما قوغدۇلىۋاتىدۇ"
 
-#: commercial.php:106
+#: commercial.php:147
 msgid "Package Officially Purchased"
 msgstr "ئەسلىي مەنبەدىن قىستۇرما سېتىۋېلىش"
 
-#: commercial.php:113
+#: commercial.php:154
 msgid "Allowed To Download"
 msgstr "您可以下载此受保护的软件包"
 
@@ -46,53 +46,53 @@ msgstr "نامى يوق"
 msgid "Empty Page"
 msgstr "قۇرۇق بەت"
 
-#: index.php:63 index.php:607 index.php:895 index.php:920
+#: index.php:63 index.php:650 index.php:985 index.php:1010
 msgid "View Screenshots"
 msgstr "ئۈنۈم  رەسىملىرى"
 
-#: index.php:92 index.php:633 index.php:1026 index.php:1072
+#: index.php:92 index.php:676 index.php:1116 index.php:1162
 msgid "Report Problems"
 msgstr "مەسىلە دوكىلات قىلىش"
 
-#: index.php:95 index.php:620 index.php:1079
+#: index.php:95 index.php:663 index.php:1169
 msgid "Version History"
 msgstr "تارىخي نەشىرلىرى"
 
-#: index.php:98 index.php:251
+#: index.php:98 index.php:294
 msgid "Contact us"
 msgstr "بىز بىلەن ئالاقىلىشىڭ"
 
-#: index.php:101 index.php:429 index.php:1272
+#: index.php:101 index.php:472 index.php:1355
 msgid "Package Category"
 msgstr "قىدتۇرمىنى تۈرلەرگە بۆلۈش"
 
-#: index.php:104
+#: index.php:148
 msgid "View Package"
 msgstr "قىستۇرمىنى تەكشۈرۈش"
 
-#: index.php:183
+#: index.php:227
 msgid "Add in Cydia<sup><small>™</small></sup>"
 msgstr "在 Cydia<sup><small>™</small></sup> 中添加"
 
-#: index.php:210
+#: index.php:253
 msgid "Add this URL via Cydia<sup><small>™</small></sup>: "
 msgstr "请使用 Cydia<sup><small>™</small></sup> 添加地址"
 
-#: index.php:223
+#: index.php:266
 #, php-format
 msgid "<strong>%d</strong> packages in total."
 msgstr "全源总计 <strong>%d</strong> 个软件包。"
 
-#: index.php:226
+#: index.php:269
 #, php-format
 msgid "Last updated: <strong>%s</strong>"
 msgstr "更新时间：<strong>%s</strong>"
 
-#: index.php:238
+#: index.php:281
 msgid "Visit Home Page"
 msgstr "باش بەتنى زىيارەت قىلىش"
 
-#: index.php:322 index.php:704
+#: index.php:365 index.php:747
 msgid ""
 "Donate via <span style=\"font-style: italic; font-weight: bold\"><span style="
 "\"color: #1a3665\">Pay</span><span style=\"color: #32689a\">Pal</"
@@ -102,151 +102,177 @@ msgstr ""
 "\"color: #1a3665\">Pay</span><span style=\"color: #32689a\">Pal</"
 "span><sup><small>™</small></sup></span> 捐助"
 
-#: index.php:338 index.php:720
+#: index.php:381
 msgid ""
 "Donate via <span style=\"font-style: italic; font-weight: bold\"><img class="
-"\"alipay\" src=\"icons/default/alipay_text_en.png\" /><sup><small >™</"
+"\"alipay\" src=\"/icons/default/alipay_text_en.png\" /><sup><small >™</"
 "small></sup></span>"
 msgstr ""
-"前往 <span style=\"font-style: italic; font-weight: bold\"><img class="
-"\"alipay\" src=\"icons/default/alipay_text.png\" /><sup><small >™</small></"
-"sup></span> 捐助"
+"‏前往 <span style=\"font-style: italic; font-weight: bold\"><img class=\"alipay"
+"\" src=\"/icons/default/alipay_text_en.png\" /><sup><small >™</small></sup></"
+"span‪>‬ 捐助"
 
-#: index.php:356 index.php:423 index.php:881 index.php:1114 index.php:1208
+#: index.php:399 index.php:466 index.php:971 index.php:1216 index.php:1310
 msgid "MySQL Error!"
 msgstr "ساندان خاتالىقى كۆرۈلدى !"
 
-#: index.php:404
+#: index.php:447 index.php:1344
 msgid "More..."
 msgstr "تېخىمۇ كۆپ..."
 
-#: index.php:465 index.php:834
+#: index.php:508 index.php:924
 msgid "Source Info"
 msgstr "مەنبە ئۇچۇرلىرى"
 
-#: index.php:486
+#: index.php:529
 msgid "Index"
 msgstr "باش بەت"
 
-#: index.php:489
+#: index.php:532
 #, php-format
 msgid "Copyright &copy; %s"
 msgstr "版权所有 &copy; %s"
 
-#: index.php:505 index.php:1124
+#: index.php:548 index.php:1226
 msgid "Invalid package!<br />Perhaps this package has been deleted by us."
 msgstr ""
 "无效的软件包信息！<br />可能是该软件包已被删除，如有疑问，请联系管理员。"
 
-#: index.php:518
+#: index.php:561
 msgid "View in Cydia<sup><small>™</small></sup>"
 msgstr "在 Cydia<sup><small>™</small></sup> 中查看"
 
-#: index.php:561 index.php:1143
+#: index.php:604 index.php:1245
 msgid "Author"
 msgstr " ئاپتورى "
 
-#: index.php:582
+#: index.php:625
 msgid "Download"
 msgstr "قىستۇرمىنى چۈشۈرۈش"
 
-#: index.php:735
+#: index.php:763
+msgid ""
+"Donate via <span style=\"font-style: italic; font-weight: bold\"><img class="
+"\"alipay\" src=\"icons/default/alipay_text_en.png\" /><sup><small >™</small></"
+"sup></span>"
+msgstr ""
+"‏前往 <span style=\"font-style: italic; font-weight: bold\"><img class=\"alipay"
+"\" src=\"‪/‬icons/default/alipay_text.png\" /><sup><small >™</small></sup></"
+"span> 捐助"
+
+#: index.php:778
 msgid "More Info"
 msgstr "تېخىمۇ كۆپ ئۇچۇرى"
 
-#: index.php:775 index.php:1090
+#: index.php:818
 msgid "Version"
 msgstr "نەشىرىي"
 
-#: index.php:775
+#: index.php:818
 msgid "Downloads"
 msgstr "چۈشۈرۈش قېتىم سانى"
 
-#: index.php:776
+#: index.php:819
 msgid "Last Updated"
 msgstr "يېڭىلانغان ۋاقتى"
 
-#: index.php:799 index.php:822
+#: index.php:840
+msgid "In this version"
+msgstr ""
+
+#: index.php:859
+msgid "Changelogs"
+msgstr ""
+
+#: index.php:889 index.php:912
 msgid "Fold Comments"
 msgstr "باھا يىغىش"
 
-#: index.php:825
+#: index.php:915
 msgid "Unfold Comments"
 msgstr "باھا نى ئېچىش"
 
-#: index.php:914
+#: index.php:1004
 msgid "No screenshots now."
 msgstr "بۇ قىستۇرمىنىڭ ۋاقتىنچە ئۈنۈم رەسىمى يوك"
 
-#: index.php:920 index.php:1026 index.php:1072 index.php:1272
+#: index.php:1010 index.php:1116 index.php:1162 index.php:1355
 #, php-format
 msgid "The %s function is disabled."
 msgstr "管理员关闭了 %s 功能"
 
-#: index.php:925
+#: index.php:1015
 msgid "Device Info"
 msgstr "ئۈسكۈنە ئۇچۇرى"
 
-#: index.php:964
+#: index.php:1054
 msgid "Current Device Info"
 msgstr "نۈۋەتتىكى ئۈسكۈنە ئۇچۇرى"
 
-#: index.php:972
+#: index.php:1062
 msgid "Submit Your Request"
 msgstr "ئىلتىماسنى تاپشۇرۇش"
 
-#: index.php:979
+#: index.php:1069
 msgid "Request for updating"
 msgstr "يېڭىلاشنى ئىلتىماس قىلىش"
 
-#: index.php:985
+#: index.php:1075
 msgid "Compatibility Reports"
 msgstr "ماسلىشى دوكىلاتى"
 
-#: index.php:992
+#: index.php:1082
 msgid "Fully Compatibile"
 msgstr "پۈتۈنلەي ماسكىلىدۇ"
 
-#: index.php:1002
+#: index.php:1092
 msgid "Partly Compatibile"
 msgstr "بىرقىسىملىرى ماس كىلىدۇ"
 
-#: index.php:1012
+#: index.php:1102
 msgid "Not Compatibile"
 msgstr "ماسلاشمايدۇ"
 
-#: index.php:1020
+#: index.php:1110
 msgid ""
-"<p><strong>The software package compatibility report is voted by the "
-"majority of users, and we generated these statistical data, for reference "
-"only.</strong></p><hr /><p>If you have compatibility issues after "
-"installation, your vote, may be able to help tens of thousands of users from "
-"safe mode and many other threats.</p>"
+"<p><strong>The software package compatibility report is voted by the majority "
+"of users, and we generated these statistical data, for reference only.</"
+"strong></p><hr /><p>If you have compatibility issues after installation, your "
+"vote, may be able to help tens of thousands of users from safe mode and many "
+"other threats.</p>"
 msgstr ""
 "<p><strong>软件包兼容性报告是由广大用户投票，系统统计生成的数据，仅供参考。</"
-"strong></p><hr /><p>如果您，安装以后出现兼容性问题，您的一票，也许能够帮助成"
-"千上万的用户免于安全模式、白苹果等诸多威胁。</p><p>当然，如果您安装以后能够完"
-"美使用，也请您投上一票，它能够让大家更放心地安装软件包。</p>"
+"strong></p><hr /><p>如果您，安装以后出现兼容性问题，您的一票，也许能够帮助成千"
+"上万的用户免于安全模式、白苹果等诸多威胁。</p><p>当然，如果您安装以后能够完美"
+"使用，也请您投上一票，它能够让大家更放心地安装软件包。</p>"
 
-#: index.php:1040
+#: index.php:1130
 msgid "Your report has been submitted.<br />Thanks for your support!"
 msgstr "您的报告已经提交完成。<br />感谢您的支持！"
 
-#: index.php:1050
+#: index.php:1140
 msgid ""
 "Please use Cydia to vote.<br />Each device is limited to vote for 2 times!"
 msgstr "请使用 Cydia 进行投票。<br />每台设备限制投票 2 次！"
 
-#: index.php:1061
+#: index.php:1151
 msgid "You have reached the voting limit."
 msgstr ""
 "بىلەت تاشلاس قېتىم سانىڭىز چەكتىن ئېشىپ كەتتى .<br /> دىن كىيىن قايتا سىناڭ"
 
-#: index.php:1103
+#: index.php:1180
+msgid "Unknown change."
+msgstr ""
+
+#: index.php:1192
+msgid "View This Version"
+msgstr ""
+
+#: index.php:1205
 msgid "No version history now."
 msgstr "بۇقىستۇرمىنىڭ بۇرۇنقى نەشىرلىرى يوق"
 
-#: index.php:1136
+#: index.php:1238
 msgid ""
 "Source manager can <strong>NOT</strong> solve the function problem of "
 "package: you <strong>MUST</strong> contact the author."
@@ -254,17 +280,17 @@ msgstr ""
 "源管理者<strong>无法</strong>为你解决软件包功能上出现的问题：你<strong>必须</"
 "strong>联系其开发者或设计者。"
 
-#: index.php:1160
+#: index.php:1262
 msgid ""
-"If the package is a commercial package, you can contact the sponsor to "
-"obtain commercial support."
+"If the package is a commercial package, you can contact the sponsor to obtain "
+"commercial support."
 msgstr "如果该软件包为商业软件包，你可以联系其担保人获取商业支持。"
 
-#: index.php:1167
+#: index.php:1269
 msgid "Sponsor"
 msgstr "كاپالەت بەر گۈچى"
 
-#: index.php:1183
+#: index.php:1285
 msgid ""
 "If you have questions when install or uninstall this package, please contact "
 "the maintainer."
@@ -272,20 +298,20 @@ msgstr ""
 "قاچىلاش ،ئۆچۈرۈش جەريانىدا مەسىلە كۆرۈلسە ،قىستۇرما ياسىغۇچىغا ياكى مەنبە "
 "باشقۇرغۇچىغا ئىنكاس قىلىڭ !"
 
-#: index.php:1189
+#: index.php:1291
 msgid "Maintainer"
 msgstr "تەمىنلىگۈچى"
 
-#: index.php:1218
+#: index.php:1320
 msgid "Invalid section!<br />Perhaps this section has been deleted by us."
 msgstr "无效的分类信息！<br />可能是该分类已被删除，如有疑问，请联系管理员。"
 
-#: index.php:1230
+#: index.php:1334
 #, php-format
 msgid "<strong>%s</strong> packages in this section."
 msgstr "该分类总计 <strong>%s</strong> 个软件包"
 
-#: index.php:1231
+#: index.php:1335
 #, php-format
 msgid "Create time: <strong>%s</strong>"
 msgstr "قۇرۇلغان ۋاقتى:<strong>%s</strong>"
@@ -295,27 +321,39 @@ msgstr "قۇرۇلغان ۋاقتى:<strong>%s</strong>"
 msgid ""
 "Welcome to <a href=\"cydia://sources/add\">Add</a> <code>%s</code> via Cydia."
 msgstr ""
-"欢迎通过 Cydia <a href=\"cydia://sources/add\">添加</a> <code>%s</code> 访问"
-"本源。"
+"欢迎通过 Cydia <a href=\"cydia://sources/add\">添加</a> <code>%s</code> 访问本"
+"源。"
 
-#: misc.php:88
+#: misc.php:87
+msgid "Enter Cydia/APT URL"
+msgstr ""
+
+#: misc.php:90
+msgid "Cancel"
+msgstr ""
+
+#: misc.php:93
+msgid "Add Source"
+msgstr ""
+
+#: misc.php:105
 msgid "This page is available to Safari only."
 msgstr "移动版 Safari 访问首页，查看更多精彩内容。"
 
-#: misc.php:97
+#: misc.php:114
 #, php-format
 msgid "My Favourite Repo: %1$s(%2$s)"
 msgstr "مەن ياقتۇردىغان مەنبەلەر:%1$s（%2$s）"
 
-#: misc.php:102
+#: misc.php:119
 msgid "Share To"
 msgstr "ھەمبىرلەش"
 
-#: misc.php:110
+#: misc.php:127
 msgid "Powered by <a href=\"http://82flex.com/projects\">DCRM</a>."
 msgstr "由 <a href=\"http://82flex.com/projects\">DCRM</a> 强力驱动."
 
-#: misc.php:115
+#: misc.php:132
 msgid ""
 "Dear manager, please follow the steps on <a href=\"init/index.html\">Install "
 "Introduction</a> first."
