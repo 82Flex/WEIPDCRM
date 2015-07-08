@@ -1,4 +1,5 @@
 <?php
+ini_set("max_execution_time", 1800);
 /**
  * This file is part of WEIPDCRM.
  * 
