@@ -20,22 +20,6 @@
  * along with WEIPDCRM.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-if ( false ) {
-?>
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head>
-	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-	<title>Error: PHP is not running</title>
-</head>
-<body class="wp-core-ui">
-	<h1>Error: PHP is not running</h1>
-	<p>DCRM requires that your web server is running PHP. Your server does not have PHP installed, or PHP is turned off.</p>
-</body>
-</html>
-<?php
-}
-
 header('Content-Type: text/html; charset=utf-8');
 define("DCRM",true);
 
@@ -43,6 +27,8 @@ error_reporting(E_ALL ^ E_WARNING);
 require_once('function.php');
 
 $header_title = __( 'Installer' );
+
+if (file_exists(CONF_PATH.'installed.lock')) { die('You should delete installed.lock before reinstall WEIPDCRM.'); }
 
 // 检查数据库配置文件
 if( !file_exists(CONF_PATH.'connect.inc.php') ){
@@ -69,8 +55,8 @@ if (!$con) {
 	exit();
 }
 
-// Let's check to make sure DCRM isn't already installed.
-$result = mysql_query("SHOW TABLES FROM `".DCRM_CON_DATABASE."` LIKE '".DCRM_CON_PREFIX."packages'");
+// Make sure DCRM isn't already installed (Database).
+$result = mysql_query("SHOW TABLES FROM `".DCRM_CON_DATABASE."` LIKE '".DCRM_CON_PREFIX."Packages'");
 if ($result && mysql_num_rows($result) != 0) {
 	mysql_error();
 
@@ -393,6 +379,7 @@ if(isset($_GET['redirect']) && $_GET['redirect'] ){
 			fclose( $handle );
 
 			copy(CONF_PATH . 'gnupg.inc.default.php', CONF_PATH . 'gnupg.inc.php');
+			file_put_contents(CONF_PATH . 'installed.lock', time());
 			
 			$version_file = ABSPATH.'system/version.inc.php';
 			@touch($version_file);
@@ -404,8 +391,8 @@ if(isset($_GET['redirect']) && $_GET['redirect'] ){
 				copy("CydiaIcon.png", "../CydiaIcon.png");
 			if (!file_exists(ABSPATH.'favicon.ico'))
 				copy("favicon.ico", "../favicon.ico");
-
-			if ( file_exists(CONF_PATH.'config.inc.php') && file_exists(CONF_PATH.'gnupg.inc.php') && file_exists(CONF_PATH.'autofill.inc.php') && file_exists(ABSPATH.'system/version.inc.php') && file_exists(ABSPATH.'CydiaIcon.png') && file_exists(ABSPATH.'favicon.ico') && file_exists(ABSPATH.'tmp') ){
+			
+			if ( file_exists(CONF_PATH.'installed.lock') && file_exists(CONF_PATH.'config.inc.php') && file_exists(CONF_PATH.'gnupg.inc.php') && file_exists(CONF_PATH.'autofill.inc.php') && file_exists(ABSPATH.'system/version.inc.php') && file_exists(ABSPATH.'CydiaIcon.png') && file_exists(ABSPATH.'favicon.ico') && file_exists(ABSPATH.'tmp') ){
 				@chmod( $autofill_new, 0666 );
 				@chmod( $config_new, 0666 );
 				@chmod( CONF_PATH.'gnupg.inc.php', 0666 );

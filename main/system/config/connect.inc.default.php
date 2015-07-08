@@ -5,54 +5,54 @@ if (!defined("DCRM")) {
 
 /**
  * The base configurations of the DCRM.
- * DCRM»ù´¡ÅäÖÃÎÄ¼ş¡£
+ * DCRMåŸºç¡€é…ç½®æ–‡ä»¶ã€‚
  *
  * This file has the following configurations: MySQL settings, Table Prefix.
- * ±¾ÎÄ¼ş°üº¬ÒÔÏÂÅäÖÃÑ¡Ïî£ºMySQLÉèÖÃ¡¢Êı¾İ¿â±íÃûÇ°×º¡£
+ * æœ¬æ–‡ä»¶åŒ…å«ä»¥ä¸‹é…ç½®é€‰é¡¹ï¼šMySQLè®¾ç½®ã€æ•°æ®åº“è¡¨åå‰ç¼€ã€‚
  * You can get the MySQL settings from your web host.
- * MySQLÉèÖÃ¾ßÌåĞÅÏ¢Çë×ÉÑ¯ÄúµÄ¿Õ¼äÌá¹©ÉÌ¡£
+ * MySQLè®¾ç½®å…·ä½“ä¿¡æ¯è¯·å’¨è¯¢æ‚¨çš„ç©ºé—´æä¾›å•†ã€‚
  *
  * This file is used by the connect.inc.php creation script during the installation.
- * Õâ¸öÎÄ¼ş±»°²×°³ÌĞòÓÃÓÚ×Ô¶¯Éú³Éconnect.inc.phpÅäÖÃÎÄ¼ş£¬
+ * è¿™ä¸ªæ–‡ä»¶è¢«å®‰è£…ç¨‹åºç”¨äºè‡ªåŠ¨ç”Ÿæˆconnect.inc.phpé…ç½®æ–‡ä»¶ï¼Œ
  * You can just copy this file to "connect.inc.php" and fill in the values.
- * Äú¿ÉÒÔÊÖ¶¯¸´ÖÆÕâ¸öÎÄ¼ş£¬²¢ÖØÃüÃûÎª¡°connect.inc.php¡±£¬È»ºóÌîÈëÏà¹ØĞÅÏ¢¡£
+ * æ‚¨å¯ä»¥æ‰‹åŠ¨å¤åˆ¶è¿™ä¸ªæ–‡ä»¶ï¼Œå¹¶é‡å‘½åä¸ºâ€œconnect.inc.phpâ€ï¼Œç„¶åå¡«å…¥ç›¸å…³ä¿¡æ¯ã€‚
  *
  */
 
 // ** MySQL settings - You can get this info from your web host ** //
-// ** MySQL ÉèÖÃ - ¾ßÌåĞÅÏ¢À´×ÔÄúÕıÔÚÊ¹ÓÃµÄÖ÷»ú ** //
+// ** MySQL è®¾ç½® - å…·ä½“ä¿¡æ¯æ¥è‡ªæ‚¨æ­£åœ¨ä½¿ç”¨çš„ä¸»æœº ** //
 /** The name of the database for DCRM */
-/** DCRMÊı¾İ¿âµÄÃû³Æ */
+/** DCRMæ•°æ®åº“çš„åç§° */
 define('DCRM_CON_DATABASE', 'cydia');
 
 /** MySQL database username */
-/** MySQLÊı¾İ¿âÓÃ»§Ãû */
+/** MySQLæ•°æ®åº“ç”¨æˆ·å */
 define('DCRM_CON_USERNAME', 'root');
 
 /** MySQL database password */
-/** MySQLÊı¾İ¿âÃÜÂë */
+/** MySQLæ•°æ®åº“å¯†ç  */
 define('DCRM_CON_PASSWORD', '');
 
 /** MySQL hostname */
-/** MySQLÖ÷»ú */
+/** MySQLä¸»æœº */
 define('DCRM_CON_SERVER', 'localhost');
 
 /** MySQL server port */
-/** MySQLÖ÷»ú¶Ë¿Ú */
+/** MySQLä¸»æœºç«¯å£ */
 define('DCRM_CON_SERVER_PORT', '3306');
 
 /** Keep the connection to the database server? */
-/** ±£³ÖÓëÊı¾İ¿â·şÎñÆ÷µÄÁ¬½Ó? */
+/** ä¿æŒä¸æ•°æ®åº“æœåŠ¡å™¨çš„è¿æ¥? */
 define('DCRM_CON_PCONNECT', false);
 
 /**
  * DCRM Database Table prefix.
- * DCRMÊı¾İ±íÇ°×º¡£
+ * DCRMæ•°æ®è¡¨å‰ç¼€ã€‚
  *
  * You can have multiple installations in one database if you give each a unique
  * prefix. Only numbers, letters, and underscores please!
- * Èç¹ûÄúÓĞÔÚÍ¬Ò»Êı¾İ¿âÄÚ°²×°¶à¸öDCRMµÄĞèÇó£¬ÇëÎªÃ¿¸öDCRMÉèÖÃ
- * ²»Í¬µÄÊı¾İ±íÇ°×º¡£Ç°×ºÃûÖ»ÄÜÎªÊı×Ö¡¢×ÖÄ¸¼ÓÏÂ»®Ïß¡£
+ * å¦‚æœæ‚¨æœ‰åœ¨åŒä¸€æ•°æ®åº“å†…å®‰è£…å¤šä¸ªDCRMçš„éœ€æ±‚ï¼Œè¯·ä¸ºæ¯ä¸ªDCRMè®¾ç½®
+ * ä¸åŒçš„æ•°æ®è¡¨å‰ç¼€ã€‚å‰ç¼€ååªèƒ½ä¸ºæ•°å­—ã€å­—æ¯åŠ ä¸‹åˆ’çº¿ã€‚
  */
 define('DCRM_CON_PREFIX', 'apt_');
 

@@ -18,6 +18,9 @@
  * You should have received a copy of the GNU Affero General Public License
  * along with WEIPDCRM.  If not, see <http://www.gnu.org/licenses/>.
  */
+if (!defined("DCRM")) {
+	exit;
+}
 
 // 设定参数
 define('ABSPATH', dirname(dirname(__FILE__)).'/');
@@ -847,4 +850,3 @@ function esc_html( $text ) {
 
 	return $safe_text;
 }
-?>

@@ -26,6 +26,8 @@ error_reporting(E_ALL ^ E_WARNING);
 require_once('function.php');
 $header_title = __('Configuration Wizard');
 
+if (file_exists(CONF_PATH.'installed.lock')) { die('You should delete installed.lock before reinstall WEIPDCRM.'); }
+
 $notice = check_notice( $install = false );
 
 $step = isset($_GET['step']) ? $_GET['step'] : 0;
