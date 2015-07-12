@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: DCRM Installer\n"
-"POT-Creation-Date: 2015-07-12 23:36+0800\n"
-"PO-Revision-Date: 2015-07-12 23:37+0800\n"
+"POT-Creation-Date: 2015-07-13 00:33+0800\n"
+"PO-Revision-Date: 2015-07-13 00:34+0800\n"
 "Last-Translator: Hintay <hintay@me.com>\n"
 "Language-Team: Hintay <hintay@me.com>\n"
 "Language: zh_CN\n"
@@ -245,13 +245,12 @@ msgstr "配置向导"
 msgid "Notice: "
 msgstr "提醒："
 
-#: install/setup-config.php:48
+#: install/setup-config.php:48 install/setup-install.php:160
 msgid ""
-"The server does not support the URL Rewrite or cannot detect automatically, "
-"DCRM will disable this function. You can change this option latter in "
-"Settings."
+"The server does not support URL Rewrite or cannot detect automatically. DCRM "
+"will disable this function and you can change this option later in Settings."
 msgstr ""
-"服务器不支持 URL Rewrite 或无法自动检测，DCRM 将会禁用该功能。您可以稍后在设"
+"服务器不支持 URL Rewrite 或无法自动检测。DCRM 将会禁用该功能，您可以稍后在设"
 "置中修改该选项。"
 
 #: install/setup-config.php:50 install/setup-install.php:162
@@ -642,11 +641,6 @@ msgstr ""
 "如果您想重新创建 <code>connect.inc.php</code> ，请点击 <a href=\"./setup-"
 "config.php\">这里</a>。"
 
-#: install/setup-install.php:160
-msgid ""
-"The server does not support the URL Rewrite, DCRM will disable this function."
-msgstr "服务器不支持 URL Rewrite，DCRM 将会禁用该功能。"
-
 #: install/setup-install.php:164
 msgid ""
 "Welcome to the DCRM installation process! Just fill in the information below."
@@ -721,6 +715,11 @@ msgstr ""
 #: install/setup-install.php:470
 msgid "Continue"
 msgstr "继续"
+
+#~ msgid ""
+#~ "The server does not support the URL Rewrite, DCRM will disable this "
+#~ "function."
+#~ msgstr "服务器不支持 URL Rewrite，DCRM 将会禁用该功能。"
 
 #~ msgid "Not enough disk space"
 #~ msgstr "磁盘空间不足"

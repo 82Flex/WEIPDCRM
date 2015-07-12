@@ -46,7 +46,7 @@ if (isset($_SESSION['connected']) && $_SESSION['connected'] === true) {
 					<?php _e('Mobile Home Page Style From Saurik IT.'); ?><br /><br />
 					<h4><?php _e('Translator'); ?></h4>
 					<p>You can help us to translate DCRM into your familiar language!</p>
-					English: <a href="http://weibo.com/hintay">@Hintay</a><?php _ex(', ' , 'Punctuation'); ?><a href="http://weibo.com/82flex">@i_82</a><br />
+					English: <a href="http://weibo.com/hintay">@Hintay</a><?php _ex(', ' , 'Punctuation'); ?><a href="http://weibo.com/82flex">@i_82</a><?php _ex(', ' , 'Punctuation'); ?>globus<br />
 					简体中文 (Chinese Simplified): <a href="http://weibo.com/82flex">@i_82</a><?php _ex(', ' , 'Punctuation'); ?><a href="http://weibo.com/hintay">@Hintay</a><br />
 					(Uyghurche) ئۇيغۇرچه: <a href="http://weibo.com/u/2767344637">Shiraq</a>
 					<br /><br />

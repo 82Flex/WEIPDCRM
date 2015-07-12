@@ -157,7 +157,7 @@ switch($step) {
 		// Rewrite Mod Check
 		if (available(BASE_URL.'rewritetest') !== 200):
 ?>
-		<div class="alert alert-warning"><strong><?php _e('Notice: '); ?></strong><?php _e('The server does not support the URL Rewrite or cannot detect automatically, DCRM will disable this function. You can change this option latter in Settings.'); ?></div>
+		<div class="alert alert-warning"><strong><?php _e('Notice: '); ?></strong><?php _e('The server does not support URL Rewrite or cannot detect automatically. DCRM will disable this function and you can change this option later in Settings.'); ?></div>
 <?php 	elseif(available(BASE_URL.'misc') !== 200): ?>
 		<div class="alert alert-warning"><strong><?php _e('Notice: '); ?></strong><?php _e('You should update your Rewrite config to enable Elegant Mod.'); ?></div>
 <?php 	endif; ?>
