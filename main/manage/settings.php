@@ -631,7 +631,7 @@ if (isset($_SESSION['connected']) && $_SESSION['connected'] === true) {
 		}
 
 		/* Rewrite Check */
-		base_url();
+		base_url(true);
 		switch($_POST['rewrite_mod']){
 			case 3:
 				$check_url = SITE_URL.'misc';

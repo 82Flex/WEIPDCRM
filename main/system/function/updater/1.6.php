@@ -60,7 +60,10 @@ if($current_version == '1.6.15.5.16'){
 }
 if($current_version == '1.6.15.6.18'){
 	/* Rewrite Mod Check */
-	base_url();
+	if(strstr($_SERVER['PHP_SELF'], '/manage/'))
+		base_url(true);
+	else
+		base_url();
 	if(url_code(SITE_URL.'misc') === 200)
 		update_option('rewrite_mod', 3);
 	elseif(url_code(SITE_URL.'rewritetest') === 200)

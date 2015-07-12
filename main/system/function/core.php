@@ -359,8 +359,12 @@ function url_code($url) {
 
 	return $code;
 }
-function base_url(){
-	$sitepath = str_replace(str_replace('\\', '/', $_SERVER['DOCUMENT_ROOT']), '', str_replace('\\', '/', ROOT));
+function base_url($is_subdir = false) {
+	//$sitepath = str_replace(str_replace('\\', '/', $_SERVER['DOCUMENT_ROOT']), '', str_replace('\\', '/', ROOT));
+	if ($is_subdir)
+		$sitepath = dirname(dirname($_SERVER['PHP_SELF'])).'/';
+	else
+		$sitepath = dirname($_SERVER['PHP_SELF']).'/';
 	$siteurl = htmlspecialchars(($_SERVER['SERVER_PORT'] == '443' ? 'https://' : 'http://').$_SERVER['HTTP_HOST'].$sitepath);
 	define('SITE_PATH', $sitepath);
 	define('SITE_URL', $siteurl);

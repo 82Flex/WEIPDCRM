@@ -52,7 +52,10 @@ if(file_exists(ROOT.'manage/include/connect.inc.php')){
 } elseif(file_exists(SYSTEM_ROOT.'config/connect.inc.php')) {
 	define('CONF_PATH', SYSTEM_ROOT.'config/');
 } else {
-	$root = str_replace(str_replace('\\', '/', $_SERVER['DOCUMENT_ROOT']), '', str_replace('\\', '/', ROOT));
+	if (strstr($_SERVER['PHP_SELF'], '/manage/'))
+		$root = dirname(dirname($_SERVER['PHP_SELF'])).'/';
+	else
+		$root = dirname($_SERVER['PHP_SELF']).'/';
 	header('Location: '.$root.'install');
 	exit();
 }
