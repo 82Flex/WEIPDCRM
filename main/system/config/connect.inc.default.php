@@ -56,4 +56,8 @@ define('DCRM_CON_PCONNECT', false);
  */
 define('DCRM_CON_PREFIX', 'apt_');
 
+/** If the automatic detection function of the site directory is invalid, you can define it here. **/
+/** 若自动检测网站目录失效，您可以在此处定义 **/
+//define('CUSTOM_SITEPATH', '/dcrm/');
+
 ?>

@@ -91,7 +91,6 @@ class_loader('Updater');
 }*/
 
 // Move to base_url() function.
-//$sitepath = substr($_SERVER['PHP_SELF'], 0, strrpos($_SERVER['PHP_SELF'], '/'));
 
 require_once SYSTEM_ROOT.'./function/core.php';
 

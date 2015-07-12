@@ -855,3 +855,4 @@ function esc_html( $text ) {
 
 	return $safe_text;
 }
+?>

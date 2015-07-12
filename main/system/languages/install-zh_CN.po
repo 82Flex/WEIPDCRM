@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: DCRM Installer\n"
-"POT-Creation-Date: 2015-07-11 22:59+0800\n"
-"PO-Revision-Date: 2015-07-11 23:00+0800\n"
+"POT-Creation-Date: 2015-07-12 23:36+0800\n"
+"PO-Revision-Date: 2015-07-12 23:37+0800\n"
 "Last-Translator: Hintay <hintay@me.com>\n"
 "Language-Team: Hintay <hintay@me.com>\n"
 "Language: zh_CN\n"
@@ -18,30 +18,30 @@ msgstr ""
 "X-Poedit-SourceCharset: UTF-8\n"
 "X-Poedit-SearchPath-0: ./install\n"
 
-#: install/function.php:53 install/function.php:83 install/function.php:90
+#: install/function.php:55 install/function.php:85 install/function.php:92
 msgid "No Limit"
 msgstr "不限制"
 
-#: install/function.php:53
+#: install/function.php:55
 msgid "Unix-like"
 msgstr "类Unix"
 
-#: install/function.php:81
+#: install/function.php:83
 msgid "The GD module cannot be loaded"
 msgstr "GD模块不能正确加载"
 
-#: install/function.php:265 install/function.php:272 install/function.php:274
-#: install/function.php:276 install/function.php:280 install/function.php:282
-#: install/function.php:284 install/function.php:286
+#: install/function.php:267 install/function.php:271 install/function.php:273
+#: install/function.php:275 install/function.php:279 install/function.php:281
+#: install/function.php:283 install/function.php:285
 msgid "Warning: "
 msgstr "警告："
 
-#: install/function.php:265
+#: install/function.php:267
 msgid ""
 "The server does not support the cURL function, DCRM will not be able to use."
 msgstr "服务器不支持 cURL 函数，DCRM 将无法使用。"
 
-#: install/function.php:272
+#: install/function.php:271
 msgid ""
 "The file '/system/config/connect.inc.php' already exists. If you need to "
 "reset any of the configuration items in this file, please delete it first."
@@ -49,7 +49,7 @@ msgstr ""
 "/system/config/connect.inc.php 文件已存在。如果您想更改 connect.inc.php 内已"
 "有的设定，请先删除它，本向导会重新创建 connect.inc.php 。"
 
-#: install/function.php:274
+#: install/function.php:273
 msgid ""
 "Sorry, I need a /system/config/connect.inc.default.php file to work from. "
 "Please re-upload this file from your DCRM installation."
@@ -57,7 +57,7 @@ msgstr ""
 "抱歉，我需要/system/config/connect.inc.default.php才能工作。请重新向您的DCRM"
 "根目录上传该文件。"
 
-#: install/function.php:276
+#: install/function.php:275
 msgid ""
 "<code>/system/config/</code> directory is not writable. Please change the "
 "directory properties or create the connect.inc.php manually (you can see "
@@ -66,7 +66,7 @@ msgstr ""
 "<code>/system/config/</code> 目录不可写。请更改目录属性或者手动创建 connect."
 "inc.php （参考 connect.inc.default.php）。"
 
-#: install/function.php:280
+#: install/function.php:279
 msgid ""
 "Sorry, I need a /system/config/config.inc.default.php file to work from. "
 "Please re-upload this file from your DCRM installation."
@@ -74,7 +74,7 @@ msgstr ""
 "抱歉，我需要/system/config/config.inc.default.php才能工作。请重新向您的DCRM根"
 "目录上传该文件。"
 
-#: install/function.php:282
+#: install/function.php:281
 msgid ""
 "Sorry, I need a /system/config/gnupg.inc.default.php file to work from. "
 "Please re-upload this file from your DCRM installation."
@@ -82,7 +82,7 @@ msgstr ""
 "抱歉，我需要/system/config/gnupg.inc.default.php才能工作。请重新向您的DCRM根"
 "目录上传该文件。"
 
-#: install/function.php:284
+#: install/function.php:283
 msgid ""
 "Sorry, I need a /system/config/autofill.inc.default.php file to work from. "
 "Please re-upload this file from your DCRM installation."
@@ -90,7 +90,7 @@ msgstr ""
 "抱歉，我需要/system/config/autofill.inc.default.php才能工作。请重新向您的DCRM"
 "根目录上传该文件。"
 
-#: install/function.php:286
+#: install/function.php:285
 msgid ""
 "<code>/system/config/</code> directory is not writable. Please change the "
 "directory properties."
@@ -245,10 +245,14 @@ msgstr "配置向导"
 msgid "Notice: "
 msgstr "提醒："
 
-#: install/setup-config.php:48 install/setup-install.php:160
+#: install/setup-config.php:48
 msgid ""
-"The server does not support the URL Rewrite, DCRM will disable this function."
-msgstr "服务器不支持 URL Rewrite，DCRM 将会禁用该功能。"
+"The server does not support the URL Rewrite or cannot detect automatically, "
+"DCRM will disable this function. You can change this option latter in "
+"Settings."
+msgstr ""
+"服务器不支持 URL Rewrite 或无法自动检测，DCRM 将会禁用该功能。您可以稍后在设"
+"置中修改该选项。"
 
 #: install/setup-config.php:50 install/setup-install.php:162
 msgid "You should update your Rewrite config to enable Elegant Mod."
@@ -637,6 +641,11 @@ msgid ""
 msgstr ""
 "如果您想重新创建 <code>connect.inc.php</code> ，请点击 <a href=\"./setup-"
 "config.php\">这里</a>。"
+
+#: install/setup-install.php:160
+msgid ""
+"The server does not support the URL Rewrite, DCRM will disable this function."
+msgstr "服务器不支持 URL Rewrite，DCRM 将会禁用该功能。"
 
 #: install/setup-install.php:164
 msgid ""
