@@ -43,7 +43,7 @@ class_loader('Mobile_Detect');
 $detect = new Mobile_Detect;
 if(!$detect->isiOS()){
 	if (DCRM_PCINDEX == 2) {
-		header("Location: {$SITE_URL}{$rewrite_url['misc']}");
+		header("Location: ".SITE_URL.$rewrite_url['misc']);
 		exit();
 	} else {
 		$isCydia = false;
@@ -397,7 +397,7 @@ if ($index == 0) {
 						<div>
 							<label>
 								<p>
-									<?php printf(__('Donate via <span style="font-style: italic; font-weight: bold"><img class="alipay" src="%salipay_text_en.png" /><sup><small >™</small></sup></span>'), $siteurl.'icons/default/'); ?>
+									<?php printf(__('Donate via <span style="font-style: italic; font-weight: bold"><img class="alipay" src="%salipay_text_en.png" /><sup><small >™</small></sup></span>'), SITE_URL.'icons/default/'); ?>
 								</p>
 							</label>
 						</div>
@@ -779,7 +779,7 @@ if ($index == 0) {
 						<div>
 							<label>
 								<p>
-									<?php printf(__('Donate via <span style="font-style: italic; font-weight: bold"><img class="alipay" src="%salipay_text_en.png" /><sup><small >™</small></sup></span>'), $siteurl.'icons/default/'); ?>
+									<?php printf(__('Donate via <span style="font-style: italic; font-weight: bold"><img class="alipay" src="%salipay_text_en.png" /><sup><small >™</small></sup></span>'), SITE_URL.'icons/default/'); ?>
 								</p>
 							</label>
 						</div>
