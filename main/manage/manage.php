@@ -60,8 +60,8 @@ if (isset($_SESSION['connected']) && $_SESSION['connected'] === true) {
 				$filesize_withext = sizeext($filesize);
 ?>
 						<tr>
-						<td><a href="manage.php?action=delete_confirmation&file=<?php echo(urlencode($file)); ?>" class="close" style="line-height: 12px;">&times;</a></td>
-						<td><a href="manage.php?action=force&file=<?php echo(urlencode($file)); ?>" class="close" style="line-height: 12px;">&equiv;</a></td>
+						<td><a href="manage.php?action=delete_confirmation&amp;file=<?php echo(urlencode($file)); ?>" class="close" style="line-height: 12px;">&times;</a></td>
+						<td><a href="manage.php?action=force&amp;file=<?php echo(urlencode($file)); ?>" class="close" style="line-height: 12px;">&equiv;</a></td>
 						<td><a href = "import.php?filename=<?php echo(urlencode($file)); ?>"><ul class="ctl"><?php echo($file); ?></a></ul></td>
 						<td><ul class="ctl"><?php echo($filesize_withext); ?></ul></td>
 						</tr>

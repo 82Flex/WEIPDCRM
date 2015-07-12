@@ -9,8 +9,10 @@ class core {
 		$this->init_final();
 	}
 	function init_header() {
+		global $_customct;
 		ob_start();
-		header('Content-type: charset=utf-8');
+		if(!isset($_customct) || empty($_customct))
+			header("Content-Type: text/html; charset=UTF-8");
 		header('Expires: Mon, 26 Jul 1997 05:00:00 GMT');
 		header('Cache-Control: no-cache');
 		header('Pragma: no-cache');

@@ -345,6 +345,26 @@ function xss_clean($data) {
 	// we are done...
 	return $data;
 }
+// Get url code
+function url_code($url) {
+	$ch = curl_init();
+	curl_setopt($ch, CURLOPT_URL, $url);
+	curl_setopt($ch, CURLOPT_HEADER, TRUE);
+	curl_setopt($ch, CURLOPT_NOBODY, TRUE);
+	curl_setopt($ch, CURLOPT_RETURNTRANSFER, TRUE);
+	curl_setopt($ch, CURLOPT_USERAGENT, 'DCRM-RewriteTest');
+	curl_exec($ch);
+	$code = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+	curl_close($ch);
+
+	return $code;
+}
+function base_url(){
+	$sitepath = str_replace(str_replace('\\', '/', $_SERVER['DOCUMENT_ROOT']), '', str_replace('\\', '/', ROOT));
+	$siteurl = htmlspecialchars(($_SERVER['SERVER_PORT'] == '443' ? 'https://' : 'http://').$_SERVER['HTTP_HOST'].$sitepath);
+	define('SITE_PATH', $sitepath);
+	define('SITE_URL', $siteurl);
+}
 // Function link
 function randstr($len = 40) {
 	require_once SYSTEM_ROOT.'./function/manage.php';

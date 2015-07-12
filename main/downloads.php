@@ -1,5 +1,4 @@
 <?php
-ini_set("max_execution_time", 1800);
 /**
  * This file is part of WEIPDCRM.
  * 
@@ -19,15 +18,26 @@ ini_set("max_execution_time", 1800);
 
 /* DCRM Debian Download */
 
+$_customct = true;
 if (!file_exists('./system/config/connect.inc.php')) {
 	header("HTTP/1.1 500 Internal Server Error");
 	header("Status: 500 Internal Server Error");
 	exit();
 }
 require_once('system/common.inc.php');
+set_time_limit(0);
+@ini_set("max_execution_time", 1800);
 
 if (!empty($_GET['request']) AND (!empty($_SERVER['HTTP_X_UNIQUE_ID']) OR DCRM_DIRECT_DOWN == 1)) {
 	$r_path = $_GET['request'];
+
+	$module_enabled = get_option('module_enabled');
+	$webserver = explode('/', $_SERVER['SERVER_SOFTWARE']);
+	// Apache URL重写模式下无法使用X-sendfile，因此在此处跳转
+	if($webserver[0] == 'Apache' && $module_enabled ==2 && strstr($_SERVER["REQUEST_URI"], '/debs/') != false){
+		header('Location: ../downloads.php?request='.$r_path);
+	}
+
 	if (pathinfo($r_path, PATHINFO_EXTENSION) != "deb") {
 		httpinfo(400);
 	} else {
@@ -83,7 +93,41 @@ if (!empty($_GET['request']) AND (!empty($_SERVER['HTTP_X_UNIQUE_ID']) OR DCRM_D
 				}
 			}
 			DB::update(DCRM_CON_PREFIX.'Packages', array('DownloadTimes' => ((int)$m_row['DownloadTimes'] + 1)), array('ID' => (string)$request_id));
-			downFile($download_path, $fake_name);
+			$php_forward = get_option('php_forward');
+			if($php_forward == 2 || $php_forward==""){
+				downFile($download_path, $fake_name);
+			} else {
+				function xsendfile_header($self_header, $relative=true){
+					global $sitepath, $download_path, $fake_name;
+					header('Accept-Ranges: bytes');
+					header('Content-type: application/octet-stream');
+					header('Content-Disposition: attachment; filename="' . rawurlencode($fake_name). '"');
+					header($self_header.': '.($relative ? $sitepath : '').$download_path);
+					exit();
+				}
+				switch($webserver[0]){
+					case 'nginx':
+						xsendfile_header('X-Accel-Redirect');
+					case 'Apache':
+						if (function_exists('apache_get_modules')){
+							$Mods = apache_get_modules();
+							if(in_array('mod_xsendfile', $Mods)){
+								xsendfile_header('X-sendfile', false);
+							}
+						} elseif($module_enabled == 2) {
+							xsendfile_header('X-sendfile', false);
+						}
+						if(file_exists(ROOT.'downloads/.htaccess'))
+							unlink(ROOT.'downloads/.htaccess');
+					case 'Lighttpd':
+						if($module_enabled == 2) {
+							xsendfile_header('X-LIGHTTPD-send-file');
+						}
+					default:
+						header('Location: '.$sitepath.$download_path);
+						exit();
+				}
+			}
 		} else {
 			httpinfo(404);
 		}

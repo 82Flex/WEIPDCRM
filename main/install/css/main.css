@@ -46,5 +46,16 @@ ul, ol{padding:5px 5px 5px 22px;}
 .form-table tr{background:#f3f3f3;}
 .form-table p, #error{margin:4px 0 0 0;font-size:11px;}
 .form-table input, .form-table select{line-height:20px;font-size:15px;padding:2px;color:#555;margin-top:2px;margin-right:6px;margin-bottom:16px;border:1px solid #e5e5e5;background:#fbfbfb;}
-#error{background-color:#ffebe8;border-color:#c00;margin:0 0 16px 8px;border-width:1px;border-style:solid;padding:12px;-moz-border-radius:3px;-khtml-border-radius:3px;-webkit-border-radius:3px;border-radius:3px;}
+/*.alert{margin:0 0 16px 8px;border-width:1px;border-style:solid;padding:12px;-moz-border-radius:3px;-khtml-border-radius:3px;-webkit-border-radius:3px;border-radius:3px;font-size: 12px;}*/
+.alert{margin: 5px 0px 0px; padding: 10px;border-width:1px;border-style:solid;-moz-border-radius:3px;-khtml-border-radius:3px;-webkit-border-radius:3px;border-radius:3px;font-size: 12px;}
+.alert a:hover{text-decoration:underline;}
+.alert-danger {color: #a94442;background-color: #f2dede;border-color: #ebccd1;}
+.alert-danger hr {border-top-color: #e4b9c0;}
+.alert-danger a {color: #843534;}
+.alert-warning {color: #8a6d3b;background-color: #fcf8e3;border-color: #faebcc;}
+.alert-warning hr {border-top-color: #f7e1b5;}
+.alert-warning a {color: #66512c;}
+.alert-info {color: #31708f;background-color: #d9edf7;border-color: #bce8f1;}
+.alert-info hr {border-top-color: #a6e1ec;}
+.alert-info a {color: #245269;}
 .message {border: 1px solid #c00; padding: 0.5em 0.7em; margin: 5px 0 15px;	background-color: #ffebe8;}

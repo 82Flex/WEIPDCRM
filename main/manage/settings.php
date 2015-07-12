@@ -27,11 +27,11 @@ if (isset($_SESSION['connected']) && $_SESSION['connected'] === true) {
 
 	if (!isset($_GET['action'])) {
 
-		function show_select($variable){
-			if ($variable == 2) {
-				echo '<option value="2" selected="selected">'.__('Enabled')."</option>\n<option value=\"1\">".__('Disabled')."</option>\n";
-			} else {
-				echo '<option value="1" selected="selected">'.__('Disabled')."</option>\n<option value=\"2\">".__('Enabled')."</option>\n";
+		function show_select($variable, $false_text = '', $true_text = ''){
+			$select_array = array(($_false ? $_false : 1) => ($false_text ? $false_text : __('Disabled')), ($_true ? $_true : 2) => ($true_text ? $true_text : __('Enabled')));
+
+			foreach($select_array as $key => $value) {
+				echo "<option value=\"$key\" ".($key == $variable ? 'selected="selected"' : '').">$value</option>\n";
 			}
 		}
 ?>
@@ -78,8 +78,25 @@ if (isset($_SESSION['connected']) && $_SESSION['connected'] === true) {
 		echo $langtext;
 ?>
 								</select>
-								<p class="help-block"><?php _e('If you want system auto detect users browser language to show pages please select "Detect" option.'); if ( substr( $locale, 0, 2 ) != 'en' ) { ?><br />If you want system auto detect users browser language to show pages please select "Detect" option.<?php } ?></p>
+								<p class="help-block"><?php _e('If you want the system auto detect users browser language to show pages please select "Detect" option.'); if ( substr( $locale, 0, 2 ) != 'en' ) { ?><br />If you want the system auto detect users browser language to show pages please select "Detect" option.<?php } ?></p>
 							</div>
+						</div>
+						<br />
+						<div class="control-group">
+							<label class="control-label"><?php _e('Rewrite Mod');?></label>
+							<div class="controls">
+								<select name="rewrite_mod">
+<?php
+		$options = array(1 => __('Disable'), 2 => __('Normal'), 3 => __('Elegant'));
+		$rewrite_mod = get_option('rewrite_mod');
+		if(empty($rewrite_mod)) $rewrite_mod = 2;
+		foreach($options as $key => $value){
+			echo '<option value="' . $key . '"'.($rewrite_mod == $key ? ' selected="selected"' : '').'>' . htmlspecialchars($value) . "</option>\n";
+		}
+?>
+								</select>
+								<p class="help-block"><?php printf(__('<b>Elegant Mod</b> - Enable all rewrite rules, the url will show like %s.<br/><b>Normal Mod</b> - Compatible earlier than v1.7 configuration, only enbale a part of rewrite rules for HotLinks.<br/><b>Disabled</b> - This will disable all rewrite rules, so HotLinks will not work.<br/>Notice: You should update your rewrite config first if you want to use Elegant Mod.'), '<code>'.htmlspecialchars(base64_decode(DCRM_REPOURL)).'packages/1</code>'); ?></p>
+								</div>
 						</div>
 						<br />
 						<h3><?php _e('Login Information');?></h3>
@@ -87,7 +104,7 @@ if (isset($_SESSION['connected']) && $_SESSION['connected'] === true) {
 						<div class="control-group">
 							<label class="control-label"><?php _e('Username');?></label>
 							<div class="controls">
-								<input type="text" required="required" name="username" minlength="4" maxlength="20" data-validation-minlength-message="<?php _e('Username length must be between 4-20 characters!'); ?>" value="<?php echo htmlspecialchars($_SESSION['username']); ?>"/>
+								<input type="text" required="required" name="username" minlength="4" maxlength="20" data-validation-minlength-message="<?php _e('Username length must be between 4-20 characters!'); ?>" value="<?php echo htmlspecialchars($_SESSION['username']); ?>" data-validation-regex-regex="^[0-9a-zA-Z\_]*$" data-validation-regex-message="<?php _e('Username can only use numbers, letters and underline!'); ?>" />
 								<p class="help-block"></p>
 							</div>
 						</div>
@@ -103,7 +120,7 @@ if (isset($_SESSION['connected']) && $_SESSION['connected'] === true) {
 						<div class="control-group">
 							<label class="control-label"><?php _e('Repeat New Password');?></label>
 							<div class="controls">
-								<input type="password" name="pass2" id="pass2"/>
+								<input type="password" name="pass2" id="pass2" data-validation-match-match="pass1" data-validation-match-message="<?php _e('Your password do not match.'); ?>"/>
 								<p class="help-block"><?php _e('Type your new password again.');?></p>
 								<div id="pass-strength-result" style="display: block;"><?php _e('Strength indicator'); ?></div>
 							</div>
@@ -248,6 +265,26 @@ if (isset($_SESSION['connected']) && $_SESSION['connected'] === true) {
 						<h3><?php _e('Download');?></h3>
 						<br />
 						<div class="control-group">
+							<label class="control-label" style="color: red;"><?php _e('PHP Forward');?></label>
+							<div class="controls">
+								<select name="php_forward">
+									<?php $php_forward = get_option('php_forward'); if(empty($php_forward)) $php_forward = 2; show_select($php_forward); ?>
+								</select>
+								<p class="help-block"><?php _e('Disable PHP forward will reduce server pressure and effectively avoid \'Sum Mismatch Hash\' error.<br/>But it will make the speed limit function to invalid and may exposure real package address.');?></p>
+							</div>
+						</div>
+						<br />
+						<div class="control-group">
+							<label class="control-label"><?php _e('Module Enabled');?></label>
+							<div class="controls">
+								<select name="module_enabled">
+									<?php $module_enabled = get_option('module_enabled'); if(empty($module_enabled)) $module_enabled = 1; show_select($module_enabled, __('No'), __('Yes')); ?>
+								</select>
+								<p class="help-block"><?php _e('Using this switch, the x-sendfile feature on DCRM can be manually enabled if it does not do so automatically <br/>when you have enabled mod_xsendfile on Apache or configured the "allow-x-send-file" option on Lighttpd. <br><b>WARNING:</b> If you don\'t know what this is, please turn this off; otherwise, package downloads may not work.'); ?></p>
+							</div>
+						</div>
+						<br />
+						<div class="control-group">
 							<label class="control-label"><?php _e('HotLink Protection');?></label>
 							<div class="controls">
 								<select name="directdown">
@@ -271,43 +308,10 @@ if (isset($_SESSION['connected']) && $_SESSION['connected'] === true) {
 							<div class="controls">
 								<select name="listsmethod">
 <?php
-		function getzmethod($opt) {
-			switch ($opt) {
-				case 0:
-					$opt_text = __('Hide list');
-					break;
-				case 1:
-					$opt_text = __('Only text');
-					break;
-				case 2:
-					$opt_text = __('Only gz');
-					break;
-				case 3:
-					$opt_text = __('Text and gz');
-					break;
-				case 4:
-					$opt_text = __('Only bz2');
-					break;
-				case 5:
-					$opt_text = __('Text and bz2');
-					break;
-				case 6:
-					$opt_text = __('gz and bz2');
-					break;
-				case 7:
-					$opt_text = __('All');
-					break;
-				default:
-					$opt_text = "";
-			}
-			return $opt_text;
-		}
-		for ($opt = 0; $opt <= 7; $opt++) {
-			if (DCRM_LISTS_METHOD == $opt) {
-				echo '<option value="' . $opt . '" selected="selected">' . htmlspecialchars(getzmethod($opt)) . "</option>\n";
-			} else {
-				echo '<option value="' . $opt . '">' . htmlspecialchars(getzmethod($opt)) . "</option>\n";
-			}
+		$options = array(__('Hide list'), __('Only text'), __('Only gz'), __('Text and gz'),
+						 __('Only bz2'), __('Text and bz2'), __('gz and bz2'), __('All'));
+		foreach($options as $key => $value){
+			echo '<option value="' . $key . '"'.(DCRM_LISTS_METHOD === $key ? ' selected="selected"' : '').'>' . htmlspecialchars($value) . "</option>\n";
 		}
 ?>
 								</select>
@@ -320,31 +324,9 @@ if (isset($_SESSION['connected']) && $_SESSION['connected'] === true) {
 							<div class="controls">
 								<select name="checkmethod">
 <?php
-		function getsmethod($opt) {
-			switch ($opt) {
-				case 0:
-					$opt_text = __('No validation');
-					break;
-				case 1:
-					$opt_text = "MD5Sum";
-					break;
-				case 2:
-					$opt_text = "MD5Sum & SHA1";
-					break;
-				case 3:
-					$opt_text = "MD5Sum & SHA1 & SHA256";
-					break;
-				default:
-					$opt_text = "";
-			}
-			return $opt_text;
-		}
-		for ($opt = 0; $opt <= 3; $opt++) {
-			if (DCRM_CHECK_METHOD == $opt) {
-				echo '<option value="' . $opt . '" selected="selected">' . htmlspecialchars(getsmethod($opt)) . "</option>\n";
-			} else {
-				echo '<option value="' . $opt . '">' . htmlspecialchars(getsmethod($opt)) . "</option>\n";
-			}
+		$options = array(__('No validation'), "MD5Sum", "MD5Sum & SHA1", "MD5Sum & SHA1 & SHA256");
+		foreach($options as $key => $value){
+			echo '<option value="' . $key . '"'.(DCRM_CHECK_METHOD === $key ? ' selected="selected"' : '').'>' . htmlspecialchars($value) . "</option>\n";
 		}
 ?>
 								</select>
@@ -464,7 +446,7 @@ if (isset($_SESSION['connected']) && $_SESSION['connected'] === true) {
 							<label class="control-label"><?php _e('Duoshuo Social Comments KEY');?></label>
 							<div class="controls">
 								<input type="text" name="DUOSHUO_KEY" value="<?php if(defined("AUTOFILL_DUOSHUO_KEY")){echo(htmlspecialchars(stripslashes(AUTOFILL_DUOSHUO_KEY)));} ?>"/>
-								<p class="help-block"><?php _e('Please goto <a href="http://duoshuo.com/">http://duoshuo.com</a> for get key (registration required), leave a blank will disabled comment function.');?></p>
+								<p class="help-block"><?php printf(__('Please goto %s for get key (registration required), leave a blank will disabled comment function.'), '<a href="http://duoshuo.com/">http://duoshuo.com</a>'); ?></p>
 							</div>
 						</div>
 						<br />
@@ -493,7 +475,7 @@ if (isset($_SESSION['connected']) && $_SESSION['connected'] === true) {
 						<div class="control-group">
 							<label class="control-label"><?php _e('Weibo Address');?></label>
 							<div class="controls">
-								<input type="text" name="WEIBO" style="width: 400px;" data-validation-regex-regex="((https?):\/\/)?((weibo\.cn\/))([a-z0-9_\-\.~]+)*(\/([a-z0-9_\-\.]*)(\?[a-z0-9+_\-\.%=&]*)?)?(#[a-z][a-z0-9_]*)?" data-validation-regex-message="<?php _e('Not a valid mobile weibo address. Example: <code>http://weibo.cn/hintay</code>'); ?>" value="<?php if(defined("AUTOFILL_WEIBO")){echo(htmlspecialchars(stripslashes(AUTOFILL_WEIBO)));} ?>"/>
+								<input type="text" name="WEIBO" style="width: 400px;" data-validation-regex-regex="((https?):\/\/)?((weibo\.cn\/))([a-z0-9_\-\.~]+)*(\/([a-z0-9_\-\.]*)(\?[a-z0-9+_\-\.%=&]*)?)?(#[a-z][a-z0-9_]*)?" data-validation-regex-message="<?php printf(__('Not a valid mobile weibo address. Example: %s'), '<code>http://weibo.cn/hintay</code>'); ?>" value="<?php if(defined("AUTOFILL_WEIBO")){echo(htmlspecialchars(stripslashes(AUTOFILL_WEIBO)));} ?>"/>
 								<p class="help-block"><?php _e('Please input the mobile version homepage.');?></p>
 							</div>
 						</div>
@@ -578,127 +560,120 @@ if (isset($_SESSION['connected']) && $_SESSION['connected'] === true) {
 							</div>
 						</div>
 						<br />
-						<div class="form-actions">
+						<div class="form-actions control-group">
 							<div class="controls">
 								<button type="submit" class="btn btn-success"><?php _e('Save');?></button>
+								<p class="help-block button_error"></p>
 							</div>
 						</div>
 					</fieldset>
 				</form>
 <?php
 	} elseif (!empty($_GET['action']) AND $_GET['action'] == "set") {
-		$error_stat = false;
-		$logout = false;
 		$error_text = '';
-		if (!isset($_POST['username']) OR empty($_POST['username'])) {
-			$error_text .= __('Please provide a valid username.')."\n";
-			$error_stat = true;
-		}
-		if (strlen($_POST['username']) > 20 || strlen($_POST['username']) < 4) {
-			$error_text .= __('Username length must be between 4-20 characters!')."\n";
-			$error_stat = true;
-		}
-		if (!preg_match("/^[0-9a-zA-Z\_]*$/", $_POST['username'])) {
-			$error_text .= __('Username can only use numbers, letters and underline!')."\n";
-			$error_stat = true;
-		}
-		if ( !empty($_POST['pass1']) && empty($_POST['pass2']) ) {
-			$error_text .= __( 'You entered your new password only once.' )."\n";
-			$error_stat = true;
-		} elseif ( $_POST['pass1'] != $_POST['pass2'] ) {
-			$error_text .= __( 'Your passwords do not match. Please try again.' )."\n";
-			$error_stat = true;
-		}
-		if (!isset($_POST['trials']) OR !ctype_digit($_POST['trials'])) {
-			$error_text .= __('The maximum number of attempts must be an integer!')."\n";
-			$error_stat = true;
-		}
-		if (!isset($_POST['resettime']) OR !ctype_digit($_POST['resettime'])) {
-			$error_text .= __('Login fail reset time must be an integer!')."\n";
-			$error_stat = true;
-		}
-		if (!isset($_POST['speedlimit']) OR !ctype_digit($_POST['speedlimit'])) {
-			$error_text .= __('Max download speed must be an integer!')."\n";
-			$error_stat = true;
-		}
-		if (!isset($_POST['directdown']) OR !ctype_digit($_POST['directdown'])) {
-			$error_text .= sprintf(__('Please set the correct %s switch!'), __('HotLink Protection'))."\n";
-			$error_stat = true;
-		}
-		if (!isset($_POST['pcindex']) OR !ctype_digit($_POST['pcindex'])) {
-			$error_text .= __('Please set the correct PC Site Master Switch!')."\n";
-			$error_stat = true;
-		}
-		if (!isset($_POST['mobile']) OR !ctype_digit($_POST['mobile'])) {
-			$error_text .= __('Please set the correct Mobile Site Master Switch!')."\n";
-			$error_stat = true;
-		}
-		if (!isset($_POST['screenshots']) OR !ctype_digit($_POST['screenshots'])) {
-			$error_text .= sprintf(__('Please set the correct %s switch!'), _x('Screenshorts', 'Settings'))."\n";
-			$error_stat = true;
-		}
-		if (!isset($_POST['reporting']) OR !ctype_digit($_POST['reporting'])) {
-			$error_text .= sprintf(__('Please set the correct %s switch!'), __('Report Problems'))."\n";
-			$error_stat = true;
-		}
-		if (!isset($_POST['reportlimit']) OR !ctype_digit($_POST['reportlimit']) OR (int)$_POST['reportlimit'] > 20) {
-			$error_text .= __('Please set the correct Limit Number of Report, the maximum not more than 10 times!')."\n";
-			$error_stat = true;
-		}
-		if (!isset($_POST['updatelogs']) OR !ctype_digit($_POST['updatelogs'])) {
-			$error_text .= sprintf(__('Please set the correct %s switch!'), __('Update Logs'))."\n";
-			$error_stat = true;
-		}
-		if (!isset($_POST['moreinfo']) OR !ctype_digit($_POST['moreinfo'])) {
-			$error_text .= sprintf(__('Please set the correct %s switch!'), __('More Information'))."\n";
-			$error_stat = true;
-		}
-		if (!isset($_POST['multiinfo']) OR !ctype_digit($_POST['multiinfo'])) {
-			$error_text .= sprintf(__('Please set the correct %s switch!'), __('Multiple Information'))."\n";
-			$error_stat = true;
-		}
-		if (!isset($_POST['listsmethod']) OR !ctype_digit($_POST['listsmethod']) OR (int)$_POST['listsmethod'] > 7) {
-			$error_text .= __('Please set the correct Packages compression method!')."\n";
-			$error_stat = true;
-		}
-		if (!isset($_POST['list']) OR !ctype_digit($_POST['list'])) {
-			$error_text .= sprintf(__('Please set the correct %s switch!'), __('Show Latest List'))."\n";
-			$error_stat = true;
-		} else {
-			if (!isset($_POST['listnum']) OR !ctype_digit($_POST['listnum']) OR (int)$_POST['listnum'] > 20) {
-				$error_text .= __('Please set the correct number of latest list, the maximum must not exceed 20 !')."\n";
-				$error_stat = true;
-			}
-		}
-		if (!isset($_POST['allowfulllist']) OR !ctype_digit($_POST['allowfulllist'])) {
-			$error_text .= sprintf(__('Please set the correct %s switch!'), __('Full List of Sections'))."\n";
-			$error_stat = true;
-		}
-		if (!isset($_POST['url_repo']) OR empty($_POST['url_repo'])) {
-			$error_text .= __('Please provide a valid repository URL!')."\n";
-			$error_stat = true;
-		}
-		if ($error_stat === false) {
+		if (!isset($_POST['username']) OR empty($_POST['username']))
+			$error_text .= __('Please provide a valid username.').'<br/>';
+		if (strlen($_POST['username']) > 20 || strlen($_POST['username']) < 4)
+			$error_text .= __('Username length must be between 4-20 characters!').'<br/>';
+		if (!preg_match("/^[0-9a-zA-Z\_]*$/", $_POST['username']))
+			$error_text .= __('Username can only use numbers, letters and underline!').'<br/>';
+		if ( !empty($_POST['pass1']) && empty($_POST['pass2']) )
+			$error_text .= __( 'You entered your new password only once.' ).'<br/>';
+		elseif ( $_POST['pass1'] != $_POST['pass2'] )
+			$error_text .= __( 'Your passwords do not match. Please try again.' ).'<br/>';
+		if (!isset($_POST['trials']) OR !ctype_digit($_POST['trials']))
+			$error_text .= __('The maximum number of attempts must be an integer!').'<br/>';
+		if (!isset($_POST['resettime']) OR !ctype_digit($_POST['resettime']))
+			$error_text .= __('Login fail reset time must be an integer!').'<br/>';
+		if (!isset($_POST['speedlimit']) OR !ctype_digit($_POST['speedlimit']))
+			$error_text .= __('Max download speed must be an integer!').'<br/>';
+		if (!isset($_POST['directdown']) OR !ctype_digit($_POST['directdown']))
+			$error_text .= sprintf(__('Please set the correct %s switch!'), __('HotLink Protection')).'<br/>';
+		if (!isset($_POST['pcindex']) OR !ctype_digit($_POST['pcindex']))
+			$error_text .= __('Please set the correct PC Site Master Switch!').'<br/>';
+		if (!isset($_POST['mobile']) OR !ctype_digit($_POST['mobile']))
+			$error_text .= __('Please set the correct Mobile Site Master Switch!').'<br/>';
+		if (!isset($_POST['screenshots']) OR !ctype_digit($_POST['screenshots']))
+			$error_text .= sprintf(__('Please set the correct %s switch!'), _x('Screenshorts', 'Settings')).'<br/>';
+		if (!isset($_POST['reporting']) OR !ctype_digit($_POST['reporting']))
+			$error_text .= sprintf(__('Please set the correct %s switch!'), __('Report Problems')).'<br/>';
+		if (!isset($_POST['reportlimit']) OR !ctype_digit($_POST['reportlimit']) OR (int)$_POST['reportlimit'] > 20)
+			$error_text .= __('Please set the correct Limit Number of Report, the maximum not more than 10 times!').'<br/>';
+		if (!isset($_POST['updatelogs']) OR !ctype_digit($_POST['updatelogs']))
+			$error_text .= sprintf(__('Please set the correct %s switch!'), __('Update Logs')).'<br/>';
+		if (!isset($_POST['moreinfo']) OR !ctype_digit($_POST['moreinfo']))
+			$error_text .= sprintf(__('Please set the correct %s switch!'), __('More Information')).'<br/>';
+		if (!isset($_POST['multiinfo']) OR !ctype_digit($_POST['multiinfo']))
+			$error_text .= sprintf(__('Please set the correct %s switch!'), __('Multiple Information')).'<br/>';
+		if (!isset($_POST['listsmethod']) OR !ctype_digit($_POST['listsmethod']) OR (int)$_POST['listsmethod'] > 7)
+			$error_text .= __('Please set the correct Packages compression method!').'<br/>';
+
+		if (!isset($_POST['list']) OR !ctype_digit($_POST['list']))
+			$error_text .= sprintf(__('Please set the correct %s switch!'), __('Show Latest List')).'<br/>';
+		elseif (!isset($_POST['listnum']) OR !ctype_digit($_POST['listnum']) OR (int)$_POST['listnum'] > 20)
+				$error_text .= __('Please set the correct number of latest list, the maximum must not exceed 20 !').'<br/>';
+
+		if (!isset($_POST['allowfulllist']) OR !ctype_digit($_POST['allowfulllist']))
+			$error_text .= sprintf(__('Please set the correct %s switch!'), __('Full List of Sections')).'<br/>';
+		if (!isset($_POST['url_repo']) OR empty($_POST['url_repo']))
+			$error_text .= __('Please provide a valid repository URL!').'<br/>';
+		if (empty($error_text)) {
 			$result = DB::query("SELECT `ID` FROM `".DCRM_CON_PREFIX."Users` WHERE (`Username` = '".DB::real_escape_string($_POST['username'])."' AND `ID` != '".$_SESSION['userid']."')");
 			if (!$result OR DB::affected_rows() != 0) {
-				$error_text .= __('There is a same username!')."\n";
-				$error_stat = true;
+				$error_text .= __('There is a same username!').'<br/>';
 			} else {
-				$result = DB::query("UPDATE `".DCRM_CON_PREFIX."Users` SET `Username` = '".DB::real_escape_string($_POST['username'])."' WHERE `ID` = '".$_SESSION['userid']."'");
+				$result = DB::update(DCRM_CON_PREFIX.'Users', array('Username' => DB::real_escape_string($_POST['username'])), array('ID' => $_SESSION['userid']));
 				if (!empty($_POST['pass1'])) {
 					$logout = true;
-					$result = DB::query("UPDATE `".DCRM_CON_PREFIX."Users` SET `SHA1` = '".sha1($_POST['pass1'])."' WHERE `ID` = '".$_SESSION['userid']."'");
+					$result = DB::update(DCRM_CON_PREFIX.'Users', array('SHA1' => sha1($_POST['pass1'])), array('ID' => $_SESSION['userid']));
 				}
 			}
 		}
-		if ($error_stat == true) {
+
+		/* Rewrite Check */
+		base_url();
+		switch($_POST['rewrite_mod']){
+			case 3:
+				$check_url = SITE_URL.'misc';
+				$rewrite_code = url_code($check_url);
+				break;
+			case 2:
+				$check_url = SITE_URL.'rewritetest';
+				$rewrite_code = url_code($check_url);
+				break;
+		}
+		if(isset($rewrite_code) && $rewrite_code !== 200)
+			$error_text .= sprintf(__('Cannot access %s, you might need update your rewrite config to use this rewrite mod!'), $check_url).'<br/>';
+
+		if (!empty($error_text)) {
 			echo '<h3 class="alert alert-error">';
 			echo $error_text;
 			echo '<br /><a href="settings.php" onclick="javascript:history.go(-1);return false;">'.__('Back').'</a></h3>';
 		} else {
+			/* Update Options */
 			if(isset($_POST['alipay_account']) && !empty($_POST['alipay_account']))
 				update_option('alipay_account', $_POST['alipay_account']);
-			update_option('autofill_depiction', $_POST['autofill_depiction']);
+			if(isset($_POST['autofill_depiction']))
+				update_option('autofill_depiction', $_POST['autofill_depiction']);
+			if(isset($_POST['php_forward'])){
+				if($_POST['php_forward'] == 2){
+					$htaccess_file = ROOT.'downloads/.htaccess';
+					if(!file_exists($htaccess_file)){
+						@touch($htaccess_file);
+						$htaccess_text = "\tORDER ALLOW,DENY\n\tDENY FROM ALL";
+						file_put_contents($htaccess_file, $htaccess_text);
+					}
+				} else {
+					if(file_exists(ROOT.'downloads/.htaccess'))
+						unlink(ROOT.'downloads/.htaccess');
+				}
+				update_option('php_forward', $_POST['php_forward']);
+			}
+			if(isset($_POST['module_enabled']))
+				update_option('module_enabled', $_POST['module_enabled']);
+			if(isset($_POST['rewrite_mod']))
+				update_option('rewrite_mod', $_POST['rewrite_mod']);
+
 			$config_text = "<?php\nif (!defined(\"DCRM\")) {\n\texit;\n}\n";
 			$config_text .= "define(\"DCRM_LANG\", \"".$_POST['language']."\");\n";
 			$config_text .= "define(\"DCRM_MAXLOGINFAIL\", ".$_POST['trials'].");\n";
@@ -717,7 +692,11 @@ if (isset($_SESSION['connected']) && $_SESSION['connected'] === true) {
 			$config_text .= "define(\"DCRM_MULTIINFO\", ".$_POST['multiinfo'].");\n";
 			$config_text .= "define(\"DCRM_LISTS_METHOD\", ".$_POST['listsmethod'].");\n";
 			$config_text .= "define(\"DCRM_CHECK_METHOD\", ".$_POST['checkmethod'].");\n";
-			$config_text .= "define(\"DCRM_REPOURL\", \"".base64_encode($_POST['url_repo'])."\");\n";
+			// 检测源地址最后一位是否为'/'，若不是则自动添加
+			$repo_url = $_POST['url_repo'];
+			if(substr($repo_url, -1) != '/')
+				$repo_url .= '/';
+			$config_text .= "define(\"DCRM_REPOURL\", \"".base64_encode($repo_url)."\");\n";
 			$config_text .= "define(\"DCRM_LOGINFAILRESETTIME\", ".($_POST['resettime']*60).");\n";
 			$config_text .= "?>";
 			$autofill_text = "<?php\nif (!defined(\"DCRM\")) {\n\texit;\n}\n";
@@ -736,8 +715,8 @@ if (isset($_SESSION['connected']) && $_SESSION['connected'] === true) {
 			fclose($autofill_handle);
 			unset($_SESSION['language']);
 			echo '<h3 class="alert alert-success">'.__('Amendments to the success of settings!').'<br/><a href="settings.php">'.__('Back').'</a></h3>';
-			if ($logout) {
-				header("Location: login.php?action=logout");
+			if (isset($logout) && $logout) {
+				header("Location: ./login.php?action=logout");
 			}
 		}
 	}
@@ -752,7 +731,14 @@ if (isset($_SESSION['connected']) && $_SESSION['connected'] === true) {
 	<script src="./plugins/jqBootstrapValidation/jqBootstrapValidation.min.js"></script>
 	<script type='text/javascript'>
 	var pwsL10n = {"empty":"<?php echo( utf8_unicode( __( 'Strength indicator' ) ) ); ?>","short":"<?php echo( utf8_unicode( _x( 'Short', 'Password' ) ) ); ?>","bad":"<?php echo( utf8_unicode( _x( 'Bad', 'Password' ) ) ); ?>","good":"<?php echo( _x( 'Good', 'Password' ) ); ?>","strong":"<?php echo( utf8_unicode( _x( 'Strong', 'Password' ) ) ); ?>","mismatch":"<?php echo( utf8_unicode( _x( 'Mismatch', 'Password' ) ) ); ?>"};
-	$(function () { $("input,select,textarea").not("[type=submit]").jqBootstrapValidation(); } );
+	$(function () { $("input,select,textarea").not("[type=submit]").jqBootstrapValidation(
+		{
+			submitError: function ($form, event, errors){
+				$(".form-actions").addClass("error");
+				$(".button_error").html('<ul role="alert"><li><?php _e('You have some errors, please check the form.'); ?></li></ul>');
+			}
+		}
+	); } );
 	</script>
 </body>
 </html>

@@ -33,36 +33,38 @@ if (!isset($_SESSION['connected']) || $_SESSION['connected'] != true) {
 	exit();
 }
 $parts = "`ID`, `Package`, `Source`, `Version`, `Priority`, `Section`, `Essential`, `Maintainer`, `Pre-Depends`, `Depends`, `Recommends`, `Suggests`, `Conflicts`, `Provides`, `Replaces`, `Enhances`, `Architecture`, `Filename`, `Size`, `Installed-Size`, `Description`, `Origin`, `Bugs`, `Name`, `Author`, `Sponsor`, `Homepage`, `Website`, `Depiction`, `Icon`, `Tag`";
-if (DCRM_CHECK_METHOD != 0) {
+if (DCRM_CHECK_METHOD != 0)
 	$parts .= ", `MD5sum`";
-}
-if (DCRM_CHECK_METHOD == 2 || DCRM_CHECK_METHOD == 3) {
+if (DCRM_CHECK_METHOD == 2 || DCRM_CHECK_METHOD == 3)
 	$parts .= ", `SHA1`";
-}
-if (DCRM_CHECK_METHOD == 3) {
+if (DCRM_CHECK_METHOD == 3)
 	$parts .= ", `SHA256`";
-}
-$m_query = DB::query("SELECT ".$parts." FROM `".DCRM_CON_PREFIX."Packages` WHERE `Stat` = '1' GROUP BY `Package` ORDER BY `ID` DESC");
-if ($m_query == false) {
+
+$packages_info = DB::fetch_all("SELECT ".$parts." FROM `".DCRM_CON_PREFIX."Packages` WHERE `Stat` = '1' GROUP BY `Package` ORDER BY `ID` DESC");
+/*if ($m_query == false) {
 	$alert = __('Database Error!');
 	goto endlabel;
-}
+}*/
+
+$rewrite_mod = get_option('rewrite_mod');
+if(empty($rewrite_mod) || $rewrite_mod != 3)
+	$filepath_format = './downloads.php?request=%d.deb';
+else
+	$filepath_format = './debs/%d.deb';
+
 $Packages = "";
-$i=0;
-while ($m_array = mysql_fetch_assoc($m_query)) {
-	$i++;
-	$f_Package = "";
-	$m_array['Filename'] = "./debs/" . $m_array['ID'] . ".deb";
-	unset($m_array['ID']);
-	foreach ($m_array as $m_key => $m_value) {
-		if (!empty($m_value) && !empty($m_key)) {
-			$f_Package .= $m_key . ": " . trim(str_replace("\n", "\n ", $m_value)) . "\n";
-		}
+foreach($packages_info as $package_info){
+	$Package = "";
+	$package_info['Filename'] = sprintf($filepath_format, $package_info['ID']);
+	unset($package_info['ID']);
+	foreach($package_info as $m_key => $m_value) {
+		if (!empty($m_value) && !empty($m_key))
+			$Package .= $m_key . ": " . trim(str_replace("\n", "\n ", $m_value)) . "\n";
 	}
-	$Packages .= $f_Package . "\n";
+	$Packages .= $Package . "\n";
 }
 
-if ($i > 0) {
+if (($i = count($packages_info)) > 0) {
 	$alert .= __('Find the number of records: ').$i;
 } else {
 	$alert .= __('No record in data table ` Packages `! Please import package and allow it to display first.');

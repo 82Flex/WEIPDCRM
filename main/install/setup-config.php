@@ -26,8 +26,6 @@ error_reporting(E_ALL ^ E_WARNING);
 require_once('function.php');
 $header_title = __('Configuration Wizard');
 
-if (file_exists(CONF_PATH.'installed.lock')) { die('You should delete installed.lock before reinstall WEIPDCRM.'); }
-
 $notice = check_notice( $install = false );
 
 $step = isset($_GET['step']) ? $_GET['step'] : 0;
@@ -37,16 +35,20 @@ $env_vars = check_env($disabled);
 $dir_file_vars = check_dir($disabled);
 $func_vars = check_func($disabled);
 
-if( $step != 0 && $step != 1 ){
-	if ($disabled == false) {
-		header('location: setup-config.php?step=1&'.$step_language);
-		exit();
-	}
+if( $step != 0 && $step != 1 && $disabled == false ){
+	header('location: setup-config.php?step=1&'.$step_language);
+	exit();
 }
 
 switch($step) {
-	case 0:		
-		display_header($notice);?>
+	case 0:
+		display_header($notice);
+		if (empty($notice) && available(BASE_URL.'rewritetest') !== 200):
+?>
+		<div class="alert alert-warning"><strong><?php _e('Notice: '); ?></strong><?php _e('The server does not support the URL Rewrite, DCRM will disable this function.'); ?></div>
+<?php 	elseif(available(BASE_URL.'misc') !== 200): ?>
+		<div class="alert alert-warning"><strong><?php _e('Notice: '); ?></strong><?php _e('You should update your Rewrite config to enable Elegant Mod.'); ?></div>
+<?php 	endif; ?>
 		<p><strong><?php _e('Welcome to DCRM!'); ?></strong></p>
 		<p><a href="https://github.com/Lessica/WEIPDCRM">DCRM</a> <?php _e('is a Darwin Cydia Repository Manager write by PHP.'); ?> <?php _e('This project is a original designs by <a href="http://weibo.cn/u/3246210680">@i_82</a>, and some codes by <a href="http://weibo.com/hintay">@Hintay</a>.'); ?></p>
 		<p><?php _e('If you pay close attention to <a href="http://weibo.cn/u/3246210680">i_82</a> and some of his <a href="http://82flex.com/projects">projects</a>. Also wanted to help him, welcome to donate him.'); ?></p>
@@ -95,7 +97,7 @@ switch($step) {
 		break;
 
 	case 2:
-		display_header($notice);		
+		display_header($notice);
 ?>
 	<form method="post" action="setup-config.php?step=3&amp;<?php echo $step_language; ?>">
 	<p><?php _e('Below you should enter your database connection details. If you&#8217;re not sure about these, contact your host.') ?></p>
@@ -126,9 +128,9 @@ switch($step) {
 		}
 
 		display_header($notice);
-	
+
 		$tryagain_link = '<p class="step"><a href="setup-config.php?step=2&amp;' . $step_language . '" onclick="javascript:history.go(-1);return false;" class="button">' . __('Try again') . '</a>';
-		
+
 		$dbhost = trim($_POST['dbhost']);
 		$dbport = intval(trim($_POST['dbport']));
 		$prefix = trim($_POST['prefix']);
@@ -136,18 +138,18 @@ switch($step) {
 		$dbname = trim($_POST['dbname']);
 		$uname = trim($_POST['uname']);
 		$pconnect = isset($_POST['pconnect']);
-		
+
 		if ( empty( $prefix ) ) {
 			echo __('<strong>ERROR</strong>: "Table Prefix" must not be empty.') . $tryagain_link;
 			break;
 		}
-		
+
 		// Validate $prefix: it can only contain letters, numbers and underscores.
 		if ( preg_match( '|[^a-z0-9_]|i', $prefix ) ) {
 			echo __('<strong>ERROR</strong>: "Table Prefix" can only contain numbers, letters, and underscores.') . $tryagain_link;
 			break;
 		}
-		
+
 		// Test the db connection.
 		define('DCRM_CON_SERVER', $dbhost);
 		define('DCRM_CON_SERVER_PORT', $dbport);
@@ -156,7 +158,7 @@ switch($step) {
 		define('DCRM_CON_DATABASE', $dbname);
 		define('DCRM_CON_PREFIX', $prefix);
 		define('DCRM_CON_PCONNECT', $pconnect);
-		
+
 		// Connect to Server
 		$con = mysql_connect("{$dbhost}:{$dbport}", DCRM_CON_USERNAME, DCRM_CON_PASSWORD);
 		if (!$con) {
@@ -171,14 +173,14 @@ switch($step) {
 			echo __('<strong>ERROR</strong>: Can&#8217;t create database, please check your input information.') . '<br/>' . $inst_alert . $tryagain_link; 
 			break;
 		}
-	
+
 		$result = mysql_select_db(DCRM_CON_DATABASE);
 		if (!$result) {
 			$inst_alert = mysql_error();
 			echo __('<strong>ERROR</strong>: Can&#8217;t select database, please check your input information.') . '<br/>' . $inst_alert . $tryagain_link; 
 			break;
 		}
-	
+
 		$config_file = file( CONF_PATH . 'connect.inc.default.php' );
 		foreach ( $config_file as $line_num => $line ) {
 			if ( ! preg_match( '/^.*?define\([\'"]([A-Z_]+)[\'"],([ ]+)/', $line, $match ) )
@@ -202,7 +204,7 @@ switch($step) {
 			}
 		}
 		unset( $line );
-		
+
 		$path_to_config = CONF_PATH . 'connect.inc.php';
 		$handle = fopen( $path_to_config, 'w' );
 		foreach( $config_file as $line ) {
@@ -210,7 +212,7 @@ switch($step) {
 		}
 		fclose( $handle );
 		@chmod( $path_to_config, 0666 );
-		
+
 		if (!file_exists(ABSPATH.'CydiaIcon.png'))
 			copy("CydiaIcon.png", "../CydiaIcon.png");
 		if (!file_exists(ABSPATH.'favicon.ico'))

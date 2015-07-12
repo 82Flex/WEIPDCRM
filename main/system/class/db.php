@@ -102,7 +102,7 @@ class db_mysql {
 	}
 }
 class DB {
-	function delete($table, $condition, $limit = 0, $unbuffered = true) {
+	static function delete($table, $condition, $limit = 0, $unbuffered = true) {
 		if (empty($condition)) {
 			$where = '1';
 		} elseif (is_array($condition)) {
@@ -113,14 +113,14 @@ class DB {
 		$sql = "DELETE FROM {$table} WHERE $where ".($limit ? "LIMIT $limit" : '');
 		return DB::query($sql, ($unbuffered ? 'UNBUFFERED' : ''));
 	}
-	function insert($table, $data, $return_insert_id = true, $replace = false, $silent = false) {
+	static function insert($table, $data, $return_insert_id = true, $replace = false, $silent = false) {
 		$sql = DB::implode_field_value($data);
 		$cmd = $replace ? 'REPLACE INTO' : 'INSERT INTO';
 		$silent = $silent ? 'SILENT' : '';
 		$return = DB::query("$cmd $table SET $sql", $silent);
 		return $return_insert_id ? DB::insert_id() : $return;
 	}
-	function update($table, $data, $condition, $unbuffered = false, $low_priority = false) {
+	static function update($table, $data, $condition, $unbuffered = false, $low_priority = false) {
 		$sql = DB::implode_field_value($data);
 		$cmd = "UPDATE ".($low_priority ? 'LOW_PRIORITY' : '');
 		$where = '';
@@ -134,7 +134,7 @@ class DB {
 		$res = DB::query("$cmd $table SET $sql WHERE $where", $unbuffered ? 'UNBUFFERED' : '');
 		return $res;
 	}
-	function implode_field_value($array, $glue = ',') {
+	static function implode_field_value($array, $glue = ',') {
 		$sql = $comma = '';
 		foreach ($array as $k => $v) {
 			$k = DB::real_escape_string($k);
@@ -146,16 +146,16 @@ class DB {
 		}
 		return $sql;
 	}
-	function insert_id() {
+	static function insert_id() {
 		return DB::_execute('insert_id');
 	}
-	function fetch($resourceid, $type = MYSQL_ASSOC) {
+	static function fetch($resourceid, $type = MYSQL_ASSOC) {
 		return DB::_execute('fetch_array', $resourceid, $type);
 	}
-	function fetch_first($sql) {
+	static function fetch_first($sql) {
 		return DB::_execute('fetch_first', $sql);
 	}
-	function fetch_all($sql) {
+	static function fetch_all($sql) {
 		$query = DB::_execute('query', $sql);
 		$return = array();
 		while ($result = DB::fetch($query)) {
@@ -163,54 +163,54 @@ class DB {
 		}
 		return $return;
 	}
-	function result($resourceid, $row = 0) {
+	static function result($resourceid, $row = 0) {
 		return DB::_execute('result', $resourceid, $row);
 	}
-	function result_first($sql) {
+	static function result_first($sql) {
 		return DB::_execute('result_first', $sql);
 	}
-	function query($sql, $type = '') {
+	static function query($sql, $type = '') {
 		return DB::_execute('query', $sql, $type);
 	}
-	function num_rows($resourceid) {
+	static function num_rows($resourceid) {
 		return DB::_execute('num_rows', $resourceid);
 	}
-	function affected_rows() {
+	static function affected_rows() {
 		return DB::_execute('affected_rows');
 	}
-	function free_result($query) {
+	static function free_result($query) {
 		return DB::_execute('free_result', $query);
 	}
-	function real_escape_string($query) {
+	static function real_escape_string($query) {
 		return DB::_execute('real_escape_string', $query);
 	}
-	function fetch_row($query) {
+	static function fetch_row($query) {
 		return DB::_execute('fetch_row', $query);
 	}
-	function error() {
+	static function error() {
 		return DB::_execute('error');
 	}
-	function errno() {
+	static function errno() {
 		return DB::_execute('errno');
 	}
-	function version() {
+	static function version() {
 		return DB::_execute('version');
 	}
-	function stat() {
+	static function stat() {
 		return DB::_execute('stat');
 	}
-	function _execute($cmd , $arg1 = '', $arg2 = '') {
+	static function _execute($cmd , $arg1 = '', $arg2 = '') {
 		static $db;
 		if (empty($db)) $db = &DB::object();
 		$res = $db->$cmd($arg1, $arg2);
 		return $res;
 	}
-	function &object() {
+	static function &object() {
 		static $db;
 		if (empty($db)) $db = new db_mysql();
 		return $db;
 	}
-	public function escape_by_ref( &$string ) {
+	static public function escape_by_ref( &$string ) {
 		if ( ! is_float( $string ) )
 			$string = DB::real_escape_string( $string );
 	}
@@ -248,7 +248,7 @@ class DB {
 	 * @return null|false|string Sanitized query string, null if there is no query, false if there is an error and string
 	 * 	if there was something to prepare
 	 */
-	public function prepare( $query, $args ) {
+	static public function prepare( $query, $args ) {
 		if ( is_null( $query ) )
 			return;
 

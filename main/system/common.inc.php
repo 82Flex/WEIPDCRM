@@ -16,13 +16,17 @@
  * along with WEIPDCRM.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+if (version_compare(PHP_VERSION, '5.6', '>=')) {
+	echo 'DCRM not compatible with PHP 5.6+ now, please check your PHP version.';
+	exit();
+}
 error_reporting(E_ALL ^ E_NOTICE);
 define("DCRM",true);
 define('IN_DCRM', true);
 define('SYSTEM_ROOT', dirname(__FILE__).'/');
 define('ROOT', dirname(SYSTEM_ROOT).'/');
 define('TIMESTAMP', time());
-define('VERSION', '1.6.15.6.18');
+define('VERSION', '1.7.15.7.12');
 define('UI_VERSION', '1.0');
 
 define('DEBUG_ENABLED', isset($_GET['debug']));
@@ -48,7 +52,7 @@ if(file_exists(ROOT.'manage/include/connect.inc.php')){
 } elseif(file_exists(SYSTEM_ROOT.'config/connect.inc.php')) {
 	define('CONF_PATH', SYSTEM_ROOT.'config/');
 } else {
-	$root = str_replace($_SERVER['DOCUMENT_ROOT'], '', str_replace('\\', '/', ROOT));
+	$root = str_replace(str_replace('\\', '/', $_SERVER['DOCUMENT_ROOT']), '', str_replace('\\', '/', ROOT));
 	header('Location: '.$root.'install');
 	exit();
 }
@@ -83,9 +87,8 @@ class_loader('Updater');
 	}
 }*/
 
+// Move to base_url() function.
 //$sitepath = substr($_SERVER['PHP_SELF'], 0, strrpos($_SERVER['PHP_SELF'], '/'));
-$sitepath = '/'.str_replace($_SERVER['DOCUMENT_ROOT'], '', str_replace('\\', '/', ROOT));
-$siteurl = htmlspecialchars(($_SERVER['SERVER_PORT'] == '443' ? 'https://' : 'http://').$_SERVER['HTTP_HOST'].$sitepath);
 
 require_once SYSTEM_ROOT.'./function/core.php';
 

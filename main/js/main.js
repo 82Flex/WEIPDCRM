@@ -6,7 +6,7 @@ function loadPackages() {
 	offset = document.getElementById("section").children.length;
 	$.ajax({
 		type: 'GET',
-		url: '/more/' + $('#loadmore').attr("name") + '/' + offset,
+		url: siteurl + 'index.php?pid=' + $('#loadmore').attr("name") + '&method=more' + '&offset=' + offset,
 		dataType: 'html',
 		cache: true,
 		success: function (data) {

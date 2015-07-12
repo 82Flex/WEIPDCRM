@@ -28,8 +28,6 @@ require_once('function.php');
 
 $header_title = __( 'Installer' );
 
-if (file_exists(CONF_PATH.'installed.lock')) { die('You should delete installed.lock before reinstall WEIPDCRM.'); }
-
 // 检查数据库配置文件
 if( !file_exists(CONF_PATH.'connect.inc.php') ){
 	header('location: setup-config.php?'.$step_language);
@@ -55,21 +53,28 @@ if (!$con) {
 	exit();
 }
 
-// Make sure DCRM isn't already installed (Database).
+// Make sure DCRM is not already installed.
+// Check installed.lock file.
+if(!defined("DEVELOP_ENABLED")):
+if(file_exists(CONF_PATH.'installed.lock')) {
+	display_header();
+	echo '<h1>' . __('Already Installed') . '</h1><p>' . __('You appear to have already installed DCRM. You should delete /system/config/installed.lock before reinstall.') . '</p><p class="step"><a href="../manage/login.php" class="button button-large">' . __('Log In') . '</a></p></body></html>';
+	exit();
+}
+// Check database.
 $result = mysql_query("SHOW TABLES FROM `".DCRM_CON_DATABASE."` LIKE '".DCRM_CON_PREFIX."Packages'");
 if ($result && mysql_num_rows($result) != 0) {
 	mysql_error();
 
 	display_header();
-	echo '<h1>' . __('Already Installed') . '</h1><p>' . __('You appear to have already installed DCRM. To reinstall please clear your old database tables first.') . '</p><p class="step"><a href="../manage/login.php" class="button button-large">' . __('Log In') . '</a></p></body></html>';
+	echo '<h1>' . __('Already Installed') . '</h1><p>' . __('You appear to have already installed DCRM. You should clear your old database tables before reinstall.') . '</p><p class="step"><a href="../manage/login.php" class="button button-large">' . __('Log In') . '</a></p></body></html>';
 	exit();
 }
+endif;
 
-if( $step != 99 ){
-	if ($disabled == false || $notice != '') {
-		header('location: setup-install.php?step=99&'.$step_language);
-		exit();
-	}
+if( $step != 99 && ($disabled == false || $notice != '') ){
+	header('location: setup-install.php?step=99&'.$step_language);
+	exit();
 }
 
 /**
@@ -144,10 +149,18 @@ switch($step) {
 ?>
 <h1><?php _ex( 'Welcome', 'Howdy' ); ?></h1>
 <?php
-if(isset($_GET['redirect']) && $_GET['redirect'] ){
+		if(isset($_GET['redirect']) && $_GET['redirect'] ):
 ?>
-	<div id="error" style="margin: 5px 0px 0px; padding: 10px; background-color: #f3f3f3; border-color: #ccc;"><strong><?php _e('Note: '); ?></strong><?php _e('If you want to recreate <code>connect.inc.php</code>, please click <a href="./setup-config.php">here</a>.');?></div>
-<?php } ?>
+	<div class="alert alert-info"><strong><?php _e('Note: '); ?></strong><?php _e('If you want to recreate <code>connect.inc.php</code>, please click <a href="./setup-config.php">here</a>.');?></div>
+<?php
+		endif;
+		// Rewrite Mod Check
+		if (available(BASE_URL.'rewritetest') !== 200):
+?>
+		<div class="alert alert-warning"><strong><?php _e('Notice: '); ?></strong><?php _e('The server does not support the URL Rewrite, DCRM will disable this function.'); ?></div>
+<?php 	elseif(available(BASE_URL.'misc') !== 200): ?>
+		<div class="alert alert-warning"><strong><?php _e('Notice: '); ?></strong><?php _e('You should update your Rewrite config to enable Elegant Mod.'); ?></div>
+<?php 	endif; ?>
 <p><?php _e( 'Welcome to the DCRM installation process! Just fill in the information below.' ); ?></p>
 
 <h1><?php _e( 'Information needed' ); ?></h1>
@@ -312,8 +325,17 @@ if(isset($_GET['redirect']) && $_GET['redirect'] ){
 				PRIMARY KEY (`option_id`)
 				) ENGINE=MyISAM AUTO_INCREMENT=0 DEFAULT CHARSET=utf8');
 
+			// Insert Options SQL
 			dcrm_query("INSERT INTO `".DCRM_CON_PREFIX."Options` (`option_name`, `option_value`) VALUES ('udid_level', '" . serialize(array( __('Guest'), '')) . "') ON DUPLICATE KEY UPDATE `option_name` = VALUES(`option_name`), `option_value` = VALUES(`option_value`)");
 			dcrm_query("INSERT INTO `".DCRM_CON_PREFIX."Options` (`option_name`, `option_value`) VALUES ('autofill_depiction', '2') ON DUPLICATE KEY UPDATE `option_name` = VALUES(`option_name`), `option_value` = VALUES(`option_value`)");
+			// Rewrite Option
+			if (available(BASE_URL.'rewritetest') !== 200)
+				dcrm_query("INSERT INTO `".DCRM_CON_PREFIX."Options` (`option_name`, `option_value`) VALUES ('rewrite_mod', '1') ON DUPLICATE KEY UPDATE `option_name` = VALUES(`option_name`), `option_value` = VALUES(`option_value`)");
+			elseif (available(BASE_URL.'misc') !== 200 && available(BASE_URL.'misc') !== 500)
+				dcrm_query("INSERT INTO `".DCRM_CON_PREFIX."Options` (`option_name`, `option_value`) VALUES ('rewrite_mod', '2') ON DUPLICATE KEY UPDATE `option_name` = VALUES(`option_name`), `option_value` = VALUES(`option_value`)");
+			else
+				dcrm_query("INSERT INTO `".DCRM_CON_PREFIX."Options` (`option_name`, `option_value`) VALUES ('rewrite_mod', '3') ON DUPLICATE KEY UPDATE `option_name` = VALUES(`option_name`), `option_value` = VALUES(`option_value`)");
+
 
 			if ( empty($admin_password) ) {
 				$admin_password = dcrm_generate_password( 12, false );
@@ -366,7 +388,7 @@ if(isset($_GET['redirect']) && $_GET['redirect'] ){
 
 				switch ( $constant ) {
 					case 'DCRM_REPOURL':
-						$config_file[ $line_num ] = "	define('" . $constant . "'," . $padding . "'" . addcslashes( constant( $constant ), "\\'" ) . "');\r\n";
+						$config_file[ $line_num ] = "define('" . $constant . "'," . $padding . "'" . addcslashes( constant( $constant ), "\\'" ) . "');\r\n";
 						break;
 				}
 			}
@@ -391,7 +413,7 @@ if(isset($_GET['redirect']) && $_GET['redirect'] ){
 				copy("CydiaIcon.png", "../CydiaIcon.png");
 			if (!file_exists(ABSPATH.'favicon.ico'))
 				copy("favicon.ico", "../favicon.ico");
-			
+
 			if ( file_exists(CONF_PATH.'installed.lock') && file_exists(CONF_PATH.'config.inc.php') && file_exists(CONF_PATH.'gnupg.inc.php') && file_exists(CONF_PATH.'autofill.inc.php') && file_exists(ABSPATH.'system/version.inc.php') && file_exists(ABSPATH.'CydiaIcon.png') && file_exists(ABSPATH.'favicon.ico') && file_exists(ABSPATH.'tmp') ){
 				@chmod( $autofill_new, 0666 );
 				@chmod( $config_new, 0666 );

@@ -51,7 +51,7 @@ if (isset($_SESSION['connected']) && $_SESSION['connected'] === true) {
 					(Uyghurche) ئۇيغۇرچه: <a href="http://weibo.com/u/2767344637">Shiraq</a>
 					<br /><br />
 					<h4><?php _e('Copyright'); ?>&copy; 2013–<?php echo date('Y'); ?> i_82 &amp; Hintay<br />
-					<?php _e('This program is free software, you can redistribute it and/or modify it under the terms of the <a href="http://www.gnu.org/licenses">GNU General Public License</a> as published by the Free Software Foundation either version 3 of the License.'); ?></h4></div>
+					<?php _e('This program is free software, you can redistribute it and/or modify it under the terms of the <a href="http://www.gnu.org/licenses">GNU Affero General Public License</a> as published by the Free Software Foundation either version 3 of the License.'); ?></h4></div>
 <?php
 	} else {
 		endlabel:

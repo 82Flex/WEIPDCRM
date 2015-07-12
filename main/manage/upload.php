@@ -116,32 +116,47 @@ else window.location.replace('./upload.php?mode=classic');
 <script charset='utf-8' type="text/javascript" src="./plugins/uploadify/js/jquery.uploadify.js"></script>
 <link rel="stylesheet" type="text/css" href="./plugins/uploadify/css/uploadify.css"/>
 <script charset='utf-8' type="text/javascript">
-var img_id_upload=new Array();//初始化数组，存储已经上传的图片名
-var i=0;//初始化数组下标
+var files_msg = new Array(); // 初始化数组，存储已处理文件输出的信息
 $(function() {
-    $('#file_upload').uploadify({
-    	'auto'     : false,//关闭自动上传
-    	'removeTimeout' : 1,//文件队列上传完成1秒后删除
-        'swf'      : 'plugins/uploadify/uploadify.swf',
-        'uploader' : 'plugins/uploadify/uploadify.php',
-        'method'   : 'post',//方法，服务端可以用$_POST数组获取数据
-        'buttonText' : '<?php _e('SELECT FILES'); ?>',//设置按钮文本
-        'multi'    : true,//允许同时上传多文件
-        'uploadLimit' : 10,//一次最多只允许上传10个文件
-        'fileTypeDesc' : 'Debian Software Package',//只允许上传的文件种类
-        'fileTypeExts' : '*.deb',//限制允许上传的后缀
-        'fileSizeLimit' : '10MB',//限制上传的文件不得超过10MB 
-        'onUploadSuccess' : function(file, data, response) {//每次成功上传后执行的回调函数，从服务端返回数据到前端
-               img_id_upload[i]=data;
-               i++;
-               alert(data);
-        },
-        'onQueueComplete' : function(queueData) {//上传队列全部完成后执行的回调函数
-           // if(img_id_upload.length>0)
-           // alert('成功上传的文件有：'+encodeURIComponent(img_id_upload));
-        }  
-        // Put your options here
-    });
+	$('#file_upload').uploadify({
+		'auto'				: false, // 关闭自动上传
+		'removeTimeout'		: 1, // 文件队列上传完成1秒后删除
+		'swf'				: 'plugins/uploadify/uploadify.swf',
+		'uploader'			: 'plugins/uploadify/uploadify.php', // 后端程序
+		'method'			: 'post', // 数据提交方法，后端可以用$_POST数组获取数据
+		'buttonText'		: '<?php _e('SELECT FILES'); ?>', // 设置按钮文本
+		'multi'				: true, // 允许同时上传多文件
+		//'uploadLimit'		: 10, // 一次最多只允许上传10个文件
+		'fileTypeDesc'		: 'Debian Software Package', // 只允许上传的文件种类
+		'fileTypeExts'		: '*.deb', // 限制允许上传的后缀
+		'fileSizeLimit'		: '10MB', // 限制上传的文件不得超过10MB 
+		'onUploadSuccess'	: function(file, data, response){ // 每次成功上传后执行的回调函数，从服务端返回数据到前端
+			var responeseDataObj = eval('('+data+')');
+			if(responeseDataObj){
+				if(responeseDataObj.code == 200){
+					$('#' + file.id).find('.data').html('<?php _ex(' Success', 'Uploader'); ?>');
+					files_msg += responeseDataObj.filename+"<?php _ex(' Upload Success!', 'Uploader'); ?>\n";
+				} else if(responeseDataObj.code == 300) {
+					if(responeseDataObj.status == 'failed'){
+						$('#' + file.id).find('.data').html('<?php _ex(' Failed', 'Uploader'); ?>');
+						files_msg += responeseDataObj.filename+"<?php _ex(' Upload Failed!', 'Uploader'); ?>\n";
+					}else{
+						$('#' + file.id).find('.data').html('<?php _ex(' Already Exists', 'Uploader'); ?>');
+						files_msg += responeseDataObj.filename+"<?php _ex(' Already Exists!', 'Uploader'); ?>\n";
+					}
+				} else {
+					$('#' + file.id).find('.data').html('<?php _ex(' Unknow', 'Uploader'); ?>');
+					files_msg += responeseDataObj.filename+"<?php _ex(' Unknow Error!', 'Uploader'); ?>\n";
+				}
+			}
+		},
+		'onQueueComplete' : function(queueData) { // 上传队列全部完成后执行的回调函数
+			if(files_msg.length > 0){
+				alert(files_msg);
+				files_msg = null; // 销毁变量，否则会重复
+			}
+		}
+	});
 });
 </script>
 <?php

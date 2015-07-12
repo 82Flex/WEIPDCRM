@@ -18,6 +18,12 @@
 
 /* DCRM PC Index Page */
 
+// For Rewrite Test
+if($_SERVER['HTTP_USER_AGENT'] == 'DCRM-RewriteTest'){
+	echo('OK');
+	exit();
+}
+
 require_once('system/common.inc.php');
 
 if (file_exists("Release")) {
@@ -82,7 +88,7 @@ if (file_exists('CydiaIcon.png')) {
 ?>
 			<p><?php echo $release_origin; ?></p>
 			<hr />
-			<p><?php printf( __( 'Welcome to <a href="cydia://sources/add">Add</a> <code>%s</code> via Cydia.' ) , $release_url ); ?></p>
+			<p><?php printf( __( 'Welcome to <a href="%1$s">Add</a> <code>%2$s</code> via Cydia.' ) , 'cydia://url/https://cydia.saurik.com/api/share#?source='.$release_url , $release_url ); ?></p>
 		  	<div class="add_image">
             	<div class="input_text"><?php _e('Enter Cydia/APT URL'); ?></div>
             	<div class="repo_text">http://<span class="txt"><?php echo $release_url; ?></span></div>

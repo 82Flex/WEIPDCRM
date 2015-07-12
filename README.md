@@ -18,9 +18,9 @@ This program is re-designed from tibounise's "[DCRM](https://github.com/tibounis
 
 ##How To Install And Use:
 1.  Upload `/main/*` to your wwwroot then give them read & write privileges.
-2.  **Nginx:** Move `/readme.files/dcrm_nginx.conf` to Nginx's config directory, then include it in your website's config.<br/>**Apache:** Rename `/readme.files/dcrm_apache.htaccess` to `$wwwroot/.htaccess`.<br/>**Lighttpd:** Include `/readme.files/dcrm_lighttpd.conf`.
+2.  **Nginx:** Move `/readme.files/dcrm_nginx.conf` to Nginx's config directory, then include it in your website's config.<br/>**Lighttpd:** Include `/readme.files/dcrm_lighttpd.conf`.
 3.  Restart your web server if you need.
-4.  Open `http://{YOUR_REPO_URL}/install` to create MYSQL tables.
+4.  Open `http://{YOUR_REPO_URL}/install` to pre-config and install DCRM.
 5.  Then login at `http://{YOUR_REPO_URL}/manage`.
 6.  Fill blanks in `http://{YOUR_REPO_URL}/manage/settings.php` and `http://{YOUR_REPO_URL}/manage/release.php`
 7.  Upload a package then import it or replace an older version, then you can edit its information *(such as Identifier, Author, Name, Depends, etc.)*.

@@ -18,6 +18,7 @@
 
 /* DCRM Packages Provider */
 
+$_customct = true;
 require_once('system/common.inc.php');
 
 if (!empty($_GET['request']) AND (!empty($_SERVER['HTTP_X_UNIQUE_ID']) OR DCRM_DIRECT_DOWN == 1)) {
