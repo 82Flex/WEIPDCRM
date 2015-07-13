@@ -311,7 +311,7 @@ if (isset($_SESSION['connected']) && $_SESSION['connected'] === true) {
 		$s_query = DB::query("SELECT `Package`, `Stat` FROM `".DCRM_CON_PREFIX."Packages` WHERE `ID` = '" . $submit_id . "'");
 		$s_info = mysql_fetch_assoc($s_query);
 		if ((int)$s_info['Stat'] != 1) {
-			$s_query = DB::query("UPDATE `".DCRM_CON_PREFIX."Packages` SET `Stat` = '-1' WHERE `Package` = '" . $s_info['Package'] . "'");
+			//$s_query = DB::query("UPDATE `".DCRM_CON_PREFIX."Packages` SET `Stat` = '-1' WHERE `Package` = '" . $s_info['Package'] . "'");
 			$s_query = DB::query("UPDATE `".DCRM_CON_PREFIX."Packages` SET `Stat` = '1' WHERE `ID` = '" . $submit_id . "'");
 		} else {
 			$s_query = DB::query("UPDATE `".DCRM_CON_PREFIX."Packages` SET `Stat` = '-1' WHERE `ID` = '" . $submit_id . "'");

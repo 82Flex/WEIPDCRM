@@ -21,7 +21,7 @@ function opt(r) {
 			   window.location.href = "center.php?action=submit&id="+pid;
 			}
 		} else if (r == 5) {
-			if(confirm("您确定要显示该软件包？\n该软件包的其它版本都将被隐藏。")){
+			if(confirm("您确定要显示该软件包？\n如果同时存在多个版本，新版 Cydia 会正常提示降级。")){
 			   window.location.href = "center.php?action=submit&id="+pid;
 			}
 		}
