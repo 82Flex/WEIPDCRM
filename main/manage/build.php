@@ -40,8 +40,8 @@ if (DCRM_CHECK_METHOD == 2 || DCRM_CHECK_METHOD == 3)
 if (DCRM_CHECK_METHOD == 3)
 	$parts .= ", `SHA256`";
 
-if (DCRM_DOWNGRADE == 0)
-	$packages_info = DB::fetch_all("SELECT ".$parts." FROM `".DCRM_CON_PREFIX."Packages` WHERE `Stat` = '1' ORDER BY `Package` DESC");
+if (DCRM_DOWNGRADE == 2)
+	$packages_info = DB::fetch_all("SELECT ".$parts." FROM `".DCRM_CON_PREFIX."Packages` WHERE `Stat` = '1' ORDER BY `Package`, `ID` DESC");
 else
 	$packages_info = DB::fetch_all("SELECT ".$parts." FROM `".DCRM_CON_PREFIX."Packages` WHERE `Stat` = '1' GROUP BY `Package` ORDER BY `ID` DESC");
 /*if ($m_query == false) {
