@@ -115,7 +115,7 @@ if (!file_exists(CONF_PATH.'release.save')) {
 	}
 	if (DCRM_GNUPG_ENABLED == 1) {
 		file_put_contents("../Release",file_get_contents(CONF_PATH.'release.save') . $verify_text);
-		$gpg_cmd = escapeshellcmd(DCRM_GNUPG_PATH . ' -abs --yes --passphrase "' . DCRM_GNUPG_PASS . '" -r "' . DCRM_GNUPG_NAME . '" -o "../Release.gpg" "../Release"');
+		$gpg_cmd = escapeshellcmd(DCRM_GNUPG_PATH . ' -abqs --no-tty --yes --passphrase "' . DCRM_GNUPG_PASS . '" -r "' . DCRM_GNUPG_NAME . '" -o "../Release.gpg" "../Release"');
 		execInBackground($gpg_cmd);
 	} else {
 		file_put_contents("../Release",file_get_contents(CONF_PATH.'release.save'));

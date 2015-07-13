@@ -27,15 +27,17 @@ if (!file_exists('./system/config/connect.inc.php')) {
 require_once('system/common.inc.php');
 set_time_limit(0);
 @ini_set("max_execution_time", 1800);
+base_url();
 
 if (!empty($_GET['request']) AND (!empty($_SERVER['HTTP_X_UNIQUE_ID']) OR DCRM_DIRECT_DOWN == 1)) {
 	$r_path = $_GET['request'];
 
 	$module_enabled = get_option('module_enabled');
 	$webserver = explode('/', $_SERVER['SERVER_SOFTWARE']);
-	// Apache URL重写模式下无法使用X-sendfile，因此在此处跳转
-	if($webserver[0] == 'Apache' && $module_enabled ==2 && strstr($_SERVER["REQUEST_URI"], '/debs/') != false){
-		header('Location: ../downloads.php?request='.$r_path);
+	// Apache URL閲嶅啓妯″紡涓嬫棤娉曚娇鐢╔-sendfile锛屽洜姝ゅ湪姝ゅ璺宠浆
+	if($webserver[0] == 'Apache' && $module_enabled == 2 && strstr($_SERVER["REQUEST_URI"], '/debs/') != false){
+		header('Location: '.SITE_PATH.'/downloads.php?request='.$r_path);
+		exit();
 	}
 
 	if (pathinfo($r_path, PATHINFO_EXTENSION) != "deb") {
@@ -94,15 +96,15 @@ if (!empty($_GET['request']) AND (!empty($_SERVER['HTTP_X_UNIQUE_ID']) OR DCRM_D
 			}
 			DB::update(DCRM_CON_PREFIX.'Packages', array('DownloadTimes' => ((int)$m_row['DownloadTimes'] + 1)), array('ID' => (string)$request_id));
 			$php_forward = get_option('php_forward');
-			if($php_forward == 2 || $php_forward==""){
+			if($php_forward == 2 || $php_forward == ""){
 				downFile($download_path, $fake_name);
 			} else {
-				function xsendfile_header($self_header, $relative=true){
+				function xsendfile_header($self_header, $relative = true){
 					global $sitepath, $download_path, $fake_name;
 					header('Accept-Ranges: bytes');
 					header('Content-type: application/octet-stream');
 					header('Content-Disposition: attachment; filename="' . rawurlencode($fake_name). '"');
-					header($self_header.': '.($relative ? $sitepath : '').$download_path);
+					header($self_header.': '.($relative ? SITE_PATH.substr($download_path, 2) : $download_path));
 					exit();
 				}
 				switch($webserver[0]){

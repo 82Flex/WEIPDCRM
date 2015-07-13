@@ -968,7 +968,7 @@ if ($index == 0) {
 				<p>
 					<span id="id"><?php echo($pkg_assoc['Package']); ?></span>
 					<br />
-					<span class="source-name"><?php echo($release_origin); ?></span>·
+					<span class="source-name"><?php echo($release_origin); ?></span>&nbsp;·&nbsp;
 					<span id="section"><?php echo($pkg_assoc['Section']); ?></span>
 					<?php if(defined("AUTOFILL_FOOTER_CODE")){ ?>
 					<br />
