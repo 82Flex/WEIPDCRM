@@ -1,15 +1,15 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: DCRM Manager\n"
-"POT-Creation-Date: 2015-07-05 19:14+0800\n"
-"PO-Revision-Date: 2015-07-05 19:14+0800\n"
+"POT-Creation-Date: 2015-07-13 17:43+0800\n"
+"PO-Revision-Date: 2015-07-13 17:43+0800\n"
 "Last-Translator: Hintay <hintay@me.com>\n"
 "Language-Team: shiraq\n"
 "Language: ug_CN\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 1.7.6\n"
+"X-Generator: Poedit 1.7.3\n"
 "X-Poedit-Basepath: ../../\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Poedit-KeywordsList: __;_e;_n:1,2;_x:1,2c;_ex:1,2c;_nx:4c,1,2;esc_attr__;"
@@ -120,15 +120,11 @@ msgstr ""
 "بۇ بىر ئەركىن ئېچىۋېتىلگەن كودلاردىن پايدىلانغان مەنبە سۇپىسى بولۇپ "
 "باشقىلارنىڭ تىجارەت خاركتىرىدە  پايدېلنىشىغا بولمايدۇ ."
 
-#: manage/build.php:47
-msgid "Database Error!"
-msgstr "ساندان خاتالىقى كۆرۈلدى !"
-
-#: manage/build.php:66
+#: manage/build.php:71
 msgid "Find the number of records: "
 msgstr "تېپىلغان خاتىرە سانى :"
 
-#: manage/build.php:68
+#: manage/build.php:73
 msgid ""
 "No record in data table ` Packages `! Please import package and allow it to "
 "display first."
@@ -136,35 +132,35 @@ msgstr ""
 "سانلىق  مەلومات تېزىملىكىدە `Packages` خاتىرلەنمىگەن ، قىستۇرمىنى كىر گۈزۈڭ "
 "ھەم كۆرسۈتۈڭ."
 
-#: manage/build.php:74
+#: manage/build.php:79
 msgid "Warning: "
 msgstr "ئاگاھلاندۇرۇش:"
 
-#: manage/build.php:74
+#: manage/build.php:79
 msgid "release.save file does not exist! Please config release information."
 msgstr "release.save！بۇنداق ھۆججەت مەۋجۇت ئەمەس!  مەنبە ئۇچۇرىدىن تەڭشەڭ !"
 
-#: manage/build.php:76
+#: manage/build.php:81
 msgid "The Release configuration file exists."
 msgstr "Release  سەپلىمىسى يوق "
 
-#: manage/build.php:88
+#: manage/build.php:93
 msgid "Write to the Packages file: "
 msgstr " Packages نى يېزىش ："
 
-#: manage/build.php:100
+#: manage/build.php:105
 msgid "Write to the Packages.bz file: "
 msgstr " Packages.gz  نى يېزىش："
 
-#: manage/build.php:112
+#: manage/build.php:117
 msgid "Write to the Packages.bz2 file: "
 msgstr " Packages.bz2   نى يېزىش："
 
-#: manage/build.php:129 manage/header.php:137
+#: manage/build.php:134 manage/header.php:137
 msgid "Rebuild the list"
 msgstr "تىزىملىك يېڭىلاش"
 
-#: manage/build.php:131
+#: manage/build.php:136
 msgid ""
 "List rebuild request submitted successfully, it is recommended that you <a "
 "href=\"stats.php?action=clean\">Clear the Cache</a> to free up disk space."
@@ -172,16 +168,16 @@ msgstr ""
 " تىزىملىك يېڭىلاشنى ئىلتىماس قىلىش تاپشۇرۇلدى ،  <a href=\"stats.php?"
 "action=clean\">قالدۇق تازلاڭ</a> ! "
 
-#: manage/build.php:133
+#: manage/build.php:138
 msgctxt "Rebuild the list"
 msgid "Information"
 msgstr "ئۇچۇر"
 
-#: manage/build.php:141
+#: manage/build.php:146
 msgid "Preview of Packages file"
 msgstr "Packagesھۆججىتىنى كۆرۈش"
 
-#: manage/build.php:143
+#: manage/build.php:148
 msgid "File does not exist."
 msgstr "ھۆججەت مەۋجۇت ئەمەس"
 
@@ -317,12 +313,11 @@ msgstr "دائىملىق تەھرىرلەش"
 msgid "Protection"
 msgstr "قوغداش"
 
-#: manage/edit.php:100 manage/settings.php:32 manage/settings.php:34
+#: manage/edit.php:100 manage/settings.php:31
 msgid "Enabled"
 msgstr "قوزغۇتۇش"
 
-#: manage/edit.php:100 manage/settings.php:32 manage/settings.php:34
-#: manage/upload.php:174
+#: manage/edit.php:100 manage/settings.php:31 manage/upload.php:189
 msgid "Disabled"
 msgstr "چەكلەش"
 
@@ -382,7 +377,7 @@ msgstr "سۈكۈتتىكى كۆرۈش  بېتى:%s"
 msgid "Preview Default Depiction"
 msgstr "سۈكۈتتىكى بېتىنى كۆرۈش"
 
-#: manage/edit.php:180 manage/settings.php:230
+#: manage/edit.php:180 manage/settings.php:247
 msgid "Detailed Description"
 msgstr "تەپسىلى ئۇچۇرلىرى"
 
@@ -405,7 +400,7 @@ msgid ""
 msgstr ""
 
 #: manage/edit.php:205 manage/edit.php:273 manage/release.php:90
-#: manage/settings.php:583 manage/udid.php:351
+#: manage/settings.php:575 manage/udid.php:351
 msgid "Save"
 msgstr "ساقلاش"
 
@@ -432,7 +427,7 @@ msgstr "دەرھال يېزىش"
 #: manage/edit.php:237 manage/edit.php:291 manage/import.php:264
 #: manage/manage.php:116 manage/manage.php:124 manage/output.php:148
 #: manage/release.php:115 manage/release.php:117 manage/release.php:120
-#: manage/sections.php:312 manage/settings.php:697 manage/settings.php:738
+#: manage/sections.php:312 manage/settings.php:661 manage/settings.php:728
 #: manage/stats.php:97
 msgid "Back"
 msgstr "قايتىش"
@@ -508,7 +503,7 @@ msgstr "سانلىق مەلوماتلار يۈكلىنىۋاتىدۇ"
 msgid "Database Error"
 msgstr "ساندان خاتا"
 
-#: manage/header.php:37 manage/upload.php:86 manage/upload.php:151
+#: manage/header.php:37 manage/upload.php:86 manage/upload.php:166
 msgid "Upload Packages"
 msgstr "قىستۇرما يوللاش"
 
@@ -559,7 +554,7 @@ msgstr "تەپسىلاتىنى كۆرۈش"
 msgid "Invalid argument: `Filename`"
 msgstr "ئۈنۈمسىز پارامېتىر :`Filename`"
 
-#: manage/import.php:46 manage/upload.php:201
+#: manage/import.php:46 manage/upload.php:216
 msgid "Invalid file type!"
 msgstr "قوللىمايدىغان ھۆججەت شەكلى"
 
@@ -694,7 +689,7 @@ msgctxt "language"
 msgid "English"
 msgstr "ئىنگىلىزچە"
 
-#: manage/login.php:219 manage/settings.php:88
+#: manage/login.php:219 manage/settings.php:105
 msgid "Username"
 msgstr "ئاپونت نامى"
 
@@ -963,7 +958,7 @@ msgstr ""
 msgid "There are currently no icon."
 msgstr ""
 
-#: manage/sections.php:158 manage/upload.php:106 manage/upload.php:171
+#: manage/sections.php:158 manage/upload.php:106 manage/upload.php:186
 msgid "Tips"
 msgstr "مەشغۇلات ئەسكەرتمىسى"
 
@@ -1052,25 +1047,53 @@ msgstr "ئاپتوماتىك ئالماشتۇرۇش"
 
 #: manage/settings.php:81
 msgid ""
-"If you want system auto detect users browser language to show pages please "
-"select \"Detect\" option."
+"If you want the system auto detect users browser language to show pages "
+"please select \"Detect\" option."
 msgstr ""
-"توركۆر گۈچىڭىزنىڭ ئاپتوماتىك يېزىق تۇنۇتۇش ئىقتىدارىنى ئىشلەتمەكچى بولسىڭىز  "
-"ئاپتوماتىك تەكشۈرۈشنى تاللاڭ ."
 
-#: manage/settings.php:85
+#: manage/settings.php:86
+msgid "Rewrite Mod"
+msgstr ""
+
+#: manage/settings.php:90
+msgid "Disable"
+msgstr ""
+
+#: manage/settings.php:90
+msgid "Normal"
+msgstr ""
+
+#: manage/settings.php:90
+msgid "Elegant"
+msgstr ""
+
+#: manage/settings.php:98
+#, php-format
+msgid ""
+"<b>Elegant Mod</b> - Enable all rewrite rules, the url will show like %s.<br/"
+"><b>Normal Mod</b> - Compatible earlier than v1.7 configuration, only enbale "
+"a part of rewrite rules for HotLinks.<br/><b>Disabled</b> - This will "
+"disable all rewrite rules, so HotLinks will not work.<br/>Notice: You should "
+"update your rewrite config first if you want to use Elegant Mod."
+msgstr ""
+
+#: manage/settings.php:102
 msgid "Login Information"
 msgstr "تىزىملىتىش ئۇچۇرلىرى"
 
-#: manage/settings.php:90 manage/settings.php:598
+#: manage/settings.php:107 manage/settings.php:587
 msgid "Username length must be between 4-20 characters!"
 msgstr "ئابونت ئىسمى چوقۇم 4دىن 20 گىچە بولغان ھەرىپ ياكى سان بولىشى لازىم."
 
-#: manage/settings.php:96
+#: manage/settings.php:107 manage/settings.php:589
+msgid "Username can only use numbers, letters and underline!"
+msgstr "ئابونت ئىسمى سان ،ھەرىپ قاتارلىقلاردىن تېپىشى كېرەك"
+
+#: manage/settings.php:113
 msgid "New Password"
 msgstr "يېڭى پارول"
 
-#: manage/settings.php:99
+#: manage/settings.php:116
 msgid ""
 "If you would like to change the password type a new one. Otherwise leave "
 "this blank."
@@ -1078,180 +1101,216 @@ msgstr ""
 "ئەگەر پارول ئۆزگەرتمەكچى بولسىڭىز يېڭى پارول كىر گۈزۈڭ، ئۆزگەرتمىسىڭىز "
 "تولدۇرماڭ !!"
 
-#: manage/settings.php:104
+#: manage/settings.php:121
 msgid "Repeat New Password"
 msgstr "يېڭى پارولنى قايتىلاڭ"
 
-#: manage/settings.php:107
+#: manage/settings.php:123
+msgid "Your password do not match."
+msgstr ""
+
+#: manage/settings.php:124
 msgid "Type your new password again."
 msgstr "پارولنى يەنە بىر قېتىم كىر گۈزۈڭ"
 
-#: manage/settings.php:108 manage/settings.php:754
+#: manage/settings.php:125 manage/settings.php:744
 msgid "Strength indicator"
 msgstr " كۈچلۈكلۈك باھاسى "
 
-#: manage/settings.php:113
+#: manage/settings.php:130
 msgid "The maximum number of attempts"
 msgstr "ئەڭ چوڭ سىناش قېتىم سانى "
 
-#: manage/settings.php:120
+#: manage/settings.php:137
 msgid "Login Fail Reset Time"
 msgstr "سىناش ۋاقتىنى تەڭشەڭ"
 
-#: manage/settings.php:123
+#: manage/settings.php:140
 msgid "Unit: Minutes"
 msgstr "بىرلىكى: مىنۇت"
 
-#: manage/settings.php:128
+#: manage/settings.php:145
 msgid "Repository URL"
 msgstr "مەنبە باشقۇرۇش سېستىمىنىڭ ئادرېسى"
 
-#: manage/settings.php:130 manage/settings.php:511 manage/settings.php:526
-#: manage/settings.php:534 manage/settings.php:542
+#: manage/settings.php:147 manage/settings.php:503 manage/settings.php:518
+#: manage/settings.php:526 manage/settings.php:534
 msgid "Not a valid website address"
 msgstr "ئۈنۈمسىز تور ئادرېسى"
 
-#: manage/settings.php:131
+#: manage/settings.php:148
 msgid ""
 "Displayed on the homepage for the user to add, and used for the autofill "
 "package's Depiction when import."
 msgstr ""
 
-#: manage/settings.php:135
+#: manage/settings.php:152
 msgid "PC Site"
 msgstr "كومپيۇتېر نۇسخىسىنىڭ ئىقتىدارى"
 
-#: manage/settings.php:138 manage/settings.php:150
+#: manage/settings.php:155 manage/settings.php:167
 msgid "Master Switch"
 msgstr "باش ئۈز چات"
 
-#: manage/settings.php:143
+#: manage/settings.php:160
 msgid "Non-apple owners will automatically jump if enabled."
 msgstr "قوزغۇتۇلسا ئالما تېلېفونىدىن باشقا تېلېفونلاردا ئاتلاپ ئۆتۈپ كىتىدۇ "
 
-#: manage/settings.php:147
+#: manage/settings.php:164
 msgid "Mobile Site"
 msgstr "كۆچمە ئۈسكۈنە ئىقتىدارى"
 
-#: manage/settings.php:159 manage/settings.php:665
+#: manage/settings.php:176 manage/settings.php:621
 msgid "Show Latest List"
 msgstr "يېڭى تىزىملىكنى كۆرسىتىش"
 
-#: manage/settings.php:168
+#: manage/settings.php:185
 msgid "Number of Latest List"
 msgstr "ئەڭ يېڭى تىزىملىك سانى"
 
-#: manage/settings.php:170 manage/settings.php:205
+#: manage/settings.php:187 manage/settings.php:222
 #, php-format
 msgid "Too high: Maximum of '%s'"
 msgstr "ەڭ چوڭ بولغان '%s' دىن ئېشىپ كەتمەسلىكى لازىم "
 
-#: manage/settings.php:171
+#: manage/settings.php:188
 msgid "Must be lower than 20."
 msgstr " ئەڭ كۆپ بولغان 20 تالدىن ئېشىپ كەتمىسۇن"
 
-#: manage/settings.php:176 manage/settings.php:674
+#: manage/settings.php:193 manage/settings.php:627
 msgid "Full List of Sections"
 msgstr "تولوق تۈرلەر تىزىملىكى "
 
-#: manage/settings.php:185 manage/settings.php:637
+#: manage/settings.php:202 manage/settings.php:607
 msgctxt "Settings"
 msgid "Screenshorts"
 msgstr "ئۈنۈم رەسىملىرى"
 
-#: manage/settings.php:194 manage/settings.php:641
+#: manage/settings.php:211 manage/settings.php:609
 msgid "Report Problems"
 msgstr "خاتالىق ئىنكاسنى مەلۇم قىلىش"
 
-#: manage/settings.php:203
+#: manage/settings.php:220
 msgid "Limit Number of Report"
 msgstr "مەلۇم قىلىش سان چەكلىمىسى"
 
-#: manage/settings.php:206
+#: manage/settings.php:223
 msgid "The maximum not more than 10 times."
 msgstr "ئەڭ كۆپ بولغاندا 10 قېتىمدىن ئېشىپ كەتمىسۇن"
 
-#: manage/settings.php:211 manage/settings.php:649
+#: manage/settings.php:228 manage/settings.php:613
 msgid "Update Logs"
 msgstr "خاتىرنى يېڭىلاش"
 
-#: manage/settings.php:216
+#: manage/settings.php:233
 msgid "Displayed in the Version History."
 msgstr "بۇرۇنقى نەشرىنىڭ  يېڭىلاش خاتىرىسىنى كۆرسىتىش"
 
-#: manage/settings.php:221 manage/settings.php:653
+#: manage/settings.php:238 manage/settings.php:615
 msgid "More Information"
 msgstr "تېخىمۇ كۆپ ئۇچۇرلار"
 
-#: manage/settings.php:238
+#: manage/settings.php:255
 msgid "Commercial"
 msgstr "سودا ئۇلانمىسى"
 
-#: manage/settings.php:241
+#: manage/settings.php:258
 msgid "Alipay Account"
 msgstr "چىقىمدان ئادرېسى"
 
-#: manage/settings.php:244
+#: manage/settings.php:261
 msgid "This is used to auto generate Alipay link for commercial package."
 msgstr "چىقىمدان ئادرېسىغا بىۋاستە ئۇلىنىدۇ"
 
-#: manage/settings.php:248
+#: manage/settings.php:265
 msgid "Download"
 msgstr "چۈشۈرۈش تەڭشىكى"
 
-#: manage/settings.php:251 manage/settings.php:625
+#: manage/settings.php:268
+msgid "PHP Forward"
+msgstr ""
+
+#: manage/settings.php:273
+msgid ""
+"Disable PHP forward will reduce server pressure and effectively avoid 'Sum "
+"Mismatch Hash' error.<br/>But it will make the speed limit function to "
+"invalid and may exposure real package address."
+msgstr ""
+
+#: manage/settings.php:278
+msgid "Module Enabled"
+msgstr ""
+
+#: manage/settings.php:281
+msgid "No"
+msgstr ""
+
+#: manage/settings.php:281
+msgid "Yes"
+msgstr ""
+
+#: manage/settings.php:283
+msgid ""
+"Using this switch, the x-sendfile feature on DCRM can be manually enabled if "
+"it does not do so automatically <br/>when you have enabled mod_xsendfile on "
+"Apache or configured the \"allow-x-send-file\" option on Lighttpd. "
+"<br><b>WARNING:</b> If you don't know what this is, please turn this off; "
+"otherwise, package downloads may not work."
+msgstr ""
+
+#: manage/settings.php:288 manage/settings.php:601
 msgid "HotLink Protection"
 msgstr "ئوغرىدىن مۇداپىيەلىنىش "
 
-#: manage/settings.php:260
+#: manage/settings.php:297
 msgid "Max Download Speed"
 msgstr "ئەڭ چوڭ چۈشۈرۈش سۈرئىتى"
 
-#: manage/settings.php:263
+#: manage/settings.php:300
 msgid "B/s, please input '0' if you do not want limit."
 msgstr "سۈرئەت چەكلەنمىسە 0 نى يېزىڭ "
 
-#: manage/settings.php:267
+#: manage/settings.php:304
 msgid "Lists"
 msgstr "تىزىملىك تەڭشىكى"
 
-#: manage/settings.php:270
+#: manage/settings.php:307
 msgid "Packages File Compression"
 msgstr "Packages پىرىسلاش"
 
-#: manage/settings.php:277
+#: manage/settings.php:311
 msgid "Hide list"
 msgstr "تىزىملىكنى يوشۇرۇش"
 
-#: manage/settings.php:280
+#: manage/settings.php:311
 msgid "Only text"
 msgstr "پەقەتلا تېكىست"
 
-#: manage/settings.php:283
+#: manage/settings.php:311
 msgid "Only gz"
 msgstr " gzپەقەتلا "
 
-#: manage/settings.php:286
+#: manage/settings.php:311
 msgid "Text and gz"
 msgstr " gz ۋە تېكىست "
 
-#: manage/settings.php:289
+#: manage/settings.php:312
 msgid "Only bz2"
 msgstr " bz2 پەقەتلا"
 
-#: manage/settings.php:292
+#: manage/settings.php:312
 msgid "Text and bz2"
 msgstr "bz2  ۋە تېكىست"
 
-#: manage/settings.php:295
+#: manage/settings.php:312
 msgid "gz and bz2"
 msgstr "gz ۋە bz2"
 
-#: manage/settings.php:298
+#: manage/settings.php:312
 msgid "All"
 msgstr "ھەممىسى"
 
-#: manage/settings.php:314
+#: manage/settings.php:318
 msgid ""
 "Please change the compression method if error occurred trying rebuild the "
 "list."
@@ -1259,98 +1318,106 @@ msgstr ""
 "ئۆزگەرتكەندىن كېيىن تىزىملىك يېڭىلاشتا خاتالىق كۆرۈلسە پىرىسلاش شەكلىنى "
 "ئالماشتۇرۇڭ."
 
-#: manage/settings.php:319
+#: manage/settings.php:323
 msgid "Packages Validation "
 msgstr "قىستۇرما دەلىللەش"
 
-#: manage/settings.php:326
+#: manage/settings.php:327
 msgid "No validation"
 msgstr "دەلىللىمەيدۇ"
 
-#: manage/settings.php:351
+#: manage/settings.php:333
 msgid "Take effect when write to Packages."
 msgstr "قىستۇرما يېزىلغاندىلا ئاندىن كۈچكە ئىگە بولىدۇ"
 
-#: manage/settings.php:355
+#: manage/settings.php:338 manage/settings.php:625
+msgid "Downgrade Support"
+msgstr ""
+
+#: manage/settings.php:343
+msgid "Enable this function will cause a long-term traffic consumption."
+msgstr ""
+
+#: manage/settings.php:347
 msgid "Autofill"
 msgstr "ئاپتوماتىك تولدۇرۇش"
 
-#: manage/settings.php:358
+#: manage/settings.php:350
 msgid "Autofill Depiction"
 msgstr "تەپسىلىي ئۇچۇرىنى  ئاپتوماتىك تولدۇرۇش "
 
-#: manage/settings.php:363
+#: manage/settings.php:355
 msgid "Autofill package's Depiction when import if enabled."
 msgstr ""
 "قىستۇرما كىر گۈزسىڭىز تەپسىلى ئۇچۇرىنى ئاپتوماتىك تولدۇرۇش ئېلىپ بارىدۇ ."
 
-#: manage/settings.php:368
+#: manage/settings.php:360
 msgid "Default Identifier of Packages"
 msgstr "قىستۇرمنىڭ سۈكۈتتىكى پەرىقلەندۈرۈش بەلگىسى"
 
-#: manage/settings.php:375
+#: manage/settings.php:367
 msgid "Default Name of Packages"
 msgstr "قىستۇرما سۈكۈت تەسۋىرى"
 
-#: manage/settings.php:382
+#: manage/settings.php:374
 msgid "Default Depiction of Packages"
 msgstr "قىستۇرمىنىڭ سۈكۈتتىكى ئىسم"
 
-#: manage/settings.php:388
+#: manage/settings.php:380
 msgid "SEO"
 msgstr "SEO ئەلالاشتۇرۇش"
 
-#: manage/settings.php:391
+#: manage/settings.php:383
 msgctxt "SEO"
 msgid "Site Name"
 msgstr "SEO ئىسمى"
 
-#: manage/settings.php:398
+#: manage/settings.php:390
 msgctxt "SEO"
 msgid "Site Address"
 msgstr " SEOئادرېسى "
 
-#: manage/settings.php:405
+#: manage/settings.php:397
 msgctxt "SEO"
 msgid "Site Keyword"
 msgstr "SEO ھالقىلىق سۆز"
 
-#: manage/settings.php:408 manage/udid.php:268
+#: manage/settings.php:400 manage/udid.php:268
 msgid "Separated by commas."
 msgstr "چىكىت بەلگىسى ئارقىلىق ئايرىڭ "
 
-#: manage/settings.php:412
+#: manage/settings.php:404
 msgid "Administrator Informations"
 msgstr "باغقۇرۇغۇچى ئۇچۇرى"
 
-#: manage/settings.php:415
+#: manage/settings.php:407
 msgctxt "Administrator"
 msgid "Name"
 msgstr "باشقۇرۇغۇچى ئىسمى"
 
-#: manage/settings.php:422
+#: manage/settings.php:414
 msgctxt "Administrator"
 msgid "Full Name"
 msgstr "باشقۇرغۇچىنىڭ تولۇق ئىسمى"
 
-#: manage/settings.php:429
+#: manage/settings.php:421
 msgctxt "Administrator"
 msgid "Email Address"
 msgstr "باشقۇرغۇچى ئېلخەت ئادرېسى"
 
-#: manage/settings.php:431
+#: manage/settings.php:423
 msgid "Not a valid email address"
 msgstr "ئۈنۈمسىز ئېلخەت"
 
-#: manage/settings.php:435
+#: manage/settings.php:427
 msgid "Footer"
 msgstr "ئاستى قىسىم تەڭشىكى"
 
-#: manage/settings.php:438
+#: manage/settings.php:430
 msgid "Starting Year of Copyright"
 msgstr "نەشرى ھوقۇقىنىڭ باشلىنىش ۋاقتى"
 
-#: manage/settings.php:441
+#: manage/settings.php:433
 #, php-format
 msgid ""
 "If input 2010, the final display is © 2010-%d, leave a blank will only "
@@ -1359,21 +1426,21 @@ msgstr ""
 " ئەگەر 2010 دەپ كىر گۈزسىڭىز ئۇنداقتا © 2010-%d كۆرۈنىدۇ ،تولدۇرمىسىڭىز  "
 "ھازىرقى ۋاقىت كۆرۈنىدۇ . "
 
-#: manage/settings.php:446
+#: manage/settings.php:438
 msgid "Copyright Name"
 msgstr "نەشرى ھوقۇقى ئىسمى"
 
-#: manage/settings.php:449
+#: manage/settings.php:441
 msgid ""
 "Displayed on the website at the bottom. If you not input anything will "
 "display the repository name."
 msgstr "توربەتنىڭ ئاستىدا كۆرۈنىدۇ ، ئەگەر تولدۇرۇلمىسا مەنبە ئىسمى كۆرۈنىدۇ."
 
-#: manage/settings.php:454
+#: manage/settings.php:446
 msgid "Footer Code"
 msgstr "بەت ئاستى ئۇچۇرى "
 
-#: manage/settings.php:457
+#: manage/settings.php:449
 msgid ""
 "You can input ICP number, site information etc. Please use <code>·</code> as "
 "the separator. "
@@ -1381,214 +1448,217 @@ msgstr ""
 "تورئارخپى نومۇرى،تور بەت ئۇچۇرىنى  تولۇقلاش <code>·</code> ئارقىلىق ئايرىلىپ "
 "يېزىلىشى كېرەك  "
 
-#: manage/settings.php:461
+#: manage/settings.php:453
 msgid "Social"
 msgstr "ئىجدىمائىي ئالاقە  ھەمبىرلىنىشى "
 
-#: manage/settings.php:464
+#: manage/settings.php:456
 msgid "Duoshuo Social Comments KEY"
 msgstr "ئىنكاس ئىجدىمائىي ئالاقە رامكىسى  KEY"
 
-#: manage/settings.php:467
+#: manage/settings.php:459
+#, php-format
 msgid ""
-"Please goto <a href=\"http://duoshuo.com/\">http://duoshuo.com</a> for get "
-"key (registration required), leave a blank will disabled comment function."
+"Please goto %s for get key (registration required), leave a blank will "
+"disabled comment function."
 msgstr ""
-" <a href=\"http://duoshuo.com/\">http://duoshuo.com</a> بۇ توربەتكە كىرىپ "
-"ئاچقۇچى ھېسابات ئىلىڭ ھەمدە تىزىملىتىش ئېلىپ بېرىڭ "
 
-#: manage/settings.php:472
+#: manage/settings.php:464
 msgid "QQ Group Name"
 msgstr " QQتوپى ئىسمى "
 
-#: manage/settings.php:479
+#: manage/settings.php:471
 msgid "QQ Group Number"
 msgstr "QQتوپ ئادرېسى"
 
-#: manage/settings.php:482
+#: manage/settings.php:474
 msgid "Need the new mobile client."
 msgstr "پەقەت يانفون نۇسقىسىنىڭ يېڭى نەشىر دىكى تېرمىنالى قوللايدۇ "
 
-#: manage/settings.php:487
+#: manage/settings.php:479
 msgid "Weibo Name"
 msgstr "مىكرو بىلوگ ئىسمى"
 
-#: manage/settings.php:494
+#: manage/settings.php:486
 msgid "Weibo Address"
 msgstr "مىكرو بىلوگ ئادرېسى"
 
-#: manage/settings.php:496
-msgid ""
-"Not a valid mobile weibo address. Example: <code>http://weibo.cn/hintay</"
-"code>"
+#: manage/settings.php:488
+#, php-format
+msgid "Not a valid mobile weibo address. Example: %s"
 msgstr ""
-"ئەسكەرتىش: مىكرو بىلوگ ئادرېسى كۆچمە نۇسخىسىنىڭ ئەمەس ئىكەن توغرا بولغان "
-"يېزىلىشى <code>http://weibo.cn/hintay</code> "
 
-#: manage/settings.php:497
+#: manage/settings.php:489
 msgid "Please input the mobile version homepage."
 msgstr "كۆچمە ئۈسكۈنە نۇسخىسى باش بېتىنى كىرگۈزۈڭ"
 
-#: manage/settings.php:502
+#: manage/settings.php:494
 msgid "Twitter Name"
 msgstr "خەۋەرچى قۇش ئىسمى"
 
-#: manage/settings.php:509
+#: manage/settings.php:501
 msgid "Twitter Address"
 msgstr "خەۋەرچى قۇش ئادرېسى"
 
-#: manage/settings.php:512 manage/settings.php:527
+#: manage/settings.php:504 manage/settings.php:519
 msgid "Need login for visit."
 msgstr "تىزىملىتىپ كىر گەندىن كېيىن ئاندىن زىيارەت قىلالايسىز."
 
-#: manage/settings.php:517
+#: manage/settings.php:509
 msgid "Facebook Name"
 msgstr "Facebookئىسمى"
 
-#: manage/settings.php:524
+#: manage/settings.php:516
 msgid "Facebook Address"
 msgstr "Facebookئادرېسى "
 
-#: manage/settings.php:532
+#: manage/settings.php:524
 msgid "Paypal Donate Address"
 msgstr "Paypalئادرېسى "
 
-#: manage/settings.php:540
+#: manage/settings.php:532
 msgid "Alipay Donate Address"
 msgstr "چىقىمدان ئادرېسى"
 
-#: manage/settings.php:547
+#: manage/settings.php:539
 msgid "Statistics And Advertisement"
 msgstr "ئىستاتستىكا ۋە ئېلان"
 
-#: manage/settings.php:550
+#: manage/settings.php:542
 msgid "External Statistics"
 msgstr "سىرىتقى ئىستاتسىتىكا كودى"
 
-#: manage/settings.php:553
+#: manage/settings.php:545
 msgid "Invisible statistic code."
 msgstr "كۆرۈنمەيدىغان كود ئىستاتسىتىكىسى"
 
-#: manage/settings.php:558
+#: manage/settings.php:550
 msgid "Internal Statistics"
 msgstr "ئىچكى كود ئىستاتستكىسى"
 
-#: manage/settings.php:561
+#: manage/settings.php:553
 msgid "Statistics code of view information at Running Status."
 msgstr "ئۇچۇر تەكشۈرۈش كود ئىستاتسىتاكىسى"
 
-#: manage/settings.php:566
+#: manage/settings.php:558
 msgid "Advertisement"
 msgstr "ئېلان قوللاش"
 
-#: manage/settings.php:572
+#: manage/settings.php:564
 msgid "Notice"
 msgstr "ئۇقتۇرۇش"
 
-#: manage/settings.php:575
+#: manage/settings.php:567
 msgid "Emergency Notice"
 msgstr "جىددىي ئۇقتۇرۇش"
 
-#: manage/settings.php:594
+#: manage/settings.php:585
 msgid "Please provide a valid username."
 msgstr "ئابونت ئىسمى بوش قالماسلىقى كېرەك"
 
-#: manage/settings.php:602
-msgid "Username can only use numbers, letters and underline!"
-msgstr "ئابونت ئىسمى سان ،ھەرىپ قاتارلىقلاردىن تېپىشى كېرەك"
-
-#: manage/settings.php:606
+#: manage/settings.php:591
 msgid "You entered your new password only once."
 msgstr "سىزپەقەت بىر قېتىملا يېڭى مەخپىي نومۇر كىر گۈزۈش پۇرسىتىڭىزبار "
 
-#: manage/settings.php:609
+#: manage/settings.php:593
 msgid "Your passwords do not match. Please try again."
 msgstr "سىزنىڭ كىر گۈز"
 
-#: manage/settings.php:613
+#: manage/settings.php:595
 msgid "The maximum number of attempts must be an integer!"
 msgstr "ئەڭ چوڭ سىناش قېتىم سانى چوقۇم پۈتۈن سان بولىشى كېرەك "
 
-#: manage/settings.php:617
+#: manage/settings.php:597
 msgid "Login fail reset time must be an integer!"
 msgstr "سىناۈ قېتىم سانىنىڭ ۋاقتى چوقۇم پۈتۈن سان بولىشى لازىم "
 
-#: manage/settings.php:621
+#: manage/settings.php:599
 msgid "Max download speed must be an integer!"
 msgstr "چۈشۈرۈش سۈرئەت چەكلىمىسى چوقۇم پۈتۈن سان بولىشى كېرەك"
 
-#: manage/settings.php:625 manage/settings.php:637 manage/settings.php:641
-#: manage/settings.php:649 manage/settings.php:653 manage/settings.php:657
-#: manage/settings.php:665 manage/settings.php:674
+#: manage/settings.php:601 manage/settings.php:607 manage/settings.php:609
+#: manage/settings.php:613 manage/settings.php:615 manage/settings.php:617
+#: manage/settings.php:621 manage/settings.php:625 manage/settings.php:627
 #, php-format
 msgid "Please set the correct %s switch!"
 msgstr "%sنىڭ ئۈزچات تەڭشىكىنى تەڭشەڭ "
 
-#: manage/settings.php:629
+#: manage/settings.php:603
 msgid "Please set the correct PC Site Master Switch!"
 msgstr "كومپىيوتېر نۇسخىسىنىڭ باش ئۈزچاتىنى تەڭشەش"
 
-#: manage/settings.php:633
+#: manage/settings.php:605
 msgid "Please set the correct Mobile Site Master Switch!"
 msgstr "كۆچمە نۇسخسىنىڭ باش ئۈز چاتىنى تەڭشەش"
 
-#: manage/settings.php:645
+#: manage/settings.php:611
 msgid ""
 "Please set the correct Limit Number of Report, the maximum not more than 10 "
 "times!"
 msgstr ""
 "خاتالىق مەسىلە ئىنكاسى ئەڭ كۆپ بولغاندا 10 قېتىمدىن ئارتۇق بولماسلىقى لازىم"
 
-#: manage/settings.php:657
+#: manage/settings.php:617
 msgid "Multiple Information"
 msgstr "تەپسىلىي ئۇچۇرى"
 
-#: manage/settings.php:661
+#: manage/settings.php:619
 msgid "Please set the correct Packages compression method!"
 msgstr " توغرا بولغان Packages   پىرىسلاش شەكلىنى تەڭشەش"
 
-#: manage/settings.php:669
+#: manage/settings.php:623
 msgid ""
 "Please set the correct number of latest list, the maximum must not exceed "
 "20 !"
 msgstr "باش بەتتىكى تىزىملىك سانى 20 تالدىن ئېشىپ كەتمەسلىكى لازىم."
 
-#: manage/settings.php:678
+#: manage/settings.php:629
 msgid "Please provide a valid repository URL!"
 msgstr "مەنبە ئادرېسى قۇرۇق بولسا بولمايدۇ"
 
-#: manage/settings.php:684
+#: manage/settings.php:633
 msgid "There is a same username!"
 msgstr "بۇئابونت تىزىملىتىپ بولغان "
 
-#: manage/settings.php:738
+#: manage/settings.php:656
+#, php-format
+msgid ""
+"Cannot access %s, you might need update your rewrite config to use this "
+"rewrite mod!"
+msgstr ""
+
+#: manage/settings.php:728
 msgid "Amendments to the success of settings!"
 msgstr "تەڭشەك ئۆزگەرتىش تاماملاندى !"
 
-#: manage/settings.php:754
+#: manage/settings.php:744
 msgctxt "Password"
 msgid "Short"
 msgstr "ئىنتايىن ئاجىز"
 
-#: manage/settings.php:754
+#: manage/settings.php:744
 msgctxt "Password"
 msgid "Bad"
 msgstr "ئاجىز"
 
-#: manage/settings.php:754
+#: manage/settings.php:744
 msgctxt "Password"
 msgid "Good"
 msgstr "ئوتتۇرھال"
 
-#: manage/settings.php:754
+#: manage/settings.php:744
 msgctxt "Password"
 msgid "Strong"
 msgstr "كۈچلۈك"
 
-#: manage/settings.php:754
+#: manage/settings.php:744
 msgctxt "Password"
 msgid "Mismatch"
 msgstr "ماسلاشمىدى"
+
+#: manage/settings.php:749
+msgid "You have some errors, please check the form."
+msgstr ""
 
 #: manage/stats.php:33
 msgid "Database Status"
@@ -1610,7 +1680,7 @@ msgstr "ساندان نەشىرى："
 msgid "GD library version: "
 msgstr "GD ئامبارنەىشىرى :"
 
-#: manage/stats.php:51 manage/upload.php:109 manage/upload.php:174
+#: manage/stats.php:51 manage/upload.php:109 manage/upload.php:189
 msgid "Upload max filesize: "
 msgstr "ئەڭ چوڭ يوللاش چەكلىمىسى :"
 
@@ -1781,7 +1851,7 @@ msgstr "%s  بار"
 msgid "Uploaded successfully: %s."
 msgstr "يوللاش تاماملاندى：%s"
 
-#: manage/upload.php:86 manage/upload.php:151
+#: manage/upload.php:86 manage/upload.php:166
 #, php-format
 msgid "Unable to upload files? Try %s."
 msgstr "ھۆججەت يوللىغىنى بولمىدى. %s"
@@ -1800,7 +1870,7 @@ msgid ""
 "packages."
 msgstr "ئەسكەرتىش:Ctrl(⌘) نى بېسىپ كۆپ تۈرنى تاللاڭ "
 
-#: manage/upload.php:99 manage/upload.php:166
+#: manage/upload.php:99 manage/upload.php:181
 msgid "Upload"
 msgstr "يوللاش"
 
@@ -1809,54 +1879,94 @@ msgctxt "Upload"
 msgid "Reset"
 msgstr "يوللاش تىزىملىكىنى قايتا تەڭشەش"
 
-#: manage/upload.php:108 manage/upload.php:173
+#: manage/upload.php:108 manage/upload.php:188
 msgid "Allowed data type: "
 msgstr " ماس كىلدىغان ھۆججەتلەر :"
 
 #: manage/upload.php:108 manage/upload.php:109 manage/upload.php:110
-#: manage/upload.php:173 manage/upload.php:174 manage/upload.php:175
+#: manage/upload.php:188 manage/upload.php:189 manage/upload.php:190
 msgctxt "Separator"
 msgid ";"
 msgstr "；"
 
-#: manage/upload.php:110 manage/upload.php:175
+#: manage/upload.php:110 manage/upload.php:190
 msgid "Please do not upload disrupt the Internet security data"
 msgstr ""
 "يوللاشقا بولمايدۇ،بەلكىم بۇ سانلىق مەلۇماتلارنىڭ بىخەتەرلىكىگە تەسىر "
 "يەتكۈزىدىغان ھۆججەت بولۇشى مۇمكىن. "
 
-#: manage/upload.php:111 manage/upload.php:176
+#: manage/upload.php:111 manage/upload.php:191
 msgid ""
 "Please upload the standard package of Debian software package, otherwise it "
 "may cause loss of data."
 msgstr ""
 "ئۆلچەملىك قىستۇرما يوللاڭ  ،بولمىسا سانلىق مەلوماتلاردا خاتالىق يۈز بىرىدۇ."
 
-#: manage/upload.php:128
+#: manage/upload.php:127
 msgid "SELECT FILES"
 msgstr "ھۆججەت تاللاڭ"
 
-#: manage/upload.php:151
+#: manage/upload.php:137
+msgctxt "Uploader"
+msgid " Success"
+msgstr ""
+
+#: manage/upload.php:138
+msgctxt "Uploader"
+msgid " Upload Success!"
+msgstr ""
+
+#: manage/upload.php:141
+msgctxt "Uploader"
+msgid " Failed"
+msgstr ""
+
+#: manage/upload.php:142
+msgctxt "Uploader"
+msgid " Upload Failed!"
+msgstr ""
+
+#: manage/upload.php:144
+msgctxt "Uploader"
+msgid " Already Exists"
+msgstr ""
+
+#: manage/upload.php:145
+msgctxt "Uploader"
+msgid " Already Exists!"
+msgstr ""
+
+#: manage/upload.php:148
+msgctxt "Uploader"
+msgid " Unknow"
+msgstr ""
+
+#: manage/upload.php:149
+msgctxt "Uploader"
+msgid " Unknow Error!"
+msgstr ""
+
+#: manage/upload.php:166
 msgid "multiple uploader"
 msgstr "تېخىمۇ كۆپ ئۇسۇل ئارقىلىق يوللاش"
 
-#: manage/upload.php:153
+#: manage/upload.php:168
 msgid "Select File"
 msgstr "ھۆججەت تاللاڭ"
 
-#: manage/upload.php:158
+#: manage/upload.php:173
 msgid "Please select a package"
 msgstr "قىستۇرما تاللاڭ؟"
 
-#: manage/upload.php:161
+#: manage/upload.php:176
 msgid "Ready"
 msgstr "تەييارلىنىۋاتىدۇ"
 
-#: manage/upload.php:187
+#: manage/upload.php:202
 msgid "Please wait for uploading..."
 msgstr "يوللاۋاتىدۇ ،سەل ساقلاڭ......."
 
-#: manage/upload.php:205
+#: manage/upload.php:220
 msgid "Please select a package!"
 msgstr "قىستۇرما تاللاڭ ؟"
 
@@ -2640,6 +2750,31 @@ msgstr "依地文"
 msgctxt "language"
 msgid "Zulu"
 msgstr "祖鲁语"
+
+#~ msgid "Database Error!"
+#~ msgstr "ساندان خاتالىقى كۆرۈلدى !"
+
+#~ msgid ""
+#~ "If you want system auto detect users browser language to show pages "
+#~ "please select \"Detect\" option."
+#~ msgstr ""
+#~ "توركۆر گۈچىڭىزنىڭ ئاپتوماتىك يېزىق تۇنۇتۇش ئىقتىدارىنى ئىشلەتمەكچى "
+#~ "بولسىڭىز  ئاپتوماتىك تەكشۈرۈشنى تاللاڭ ."
+
+#~ msgid ""
+#~ "Please goto <a href=\"http://duoshuo.com/\">http://duoshuo.com</a> for "
+#~ "get key (registration required), leave a blank will disabled comment "
+#~ "function."
+#~ msgstr ""
+#~ " <a href=\"http://duoshuo.com/\">http://duoshuo.com</a> بۇ توربەتكە كىرىپ "
+#~ "ئاچقۇچى ھېسابات ئىلىڭ ھەمدە تىزىملىتىش ئېلىپ بېرىڭ "
+
+#~ msgid ""
+#~ "Not a valid mobile weibo address. Example: <code>http://weibo.cn/hintay</"
+#~ "code>"
+#~ msgstr ""
+#~ "ئەسكەرتىش: مىكرو بىلوگ ئادرېسى كۆچمە نۇسخىسىنىڭ ئەمەس ئىكەن توغرا بولغان "
+#~ "يېزىلىشى <code>http://weibo.cn/hintay</code> "
 
 #~ msgid ""
 #~ "This program is free software, you can redistribute it and/or modify it "

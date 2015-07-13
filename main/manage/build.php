@@ -40,7 +40,10 @@ if (DCRM_CHECK_METHOD == 2 || DCRM_CHECK_METHOD == 3)
 if (DCRM_CHECK_METHOD == 3)
 	$parts .= ", `SHA256`";
 
-$packages_info = DB::fetch_all("SELECT ".$parts." FROM `".DCRM_CON_PREFIX."Packages` WHERE `Stat` = '1' GROUP BY `Package` ORDER BY `ID` DESC");
+if (DCRM_DOWNGRADE == 1)
+	$packages_info = DB::fetch_all("SELECT ".$parts." FROM `".DCRM_CON_PREFIX."Packages` ORDER BY `Package` DESC");
+else
+	$packages_info = DB::fetch_all("SELECT ".$parts." FROM `".DCRM_CON_PREFIX."Packages` WHERE `Stat` = '1' GROUP BY `Package` ORDER BY `ID` DESC");
 /*if ($m_query == false) {
 	$alert = __('Database Error!');
 	goto endlabel;

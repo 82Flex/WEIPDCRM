@@ -334,6 +334,16 @@ if (isset($_SESSION['connected']) && $_SESSION['connected'] === true) {
 							</div>
 						</div>
 						<br />
+						<div class="control-group">
+							<label class="control-label" style="color: red;"><?php _e('Downgrade Support');?></label>
+							<div class="controls">
+								<select name="downgrade">
+									<?php show_select(DCRM_DOWNGRADE); ?>
+								</select>
+								<p class="help-block"><?php _e('Enable this function will cause a long-term traffic consumption.');?></p>
+							</div>
+						</div>
+						<br />
 						<h3><?php _e('Autofill');?></h3>
 						<br />
 						<div class="control-group">
@@ -607,12 +617,12 @@ if (isset($_SESSION['connected']) && $_SESSION['connected'] === true) {
 			$error_text .= sprintf(__('Please set the correct %s switch!'), __('Multiple Information')).'<br/>';
 		if (!isset($_POST['listsmethod']) OR !ctype_digit($_POST['listsmethod']) OR (int)$_POST['listsmethod'] > 7)
 			$error_text .= __('Please set the correct Packages compression method!').'<br/>';
-
 		if (!isset($_POST['list']) OR !ctype_digit($_POST['list']))
 			$error_text .= sprintf(__('Please set the correct %s switch!'), __('Show Latest List')).'<br/>';
 		elseif (!isset($_POST['listnum']) OR !ctype_digit($_POST['listnum']) OR (int)$_POST['listnum'] > 20)
-				$error_text .= __('Please set the correct number of latest list, the maximum must not exceed 20 !').'<br/>';
-
+			$error_text .= __('Please set the correct number of latest list, the maximum must not exceed 20 !').'<br/>';
+		if (!isset($_POST['downgrade']) OR !ctype_digit($_POST['downgrade']))
+			$error_text .= sprintf(__('Please set the correct %s switch!'), __('Downgrade Support')).'<br/>';
 		if (!isset($_POST['allowfulllist']) OR !ctype_digit($_POST['allowfulllist']))
 			$error_text .= sprintf(__('Please set the correct %s switch!'), __('Full List of Sections')).'<br/>';
 		if (!isset($_POST['url_repo']) OR empty($_POST['url_repo']))
@@ -682,6 +692,7 @@ if (isset($_SESSION['connected']) && $_SESSION['connected'] === true) {
 			$config_text .= "define(\"DCRM_ALLOW_FULLLIST\", ".$_POST['allowfulllist'].");\n";
 			$config_text .= "define(\"DCRM_SPEED_LIMIT\", ".$_POST['speedlimit'].");\n";
 			$config_text .= "define(\"DCRM_DIRECT_DOWN\", ".$_POST['directdown'].");\n";
+			$config_text .= "define(\"DCRM_DOWNGRADE\", ".$_POST['downgrade'].");\n";
 			$config_text .= "define(\"DCRM_PCINDEX\", ".$_POST['pcindex'].");\n";
 			$config_text .= "define(\"DCRM_MOBILE\", ".$_POST['mobile'].");\n";
 			$config_text .= "define(\"DCRM_SCREENSHOTS\", ".$_POST['screenshots'].");\n";

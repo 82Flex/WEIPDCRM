@@ -27,7 +27,7 @@ if (!empty($_GET['request']) AND (!empty($_SERVER['HTTP_X_UNIQUE_ID']) OR DCRM_D
 	if(!empty($lastip) && $lastip['IP'] != $nowip)
 		DB::update(DCRM_CON_PREFIX.'UDID', array('IP' => $nowip), array('UDID' => $_SERVER['HTTP_X_UNIQUE_ID']));
 	$r_path = $_GET['request'];
-	$list_text = array('Release', 'Packages', 'Packages.gz', 'Packages.bz2');
+	$list_text = array('Release', 'Release.gpg', 'Packages', 'Packages.gz', 'Packages.bz2');
 	if (in_array($r_path, $list_text)) {
 		if (file_exists($r_path)) {
 			downFile($r_path, $r_path);
