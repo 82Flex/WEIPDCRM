@@ -164,12 +164,7 @@ if (isset($_SESSION['connected']) && $_SESSION['connected'] === true) {
 <?php 
 	} elseif (!empty($_GET['action']) AND $_GET['action'] == "add_now" AND !empty($_POST['contents'])) {
 		$new_name = DB::real_escape_string($_POST['contents']);
-		$q_info = DB::query("SELECT count(*) FROM `".DCRM_CON_PREFIX."Sections`");
-		if (!$q_info) {
-			goto endlabel;
-		}
-		$info = DB::fetch_row($q_info);
-		$num = (int)$info[0];
+		$num = DB::result_first("SELECT count(*) FROM `".DCRM_CON_PREFIX."Sections`");
 		if ($num <= 50) {
 			if (pathinfo($_FILES['icon']['name'], PATHINFO_EXTENSION) == "png") {
 				if (file_exists("../icons/" . $_FILES['icon']['name'])) {
@@ -217,9 +212,7 @@ if (isset($_SESSION['connected']) && $_SESSION['connected'] === true) {
 		goto endlabel;
 	} elseif (!empty($_GET['action']) AND $_GET['action'] == "createnow") {
 		$new_name = DB::real_escape_string($_POST['contents']);
-		$q_info = DB::query("SELECT count(*) FROM `".DCRM_CON_PREFIX."Sections` WHERE `Icon` != ''");
-		$info = DB::fetch_row($q_info);
-		$num = (int)$info[0];
+		$num = DB::result_first("SELECT count(*) FROM `".DCRM_CON_PREFIX."Sections` WHERE `Icon` != ''");
 		if ($num < 1) {
 			$alert = __('Cannot find any existing icon of section, please add an icon first, then create icon package.');
 			goto endlabel;
@@ -265,17 +258,29 @@ if (isset($_SESSION['connected']) && $_SESSION['connected'] === true) {
 			}
 			$new_tar -> save($new_path);
 			$result = $raw_data -> replace("data.tar.gz", $new_path);
+
 			if (!$result) {
 				$alert = __('Icon package template rewriting failed!');
 				goto endlabel;
 			} else {
-				$result = rename($deb_path, "../upload/" . AUTOFILL_PRE."sourceicon_" . time() . ".deb");
+				$control_path = "../tmp/" . $r_id . "/control.tar.gz";
+				$control_tar = new Tar();
+				$f_Package = "Package: ".(defined("AUTOFILL_PRE") ? AUTOFILL_PRE : '')."sourceicon\nArchitecture: iphoneos-arm\nName: Source Icon\nVersion: 0.1-1\nAuthor: ".(defined("AUTOFILL_SEO")?AUTOFILL_SEO.(defined("AUTOFILL_EMAIL")?' <'.AUTOFILL_EMAIL.'>':''):'DCRM <i.82@me.com>')."\nSponsor: ".(defined("AUTOFILL_MASTER")?AUTOFILL_MASTER.(defined("AUTOFILL_EMAIL")?' <'.AUTOFILL_EMAIL.'>':''):'i_82 <http://82flex.com>')."\nMaintainer: ".(defined("AUTOFILL_MASTER")?AUTOFILL_MASTER.(defined("AUTOFILL_EMAIL")?' <'.AUTOFILL_EMAIL.'>':''):'i_82 <http://82flex.com>')."\nDescription: Custom Empty Source Icon Package";
+				$control_tar -> add_file("control", "", $f_Package);
+				$control_tar -> save($control_path);
+				$result = $raw_data -> replace("control.tar.gz", $control_path);
 				if (!$result) {
-					$alert = __('Icon package template repositioning failed!');
+					$alert = __('Icon package template rewriting failed!');
 					goto endlabel;
+				} else {
+					$result = rename($deb_path, "../upload/" . AUTOFILL_PRE . "sourceicon_" . time() . ".deb");
+					if (!$result) {
+						$alert = __('Icon package template repositioning failed!');
+						goto endlabel;
+					}
+					header("Location: manage.php");
+					exit();
 				}
-				header("Location: manage.php");
-				exit();
 			}
 		} else {
 			$alert = __('Icon package template missing, please upload DCRM Pro again!');
