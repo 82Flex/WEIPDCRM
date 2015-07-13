@@ -113,20 +113,22 @@ if (isset($_SESSION['connected']) && $_SESSION['connected'] === true) {
 					if (empty($list['Name'])) {
 						$list['Name'] = AUTOFILL_NONAME;
 					}
-					if ($list['Stat'] == 1) {
-?>
-									<td><a href = "view.php?id=<?php echo $list['ID']; ?>"><ul class="ctl"><?php echo htmlspecialchars($list['Name']); ?></ul></a></td>
-<?php
-					} elseif ($list['Stat'] == 2) {
-?>
-									<td><a href = "view.php?id=<?php echo $list['ID']; ?>"><ul class="ctl" style="color: green;"><?php echo htmlspecialchars($list['Name']); ?></ul></a></td>
-<?php
-					} else {
-?>
-									<td><a href = "view.php?id=<?php echo $list['ID']; ?>"><ul class="ctl" style="color: gray;"><?php echo htmlspecialchars($list['Name']); ?></ul></a></td>
-<?php
+					switch ($list['Stat']) {
+						case 1:
+							$color = '#08C';
+							break;
+						case 2:
+							$color = 'green';
+							break;
+						case 3:
+							$color = 'yellow';
+							break;
+						default:
+							$color = 'gray';
+							break;
 					}
 ?>
+									<td><a href = "view.php?id=<?php echo $list['ID']; ?>"><ul class="ctl" style="color: <?php echo($color); ?>;"><?php echo htmlspecialchars($list['Name']); ?></ul></a></td>
 									<td><ul class="ctl"><?php echo htmlspecialchars($list['Version']); ?></ul></td>
 									<td><ul class="ctl"><?php echo sizeext($list['Size']); ?></ul></td>
 									<td><ul class="ctl"><?php echo $list['DownloadTimes']; ?></ul></td>
@@ -228,20 +230,22 @@ if (isset($_SESSION['connected']) && $_SESSION['connected'] === true) {
 			if (empty($list['Name'])) {
 				$list['Name'] = AUTOFILL_NONAME;
 			}
-			if ($list['Stat'] == 1) {
-?>
-									<td><a href = "view.php?id=<?php echo $list['ID']; ?>"><ul class="ctl"><?php echo htmlspecialchars($list['Name']); ?></ul></a></td>
-<?php
-			} elseif ($list['Stat'] == 2) {
-?>
-									<td><a href = "view.php?id=<?php echo $list['ID']; ?>"><ul class="ctl" style="color: green;"><?php echo htmlspecialchars($list['Name']); ?></ul></a></td>
-<?php
-			} else {
-?>
-									<td><a href = "view.php?id=<?php echo $list['ID']; ?>"><ul class="ctl" style="color: gray;"><?php echo htmlspecialchars($list['Name']); ?></ul></a></td>
-<?php
+			switch ($list['Stat']) {
+				case 1:
+					$color = '#08C';
+					break;
+				case 2:
+					$color = 'green';
+					break;
+				case 3:
+					$color = 'yellow';
+					break;
+				default:
+					$color = 'gray';
+					break;
 			}
 ?>
+									<td><a href = "view.php?id=<?php echo $list['ID']; ?>"><ul class="ctl" style="color: <?php echo($color); ?>;"><?php echo htmlspecialchars($list['Name']); ?></ul></a></td>
 									<td><ul class="ctl"><?php echo htmlspecialchars($list['Version']); ?></ul></td>
 									<td><ul class="ctl"><?php echo sizeext($list['Size']); ?></ul></td>
 									<td><ul class="ctl"><?php echo $list['DownloadTimes']; ?></ul></td>
