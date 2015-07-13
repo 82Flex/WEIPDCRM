@@ -44,10 +44,6 @@ if (DCRM_DOWNGRADE == 2)
 	$packages_info = DB::fetch_all("SELECT ".$parts." FROM `".DCRM_CON_PREFIX."Packages` WHERE `Stat` = '1' ORDER BY `Package`, `ID` DESC");
 else
 	$packages_info = DB::fetch_all("SELECT ".$parts." FROM `".DCRM_CON_PREFIX."Packages` WHERE `Stat` = '1' GROUP BY `Package` ORDER BY `ID` DESC");
-/*if ($m_query == false) {
-	$alert = __('Database Error!');
-	goto endlabel;
-}*/
 
 $rewrite_mod = get_option('rewrite_mod');
 if(empty($rewrite_mod) || $rewrite_mod != 3)

@@ -17,11 +17,11 @@ function opt(r) {
 		} else if (r == 3) {
 			window.location.href = "edit.php?action=advance&id="+pid;
 		} else if (r == 4) {
-			if(confirm("您确定要隐藏该软件包？")){
+			if(confirm(hide_text)){
 			   window.location.href = "center.php?action=submit&id="+pid;
 			}
 		} else if (r == 5) {
-			if(confirm("您确定要显示该软件包？\n如果同时存在多个版本，新版 Cydia 会正常提示降级。")){
+			if(confirm(show_text)){
 			   window.location.href = "center.php?action=submit&id="+pid;
 			}
 		}

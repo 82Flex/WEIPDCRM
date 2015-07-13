@@ -30,57 +30,57 @@ require_once ABSPATH.'system/common.inc.php';
 
 $sidebars = array(
 	array(
-        'title' => 'PACKAGES',
-        'type'  => 'title'
-    ),
+		'title' => 'PACKAGES',
+		'type'  => 'title'
+	),
 	array(
-        'name'  => __('Upload Packages'),
-        'id'    => 'upload',
-        'type'  => 'subtitle',
-    ),
+		'name'  => __('Upload Packages'),
+		'id'    => 'upload',
+		'type'  => 'subtitle',
+	),
 	array(
-        'name'  => __('Import Packages'),
-        'id'    => 'manage',
-        'type'  => 'subtitle',
-    ),
+		'name'  => __('Import Packages'),
+		'id'    => 'manage',
+		'type'  => 'subtitle',
+	),
 	array(
-        'name'  => __('Manage Packages'),
-        'id'    => 'center',
-        'type'  => 'subtitle',
-    ),
+		'name'  => __('Manage Packages'),
+		'id'    => 'center',
+		'type'  => 'subtitle',
+	),
 	array(
-        'name'  => __('Manage UDID'),
-        'id'    => 'udid',
-        'type'  => 'subtitle',
-    ),
+		'name'  => __('Manage UDID'),
+		'id'    => 'udid',
+		'type'  => 'subtitle',
+	),
 	array(
-        'title' => 'REPOSITORY',
-        'type'  => 'title'
-    ),
+		'title' => 'REPOSITORY',
+		'type'  => 'title'
+	),
 	array(
-        'name'  => __('Manage Sections'),
-        'id'    => 'sections',
-        'type'  => 'subtitle',
-    ),
+		'name'  => __('Manage Sections'),
+		'id'    => 'sections',
+		'type'  => 'subtitle',
+	),
 	array(
-        'name'  => __('Manage Repository'),
-        'id'    => 'release',
-        'type'  => 'subtitle',
-    ),
+		'name'  => __('Manage Repository'),
+		'id'    => 'release',
+		'type'  => 'subtitle',
+	),
 	array(
-        'title' => 'SYSTEM',
-        'type'  => 'title'
-    ),
+		'title' => 'SYSTEM',
+		'type'  => 'title'
+	),
 	array(
-        'name'  => __('Running Status'),
-        'id'    => 'stats',
-        'type'  => 'subtitle',
-    ),
+		'name'  => __('Running Status'),
+		'id'    => 'stats',
+		'type'  => 'subtitle',
+	),
 	array(
-        'name'  => __('About'),
-        'id'    => 'about',
-        'type'  => 'subtitle',
-    )
+		'name'  => __('About'),
+		'id'    => 'about',
+		'type'  => 'subtitle',
+	)
 );
 ?>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -120,9 +120,16 @@ $sidebars = array(
 	</script>
 <?php
 if ( isset($activeid) && ( 'manage' == $activeid || 'sections' == $activeid || 'center' == $activeid) ) 
-	echo '	<link rel="stylesheet" type="text/css" href="css/corepage.css">';
-if ( isset($activeid) && ( 'view' == $activeid || 'edit' == $activeid || 'center' == $activeid) ) 
-	echo '	<script src="javascript/backend/mbar.js" type="text/javascript"></script>';
+	echo('	<link rel="stylesheet" type="text/css" href="css/corepage.css">');
+if ( isset($activeid) && ( 'view' == $activeid || 'edit' == $activeid || 'center' == $activeid) ) {
+?>
+	<script type="text/javascript">
+		var hide_text = '<?php _e('Are you sure you want to hide this software package?'); ?>';
+		var show_text = '<?php _e('Are you sure you want to display this software package?\nIf there are more than one version, the new version of the Cydia will show downgrade.'); ?>';
+	</script>
+	<script src="javascript/backend/mbar.js" type="text/javascript"></script>
+<?
+}
 ?>
 </head>
 <body class="manage">

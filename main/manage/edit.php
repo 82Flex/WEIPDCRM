@@ -159,8 +159,12 @@ if (isset($_SESSION['connected']) && $_SESSION['connected'] === true) {
 							<div class="controls">
 <?php
 		$repourl = base64_decode(DCRM_REPOURL);
-		$repourl = substr($repourl, -1) == '/' ? $repourl : $repourl.'/'; 
-		$depiction_url = $repourl . 'view/' . $request_id;
+		$repourl = substr($repourl, -1) == '/' ? $repourl : $repourl.'/';
+		$rewrite_mod = get_option('rewrite_mod');
+		if ($rewrite_mod == 3)
+			$depiction_url = $repourl . 'view/' . $request_id;
+		else
+			$depiction_url = $repourl . 'index.php?pid=' . $request_id;
 ?>
 								<input id="urlinput" type="text" style="width: 400px;" name="Depiction" value="<?php echo !empty($edit_info['Depiction']) ? htmlspecialchars($edit_info['Depiction']) : '' ?>"/>
 								<p class="help-block"><?php printf(__('Default Depiction: %s'), $depiction_url); ?></p>
