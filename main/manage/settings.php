@@ -244,10 +244,19 @@ if (isset($_SESSION['connected']) && $_SESSION['connected'] === true) {
 						</div>
 						<br />
 						<div class="control-group">
+							<label class="control-label"><?php _e('Description'); ?></label>
+							<div class="controls">
+								<select name="description">
+									<?php show_select((defined(DCRM_DESCRIPTION)?DCRM_DESCRIPTION:2), __('Hide'), __('Show')); ?>
+								</select>
+							</div>
+						</div>
+						<br />
+						<div class="control-group" id="multiinfo">
 							<label class="control-label"><?php _e('Detailed Description'); ?></label>
 							<div class="controls">
 								<select name="multiinfo">
-									<?php show_select(DCRM_MULTIINFO); ?>
+									<?php show_select(DCRM_MULTIINFO, __('Hide'), __('Show')); ?>
 								</select>
 							</div>
 						</div>
@@ -700,6 +709,7 @@ if (isset($_SESSION['connected']) && $_SESSION['connected'] === true) {
 			$config_text .= "define(\"DCRM_REPORT_LIMIT\", ".$_POST['reportlimit'].");\n";
 			$config_text .= "define(\"DCRM_UPDATELOGS\", ".$_POST['updatelogs'].");\n";
 			$config_text .= "define(\"DCRM_MOREINFO\", ".$_POST['moreinfo'].");\n";
+			$config_text .= "define(\"DCRM_DESCRIPTION\", ".$_POST['description'].");\n";
 			$config_text .= "define(\"DCRM_MULTIINFO\", ".$_POST['multiinfo'].");\n";
 			$config_text .= "define(\"DCRM_LISTS_METHOD\", ".$_POST['listsmethod'].");\n";
 			$config_text .= "define(\"DCRM_CHECK_METHOD\", ".$_POST['checkmethod'].");\n";

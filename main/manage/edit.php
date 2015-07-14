@@ -179,11 +179,12 @@ if (isset($_SESSION['connected']) && $_SESSION['connected'] === true) {
 							</div>
 						</div>
 						<br />
-						<div <?php if (DCRM_MULTIINFO != 2){ ?> hidden="hidden"<?php } ?>>
+						<div>
 							<div class="group-control">
-								<label class="control-label"><?php _e('Detailed Description'); ?></label>
+								<label class="control-label"><?php _e('Detailed Description'); ?><?php if (DCRM_MULTIINFO != 2){ _e(' (Hidden)'); } ?></label>
 								<div class="controls">
-									<textarea id="kind" type="text" style="height: 400px; width: 408px; visibility: hidden;" name="Multi"><?php if (!empty($edit_info['Multi'])) {echo htmlspecialchars($edit_info['Multi']);} ?></textarea>
+									<textarea id="kind" type="text" style="height: 200px; width: 408px; visibility: hidden;" name="Multi"><?php if (!empty($edit_info['Multi'])) {echo htmlspecialchars($edit_info['Multi']);} ?></textarea>
+									<?php if (DCRM_MULTIINFO != 2){ ?><p class="help-block"><?php printf(__('It is hidden in the page, you should change \'Detailed Description\' option in <a href="%s">Settings</a> if you want show this.'), './settings.php#multiinfo'); ?></p><?php } ?>
 								</div>
 							</div>
 							<br />
@@ -191,8 +192,8 @@ if (isset($_SESSION['connected']) && $_SESSION['connected'] === true) {
 						<div class="group-control">
 							<label class="control-label"><?php _e('Changelog'); ?></label>
 							<div class="controls">
-								<textarea id="Changelog" type="text" style="height: 200px; width: 408px; visibility: hidden;" name="Changelog"><?php if (!empty($edit_info['Changelog'])) {echo htmlspecialchars($edit_info['Changelog']);} ?></textarea>
-								<p class="help-block"><?php _e('If leave a blank will do not display.'); ?></p>
+								<textarea id="Changelog" type="text" style="height: 100px; width: 408px; visibility: hidden;" name="Changelog"><?php if (!empty($edit_info['Changelog'])) {echo htmlspecialchars($edit_info['Changelog']);} ?></textarea>
+								<p class="help-block"><?php _e('It will do not display in the page if leave a blank.'); ?></p>
 							</div>
 						</div>
 						<br />

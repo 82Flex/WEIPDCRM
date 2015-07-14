@@ -660,6 +660,8 @@ if ($index == 0) {
 			<fieldset>
 <?php
 		if (DCRM_SCREENSHOTS == 2) {
+			$screenshots_count = DB::result_first("SELECT count(*) FROM `".DCRM_CON_PREFIX."ScreenShots` WHERE `PID` = '".(int)$_GET['pid']."'");
+			if (!empty($screenshots_count)){
 ?>
 				<a href="<?php echo_rewrite_url('screenshot', $_GET['pid']); ?>">
 				<img class="icon" src="<?php echo(SITE_URL); ?>icons/default/screenshots.png" />
@@ -672,6 +674,7 @@ if ($index == 0) {
 					</div>
 				</a>
 <?php
+			}
 		}
 ?>
 				<a href="<?php echo_rewrite_url('history', $_GET['pid']); ?>" id="historylink">
@@ -829,20 +832,27 @@ if ($index == 0) {
 			</block>
 <?php	
 		}
+		if(!defined('DCRM_DESCRIPTION')) define('DCRM_DESCRIPTION', 2);
+		if (DCRM_MOREINFO == 2 || DCRM_DESCRIPTION == 2) {
 ?>
 			<block>
 <?php
-		if (DCRM_MOREINFO == 2) {
+			if (DCRM_MOREINFO == 2) {
 ?>
 					<p><?php _e('Version'); ?> <strong><?php echo($pkg_assoc['Version']); ?></strong> | <?php _e('Downloads'); ?> <strong><?php echo($pkg_assoc['DownloadTimes']); ?></strong></p>
 					<p><?php _e('Last Updated'); ?> <strong><?php echo($pkg_assoc['CreateStamp']); ?></strong></p>
-					<hr />
 <?php
-		}
+			}
+			if (DCRM_MOREINFO == 2 && DCRM_DESCRIPTION == 2) echo '<hr />';
+			if (DCRM_DESCRIPTION == 2) {
 ?>
 					<p><?php echo(nl2br($pkg_assoc['Description'])); ?></p>
+<?php
+			}
+?>
 			</block>
 <?php
+		}
 		if (!empty($pkg_assoc['Multi']) && DCRM_MULTIINFO == 2) {
 ?>
 			<fieldset>
