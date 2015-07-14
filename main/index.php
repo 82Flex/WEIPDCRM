@@ -676,6 +676,8 @@ if ($index == 0) {
 <?php
 			}
 		}
+		$changelogs_count = DB::result_first("SELECT count(*) FROM `".DCRM_CON_PREFIX."Packages` WHERE `Package` = '".$pkg_assoc['Package']."'");
+		if ($changelogs_count != 1){
 ?>
 				<a href="<?php echo_rewrite_url('history', $_GET['pid']); ?>" id="historylink">
 				<img class="icon" src="<?php echo(SITE_URL); ?>icons/default/changelog.png" />
@@ -688,6 +690,7 @@ if ($index == 0) {
 					</div>
 				</a>
 <?php
+		}
 		if ($isCydia && DCRM_REPORTING == 2) {
 ?>
 				<a href="<?php echo_rewrite_url('report', $_GET['pid']); ?>" id="reportlink">
