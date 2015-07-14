@@ -249,6 +249,7 @@ if (isset($_SESSION['connected']) && $_SESSION['connected'] === true) {
 								<select name="description">
 									<?php show_select((defined(DCRM_DESCRIPTION)?DCRM_DESCRIPTION:2), __('Hide'), __('Show')); ?>
 								</select>
+								<p class="help-block"><?php _e('It will not hide if \'Detailed Description\' is enabled and empty.');?></p>
 							</div>
 						</div>
 						<br />
@@ -693,7 +694,7 @@ if (isset($_SESSION['connected']) && $_SESSION['connected'] === true) {
 			if(isset($_POST['rewrite_mod']))
 				update_option('rewrite_mod', $_POST['rewrite_mod']);
 
-			$config_text = "<?php\nif (!defined(\"DCRM\")) {\n\texit;\n}\n";
+			$config_text = "<?php\nif (!defined(\"DCRM\")) exit();\n";
 			$config_text .= "define(\"DCRM_LANG\", \"".$_POST['language']."\");\n";
 			$config_text .= "define(\"DCRM_MAXLOGINFAIL\", ".$_POST['trials'].");\n";
 			$config_text .= "define(\"DCRM_SHOWLIST\", ".$_POST['list'].");\n";
@@ -720,7 +721,7 @@ if (isset($_SESSION['connected']) && $_SESSION['connected'] === true) {
 			$config_text .= "define(\"DCRM_REPOURL\", \"".base64_encode($repo_url)."\");\n";
 			$config_text .= "define(\"DCRM_LOGINFAILRESETTIME\", ".($_POST['resettime']*60).");\n";
 			$config_text .= "?>";
-			$autofill_text = "<?php\nif (!defined(\"DCRM\")) {\n\texit;\n}\n";
+			$autofill_text = "<?php\nif (!defined(\"DCRM\")) exit();\n";
 			$autofill_list = array("EMERGENCY", "PRE", "NONAME", "MASTER", "FULLNAME", "EMAIL", "SITE", "WEIBO", "WEIBO_NAME", "TWITTER", "TWITTER_NAME", "FACEBOOK", "FACEBOOK_NAME", "DESCRIPTION", "SEO", "KEYWORDS", "PAYPAL", "ALIPAY", "STATISTICS", "STATISTICS_INFO", "ADVERTISEMENT", "TENCENT", "TENCENT_NAME", "DUOSHUO_KEY", "FOOTER_YEAR", "FOOTER_CODE", "FOOTER_NAME");
 			foreach ($autofill_list as $value) {
 				if (!empty($_POST[$value])) {

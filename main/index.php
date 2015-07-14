@@ -833,7 +833,7 @@ if ($index == 0) {
 <?php	
 		}
 		if(!defined('DCRM_DESCRIPTION')) define('DCRM_DESCRIPTION', 2);
-		if (DCRM_MOREINFO == 2 || DCRM_DESCRIPTION == 2) {
+		if (DCRM_MOREINFO == 2 || DCRM_DESCRIPTION == 2 || (empty($pkg_assoc['Multi']) && DCRM_MULTIINFO == 2)) {
 ?>
 			<block>
 <?php
@@ -843,8 +843,8 @@ if ($index == 0) {
 					<p><?php _e('Last Updated'); ?> <strong><?php echo($pkg_assoc['CreateStamp']); ?></strong></p>
 <?php
 			}
-			if (DCRM_MOREINFO == 2 && DCRM_DESCRIPTION == 2) echo '<hr />';
-			if (DCRM_DESCRIPTION == 2) {
+			if (DCRM_MOREINFO == 2 && (DCRM_DESCRIPTION == 2 || (empty($pkg_assoc['Multi']) && DCRM_MULTIINFO == 2))) echo '<hr />';
+			if (DCRM_DESCRIPTION == 2 || (empty($pkg_assoc['Multi']) && DCRM_MULTIINFO == 2)) {
 ?>
 					<p><?php echo(nl2br($pkg_assoc['Description'])); ?></p>
 <?php
