@@ -256,6 +256,7 @@ function display_header($n='') {
 
 function base_url(){
 	$sitepath = dirname(dirname($_SERVER['PHP_SELF'])).'/';
+	$sitepath = strlen($sitepath) == 1 ? '/' : $sitepath.'/';
 	$siteurl = htmlspecialchars(($_SERVER['SERVER_PORT'] == '443' ? 'https://' : 'http://').$_SERVER['HTTP_HOST'].$sitepath);
 	define('BASE_URL', $siteurl);
 }

@@ -101,17 +101,17 @@ function httpinfo($info_type) {
 function _ip2long( $ip_address ) {
 	return sprintf("%u",ip2long($ip_address));
 }
-function getIp(){ 
-	$onlineip=''; 
-	if(getenv('HTTP_CLIENT_IP')&&strcasecmp(getenv('HTTP_CLIENT_IP'),'unknown')){ 
-		$onlineip=getenv('HTTP_CLIENT_IP'); 
-	} elseif(getenv('HTTP_X_FORWARDED_FOR')&&strcasecmp(getenv('HTTP_X_FORWARDED_FOR'),'unknown')){ 
-		$onlineip=getenv('HTTP_X_FORWARDED_FOR'); 
-	} elseif(getenv('REMOTE_ADDR')&&strcasecmp(getenv('REMOTE_ADDR'),'unknown')){ 
-		$onlineip=getenv('REMOTE_ADDR'); 
-	} elseif(isset($_SERVER['REMOTE_ADDR'])&&$_SERVER['REMOTE_ADDR']&&strcasecmp($_SERVER['REMOTE_ADDR'],'unknown')){ 
-		$onlineip=$_SERVER['REMOTE_ADDR']; 
-	}
+function getIp() {
+	if(getenv('HTTP_CLIENT_IP')&&strcasecmp(getenv('HTTP_CLIENT_IP'),'unknown'))
+		$onlineip = getenv('HTTP_CLIENT_IP'); 
+	elseif(getenv('HTTP_X_FORWARDED_FOR')&&strcasecmp(getenv('HTTP_X_FORWARDED_FOR'),'unknown'))
+		$onlineip = getenv('HTTP_X_FORWARDED_FOR'); 
+	elseif(getenv('REMOTE_ADDR')&&strcasecmp(getenv('REMOTE_ADDR'),'unknown'))
+		$onlineip = getenv('REMOTE_ADDR'); 
+	elseif(isset($_SERVER['REMOTE_ADDR'])&&$_SERVER['REMOTE_ADDR']&&strcasecmp($_SERVER['REMOTE_ADDR'],'unknown'))
+		$onlineip = $_SERVER['REMOTE_ADDR']; 
+	else
+		$onlineip = null;
 	return $onlineip; 
 } 
 /**
@@ -365,9 +365,10 @@ function base_url($is_subdir = false) {
 		define('SITE_PATH', CUSTOM_SITEPATH);
 	} else {
 		if ($is_subdir)
-			define('SITE_PATH', dirname(dirname($_SERVER['PHP_SELF'])).'/');
+			$sitepath = dirname(dirname($_SERVER['PHP_SELF']));
 		else
-			define('SITE_PATH', dirname($_SERVER['PHP_SELF']).'/');
+			$sitepath = dirname($_SERVER['PHP_SELF']);
+		define('SITE_PATH', (strlen($sitepath) == 1 ? '/' : $sitepath.'/'));
 	}
 
 	$siteurl = htmlspecialchars(($_SERVER['SERVER_PORT'] == '443' ? 'https://' : 'http://').$_SERVER['HTTP_HOST'].SITE_PATH);
