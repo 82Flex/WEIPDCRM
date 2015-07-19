@@ -36,22 +36,22 @@ $sidebars = array(
 	array(
 		'name'  => __('Upload Packages'),
 		'id'    => 'upload',
-		'type'  => 'subtitle',
+		'type'  => 'subtitle'
 	),
 	array(
 		'name'  => __('Import Packages'),
 		'id'    => 'manage',
-		'type'  => 'subtitle',
+		'type'  => 'subtitle'
 	),
 	array(
 		'name'  => __('Manage Packages'),
 		'id'    => 'center',
-		'type'  => 'subtitle',
+		'type'  => 'subtitle'
 	),
 	array(
 		'name'  => __('Manage UDID'),
 		'id'    => 'udid',
-		'type'  => 'subtitle',
+		'type'  => 'subtitle'
 	),
 	array(
 		'title' => 'REPOSITORY',
@@ -60,12 +60,12 @@ $sidebars = array(
 	array(
 		'name'  => __('Manage Sections'),
 		'id'    => 'sections',
-		'type'  => 'subtitle',
+		'type'  => 'subtitle'
 	),
 	array(
 		'name'  => __('Manage Repository'),
 		'id'    => 'release',
-		'type'  => 'subtitle',
+		'type'  => 'subtitle'
 	),
 	array(
 		'title' => 'SYSTEM',
@@ -74,12 +74,12 @@ $sidebars = array(
 	array(
 		'name'  => __('Running Status'),
 		'id'    => 'stats',
-		'type'  => 'subtitle',
+		'type'  => 'subtitle'
 	),
 	array(
 		'name'  => __('About'),
 		'id'    => 'about',
-		'type'  => 'subtitle',
+		'type'  => 'subtitle'
 	)
 );
 ?>
@@ -128,9 +128,7 @@ if ( isset($activeid) && ( 'view' == $activeid || 'edit' == $activeid || 'center
 		var show_text = '<?php _e('Are you sure you want to display this software package?\nIf there are more than one version, the new version of the Cydia will show downgrade.'); ?>';
 	</script>
 	<script src="javascript/backend/mbar.js" type="text/javascript"></script>
-<?
-}
-?>
+<?php } ?>
 </head>
 <body class="manage">
 	<div class="container">
