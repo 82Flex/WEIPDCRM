@@ -139,7 +139,7 @@ if (!$screenshots) {
 					editor.plugin.imageDialog({
 						imageUrl : K('#url1').val(),
 						clickFn : function(url, title, width, height, border, align) {
-							K('#url1').val(url);
+							K('#url1').val(url + ', ');
 							editor.hideDialog();
 						}
 					});
@@ -151,7 +151,8 @@ if (!$screenshots) {
 							clickFn : function(urlList) {
 								var div = K('#url1');
 								K.each(urlList, function(i, data) {
-									div.val(div.val() + data.url + ', ');
+									var image_url = K.formatUrl(data.url, 'absolute');
+									div.val(div.val() + image_url + ', ');
 								});
 								editor.hideDialog();
 							}
