@@ -37,15 +37,19 @@ if (is_numeric($_GET['id'])) {
 	httpinfo(405);
 	exit();
 }
-$m_query = DB::query("SELECT * FROM `".DCRM_CON_PREFIX."Packages` WHERE `ID` = '" . $request_id . "'");
-if (!$m_query) {
-	httpinfo(500);
-	exit();
-}
+$package_info = DB::fetch_first("SELECT * FROM `".DCRM_CON_PREFIX."Packages` WHERE `ID` = '" . $request_id . "'");
+
 if (isset($_GET['action']) && $_GET['action'] == "image" && isset($_POST['image']) && strlen($_POST['image']) > 0) {
-	DB::query("INSERT INTO `".DCRM_CON_PREFIX."ScreenShots`(`PID`, `Image`) VALUES('".$request_id."', '".DB::real_escape_string($_POST['image'])."')");
+	if(strpos($_POST['image'], ', '))
+		$images_array = explode(', ', $_POST['image']);
+	else
+		$images_array = array($_POST['image']);
+	foreach($images_array as $image) {
+		if(!empty($image))
+			DB::insert(DCRM_CON_PREFIX.'ScreenShots', array('PID' => $request_id, 'Image' => DB::real_escape_string($image)));
+	}
 } elseif (isset($_GET['action']) && $_GET['action'] == "del" && is_numeric($_GET['image'])) {
-	DB::query("DELETE FROM `".DCRM_CON_PREFIX."ScreenShots` WHERE `ID` = '".DB::real_escape_string($_GET['image'])."'");
+	DB::delete(DCRM_CON_PREFIX.'ScreenShots', array('ID' => DB::real_escape_string($_GET['image'])));
 }
 
 require_once("header.php");
@@ -54,30 +58,25 @@ require_once("header.php");
 			<h2><?php _e('View Details'); ?></h2>
 			<br />
 <?php
-$m_array = mysql_fetch_assoc($m_query);
-if (!$m_array) {
+if (!$package_info) {
 	$alert = __('No specified item.');
 } else {
-	unset($m_array['Multi']);
-	foreach ($m_array as $m_key => $m_value) {
+	unset($package_info['Multi']);
+	foreach ($package_info as $m_key => $m_value) {
 		if (!empty($m_value)) {
 			$f_Package .= $m_key . ": " . trim(str_replace("\n","\n ",$m_value)) . "\n";
 		}
 	}
-	$protection_status = check_commercial_tag($m_array['Tag']);
-	$package = $m_array['Package'];
+	$protection_status = check_commercial_tag($package_info['Tag']);
+	$package = $package_info['Package'];
 ?>
 			<div class="alert alert-info">
-<?php echo nl2br(htmlspecialchars($f_Package)); ?>
+<?php echo(nl2br(htmlspecialchars($f_Package))); ?>
 			</div>
 <?php
 }
-$m_query = DB::query("SELECT * FROM `".DCRM_CON_PREFIX."ScreenShots` WHERE `PID` = '".$request_id."'");
-if (!$m_query) {
-	httpinfo(500);
-	exit();
-}
-if (DB::affected_rows() <= 0) {
+$screenshots = DB::fetch_all("SELECT * FROM `".DCRM_CON_PREFIX."ScreenShots` WHERE `PID` = '".$request_id."'");
+if (!$screenshots) {
 ?>
 			<div class="alert" id="tips">
 				<?php _e('This package no screenshot.'); ?><br />
@@ -86,11 +85,11 @@ if (DB::affected_rows() <= 0) {
 } else {
 ?>
 			<div class="alert alert-success" id="tips">
-				<?php printf(_n('This package have %d screenshot.', 'This package have %d screenshots.', $screenshotsrow = DB::affected_rows()), $screenshotsrow); ?><br />
+				<?php printf(_n('This package have %d screenshot.', 'This package have %d screenshots.', count($screenshots)), count($screenshots)); ?><br />
 <?php
-	while ($m_array = mysql_fetch_assoc($m_query)) {
+	foreach($screenshots as $screenshot){
 ?>
-				<li><a href="<?php echo($m_array["Image"]); ?>"><?php if (strlen($m_array["Image"]) > 72) echo(mb_substr($m_array["Image"],0,72,"UTF-8").' ...'); else echo($m_array["Image"]); ?></a>&emsp;<a href="javascript:delimage(<?php echo($m_array["ID"]); ?>);">&times;</a></li>
+				<li><a href="<?php echo($screenshot["Image"]); ?>"><?php if (strlen($screenshot["Image"]) > 72) echo(mb_substr($screenshot["Image"],0,72,"UTF-8").' ...'); else echo($screenshot["Image"]); ?></a>&emsp;<a href="javascript:delimage(<?php echo($screenshot["ID"]); ?>);">&times;</a></li>
 <?php
 	}
 ?>
@@ -102,7 +101,9 @@ if (DB::affected_rows() <= 0) {
 				<fieldset>
 					<div class="group-control">
 						<label class="control-label">* <?php _e('New Screenshot'); ?></label>
-						<div class="controls"><input type="button" id="image1" value="<?php _e('Select Picture'); ?>" />
+						<div class="controls">
+							<input type="button" id="multiimage" value="<?php _e('Batch Upload'); ?>" />
+							<input type="button" id="image1" value="<?php _e('Select Picture'); ?>" />
 							<input type="text" id="url1" style="width: 400px;" required="required" name="image" /><button action="view.php?id=<?php echo($request_id); ?>&amp;action=image"><?php _e('Confirm'); ?></button>
 						</div>
 					</div>
@@ -130,7 +131,8 @@ if (DB::affected_rows() <= 0) {
 		KindEditor.ready(function(K) {
 			var editor = K.editor({
 				allowFileManager : true,
-				langType : '<?php echo $kdlang; ?>'
+				langType : '<?php echo $kdlang; ?>',
+				imageSizeLimit: '20MB'
 			});
 			K('#image1').click(function() {
 				editor.loadPlugin('image', function() {
@@ -143,6 +145,19 @@ if (DB::affected_rows() <= 0) {
 					});
 				});
 			});
+			K('#multiimage').click(function() {
+					editor.loadPlugin('multiimage', function() {
+						editor.plugin.multiImageDialog({
+							clickFn : function(urlList) {
+								var div = K('#url1');
+								K.each(urlList, function(i, data) {
+									div.val(div.val() + data.url + ', ');
+								});
+								editor.hideDialog();
+							}
+						});
+					});
+				});
 		});
 	</script>
 </body>

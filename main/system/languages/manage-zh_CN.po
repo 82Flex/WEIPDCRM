@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: DCRM Manager\n"
-"POT-Creation-Date: 2015-07-14 17:36+0800\n"
-"PO-Revision-Date: 2015-07-14 17:36+0800\n"
+"POT-Creation-Date: 2015-08-02 17:50+0800\n"
+"PO-Revision-Date: 2015-08-02 17:51+0800\n"
 "Last-Translator: Hintay <hintay@me.com>\n"
 "Language-Team: Hintay <hintay@me.com>\n"
 "Language: zh_CN\n"
@@ -152,7 +152,7 @@ msgstr "写入 Packages.gz 文件："
 msgid "Write to the Packages.bz2 file: "
 msgstr "写入 Packages.bz2 文件："
 
-#: manage/build.php:134 manage/header.php:144
+#: manage/build.php:134 manage/header.php:142
 msgid "Rebuild the list"
 msgstr "刷新列表"
 
@@ -306,7 +306,7 @@ msgstr "显示软件包"
 msgid "Illegal request!"
 msgstr "非法请求！"
 
-#: manage/edit.php:44 manage/header.php:180
+#: manage/edit.php:44 manage/header.php:178
 msgid "General Editing"
 msgstr "常规编辑"
 
@@ -443,7 +443,7 @@ msgstr "立即写入"
 msgid "Back"
 msgstr "返回"
 
-#: manage/edit.php:250 manage/header.php:181
+#: manage/edit.php:250 manage/header.php:179
 msgid "Advance Editing"
 msgstr "高级编辑"
 
@@ -458,7 +458,7 @@ msgid "Content"
 msgstr "修改内容"
 
 #: manage/edit.php:309 manage/edit.php:402 manage/udid.php:388
-#: manage/view.php:118
+#: manage/view.php:119
 msgid "Binding UDID"
 msgstr "绑定UDID"
 
@@ -559,16 +559,16 @@ msgid ""
 msgstr ""
 "您确定要显示该软件包？\\n如果同时存在多个版本，新版 Cydia 会正常提示降级。"
 
-#: manage/header.php:145
+#: manage/header.php:143
 msgctxt "Header"
 msgid "Preferences"
 msgstr "设置"
 
-#: manage/header.php:146
+#: manage/header.php:144
 msgid "Logout"
 msgstr "注销"
 
-#: manage/header.php:179 manage/view.php:54
+#: manage/header.php:177 manage/view.php:58
 msgid "View Details"
 msgstr "查看详情"
 
@@ -805,7 +805,7 @@ msgstr "该操作无法撤销！"
 
 #: manage/manage.php:104 manage/sections.php:292 manage/sections.php:310
 #: manage/udid.php:301 manage/udid.php:390 manage/udid.php:399
-#: manage/view.php:106
+#: manage/view.php:107
 msgid "Confirm"
 msgstr "确定"
 
@@ -1474,7 +1474,7 @@ msgstr "多说社会化评论框 KEY"
 msgid ""
 "Please goto %s for get key (registration required), leave a blank will "
 "disabled comment function."
-msgstr "请前往 %s 获取 Key（需要注册），留空关闭评论功能。"
+msgstr "请前往 %s 获取 Key（即多说域名，需要注册），留空关闭评论功能。"
 
 #: manage/settings.php:474
 msgid "QQ Group Name"
@@ -1977,29 +1977,33 @@ msgstr "上传中，请稍等……"
 msgid "Please select a package!"
 msgstr "请选择一个软件包！"
 
-#: manage/view.php:59
+#: manage/view.php:62
 msgid "No specified item."
 msgstr "查询不到指定的项目。"
 
-#: manage/view.php:83
+#: manage/view.php:82
 msgid "This package no screenshot."
 msgstr "该软件包暂无截图"
 
-#: manage/view.php:89
+#: manage/view.php:88
 #, php-format
 msgid "This package have %d screenshot."
 msgid_plural "This package have %d screenshots."
 msgstr[0] "软件包截图 %d 张"
 
-#: manage/view.php:104
+#: manage/view.php:103
 msgid "New Screenshot"
 msgstr "新增截图"
 
 #: manage/view.php:105
+msgid "Batch Upload"
+msgstr "批量上传"
+
+#: manage/view.php:106
 msgid "Select Picture"
 msgstr "选择图片"
 
-#: manage/view.php:121
+#: manage/view.php:122
 msgid "Are you sure you want to delete this screenshot?"
 msgstr "您确定要彻底删除这张截图？"
 
