@@ -1361,7 +1361,7 @@ if ($index == 0) {
 			</block>
 			<fieldset id="section"></fieldset>
 			<fieldset id="loadmore" name="<?php echo($_GET['pid']); ?>">
-				<a href="javascript:loadPackages(<?php echo(SITE_URL); ?>);">
+				<a href="javascript:loadPackages();">
 					<img class="icon" src="<?php echo(SITE_URL); ?>icons/default/moreinfo.png" />
 					<div>
 						<div>
