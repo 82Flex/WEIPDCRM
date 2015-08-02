@@ -113,10 +113,10 @@ if (DB::affected_rows() <= 0) {
 	</div>
 	</div>
 	<script type="text/javascript">
-		<?php if($protection_status): ?>
+<?php if($protection_status): ?>
 		sli = document.getElementById('sli');
 		sli.innerHTML = '<a href="udid.php?package=<?php echo $package;?>"><?php _e('Binding UDID');?></a>';
-		<?php endif; ?>
+<?php endif; ?>
 		function delimage(pid) {
 			if(confirm("<?php _e('Are you sure you want to delete this screenshot?'); ?>")){
 			   window.location.href = "view.php?id=<?php echo($request_id); ?>&action=del&image=" + pid;

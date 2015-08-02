@@ -265,7 +265,7 @@ if (isset($_SESSION['connected']) && $_SESSION['connected'] === true) {
 			} else {
 				$control_path = "../tmp/" . $r_id . "/control.tar.gz";
 				$control_tar = new Tar();
-				$f_Package = "Package: ".(defined("AUTOFILL_PRE") ? AUTOFILL_PRE : '')."sourceicon\nArchitecture: iphoneos-arm\nName: Source Icon\nVersion: 0.1-1\nAuthor: ".(defined("AUTOFILL_SEO")?AUTOFILL_SEO.(defined("AUTOFILL_EMAIL")?' <'.AUTOFILL_EMAIL.'>':''):'DCRM <i.82@me.com>')."\nSponsor: ".(defined("AUTOFILL_MASTER")?AUTOFILL_MASTER.(defined("AUTOFILL_EMAIL")?' <'.AUTOFILL_EMAIL.'>':''):'i_82 <http://82flex.com>')."\nMaintainer: ".(defined("AUTOFILL_MASTER")?AUTOFILL_MASTER.(defined("AUTOFILL_EMAIL")?' <'.AUTOFILL_EMAIL.'>':''):'i_82 <http://82flex.com>')."\nDescription: Custom Empty Source Icon Package";
+				$f_Package = "Package: ".(defined("AUTOFILL_PRE") ? AUTOFILL_PRE : '')."sourceicon\nArchitecture: iphoneos-arm\nName: Source Icon\nVersion: 0.1-1\nAuthor: ".(defined("AUTOFILL_SEO")?AUTOFILL_SEO.(defined("AUTOFILL_EMAIL")?' <'.AUTOFILL_EMAIL.'>':''):'DCRM <i.82@me.com>')."\nSponsor: ".(defined("AUTOFILL_MASTER")?AUTOFILL_MASTER.(defined("AUTOFILL_EMAIL")?' <'.AUTOFILL_EMAIL.'>':''):'i_82 <http://82flex.com>')."\nMaintainer: ".(defined("AUTOFILL_MASTER")?AUTOFILL_MASTER.(defined("AUTOFILL_EMAIL")?' <'.AUTOFILL_EMAIL.'>':''):'i_82 <http://82flex.com>')."\nSection: Repositories\nDescription: Custom Empty Source Icon Package\n";
 				$control_tar -> add_file("control", "", $f_Package);
 				$control_tar -> save($control_path);
 				$result = $raw_data -> replace("control.tar.gz", $control_path);

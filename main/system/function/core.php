@@ -399,7 +399,7 @@ function TrimArray($input){
 	require_once SYSTEM_ROOT.'./function/manage.php';
 	return _TrimArray($input);
 }
-function string_handle($input, $switch, $switch_string = 'cydia::commercial', $separator = ' '){
+function string_handle($input, $switch, $switch_string = 'cydia::commercial', $separator = ','){
 	require_once SYSTEM_ROOT.'./function/manage.php';
 	return _string_handle($input, $switch, $switch_string, $separator);
 }

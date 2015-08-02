@@ -88,7 +88,7 @@ function _TrimArray($input){
  * @param string $separator 分隔符
  * @return string 处理完成的字符串
  */
-function _string_handle($input, $switch, $switch_string = 'cydia::commercial', $separator = ' '){
+function _string_handle($input, $switch, $switch_string = 'cydia::commercial', $separator = ','){
 	if(is_array($input)) $input = $input[0];
 	$input_array = TrimArray(explode($separator, $input));
 
