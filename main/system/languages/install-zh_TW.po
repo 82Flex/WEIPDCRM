@@ -1,0 +1,743 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: DCRM Installer\n"
+"POT-Creation-Date: 2015-07-13 00:33+0800\n"
+"PO-Revision-Date: 2015-08-18 22:23+0800\n"
+"Last-Translator: Hintay <hintay@me.com>\n"
+"Language-Team: Jacky <jacky-943572677@qq.com>\n"
+"Language: zh_TW\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 1.8.3\n"
+"X-Poedit-Basepath: ../..\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"X-Poedit-KeywordsList: __;_e;_n:1,2;_x:1,2c;_ex:1,2c;_nx:4c,1,2;esc_attr__;"
+"esc_attr_e;esc_attr_x:1,2c;esc_html__;esc_html_e;esc_html_x:1,2c;_n_noop:1,2;"
+"_nx_noop:3c,1,2;__ngettext_noop:1,2\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"X-Poedit-SearchPath-0: ./install\n"
+
+#: install/function.php:55 install/function.php:85 install/function.php:92
+msgid "No Limit"
+msgstr "無限制"
+
+#: install/function.php:55
+msgid "Unix-like"
+msgstr "類Unix"
+
+#: install/function.php:83
+msgid "The GD module cannot be loaded"
+msgstr "GD模塊不能正確加載"
+
+#: install/function.php:267 install/function.php:271 install/function.php:273
+#: install/function.php:275 install/function.php:279 install/function.php:281
+#: install/function.php:283 install/function.php:285
+msgid "Warning: "
+msgstr "警告："
+
+#: install/function.php:267
+msgid ""
+"The server does not support the cURL function, DCRM will not be able to use."
+msgstr "服務器不支持cURL 函數，DCRM 將無法使用。"
+
+#: install/function.php:271
+msgid ""
+"The file '/system/config/connect.inc.php' already exists. If you need to "
+"reset any of the configuration items in this file, please delete it first."
+msgstr ""
+"/system/config/connect.inc.php 文件已存在。如果您想更改connect.inc.php 內已有"
+"的設定，請先刪除它，本嚮導會重新創建connect.inc.php 。"
+
+#: install/function.php:273
+msgid ""
+"Sorry, I need a /system/config/connect.inc.default.php file to work from. "
+"Please re-upload this file from your DCRM installation."
+msgstr ""
+"抱歉，我需要/system/config/connect.inc.default.php才能工作。請重新向您的DCRM"
+"根目錄上傳該文件。"
+
+#: install/function.php:275
+msgid ""
+"<code>/system/config/</code> directory is not writable. Please change the "
+"directory properties or create the connect.inc.php manually (you can see "
+"connect.inc.default.php)"
+msgstr ""
+"<code>/system/config/</code> 目錄不可寫。請更改目錄屬性或者手動創建 connect."
+"inc.php （參考connect.inc.default.php）。"
+
+#: install/function.php:279
+msgid ""
+"Sorry, I need a /system/config/config.inc.default.php file to work from. "
+"Please re-upload this file from your DCRM installation."
+msgstr ""
+"抱歉，我需要/manage/include/config.inc.default.php才能工作。請重新向您的DCRM"
+"根目錄上傳該文件。"
+
+#: install/function.php:281
+msgid ""
+"Sorry, I need a /system/config/gnupg.inc.default.php file to work from. "
+"Please re-upload this file from your DCRM installation."
+msgstr ""
+"抱歉，我需要/system/config/gnupg.inc.default.php 才能工作。請重新向您的DCRM根"
+"目錄上傳該文件。"
+
+#: install/function.php:283
+msgid ""
+"Sorry, I need a /system/config/autofill.inc.default.php file to work from. "
+"Please re-upload this file from your DCRM installation."
+msgstr ""
+"抱歉，我需要/system/config/autofill.inc.default.php才能工作。請重新向您的DCRM"
+"根目錄上傳該文件。"
+
+#: install/function.php:285
+msgid ""
+"<code>/system/config/</code> directory is not writable. Please change the "
+"directory properties."
+msgstr "<code>/system/config/</code>目錄不是可寫的。請更改目錄屬性。"
+
+#: install/setup-check.php:25
+msgid "OS"
+msgstr "操作系統"
+
+#: install/setup-check.php:26
+msgid "PHP Ver"
+msgstr "PHP版本"
+
+#: install/setup-check.php:27
+msgid "GD Ver"
+msgstr "GD庫"
+
+#: install/setup-check.php:28
+msgid "Disk Space"
+msgstr "磁盤空間"
+
+#: install/setup-check.php:29
+msgid "Writeable"
+msgstr "可寫"
+
+#: install/setup-check.php:30
+msgid "Unwriteable"
+msgstr "不可寫入"
+
+#: install/setup-check.php:31
+msgid "Supported"
+msgstr "支持"
+
+#: install/setup-check.php:32
+msgid "Unsupported"
+msgstr "不支持"
+
+#: install/setup-check.php:33
+msgid "Unsupported this PHP Version"
+msgstr "不支持該PHP版本"
+
+#: install/setup-check.php:34
+msgid "GD module version is too low"
+msgstr "GD庫版本太低"
+
+#: install/setup-check.php:35
+msgid "Not enough disk space or cannot get disk space"
+msgstr "磁盤空間不足或無法獲取"
+
+#: install/setup-check.php:36
+msgid "No './' directory read-write permissions"
+msgstr "沒有./目錄的讀寫權限 "
+
+#: install/setup-check.php:37
+msgid "No './system/config' directory read-write permissions"
+msgstr "沒有./system/config目錄的讀寫權限 "
+
+#: install/setup-check.php:38
+msgid "Mysql module not support"
+msgstr "不支持MySQL擴展"
+
+#: install/setup-check.php:39
+msgid "Does not support the fsockopen function or the function is disabled"
+msgstr "不支持fsockopen函數或禁用了該函數"
+
+#: install/setup-check.php:40
+msgid ""
+"Does not support the fsockopen function and curl module or the function is "
+"disabled"
+msgstr "不支持fsockopen函數或curl擴展模塊或者禁用暸該函數"
+
+#: install/setup-check.php:41
+msgid ""
+"Does not support the file_get_contents function or the function is disabled"
+msgstr "不支持file_get_contents函數或禁用了該函數"
+
+#: install/setup-check.php:42
+msgid ""
+"Does not support the mhash function or the function is disabled, maybe can "
+"not use GPG function."
+msgstr "不支持mhas函數或禁用該函數，可能無法使用列表驗證功能"
+
+#: install/setup-check.php:43
+msgid ""
+"Does not support the bzcompresss function or the function is disabled, maybe "
+"can not use list compress function."
+msgstr "不支持bz2模塊，可能無法使用列表壓縮功能"
+
+#: install/setup-check.php:44
+msgid ""
+"Does not support the zlib function or the function is disabled, maybe can "
+"not use list compress function."
+msgstr "不支持zlib模塊，可能無法使用列表壓縮功能"
+
+#: install/setup-check.php:45
+msgid ""
+"Does not support the mhash or hash_hmac function, maybe can not use list "
+"compress function."
+msgstr "不支持mhash或hash_hmac函數，可能無法使用列表驗證功能"
+
+#: install/setup-check.php:48
+msgid "Environments Check"
+msgstr "環境檢查"
+
+#: install/setup-check.php:58
+msgid "Project"
+msgstr "項目"
+
+#: install/setup-check.php:59
+msgid "Required"
+msgstr "所需配置"
+
+#: install/setup-check.php:60
+msgid "Best"
+msgstr "最佳配置"
+
+#: install/setup-check.php:61
+msgid "Current Server"
+msgstr "當前服務器"
+
+#: install/setup-check.php:62 install/setup-check.php:99
+#: install/setup-check.php:134
+msgid "Result"
+msgstr "結果"
+
+#: install/setup-check.php:89
+msgid "Private Check"
+msgstr "權限檢查"
+
+#: install/setup-check.php:97
+msgid "Directorys"
+msgstr "目錄"
+
+#: install/setup-check.php:98 install/setup-check.php:133
+msgid "Status"
+msgstr "狀態"
+
+#: install/setup-check.php:124
+msgid "Functions Depend Check"
+msgstr "函數依賴性檢查"
+
+#: install/setup-check.php:132
+msgid "Function Name"
+msgstr "函數名稱"
+
+#: install/setup-config.php:27
+msgid "Configuration Wizard"
+msgstr "配置嚮導"
+
+#: install/setup-config.php:48 install/setup-config.php:50
+#: install/setup-install.php:160 install/setup-install.php:162
+msgid "Notice: "
+msgstr "提醒："
+
+#: install/setup-config.php:48 install/setup-install.php:160
+msgid ""
+"The server does not support URL Rewrite or cannot detect automatically. DCRM "
+"will disable this function and you can change this option later in Settings."
+msgstr ""
+"服務器不支持URL Rewrite 或無法自動檢測。 DCRM 將會禁用該功能，您可以稍後在設"
+"置中修改該選項。"
+
+#: install/setup-config.php:50 install/setup-install.php:162
+msgid "You should update your Rewrite config to enable Elegant Mod."
+msgstr "您需要更新您的Rewrite配置以啟用優雅模式。"
+
+#: install/setup-config.php:52
+msgid "Welcome to DCRM!"
+msgstr "歡迎使用「DCRM」！"
+
+#: install/setup-config.php:53
+msgid "is a Darwin Cydia Repository Manager write by PHP."
+msgstr "是PHP 語言編寫的Darwin Cydia 源管理系統。"
+
+#: install/setup-config.php:53
+msgid ""
+"This project is a original designs by <a href=\"http://weibo.cn/"
+"u/3246210680\">@i_82</a>, and some codes by <a href=\"http://weibo.com/hintay"
+"\">@Hintay</a>."
+msgstr ""
+"本項目是 <a href=\"http://weibo.cn/u/3246210680\">@i_82</a> 的原創站點設計，"
+"由 <a href=\"http://weibo.com/hintay\">@ Hintay</a> 協助編寫。"
+
+#: install/setup-config.php:54
+msgid ""
+"If you pay close attention to <a href=\"http://weibo.cn/u/3246210680\">i_82</"
+"a> and some of his <a href=\"http://82flex.com/projects\">projects</a>. Also "
+"wanted to help him, welcome to donate him."
+msgstr ""
+"如果您關注 <a href=\"http://weibo.cn/u/3246210680\">i_82</a> 和他折騰的一些 "
+"<a href=\"http://82flex.com/projects\">項目</ a>，並且希望幫助他，歡迎以捐助"
+"的形式使他更好地折騰。"
+
+#: install/setup-config.php:56
+msgid "Credits"
+msgstr "特别感谢"
+
+#: install/setup-config.php:57
+msgid "Touch Sprite Team"
+msgstr "触动精灵团队"
+
+#: install/setup-config.php:57 install/setup-config.php:58
+#: install/setup-config.php:59
+msgctxt "Punctuation"
+msgid ", "
+msgstr "、 "
+
+#: install/setup-config.php:57
+msgid "WeiPhone"
+msgstr "威鋒網"
+
+#: install/setup-config.php:57
+msgctxt "Credits"
+msgid "support"
+msgstr "的支持"
+
+#: install/setup-config.php:58
+msgid "E-pal"
+msgstr "網友"
+
+#: install/setup-config.php:59
+msgid "WeiPhone Test Group"
+msgstr "威鋒網測試組"
+
+#: install/setup-config.php:59 install/setup-config.php:60
+msgid "WeiPhone Technology Group"
+msgstr "威鋒網技術組"
+
+#: install/setup-config.php:59
+msgid "provide viewpoints"
+msgstr "提供測試意見"
+
+#: install/setup-config.php:60 install/setup-config.php:61
+msgid "'s articles: "
+msgstr " 所撰寫的："
+
+#: install/setup-config.php:61
+msgid "Also, the father of the Cydia™"
+msgstr "以及 Cydia™ 之父"
+
+#: install/setup-config.php:64
+msgid ""
+"Before getting started, you will need to know the following items before "
+"proceeding."
+msgstr "在正式使用之前，你可能需要填寫一些信息，包括："
+
+#: install/setup-config.php:66
+msgid "Database name"
+msgstr "數據庫名"
+
+#: install/setup-config.php:67
+msgid "Database username"
+msgstr "數據庫用戶名"
+
+#: install/setup-config.php:68
+msgid "Database password"
+msgstr "數據庫密碼"
+
+#: install/setup-config.php:69
+msgid "Database host"
+msgstr "數據庫主機"
+
+#: install/setup-config.php:70
+msgid ""
+"Table prefix (if you want to run more than one DCRM in a single database)"
+msgstr "數據表前綴（特別是當您要在一個數據庫中安裝多個DCRM 時）"
+
+#: install/setup-config.php:72
+msgid ""
+"If for any reason you can&#8217;t enter next step, don&#8217;t worry. All "
+"this does is fill in the database information to a configuration file. You "
+"may also simply open <code>/system/config/connect.inc.default.php</code> in "
+"a text editor, fill in your information, and save it as <code>connect.inc."
+"php</code>."
+msgstr ""
+"如果出於任何原因您無法進入下一步，請不要擔心。這個嚮導的目的只是代您編輯配置"
+"文件，填入數據庫信息。您可以直接使用文本編輯器打開<code>/system/config/"
+"connect.inc.default.php</code>，填入您的信息，再另存為<code>connect.inc.php</"
+"code>。"
+
+#: install/setup-config.php:73
+msgid ""
+"Recommendations before the installation read the accompanying documentation "
+"(readme.html), if still not understand of place, can post them to <a href="
+"\"https://github.com/Lessica/WEIPDCRM/issues/new\">GitHub Issues</a>."
+msgstr ""
+"建議在安裝前仔細閱讀所附帶的說明文檔(readme.html)，如果還有不明白的地方，可到"
+"<a href=\"https://github.com/Lessica/WEIPDCRM/issues/new\">GitHub Issues</a> "
+"提出。"
+
+#: install/setup-config.php:74
+msgid "If you&#8217;re all ready&hellip;"
+msgstr "如果您已經準備好了&hellip;"
+
+#: install/setup-config.php:77
+msgid "Can&#8217;t start!"
+msgstr "還不能開始！"
+
+#: install/setup-config.php:79
+msgid "Let&#8217;s go!"
+msgstr "現在就開始吧！"
+
+#: install/setup-config.php:88 install/setup-install.php:466
+msgid "Check again"
+msgstr "重新檢測"
+
+#: install/setup-config.php:90 install/setup-config.php:114
+#: install/setup-install.php:468
+msgid "Error!"
+msgstr "錯誤！"
+
+#: install/setup-config.php:92
+msgctxt "Button"
+msgid "Next"
+msgstr "下一步"
+
+#: install/setup-config.php:103
+msgid ""
+"Below you should enter your database connection details. If you&#8217;re not "
+"sure about these, contact your host."
+msgstr "請在下方填寫您的數據庫連接信息。如果您不能確定，請聯繫您的服務提供商。"
+
+#: install/setup-config.php:105
+msgid "Database Host"
+msgstr "數據庫主機"
+
+#: install/setup-config.php:105
+msgid "Required, generally is 'localhost'"
+msgstr "必須填寫，一般為localhost"
+
+#: install/setup-config.php:106
+msgid "Database Port"
+msgstr "數據庫端口"
+
+#: install/setup-config.php:106
+msgid "Required, generally is '3306'"
+msgstr "必須填寫，一般為 '3306'"
+
+#: install/setup-config.php:107
+msgid "User Name"
+msgstr "用戶名"
+
+#: install/setup-config.php:107
+msgid "Your MySQL username"
+msgstr "您的 MySQL 用戶名"
+
+#: install/setup-config.php:108 install/setup-install.php:446
+msgid "Password"
+msgstr "密碼"
+
+#: install/setup-config.php:108
+msgid "&hellip;and your MySQL password."
+msgstr "&hellip;及其密碼"
+
+#: install/setup-config.php:109
+msgid "Database Name"
+msgstr "數據庫名"
+
+#: install/setup-config.php:109
+msgid "The name of the database you want to run DCRM in."
+msgstr "將 DCRM 安裝到哪個數據庫？"
+
+#: install/setup-config.php:110
+msgid "Table Prefix"
+msgstr "表前綴"
+
+#: install/setup-config.php:110
+msgid ""
+"If you want to run multiple DCRM installations in a single database, change "
+"this."
+msgstr "如果您希望在同一個數據庫安裝多個DCRM，請修改前綴。"
+
+#: install/setup-config.php:111
+msgid "Keep the connection to the database server"
+msgstr "保持與數據庫服務器的連接"
+
+#: install/setup-config.php:116
+msgid "Submit"
+msgstr "提交"
+
+#: install/setup-config.php:132
+msgid "Try again"
+msgstr "再试一次"
+
+#: install/setup-config.php:143
+msgid "<strong>ERROR</strong>: \"Table Prefix\" must not be empty."
+msgstr "<strong>錯誤</strong>: \"表前綴\" 不能为空。"
+
+#: install/setup-config.php:149
+msgid ""
+"<strong>ERROR</strong>: \"Table Prefix\" can only contain numbers, letters, "
+"and underscores."
+msgstr "<strong>错误</strong>: “表前缀”只能包含数字，字母和下划线。"
+
+#: install/setup-config.php:166 install/setup-install.php:52
+msgid "<strong>ERROR</strong>: Can&#8217;t connect database server."
+msgstr "<strong>錯誤</strong>: 數據庫連接失敗"
+
+#: install/setup-config.php:173
+msgid ""
+"<strong>ERROR</strong>: Can&#8217;t create database, please check your input "
+"information."
+msgstr "<strong>錯誤</strong>: 無法創建數據庫，請確認您的信息是否有誤。"
+
+#: install/setup-config.php:180
+msgid ""
+"<strong>ERROR</strong>: Can&#8217;t select database, please check your input "
+"information."
+msgstr "<strong>錯誤</strong>: 無法選擇數據庫，請確認您的信息是否有誤。"
+
+#: install/setup-config.php:225
+msgid ""
+"All right, sparky! You&#8217;ve made it through this part of the "
+"installation. DCRM can now communicate with your database. If you are ready, "
+"time now to&hellip;"
+msgstr ""
+"好極了。您完成了安裝過程中的重要一步，DCRM 現在可以連接數據庫了。如果您準備好"
+"了，那就&hellip;"
+
+#: install/setup-config.php:227
+msgid "Run the install"
+msgstr "進行安裝"
+
+#: install/setup-install.php:29
+msgid "Installer"
+msgstr "安裝程序"
+
+#: install/setup-install.php:61 install/setup-install.php:70
+msgid "Already Installed"
+msgstr "已安裝"
+
+#: install/setup-install.php:61
+msgid ""
+"You appear to have already installed DCRM. You should delete /system/config/"
+"installed.lock before reinstall."
+msgstr ""
+"您已經安裝了 DCRM。如果需要重新安裝請先移除/system/config/installed.lock文"
+"件。"
+
+#: install/setup-install.php:61 install/setup-install.php:70
+#: install/setup-install.php:456
+msgid "Log In"
+msgstr "登錄"
+
+#: install/setup-install.php:70
+msgid ""
+"You appear to have already installed DCRM. You should clear your old "
+"database tables before reinstall."
+msgstr "您已經安裝了 DCRM。如果需要重新安裝請先移除您的舊數據表。"
+
+#: install/setup-install.php:98
+msgid "Repository Title"
+msgstr "源名稱"
+
+#: install/setup-install.php:102
+msgid "Repository URL"
+msgstr "源地址"
+
+#: install/setup-install.php:105
+msgid ""
+"Displayed on the homepage for the user to add, and used for the autofill "
+"package's Depiction when import."
+msgstr "展示在首頁供用戶添加，並用於在導入軟件包時自動填充詳情頁。"
+
+#: install/setup-install.php:109 install/setup-install.php:442
+msgid "Username"
+msgstr "用戶名"
+
+#: install/setup-install.php:112
+msgid ""
+"Usernames can have only alphanumeric characters, spaces, underscores, "
+"hyphens, periods, and the @ symbol."
+msgstr "用戶名只能含有字母、數字、空格、下劃線、連字符、句號和“@”符號。"
+
+#: install/setup-install.php:117
+msgid "Password, twice"
+msgstr "輸入兩次密碼"
+
+#: install/setup-install.php:118
+msgid ""
+"A password will be automatically generated for you if you leave this blank."
+msgstr "若您留空密碼欄，我們將會為您生成一個密碼。"
+
+#: install/setup-install.php:123 install/setup-install.php:140
+msgid "Strength indicator"
+msgstr "強度評估"
+
+#: install/setup-install.php:124
+msgid ""
+"Hint: The password should be at least seven characters long. To make it "
+"stronger, use upper and lower case letters, numbers, and symbols like ! \" ? "
+"$ % ^ &amp; )."
+msgstr ""
+"提示：您的密碼最好至少包含7個字符。為了保證密碼強度，使用大小寫字母、數字和符"
+"號（例如! \" ? $ % ^ &amp; )）。"
+
+#: install/setup-install.php:128
+msgid "Your E-mail"
+msgstr "您的郵件地址"
+
+#: install/setup-install.php:130
+msgid "Double-check your email address before continuing."
+msgstr "請仔細檢查電子郵件地址後再繼續。"
+
+#: install/setup-install.php:133
+msgid "Install DCRM"
+msgstr "安裝 DCRM"
+
+#: install/setup-install.php:140
+msgctxt "Password"
+msgid "Short"
+msgstr "极弱"
+
+#: install/setup-install.php:140
+msgctxt "Password"
+msgid "Bad"
+msgstr "弱"
+
+#: install/setup-install.php:140
+msgctxt "Password"
+msgid "Good"
+msgstr "中等"
+
+#: install/setup-install.php:140
+msgctxt "Password"
+msgid "Strong"
+msgstr "强"
+
+#: install/setup-install.php:140
+msgctxt "Password"
+msgid "Mismatch"
+msgstr "不匹配"
+
+#: install/setup-install.php:150
+msgctxt "Howdy"
+msgid "Welcome"
+msgstr "歡迎"
+
+#: install/setup-install.php:154
+msgid "Note: "
+msgstr "提示："
+
+#: install/setup-install.php:154
+msgid ""
+"If you want to recreate <code>connect.inc.php</code>, please click <a href="
+"\"./setup-config.php\">here</a>."
+msgstr ""
+"如果您想重新創建<code>connect.inc.php</code> ，請點擊<a href=\"./setup-"
+"config.php\">這裡</a>。"
+
+#: install/setup-install.php:164
+msgid ""
+"Welcome to the DCRM installation process! Just fill in the information below."
+msgstr "歡迎來到 DCRM 安裝程序！請簡單地填寫下面的表格。"
+
+#: install/setup-install.php:166
+msgid "Information needed"
+msgstr "需要信息"
+
+#: install/setup-install.php:167
+msgid ""
+"Please provide the following information. Don&#8217;t worry, you can always "
+"change these settings later."
+msgstr "您需要填寫一些基本信息。無需擔心填錯，這些信息以後可以再次修改。"
+
+#: install/setup-install.php:186
+msgid "Please provide a valid username."
+msgstr "請提供有效的用戶名。"
+
+#: install/setup-install.php:189
+msgid "The username you provided has invalid characters."
+msgstr "您提供的用戶名包含非法字符。"
+
+#: install/setup-install.php:192
+msgid "Your passwords do not match. Please try again."
+msgstr "您兩次輸入的密碼不符，請重試。"
+
+#: install/setup-install.php:195
+msgid "You must provide an email address."
+msgstr "您必須提供電子郵件地址。"
+
+#: install/setup-install.php:198
+msgid ""
+"Sorry, that isn&#8217;t a valid email address. Email addresses look like "
+"<code>username@example.com</code>."
+msgstr ""
+"抱歉，電子郵件地址無效。形如<code>username@example.com</code>的才是電子郵件地"
+"址。"
+
+#: install/setup-install.php:329
+msgid "Guest"
+msgstr "遊客"
+
+#: install/setup-install.php:344
+msgid "Your chosen password."
+msgstr "您輸入的密碼"
+
+#: install/setup-install.php:427
+msgid "Success!"
+msgstr " 成功！"
+
+#: install/setup-install.php:429
+msgid ""
+"DCRM has been installed. Were you expecting more steps? Sorry to disappoint."
+msgstr ""
+"DCRM 安裝完成。您是否還沉浸在愉悅的安裝過程中？很遺憾，一切皆已完成！ :)"
+
+#: install/setup-install.php:434
+msgid "Something wrong..."
+msgstr "出了一點小錯誤..."
+
+#: install/setup-install.php:436
+msgid ""
+"DCRM has been installed, but some files have not been copied. Please copy "
+"all <code>*.inc.default.php</code> to <code>*.inc.php</code> in <code>/"
+"system/config/</code> and chmod to 0666."
+msgstr ""
+"DCRM 安裝成功，但是有些文件沒有被複制。 請複制 <code>/manage/include/</code> "
+"文件夾中所有的 <code>*.inc.default.php</code> 文件爲 <code>*.inc.php</code>"
+"並 chmod 0666。"
+
+#: install/setup-install.php:470
+msgid "Continue"
+msgstr "繼續"
+
+#~ msgid ""
+#~ "The server does not support the URL Rewrite, DCRM will disable this "
+#~ "function."
+#~ msgstr "服务器不支持 URL Rewrite，DCRM 将会禁用该功能。"
+
+#~ msgid "Not enough disk space"
+#~ msgstr "磁盘空间不足"
+
+#~ msgid ""
+#~ "The server does not support the URL Rewrite, DCRM will not be able to use."
+#~ msgstr "服务器不支持 URL Rewrite，DCRM 将无法使用。"
+
+#~ msgid ""
+#~ "You appear to have already installed DCRM. To reinstall please clear your "
+#~ "old database tables first."
+#~ msgstr "您已经安装了 DCRM。如果需要重新安装请先移除您的旧数据表。"
+
+#~ msgid "Also, and the father of the Cydia™"
+#~ msgstr "当然，还有 Cydia™ 之父"
+
+#~ msgid "Displayed on the homepage for the user to add."
+#~ msgstr "展示在首页供用户添加"
+
+#~ msgid "No './manage/include' directory read-write permissions"
+#~ msgstr "没有./manage/include目录的读写权限 "

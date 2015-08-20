@@ -46,10 +46,16 @@ if (isset($_SESSION['connected']) && $_SESSION['connected'] === true) {
 					<?php _e('Mobile Home Page Style From Saurik IT.'); ?><br /><br />
 					<h4><?php _e('Translator'); ?></h4>
 					<p>You can help us to translate DCRM into your familiar language!</p>
-					English: <a href="http://weibo.com/hintay">@Hintay</a><?php _ex(', ' , 'Punctuation'); ?><a href="http://weibo.com/82flex">@i_82</a><?php _ex(', ' , 'Punctuation'); ?>globus<br />
-					简体中文 (Chinese Simplified): <a href="http://weibo.com/82flex">@i_82</a><?php _ex(', ' , 'Punctuation'); ?><a href="http://weibo.com/hintay">@Hintay</a><br />
-					(Uyghurche) ئۇيغۇرچه: <a href="http://weibo.com/u/2767344637">Shiraq</a>
-					<br /><br />
+					<p>English: <a href="http://weibo.com/hintay">@Hintay</a>
+					<?php _ex(', ' , 'Punctuation'); ?>
+					<a href="http://weibo.com/82flex">@i_82</a>
+					<?php _ex(', ' , 'Punctuation'); ?>globus<br />
+					简体中文 (Chinese Simplified): <a href="http://weibo.com/82flex">@i_82</a>
+					<?php _ex(', ' , 'Punctuation'); ?>
+					<a href="http://weibo.com/hintay">@Hintay</a><br />
+					(Uyghurche) ئۇيغۇرچه: <a href="http://weibo.com/u/2767344637">Shiraq</a><br />
+					  繁体中文 (Chinese Traditional): <a href="http://weibo.com/jacky189">Jacky</a><br />
+					  </p>
 					<h4><?php _e('Copyright'); ?>&copy; 2013–<?php echo date('Y'); ?> i_82 &amp; Hintay<br />
 					<?php _e('This program is free software, you can redistribute it and/or modify it under the terms of the <a href="http://www.gnu.org/licenses">GNU Affero General Public License</a> as published by the Free Software Foundation either version 3 of the License.'); ?></h4></div>
 <?php
