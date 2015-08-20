@@ -1,0 +1,2825 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: DCRM Manager\n"
+"POT-Creation-Date: 2015-08-02 17:50+0800\n"
+"PO-Revision-Date: 2015-08-18 21:58+0800\n"
+"Last-Translator: Hintay <hintay@me.com>\n"
+"Language-Team: Jacky <jacky-943572677@qq. com>\n"
+"Language: zh_TW\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 1.8.3\n"
+"X-Poedit-Basepath: ../..\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"X-Poedit-KeywordsList: __;_e;_n:1,2;_x:1,2c;_ex:1,2c;_nx:4c,1,2;esc_attr__;"
+"esc_attr_e;esc_attr_x:1,2c;esc_html__;esc_html_e;esc_html_x:1,2c;_n_noop:1,2;"
+"_nx_noop:3c,1,2;__ngettext_noop:1,2\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"X-Poedit-SearchPath-0: ./manage\n"
+"X-Poedit-SearchPath-1: ./system/languages\n"
+"X-Poedit-SearchPathExcluded-0: ./manage/bak\n"
+
+#: manage/about.php:31
+msgctxt "About Page"
+msgid "About"
+msgstr "關於程序"
+
+#: manage/about.php:34
+msgid "Version: "
+msgstr "版本："
+
+#: manage/about.php:35
+msgid "Open source Repository Manager for Cydia™/APT."
+msgstr "開源的 Cydia™/APT 個人源解決方案"
+
+#: manage/about.php:36
+msgid "Developer"
+msgstr "开发人员"
+
+#: manage/about.php:37
+msgid "Main Program: "
+msgstr "主程序："
+
+#: manage/about.php:37 manage/about.php:43
+msgid "WeiPhone Test Group"
+msgstr "威鋒網測試組"
+
+#: manage/about.php:37 manage/about.php:41 manage/about.php:42
+#: manage/about.php:43 manage/about.php:49 manage/about.php:50
+msgctxt "Punctuation"
+msgid ", "
+msgstr "、"
+
+#: manage/about.php:38
+msgid "Contributors: "
+msgstr "貢獻者："
+
+#: manage/about.php:39
+msgid "UI Design:"
+msgstr "界面風格："
+
+#: manage/about.php:40
+msgid "Credits"
+msgstr "特別感謝"
+
+#: manage/about.php:41
+msgid "Touch Sprite Team"
+msgstr "触动精灵团队"
+
+#: manage/about.php:41
+msgid "WeiPhone"
+msgstr "威鋒網"
+
+#: manage/about.php:41
+msgctxt "Credits"
+msgid "support"
+msgstr "的支持"
+
+#: manage/about.php:42
+msgid "E-pal"
+msgstr "網友"
+
+#: manage/about.php:43 manage/about.php:44
+msgid "WeiPhone Technology Group"
+msgstr "威鋒網技術組"
+
+#: manage/about.php:43
+msgid "provide viewpoints"
+msgstr "提供測試意見"
+
+#: manage/about.php:44 manage/about.php:45
+msgid "'s articles: "
+msgstr " 所撰寫的："
+
+#: manage/about.php:45
+msgid "Also, the father of the Cydia™"
+msgstr "以及 Cydia™ 之父"
+
+#: manage/about.php:46
+msgid "Mobile Home Page Style From Saurik IT."
+msgstr "移動版首頁樣式來自 Saurik IT."
+
+#: manage/about.php:47
+msgid "Translator"
+msgstr "翻譯人員"
+
+#: manage/about.php:53
+msgid "Copyright"
+msgstr "版權所有"
+
+#: manage/about.php:54
+msgid ""
+"This program is free software, you can redistribute it and/or modify it "
+"under the terms of the <a href=\"http://www.gnu.org/licenses\">GNU Affero "
+"General Public License</a> as published by the Free Software Foundation "
+"either version 3 of the License."
+msgstr ""
+"本程序是自由軟件，修改和重新發布應該遵照自由軟件基金會出版的<a href=\"http://"
+"www.gnu.org/licenses\">GNU Affero 通用公共許可證條款第三版</a> 。"
+
+#: manage/build.php:67
+msgid "Find the number of records: "
+msgstr "找到記錄數："
+
+#: manage/build.php:69
+msgid ""
+"No record in data table ` Packages `! Please import package and allow it to "
+"display first."
+msgstr "數據表 `Packages` 中無記錄！請先導入軟件包並允許其顯示。"
+
+#: manage/build.php:75
+msgid "Warning: "
+msgstr "警告："
+
+#: manage/build.php:75
+msgid "release.save file does not exist! Please config release information."
+msgstr "release.save 文件不存在！請進行源信息設置！"
+
+#: manage/build.php:77
+msgid "The Release configuration file exists."
+msgstr "Release 配置文件存在。"
+
+#: manage/build.php:89
+msgid "Write to the Packages file: "
+msgstr "寫入 Packages 文件："
+
+#: manage/build.php:101
+msgid "Write to the Packages.bz file: "
+msgstr "寫入 Packages.gz 文件 ："
+
+#: manage/build.php:113
+msgid "Write to the Packages.bz2 file: "
+msgstr "寫入 Packages.bz2 文件："
+
+#: manage/build.php:134 manage/header.php:142
+msgid "Rebuild the list"
+msgstr "刷新列表"
+
+#: manage/build.php:136
+msgid ""
+"List rebuild request submitted successfully, it is recommended that you <a "
+"href=\"stats.php?action=clean\">Clear the Cache</a> to free up disk space."
+msgstr ""
+"列表重建請求提交成功，建議您<a href=\"stats.php?action=clean\">清理緩存</a> "
+"以釋放磁盤空間。"
+
+#: manage/build.php:138
+msgctxt "Rebuild the list"
+msgid "Information"
+msgstr "信息"
+
+#: manage/build.php:146
+msgid "Preview of Packages file"
+msgstr "Packages 文件預覽"
+
+#: manage/build.php:148
+msgid "File does not exist."
+msgstr "文件不存在。"
+
+#: manage/center.php:32 manage/center.php:71 manage/center.php:143
+#: manage/header.php:47
+msgid "Manage Packages"
+msgstr "管理軟件包"
+
+#: manage/center.php:34 manage/center.php:73
+msgid "All Packages"
+msgstr "所有軟件包"
+
+#: manage/center.php:34 manage/center.php:73
+msgid "Search Packages"
+msgstr "搜索軟件包"
+
+#: manage/center.php:38 manage/udid.php:95
+msgid "Search Content"
+msgstr "搜索內容"
+
+#: manage/center.php:46 manage/udid.php:103
+msgid "Search Type"
+msgstr "搜索类型"
+
+#: manage/center.php:49 manage/edit.php:49
+msgid "Identifier"
+msgstr "标识符"
+
+#: manage/center.php:50 manage/center.php:94 manage/center.php:156
+#: manage/edit.php:56 manage/manage.php:54 manage/sections.php:62
+msgid "Name"
+msgstr "名稱"
+
+#: manage/center.php:51 manage/edit.php:70
+msgid "Author"
+msgstr "作者"
+
+#: manage/center.php:52 manage/edit.php:176 manage/release.php:67
+#: manage/settings.php:247
+msgid "Description"
+msgstr "描述"
+
+#: manage/center.php:53 manage/edit.php:144
+msgid "Maintainer"
+msgstr "提供者"
+
+#: manage/center.php:54 manage/edit.php:151
+msgid "Sponsor"
+msgstr "擔保人"
+
+#: manage/center.php:55 manage/edit.php:77
+msgid "Section"
+msgstr "分類"
+
+#: manage/center.php:56
+msgid "Tag"
+msgstr "标签"
+
+#: manage/center.php:63 manage/udid.php:117
+msgid "Search"
+msgstr "搜索"
+
+#: manage/center.php:95 manage/center.php:157 manage/edit.php:63
+#: manage/release.php:74
+msgid "Version"
+msgstr "版本"
+
+#: manage/center.php:96 manage/center.php:158 manage/manage.php:55
+msgid "Size"
+msgstr "尺寸"
+
+#: manage/center.php:97 manage/center.php:159 manage/udid.php:39
+msgid "Downloads"
+msgstr "下載次數 "
+
+#: manage/center.php:98 manage/center.php:160 manage/center.php:188
+#: manage/center.php:209 manage/manage.php:52 manage/sections.php:60
+#: manage/udid.php:42 manage/udid.php:62
+msgid "Delete"
+msgstr "删除"
+
+#: manage/center.php:99 manage/center.php:161
+msgid "History"
+msgstr "歷史"
+
+#: manage/center.php:145
+msgid "Protection Packages"
+msgstr "受保護的軟件包"
+
+#: manage/center.php:145
+#, php-format
+msgid "Search Packages: %s"
+msgstr "搜索軟件包：%s"
+
+#: manage/center.php:162 manage/center.php:190 manage/udid.php:43
+#: manage/udid.php:64
+msgid "Binding"
+msgstr "綁定"
+
+#: manage/center.php:208 manage/udid.php:300
+#, php-format
+msgid "Are you sure you want to delete: %s?"
+msgstr "您確定要執行刪除操作：%s？"
+
+#: manage/center.php:208 manage/udid.php:300
+msgid "This operation is irreversible, all related data will be delete!"
+msgstr "該操作不可逆，該條目所有相關數據都將被清空！ "
+
+#: manage/center.php:210 manage/settings.php:250 manage/settings.php:260
+msgid "Hide"
+msgstr "隱藏"
+
+#: manage/center.php:218 manage/import.php:278 manage/manage.php:105
+#: manage/sections.php:293 manage/sections.php:311 manage/udid.php:309
+#: manage/udid.php:391 manage/udid.php:400
+msgid "Cancel"
+msgstr "取消"
+
+#: manage/center.php:267
+msgid "Hide Package"
+msgstr "隱藏軟件包"
+
+#: manage/center.php:269
+msgid "Display Package"
+msgstr "显示軟件包"
+
+#: manage/edit.php:29 manage/edit.php:33 manage/sections.php:104
+#: manage/sections.php:108 manage/sections.php:113 manage/udid.php:222
+#: manage/udid.php:226 manage/udid.php:231
+msgid "Illegal request!"
+msgstr "非法請求！"
+
+#: manage/edit.php:44 manage/header.php:178
+msgid "General Editing"
+msgstr "常規編輯"
+
+#: manage/edit.php:97
+msgid "Protection"
+msgstr "保護"
+
+#: manage/edit.php:100 manage/settings.php:31
+msgid "Enabled"
+msgstr "啟用"
+
+#: manage/edit.php:100 manage/settings.php:31 manage/upload.php:189
+msgid "Disabled"
+msgstr "禁用"
+
+#: manage/edit.php:107 manage/udid.php:36 manage/udid.php:107
+#: manage/udid.php:250 manage/udid.php:341
+msgid "Level"
+msgstr "等級"
+
+#: manage/edit.php:110
+msgid "Level take precedence over UDID Binding."
+msgstr "等級優先於UDID綁定"
+
+#: manage/edit.php:115
+msgid "Price"
+msgstr "價格 "
+
+#: manage/edit.php:118
+msgid ""
+"Example: <code>$0.99</code>. If leave a blank will do not display the "
+"purchase link."
+msgstr "示例：<code>￥0.99</code>，如留空則不顯示購買鏈接 "
+
+#: manage/edit.php:123
+msgid "Purchase Link"
+msgstr "購買鏈接"
+
+#: manage/edit.php:126
+msgid "Custom"
+msgstr "自定義"
+
+#: manage/edit.php:127
+msgid "Alipay"
+msgstr "支付寶"
+
+#: manage/edit.php:129
+msgid ""
+"Using non-custom options after <a href=\"settings.php#Commercial\">Settings</"
+"a>."
+msgstr ""
+"使用非自定義選項前請先進行 <a href=\"settings.php#Commercial\">設置</a>"
+
+#: manage/edit.php:135
+msgid "Custom Link"
+msgstr "自定義鏈接"
+
+#: manage/edit.php:158
+msgid "Depiction"
+msgstr "預覽頁"
+
+#: manage/edit.php:170
+#, php-format
+msgid "Default Depiction: %s"
+msgstr "默認預覽頁為：%s"
+
+#: manage/edit.php:171
+msgid "Preview Default Depiction"
+msgstr "預覽默認預覽頁"
+
+#: manage/edit.php:184 manage/settings.php:257
+msgid "Detailed Description"
+msgstr "詳細描述"
+
+#: manage/edit.php:184
+msgid " (Hidden)"
+msgstr "（已隱藏）"
+
+#: manage/edit.php:187
+#, php-format
+msgid ""
+"It is hidden in the page, you should change 'Detailed Description' option in "
+"<a href=\"%s\">Settings</a> if you want show this."
+msgstr ""
+"该栏已隐藏，如果您想显示它，您需要在<a href=\"%s\">设置</a>中更改'详细描述'选"
+"项。"
+
+#: manage/edit.php:193
+msgid "Changelog"
+msgstr "更新日志"
+
+#: manage/edit.php:196
+msgid "It will do not display in the page if leave a blank."
+msgstr "留空则不显示。"
+
+#: manage/edit.php:201
+msgid "Old Changelogs"
+msgstr "旧版更新日誌"
+
+#: manage/edit.php:204
+msgid ""
+"Please fill the number you want to display for old changelog, If leave a "
+"blank or zero will only display this version changelog."
+msgstr "請輸入要顯示前幾個老版本更新日誌，留空或輸入0 則只顯示本版更新。"
+
+#: manage/edit.php:210 manage/edit.php:278 manage/release.php:90
+#: manage/settings.php:585 manage/udid.php:351
+msgid "Save"
+msgstr "保存"
+
+#: manage/edit.php:240 manage/edit.php:294
+msgid "Update Database"
+msgstr "更新數據庫"
+
+#: manage/edit.php:241 manage/edit.php:295
+msgid "The package information edited!"
+msgstr "軟件包信息編輯完成！"
+
+#: manage/edit.php:241 manage/edit.php:295
+msgid ""
+"After modify the fields with an asterisk, you must write into package then "
+"safely rebuild list."
+msgstr "修改帶星號的字段後，您必須將其寫入軟件包才能安全地刷新列表。"
+
+#: manage/edit.php:242 manage/edit.php:296
+msgid "Write Now"
+msgstr "立即寫入"
+
+#: manage/edit.php:242 manage/edit.php:296 manage/import.php:264
+#: manage/manage.php:116 manage/manage.php:124 manage/output.php:148
+#: manage/release.php:115 manage/release.php:117 manage/release.php:120
+#: manage/sections.php:317 manage/settings.php:671 manage/settings.php:739
+#: manage/stats.php:97
+msgid "Back"
+msgstr "返回"
+
+#: manage/edit.php:250 manage/header.php:179
+msgid "Advance Editing"
+msgstr "高級編輯"
+
+#: manage/edit.php:255
+msgctxt "Advance Editing"
+msgid "Field"
+msgstr "修改字段"
+
+#: manage/edit.php:270
+msgctxt "Advance Editing"
+msgid "Content"
+msgstr "修改内容"
+
+#: manage/edit.php:309 manage/edit.php:402 manage/udid.php:388
+#: manage/view.php:119
+msgid "Binding UDID"
+msgstr "綁定UDID"
+
+#: manage/edit.php:314
+msgid "Align"
+msgstr "对齐方式"
+
+#: manage/edit.php:316
+msgctxt "Align"
+msgid "Left"
+msgstr "左对齐"
+
+#: manage/edit.php:317
+msgctxt "Align"
+msgid "Center"
+msgstr "居中对齐"
+
+#: manage/edit.php:318
+msgctxt "Align"
+msgid "Right"
+msgstr "右对齐"
+
+#: manage/edit.php:322
+msgctxt "Edit"
+msgid "List"
+msgstr "編號"
+
+#: manage/edit.php:324
+msgid "Ordered list"
+msgstr "數字編號"
+
+#: manage/edit.php:325
+msgid "Unordered list"
+msgstr "項目編號"
+
+#: manage/edit.php:329
+msgid "Indent"
+msgstr "縮進"
+
+#: manage/edit.php:331
+msgid "Increase indent"
+msgstr "向右縮進"
+
+#: manage/edit.php:332
+msgid "Decrease indent"
+msgstr "向左縮進"
+
+#: manage/edit.php:381
+msgid "Data loading"
+msgstr "數據加載中"
+
+#: manage/edit.php:391
+msgid "Database Error"
+msgstr "數據庫錯誤"
+
+#: manage/header.php:37 manage/upload.php:86 manage/upload.php:166
+msgid "Upload Packages"
+msgstr "上傳軟件包"
+
+#: manage/header.php:42 manage/manage.php:30 manage/manage.php:76
+msgid "Import Packages"
+msgstr "導入軟件包"
+
+#: manage/header.php:52 manage/udid.php:89 manage/udid.php:126
+#: manage/udid.php:180 manage/udid.php:236 manage/udid.php:329
+#: manage/udid.php:386 manage/udid.php:395
+msgid "Manage UDID"
+msgstr "管理UDID"
+
+#: manage/header.php:61 manage/sections.php:36 manage/sections.php:118
+msgid "Manage Sections"
+msgstr "分類管理"
+
+#: manage/header.php:66
+msgid "Manage Repository"
+msgstr "源信息設置"
+
+#: manage/header.php:75 manage/stats.php:30
+msgid "Running Status"
+msgstr "運行狀態"
+
+#: manage/header.php:80
+msgid "About"
+msgstr "關於"
+
+#: manage/header.php:90
+msgid "Repository Manager"
+msgstr "源管理系统"
+
+#: manage/header.php:127
+msgid "Are you sure you want to hide this software package?"
+msgstr "您確定要隱藏該軟件包？"
+
+#: manage/header.php:128
+msgid ""
+"Are you sure you want to display this software package?\\nIf there are more "
+"than one version, the new version of the Cydia will show downgrade."
+msgstr ""
+"您確定要顯示該軟件包？ \\n如果同時存在多個版本，新版Cydia 會正常提示降級。"
+
+#: manage/header.php:143
+msgctxt "Header"
+msgid "Preferences"
+msgstr "設置"
+
+#: manage/header.php:144
+msgid "Logout"
+msgstr "註銷"
+
+#: manage/header.php:177 manage/view.php:58
+msgid "View Details"
+msgstr "查看詳情"
+
+#: manage/import.php:39
+msgid "Invalid argument: `Filename`"
+msgstr "無效的參數：`Filename`"
+
+#: manage/import.php:46 manage/upload.php:216
+msgid "Invalid file type!"
+msgstr "不支持的文件類型"
+
+#: manage/import.php:52 manage/output.php:38
+msgid "Invalid arguments!"
+msgstr "無效的參數！"
+
+#: manage/import.php:57
+#, php-format
+msgid "Cannot find the file: %s"
+msgstr "找不到文件： %s"
+
+#: manage/import.php:64
+#, php-format
+msgid "Invalid request: %s"
+msgstr "無效的請求： %s"
+
+#: manage/import.php:70 manage/import.php:201
+#, php-format
+msgid "File already exists: %s"
+msgstr "文件已存在： %s"
+
+#: manage/import.php:131
+msgid "Invalid package information!"
+msgstr "無效的軟件包信息！"
+
+#: manage/import.php:140 manage/import.php:183
+msgid "Forced inherit failed: invalid inherited package ID."
+msgstr "強制繼承失敗：非法的被繼承軟件包編號"
+
+#: manage/import.php:151
+msgid ""
+"A package with the same name and version already exists, please select an "
+"operation."
+msgstr "已經存在相同的軟件包及版本，請選擇一個操作。"
+
+#: manage/import.php:153
+msgid ""
+"Early versions of this package already exists, please select an operation."
+msgstr "已經存在該軟件包的早期版本，請選擇一個操作。"
+
+#: manage/import.php:155
+msgid ""
+"An updated version of this package already exists, please select an "
+"operation."
+msgstr "已經存在該軟件包的更新版本，請選擇一個操作。"
+
+#: manage/import.php:157
+#, php-format
+msgid "Original package: %1$s &amp; %2$s"
+msgstr "原軟件包：%1$s &amp; %2$s"
+
+#: manage/import.php:157
+msgid "Import time: "
+msgstr "導入時間："
+
+#: manage/import.php:157
+#, php-format
+msgid "New package: %1$s &amp; %2$s"
+msgstr "新軟件包：%1$s &amp; %2$s"
+
+#: manage/import.php:176
+msgid "Error importing type!"
+msgstr "錯誤的導入請求類型！"
+
+#: manage/import.php:195
+#, php-format
+msgid "Create directory failed: %s"
+msgstr "新建目錄失敗： %s"
+
+#: manage/import.php:206
+#, php-format
+msgid "Move file failed: %s"
+msgstr "文件移動失敗： %s"
+
+#: manage/import.php:228
+msgid "Import failed! Please check the database configuration!"
+msgstr "導入失敗！請檢查數據庫配置！"
+
+#: manage/import.php:237
+msgid ""
+"Import was successful! Now you can enter the Manage Packages page to review!"
+msgstr "導入成功！現在您可以進入數據庫管理頁面對其進行審核！"
+
+#: manage/import.php:237
+#, php-format
+msgid "Package address: %s"
+msgstr "軟件包地址：%s"
+
+#: manage/import.php:242
+msgid ""
+"Invalid package: Unable to find `Package`, `Version`, `Architecture` fields "
+"in package information."
+msgstr ""
+"無效的軟件包：在軟件包信息中找不到`Package`、`Version`、`Architecture` 字段。"
+
+#: manage/import.php:249
+msgid "Import Package"
+msgstr "導入軟件包"
+
+#: manage/import.php:275
+msgid "Inherit And Replace"
+msgstr "繼承并替換"
+
+#: manage/import.php:276
+msgid "Direct Replace"
+msgstr "直接替換"
+
+#: manage/import.php:277
+msgid "Add New"
+msgstr "新增條目"
+
+#: manage/login.php:126 manage/login.php:171
+msgid "Login"
+msgstr "登錄"
+
+#: manage/login.php:190
+msgctxt "language"
+msgid "Select language"
+msgstr "選擇語言"
+
+#: manage/login.php:201 manage/settings.php:76 system/languages/l10n.php:759
+msgctxt "language"
+msgid "English"
+msgstr "英語"
+
+#: manage/login.php:219 manage/settings.php:105
+msgid "Username"
+msgstr "用戶名"
+
+#: manage/login.php:219
+msgid "Please fill in your username"
+msgstr "請填寫您的用戶名"
+
+#: manage/login.php:223
+msgid "Password"
+msgstr "密碼"
+
+#: manage/login.php:223
+msgid "Please fill in your password"
+msgstr "請填寫您的密碼"
+
+#: manage/login.php:228
+msgid "Verify Code"
+msgstr "驗證碼"
+
+#: manage/login.php:228
+msgid "Please fill in the verify code"
+msgstr "請填寫驗證碼"
+
+#: manage/login.php:244
+msgid "Please input your username and password!"
+msgstr "請填寫用戶名和密碼！"
+
+#: manage/login.php:246
+msgid "Unknown username or bad password!"
+msgstr "用戶名或密碼錯誤！"
+
+#: manage/login.php:248
+msgid "Bear!"
+msgstr "熊出没注意！"
+
+#: manage/login.php:250
+msgid "Verification code error!"
+msgstr "驗證碼錯誤！"
+
+#: manage/login.php:258
+msgctxt "Buttom"
+msgid "Login"
+msgstr "立即登錄"
+
+#: manage/login.php:268
+msgid "Error"
+msgstr "錯誤"
+
+#: manage/login.php:269
+#, php-format
+msgid ""
+"Your login wrong too many times , close the session or wait %s minutes and "
+"try again later."
+msgstr "您的登錄錯誤次數太多，請關閉會話或等待%s 分鐘後再試。"
+
+#: manage/manage.php:43
+msgid "The upload directory is empty."
+msgstr "上傳目錄為空。"
+
+#: manage/manage.php:44
+msgid ""
+"You can upload by web or upload packages to the upload directory in root by "
+"FTP."
+msgstr "您可以通過上傳功能或FTP 服務將軟件包上傳到根目錄的upload 目錄下。"
+
+#: manage/manage.php:50 manage/manage.php:78
+msgid "Files List"
+msgstr "文件列表"
+
+#: manage/manage.php:50 manage/manage.php:78
+msgid "Forced Inherit"
+msgstr "強制繼承"
+
+#: manage/manage.php:53
+msgid "Inherit"
+msgstr "繼承"
+
+#: manage/manage.php:81
+msgid "File Name"
+msgstr "文件名"
+
+#: manage/manage.php:88
+msgid "Target ID"
+msgstr "目標編號"
+
+#: manage/manage.php:96 manage/sections.php:154 manage/udid.php:274
+msgid "Submit"
+msgstr "提交"
+
+#: manage/manage.php:103 manage/sections.php:291
+#, php-format
+msgid "Are you sure delete: %s ?"
+msgstr "您確定要刪除：%s？"
+
+#: manage/manage.php:103 manage/udid.php:398
+msgid "You will not be able to undo this operation!"
+msgstr "該操作無法撤銷！"
+
+#: manage/manage.php:104 manage/sections.php:292 manage/sections.php:310
+#: manage/udid.php:301 manage/udid.php:390 manage/udid.php:399
+#: manage/view.php:107
+msgid "Confirm"
+msgstr "確定"
+
+#: manage/manage.php:115
+msgid "Unable to delete, please check the file permissions."
+msgstr "無法刪除，請檢查文件系統權限。"
+
+#: manage/manage.php:123
+msgid "Invalid request."
+msgstr "無效的請求。"
+
+#: manage/output.php:43
+#, php-format
+msgid "Database Error: %s"
+msgstr "數據庫錯誤：%s"
+
+#: manage/output.php:48
+msgid "Cannot find the content specified!"
+msgstr "找不到指定的內容！"
+
+#: manage/output.php:53
+msgid "Cannot find the file specified!"
+msgstr "找不到指定的文件！"
+
+#: manage/output.php:90
+#, php-format
+msgid "Processing file: %s"
+msgstr "處理文件： %s"
+
+#: manage/output.php:102
+msgid "Package has been successfully written!"
+msgstr "軟件包寫入！"
+
+#: manage/output.php:104
+msgid "Warning: Writting to package failed!"
+msgstr "警告：軟件包寫入失敗！"
+
+#: manage/output.php:135
+msgid ""
+"Verification information update failed! Please check the package is "
+"successfully generated!"
+msgstr "驗證信息更新失敗！請檢查軟件包是否成功生成！"
+
+#: manage/output.php:138
+msgid "Verification information has been successfully updated!"
+msgstr "驗證信息更新成功！"
+
+#: manage/output.php:144
+msgid "Update Packages"
+msgstr "更新軟件包"
+
+#: manage/output.php:146
+msgid ""
+"Tip: This operation does not automatically modify the software package file "
+"name, please upload the new name package when upgrade."
+msgstr "提示：該操作不會自動修改安裝包文件名，升級時請上傳新的軟件包項目。"
+
+#: manage/release.php:39
+msgid "Repository Settings"
+msgstr "源信息設置"
+
+#: manage/release.php:44
+msgid "Origin"
+msgstr "名稱"
+
+#: manage/release.php:47
+msgid "This name will be displayed in the sources interface of Cydia."
+msgstr "這個名稱將顯示在Cydia 的軟件源編輯界面"
+
+#: manage/release.php:52
+msgid "Label"
+msgstr "代號"
+
+#: manage/release.php:55
+msgid "This name will be displayed at the top of the package list interface."
+msgstr "這個名稱將顯示在軟件包列表頂部"
+
+#: manage/release.php:60
+msgid "Codename"
+msgstr "標識符"
+
+#: manage/release.php:81
+msgid "Repository Icon"
+msgstr "源圖標"
+
+#: manage/release.php:84
+#, php-format
+msgid "Allowed upload format: png, save as %s in root directory."
+msgstr "允許上傳的格式：png，保存為根目錄%s"
+
+#: manage/release.php:115 manage/sections.php:175
+msgid "Upload failed, please check the file permissions."
+msgstr "上傳失敗，請檢查文件權限。"
+
+#: manage/release.php:117
+msgid "Upload icon completed."
+msgstr "源图标上传完成。"
+
+#: manage/release.php:117 manage/release.php:120
+msgid ""
+"Repository settings save complete, rebuild the list to apply the changes."
+msgstr "源信息设置修改完成，刷新列表以应用更改。"
+
+#: manage/sections.php:38 manage/sections.php:120
+msgid "Sections List"
+msgstr "分類列表"
+
+#: manage/sections.php:38 manage/sections.php:120
+msgid "Add Section"
+msgstr "添加分類"
+
+#: manage/sections.php:38 manage/sections.php:120
+msgid "Create Icon Package"
+msgstr "生成軟件包"
+
+#: manage/sections.php:61
+msgid "Edit"
+msgstr "編輯"
+
+#: manage/sections.php:63
+msgid "Icon"
+msgstr "圖標"
+
+#: manage/sections.php:64
+msgid "Last Change"
+msgstr "最後修改"
+
+#: manage/sections.php:72
+msgid "Click to view packages in this section."
+msgstr "點擊查看該分類下的軟件包"
+
+#: manage/sections.php:80
+msgid "No Icon"
+msgstr "無圖標"
+
+#: manage/sections.php:120
+msgid "Edit Section"
+msgstr "編輯分類"
+
+#: manage/sections.php:124
+msgid "Section Name"
+msgstr "分類名稱"
+
+#: manage/sections.php:131
+msgid "Section Icon"
+msgstr "分類圖標"
+
+#: manage/sections.php:138
+#, php-format
+msgid "The current icon is %s."
+msgstr "當前圖標為 %s"
+
+#: manage/sections.php:140
+#, php-format
+msgid "You can click <a href=\"%s\">Here</a> to delete current icon."
+msgstr "您可以點擊 <a href=\"%s\">这里</a> 刪除當前圖標"
+
+#: manage/sections.php:143
+msgid "There are currently no icon."
+msgstr "當前無圖標"
+
+#: manage/sections.php:158 manage/upload.php:106 manage/upload.php:186
+msgid "Tips"
+msgstr "操作提示"
+
+#: manage/sections.php:161
+#, php-format
+msgid "Allowed upload format: png, save in %s directory of root directory."
+msgstr "允許上傳的格式：png，保存到根目錄的 %s 目錄下。"
+
+#: manage/sections.php:162
+msgid ""
+"If you change the section name, you may need to change section option in "
+"package infomation for many packages."
+msgstr "如果更改分類名稱，您可能需要修改部分軟件包的分類選項。"
+
+#: manage/sections.php:196
+msgid "You can add a maximum of 50 sections!"
+msgstr "您最多只能添加50個分類！"
+
+#: manage/sections.php:207
+#, php-format
+msgid "Are you sure want to create the %s icon package?"
+msgstr "您確定要生成 %s 的圖標包嗎？"
+
+#: manage/sections.php:207
+msgid "Create Now"
+msgstr "立即生成"
+
+#: manage/sections.php:210
+msgid ""
+"You have not filled in SEO and autofill information, unable to use this "
+"function!"
+msgstr "您尚未填寫站點SEO以及自動填充信息，無法使用該功能！"
+
+#: manage/sections.php:217
+msgid ""
+"Cannot find any existing icon of section, please add an icon first, then "
+"create icon package."
+msgstr "找不到存在圖標的分類條目，請先添加一個圖標，再執行生成。"
+
+#: manage/sections.php:228
+msgid "Cannot create temporary directory, please check the file permissions!"
+msgstr "臨時目錄創建失敗，請檢查文件權限！"
+
+#: manage/sections.php:235
+msgid "Icon package template copy failed, please check the file permissions!"
+msgstr "圖標包模板複製失敗，請檢查文件權限！"
+
+#: manage/sections.php:263 manage/sections.php:273
+msgid "Icon package template rewriting failed!"
+msgstr "圖標包模板改寫失敗！"
+
+#: manage/sections.php:278
+msgid "Icon package template repositioning failed!"
+msgstr "圖標包重定位失敗！"
+
+#: manage/sections.php:286
+msgid "Icon package template missing, please upload DCRM Pro again!"
+msgstr "圖標包模板丟失，請重新安裝DCRM專業版！"
+
+#: manage/sections.php:309
+#, php-format
+msgid "Are you sure delete the section icon for %s ?"
+msgstr "您真的想要刪除分類 %s 的圖標嗎？"
+
+#: manage/settings.php:38
+msgid "Preferences"
+msgstr "系統設置"
+
+#: manage/settings.php:42
+msgid "General"
+msgstr "通用"
+
+#: manage/settings.php:45
+msgid "Language"
+msgstr "顯示語言"
+
+#: manage/settings.php:53
+msgctxt "language"
+msgid "Detect"
+msgstr "自動檢測"
+
+#: manage/settings.php:81
+msgid ""
+"If you want the system auto detect users browser language to show pages "
+"please select \"Detect\" option."
+msgstr "如果您想讓系統自動匹配瀏覽器語言來顯示頁面，請選擇“自動檢測”。"
+
+#: manage/settings.php:86
+msgid "Rewrite Mod"
+msgstr "Rewrite 模式"
+
+#: manage/settings.php:90
+msgid "Disable"
+msgstr "禁用"
+
+#: manage/settings.php:90
+msgid "Normal"
+msgstr "普通"
+
+#: manage/settings.php:90
+msgid "Elegant"
+msgstr "優雅"
+
+#: manage/settings.php:98
+#, php-format
+msgid ""
+"<b>Elegant Mod</b> - Enable all rewrite rules, the url will show like %s.<br/"
+"><b>Normal Mod</b> - Compatible earlier than v1.7 configuration, only enbale "
+"a part of rewrite rules for HotLinks.<br/><b>Disabled</b> - This will "
+"disable all rewrite rules, so HotLinks will not work.<br/>Notice: You should "
+"update your rewrite config first if you want to use Elegant Mod."
+msgstr ""
+"<b>優雅模式</b> - 啟用所有Rewrite 規則，鏈接顯示將類似於 %s。 <br/><b>普通模"
+"式</b> - 兼容早於1.7 版的配置，只為防盜鏈啟用了部分Rewrite 規則。 <br/><b>禁"
+"用</b> - 關閉所有Rewrite 規則，防盜鏈功能將會不可用。 <br/>注意：您啟用優雅模"
+"式前可能需要更新您的Rewrite 配置。"
+
+#: manage/settings.php:102
+msgid "Login Information"
+msgstr "登錄信息"
+
+#: manage/settings.php:107 manage/settings.php:597
+msgid "Username length must be between 4-20 characters!"
+msgstr "用戶名長度必須在4 - 20 個字符之間！"
+
+#: manage/settings.php:107 manage/settings.php:599
+msgid "Username can only use numbers, letters and underline!"
+msgstr "用戶名只能使用數字、字母、下劃線的組合！"
+
+#: manage/settings.php:113
+msgid "New Password"
+msgstr "新密碼"
+
+#: manage/settings.php:116
+msgid ""
+"If you would like to change the password type a new one. Otherwise leave "
+"this blank."
+msgstr "如果您想修改您的密碼，請在此輸入新密碼，否則請留空。"
+
+#: manage/settings.php:121
+msgid "Repeat New Password"
+msgstr "重複新密碼"
+
+#: manage/settings.php:123
+msgid "Your password do not match."
+msgstr "您的密碼不匹配"
+
+#: manage/settings.php:124
+msgid "Type your new password again."
+msgstr "再輸入一遍新密碼。"
+
+#: manage/settings.php:125 manage/settings.php:755
+msgid "Strength indicator"
+msgstr "強度評估"
+
+#: manage/settings.php:130
+msgid "The maximum number of attempts"
+msgstr "最大嘗試次數"
+
+#: manage/settings.php:137
+msgid "Login Fail Reset Time"
+msgstr "嘗試次數重置時間"
+
+#: manage/settings.php:140
+msgid "Unit: Minutes"
+msgstr "單位：分鐘"
+
+#: manage/settings.php:145
+msgid "Repository URL"
+msgstr "源管理系統源地址"
+
+#: manage/settings.php:147 manage/settings.php:513 manage/settings.php:528
+#: manage/settings.php:536 manage/settings.php:544
+msgid "Not a valid website address"
+msgstr "無效的網址"
+
+#: manage/settings.php:148
+msgid ""
+"Displayed on the homepage for the user to add, and used for the autofill "
+"package's Depiction when import."
+msgstr "展示在首頁供用戶添加，並用於在導入軟件包時自動填充詳情頁。"
+
+#: manage/settings.php:152
+msgid "PC Site"
+msgstr "電腦版功能"
+
+#: manage/settings.php:155 manage/settings.php:167
+msgid "Master Switch"
+msgstr "總開關"
+
+#: manage/settings.php:160
+msgid "Non-apple owners will automatically jump if enabled."
+msgstr "開啟後非蘋果用戶將自動跳轉。"
+
+#: manage/settings.php:164
+msgid "Mobile Site"
+msgstr "移動版功能"
+
+#: manage/settings.php:176 manage/settings.php:631
+msgid "Show Latest List"
+msgstr "展示最新列表"
+
+#: manage/settings.php:185
+msgid "Number of Latest List"
+msgstr "最新列表數量"
+
+#: manage/settings.php:187 manage/settings.php:222
+#, php-format
+msgid "Too high: Maximum of '%s'"
+msgstr "過高：最大不得超過 '%s'"
+
+#: manage/settings.php:188
+msgid "Must be lower than 20."
+msgstr "最大不得超過 20 條。"
+
+#: manage/settings.php:193 manage/settings.php:637
+msgid "Full List of Sections"
+msgstr "分類完整列表"
+
+#: manage/settings.php:202 manage/settings.php:617
+msgctxt "Settings"
+msgid "Screenshorts"
+msgstr "預覽截圖"
+
+#: manage/settings.php:211 manage/settings.php:619
+msgid "Report Problems"
+msgstr "報告問題"
+
+#: manage/settings.php:220
+msgid "Limit Number of Report"
+msgstr "限制報告次數"
+
+#: manage/settings.php:223
+msgid "The maximum not more than 10 times."
+msgstr "最大不得超過 10 次。"
+
+#: manage/settings.php:228 manage/settings.php:623
+msgid "Update Logs"
+msgstr "更新日誌"
+
+#: manage/settings.php:233
+msgid "Displayed in the Version History."
+msgstr "顯示在歷史版本中的更新日誌。"
+
+#: manage/settings.php:238 manage/settings.php:625
+msgid "More Information"
+msgstr "更多信息"
+
+#: manage/settings.php:250 manage/settings.php:260
+msgid "Show"
+msgstr "展示"
+
+#: manage/settings.php:252
+msgid "It will not hide if 'Detailed Description' is enabled and empty."
+msgstr "當“詳細描述”啟用並為空時不會隱藏。"
+
+#: manage/settings.php:265
+msgid "Commercial"
+msgstr "商業設置"
+
+#: manage/settings.php:268
+msgid "Alipay Account"
+msgstr "支付寶賬戶"
+
+#: manage/settings.php:271
+msgid "This is used to auto generate Alipay link for commercial package."
+msgstr "用於自動生成支付寶支付鏈接。"
+
+#: manage/settings.php:275
+msgid "Download"
+msgstr "下載設置"
+
+#: manage/settings.php:278
+msgid "PHP Forward"
+msgstr "PHP 轉發"
+
+#: manage/settings.php:283
+msgid ""
+"Disable PHP forward will reduce server pressure and effectively avoid 'Sum "
+"Mismatch Hash' error.<br/>But it will make the speed limit function to "
+"invalid and may exposure real package address."
+msgstr ""
+"禁用PHP 轉發會降低服務器壓力且有效避免Hash Sum Mismatch 錯誤，<br/>但會使限速"
+"功能無效並有暴露真實軟件包地址的風險。"
+
+#: manage/settings.php:288
+msgid "Module Enabled"
+msgstr "已啟用模塊"
+
+#: manage/settings.php:291
+msgid "No"
+msgstr "否"
+
+#: manage/settings.php:291
+msgid "Yes"
+msgstr "是"
+
+#: manage/settings.php:293
+msgid ""
+"Using this switch, the x-sendfile feature on DCRM can be manually enabled if "
+"it does not do so automatically <br/>when you have enabled mod_xsendfile on "
+"Apache or configured the \"allow-x-send-file\" option on Lighttpd. "
+"<br><b>WARNING:</b> If you don't know what this is, please turn this off; "
+"otherwise, package downloads may not work."
+msgstr ""
+"如果您已啟用了Apache 的mod_xsendfile 或已在Lighttpd 上配置好\"allow-x-send-"
+"file\" 選項，<br/>若DCRM 沒有自動啟用x-sendfile 功能，您可以在此開啟。 "
+"<br><b>注意:</b> 如果您不知道這是什麼，請保持關閉狀態，否則軟件包可能無法正常"
+"下載。"
+
+#: manage/settings.php:298 manage/settings.php:611
+msgid "HotLink Protection"
+msgstr "防盜鏈"
+
+#: manage/settings.php:307
+msgid "Max Download Speed"
+msgstr "最大下載速度"
+
+#: manage/settings.php:310
+msgid "B/s, please input '0' if you do not want limit."
+msgstr "字節每秒，不限制請填寫 0。"
+
+#: manage/settings.php:314
+msgid "Lists"
+msgstr "列表設置"
+
+#: manage/settings.php:317
+msgid "Packages File Compression"
+msgstr "Packages 壓縮"
+
+#: manage/settings.php:321
+msgid "Hide list"
+msgstr "隱藏列表"
+
+#: manage/settings.php:321
+msgid "Only text"
+msgstr "僅文本"
+
+#: manage/settings.php:321
+msgid "Only gz"
+msgstr "僅 gz"
+
+#: manage/settings.php:321
+msgid "Text and gz"
+msgstr "文本與 gz"
+
+#: manage/settings.php:322
+msgid "Only bz2"
+msgstr "僅 bz2"
+
+#: manage/settings.php:322
+msgid "Text and bz2"
+msgstr "文本與 bz2"
+
+#: manage/settings.php:322
+msgid "gz and bz2"
+msgstr "gz 與 bz2"
+
+#: manage/settings.php:322
+msgid "All"
+msgstr "全部"
+
+#: manage/settings.php:328
+msgid ""
+"Please change the compression method if error occurred trying rebuild the "
+"list."
+msgstr "若修改後發現刷新列表出錯，請更換壓縮方式。"
+
+#: manage/settings.php:333
+msgid "Packages Validation "
+msgstr "軟件包驗證"
+
+#: manage/settings.php:337
+msgid "No validation"
+msgstr "不验证"
+
+#: manage/settings.php:343
+msgid "Take effect when write to Packages."
+msgstr "僅在寫入軟件包時生效。"
+
+#: manage/settings.php:348 manage/settings.php:635
+msgid "Downgrade Support"
+msgstr "降级支持"
+
+#: manage/settings.php:353
+msgid "Enable this function will cause a long-term traffic consumption."
+msgstr "啟用這項功能將造成軟件包列表體積是原來的若干倍。"
+
+#: manage/settings.php:357
+msgid "Autofill"
+msgstr "自動填滿"
+
+#: manage/settings.php:360
+msgid "Autofill Depiction"
+msgstr "自動填充詳情頁"
+
+#: manage/settings.php:365
+msgid "Autofill package's Depiction when import if enabled."
+msgstr "當導入軟件包時自動填充詳情頁。"
+
+#: manage/settings.php:370
+msgid "Default Identifier of Packages"
+msgstr "軟件包默認標識符"
+
+#: manage/settings.php:377
+msgid "Default Name of Packages"
+msgstr "軟件包默認描述"
+
+#: manage/settings.php:384
+msgid "Default Depiction of Packages"
+msgstr "軟件包默認名稱"
+
+#: manage/settings.php:390
+msgid "SEO"
+msgstr "SEO 優化"
+
+#: manage/settings.php:393
+msgctxt "SEO"
+msgid "Site Name"
+msgstr "SEO 名稱"
+
+#: manage/settings.php:400
+msgctxt "SEO"
+msgid "Site Address"
+msgstr "SEO 地址"
+
+#: manage/settings.php:407
+msgctxt "SEO"
+msgid "Site Keyword"
+msgstr "SEO 關鍵詞"
+
+#: manage/settings.php:410 manage/udid.php:268
+msgid "Separated by commas."
+msgstr "以英文半角逗號分隔。"
+
+#: manage/settings.php:414
+msgid "Administrator Informations"
+msgstr "管理員信息"
+
+#: manage/settings.php:417
+msgctxt "Administrator"
+msgid "Name"
+msgstr "管理員名稱"
+
+#: manage/settings.php:424
+msgctxt "Administrator"
+msgid "Full Name"
+msgstr "管理員全名"
+
+#: manage/settings.php:431
+msgctxt "Administrator"
+msgid "Email Address"
+msgstr "管理員郵箱"
+
+#: manage/settings.php:433
+msgid "Not a valid email address"
+msgstr "無效的電子郵件地址。"
+
+#: manage/settings.php:437
+msgid "Footer"
+msgstr "底部設置"
+
+#: manage/settings.php:440
+msgid "Starting Year of Copyright"
+msgstr "版權起始年份"
+
+#: manage/settings.php:443
+#, php-format
+msgid ""
+"If input 2010, the final display is © 2010-%d, leave a blank will only "
+"displays the current year."
+msgstr "如果輸入 2010年，最終顯示是 © 2010年-%d，留下空白只會顯示當前年份。"
+
+#: manage/settings.php:448
+msgid "Copyright Name"
+msgstr "版權名稱"
+
+#: manage/settings.php:451
+msgid ""
+"Displayed on the website at the bottom. If you not input anything will "
+"display the repository name."
+msgstr "顯示在網站底部。如不填寫則顯示源名稱。"
+
+#: manage/settings.php:456
+msgid "Footer Code"
+msgstr "頁腳信息"
+
+#: manage/settings.php:459
+msgid ""
+"You can input ICP number, site information etc. Please use <code>·</code> as "
+"the separator. "
+msgstr "可填寫備案號、網站信息等，請使用 <code>·</code>  作為分隔符。"
+
+#: manage/settings.php:463
+msgid "Social"
+msgstr "社會化分享"
+
+#: manage/settings.php:466
+msgid "Duoshuo Social Comments KEY"
+msgstr "多說社會化評論框 KEY"
+
+#: manage/settings.php:469
+#, php-format
+msgid ""
+"Please goto %s for get key (registration required), leave a blank will "
+"disabled comment function."
+msgstr "請前往 %s 獲取Key（即多說域名，需要註冊），留空關閉評論功能。"
+
+#: manage/settings.php:474
+msgid "QQ Group Name"
+msgstr "QQ 群名稱"
+
+#: manage/settings.php:481
+msgid "QQ Group Number"
+msgstr "QQ 群地址"
+
+#: manage/settings.php:484
+msgid "Need the new mobile client."
+msgstr "需要新版手機客戶端支持。"
+
+#: manage/settings.php:489
+msgid "Weibo Name"
+msgstr "微博名稱"
+
+#: manage/settings.php:496
+msgid "Weibo Address"
+msgstr "微博地址"
+
+#: manage/settings.php:498
+#, php-format
+msgid "Not a valid mobile weibo address. Example: %s"
+msgstr "不是有效的微博手機版地址。示例：%s"
+
+#: manage/settings.php:499
+msgid "Please input the mobile version homepage."
+msgstr "請填寫移動版主頁。"
+
+#: manage/settings.php:504
+msgid "Twitter Name"
+msgstr "Twitter 名稱"
+
+#: manage/settings.php:511
+msgid "Twitter Address"
+msgstr "Twitter 地址"
+
+#: manage/settings.php:514 manage/settings.php:529
+msgid "Need login for visit."
+msgstr "登錄後方可查看。"
+
+#: manage/settings.php:519
+msgid "Facebook Name"
+msgstr "Facebook 名稱"
+
+#: manage/settings.php:526
+msgid "Facebook Address"
+msgstr "Facebook 地址"
+
+#: manage/settings.php:534
+msgid "Paypal Donate Address"
+msgstr "Paypal 捐助地址"
+
+#: manage/settings.php:542
+msgid "Alipay Donate Address"
+msgstr "支付寶捐助地址"
+
+#: manage/settings.php:549
+msgid "Statistics And Advertisement"
+msgstr "統計與廣告"
+
+#: manage/settings.php:552
+msgid "External Statistics"
+msgstr "外部統計代碼"
+
+#: manage/settings.php:555
+msgid "Invisible statistic code."
+msgstr "不可見的統計代碼。"
+
+#: manage/settings.php:560
+msgid "Internal Statistics"
+msgstr "內部統計代碼"
+
+#: manage/settings.php:563
+msgid "Statistics code of view information at Running Status."
+msgstr "查看信息的統計代碼。"
+
+#: manage/settings.php:568
+msgid "Advertisement"
+msgstr "廣告支持"
+
+#: manage/settings.php:574
+msgid "Notice"
+msgstr "通知"
+
+#: manage/settings.php:577
+msgid "Emergency Notice"
+msgstr "緊急通知"
+
+#: manage/settings.php:595
+msgid "Please provide a valid username."
+msgstr "用戶名不得設置為空！"
+
+#: manage/settings.php:601
+msgid "You entered your new password only once."
+msgstr "您只輸入了一次新密碼。"
+
+#: manage/settings.php:603
+msgid "Your passwords do not match. Please try again."
+msgstr "您两次输入的密码不符，请重试。"
+
+#: manage/settings.php:605
+msgid "The maximum number of attempts must be an integer!"
+msgstr "最大尝试次数必须为整数！"
+
+#: manage/settings.php:607
+msgid "Login fail reset time must be an integer!"
+msgstr "嘗試次數重置時間必須為整數！"
+
+#: manage/settings.php:609
+msgid "Max download speed must be an integer!"
+msgstr "下載限速必須為整數！"
+
+#: manage/settings.php:611 manage/settings.php:617 manage/settings.php:619
+#: manage/settings.php:623 manage/settings.php:625 manage/settings.php:627
+#: manage/settings.php:631 manage/settings.php:635 manage/settings.php:637
+#, php-format
+msgid "Please set the correct %s switch!"
+msgstr "請正確設置%s開關！"
+
+#: manage/settings.php:613
+msgid "Please set the correct PC Site Master Switch!"
+msgstr "請正確設置電腦版總開關！"
+
+#: manage/settings.php:615
+msgid "Please set the correct Mobile Site Master Switch!"
+msgstr "請正確設置移動版總開關！"
+
+#: manage/settings.php:621
+msgid ""
+"Please set the correct Limit Number of Report, the maximum not more than 10 "
+"times!"
+msgstr "請正確設置報告問題限制次數，最大不得超過10 次！"
+
+#: manage/settings.php:627
+msgid "Multiple Information"
+msgstr "詳細描述"
+
+#: manage/settings.php:629
+msgid "Please set the correct Packages compression method!"
+msgstr "請正確設置正確的 Packages 壓縮方式！"
+
+#: manage/settings.php:633
+msgid ""
+"Please set the correct number of latest list, the maximum must not exceed "
+"20 !"
+msgstr "請正確設置首頁更新列表數量，最大不得超過20 條！"
+
+#: manage/settings.php:639
+msgid "Please provide a valid repository URL!"
+msgstr "源地址不得設置為空！"
+
+#: manage/settings.php:643
+msgid "There is a same username!"
+msgstr "存在相同的用戶名！"
+
+#: manage/settings.php:666
+#, php-format
+msgid ""
+"Cannot access %s, you might need update your rewrite config to use this "
+"rewrite mod!"
+msgstr "无法访问 %s，您可能需要更新您的 Rewrite 配置以来使用此模式！"
+
+#: manage/settings.php:739
+msgid "Amendments to the success of settings!"
+msgstr "設置修改成功！"
+
+#: manage/settings.php:755
+msgctxt "Password"
+msgid "Short"
+msgstr "极弱"
+
+#: manage/settings.php:755
+msgctxt "Password"
+msgid "Bad"
+msgstr "弱"
+
+#: manage/settings.php:755
+msgctxt "Password"
+msgid "Good"
+msgstr "中等"
+
+#: manage/settings.php:755
+msgctxt "Password"
+msgid "Strong"
+msgstr "强"
+
+#: manage/settings.php:755
+msgctxt "Password"
+msgid "Mismatch"
+msgstr "不匹配"
+
+#: manage/settings.php:760
+msgid "You have some errors, please check the form."
+msgstr "發生了一些錯誤，請檢查表單"
+
+#: manage/stats.php:33
+msgid "Database Status"
+msgstr "數據庫狀態"
+
+#: manage/stats.php:39
+msgid "Service Information"
+msgstr "服務信息"
+
+#: manage/stats.php:51
+msgid "Server information: "
+msgstr "服務器信息："
+
+#: manage/stats.php:51
+msgid "Database version: "
+msgstr "數據庫版本："
+
+#: manage/stats.php:51
+msgid "GD library version: "
+msgstr "GD 库版本："
+
+#: manage/stats.php:51 manage/upload.php:109 manage/upload.php:189
+msgid "Upload max filesize: "
+msgstr "最大上傳限制："
+
+#: manage/stats.php:51
+msgid "Max execution time: "
+msgstr "最大執行時間："
+
+#: manage/stats.php:51
+#, php-format
+msgid "%d second"
+msgid_plural "%d seconds"
+msgstr[0] "%d 秒"
+
+#: manage/stats.php:51
+msgid "Server time: "
+msgstr "服務器時間："
+
+#: manage/stats.php:57
+msgid "Management Statistics"
+msgstr "管理統計"
+
+#: manage/stats.php:78
+msgid "Total download times: "
+msgstr "總下載次數："
+
+#: manage/stats.php:78
+msgid "Number of packages: "
+msgstr "軟件包數量："
+
+#: manage/stats.php:78
+msgid "Number of non-hidden packages: "
+msgstr "未隱藏軟件包數量："
+
+#: manage/stats.php:78
+msgid "Number of sections: "
+msgstr "分類數量："
+
+#: manage/stats.php:78
+msgid "Download pool size: "
+msgstr "下載池尺寸："
+
+#: manage/stats.php:78
+msgid "Cache pool size: "
+msgstr "緩存池尺寸："
+
+#: manage/stats.php:78
+msgid "Clean cache"
+msgstr "清理緩存"
+
+#: manage/stats.php:95
+msgid "Clean Cache"
+msgstr "清理緩存"
+
+#: manage/stats.php:96
+msgid "Cache cleanup completed!"
+msgstr "缓存清理完成！"
+
+#: manage/udid.php:35 manage/udid.php:106 manage/udid.php:242
+msgid "UDID"
+msgstr "UDID"
+
+#: manage/udid.php:37 manage/udid.php:110 manage/udid.php:258
+#: manage/udid.php:342
+msgid "Comment"
+msgstr "備註"
+
+#: manage/udid.php:38 manage/udid.php:265
+msgid "Packages"
+msgstr "軟件包"
+
+#: manage/udid.php:40 manage/udid.php:109
+msgid "Last IP"
+msgstr "最後登錄IP"
+
+#: manage/udid.php:41
+msgid "Create Time"
+msgstr "創建時間"
+
+#: manage/udid.php:91 manage/udid.php:128 manage/udid.php:238
+#: manage/udid.php:331
+msgid "All UDID"
+msgstr "所有UDID"
+
+#: manage/udid.php:91 manage/udid.php:128 manage/udid.php:238
+#: manage/udid.php:331
+msgid "Add UDID"
+msgstr "添加UDID"
+
+#: manage/udid.php:91 manage/udid.php:128 manage/udid.php:238
+#: manage/udid.php:331
+msgid "Search UDID"
+msgstr "搜索UDID"
+
+#: manage/udid.php:91 manage/udid.php:128 manage/udid.php:238
+#: manage/udid.php:331
+msgid "Manage Level"
+msgstr "管理等級"
+
+#: manage/udid.php:108
+msgid "Package"
+msgstr "軟件包"
+
+#: manage/udid.php:182
+#, php-format
+msgid "Search UDID: %s"
+msgstr "搜索UDID：%s"
+
+#: manage/udid.php:244
+msgid "UDID must be 40 characters!"
+msgstr "UDID必須為40位字符！"
+
+#: manage/udid.php:244
+msgid "UDID must be number or letter!!"
+msgstr "UDID必須為數字或字母!"
+
+#: manage/udid.php:334
+msgid "Lowest Protection Level"
+msgstr "最低保護等級"
+
+#: manage/udid.php:352
+msgid "Add Row"
+msgstr "添加一行"
+
+#: manage/udid.php:353
+msgid "Delete Row"
+msgstr "删除一行"
+
+#: manage/udid.php:366
+msgid "Guest"
+msgstr "遊客"
+
+#: manage/udid.php:389
+#, php-format
+msgid "Are you sure you want to binding '%1$s' to UDID '%2$s'?"
+msgstr "您真的想将 '%1$s' 与UDID '%2$s' 绑定吗？"
+
+#: manage/udid.php:397
+msgid "Unbinding UDID"
+msgstr "解绑UDID"
+
+#: manage/udid.php:398
+#, php-format
+msgid "Are you sure you want to unbinding '%1$s' from UDID '%2$s'?"
+msgstr "您真的想将 '%1$s' 与UDID '%2$s' 解绑吗？"
+
+#: manage/upload.php:31
+msgid "File size incorrect!"
+msgstr "文件尺寸錯誤！"
+
+#: manage/upload.php:34
+msgid "File type incorrect!"
+msgstr "文件類型錯誤！"
+
+#: manage/upload.php:37
+#, php-format
+msgid "Upload failed, Error Code: %s."
+msgstr "上傳失敗，錯誤代碼 ：%s"
+
+#: manage/upload.php:40
+#, php-format
+msgid "%s already exists."
+msgstr "%s  已经存在"
+
+#: manage/upload.php:44
+#, php-format
+msgid "Uploaded successfully: %s."
+msgstr "上傳成功：%s"
+
+#: manage/upload.php:86 manage/upload.php:166
+#, php-format
+msgid "Unable to upload files? Try %s."
+msgstr "無法上傳文件？嘗試%s."
+
+#: manage/upload.php:86
+msgid "classic uploader"
+msgstr "普通方式上傳"
+
+#: manage/upload.php:91
+msgid "Please select packages"
+msgstr "請選擇要上傳的軟件包"
+
+#: manage/upload.php:94
+msgid ""
+"Tip: Select multiple packages by hold down Ctrl(⌘) key while you click the "
+"packages."
+msgstr "提示：按住Ctrl鍵(⌘)鍵可多選"
+
+#: manage/upload.php:99 manage/upload.php:181
+msgid "Upload"
+msgstr "上傳"
+
+#: manage/upload.php:100
+msgctxt "Upload"
+msgid "Reset"
+msgstr "重置上傳隊列："
+
+#: manage/upload.php:108 manage/upload.php:188
+msgid "Allowed data type: "
+msgstr "允許的數據類型："
+
+#: manage/upload.php:108 manage/upload.php:109 manage/upload.php:110
+#: manage/upload.php:188 manage/upload.php:189 manage/upload.php:190
+msgctxt "Separator"
+msgid ";"
+msgstr "；"
+
+#: manage/upload.php:110 manage/upload.php:190
+msgid "Please do not upload disrupt the Internet security data"
+msgstr "请勿上传可能扰乱互联网安全秩序的数据"
+
+#: manage/upload.php:111 manage/upload.php:191
+msgid ""
+"Please upload the standard package of Debian software package, otherwise it "
+"may cause loss of data."
+msgstr "請上傳標準封裝的Debian的軟件包，否則可能會導致數據丟失。"
+
+#: manage/upload.php:127
+msgid "SELECT FILES"
+msgstr "選擇文件"
+
+#: manage/upload.php:137
+msgctxt "Uploader"
+msgid " Success"
+msgstr " 成功"
+
+#: manage/upload.php:138
+msgctxt "Uploader"
+msgid " Upload Success!"
+msgstr " 上傳成功"
+
+#: manage/upload.php:141
+msgctxt "Uploader"
+msgid " Failed"
+msgstr "失敗"
+
+#: manage/upload.php:142
+msgctxt "Uploader"
+msgid " Upload Failed!"
+msgstr "上傳失敗！"
+
+#: manage/upload.php:144
+msgctxt "Uploader"
+msgid " Already Exists"
+msgstr " 已存在"
+
+#: manage/upload.php:145
+msgctxt "Uploader"
+msgid " Already Exists!"
+msgstr " 已存在"
+
+#: manage/upload.php:148
+msgctxt "Uploader"
+msgid " Unknow"
+msgstr " 未知"
+
+#: manage/upload.php:149
+msgctxt "Uploader"
+msgid " Unknow Error!"
+msgstr "未知錯誤！"
+
+#: manage/upload.php:166
+msgid "multiple uploader"
+msgstr "更多上傳方式"
+
+#: manage/upload.php:168
+msgid "Select File"
+msgstr "選擇文件"
+
+#: manage/upload.php:173
+msgid "Please select a package"
+msgstr "請選擇一個軟件包"
+
+#: manage/upload.php:176
+msgid "Ready"
+msgstr "準備就緒"
+
+#: manage/upload.php:202
+msgid "Please wait for uploading..."
+msgstr "上傳中，請稍後......"
+
+#: manage/upload.php:220
+msgid "Please select a package!"
+msgstr "請選擇一個軟件包！"
+
+#: manage/view.php:62
+msgid "No specified item."
+msgstr "查詢不到指定項目"
+
+#: manage/view.php:82
+msgid "This package no screenshot."
+msgstr "該軟件包暫時沒有截圖"
+
+#: manage/view.php:88
+#, php-format
+msgid "This package have %d screenshot."
+msgid_plural "This package have %d screenshots."
+msgstr[0] "軟件包截圖 %d 張"
+
+#: manage/view.php:103
+msgid "New Screenshot"
+msgstr "新增截圖"
+
+#: manage/view.php:105
+msgid "Batch Upload"
+msgstr "批量上傳"
+
+#: manage/view.php:106
+msgid "Select Picture"
+msgstr "選擇圖片"
+
+#: manage/view.php:122
+msgid "Are you sure you want to delete this screenshot?"
+msgstr "您要徹底刪掉這張截圖嗎？"
+
+#: system/languages/l10n.php:706
+msgctxt "language"
+msgid "Afrikaans"
+msgstr "南非文"
+
+#: system/languages/l10n.php:707
+msgctxt "language"
+msgid "Albanian"
+msgstr "阿尔巴尼亚文"
+
+#: system/languages/l10n.php:708
+msgctxt "language"
+msgid "Arabic (Algeria)"
+msgstr "阿拉伯文 (阿尔及利亚)"
+
+#: system/languages/l10n.php:709
+msgctxt "language"
+msgid "Arabic (Bahrain)"
+msgstr "阿拉伯文 (巴林)"
+
+#: system/languages/l10n.php:710
+msgctxt "language"
+msgid "Arabic (Egypt)"
+msgstr "阿拉伯文 (埃及)"
+
+#: system/languages/l10n.php:711
+msgctxt "language"
+msgid "Arabic (Iraq)"
+msgstr "阿拉伯文 (伊拉克)"
+
+#: system/languages/l10n.php:712
+msgctxt "language"
+msgid "Arabic (Jordan)"
+msgstr "阿拉伯文 (约旦)"
+
+#: system/languages/l10n.php:713
+msgctxt "language"
+msgid "Arabic (Kuwait)"
+msgstr "阿拉伯文 (科威特)"
+
+#: system/languages/l10n.php:714
+msgctxt "language"
+msgid "Arabic (Lebanon)"
+msgstr "阿拉伯文 (黎巴嫩)"
+
+#: system/languages/l10n.php:715
+msgctxt "language"
+msgid "Arabic (libya)"
+msgstr "阿拉伯文 (利比亚)"
+
+#: system/languages/l10n.php:716
+msgctxt "language"
+msgid "Arabic (Morocco)"
+msgstr "阿拉伯文 (摩洛哥)"
+
+#: system/languages/l10n.php:717
+msgctxt "language"
+msgid "Arabic (Oman)"
+msgstr "阿拉伯文 (阿曼)"
+
+#: system/languages/l10n.php:718
+msgctxt "language"
+msgid "Arabic (Qatar)"
+msgstr "阿拉伯文 (卡塔尔)"
+
+#: system/languages/l10n.php:719
+msgctxt "language"
+msgid "Arabic (Saudi Arabia)"
+msgstr "阿拉伯文 (沙特阿拉伯)"
+
+#: system/languages/l10n.php:720
+msgctxt "language"
+msgid "Arabic (Syria)"
+msgstr "阿拉伯文 (叙利亚)"
+
+#: system/languages/l10n.php:721
+msgctxt "language"
+msgid "Arabic (Tunisia)"
+msgstr "阿拉伯文 (突尼斯)"
+
+#: system/languages/l10n.php:722
+msgctxt "language"
+msgid "Arabic (U.A.E.)"
+msgstr "阿拉伯文 (阿拉伯联合酋长国) "
+
+#: system/languages/l10n.php:723
+msgctxt "language"
+msgid "Arabic (Yemen)"
+msgstr "阿拉伯文 (也门)"
+
+#: system/languages/l10n.php:724
+msgctxt "language"
+msgid "Arabic"
+msgstr "阿拉伯文"
+
+#: system/languages/l10n.php:725
+msgctxt "language"
+msgid "Armenian"
+msgstr "亚美尼亚文"
+
+#: system/languages/l10n.php:726
+msgctxt "language"
+msgid "Assamese"
+msgstr "阿萨姆文"
+
+#: system/languages/l10n.php:727
+msgctxt "language"
+msgid "Azeri"
+msgstr "阿塞拜疆文"
+
+#: system/languages/l10n.php:728
+msgctxt "language"
+msgid "Basque"
+msgstr "巴斯克文"
+
+#: system/languages/l10n.php:729
+msgctxt "language"
+msgid "Belarusian"
+msgstr "白俄罗斯文"
+
+#: system/languages/l10n.php:730
+msgctxt "language"
+msgid "Bengali"
+msgstr "孟加拉文"
+
+#: system/languages/l10n.php:731
+msgctxt "language"
+msgid "Bulgarian"
+msgstr "保加利亚文"
+
+#: system/languages/l10n.php:732
+msgctxt "language"
+msgid "Catalan"
+msgstr "加泰隆文"
+
+#: system/languages/l10n.php:733
+msgctxt "language"
+msgid "Chinese (China)"
+msgstr "中文 (中国)"
+
+#: system/languages/l10n.php:734
+msgctxt "language"
+msgid "Chinese (Hong Kong SAR)"
+msgstr "中文 (香港特别行政区)"
+
+#: system/languages/l10n.php:735
+msgctxt "language"
+msgid "Chinese (Macau SAR)"
+msgstr "中文 (澳门特别行政区)"
+
+#: system/languages/l10n.php:736
+msgctxt "language"
+msgid "Chinese (Singapore)"
+msgstr "中文 (新加坡)"
+
+#: system/languages/l10n.php:737
+msgctxt "language"
+msgid "Chinese (Taiwan)"
+msgstr "中文 (台湾)"
+
+#: system/languages/l10n.php:738
+msgctxt "language"
+msgid "Chinese (Simplified)"
+msgstr "中文 (简体)"
+
+#: system/languages/l10n.php:739
+msgctxt "language"
+msgid "Chinese (Traditional)"
+msgstr "中文 (繁体)"
+
+#: system/languages/l10n.php:740
+msgctxt "language"
+msgid "Chinese"
+msgstr "中文"
+
+#: system/languages/l10n.php:741
+msgctxt "language"
+msgid "Croatian"
+msgstr "克罗地亚文"
+
+#: system/languages/l10n.php:742
+msgctxt "language"
+msgid "Czech"
+msgstr "捷克文"
+
+#: system/languages/l10n.php:743
+msgctxt "language"
+msgid "Danish"
+msgstr "丹麦文"
+
+#: system/languages/l10n.php:744
+msgctxt "language"
+msgid "Divehi"
+msgstr "迪维希文"
+
+#: system/languages/l10n.php:745
+msgctxt "language"
+msgid "Dutch (Belgium)"
+msgstr "荷兰文 (比利时)"
+
+#: system/languages/l10n.php:746
+msgctxt "language"
+msgid "Dutch (Netherlands)"
+msgstr "荷兰文 (荷兰)"
+
+#: system/languages/l10n.php:747
+msgctxt "language"
+msgid "English (Australia)"
+msgstr "英文 (澳大利亚)"
+
+#: system/languages/l10n.php:748
+msgctxt "language"
+msgid "English (Belize)"
+msgstr "英文 (伯利兹)"
+
+#: system/languages/l10n.php:749
+msgctxt "language"
+msgid "English (Canada)"
+msgstr "英文 (加拿大)"
+
+#: system/languages/l10n.php:750
+msgctxt "language"
+msgid "English (Ireland)"
+msgstr "英文 (爱尔兰)"
+
+#: system/languages/l10n.php:751
+msgctxt "language"
+msgid "English (Jamaica)"
+msgstr "英文 (牙买加)"
+
+#: system/languages/l10n.php:752
+msgctxt "language"
+msgid "English (New Zealand)"
+msgstr "英文 (新西兰)"
+
+#: system/languages/l10n.php:753
+msgctxt "language"
+msgid "English (Philippines)"
+msgstr "英文 (菲律宾)"
+
+#: system/languages/l10n.php:754
+msgctxt "language"
+msgid "English (South Africa)"
+msgstr "英文 (南非)"
+
+#: system/languages/l10n.php:755
+msgctxt "language"
+msgid "English (Trinidad)"
+msgstr "英文 (特立尼达)"
+
+#: system/languages/l10n.php:756
+msgctxt "language"
+msgid "English (United Kingdom)"
+msgstr "英文 (英国)"
+
+#: system/languages/l10n.php:757 system/languages/l10n.php:760
+msgctxt "language"
+msgid "English (United States)"
+msgstr "英文 (美国)"
+
+#: system/languages/l10n.php:758
+msgctxt "language"
+msgid "English (Zimbabwe)"
+msgstr "英语 (津巴布韦)"
+
+#: system/languages/l10n.php:761
+msgctxt "language"
+msgid "Estonian"
+msgstr "爱沙尼亚文"
+
+#: system/languages/l10n.php:762
+msgctxt "language"
+msgid "Faeroese"
+msgstr "法罗文"
+
+#: system/languages/l10n.php:763
+msgctxt "language"
+msgid "Farsi"
+msgstr "波斯文"
+
+#: system/languages/l10n.php:764
+msgctxt "language"
+msgid "Finnish"
+msgstr "芬兰文"
+
+#: system/languages/l10n.php:765
+msgctxt "language"
+msgid "French (Belgium)"
+msgstr "法文 (比利时)"
+
+#: system/languages/l10n.php:766
+msgctxt "language"
+msgid "French (Canada)"
+msgstr "法文 (加拿大)"
+
+#: system/languages/l10n.php:767
+msgctxt "language"
+msgid "French (Luxembourg)"
+msgstr "法文 (卢森堡)"
+
+#: system/languages/l10n.php:768
+msgctxt "language"
+msgid "French (Monaco)"
+msgstr "法文 (摩纳哥)"
+
+#: system/languages/l10n.php:769
+msgctxt "language"
+msgid "French (Switzerland)"
+msgstr "法文 (瑞士)"
+
+#: system/languages/l10n.php:770
+msgctxt "language"
+msgid "French (France)"
+msgstr "法语 (法国)"
+
+#: system/languages/l10n.php:771
+msgctxt "language"
+msgid "FYRO Macedonian"
+msgstr "马其顿文"
+
+#: system/languages/l10n.php:772
+msgctxt "language"
+msgid "Gaelic"
+msgstr "苏格兰盖尔文"
+
+#: system/languages/l10n.php:773
+msgctxt "language"
+msgid "Georgian"
+msgstr "格鲁吉亚文"
+
+#: system/languages/l10n.php:774
+msgctxt "language"
+msgid "German (Austria)"
+msgstr "德文 (奥地利)"
+
+#: system/languages/l10n.php:775
+msgctxt "language"
+msgid "German (Liechtenstein)"
+msgstr "德文 (列支敦士登)"
+
+#: system/languages/l10n.php:776
+msgctxt "language"
+msgid "German (Luxembourg)"
+msgstr "德文 (卢森堡)"
+
+#: system/languages/l10n.php:777
+msgctxt "language"
+msgid "German (Switzerland)"
+msgstr "德文 (瑞士)"
+
+#: system/languages/l10n.php:778
+msgctxt "language"
+msgid "German (Germany)"
+msgstr "德文 (德国)"
+
+#: system/languages/l10n.php:779
+msgctxt "language"
+msgid "Greek"
+msgstr "现代希腊语"
+
+#: system/languages/l10n.php:780
+msgctxt "language"
+msgid "Gujarati"
+msgstr "古吉拉特文"
+
+#: system/languages/l10n.php:781
+msgctxt "language"
+msgid "Hebrew"
+msgstr "希伯来文"
+
+#: system/languages/l10n.php:782
+msgctxt "language"
+msgid "Hindi"
+msgstr "印地文"
+
+#: system/languages/l10n.php:783
+msgctxt "language"
+msgid "Hungarian"
+msgstr "希里莫图文"
+
+#: system/languages/l10n.php:784
+msgctxt "language"
+msgid "Icelandic"
+msgstr "冰岛文"
+
+#: system/languages/l10n.php:785
+msgctxt "language"
+msgid "Indonesian"
+msgstr "印尼文"
+
+#: system/languages/l10n.php:786
+msgctxt "language"
+msgid "Italian (Switzerland)"
+msgstr "意大利文 (瑞士)"
+
+#: system/languages/l10n.php:787
+msgctxt "language"
+msgid "Italian (Italy)"
+msgstr "意大利文 (意大利)"
+
+#: system/languages/l10n.php:788
+msgctxt "language"
+msgid "Japanese"
+msgstr "日文"
+
+#: system/languages/l10n.php:789
+msgctxt "language"
+msgid "Kannada"
+msgstr "坎纳达文"
+
+#: system/languages/l10n.php:790
+msgctxt "language"
+msgid "Kazakh"
+msgstr "哈萨克文"
+
+#: system/languages/l10n.php:791
+msgctxt "language"
+msgid "Konkani"
+msgstr "孔卡尼文"
+
+#: system/languages/l10n.php:792
+msgctxt "language"
+msgid "Korean"
+msgstr "韩文"
+
+#: system/languages/l10n.php:793
+msgctxt "language"
+msgid "Kyrgyz"
+msgstr "吉尔吉斯斯坦语"
+
+#: system/languages/l10n.php:794
+msgctxt "language"
+msgid "Latvian"
+msgstr "拉脱维亚文"
+
+#: system/languages/l10n.php:795
+msgctxt "language"
+msgid "Lithuanian"
+msgstr "立陶宛文"
+
+#: system/languages/l10n.php:796
+msgctxt "language"
+msgid "Malay"
+msgstr "马来文"
+
+#: system/languages/l10n.php:797
+msgctxt "language"
+msgid "Malayalam"
+msgstr "马拉亚拉姆文"
+
+#: system/languages/l10n.php:798
+msgctxt "language"
+msgid "Maltese"
+msgstr "马耳他文"
+
+#: system/languages/l10n.php:799
+msgctxt "language"
+msgid "Marathi"
+msgstr "马拉提文"
+
+#: system/languages/l10n.php:800
+msgctxt "language"
+msgid "Mongolian (Cyrillic)"
+msgstr "蒙古文 (西里尔字母)"
+
+#: system/languages/l10n.php:801
+msgctxt "language"
+msgid "Nepali (India)"
+msgstr "尼泊尔文 (印度)"
+
+#: system/languages/l10n.php:802 system/languages/l10n.php:804
+msgctxt "language"
+msgid "Norwegian (Bokmal)"
+msgstr "挪威布克莫尔文"
+
+#: system/languages/l10n.php:803
+msgctxt "language"
+msgid "Norwegian (Nynorsk)"
+msgstr "新挪威文"
+
+#: system/languages/l10n.php:805
+msgctxt "language"
+msgid "Oriya"
+msgstr "奥利亚文"
+
+#: system/languages/l10n.php:806
+msgctxt "language"
+msgid "Polish"
+msgstr "波兰语"
+
+#: system/languages/l10n.php:807
+msgctxt "language"
+msgid "Portuguese (Brazil)"
+msgstr "葡萄牙文 (巴西)"
+
+#: system/languages/l10n.php:808
+msgctxt "language"
+msgid "Portuguese (Portugal)"
+msgstr "葡萄牙文 (葡萄牙)"
+
+#: system/languages/l10n.php:809
+msgctxt "language"
+msgid "Punjabi"
+msgstr "旁遮普文"
+
+#: system/languages/l10n.php:810
+msgctxt "language"
+msgid "Rhaeto-Romanic"
+msgstr "利托-罗曼文"
+
+#: system/languages/l10n.php:811
+msgctxt "language"
+msgid "Romanian (Moldova)"
+msgstr "罗马尼亚文 (摩尔多瓦)"
+
+#: system/languages/l10n.php:812
+msgctxt "language"
+msgid "Romanian"
+msgstr "罗马尼亚文"
+
+#: system/languages/l10n.php:813
+msgctxt "language"
+msgid "Russian (Moldova)"
+msgstr "俄文 (摩尔多瓦)"
+
+#: system/languages/l10n.php:814
+msgctxt "language"
+msgid "Russian"
+msgstr "俄文"
+
+#: system/languages/l10n.php:815
+msgctxt "language"
+msgid "Sanskrit"
+msgstr "梵文"
+
+#: system/languages/l10n.php:816
+msgctxt "language"
+msgid "Serbian"
+msgstr "塞尔维亚文"
+
+#: system/languages/l10n.php:817
+msgctxt "language"
+msgid "Slovak"
+msgstr "斯洛伐克文"
+
+#: system/languages/l10n.php:818
+msgctxt "language"
+msgid "Slovenian"
+msgstr "斯洛文尼亚文"
+
+#: system/languages/l10n.php:819
+msgctxt "language"
+msgid "Sorbian"
+msgstr "索布文"
+
+#: system/languages/l10n.php:820
+msgctxt "language"
+msgid "Spanish (Argentina)"
+msgstr "西班牙文 (阿根廷)"
+
+#: system/languages/l10n.php:821
+msgctxt "language"
+msgid "Spanish (Bolivia)"
+msgstr "西班牙文 (玻利维亚)"
+
+#: system/languages/l10n.php:822
+msgctxt "language"
+msgid "Spanish (Chile)"
+msgstr "西班牙文 (智利)"
+
+#: system/languages/l10n.php:823
+msgctxt "language"
+msgid "Spanish (Colombia)"
+msgstr "西班牙文 (哥伦比亚)"
+
+#: system/languages/l10n.php:824
+msgctxt "language"
+msgid "Spanish (Costa Rica)"
+msgstr "西班牙文 (哥斯达黎加)"
+
+#: system/languages/l10n.php:825
+msgctxt "language"
+msgid "Spanish (Dominican Republic)"
+msgstr "西班牙文 (多米尼加)"
+
+#: system/languages/l10n.php:826
+msgctxt "language"
+msgid "Spanish (Ecuador)"
+msgstr "西班牙文 (厄瓜多尔)"
+
+#: system/languages/l10n.php:827
+msgctxt "language"
+msgid "Spanish (El Salvador)"
+msgstr "西班牙文 (萨尔瓦多)"
+
+#: system/languages/l10n.php:828
+msgctxt "language"
+msgid "Spanish (Guatemala)"
+msgstr "西班牙文 (危地马拉)"
+
+#: system/languages/l10n.php:829
+msgctxt "language"
+msgid "Spanish (Honduras)"
+msgstr "西班牙文 (洪都拉斯)"
+
+#: system/languages/l10n.php:830
+msgctxt "language"
+msgid "Spanish (Mexico)"
+msgstr "西班牙文 (墨西哥)"
+
+#: system/languages/l10n.php:831
+msgctxt "language"
+msgid "Spanish (Nicaragua)"
+msgstr "西班牙文 (尼加拉瓜)"
+
+#: system/languages/l10n.php:832
+msgctxt "language"
+msgid "Spanish (Panama)"
+msgstr "西班牙文 (巴拿马)"
+
+#: system/languages/l10n.php:833
+msgctxt "language"
+msgid "Spanish (Paraguay)"
+msgstr "西班牙文 (巴拉圭)"
+
+#: system/languages/l10n.php:834
+msgctxt "language"
+msgid "Spanish (Peru)"
+msgstr "西班牙文 (秘鲁)"
+
+#: system/languages/l10n.php:835
+msgctxt "language"
+msgid "Spanish (Puerto Rico)"
+msgstr "西班牙文 (波多黎各)"
+
+#: system/languages/l10n.php:836
+msgctxt "language"
+msgid "Spanish (United States)"
+msgstr "西班牙文 (美国)"
+
+#: system/languages/l10n.php:837
+msgctxt "language"
+msgid "Spanish (Uruguay)"
+msgstr "西班牙文 (乌拉圭)"
+
+#: system/languages/l10n.php:838
+msgctxt "language"
+msgid "Spanish (Venezuela)"
+msgstr "西班牙文 (委内瑞拉)"
+
+#: system/languages/l10n.php:839
+msgctxt "language"
+msgid "Spanish (Traditional Sort)"
+msgstr "西班牙文 (传统排序)"
+
+#: system/languages/l10n.php:840
+msgctxt "language"
+msgid "Sutu"
+msgstr "Sutu"
+
+#: system/languages/l10n.php:841
+msgctxt "language"
+msgid "Swahili"
+msgstr "斯瓦希里文"
+
+#: system/languages/l10n.php:842
+msgctxt "language"
+msgid "Swedish (Finland)"
+msgstr "瑞典文 (芬兰)"
+
+#: system/languages/l10n.php:843
+msgctxt "language"
+msgid "Swedish"
+msgstr "瑞典文"
+
+#: system/languages/l10n.php:844
+msgctxt "language"
+msgid "Syriac"
+msgstr "古叙利亚文"
+
+#: system/languages/l10n.php:845
+msgctxt "language"
+msgid "Tamil"
+msgstr "泰米尔文"
+
+#: system/languages/l10n.php:846
+msgctxt "language"
+msgid "Tatar"
+msgstr "塔塔尔文"
+
+#: system/languages/l10n.php:847
+msgctxt "language"
+msgid "Telugu"
+msgstr "泰卢固文"
+
+#: system/languages/l10n.php:848
+msgctxt "language"
+msgid "Thai"
+msgstr "泰文"
+
+#: system/languages/l10n.php:849
+msgctxt "language"
+msgid "Tsonga"
+msgstr "宗加文"
+
+#: system/languages/l10n.php:850
+msgctxt "language"
+msgid "Tswana"
+msgstr "塞茨瓦纳文"
+
+#: system/languages/l10n.php:851
+msgctxt "language"
+msgid "Turkish"
+msgstr "土耳其文"
+
+#: system/languages/l10n.php:852
+msgctxt "language"
+msgid "Ukrainian"
+msgstr "乌克兰文"
+
+#: system/languages/l10n.php:853
+msgctxt "language"
+msgid "Urdu"
+msgstr "乌尔都文"
+
+#: system/languages/l10n.php:854
+msgctxt "language"
+msgid "Uzbek"
+msgstr "乌兹别克文"
+
+#: system/languages/l10n.php:855
+msgctxt "language"
+msgid "Uyghurche (China)"
+msgstr "维吾尔语 (中国)"
+
+#: system/languages/l10n.php:856
+msgctxt "language"
+msgid "Vietnamese"
+msgstr "越南文"
+
+#: system/languages/l10n.php:857
+msgctxt "language"
+msgid "Xhosa"
+msgstr "科萨文"
+
+#: system/languages/l10n.php:858
+msgctxt "language"
+msgid "Yiddish"
+msgstr "依地文"
+
+#: system/languages/l10n.php:859
+msgctxt "language"
+msgid "Zulu"
+msgstr "祖鲁语"
+
+#~ msgid ""
+#~ "It is hidden in the page, you should change 'Detailed Description' option "
+#~ "in settings if you want show this."
+#~ msgstr "该栏已隐藏，如果您想显示它，您需要在设置中更改'详细描述'选项。"
+
+#~ msgid "If leave a blank will do not display."
+#~ msgstr "留空则不显示。"
+
+#~ msgid "Select"
+#~ msgstr "选择"
+
+#~ msgid ""
+#~ "If you have enabled mod_xsendfile on Apache or configured \"allow-x-send-"
+#~ "file\" option on Lighttpd,<br/> and DCRM not automatically enable x-"
+#~ "sendfile function, you can enable that in here.<br><b>WARNING:</b> If you "
+#~ "don't know what this is, please make this off, otherwise packages "
+#~ "download may not work."
+#~ msgstr ""
+#~ "如果您已启用了 Apache 的 mod_xsendfile 或已在 Lighttpd 上配置好 \"allow-x-"
+#~ "send-file\" 选项，<br/>若 DCRM 没有自动启用 x-sendfile 功能，您可以在此开"
+#~ "启。<br><b>注意:</b> 如果您不知道这是什么，请保持关闭状态，否则软件包可能"
+#~ "无法正常下载。"
+
+#~ msgid "Database Error!"
+#~ msgstr "数据库错误！"
+
+#~ msgid ""
+#~ "This program is free software, you can redistribute it and/or modify it "
+#~ "under the terms of the <a href=\"http://www.gnu.org/licenses\">GNU "
+#~ "General Public License</a> as published by the Free Software Foundation "
+#~ "either version 3 of the License."
+#~ msgstr ""
+#~ "本程序是自由软件，修改和重新发布应该遵照自由软件基金会出版的 <a href="
+#~ "\"http://www.gnu.org/licenses\">GNU 通用公共许可证条款第三版</a>。"
+
+#~ msgid "'%s' already exists"
+#~ msgstr "'%s' 已经存在"
+
+#~ msgid "'%s' uploaded successfully!"
+#~ msgstr "'%s' 上传成功！"
+
+#~ msgid "'%s' upload failed!"
+#~ msgstr "'%s' 上传失败！"
+
+#~ msgid "Displayed on the homepage for the user to add."
+#~ msgstr "展示在首页供用户添加"
+
+#~ msgid "Too high: Maximum of '20'"
+#~ msgstr "过高：最大不得超过 20"
+
+#~ msgid "The maximum must not exceed 20."
+#~ msgstr "最大不得超过 20 条"
+
+#~ msgid "General Editor"
+#~ msgstr "常规编辑"
+
+#~ msgid "Settings"
+#~ msgstr "设置"
+
+#~ msgctxt "SEO"
+#~ msgid "Domain"
+#~ msgstr "SEO 域名"
