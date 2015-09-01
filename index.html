@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset='utf-8'>
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link href='https://fonts.googleapis.com/css?family=Architects+Daughter' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="stylesheets/github-light.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="stylesheets/print.css" media="print">
+
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+    <title>WEIPDCRM by Lessica</title>
+  </head>
+
+  <body>
+    <header>
+      <div class="inner">
+        <h1>WEIPDCRM</h1>
+        <h2>Wonderful Cydia Repo (APT) Builder &amp; Manager.</h2>
+        <a href="https://github.com/Lessica/WEIPDCRM" class="button"><small>View project on</small> GitHub</a>
+      </div>
+    </header>
+
+    <div id="content-wrapper">
+      <div class="inner clearfix">
+        <section id="main-content">
+          <h1>
+<a id="weipdcrm" class="anchor" href="#weipdcrm" aria-hidden="true"><span class="octicon octicon-link"></span></a>WEIPDCRM</h1>
+
+<p>Darwin Cydia Repository Manager</p>
+
+<p>This is an open source Repository Manager for Saurik's Cydia™ Clients.<br>
+This program is re-designed from tibounise's "<a href="https://github.com/tibounise/DCRM">DCRM</a>", and we add almost 95% functions for a wonderful repository.</p>
+
+<h2>
+<a id="online-view" class="anchor" href="#online-view" aria-hidden="true"><span class="octicon octicon-link"></span></a>Online View:</h2>
+
+<ol>
+<li> <a href="http://apt.82flex.com">http://apt.82flex.com</a>
+</li>
+<li> <a href="http://apt.touchsprite.com">http://apt.touchsprite.com</a>
+</li>
+<li> <a href="http://apt.phoneai.cn">http://apt.phoneai.cn</a>
+</li>
+<li> <a href="http://cydia.so">http://cydia.so</a>
+</li>
+<li> <a href="http://cydia.minwenlsm.pw">http://cydia.minwenlsm.pw</a>
+</li>
+</ol>
+
+<h2>
+<a id="requirements" class="anchor" href="#requirements" aria-hidden="true"><span class="octicon octicon-link"></span></a>Requirements:</h2>
+
+<ol>
+<li>PHP Version &gt;= 5.3 and MySQL</li>
+<li>GD and BZ2 supports</li>
+<li>Nginx, Apache or Lighttpd</li>
+</ol>
+
+<h2>
+<a id="how-to-install-and-use" class="anchor" href="#how-to-install-and-use" aria-hidden="true"><span class="octicon octicon-link"></span></a>How To Install And Use:</h2>
+
+<ol>
+<li> Upload <code>/main/*</code> to your wwwroot then give them read &amp; write privileges.</li>
+<li> <strong>Nginx:</strong> Move <code>/readme.files/dcrm_nginx.conf</code> to Nginx's config directory, then include it in your website's config.<br><strong>Lighttpd:</strong> Include <code>/readme.files/dcrm_lighttpd.conf</code>.</li>
+<li> Restart your web server if you need.</li>
+<li> Open <code>http://{YOUR_REPO_URL}/install</code> to pre-config and install DCRM.</li>
+<li> Then login at <code>http://{YOUR_REPO_URL}/manage</code>.</li>
+<li> Fill blanks in <code>http://{YOUR_REPO_URL}/manage/settings.php</code> and <code>http://{YOUR_REPO_URL}/manage/release.php</code>
+</li>
+<li> Upload a package then import it or replace an older version, then you can edit its information <em>(such as Identifier, Author, Name, Depends, etc.)</em>.</li>
+<li> Edit the information of packages freely, click the title of each column and it will be autofilled. WEIPDCRM has a well organized depiction page, and you can add screenshots by clicking the title of a package.</li>
+<li> Click "<em>Show this package</em>" or "<em>Hide this package</em>" to make a package visible or not.</li>
+<li> When all is prepared, click the "<em>Build</em>" button at the right-top.</li>
+<li> Add your repository in Cydia™.</li>
+</ol>
+
+<h2>
+<a id="how-to-upgrade" class="anchor" href="#how-to-upgrade" aria-hidden="true"><span class="octicon octicon-link"></span></a>How To Upgrade</h2>
+
+<h4>
+<a id="15-pro-or-latter" class="anchor" href="#15-pro-or-latter" aria-hidden="true"><span class="octicon octicon-link"></span></a>1.5 Pro or latter</h4>
+
+<p>Just upload files you get to replace. Then visit your repository homepage. It will auto update the database and configuration.</p>
+
+<h4>
+<a id="earlier-than-15-pro" class="anchor" href="#earlier-than-15-pro" aria-hidden="true"><span class="octicon octicon-link"></span></a>Earlier than 1.5 Pro</h4>
+
+<p>Upload and replace files without <code>init</code> directory, <code>config.inc.php</code> and <code>connect.php</code> to Site Directory.
+Depending on the order execution database commands from <code>update.log</code>.</p>
+
+<h2>
+<a id="donations" class="anchor" href="#donations" aria-hidden="true"><span class="octicon octicon-link"></span></a>Donations</h2>
+
+<p>WEIPDCRM Basic and WEIPDCRM Pro are both free software, but you can donate to support the developer.</p>
+
+<p><strong>82Flex:</strong> <a href="http://82flex.com/about">http://82flex.com/about</a></p>
+
+<p><strong>Hintay:</strong><br>
+Paypal: <a href="https://www.paypal.com/cgi-bin/webscr?cmd=_donations&amp;business=ljf120%40gmail%2ecom&amp;item_name=Hintay&amp;item_number=WEIPDCRM&amp;no_note=0&amp;currency_code=USD"><img src="https://www.paypalobjects.com/en_US/i/btn/btn_donate_LG.gif" alt="Paypal"></a><br>
+Alipay: <a href="http://blog.kugeek.com/go/alipay.html"><img width="90" alt="Alipay" src="https://i.alipayobjects.com/i/ecmng/png/201405/2hsDKdMEqL.png"></a></p>
+
+<h2>
+<a id="license" class="anchor" href="#license" aria-hidden="true"><span class="octicon octicon-link"></span></a>License</h2>
+
+<p>Copyright © 2013-2015 Zheng Wu &amp; Hintay</p>
+
+<p>The program is distributed under the terms of the GNU Affero General Public License.</p>
+
+<p>This program is free software: you can redistribute it and/or modify it under the terms of the GNU Affero General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.</p>
+
+<p>This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU Affero General Public License for more details.</p>
+
+<p>You should have received a copy of the GNU Affero General Public License along with this program.  If not, see <a href="http://www.gnu.org/licenses/">http://www.gnu.org/licenses/</a>.</p>
+
+<p>We also offer a commercial license and technical supports, contact <a href="mailto:i.82@me.com">i.82@me.com</a> for more details.</p>
+        </section>
+
+        <aside id="sidebar">
+          <a href="https://github.com/Lessica/WEIPDCRM/zipball/master" class="button">
+            <small>Download</small>
+            .zip file
+          </a>
+          <a href="https://github.com/Lessica/WEIPDCRM/tarball/master" class="button">
+            <small>Download</small>
+            .tar.gz file
+          </a>
+
+          <p class="repo-owner"><a href="https://github.com/Lessica/WEIPDCRM"></a> is maintained by <a href="https://github.com/Lessica">Lessica</a>.</p>
+
+          <p>This page was generated by <a href="https://pages.github.com">GitHub Pages</a> using the Architect theme by <a href="https://twitter.com/jasonlong">Jason Long</a>.</p>
+        </aside>
+      </div>
+    </div>
+
+  
+  </body>
+</html>
