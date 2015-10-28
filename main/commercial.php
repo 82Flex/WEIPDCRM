@@ -19,6 +19,7 @@
  * along with WEIPDCRM.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+require_once('system/common.inc.php');
 base_url();
 if(isset($_GET['action'])){
 	switch($_GET['action']){
