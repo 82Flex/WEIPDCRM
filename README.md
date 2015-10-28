@@ -4,12 +4,10 @@ Darwin Cydia Repository Manager
 This is an open source Repository Manager for Saurik's Cydia™ Clients.  
 This program is re-designed from tibounise's "[DCRM](https://github.com/tibounise/DCRM)", and we add almost 95% functions for a wonderful repository.
 
-##Online View:
+##Preview:
 1.  http://apt.82flex.com
 2.  http://apt.touchsprite.com
-3.  http://apt.phoneai.cn
-4.  http://cydia.so
-5.  http://cydia.minwenlsm.pw
+3.  http://cydia.minwenlsm.pw
 
 ##Requirements:
 1. PHP Version >= 5.3 and MySQL
@@ -39,7 +37,7 @@ Depending on the order execution database commands from `update.log`.
 ##Donations
 WEIPDCRM Basic and WEIPDCRM Pro are both free software, but you can donate to support the developer.
 
-**82Flex:** http://82flex.com/about
+**i_82:** http://82flex.com/about
 
 **Hintay:**  
 Paypal: [![Paypal](https://www.paypalobjects.com/en_US/i/btn/btn_donate_LG.gif)](https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=ljf120%40gmail%2ecom&item_name=Hintay&item_number=WEIPDCRM&no_note=0&currency_code=USD)  

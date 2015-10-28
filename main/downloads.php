@@ -1,5 +1,9 @@
 <?php
 /**
+ * DCRM Debian Download Router
+ * Copyright (c) 2015 Hintay <hintay@me.com>
+ * Copyright (c) 2015 i_82 <i.82@me.com>
+ *
  * This file is part of WEIPDCRM.
  * 
  * WEIPDCRM is free software: you can redistribute it and/or modify
@@ -15,8 +19,6 @@
  * You should have received a copy of the GNU Affero General Public License
  * along with WEIPDCRM.  If not, see <http://www.gnu.org/licenses/>.
  */
-
-/* DCRM Debian Download */
 
 $_customct = true;
 if (!file_exists('./system/config/connect.inc.php')) {
@@ -110,6 +112,7 @@ if (!empty($_GET['request']) AND (!empty($_SERVER['HTTP_X_UNIQUE_ID']) OR DCRM_D
 				switch($webserver[0]){
 					case 'nginx':
 						xsendfile_header('X-Accel-Redirect');
+						break;
 					case 'Apache':
 						if (function_exists('apache_get_modules')){
 							$Mods = apache_get_modules();
@@ -121,14 +124,15 @@ if (!empty($_GET['request']) AND (!empty($_SERVER['HTTP_X_UNIQUE_ID']) OR DCRM_D
 						}
 						if(file_exists(ROOT.'downloads/.htaccess'))
 							unlink(ROOT.'downloads/.htaccess');
+						break;
 					case 'Lighttpd':
 						if($module_enabled == 2) {
 							xsendfile_header('X-LIGHTTPD-send-file');
 						}
-					default:
-						header('Location: '.$sitepath.$download_path);
-						exit();
+						break;
 				}
+				header('Location: '.$sitepath.$download_path);
+				exit();
 			}
 		} else {
 			httpinfo(404);
