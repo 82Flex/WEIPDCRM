@@ -19,16 +19,17 @@
  * along with WEIPDCRM.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-require_once('system/common.inc.php');
-base_url();
 if(isset($_GET['action'])){
 	switch($_GET['action']){
 		// 支付宝跳转
 		case 'alipay_go':
 			// XSS过滤
-			foreach($_GET as $key => $value){
-				$clan_data[$key] = xss_clean($value);
+			if(!function_exists('xss_clean')){
+				if(!defined('IN_DCRM')) define('IN_DCRM', true);
+				require_once('system/function/core.php');
 			}
+			foreach($_GET as $key => $value)
+				$clan_data[$key] = xss_clean($value);
 ?>
 <form id="alipay" accept-charset="GBK" method="POST" action="https://shenghuo.alipay.com/send/payment/fill.htm">
 	<?php if(isset($_GET['optEmail'])): ?><input type="hidden" value="<?php echo($clan_data['optEmail']); ?>" name="optEmail"><?php endif; ?>
@@ -45,6 +46,8 @@ postForm.submit();
 <?php
 			exit();
 			break;
+		default:
+			exit('Invalid parameter');
 	}
 }
 
@@ -52,7 +55,11 @@ if (!isset($package_info)) {
 	if(!isset($_GET['Package']))
 		exit();
 
-	require_once('system/common.inc.php');
+	if(!defined('SYSTEM_STARTED')){
+		require_once('system/common.inc.php');
+		base_url();
+	}
+
 	if(!isset($detect)){
 		class_loader('Mobile_Detect');
 		$detect = new Mobile_Detect;
