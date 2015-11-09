@@ -183,3 +183,5 @@ section.section .section-header{padding-bottom:50px}
 section.section .section-header>.section-title{display:inline-block;margin:0;text-transform:uppercase}
 section.section .section-header>.section-title:after{position:relative;display:block;content:'';height:3px;width:50%;margin:10px auto 0 auto;background-color:#ecf0f1}
 section.section .section-header.no-border>.section-title:after{display:none}
+#particles {height:100%;width:100%;position:absolute;top:0;z-index:-1}
+#particles canvas {display:block;vertical-align:bottom}

@@ -274,7 +274,7 @@ if (!isset($_SESSION['try']) OR $_SESSION['try'] <= DCRM_MAXLOGINFAIL) {
 						<hr><!-- 水平线 -->
 
 						<p class="text-muted text-center">Copyrght &copy; <?php echo(date('Y')); echo defined("AUTOFILL_SEO") ? ' '.htmlspecialchars(AUTOFILL_SEO) : ''; ?></p>
-						<p class="text-muted text-center">Powered by WEIPDCRM</p>
+						<p class="text-muted text-center">Powered by <a style="color: #777;" href="https://github.com/82Flex/WEIPDCRM">WEIPDCRM</a></p>
 					</div>
 				</div>
 				<!--/ 结束 行 -->
@@ -290,9 +290,10 @@ if (!isset($_SESSION['try']) OR $_SESSION['try'] <= DCRM_MAXLOGINFAIL) {
 		<!--/ 应用及底层脚本：强制 -->
 
 		<!-- 插件及页面脚本：可选 -->
+		<script type="text/javascript" src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
 		<script type="text/javascript" src="./javascript/pace.min.js"></script>
 		<script type="text/javascript" src="./plugins/parsley/parsley.min.js"></script>
-		<script type="text/javascript" src="./javascript/backend/login.js"></script>
+		<script type="text/javascript" src="./javascript/backend/login.min.js"></script>
 <?php
 if(isset($error))
 	echo '<script type="text/javascript">$(document).ready(function(){animation();});</script>'
