@@ -205,6 +205,15 @@ if (isset($_SESSION['connected']) && $_SESSION['connected'] === true) {
 							</div>
 						</div>
 						<br />
+						<div class="group-control">
+							<label class="control-label"><?php _e('Compatibility'); ?></label>
+							<div class="controls">
+					        iOS<input type="text" style="width: 30px;" name="Minimum_System_Support" value="<?php if (!empty($edit_info['Minimum_System_Support'])) {echo htmlspecialchars($edit_info['Minimum_System_Support']);} ?>"/> ~ iOS<input type="text" style="width: 30px;" name="Maxmum_System_Support" value="<?php if (!empty($edit_info['Maxmum_System_Support'])) {echo htmlspecialchars($edit_info['Maxmum_System_Support']);} ?>"/>
+							<p class="help-block"><?php _e('Please fill the iOS system version number, If leave a blank or zero will disable the system compatibility check in the package preview page.'); ?></p>
+							
+							</div>
+						</div>
+						<br />
 						<div class="form-actions">
 							<div class="controls">
 								<button type="submit" class="btn btn-success"><?php _e('Save'); ?></button>　

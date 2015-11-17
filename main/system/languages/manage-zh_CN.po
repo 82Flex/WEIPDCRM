@@ -1,16 +1,16 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: DCRM Manager\n"
-"POT-Creation-Date: 2015-08-02 17:50+0800\n"
-"PO-Revision-Date: 2015-08-02 17:51+0800\n"
+"POT-Creation-Date: 2015-11-15 23:05+0800\n"
+"PO-Revision-Date: 2015-11-17 20:56+0800\n"
 "Last-Translator: Hintay <hintay@me.com>\n"
 "Language-Team: Hintay <hintay@me.com>\n"
 "Language: zh_CN\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 1.7.6\n"
-"X-Poedit-Basepath: ../../\n"
+"X-Generator: Poedit 1.8.6\n"
+"X-Poedit-Basepath: ../..\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Poedit-KeywordsList: __;_e;_n:1,2;_x:1,2c;_ex:1,2c;_nx:4c,1,2;esc_attr__;"
 "esc_attr_e;esc_attr_x:1,2c;esc_html__;esc_html_e;esc_html_x:1,2c;_n_noop:1,2;"
@@ -412,30 +412,42 @@ msgid ""
 "blank or zero will only display this version changelog."
 msgstr "请输入要显示前几个老版本更新日志，留空或输入 0 则只显示本版更新。"
 
-#: manage/edit.php:210 manage/edit.php:278 manage/release.php:90
+#: manage/edit.php:209
+msgid "Compatibility"
+msgstr "软件包的兼容性"
+
+#: manage/edit.php:212
+msgid ""
+"Please fill the iOS system version number, If leave a blank or zero will "
+"disable the system compatibility check in the package preview page."
+msgstr ""
+"请填写 iOS 系统版本号，留空或输入 0 将为该软件包预览页面关闭系统兼容性检测功"
+"能。"
+
+#: manage/edit.php:219 manage/edit.php:287 manage/release.php:90
 #: manage/settings.php:585 manage/udid.php:351
 msgid "Save"
 msgstr "保存"
 
-#: manage/edit.php:240 manage/edit.php:294
+#: manage/edit.php:249 manage/edit.php:303
 msgid "Update Database"
 msgstr "更新数据库"
 
-#: manage/edit.php:241 manage/edit.php:295
+#: manage/edit.php:250 manage/edit.php:304
 msgid "The package information edited!"
 msgstr "软件包信息编辑完成！"
 
-#: manage/edit.php:241 manage/edit.php:295
+#: manage/edit.php:250 manage/edit.php:304
 msgid ""
 "After modify the fields with an asterisk, you must write into package then "
 "safely rebuild list."
 msgstr "修改带星号的字段后，您必须将其写入软件包才能安全地刷新列表。"
 
-#: manage/edit.php:242 manage/edit.php:296
+#: manage/edit.php:251 manage/edit.php:305
 msgid "Write Now"
 msgstr "立即写入"
 
-#: manage/edit.php:242 manage/edit.php:296 manage/import.php:264
+#: manage/edit.php:251 manage/edit.php:305 manage/import.php:264
 #: manage/manage.php:116 manage/manage.php:124 manage/output.php:148
 #: manage/release.php:115 manage/release.php:117 manage/release.php:120
 #: manage/sections.php:317 manage/settings.php:671 manage/settings.php:739
@@ -443,74 +455,74 @@ msgstr "立即写入"
 msgid "Back"
 msgstr "返回"
 
-#: manage/edit.php:250 manage/header.php:179
+#: manage/edit.php:259 manage/header.php:179
 msgid "Advance Editing"
 msgstr "高级编辑"
 
-#: manage/edit.php:255
+#: manage/edit.php:264
 msgctxt "Advance Editing"
 msgid "Field"
 msgstr "修改字段"
 
-#: manage/edit.php:270
+#: manage/edit.php:279
 msgctxt "Advance Editing"
 msgid "Content"
 msgstr "修改内容"
 
-#: manage/edit.php:309 manage/edit.php:402 manage/udid.php:388
+#: manage/edit.php:318 manage/edit.php:411 manage/udid.php:388
 #: manage/view.php:119
 msgid "Binding UDID"
 msgstr "绑定UDID"
 
-#: manage/edit.php:314
+#: manage/edit.php:323
 msgid "Align"
 msgstr "对齐方式"
 
-#: manage/edit.php:316
+#: manage/edit.php:325
 msgctxt "Align"
 msgid "Left"
 msgstr "左对齐"
 
-#: manage/edit.php:317
+#: manage/edit.php:326
 msgctxt "Align"
 msgid "Center"
 msgstr "居中对齐"
 
-#: manage/edit.php:318
+#: manage/edit.php:327
 msgctxt "Align"
 msgid "Right"
 msgstr "右对齐"
 
-#: manage/edit.php:322
+#: manage/edit.php:331
 msgctxt "Edit"
 msgid "List"
 msgstr "编号"
 
-#: manage/edit.php:324
+#: manage/edit.php:333
 msgid "Ordered list"
 msgstr "数字编号"
 
-#: manage/edit.php:325
+#: manage/edit.php:334
 msgid "Unordered list"
 msgstr "项目编号"
 
-#: manage/edit.php:329
+#: manage/edit.php:338
 msgid "Indent"
 msgstr "缩进"
 
-#: manage/edit.php:331
+#: manage/edit.php:340
 msgid "Increase indent"
 msgstr "向右缩进"
 
-#: manage/edit.php:332
+#: manage/edit.php:341
 msgid "Decrease indent"
 msgstr "向左缩进"
 
-#: manage/edit.php:381
+#: manage/edit.php:390
 msgid "Data loading"
 msgstr "数据加载中"
 
-#: manage/edit.php:391
+#: manage/edit.php:400
 msgid "Database Error"
 msgstr "数据库错误"
 
