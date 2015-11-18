@@ -76,11 +76,7 @@ if (file_exists('Release')) {
 	$release_origin = __('Empty Page');
 }
 if (isset($_GET['pid'])) {
-	if (ctype_digit($_GET['pid']) && intval($_GET['pid']) <= 10000) {
-		if (isset($_GET['method']) && $_GET['method'] == 'screenshot') {
-			$index = 2;
-			$title = __('View Screenshots');
-		} elseif (isset($_GET['method']) && $_GET['method'] == 'report') {
+	$title = __('View Package');
 			$device_type = array('iPhone','iPod','iPad');
 			for ($i = 0; $i < count($device_type); $i++) {
 				$check = $detect->version($device_type[$i]);
@@ -94,6 +90,11 @@ if (isset($_GET['pid'])) {
 					break;
 				}
 			}
+	if (ctype_digit($_GET['pid']) && intval($_GET['pid']) <= 10000) {
+		if (isset($_GET['method']) && $_GET['method'] == 'screenshot') {
+			$index = 2;
+			$title = __('View Screenshots');
+		} elseif (isset($_GET['method']) && $_GET['method'] == 'report') {
 			if (!isset($_GET['support'])) {
 				$index = 3;
 			} else {
@@ -164,7 +165,6 @@ if (isset($_GET['pid'])) {
 			exit();
 		} elseif (!isset($_GET['method']) || (isset($_GET['method']) && $_GET['method'] == 'view')) {
 			$index = 1;
-			$title = __('View Package');
 		} else {
 			httpinfo(405);
 			exit();
@@ -559,7 +559,7 @@ if ($index == 0) {
 	}
 } elseif ($index == 1) {
 		$pkg = (int)DB::real_escape_string($_GET['pid']);
-		$pkg_assoc = DB::fetch_first("SELECT `Name`, `Version`, `Author`, `Package`, `Description`, `DownloadTimes`, `Multi`, `CreateStamp`, `Size`, `Installed-Size`, `Section`, `Homepage`, `Tag`, `Level`, `Price`, `Purchase_Link`, `Changelog`, `Changelog_Older_Shows` FROM `".DCRM_CON_PREFIX."Packages` WHERE `ID` = '".$pkg."' LIMIT 1");
+		$pkg_assoc = DB::fetch_first("SELECT `Name`, `Version`, `Author`, `Package`, `Description`, `DownloadTimes`, `Multi`, `CreateStamp`, `Size`, `Installed-Size`, `Section`, `Homepage`, `Tag`, `Level`, `Price`, `Purchase_Link`, `Changelog`, `Changelog_Older_Shows`, `Minimum_System_Support`, `Maxmum_System_Support` FROM `".DCRM_CON_PREFIX."Packages` WHERE `ID` = '".$pkg."' LIMIT 1");
 	if (!$pkg_assoc) {
 ?>
 			<block>
@@ -832,7 +832,45 @@ if ($index == 0) {
 						<?php echo(AUTOFILL_ADVERTISEMENT); ?>
 					</div>
 				</div>
-			</block>
+			</block>			
+<?php
+//Compatibility Check
+				$Minimum = ($pkg_assoc['Minimum_System_Support']);
+				$Maxmum = ($pkg_assoc['Maxmum_System_Support']);
+		if ($Minimum > 0 || $Maxmum > 0){
+				
+?>
+			<label><?php _e('Compatibility Check'); ?></label>
+				<fieldset>
+					<div>					
+						<p><?php _e('Current Device Info'); ?><br/><?php echo($DEVICE." &amp; iOS ".$OS."<br />IP: ".$_SERVER['REMOTE_ADDR']); ?></p>
+						<hr/>
+						<p><?php _e('Compatible with: '); ?>iOS <?php echo"$Minimum"; ?> ~ iOS <?php echo"$Maxmum"; ?></p>
+					</div>
+				</fieldset>
+<?php	
+			if ($Minimum <= $OS && $OS <= $Maxmum){
+?>
+				<fieldset style=background-color:#66B3FF>
+					<div>
+						<p>
+							<span style='color:white'><?php _e('Your device supports this package') ?>
+						</p>
+					</div>			
+<?php
+			} else {
+?>
+				<fieldset style=background-color:#FF4500>
+					<div>
+						<p>
+						<span style='color:white'><?php _e('Your device doesn’t support this package') ?>
+						</p>
+					</div>	
+<?php
+		}
+				}
+?>
+				</fieldset>
 <?php	
 		}
 		if(!defined('DCRM_DESCRIPTION')) define('DCRM_DESCRIPTION', 2);
