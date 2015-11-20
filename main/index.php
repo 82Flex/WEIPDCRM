@@ -807,12 +807,12 @@ if ($index == 0) {
 				</a>
 <?php
 		}
-		if (defined("EMERGENCY")) {
+		if (defined("AUTOFILL_EMERGENCY")) {
 ?>
 				<a>
 					<div>
 						<div>
-							<?php echo(EMERGENCY); ?>
+							<?php echo(AUTOFILL_EMERGENCY); ?>
 						</div>
 					</div>
 				</a>
