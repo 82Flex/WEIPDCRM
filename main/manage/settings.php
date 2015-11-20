@@ -533,7 +533,7 @@ if (isset($_SESSION['connected']) && $_SESSION['connected'] === true) {
 						<div class="control-group">
 							<label class="control-label"><?php _e('Paypal Donate Address');?></label>
 							<div class="controls">
-								<input type="text" name="PAYPAL" style="width: 400px;" data-validation-regex-regex="((https?|ftp|news):\/\/)?([a-z]([a-z0-9\-]*[\.。])+([a-z]{2}|aero|arpa|biz|com|coop|edu|gov|info|int|jobs|mil|museum|name|nato|net|org|pro|travel)|(([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])\.){3}([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5]))(\/[a-z0-9_\-\.~]+)*(\/([a-z0-9_\-\.]*)(\?[a-z0-9+_\-\.%=&]*)?)?(#[a-z][a-z0-9_]*)?" data-validation-regex-message="<?php _e('Not a valid website address'); ?>" value="<?php if(defined("AUTOFILL_PAYPAL")){echo(htmlspecialchars(stripslashes(AUTOFILL_PAYPAL)));} ?>"/>
+								<input type="text" name="PAYPAL" style="width: 400px;" data-validation-regex-regex="((https?|ftp|news):\/\/)?([a-z]([a-z0-9\-]*[\.。])+([a-z]{2}|aero|arpa|biz|com|coop|edu|gov|info|int|jobs|mil|museum|name|nato|net|org|pro|travel)|(([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])\.){3}([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5]))((\/)?[\w\-\.~]{0,1})*(\/([\w\-\.]*)(\?[\w+_\-\.%=&@]*)*)?(#\w*)?" data-validation-regex-message="<?php _e('Not a valid website address'); ?>" value="<?php if(defined("AUTOFILL_PAYPAL")){echo(htmlspecialchars(stripslashes(AUTOFILL_PAYPAL)));} ?>"/>
 								<p class="help-block"></p>
 							</div>
 						</div>
