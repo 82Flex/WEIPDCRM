@@ -76,8 +76,10 @@ if (file_exists('Release')) {
 	$release_origin = __('Empty Page');
 }
 if (isset($_GET['pid'])) {
-	$title = __('View Package');
-			$device_type = array('iPhone','iPod','iPad');
+	if (ctype_digit($_GET['pid']) && intval($_GET['pid']) <= 10000) {
+		function device_check(){
+			global $detect;
+			$device_type = array('iPhone', 'iPod', 'iPad');
 			for ($i = 0; $i < count($device_type); $i++) {
 				$check = $detect->version($device_type[$i]);
 				if ($check !== false) {
@@ -90,11 +92,14 @@ if (isset($_GET['pid'])) {
 					break;
 				}
 			}
-	if (ctype_digit($_GET['pid']) && intval($_GET['pid']) <= 10000) {
+			return array('DEVICE' => $DEVICE, 'OS' => $OS);
+		}
+
 		if (isset($_GET['method']) && $_GET['method'] == 'screenshot') {
 			$index = 2;
 			$title = __('View Screenshots');
 		} elseif (isset($_GET['method']) && $_GET['method'] == 'report') {
+			$device_info = device_check();
 			if (!isset($_GET['support'])) {
 				$index = 3;
 			} else {
@@ -165,6 +170,7 @@ if (isset($_GET['pid'])) {
 			exit();
 		} elseif (!isset($_GET['method']) || (isset($_GET['method']) && $_GET['method'] == 'view')) {
 			$index = 1;
+			$title = __('View Package');
 		} else {
 			httpinfo(405);
 			exit();
@@ -807,17 +813,6 @@ if ($index == 0) {
 				</a>
 <?php
 		}
-		if (defined("EMERGENCY")) {
-?>
-				<a>
-					<div>
-						<div>
-							<?php echo(EMERGENCY); ?>
-						</div>
-					</div>
-				</a>
-<?php
-		}
 ?>
 			</fieldset>
 <?php
@@ -832,46 +827,40 @@ if ($index == 0) {
 						<?php echo(AUTOFILL_ADVERTISEMENT); ?>
 					</div>
 				</div>
-			</block>			
-<?php
-//Compatibility Check
-				$Minimum = ($pkg_assoc['Minimum_System_Support']);
-				$Maxmum = ($pkg_assoc['Maxmum_System_Support']);
-		if ($Minimum > 0 || $Maxmum > 0){
-				
-?>
-			<label><?php _e('Compatibility Check'); ?></label>
-				<fieldset>
-					<div>					
-						<p><?php _e('Current Device Info'); ?><br/><?php echo($DEVICE." &amp; iOS ".$OS."<br />IP: ".$_SERVER['REMOTE_ADDR']); ?></p>
-						<hr/>
-						<p><?php _e('Compatible with: '); ?>iOS <?php echo"$Minimum"; ?> ~ iOS <?php echo"$Maxmum"; ?></p>
-					</div>
-				</fieldset>
-<?php	
-			if ($Minimum <= $OS && $OS <= $Maxmum){
-?>
-				<fieldset style=background-color:#66B3FF>
-					<div>
-						<p>
-							<span style='color:white'><?php _e('Your device supports this package') ?>
-						</p>
-					</div>			
-<?php
-			} else {
-?>
-				<fieldset style=background-color:#FF4500>
-					<div>
-						<p>
-						<span style='color:white'><?php _e('Your device doesn’t support this package') ?>
-						</p>
-					</div>	
+			</block>
 <?php
 		}
-				}
+		if (defined("AUTOFILL_EMERGENCY")) {
 ?>
-				</fieldset>
-<?php	
+			<label><p><?php _e('Notice'); ?></p></label>
+			<fieldset class="emergency">
+				<a>
+					<div>
+						<div>
+							<?php echo(AUTOFILL_EMERGENCY); ?>
+						</div>
+					</div>
+				</a>
+			</fieldset>
+<?php
+		}
+		// Compatibility Check
+		if (($pkg_assoc['Minimum_System_Support'] > 0 || $pkg_assoc['Maxmum_System_Support'] > 0) && $isCydia){
+			$device_info = device_check();
+			if ($pkg_assoc['Minimum_System_Support'] <= $device_info['OS'] && $device_info['OS'] <= $pkg_assoc['Maxmum_System_Support']){
+				$Compatibility_Settings = array('color' => '#66B3FF', 'text' => __('Your device supports this package'));
+			} else {
+				$Compatibility_Settings = array('color' => '#FF4500', 'text' => __('Your device doesn\'t support this package'));
+			}
+?>
+			<fieldset style="background-color:<?php echo($Compatibility_Settings['color']); ?>">
+				<div>
+					<p>
+					<span style='color:white'><?php echo($Compatibility_Settings['text']); ?></span>
+					</p>
+				</div>
+			</fieldset>
+<?php
 		}
 		if(!defined('DCRM_DESCRIPTION')) define('DCRM_DESCRIPTION', 2);
 		if (DCRM_MOREINFO == 2 || DCRM_DESCRIPTION == 2 || (empty($pkg_assoc['Multi']) && DCRM_MULTIINFO == 2)) {
@@ -881,6 +870,7 @@ if ($index == 0) {
 			if (DCRM_MOREINFO == 2) {
 ?>
 					<p><?php _e('Version'); ?> <strong><?php echo($pkg_assoc['Version']); ?></strong> | <?php _e('Downloads'); ?> <strong><?php echo($pkg_assoc['DownloadTimes']); ?></strong></p>
+					<?php if($pkg_assoc['Minimum_System_Support'] > 0 || $pkg_assoc['Maxmum_System_Support'] > 0): ?><p><?php _e('Compatible with: '); ?><strong>iOS <?php echo($pkg_assoc['Minimum_System_Support']); ?> ~ iOS <?php echo($pkg_assoc['Maxmum_System_Support']); ?></strong></p><?php endif; ?>
 					<p><?php _e('Last Updated'); ?> <strong><?php echo($pkg_assoc['CreateStamp']); ?></strong></p>
 <?php
 			}
@@ -1085,7 +1075,7 @@ if ($index == 0) {
 			<label><?php _e('Current Device Info'); ?></label>
 <?php
 	if (DCRM_REPORTING == 2) {
-		$q_count = DB::query("SELECT `Support`, COUNT(*) AS 'num' FROM `".DCRM_CON_PREFIX."Reports` WHERE (`Device` = '".$DEVICE."' AND `iOS` = '".$OS."' AND `PID` = '".$_GET['pid']."') GROUP BY `Support`");
+		$q_count = DB::query("SELECT `Support`, COUNT(*) AS 'num' FROM `".DCRM_CON_PREFIX."Reports` WHERE (`Device` = '".$device_info['DEVICE']."' AND `iOS` = '".$device_info['OS']."' AND `PID` = '".$_GET['pid']."') GROUP BY `Support`");
 		if (mysql_affected_rows() > 0) {
 			while ($s_count = mysql_fetch_assoc($q_count)) {
 				switch ($s_count['Support']) {
@@ -1121,7 +1111,7 @@ if ($index == 0) {
 ?>
 				<div>
 					<p>
-						<?php echo($DEVICE." &amp; iOS ".$OS."<br />IP: ".$_SERVER['REMOTE_ADDR']); ?>
+						<?php echo($device_info['DEVICE']." &amp; iOS ".$device_info['OS']."<br />IP: ".$_SERVER['REMOTE_ADDR']); ?>
 					</p>
 				</div>
 			</fieldset>
@@ -1186,8 +1176,8 @@ if ($index == 0) {
 	if (DCRM_REPORTING == 2) {
 		$result = DB::query("SELECT `ID` FROM `".DCRM_CON_PREFIX."Reports` WHERE (`Remote` = '".DB::real_escape_string($_SERVER['REMOTE_ADDR'])."' AND `PID`='".$_GET['pid']."') LIMIT 3");
 		if (mysql_affected_rows() < DCRM_REPORT_LIMIT) {
-			if (!empty($_SERVER['REMOTE_ADDR']) && !empty($DEVICE) && !empty($OS) && $isCydia) {
-				$result = DB::query("INSERT INTO `".DCRM_CON_PREFIX."Reports`(`Remote`, `Device`, `iOS`, `Support`, `TimeStamp`, `PID`) VALUES('".DB::real_escape_string($_SERVER['REMOTE_ADDR'])."', '".$DEVICE."', '".$OS."', '".$support."', '".date('Y-m-d H:i:s')."', '".(int)$_GET['pid']."')");
+			if (!empty($_SERVER['REMOTE_ADDR']) && !empty($device_info['DEVICE']) && !empty($device_info['OS']) && $isCydia) {
+				$result = DB::query("INSERT INTO `".DCRM_CON_PREFIX."Reports`(`Remote`, `Device`, `iOS`, `Support`, `TimeStamp`, `PID`) VALUES('".DB::real_escape_string($_SERVER['REMOTE_ADDR'])."', '".$device_info['DEVICE']."', '".$device_info['OS']."', '".$support."', '".date('Y-m-d H:i:s')."', '".(int)$_GET['pid']."')");
 ?>
 			<fieldset style="background-color: #ccffcc;">
 				<div>

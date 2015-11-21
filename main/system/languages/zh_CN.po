@@ -1,15 +1,15 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: DCRM Front\n"
-"POT-Creation-Date: 2015-11-15 21:46+0800\n"
-"PO-Revision-Date: 2015-11-15 21:54+0800\n"
+"POT-Creation-Date: 2015-11-21 21:59+0800\n"
+"PO-Revision-Date: 2015-11-21 21:59+0800\n"
 "Last-Translator: Hintay <hintay@me.com>\n"
 "Language-Team: Hintay <hintay@me.com>\n"
 "Language: zh_CN\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 1.8.6\n"
+"X-Generator: Poedit 1.8.5\n"
 "X-Poedit-Basepath: ../..\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Poedit-KeywordsList: __;_e;_n:1,2;_x:1,2c;_ex:1,2c;_nx:4c,1,2;esc_attr__;"
@@ -46,53 +46,53 @@ msgstr "未命名"
 msgid "Empty Page"
 msgstr "空白页"
 
-#: index.php:79
-msgid "View Package"
-msgstr "查看软件包"
-
-#: index.php:96 index.php:671 index.php:1064 index.php:1089
+#: index.php:100 index.php:677 index.php:1054 index.php:1079
 msgid "View Screenshots"
 msgstr "预览截图"
 
-#: index.php:112 index.php:701 index.php:1191 index.php:1237
+#: index.php:117 index.php:707 index.php:1181 index.php:1227
 msgid "Report Problems"
 msgstr "报告问题"
 
-#: index.php:115 index.php:687 index.php:1244
+#: index.php:120 index.php:693 index.php:1234
 msgid "Version History"
 msgstr "版本历史"
 
-#: index.php:118 index.php:313
+#: index.php:123 index.php:319
 msgid "Contact us"
 msgstr "联系我们"
 
-#: index.php:121 index.php:491 index.php:1428
+#: index.php:126 index.php:497 index.php:1418
 msgid "Package Category"
 msgstr "软件包分类"
 
-#: index.php:246
+#: index.php:173
+msgid "View Package"
+msgstr "查看软件包"
+
+#: index.php:252
 msgid "Add in Cydia<sup><small>™</small></sup>"
 msgstr "在 Cydia<sup><small>™</small></sup> 中添加"
 
-#: index.php:272
+#: index.php:278
 msgid "Add this URL via Cydia<sup><small>™</small></sup>: "
 msgstr "请使用 Cydia<sup><small>™</small></sup> 添加地址"
 
-#: index.php:285
+#: index.php:291
 #, php-format
 msgid "<strong>%d</strong> packages in total."
 msgstr "全源总计 <strong>%d</strong> 个软件包。"
 
-#: index.php:288
+#: index.php:294
 #, php-format
 msgid "Last updated: <strong>%s</strong>"
 msgstr "更新时间：<strong>%s</strong>"
 
-#: index.php:300
+#: index.php:306
 msgid "Visit Home Page"
 msgstr "访问首页"
 
-#: index.php:384 index.php:772
+#: index.php:390 index.php:778
 msgid ""
 "Donate via <span style=\"font-style: italic; font-weight: bold\"><span style="
 "\"color: #1a3665\">Pay</span><span style=\"color: #32689a\">Pal</"
@@ -102,7 +102,7 @@ msgstr ""
 "\"color: #1a3665\">Pay</span><span style=\"color: #32689a\">Pal</"
 "span><sup><small>™</small></sup></span> 捐助"
 
-#: index.php:400 index.php:788
+#: index.php:406 index.php:794
 #, php-format
 msgid ""
 "Donate via <span style=\"font-style: italic; font-weight: bold\"><img class="
@@ -112,130 +112,134 @@ msgstr ""
 "\"alipay\" src=\"%salipay_text.png\" /><sup><small >™</small></sup></span> 捐"
 "助"
 
-#: index.php:418 index.php:485 index.php:1050 index.php:1291 index.php:1385
+#: index.php:424 index.php:491 index.php:1040 index.php:1281 index.php:1375
 msgid "MySQL Error!"
 msgstr "数据库错误！"
 
-#: index.php:466 index.php:1416
+#: index.php:472 index.php:1406
 msgid "More..."
 msgstr "更多…"
 
-#: index.php:527 index.php:1003
+#: index.php:533 index.php:993
 msgid "Source Info"
 msgstr "软件源信息"
 
-#: index.php:548
+#: index.php:554
 msgid "Index"
 msgstr "首页"
 
-#: index.php:551
+#: index.php:557
 #, php-format
 msgid "Copyright &copy; %s"
 msgstr "版权所有 &copy; %s"
 
-#: index.php:567 index.php:1301
+#: index.php:573 index.php:1291
 msgid "Invalid package!<br />Perhaps this package has been deleted by us."
 msgstr ""
 "无效的软件包信息！<br />可能是该软件包已被删除，如有疑问，请联系管理员。"
 
-#: index.php:580
+#: index.php:586
 msgid "View in Cydia<sup><small>™</small></sup>"
 msgstr "在 Cydia<sup><small>™</small></sup> 中查看"
 
-#: index.php:623 index.php:1320
+#: index.php:629 index.php:1310
 msgid "Author"
 msgstr "作者"
 
-#: index.php:644
+#: index.php:650
 msgid "Download"
 msgstr "下载软件包"
 
-#: index.php:803
+#: index.php:809
 msgid "More Info"
 msgstr "更多信息"
 
-#: index.php:841
+#: index.php:835
+msgid "Notice"
+msgstr "公告"
+
+#: index.php:851
 msgid "Compatibility Check"
 msgstr "兼容性检测"
 
-#: index.php:844 index.php:1094
+#: index.php:854 index.php:1084
 msgid "Current Device Info"
 msgstr "当前设备信息"
 
-#: index.php:846
+#: index.php:856
 msgid "Compatible with: "
 msgstr "兼容的系统："
 
-#: index.php:855 index.php:865
+#: index.php:861
 msgid "Your device supports this package"
 msgstr "您的设备兼容此软件包"
 
-#: index.php:875
-msgid "Your device doesn’t support this package"
+#: index.php:863
+msgid "Your device doesn't support this package"
 msgstr "您的设备不兼容此软件包"
 
-#: index.php:892
+#: index.php:882
 msgid "Version"
 msgstr "版本"
 
-#: index.php:892
+#: index.php:882
 msgid "Downloads"
 msgstr "下载次数"
 
-#: index.php:893
+#: index.php:883
 msgid "Last Updated"
 msgstr "更新时间"
 
-#: index.php:919
+#: index.php:909
 msgid "In this version"
 msgstr "本版更新"
 
-#: index.php:938
+#: index.php:928
 msgid "Changelogs"
 msgstr "更新日志"
 
-#: index.php:968 index.php:991
+#: index.php:958 index.php:981
 msgid "Fold Comments"
 msgstr "折叠评论"
 
-#: index.php:994
+#: index.php:984
 msgid "Unfold Comments"
 msgstr "展开评论"
 
-#: index.php:1083
+#: index.php:1073
 msgid "No screenshots now."
 msgstr "该软件包暂无截图"
 
-#: index.php:1089 index.php:1191 index.php:1237 index.php:1428
+#: index.php:1079 index.php:1181 index.php:1227 index.php:1418
 #, php-format
 msgid "The %s function is disabled."
 msgstr "管理员关闭了 %s 功能"
 
-#: index.php:1137
+#: index.php:1127
 msgid "Submit Your Request"
 msgstr "提交请求"
 
-#: index.php:1144
+#: index.php:1134
 msgid "Request for updating"
 msgstr "请求升级"
 
-#: index.php:1150
+#: index.php:1140
 msgid "Compatibility Reports"
 msgstr "兼容性报告"
 
-#: index.php:1157
+#: index.php:1147
 msgid "Fully Compatibile"
 msgstr "完全兼容"
 
-#: index.php:1167
+#: index.php:1157
 msgid "Partly Compatibile"
 msgstr "部分兼容"
 
-#: index.php:1177
+#: index.php:1167
 msgid "Not Compatibile"
 msgstr "不兼容"
 
-#: index.php:1185
+#: index.php:1175
 msgid ""
 "<p><strong>The software package compatibility report is voted by the "
 "majority of users, and we generated these statistical data, for reference "
@@ -248,32 +252,32 @@ msgstr ""
 "千上万的用户免于安全模式、白苹果等诸多威胁。</p><p>当然，如果您安装以后能够完"
 "美使用，也请您投上一票，它能够让大家更放心地安装软件包。</p>"
 
-#: index.php:1205
+#: index.php:1195
 msgid "Your report has been submitted.<br />Thanks for your support!"
 msgstr "您的报告已经提交完成。<br />感谢您的支持！"
 
-#: index.php:1215
+#: index.php:1205
 msgid ""
 "Please use Cydia to vote.<br />Each device is limited to vote for 2 times!"
 msgstr "请使用 Cydia 进行投票。<br />每台设备限制投票 2 次！"
 
-#: index.php:1226
+#: index.php:1216
 msgid "You have reached the voting limit."
 msgstr "投票次数超过系统限制。<br />请稍后再试！"
 
-#: index.php:1255
+#: index.php:1245
 msgid "Unknown change."
 msgstr "未知更新"
 
-#: index.php:1267
+#: index.php:1257
 msgid "View This Version"
 msgstr "查看此版本"
 
-#: index.php:1280
+#: index.php:1270
 msgid "No version history now."
 msgstr "该软件包暂无历史版本"
 
-#: index.php:1313
+#: index.php:1303
 msgid ""
 "Source manager can <strong>NOT</strong> solve the function problem of "
 "package: you <strong>MUST</strong> contact the author."
@@ -281,36 +285,36 @@ msgstr ""
 "源管理者<strong>无法</strong>为你解决软件包功能上出现的问题：你<strong>必须</"
 "strong>联系其开发者或设计者。"
 
-#: index.php:1337
+#: index.php:1327
 msgid ""
 "If the package is a commercial package, you can contact the sponsor to "
 "obtain commercial support."
 msgstr "如果该软件包为商业软件包，你可以联系其担保人获取商业支持。"
 
-#: index.php:1344
+#: index.php:1334
 msgid "Sponsor"
 msgstr "担保人"
 
-#: index.php:1360
+#: index.php:1350
 msgid ""
 "If you have questions when install or uninstall this package, please contact "
 "the maintainer."
 msgstr "安装、卸载过程中出现的问题，你需要将其发送给制作软件包的提供者。"
 
-#: index.php:1366
+#: index.php:1356
 msgid "Maintainer"
 msgstr "提供者"
 
-#: index.php:1395
+#: index.php:1385
 msgid "Invalid section!<br />Perhaps this section has been deleted by us."
 msgstr "无效的分类信息！<br />可能是该分类已被删除，如有疑问，请联系管理员。"
 
-#: index.php:1406
+#: index.php:1396
 #, php-format
 msgid "<strong>%s</strong> packages in this section."
 msgstr "该分类总计 <strong>%s</strong> 个软件包"
 
-#: index.php:1407
+#: index.php:1397
 #, php-format
 msgid "Create time: <strong>%s</strong>"
 msgstr "创建时间：<strong>%s</strong>"

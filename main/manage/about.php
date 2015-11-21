@@ -22,10 +22,9 @@ session_start();
 define("DCRM",true);
 $activeid = 'about';
 
-if (isset($_SESSION['connected']) && $_SESSION['connected'] === true) {		
+if (isset($_SESSION['connected']) && $_SESSION['connected'] === true) {
 	require_once("header.php");
 
-	if (!isset($_GET['action'])) {
 	preg_match("#^([0-9]\.[0-9])\.([0-9.]*)#", $_version, $versions);
 ?>
 					<h2><?php _ex('About', 'About Page'); ?></h2>
@@ -34,8 +33,8 @@ if (isset($_SESSION['connected']) && $_SESSION['connected'] === true) {
 					<?php _e('Version: '); ?><?php echo $versions[1];?> Pro <small>(<?php echo $_version;?>)</small><br />
 					<?php _e('Open source Repository Manager for Cydia™/APT.'); ?></h3><br />
 					<h4><?php _e('Developer'); ?></h4>
-					<?php _e('Main Program: '); ?><?php _e('WeiPhone Test Group'); ?> <a href="http://weibo.com/82flex">@i_82</a><?php _ex(', ' , 'Punctuation'); ?><a href="http://weibo.com/hintay">@Hintay</a><br />
-					<!-- <?php _e('Contributors: '); ?><a href="http://weibo.com/405901422">JK</a><br /> -->
+					<?php _e('Main Program: '); ?><a href="http://weibo.com/hintay">@Hintay</a><?php _ex(', ' , 'Punctuation'); ?><?php _e('WeiPhone Test Group'); ?><a href="http://weibo.com/82flex">@i_82</a><br />
+					<?php _e('Contributors: '); ?><a href="http://weibo.com/jacky189">@Jackyxyz</a><br />
 					<?php _e('UI Design:'); ?><a href="http://weibo.com/hintay">@Hintay</a><br /><br />
 					<h4><?php _e('Credits'); ?></h4>
 					<?php _e('Touch Sprite Team'); ?> @Z<?php _ex(', ' , 'Punctuation'); ?>@F<?php _ex(', ' , 'Punctuation'); ?>@K<?php _ex(', ' , 'Punctuation'); ?><?php _e('WeiPhone'); ?> <a href="http://weibo.cn/375584554">@飄Sir</a> <?php _ex('support' , 'Credits'); ?><br />
@@ -52,12 +51,6 @@ if (isset($_SESSION['connected']) && $_SESSION['connected'] === true) {
 					<br /><br />
 					<h4><?php _e('Copyright'); ?>&copy; 2013–<?php echo date('Y'); ?> i_82 &amp; Hintay<br />
 					<?php _e('This program is free software, you can redistribute it and/or modify it under the terms of the <a href="http://www.gnu.org/licenses">GNU Affero General Public License</a> as published by the Free Software Foundation either version 3 of the License.'); ?></h4></div>
-<?php
-	} else {
-		endlabel:
-		echo $alert;
-	}
-?>
 				</div>
 			</div>
 		</div>

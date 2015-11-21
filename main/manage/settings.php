@@ -144,7 +144,7 @@ if (isset($_SESSION['connected']) && $_SESSION['connected'] === true) {
 						<div class="control-group">
 							<label class="control-label" style="color: red;"><?php _e( 'Repository URL' ); ?></label>
 							<div class="controls">
-								<input type="text" required="required" name="url_repo" style="width: 400px;" data-validation-regex-regex="((https?):\/\/)?([a-z]([a-z0-9\-]*[\.。])+([a-z]*)|(([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])\.){3}([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5]))(\/[a-z0-9_\-\.~]+)*(\/([a-z0-9_\-\.]*)(\?[a-z0-9+_\-\.%=&]*)?)?(#[a-z][a-z0-9_]*)?" data-validation-regex-message="<?php _e('Not a valid website address'); ?>" value="<?php echo htmlspecialchars(base64_decode(DCRM_REPOURL)); ?>"/>
+								<input type="text" required="required" name="url_repo" style="width: 400px;" data-validation-regex-regex="((https?):\/\/)?([a-z]([a-z0-9\-]*[\.])+([a-z]*)|(([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])\.){3}([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5]))(\/[a-z0-9_\-\.~]+)*(\/([a-z0-9_\-\.]*)(\?[a-z0-9+_\-\.%=&]*)?)?" data-validation-regex-message="<?php _e('Not a valid website address'); ?>" value="<?php echo htmlspecialchars(base64_decode(DCRM_REPOURL)); ?>"/>
 								<p class="help-block"><?php _e( 'Displayed on the homepage for the user to add, and used for the autofill package\'s Depiction when import.' ); ?></p>
 							</div>
 						</div>
@@ -533,7 +533,7 @@ if (isset($_SESSION['connected']) && $_SESSION['connected'] === true) {
 						<div class="control-group">
 							<label class="control-label"><?php _e('Paypal Donate Address');?></label>
 							<div class="controls">
-								<input type="text" name="PAYPAL" style="width: 400px;" data-validation-regex-regex="((https?|ftp|news):\/\/)?([a-z]([a-z0-9\-]*[\.。])+([a-z]{2}|aero|arpa|biz|com|coop|edu|gov|info|int|jobs|mil|museum|name|nato|net|org|pro|travel)|(([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])\.){3}([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5]))((\/)?[\w\-\.~]{0,1})*(\/([\w\-\.]*)(\?[\w+_\-\.%=&@]*)*)?(#\w*)?" data-validation-regex-message="<?php _e('Not a valid website address'); ?>" value="<?php if(defined("AUTOFILL_PAYPAL")){echo(htmlspecialchars(stripslashes(AUTOFILL_PAYPAL)));} ?>"/>
+								<input type="text" name="PAYPAL" style="width: 400px;" data-validation-regex-regex="((https?):\/\/)?([a-z]([a-z0-9\-]*[\.])+([a-z]{2}|aero|arpa|biz|com|coop|edu|gov|info|int|jobs|mil|museum|name|nato|net|org|pro|travel)|(([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])\.){3}([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5]))((\/)?[\w\-\.~]{0,1})*(\/([\w\-\.]*)(\?[\w+_\-\.%=&@]*)*)?(#\w*)?" data-validation-regex-message="<?php _e('Not a valid website address'); ?>" value="<?php if(defined("AUTOFILL_PAYPAL")){echo(htmlspecialchars(stripslashes(AUTOFILL_PAYPAL)));} ?>"/>
 								<p class="help-block"></p>
 							</div>
 						</div>
@@ -541,7 +541,7 @@ if (isset($_SESSION['connected']) && $_SESSION['connected'] === true) {
 						<div class="control-group">
 							<label class="control-label"><?php _e('Alipay Donate Address');?></label>
 							<div class="controls">
-								<input type="text" name="ALIPAY" style="width: 400px;" data-validation-regex-regex="((https?|ftp|news):\/\/)?([a-z]([a-z0-9\-]*[\.。])+([a-z]{2}|aero|arpa|biz|com|coop|edu|gov|info|int|jobs|mil|museum|name|nato|net|org|pro|travel)|(([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])\.){3}([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5]))(\/[a-z0-9_\-\.~]+)*(\/([a-z0-9_\-\.]*)(\?[a-z0-9+_\-\.%=&]*)?)?(#[a-z][a-z0-9_]*)?" data-validation-regex-message="<?php _e('Not a valid website address'); ?>" value="<?php if(defined("AUTOFILL_ALIPAY")){echo(htmlspecialchars(stripslashes(AUTOFILL_ALIPAY)));} ?>"/>
+								<input type="text" name="ALIPAY" style="width: 400px;" data-validation-regex-regex="((https?):\/\/)?([a-z]([a-z0-9\-]*[\.])+([a-z]{2}|aero|arpa|biz|com|coop|edu|gov|info|int|jobs|mil|museum|name|nato|net|org|pro|travel)|(([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])\.){3}([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5]))(\/[a-z0-9_\-\.~]+)*(\/([a-z0-9_\-\.]*)(\?[a-z0-9+_\-\.%=&]*)?)?(#[a-z][a-z0-9_]*)?" data-validation-regex-message="<?php _e('Not a valid website address'); ?>" value="<?php if(defined("AUTOFILL_ALIPAY")){echo(htmlspecialchars(stripslashes(AUTOFILL_ALIPAY)));} ?>"/>
 								<p class="help-block"></p>
 							</div>
 						</div>
@@ -576,7 +576,7 @@ if (isset($_SESSION['connected']) && $_SESSION['connected'] === true) {
 						<div class="control-group">
 							<label class="control-label"><?php _e('Emergency Notice');?></label>
 							<div class="controls">
-								<textarea type="text" style="height: 80px; width: 400px;" name="EMERGENCY" ><?php if(defined("AUTOFILL_EMERGENCY")){echo(htmlspecialchars(stripslashes(AUTOFILL_EMERGENCY)));} ?></textarea>
+								<textarea id="Emergency" type="text" style="height: 80px; width: 400px;" name="EMERGENCY" ><?php if(defined("AUTOFILL_EMERGENCY")){echo(htmlspecialchars(stripslashes(AUTOFILL_EMERGENCY)));} ?></textarea>
 							</div>
 						</div>
 						<br />
@@ -751,6 +751,8 @@ if (isset($_SESSION['connected']) && $_SESSION['connected'] === true) {
 	<script src="../js/zxcvbn-async.min.js" type="text/javascript"></script>
 	<script src="../js/zxcvbn.min.js" type="text/javascript"></script>
 	<script src="./plugins/jqBootstrapValidation/jqBootstrapValidation.min.js"></script>
+	<script charset="utf-8" src="./plugins/kindeditor/kindeditor.min.js"></script>
+	<script charset="utf-8" src="./plugins/kindeditor/lang/<?php echo $kdlang = check_languages(array($locale), true);?>.js"></script>
 	<script type='text/javascript'>
 	var pwsL10n = {"empty":"<?php echo( utf8_unicode( __( 'Strength indicator' ) ) ); ?>","short":"<?php echo( utf8_unicode( _x( 'Short', 'Password' ) ) ); ?>","bad":"<?php echo( utf8_unicode( _x( 'Bad', 'Password' ) ) ); ?>","good":"<?php echo( _x( 'Good', 'Password' ) ); ?>","strong":"<?php echo( utf8_unicode( _x( 'Strong', 'Password' ) ) ); ?>","mismatch":"<?php echo( utf8_unicode( _x( 'Mismatch', 'Password' ) ) ); ?>"};
 	$(function () { $("input,select,textarea").not("[type=submit]").jqBootstrapValidation(
@@ -761,6 +763,63 @@ if (isset($_SESSION['connected']) && $_SESSION['connected'] === true) {
 			}
 		}
 	); } );
+	KindEditor.ready(function(K) {
+		K.each({
+			'plug-align' : {
+				name : '<?php _e('Align'); ?>',
+				method : {
+					'justifyleft' : '<?php _ex('Left', 'Align'); ?>',
+					'justifycenter' : '<?php _ex('Center', 'Align'); ?>',
+					'justifyright' : '<?php _ex('Right', 'Align'); ?>'
+				}
+			},
+			'plug-order' : {
+				name : '<?php _ex('List', 'Edit'); ?>',
+				method : {
+					'insertorderedlist' : '<?php _e('Ordered list'); ?>',
+					'insertunorderedlist' : '<?php _e('Unordered list'); ?>'
+				}
+			},
+			'plug-indent' : {
+				name : '<?php _e('Indent'); ?>',
+				method : {
+					'indent' : '<?php _e('Increase indent'); ?>',
+					'outdent' : '<?php _e('Decrease indent'); ?>'
+				}
+			}
+		},function( pluginName, pluginData ){
+			var lang = {};
+			lang[pluginName] = pluginData.name;
+			KindEditor.lang( lang );
+			KindEditor.plugin( pluginName, function(K) {
+				var self = this;
+				self.clickToolbar( pluginName, function() {
+					var menu = self.createMenu({
+							name : pluginName,
+							width : pluginData.width || 100
+						});
+					K.each( pluginData.method, function( i, v ){
+						menu.addItem({
+							title : v,
+							checked : false,
+							iconClass : pluginName+'-'+i,
+							click : function() {
+								self.exec(i).hideMenu();
+							}
+						});
+					})
+				});
+			});
+		});
+		K.create('#Emergency', {
+			langType : '<?php echo $kdlang; ?>',
+			themeType : 'qq',
+			newlineTag : 'br',
+			items : [
+				'bold','italic','underline','fontname','fontsize','forecolor','hilitecolor','plug-align','plug-order','plug-indent','link','removeformat','|','source'
+			]
+		});
+	});
 	</script>
 </body>
 </html>

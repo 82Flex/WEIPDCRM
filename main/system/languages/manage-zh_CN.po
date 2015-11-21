@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: DCRM Manager\n"
-"POT-Creation-Date: 2015-11-15 23:05+0800\n"
-"PO-Revision-Date: 2015-11-17 20:56+0800\n"
+"POT-Creation-Date: 2015-11-21 20:33+0800\n"
+"PO-Revision-Date: 2015-11-21 20:35+0800\n"
 "Last-Translator: Hintay <hintay@me.com>\n"
 "Language-Team: Hintay <hintay@me.com>\n"
 "Language: zh_CN\n"
@@ -20,95 +20,95 @@ msgstr ""
 "X-Poedit-SearchPath-1: ./system/languages\n"
 "X-Poedit-SearchPathExcluded-0: ./manage/bak\n"
 
-#: manage/about.php:31
+#: manage/about.php:30
 msgctxt "About Page"
 msgid "About"
 msgstr "关于程序"
 
-#: manage/about.php:34
+#: manage/about.php:33
 msgid "Version: "
 msgstr "版本："
 
-#: manage/about.php:35
+#: manage/about.php:34
 msgid "Open source Repository Manager for Cydia™/APT."
 msgstr "开源的 Cydia™/APT 个人源解决方案"
 
-#: manage/about.php:36
+#: manage/about.php:35
 msgid "Developer"
 msgstr "开发人员"
 
-#: manage/about.php:37
+#: manage/about.php:36
 msgid "Main Program: "
 msgstr "主程序："
 
-#: manage/about.php:37 manage/about.php:43
-msgid "WeiPhone Test Group"
-msgstr "威锋网测试组"
-
-#: manage/about.php:37 manage/about.php:41 manage/about.php:42
-#: manage/about.php:43 manage/about.php:49 manage/about.php:50
+#: manage/about.php:36 manage/about.php:40 manage/about.php:41
+#: manage/about.php:42 manage/about.php:48 manage/about.php:49
 msgctxt "Punctuation"
 msgid ", "
 msgstr "、"
 
-#: manage/about.php:38
+#: manage/about.php:36 manage/about.php:42
+msgid "WeiPhone Test Group"
+msgstr "威锋网测试组"
+
+#: manage/about.php:37
 msgid "Contributors: "
 msgstr "贡献者："
 
-#: manage/about.php:39
+#: manage/about.php:38
 msgid "UI Design:"
 msgstr "界面风格："
 
-#: manage/about.php:40
+#: manage/about.php:39
 msgid "Credits"
 msgstr "特别感谢"
 
-#: manage/about.php:41
+#: manage/about.php:40
 msgid "Touch Sprite Team"
 msgstr "触动精灵团队"
 
-#: manage/about.php:41
+#: manage/about.php:40
 msgid "WeiPhone"
 msgstr "威锋网"
 
-#: manage/about.php:41
+#: manage/about.php:40
 msgctxt "Credits"
 msgid "support"
 msgstr "的支持"
 
-#: manage/about.php:42
+#: manage/about.php:41
 msgid "E-pal"
 msgstr "网友"
 
-#: manage/about.php:43 manage/about.php:44
+#: manage/about.php:42 manage/about.php:43
 msgid "WeiPhone Technology Group"
 msgstr "威锋网技术组"
 
-#: manage/about.php:43
+#: manage/about.php:42
 msgid "provide viewpoints"
 msgstr "提供测试意见"
 
-#: manage/about.php:44 manage/about.php:45
+#: manage/about.php:43 manage/about.php:44
 msgid "'s articles: "
 msgstr " 所撰写的："
 
-#: manage/about.php:45
+#: manage/about.php:44
 msgid "Also, the father of the Cydia™"
 msgstr "以及 Cydia™ 之父"
 
-#: manage/about.php:46
+#: manage/about.php:45
 msgid "Mobile Home Page Style From Saurik IT."
 msgstr "移动版首页样式来自 Saurik IT."
 
-#: manage/about.php:47
+#: manage/about.php:46
 msgid "Translator"
 msgstr "翻译人员"
 
-#: manage/about.php:53
+#: manage/about.php:52
 msgid "Copyright"
 msgstr "版权所有"
 
-#: manage/about.php:54
+#: manage/about.php:53
 msgid ""
 "This program is free software, you can redistribute it and/or modify it "
 "under the terms of the <a href=\"http://www.gnu.org/licenses\">GNU Affero "
@@ -419,10 +419,8 @@ msgstr "软件包的兼容性"
 #: manage/edit.php:212
 msgid ""
 "Please fill the iOS system version number, If leave a blank or zero will "
-"disable the system compatibility check in the package preview page."
-msgstr ""
-"请填写 iOS 系统版本号，留空或输入 0 将为该软件包预览页面关闭系统兼容性检测功"
-"能。"
+"disable the system compatibility check."
+msgstr "请填写 iOS 系统版本号，留空或输入 0 则关闭系统兼容性检测。"
 
 #: manage/edit.php:219 manage/edit.php:287 manage/release.php:90
 #: manage/settings.php:585 manage/udid.php:351
@@ -702,70 +700,72 @@ msgstr "直接替换"
 msgid "Add New"
 msgstr "新增条目"
 
-#: manage/login.php:126 manage/login.php:171
+#: manage/login.php:126 manage/login.php:171 manage/login3.php:119
+#: manage/login3.php:151
 msgid "Login"
 msgstr "登录"
 
-#: manage/login.php:190
+#: manage/login.php:190 manage/login3.php:163
 msgctxt "language"
 msgid "Select language"
 msgstr "选择语言"
 
-#: manage/login.php:201 manage/settings.php:76 system/languages/l10n.php:759
+#: manage/login.php:201 manage/login3.php:174 manage/settings.php:76
+#: system/languages/l10n.php:759
 msgctxt "language"
 msgid "English"
 msgstr "英语"
 
-#: manage/login.php:219 manage/settings.php:105
+#: manage/login.php:219 manage/login3.php:190 manage/settings.php:105
 msgid "Username"
 msgstr "用户名"
 
-#: manage/login.php:219
+#: manage/login.php:219 manage/login3.php:190
 msgid "Please fill in your username"
 msgstr "请填写您的用户名"
 
-#: manage/login.php:223
+#: manage/login.php:223 manage/login3.php:191
 msgid "Password"
 msgstr "密码"
 
-#: manage/login.php:223
+#: manage/login.php:223 manage/login3.php:191
 msgid "Please fill in your password"
 msgstr "请填写您的密码"
 
-#: manage/login.php:228
+#: manage/login.php:228 manage/login3.php:192
 msgid "Verify Code"
 msgstr "验证码"
 
-#: manage/login.php:228
+#: manage/login.php:228 manage/login3.php:192
 msgid "Please fill in the verify code"
 msgstr "请填写验证码"
 
-#: manage/login.php:244
+#: manage/login.php:244 manage/login3.php:143
 msgid "Please input your username and password!"
 msgstr "请填写用户名和密码！"
 
-#: manage/login.php:246
+#: manage/login.php:246 manage/login3.php:145
 msgid "Unknown username or bad password!"
 msgstr "用户名或密码错误！"
 
-#: manage/login.php:248
+#: manage/login.php:248 manage/login3.php:147
 msgid "Bear!"
 msgstr "熊出没注意！"
 
-#: manage/login.php:250
+#: manage/login.php:250 manage/login3.php:149
 msgid "Verification code error!"
 msgstr "验证码错误！"
 
-#: manage/login.php:258
+#: manage/login.php:258 manage/login3.php:194
 msgctxt "Buttom"
 msgid "Login"
 msgstr "立即登录"
 
-#: manage/login.php:268
+#: manage/login.php:268 manage/login3.php:201
 msgid "Error"
 msgstr "错误"
 
-#: manage/login.php:269
+#: manage/login.php:269 manage/login3.php:202
 #, php-format
 msgid ""
 "Your login wrong too many times , close the session or wait %s minutes and "
@@ -2799,15 +2799,6 @@ msgstr "祖鲁语"
 
 #~ msgid "Database Error!"
 #~ msgstr "数据库错误！"
-
-#~ msgid ""
-#~ "This program is free software, you can redistribute it and/or modify it "
-#~ "under the terms of the <a href=\"http://www.gnu.org/licenses\">GNU "
-#~ "General Public License</a> as published by the Free Software Foundation "
-#~ "either version 3 of the License."
-#~ msgstr ""
-#~ "本程序是自由软件，修改和重新发布应该遵照自由软件基金会出版的 <a href="
-#~ "\"http://www.gnu.org/licenses\">GNU 通用公共许可证条款第三版</a>。"
 
 #~ msgid "'%s' already exists"
 #~ msgstr "'%s' 已经存在"

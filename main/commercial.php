@@ -126,7 +126,7 @@ if(check_commercial_tag($package_info['Tag'])):
 ?>
 <panel>
 	<fieldset style="background-color:<?php echo($fieldset_color); ?>">
-		<a target="_popup" <?php if('notpurchase' == $purchase_status) echo('href="'.SITE_PATH.$package_info['Purchase_Link'].'"'); ?>>
+		<a target="_popup" <?php if('notpurchase' == $purchase_status) echo('href="'.htmlspecialchars(SITE_PATH.$package_info['Purchase_Link']).'"'); ?>>
 			<img class="icon" src="<?php echo($fieldset_icons); ?>">
 			<div>
 				<div>
