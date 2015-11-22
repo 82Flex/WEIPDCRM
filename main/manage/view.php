@@ -62,6 +62,7 @@ if (!$package_info) {
 	$alert = __('No specified item.');
 } else {
 	unset($package_info['Multi']);
+	unset($package_info['System_Support']);
 	foreach ($package_info as $m_key => $m_value) {
 		if (!empty($m_value)) {
 			$f_Package .= $m_key . ": " . trim(str_replace("\n","\n ",$m_value)) . "\n";

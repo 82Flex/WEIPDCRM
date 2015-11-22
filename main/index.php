@@ -565,7 +565,7 @@ if ($index == 0) {
 	}
 } elseif ($index == 1) {
 		$pkg = (int)DB::real_escape_string($_GET['pid']);
-		$pkg_assoc = DB::fetch_first("SELECT `Name`, `Version`, `Author`, `Package`, `Description`, `DownloadTimes`, `Multi`, `CreateStamp`, `Size`, `Installed-Size`, `Section`, `Homepage`, `Tag`, `Level`, `Price`, `Purchase_Link`, `Changelog`, `Changelog_Older_Shows`, `Minimum_System_Support`, `Maxmum_System_Support` FROM `".DCRM_CON_PREFIX."Packages` WHERE `ID` = '".$pkg."' LIMIT 1");
+		$pkg_assoc = DB::fetch_first("SELECT `Name`, `Version`, `Author`, `Package`, `Description`, `DownloadTimes`, `Multi`, `CreateStamp`, `Size`, `Installed-Size`, `Section`, `Homepage`, `Tag`, `Level`, `Price`, `Purchase_Link`, `Changelog`, `Changelog_Older_Shows`, `Video_Preview`, `System_Support` FROM `".DCRM_CON_PREFIX."Packages` WHERE `ID` = '".$pkg."' LIMIT 1");
 	if (!$pkg_assoc) {
 ?>
 			<block>
@@ -681,6 +681,20 @@ if ($index == 0) {
 				</a>
 <?php
 			}
+		}
+		if (!empty($pkg_assoc['Video_Preview'])) {
+?>
+				<a href="<?php echo(htmlspecialchars($pkg_assoc['Video_Preview'])); ?>">
+				<img class="icon" src="<?php echo(SITE_URL); ?>icons/default/video.png" />
+					<div>
+						<div>
+							<label>
+								<p><?php _e('Video Preview'); ?></p>
+							</label>
+						</div>
+					</div>
+				</a>
+<?
 		}
 		$changelogs_count = DB::result_first("SELECT count(*) FROM `".DCRM_CON_PREFIX."Packages` WHERE `Package` = '".$pkg_assoc['Package']."'");
 		if ($changelogs_count != 1){
@@ -845,9 +859,11 @@ if ($index == 0) {
 <?php
 		}
 		// Compatibility Check
-		if (($pkg_assoc['Minimum_System_Support'] > 0 || $pkg_assoc['Maxmum_System_Support'] > 0) && $isCydia){
+		if (!empty($pkg_assoc['System_Support']) && $isCydia){
+			$system_support = unserialize($pkg_assoc['System_Support']);
 			$device_info = device_check();
-			if ($pkg_assoc['Minimum_System_Support'] <= $device_info['OS'] && $device_info['OS'] <= $pkg_assoc['Maxmum_System_Support']){
+
+			if ($system_support['Minimum'] <= $device_info['OS'] && $device_info['OS'] <= $system_support['Maxmum']){
 				$Compatibility_Settings = array('color' => '#66B3FF', 'text' => __('Your device supports this package'));
 			} else {
 				$Compatibility_Settings = array('color' => '#FF4500', 'text' => __('Your device doesn\'t support this package'));
@@ -870,7 +886,7 @@ if ($index == 0) {
 			if (DCRM_MOREINFO == 2) {
 ?>
 					<p><?php _e('Version'); ?> <strong><?php echo($pkg_assoc['Version']); ?></strong> | <?php _e('Downloads'); ?> <strong><?php echo($pkg_assoc['DownloadTimes']); ?></strong></p>
-					<?php if($pkg_assoc['Minimum_System_Support'] > 0 || $pkg_assoc['Maxmum_System_Support'] > 0): ?><p><?php _e('Compatible with: '); ?><strong>iOS <?php echo($pkg_assoc['Minimum_System_Support']); ?> ~ iOS <?php echo($pkg_assoc['Maxmum_System_Support']); ?></strong></p><?php endif; ?>
+					<?php if(!empty($pkg_assoc['System_Support'])): ?><p><?php _e('Compatible with: '); ?><strong>iOS <?php echo($system_support['Minimum']); ?> ~ iOS <?php echo($system_support['Maxmum']); ?></strong></p><?php endif; ?>
 					<p><?php _e('Last Updated'); ?> <strong><?php echo($pkg_assoc['CreateStamp']); ?></strong></p>
 <?php
 			}

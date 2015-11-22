@@ -19,7 +19,7 @@
 /* DCRM Debian Edit */
 
 session_start();
-define("DCRM",true);
+define("DCRM", true);
 $activeid = 'edit';
 
 if (isset($_SESSION['connected']) && $_SESSION['connected'] === true) {
@@ -141,6 +141,14 @@ if (isset($_SESSION['connected']) && $_SESSION['connected'] === true) {
 							</div>
 						</div>
 						<div class="group-control">
+							<label class="control-label"><?php _e('Video Preview'); ?></label>
+							<div class="controls">
+								<input type="text" style="width: 400px;" name="Video_Preview" value="<?php if (!empty($edit_info['Video_Preview']))echo(htmlspecialchars($edit_info['Video_Preview'])); ?>"/>
+								<p class="help-block"><?php _e('It will do not display in the page if leave a blank.'); ?></p>
+							</div>
+						</div>
+						<br/>
+						<div class="group-control">
 							<label class="control-label"><a onclick="javascript:autofill(6);" href="#"><?php _e('Maintainer'); ?></a></label>
 							<div class="controls">
 								<input type="text" style="width: 400px;" name="Maintainer" value="<?php if (!empty($edit_info['Maintainer'])) {echo htmlspecialchars($edit_info['Maintainer']);} ?>"/>
@@ -208,8 +216,11 @@ if (isset($_SESSION['connected']) && $_SESSION['connected'] === true) {
 						<div class="group-control">
 							<label class="control-label"><?php _e('Compatibility'); ?></label>
 							<div class="controls">
-					        iOS<input type="text" style="width: 30px;" name="Minimum_System_Support" value="<?php if (!empty($edit_info['Minimum_System_Support'])) {echo htmlspecialchars($edit_info['Minimum_System_Support']);} ?>"/> ~ iOS<input type="text" style="width: 30px;" name="Maxmum_System_Support" value="<?php if (!empty($edit_info['Maxmum_System_Support'])) {echo htmlspecialchars($edit_info['Maxmum_System_Support']);} ?>"/>
-							<p class="help-block"><?php _e('Please fill the iOS system version number, If leave a blank or zero will disable the system compatibility check in the package preview page.'); ?></p>
+<?php
+		if(!empty($edit_info['System_Support'])) $system_support = unserialize($edit_info['System_Support']);
+?>
+							iOS <input type="text" style="width: 30px;" name="Minimum_System_Support" value="<?php if (!empty($edit_info['System_Support'])) {echo htmlspecialchars($system_support['Minimum']);} ?>"/> ~ iOS <input type="text" style="width: 30px;" name="Maxmum_System_Support" value="<?php if (!empty($edit_info['System_Support'])) {echo htmlspecialchars($system_support['Maxmum']);} ?>"/>
+							<p class="help-block"><?php _e('Please fill the iOS system version number, If leave a blank or zero will disable the system compatibility check.'); ?></p>
 							
 							</div>
 						</div>
@@ -243,6 +254,11 @@ if (isset($_SESSION['connected']) && $_SESSION['connected'] === true) {
 				break;
 		}
 		unset($_POST['Custom_Purchase_Link']);
+
+		if(!empty($_POST['Minimum_System_Support']) && !empty($_POST['Maxmum_System_Support']))
+			$_POST['System_Support'] = serialize(array('Minimum' => $_POST['Minimum_System_Support'], 'Maxmum' => $_POST['Maxmum_System_Support']));
+		unset($_POST['Minimum_System_Support']);
+		unset($_POST['Maxmum_System_Support']);
 
 		DB::update(DCRM_CON_PREFIX.'Packages', $_POST, array('ID' => $new_id));
 
@@ -369,7 +385,7 @@ if (isset($_SESSION['connected']) && $_SESSION['connected'] === true) {
 			langType : '<?php echo $kdlang; ?>',
 			themeType : 'qq',
 			items : [
-				'source','bold','italic','underline','fontname','fontsize','forecolor','hilitecolor','plug-align','plug-order','plug-indent','link','removeformat'
+				'bold','italic','underline','fontname','fontsize','forecolor','hilitecolor','plug-align','plug-order','plug-indent','link','removeformat','|','source'
 			]
 		});
 		K.create('#Changelog', {
@@ -377,7 +393,7 @@ if (isset($_SESSION['connected']) && $_SESSION['connected'] === true) {
 			themeType : 'qq',
 			newlineTag : 'br',
 			items : [
-				'source','bold','italic','underline','fontname','fontsize','forecolor','hilitecolor','plug-align','plug-order','plug-indent','link','removeformat'
+				'bold','italic','underline','fontname','fontsize','forecolor','hilitecolor','plug-align','plug-order','plug-indent','link','removeformat','|','source'
 			]
 		});
 	});

@@ -1,15 +1,15 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: DCRM Manager\n"
-"POT-Creation-Date: 2015-11-21 20:33+0800\n"
-"PO-Revision-Date: 2015-11-21 20:35+0800\n"
+"POT-Creation-Date: 2015-11-22 14:16+0800\n"
+"PO-Revision-Date: 2015-11-22 14:16+0800\n"
 "Last-Translator: Hintay <hintay@me.com>\n"
 "Language-Team: Hintay <hintay@me.com>\n"
 "Language: zh_CN\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 1.8.6\n"
+"X-Generator: Poedit 1.8.5\n"
 "X-Poedit-Basepath: ../..\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Poedit-KeywordsList: __;_e;_n:1,2;_x:1,2c;_ex:1,2c;_nx:4c,1,2;esc_attr__;"
@@ -211,16 +211,16 @@ msgstr "名称"
 msgid "Author"
 msgstr "作者"
 
-#: manage/center.php:52 manage/edit.php:176 manage/release.php:67
+#: manage/center.php:52 manage/edit.php:184 manage/release.php:67
 #: manage/settings.php:247
 msgid "Description"
 msgstr "描述"
 
-#: manage/center.php:53 manage/edit.php:144
+#: manage/center.php:53 manage/edit.php:152
 msgid "Maintainer"
 msgstr "提供者"
 
-#: manage/center.php:54 manage/edit.php:151
+#: manage/center.php:54 manage/edit.php:159
 msgid "Sponsor"
 msgstr "保证人"
 
@@ -364,28 +364,36 @@ msgstr ""
 msgid "Custom Link"
 msgstr "自定义链接"
 
-#: manage/edit.php:158
+#: manage/edit.php:144
+msgid "Video Preview"
+msgstr "视频预览"
+
+#: manage/edit.php:147 manage/edit.php:204
+msgid "It will do not display in the page if leave a blank."
+msgstr "留空则不显示。"
+
+#: manage/edit.php:166
 msgid "Depiction"
 msgstr "预览页"
 
-#: manage/edit.php:170
+#: manage/edit.php:178
 #, php-format
 msgid "Default Depiction: %s"
 msgstr "默认预览页为：%s"
 
-#: manage/edit.php:171
+#: manage/edit.php:179
 msgid "Preview Default Depiction"
 msgstr "预览默认预览页"
 
-#: manage/edit.php:184 manage/settings.php:257
+#: manage/edit.php:192 manage/settings.php:257
 msgid "Detailed Description"
 msgstr "详细描述"
 
-#: manage/edit.php:184
+#: manage/edit.php:192
 msgid " (Hidden)"
 msgstr "（已隐藏）"
 
-#: manage/edit.php:187
+#: manage/edit.php:195
 #, php-format
 msgid ""
 "It is hidden in the page, you should change 'Detailed Description' option in "
@@ -394,58 +402,54 @@ msgstr ""
 "该栏已隐藏，如果您想显示它，您需要在<a href=\"%s\">设置</a>中更改'详细描述'选"
 "项。"
 
-#: manage/edit.php:193
+#: manage/edit.php:201
 msgid "Changelog"
 msgstr "更新日志"
 
-#: manage/edit.php:196
-msgid "It will do not display in the page if leave a blank."
-msgstr "留空则不显示。"
-
-#: manage/edit.php:201
+#: manage/edit.php:209
 msgid "Old Changelogs"
 msgstr "旧版更新日志"
 
-#: manage/edit.php:204
+#: manage/edit.php:212
 msgid ""
 "Please fill the number you want to display for old changelog, If leave a "
 "blank or zero will only display this version changelog."
 msgstr "请输入要显示前几个老版本更新日志，留空或输入 0 则只显示本版更新。"
 
-#: manage/edit.php:209
+#: manage/edit.php:217
 msgid "Compatibility"
 msgstr "软件包的兼容性"
 
-#: manage/edit.php:212
+#: manage/edit.php:220
 msgid ""
 "Please fill the iOS system version number, If leave a blank or zero will "
 "disable the system compatibility check."
 msgstr "请填写 iOS 系统版本号，留空或输入 0 则关闭系统兼容性检测。"
 
-#: manage/edit.php:219 manage/edit.php:287 manage/release.php:90
+#: manage/edit.php:227 manage/edit.php:295 manage/release.php:90
 #: manage/settings.php:585 manage/udid.php:351
 msgid "Save"
 msgstr "保存"
 
-#: manage/edit.php:249 manage/edit.php:303
+#: manage/edit.php:257 manage/edit.php:311
 msgid "Update Database"
 msgstr "更新数据库"
 
-#: manage/edit.php:250 manage/edit.php:304
+#: manage/edit.php:258 manage/edit.php:312
 msgid "The package information edited!"
 msgstr "软件包信息编辑完成！"
 
-#: manage/edit.php:250 manage/edit.php:304
+#: manage/edit.php:258 manage/edit.php:312
 msgid ""
 "After modify the fields with an asterisk, you must write into package then "
 "safely rebuild list."
 msgstr "修改带星号的字段后，您必须将其写入软件包才能安全地刷新列表。"
 
-#: manage/edit.php:251 manage/edit.php:305
+#: manage/edit.php:259 manage/edit.php:313
 msgid "Write Now"
 msgstr "立即写入"
 
-#: manage/edit.php:251 manage/edit.php:305 manage/import.php:264
+#: manage/edit.php:259 manage/edit.php:313 manage/import.php:264
 #: manage/manage.php:116 manage/manage.php:124 manage/output.php:148
 #: manage/release.php:115 manage/release.php:117 manage/release.php:120
 #: manage/sections.php:317 manage/settings.php:671 manage/settings.php:739
@@ -453,74 +457,74 @@ msgstr "立即写入"
 msgid "Back"
 msgstr "返回"
 
-#: manage/edit.php:259 manage/header.php:179
+#: manage/edit.php:267 manage/header.php:179
 msgid "Advance Editing"
 msgstr "高级编辑"
 
-#: manage/edit.php:264
+#: manage/edit.php:272
 msgctxt "Advance Editing"
 msgid "Field"
 msgstr "修改字段"
 
-#: manage/edit.php:279
+#: manage/edit.php:287
 msgctxt "Advance Editing"
 msgid "Content"
 msgstr "修改内容"
 
-#: manage/edit.php:318 manage/edit.php:411 manage/udid.php:388
-#: manage/view.php:119
+#: manage/edit.php:326 manage/edit.php:419 manage/udid.php:388
+#: manage/view.php:121
 msgid "Binding UDID"
 msgstr "绑定UDID"
 
-#: manage/edit.php:323
+#: manage/edit.php:331 manage/settings.php:769
 msgid "Align"
 msgstr "对齐方式"
 
-#: manage/edit.php:325
+#: manage/edit.php:333 manage/settings.php:771
 msgctxt "Align"
 msgid "Left"
 msgstr "左对齐"
 
-#: manage/edit.php:326
+#: manage/edit.php:334 manage/settings.php:772
 msgctxt "Align"
 msgid "Center"
 msgstr "居中对齐"
 
-#: manage/edit.php:327
+#: manage/edit.php:335 manage/settings.php:773
 msgctxt "Align"
 msgid "Right"
 msgstr "右对齐"
 
-#: manage/edit.php:331
+#: manage/edit.php:339 manage/settings.php:777
 msgctxt "Edit"
 msgid "List"
 msgstr "编号"
 
-#: manage/edit.php:333
+#: manage/edit.php:341 manage/settings.php:779
 msgid "Ordered list"
 msgstr "数字编号"
 
-#: manage/edit.php:334
+#: manage/edit.php:342 manage/settings.php:780
 msgid "Unordered list"
 msgstr "项目编号"
 
-#: manage/edit.php:338
+#: manage/edit.php:346 manage/settings.php:784
 msgid "Indent"
 msgstr "缩进"
 
-#: manage/edit.php:340
+#: manage/edit.php:348 manage/settings.php:786
 msgid "Increase indent"
 msgstr "向右缩进"
 
-#: manage/edit.php:341
+#: manage/edit.php:349 manage/settings.php:787
 msgid "Decrease indent"
 msgstr "向左缩进"
 
-#: manage/edit.php:390
+#: manage/edit.php:398
 msgid "Data loading"
 msgstr "数据加载中"
 
-#: manage/edit.php:400
+#: manage/edit.php:408
 msgid "Database Error"
 msgstr "数据库错误"
 
@@ -817,7 +821,7 @@ msgstr "该操作无法撤销！"
 
 #: manage/manage.php:104 manage/sections.php:292 manage/sections.php:310
 #: manage/udid.php:301 manage/udid.php:390 manage/udid.php:399
-#: manage/view.php:107
+#: manage/view.php:109
 msgid "Confirm"
 msgstr "确定"
 
@@ -1131,7 +1135,7 @@ msgstr "您的密码不匹配"
 msgid "Type your new password again."
 msgstr "再输入一遍新密码。"
 
-#: manage/settings.php:125 manage/settings.php:755
+#: manage/settings.php:125 manage/settings.php:757
 msgid "Strength indicator"
 msgstr "强度评估"
 
@@ -1655,32 +1659,32 @@ msgstr "无法访问 %s，您可能需要更新您的 Rewrite 配置以来使用
 msgid "Amendments to the success of settings!"
 msgstr "设置修改成功！"
 
-#: manage/settings.php:755
+#: manage/settings.php:757
 msgctxt "Password"
 msgid "Short"
 msgstr "极弱"
 
-#: manage/settings.php:755
+#: manage/settings.php:757
 msgctxt "Password"
 msgid "Bad"
 msgstr "弱"
 
-#: manage/settings.php:755
+#: manage/settings.php:757
 msgctxt "Password"
 msgid "Good"
 msgstr "中等"
 
-#: manage/settings.php:755
+#: manage/settings.php:757
 msgctxt "Password"
 msgid "Strong"
 msgstr "强"
 
-#: manage/settings.php:755
+#: manage/settings.php:757
 msgctxt "Password"
 msgid "Mismatch"
 msgstr "不匹配"
 
-#: manage/settings.php:760
+#: manage/settings.php:762
 msgid "You have some errors, please check the form."
 msgstr "发生了一些错误，请检查表单"
 
@@ -1993,29 +1997,29 @@ msgstr "请选择一个软件包！"
 msgid "No specified item."
 msgstr "查询不到指定的项目。"
 
-#: manage/view.php:82
+#: manage/view.php:84
 msgid "This package no screenshot."
 msgstr "该软件包暂无截图"
 
-#: manage/view.php:88
+#: manage/view.php:90
 #, php-format
 msgid "This package have %d screenshot."
 msgid_plural "This package have %d screenshots."
 msgstr[0] "软件包截图 %d 张"
 
-#: manage/view.php:103
+#: manage/view.php:105
 msgid "New Screenshot"
 msgstr "新增截图"
 
-#: manage/view.php:105
+#: manage/view.php:107
 msgid "Batch Upload"
 msgstr "批量上传"
 
-#: manage/view.php:106
+#: manage/view.php:108
 msgid "Select Picture"
 msgstr "选择图片"
 
-#: manage/view.php:122
+#: manage/view.php:124
 msgid "Are you sure you want to delete this screenshot?"
 msgstr "您确定要彻底删除这张截图？"
 
