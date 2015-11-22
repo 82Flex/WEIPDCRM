@@ -16,3 +16,7 @@ input{text-align:right;}
 .navbar span{display:inline-block;}
 .subtitle h2{display:inline-block;}
 .wrapper > .item > span{display:inline-block;}
+@media only screen and (max-width:830px){
+.form-horizontal .control-label{position:static;width:auto;text-align:right;}
+.form-horizontal .controls{margin-right:0px;padding-right:0px}
+}

@@ -2,15 +2,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: DCRM Installer\n"
 "POT-Creation-Date: 2015-05-16 22:15+0800\n"
-"PO-Revision-Date: 2015-05-16 22:16+0800\n"
+"PO-Revision-Date: 2015-11-21 23:46+0800\n"
 "Last-Translator: Hintay <hintay@me.com>\n"
 "Language-Team: Shiraq\n"
 "Language: ug_CN\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 1.7.6\n"
-"X-Poedit-Basepath: ../../\n"
+"X-Generator: Poedit 1.8.6\n"
+"X-Poedit-Basepath: ../..\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
 "X-Poedit-KeywordsList: __;_e;_n:1,2;_x:1,2c;_ex:1,2c;_nx:4c,1,2;esc_attr__;"
 "esc_attr_e;esc_attr_x:1,2c;esc_html__;esc_html_e;esc_html_x:1,2c;_n_noop:1,2;"
@@ -274,11 +274,11 @@ msgstr ""
 
 #: install/setup-config.php:52
 msgid "Credits"
-msgstr "特别感谢"
+msgstr "ئالاھىدە رەخمەت ئېيتىدىغان شەخسلەر"
 
 #: install/setup-config.php:53
 msgid "Touch Sprite Team"
-msgstr ""
+msgstr "قوزغاتقۇچ ئەترىتى"
 
 #: install/setup-config.php:53 install/setup-config.php:54
 #: install/setup-config.php:55
@@ -675,7 +675,7 @@ msgstr ""
 
 #: install/setup-install.php:328
 msgid "Guest"
-msgstr ""
+msgstr "مېھمان"
 
 #: install/setup-install.php:335
 msgid "Your chosen password."
