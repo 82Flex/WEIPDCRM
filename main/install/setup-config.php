@@ -50,7 +50,7 @@ switch($step) {
 		<div class="alert alert-warning"><strong><?php _e('Notice: '); ?></strong><?php _e('You should update your Rewrite config to enable Elegant Mod.'); ?></div>
 <?php 	endif; ?>
 		<p><strong><?php _e('Welcome to DCRM!'); ?></strong></p>
-		<p><a href="https://github.com/Lessica/WEIPDCRM">DCRM</a> <?php _e('is a Darwin Cydia Repository Manager write by PHP.'); ?> <?php _e('This project is a original designs by <a href="http://weibo.cn/u/3246210680">@i_82</a>, and some codes by <a href="http://weibo.com/hintay">@Hintay</a>.'); ?></p>
+		<p><a href="https://github.com/Lessica/WEIPDCRM">DCRM</a> <?php _e('is a Darwin Cydia Repository Manager write by PHP.'); ?> <?php _e('This project is a original designs by <a href="http://weibo.cn/u/3246210680">@i_82</a>, and written collaboratively by <a href="http://weibo.com/hintay">@Hintay</a>.'); ?></p>
 		<p><?php _e('If you pay close attention to <a href="http://weibo.cn/u/3246210680">i_82</a> and some of his <a href="http://82flex.com/projects">projects</a>. Also wanted to help him, welcome to donate him.'); ?></p>
 	<blockquote class="thanks">
 		<font color="#4169e1" size="3"><strong><?php _e('Credits'); ?></strong></font>

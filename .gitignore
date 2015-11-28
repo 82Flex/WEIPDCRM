@@ -14,6 +14,7 @@ main/Packages
 main/Release
 main/Packages.gz
 main/Packages.bz2
+main/system/version.inc.php
 main/system/config/autofill.inc.php
 main/system/config/config.inc.php
 main/system/config/connect.inc.php
