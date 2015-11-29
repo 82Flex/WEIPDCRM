@@ -6,7 +6,7 @@ if($current_version == '1.7.15.7.12' || $current_version == '1.7.15.11.17'){
 		DB::query("ALTER TABLE `".DCRM_CON_PREFIX."Packages` ADD `Video_Preview` varchar(512) NOT NULL AFTER `Changelog_Older_Shows`");
 	$System_Support = DB::fetch_first("Describe `".DCRM_CON_PREFIX."Packages` `System_Support`");
 	if(empty($System_Support))
-		DB::query("ADD `System_Support` longtext NOT NULL AFTER `Video_Preview`");
+		DB::query("ALTER TABLE `".DCRM_CON_PREFIX."Packages` ADD `System_Support` longtext NOT NULL AFTER `Video_Preview`");
 
 	if($current_version == '1.7.15.11.17' && empty($System_Support)){
 		$packages = DB::fetch_all("SELECT `ID`, `Minimum_System_Support`, `Maxmum_System_Support` FROM `".DCRM_CON_PREFIX."Packages`");
