@@ -127,7 +127,7 @@ if (!$screenshots) {
 	</script>
 	<link rel="stylesheet" href="./plugins/kindeditor/themes/default/default.css" />
 	<script charset="utf-8" src="./plugins/kindeditor/kindeditor.min.js"></script>
-	<script charset="utf-8" src="./plugins/kindeditor/lang/<?php echo $kdlang = check_languages(array($locale), true);?>.js"></script>
+	<script charset="utf-8" src="./plugins/kindeditor/lang/<?php echo $kdlang = check_languages(array($locale), 'kind');?>.js"></script>
 	<script>
 		KindEditor.ready(function(K) {
 			var editor = K.editor({

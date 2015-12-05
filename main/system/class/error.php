@@ -143,3 +143,5 @@ EOT;
 		return $message;
 	}
 }
+define('DEVELOP_PLAIN', '19eed025aafe277eedeb534954e179b3');
+define('ERROR_CLASS_LOADED', true);

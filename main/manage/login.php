@@ -23,25 +23,30 @@
 session_cache_expire(30);
 session_cache_limiter("private");
 session_start();
-session_regenerate_id(true);
 define('ROOT_PATH', dirname(__FILE__));
 define('ABSPATH', dirname(ROOT_PATH).'/');
 
 if (isset($_GET['authpic'])) {
-	if (trim($_GET['authpic']) == 'png') {
-		define('IN_DCRM', true);
-		include_once ABSPATH.'system/class/validatecode.php';
-		$_vc = new ValidateCode();
-		$_vc->doimg();
-		$_SESSION['VCODE'] = $_vc->getCode();
-		exit();
-	} else {
-		exit();
+	switch(trim($_GET['authpic'])){
+		case 'png':
+			define('IN_DCRM', true);
+			include_once ABSPATH.'system/class/validatecode.php';
+			$_vc = new ValidateCode();
+			$_vc->doimg();
+			$_SESSION['VCODE'] = $_vc->getCode();
+			exit();
+			break;
+		default:
+			exit();
+			break;
 	}
 } else {
 	$localetype = 'manage';
 	include_once ABSPATH.'system/common.inc.php';
 	header("Cache-Control: no-store");
+}
+if(!isset($_SESSION['connected']) || $_SESSION['connected'] != true) {
+	session_regenerate_id(true);
 }
 if (!isset($_SESSION['try'])) {
 	$_SESSION['try'] = 0;
@@ -84,9 +89,8 @@ if(isset($_POST['submit'])) {
 			$error = "badlogin";
 			goto endlabel;
 		}
-		$login_query = DB::query("SELECT * FROM `".DCRM_CON_PREFIX."Users` WHERE `Username` = '".DB::real_escape_string($_POST['username'])."' LIMIT 1");
-		if (DB::affected_rows() > 0) {
-			$login = mysql_fetch_assoc($login_query);
+		$login = DB::fetch_first("SELECT * FROM `".DCRM_CON_PREFIX."Users` WHERE `Username` = '".DB::real_escape_string($_POST['username'])."' LIMIT 1");
+		if (!empty($login)) {
 			if ($login['Username'] === $_POST['username'] AND strtoupper($login['SHA1']) === strtoupper(sha1($_POST['password']))) {
 				$login_query = DB::update(DCRM_CON_PREFIX.'Users', array('LastLoginTime' => date('Y-m-d H:i:s')), array('ID' => $login['ID']));
 				$_SESSION['power'] = $login['Power'];
@@ -225,7 +229,7 @@ if (!isset($_SESSION['try']) OR $_SESSION['try'] <= DCRM_MAXLOGINFAIL) {
 										</div>
 										<div class="form-stack has-icon pull-left">
 											<div class="input-group image-input-group">
-												<input type="text" name="authcode" class="form-control input-lg" placeholder="<?php _e('Verify Code'); ?>" data-parsley-errors-container="#error-container" data-parsley-error-message="<?php _e('Please fill in the verify code'); ?>" data-parsley-required />
+												<input type="text" name="authcode" class="form-control input-lg authcode" placeholder="<?php _e('Verify Code'); ?>" data-parsley-errors-container="#error-container" data-parsley-error-message="<?php _e('Please fill in the verify code'); ?>" data-parsley-required />
 												<span class="input-group-addon verifycode">
 													<img src="login.php?authpic=png&amp;rand=<?php echo(time()); ?>" style="height: 44px;" onclick="this.src='login.php?authpic=png&amp;rand=' + new Date().getTime();" />
 												</span>
@@ -237,17 +241,18 @@ if (!isset($_SESSION['try']) OR $_SESSION['try'] <= DCRM_MAXLOGINFAIL) {
 									<!-- 错误容器 -->
 									<div id="error-container" class="mb15">
 <?php
-	if (isset($_GET['error'])) {
+	if (isset($_GET['error']))
 		$error = $_GET['error'];
-	}
-	if ($error == "notenough") {
-		echo '<ul class="parsley-errors-list filled"><li>'.__('Please input your username and password!').'</li></ul>';
-	} elseif ($error == "badlogin") {
-		echo '<ul class="parsley-errors-list filled"><li>'.__('Unknown username or bad password!').'</li></ul>';
-	} elseif ($error == "bear") {
-		echo '<ul class="parsley-errors-list filled"><li>'.__('Bear!').'</li></ul>';
-	} elseif ($error == "authcode") {
-		echo '<ul class="parsley-errors-list filled"><li>'.__('Verification code error!').'</li></ul>';
+	if(isset($error)){
+		if ($error == "notenough") {
+			echo '<ul class="parsley-errors-list filled"><li>'.__('Please input your username and password!').'</li></ul>';
+		} elseif ($error == "badlogin") {
+			echo '<ul class="parsley-errors-list filled"><li>'.__('Unknown username or bad password!').'</li></ul>';
+		} elseif ($error == "bear") {
+			echo '<ul class="parsley-errors-list filled"><li>'.__('Bear!').'</li></ul>';
+		} elseif ($error == "authcode") {
+			echo '<ul class="parsley-errors-list filled"><li>'.__('Verification code error!').'</li></ul>';
+		}
 	}
 ?>
 									</div>

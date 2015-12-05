@@ -752,7 +752,7 @@ if (isset($_SESSION['connected']) && $_SESSION['connected'] === true) {
 	<script src="../js/zxcvbn.min.js" type="text/javascript"></script>
 	<script src="./plugins/jqBootstrapValidation/jqBootstrapValidation.min.js"></script>
 	<script charset="utf-8" src="./plugins/kindeditor/kindeditor.min.js"></script>
-	<script charset="utf-8" src="./plugins/kindeditor/lang/<?php echo $kdlang = check_languages(array($locale), true);?>.js"></script>
+	<script charset="utf-8" src="./plugins/kindeditor/lang/<?php echo $kdlang = check_languages(array($locale), 'kind');?>.js"></script>
 	<script type='text/javascript'>
 	var pwsL10n = {"empty":"<?php echo( utf8_unicode( __( 'Strength indicator' ) ) ); ?>","short":"<?php echo( utf8_unicode( _x( 'Short', 'Password' ) ) ); ?>","bad":"<?php echo( utf8_unicode( _x( 'Bad', 'Password' ) ) ); ?>","good":"<?php echo( _x( 'Good', 'Password' ) ); ?>","strong":"<?php echo( utf8_unicode( _x( 'Strong', 'Password' ) ) ); ?>","mismatch":"<?php echo( utf8_unicode( _x( 'Mismatch', 'Password' ) ) ); ?>"};
 	$(function () { $("input,select,textarea").not("[type=submit]").jqBootstrapValidation(

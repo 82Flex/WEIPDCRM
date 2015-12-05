@@ -3573,3 +3573,4 @@ hr{border-color:#e6ebed}
 .verifycode{padding:0;border-top-width:0}
 .image-input-group>input{border-bottom-right-radius:0!important}
 .image-input-group>.input-group-addon{border-top-right-radius:0}
+.authcode{text-transform:uppercase;}

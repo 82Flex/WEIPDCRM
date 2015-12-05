@@ -1,33 +1,51 @@
 ﻿<?php
 /**
-* Uploadify 后台处理
+* Uploadify 后端处理
 * Author: Hintay, wind
-* Date: 2015/7/11
+* Date: 2015/12/05
 **/
 
-header("Content-Type: text/html; charset=UTF-8");
-// 设置上传目录
+error_reporting(E_ALL ^ E_NOTICE);
+
+if(isset($_POST['SESSION_ID']) && ($session_id = $_POST['SESSION_ID']) != session_id())
+	session_id($session_id);
+session_start();
+if(!isset($_SESSION['connected']) || $_SESSION['connected'] != true)
+	echo_json(403, 'NULL', 'Forbidden', 'You don\'t have permission to access.');
+
 $path = "../../../upload/";
+$allowExtension = 'deb';
 
 if (!empty($_FILES)) {
-	// 得到上传的临时文件流
 	$tempFile = $_FILES['Filedata']['tmp_name'];
-
-	// 得到文件原名
 	$fileName = $_FILES["Filedata"]["name"];
-	if (file_exists($path . $fileName)) {
-		echo(json_encode(array('code'=>300,'filename'=>$fileName,'status'=>'exist')));
-	} else {
-		// 接受动态传值
-		$files=$_POST['typeCode'];
 
-		// 最后保存服务器地址
+	$fileExtension = pathinfo($_FILES["Filedata"]["name"], PATHINFO_EXTENSION);
+	if(strtolower($fileExtension) != $allowExtension)
+		echo_json(300, 'NULL', 'extnotallow', 'Extension are not allowed.');
+
+	$path = realpath($path) . '/';
+	if(!empty($fileExtension))
+		$fileName = str_replace('.'.$fileExtension, '', $fileName);
+	$fileName = $fileName . '_' . date("Ymd") . '.' . $fileExtension;
+
+	if (file_exists($path.$fileName)) {
+		echo_json(300, $fileName, 'exist', 'Already Exists.');
+	} else {
 		if(!is_dir($path))
 			mkdir($path);
 		if (move_uploaded_file($tempFile, $path.$fileName))
-			echo(json_encode(array('code'=>200,'filename'=>$fileName,'status'=>'success')));
+			echo_json(200, $fileName, 'success', 'Upload Success.');
 		else
-			echo(json_encode(array('code'=>300,'filename'=>$fileName,'status'=>'failed')));
+			echo_json(300, $fileName, 'failed', 'Upload Failed.');
 	}
+} else {
+	echo_json(403, 'NULL', 'Forbidden', 'No data submitted.');
+}
+
+function echo_json($code = 400, $fileName = 'NULL', $status = 'error', $message = '') {
+	header('Content-type: text/html; charset=UTF-8');
+	echo(json_encode(array('code' => $code, 'filename' => $fileName, 'status' => $status, 'message' => $message)));
+	exit();
 }
 ?>

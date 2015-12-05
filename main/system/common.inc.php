@@ -36,8 +36,8 @@ error_reporting(DEBUG_ENABLED ? E_ALL & !E_NOTICE & !E_STRICT : E_ERROR | E_PARS
 require_once SYSTEM_ROOT.'./class/error.php';
 set_exception_handler(array('error', 'exception_error'));
 
-function class_loader($class_name){
-	$file_path = "system/class/{$class_name}.php";
+function class_loader($class_name, $extension = 'php'){
+	$file_path = "system/class/{$class_name}.{$extension}";
 	$real_path = ROOT.strtolower($file_path);
 	if (!file_exists($real_path)) {
 		throw new Exception('Ooops, system file is losing: '.strtolower($file_path));
@@ -61,7 +61,7 @@ if(file_exists(ROOT.'manage/include/connect.inc.php')){
 }
 require_once(CONF_PATH.'connect.inc.php');
 
-/* Language Switch */
+/* Load Localization System */
 if(file_exists(CONF_PATH.'config.inc.php')){
 	require_once(CONF_PATH.'config.inc.php');
 }
@@ -69,6 +69,7 @@ require_once(SYSTEM_ROOT.'languages/l10n.php');
 $link_language = localization_load();
 require_once(SYSTEM_ROOT.'class/locale.php');
 
+/* Check version file */
 $version_file = SYSTEM_ROOT.'version.inc.php';
 if(!file_exists($version_file)){
 	@touch($version_file);
@@ -81,16 +82,6 @@ require_once($version_file);
 class_loader('core');
 class_loader('db');
 class_loader('Updater');
-
-/*if (function_exists('spl_autoload_register')){
-	spl_autoload_register('class_loader');
-}else{
-	function __autoload($class_name){
-		class_loader($class_name);
-	}
-}*/
-
-// Move to base_url() function.
 
 require_once SYSTEM_ROOT.'./function/core.php';
 

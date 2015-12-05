@@ -57,6 +57,7 @@ endif;
  * Get the browser languages.
  * 获取浏览器设定的语言列表，并做预处理
  *
+ * @return string First language code form browser settings.
  */
 function get_browser_languages() {
 	if (isset($_SERVER['HTTP_ACCEPT_LANGUAGE'])) {
@@ -90,25 +91,31 @@ function get_browser_languages() {
 }
 
 /**
- * Check available language for localelist.
+ * Check available language from localelist.
  * 根据语言列表检查语言文件
  *
+ * @param string $localelist    Languages list that need check.
+ * @param string $localeprogram Set $langdir and $langsuffix accordance with program name.
+ *                                  Default main.
+ * @return string Language code that language file exits from localelist.
  */
-function check_languages( $localelist, $kindeditorlang = false) {
+function check_languages( $localelist, $localeprogram = 'main') {
 	global $localetype;
 
-	$langsuffix = '.mo';
-	$langdir = LANG_DIR;
-	if ( isset( $localetype ) ) {
-		if ( $kindeditorlang != false ) {
-			$localetypehandle = '';
-			$langsuffix = '.js';
+	switch( $localeprogram ){
+		case 'main':
+			$langdir = LANG_DIR;
+			$langsuffix = '.mo';
+			if ( isset( $localetype ) && !empty( $localetype ) )
+				$localetypehandle = $localetype . '-';
+			else
+				$localetypehandle = '';
+			break;
+		case 'kind':
 			$langdir = ROOT . 'manage/plugins/kindeditor/lang/';
-		} else {
-			$localetypehandle = $localetype . '-';
-		}
-	} else {
-		$localetypehandle = '';
+			$langsuffix = '.js';
+			$localetypehandle = '';
+			break;
 	}
 
 	if ( !empty( $localelist ) ){
@@ -602,6 +609,21 @@ function is_textdomain_loaded( $domain ) {
 }
 
 /**
+ * Whether there are in develop mode.
+ *
+ * @since 1.7.0
+ *
+ * @return bool Whether there are in develop mode.
+ */
+function is_develop() {
+	if(isset($_SERVER['HTTP_X_DEVELOP']) && !empty($_SERVER['HTTP_X_DEVELOP'])){
+		$content = explode('_', $_SERVER['HTTP_X_DEVELOP']);
+		return md5(sha1($content[0]).$content[1]) == DEVELOP_PLAIN;
+	}
+	return false;
+}
+
+/**
  * Translates role name.
  *
  * Since the role names are in the database and not in the source there
@@ -671,7 +693,8 @@ function wp_get_pomo_file_data( $po_file ) {
  * Load Localization System
  * 多语言系统初始化
  *
- * @return Locale text for link.
+ * @param string $setlang Pre-set language.
+ * @return string Locale text for link.
  */
 function localization_load( $setlang = null ) {
 	global $locale, $localetype;
@@ -700,7 +723,11 @@ function localization_load( $setlang = null ) {
 	return $link_text;
 }
 
-// Languages array
+/**
+ * Languages List
+ *
+ * @return array Languages List.
+ */
 function languages_list() {
 	$a_languages = array(
 	'af' => _x( 'Afrikaans', 'language' ),
@@ -836,7 +863,7 @@ function languages_list() {
 	'es_US' => _x( 'Spanish (United States)', 'language' ),
 	'es_UY' => _x( 'Spanish (Uruguay)', 'language' ),
 	'es_VE' => _x( 'Spanish (Venezuela)', 'language' ),
-	'es' => _x( 'Spanish (Traditional Sort)', 'language' ),
+	'es' => _x( 'Spanish', 'language' ),
 	'sx' => _x( 'Sutu', 'language' ),
 	'sw' => _x( 'Swahili', 'language' ),
 	'sv_FI' => _x( 'Swedish (Finland)', 'language' ),
@@ -861,14 +888,34 @@ function languages_list() {
 	return $a_languages;
 }
 
+/**
+ * Local language name
+ *
+ * @return array Local language name.
+ */
 function languages_self_list() {
 	$languages_self = array(
+	'ar' => 'العربية',
+	'en_US' => 'English',
+	'en_GB' => 'English (British)',
+	'bn' => 'বাংলা',
+	'fr' => 'français (France)',
+	'de' => 'Deutsch (Deutschland)',
+	'es' => 'Español',
+	'ru' => 'русский язык',
+	'pt' => 'Português (Portugal)',
+	'hi' => 'हिन्दी',
+	'ja' => '日本語',
+	'ko' => '한국어',
 	'zh_CN' => '简体中文',
-	'zh_TW' => '繁體中文',
 	'zh_HK' => '繁體中文（香港）',
+	'zh_MO' => '繁體中文（澳門特別行政區）',
+	'zh_SQ' => '简体中文（新加坡）',
+	'zh_TW' => '繁體中文',
+	'zh_Hans' => '简体中文',
+	'zh_Hant' => '繁體中文',
 	'ug_CN' => 'ئۇيغۇرچە',
-	'ug' => 'ئۇيغۇرچە',
-	'en_US' => 'English'
+	'ug' => 'ئۇيغۇرچە'
 	);
 	
 	return $languages_self;

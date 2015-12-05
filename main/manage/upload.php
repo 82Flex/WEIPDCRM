@@ -129,7 +129,10 @@ $(function() {
 		//'uploadLimit'		: 10, // 一次最多只允许上传10个文件
 		'fileTypeDesc'		: 'Debian Software Package', // 只允许上传的文件种类
 		'fileTypeExts'		: '*.deb', // 限制允许上传的后缀
-		'fileSizeLimit'		: '10MB', // 限制上传的文件不得超过10MB 
+		'fileSizeLimit'		: '10MB', // 限制上传的文件不得超过10MB
+		'onUploadStart'		: function(file) {
+			$("#file_upload").uploadify("settings", "formData", {'SESSION_ID':'<?php echo(session_id()); ?>'});
+		},
 		'onUploadSuccess'	: function(file, data, response){ // 每次成功上传后执行的回调函数，从服务端返回数据到前端
 			var responeseDataObj = eval('('+data+')');
 			if(responeseDataObj){
@@ -153,15 +156,14 @@ $(function() {
 		'onQueueComplete' : function(queueData) { // 上传队列全部完成后执行的回调函数
 			if(files_msg.length > 0){
 				alert(files_msg);
-				files_msg = null; // 销毁变量，否则会重复
+				files_msg = ''; // 销毁变量，否则会重复
 			}
 		}
 	});
 });
 </script>
 <?php
-	}
-	if (isset($_GET['mode']) && $_GET['mode'] == 'classic') {
+	}elseif (isset($_GET['mode']) && $_GET['mode'] == 'classic') {
 ?>
 				<div class="subtitle"><h2><?php _e('Upload Packages'); ?></h2><span><?php printf(__('Unable to upload files? Try %s.'), '<a href="./upload.php?mode=multiple">'.__('multiple uploader').'</a>'); ?></span></div>
 				<br />

@@ -290,9 +290,11 @@ if ($index == 0) {
 				<p>
 					<?php printf( __( '<strong>%d</strong> packages in total.' ) , $num ); ?> 
 				</p>
+				<?php if(isset($release_time)): ?>
 				<p>
 					<?php printf( __( 'Last updated: <strong>%s</strong>' ) , $release_time ); ?> 
 				</p>
+				<?php endif; ?>
 			</block>
 			<fieldset>
 <?php

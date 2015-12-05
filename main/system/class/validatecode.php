@@ -1,4 +1,4 @@
-<?php
+ï»¿<?php
 if (!defined('IN_DCRM')) exit();
 class ValidateCode {
 	private $charset = 'abcdefghijklmnopqrstuvwxvzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
@@ -11,12 +11,12 @@ class ValidateCode {
 	private $fontsize = 36;
 	private $fontcolor;
 
-	//¹¹Ôì·½·¨³õÊ¼»¯
+	//æ„é€ æ–¹æ³•åˆå§‹åŒ–
 	public function __construct() {
 		$this->font = ROOT_PATH.'/css/default.ttf';
 	}
 
-	//Éú³ÉËæ»úÂë
+	//ç”Ÿæˆéšæœºç 
 	private function createCode() {
 		$_len = strlen($this->charset)-1;
 		for ($i=0;$i<$this->codelen;$i++) {
@@ -24,14 +24,14 @@ class ValidateCode {
 		}
 	}
 
-	//Éú³É±³¾°
+	//ç”ŸæˆèƒŒæ™¯
 	private function createBg() {
 		$this->img = imagecreatetruecolor($this->width, $this->height);
 		$color = imagecolorallocate($this->img, mt_rand(157,255), mt_rand(157,255), mt_rand(157,255));
 		imagefilledrectangle($this->img,0,$this->height,$this->width,0,$color);
 	}
 
-	//Éú³ÉÎÄ×Ö
+	//ç”Ÿæˆæ–‡å­—
 	private function createFont() {    
 		$_x = $this->width / $this->codelen;
 		for ($i=0;$i<$this->codelen;$i++) {
@@ -40,7 +40,7 @@ class ValidateCode {
 		}
 	}
 
-	//Éú³ÉÏßÌõ¡¢Ñ©»¨
+	//ç”Ÿæˆçº¿æ¡ã€é›ªèŠ±
 	private function createLine() {
 		for ($i=0;$i<6;$i++) {
 			$color = imagecolorallocate($this->img,mt_rand(0,156),mt_rand(0,156),mt_rand(0,156));
@@ -52,14 +52,14 @@ class ValidateCode {
 		}
 	}
 
-	//Êä³ö
+	//è¾“å‡º
 	private function outPut() {
 		header('Content-Type: image/png');
 		imagepng($this->img);
 		imagedestroy($this->img);
 	}
 
-	//¶ÔÍâÉú³É
+	//å¯¹å¤–ç”Ÿæˆ
 	public function doimg() {
 		$this->createBg();
 		$this->createCode();
@@ -68,7 +68,7 @@ class ValidateCode {
 		$this->outPut();
 	}
 
-	//»ñÈ¡ÑéÖ¤Âë
+	//è·å–éªŒè¯ç 
 	public function getCode() {
 		return strtolower($this->code);
 	}

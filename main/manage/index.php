@@ -18,6 +18,7 @@
 
 /* DCRM Management Jump Page */
 
+session_start();
 define('MANAGE_ROOT', dirname(__FILE__).'/');
 define('ABSPATH', dirname(MANAGE_ROOT).'/'); 
 require_once ABSPATH.'system/common.inc.php';
