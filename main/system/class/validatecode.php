@@ -1,4 +1,4 @@
-﻿<?php
+<?php
 if (!defined('IN_DCRM')) exit();
 class ValidateCode {
 	private $charset = 'abcdefghijklmnopqrstuvwxvzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
