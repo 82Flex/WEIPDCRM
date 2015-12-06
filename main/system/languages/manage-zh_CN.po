@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: DCRM Manager\n"
-"POT-Creation-Date: 2015-11-22 14:16+0800\n"
-"PO-Revision-Date: 2015-11-22 14:16+0800\n"
+"POT-Creation-Date: 2015-12-06 21:21+0800\n"
+"PO-Revision-Date: 2015-12-06 21:22+0800\n"
 "Last-Translator: Hintay <hintay@me.com>\n"
 "Language-Team: Hintay <hintay@me.com>\n"
 "Language: zh_CN\n"
@@ -318,7 +318,7 @@ msgstr "保护"
 msgid "Enabled"
 msgstr "启用"
 
-#: manage/edit.php:100 manage/settings.php:31 manage/upload.php:189
+#: manage/edit.php:100 manage/settings.php:31 manage/upload.php:196
 msgid "Disabled"
 msgstr "禁用"
 
@@ -420,36 +420,36 @@ msgstr "请输入要显示前几个老版本更新日志，留空或输入 0 则
 msgid "Compatibility"
 msgstr "软件包的兼容性"
 
-#: manage/edit.php:220
+#: manage/edit.php:223
 msgid ""
 "Please fill the iOS system version number, If leave a blank or zero will "
 "disable the system compatibility check."
 msgstr "请填写 iOS 系统版本号，留空或输入 0 则关闭系统兼容性检测。"
 
-#: manage/edit.php:227 manage/edit.php:295 manage/release.php:90
+#: manage/edit.php:230 manage/edit.php:303 manage/release.php:90
 #: manage/settings.php:585 manage/udid.php:351
 msgid "Save"
 msgstr "保存"
 
-#: manage/edit.php:257 manage/edit.php:311
+#: manage/edit.php:265 manage/edit.php:319
 msgid "Update Database"
 msgstr "更新数据库"
 
-#: manage/edit.php:258 manage/edit.php:312
+#: manage/edit.php:266 manage/edit.php:320
 msgid "The package information edited!"
 msgstr "软件包信息编辑完成！"
 
-#: manage/edit.php:258 manage/edit.php:312
+#: manage/edit.php:266 manage/edit.php:320
 msgid ""
 "After modify the fields with an asterisk, you must write into package then "
 "safely rebuild list."
 msgstr "修改带星号的字段后，您必须将其写入软件包才能安全地刷新列表。"
 
-#: manage/edit.php:259 manage/edit.php:313
+#: manage/edit.php:267 manage/edit.php:321
 msgid "Write Now"
 msgstr "立即写入"
 
-#: manage/edit.php:259 manage/edit.php:313 manage/import.php:264
+#: manage/edit.php:267 manage/edit.php:321 manage/import.php:264
 #: manage/manage.php:116 manage/manage.php:124 manage/output.php:148
 #: manage/release.php:115 manage/release.php:117 manage/release.php:120
 #: manage/sections.php:317 manage/settings.php:671 manage/settings.php:739
@@ -457,78 +457,78 @@ msgstr "立即写入"
 msgid "Back"
 msgstr "返回"
 
-#: manage/edit.php:267 manage/header.php:179
+#: manage/edit.php:275 manage/header.php:179
 msgid "Advance Editing"
 msgstr "高级编辑"
 
-#: manage/edit.php:272
+#: manage/edit.php:280
 msgctxt "Advance Editing"
 msgid "Field"
 msgstr "修改字段"
 
-#: manage/edit.php:287
+#: manage/edit.php:295
 msgctxt "Advance Editing"
 msgid "Content"
 msgstr "修改内容"
 
-#: manage/edit.php:326 manage/edit.php:419 manage/udid.php:388
-#: manage/view.php:121
+#: manage/edit.php:334 manage/edit.php:427 manage/udid.php:388
+#: manage/view.php:120
 msgid "Binding UDID"
 msgstr "绑定UDID"
 
-#: manage/edit.php:331 manage/settings.php:769
+#: manage/edit.php:339 manage/settings.php:769
 msgid "Align"
 msgstr "对齐方式"
 
-#: manage/edit.php:333 manage/settings.php:771
+#: manage/edit.php:341 manage/settings.php:771
 msgctxt "Align"
 msgid "Left"
 msgstr "左对齐"
 
-#: manage/edit.php:334 manage/settings.php:772
+#: manage/edit.php:342 manage/settings.php:772
 msgctxt "Align"
 msgid "Center"
 msgstr "居中对齐"
 
-#: manage/edit.php:335 manage/settings.php:773
+#: manage/edit.php:343 manage/settings.php:773
 msgctxt "Align"
 msgid "Right"
 msgstr "右对齐"
 
-#: manage/edit.php:339 manage/settings.php:777
+#: manage/edit.php:347 manage/settings.php:777
 msgctxt "Edit"
 msgid "List"
 msgstr "编号"
 
-#: manage/edit.php:341 manage/settings.php:779
+#: manage/edit.php:349 manage/settings.php:779
 msgid "Ordered list"
 msgstr "数字编号"
 
-#: manage/edit.php:342 manage/settings.php:780
+#: manage/edit.php:350 manage/settings.php:780
 msgid "Unordered list"
 msgstr "项目编号"
 
-#: manage/edit.php:346 manage/settings.php:784
+#: manage/edit.php:354 manage/settings.php:784
 msgid "Indent"
 msgstr "缩进"
 
-#: manage/edit.php:348 manage/settings.php:786
+#: manage/edit.php:356 manage/settings.php:786
 msgid "Increase indent"
 msgstr "向右缩进"
 
-#: manage/edit.php:349 manage/settings.php:787
+#: manage/edit.php:357 manage/settings.php:787
 msgid "Decrease indent"
 msgstr "向左缩进"
 
-#: manage/edit.php:398
+#: manage/edit.php:406
 msgid "Data loading"
 msgstr "数据加载中"
 
-#: manage/edit.php:408
+#: manage/edit.php:416
 msgid "Database Error"
 msgstr "数据库错误"
 
-#: manage/header.php:37 manage/upload.php:86 manage/upload.php:166
+#: manage/header.php:37 manage/upload.php:86 manage/upload.php:173
 msgid "Upload Packages"
 msgstr "上传软件包"
 
@@ -590,7 +590,7 @@ msgstr "查看详情"
 msgid "Invalid argument: `Filename`"
 msgstr "无效的参数：`Filename`"
 
-#: manage/import.php:46 manage/upload.php:216
+#: manage/import.php:46 manage/upload.php:223
 msgid "Invalid file type!"
 msgstr "不允许的文件类型！"
 
@@ -704,72 +704,72 @@ msgstr "直接替换"
 msgid "Add New"
 msgstr "新增条目"
 
-#: manage/login.php:126 manage/login.php:171 manage/login3.php:119
+#: manage/login.php:130 manage/login.php:175 manage/login3.php:119
 #: manage/login3.php:151
 msgid "Login"
 msgstr "登录"
 
-#: manage/login.php:190 manage/login3.php:163
+#: manage/login.php:194 manage/login3.php:163
 msgctxt "language"
 msgid "Select language"
 msgstr "选择语言"
 
-#: manage/login.php:201 manage/login3.php:174 manage/settings.php:76
-#: system/languages/l10n.php:759
+#: manage/login.php:205 manage/login3.php:174 manage/settings.php:76
+#: system/languages/l10n.php:786
 msgctxt "language"
 msgid "English"
 msgstr "英语"
 
-#: manage/login.php:219 manage/login3.php:190 manage/settings.php:105
+#: manage/login.php:223 manage/login3.php:190 manage/settings.php:105
 msgid "Username"
 msgstr "用户名"
 
-#: manage/login.php:219 manage/login3.php:190
+#: manage/login.php:223 manage/login3.php:190
 msgid "Please fill in your username"
 msgstr "请填写您的用户名"
 
-#: manage/login.php:223 manage/login3.php:191
+#: manage/login.php:227 manage/login3.php:191
 msgid "Password"
 msgstr "密码"
 
-#: manage/login.php:223 manage/login3.php:191
+#: manage/login.php:227 manage/login3.php:191
 msgid "Please fill in your password"
 msgstr "请填写您的密码"
 
-#: manage/login.php:228 manage/login3.php:192
+#: manage/login.php:232 manage/login3.php:192
 msgid "Verify Code"
 msgstr "验证码"
 
-#: manage/login.php:228 manage/login3.php:192
+#: manage/login.php:232 manage/login3.php:192
 msgid "Please fill in the verify code"
 msgstr "请填写验证码"
 
-#: manage/login.php:244 manage/login3.php:143
+#: manage/login.php:248 manage/login3.php:143
 msgid "Please input your username and password!"
 msgstr "请填写用户名和密码！"
 
-#: manage/login.php:246 manage/login3.php:145
+#: manage/login.php:250 manage/login3.php:145
 msgid "Unknown username or bad password!"
 msgstr "用户名或密码错误！"
 
-#: manage/login.php:248 manage/login3.php:147
+#: manage/login.php:252 manage/login3.php:147
 msgid "Bear!"
 msgstr "熊出没注意！"
 
-#: manage/login.php:250 manage/login3.php:149
+#: manage/login.php:254 manage/login3.php:149
 msgid "Verification code error!"
 msgstr "验证码错误！"
 
-#: manage/login.php:258 manage/login3.php:194
+#: manage/login.php:263 manage/login3.php:194
 msgctxt "Buttom"
 msgid "Login"
 msgstr "立即登录"
 
-#: manage/login.php:268 manage/login3.php:201
+#: manage/login.php:273 manage/login3.php:201
 msgid "Error"
 msgstr "错误"
 
-#: manage/login.php:269 manage/login3.php:202
+#: manage/login.php:274 manage/login3.php:202
 #, php-format
 msgid ""
 "Your login wrong too many times , close the session or wait %s minutes and "
@@ -821,7 +821,7 @@ msgstr "该操作无法撤销！"
 
 #: manage/manage.php:104 manage/sections.php:292 manage/sections.php:310
 #: manage/udid.php:301 manage/udid.php:390 manage/udid.php:399
-#: manage/view.php:109
+#: manage/view.php:108
 msgid "Confirm"
 msgstr "确定"
 
@@ -983,7 +983,7 @@ msgstr "您可以点击 <a href=\"%s\">这里</a> 删除当前图标"
 msgid "There are currently no icon."
 msgstr "当前无图标"
 
-#: manage/sections.php:158 manage/upload.php:106 manage/upload.php:186
+#: manage/sections.php:158 manage/upload.php:106 manage/upload.php:193
 msgid "Tips"
 msgstr "操作提示"
 
@@ -1708,7 +1708,7 @@ msgstr "数据库版本："
 msgid "GD library version: "
 msgstr "GD 库版本："
 
-#: manage/stats.php:51 manage/upload.php:109 manage/upload.php:189
+#: manage/stats.php:51 manage/upload.php:109 manage/upload.php:196
 msgid "Upload max filesize: "
 msgstr "最大上传限制："
 
@@ -1877,7 +1877,7 @@ msgstr "%s  已经存在"
 msgid "Uploaded successfully: %s."
 msgstr "上传成功：%s"
 
-#: manage/upload.php:86 manage/upload.php:166
+#: manage/upload.php:86 manage/upload.php:173
 #, php-format
 msgid "Unable to upload files? Try %s."
 msgstr "无法上传文件？尝试%s."
@@ -1896,7 +1896,7 @@ msgid ""
 "packages."
 msgstr "提示：按住Ctrl(⌘)键可多选"
 
-#: manage/upload.php:99 manage/upload.php:181
+#: manage/upload.php:99 manage/upload.php:188
 msgid "Upload"
 msgstr "上传"
 
@@ -1905,21 +1905,21 @@ msgctxt "Upload"
 msgid "Reset"
 msgstr "重置上传队列"
 
-#: manage/upload.php:108 manage/upload.php:188
+#: manage/upload.php:108 manage/upload.php:195
 msgid "Allowed data type: "
 msgstr "允许的数据类型："
 
 #: manage/upload.php:108 manage/upload.php:109 manage/upload.php:110
-#: manage/upload.php:188 manage/upload.php:189 manage/upload.php:190
+#: manage/upload.php:195 manage/upload.php:196 manage/upload.php:197
 msgctxt "Separator"
 msgid ";"
 msgstr "；"
 
-#: manage/upload.php:110 manage/upload.php:190
+#: manage/upload.php:110 manage/upload.php:197
 msgid "Please do not upload disrupt the Internet security data"
 msgstr "请勿上传可能扰乱互联网安全秩序的数据"
 
-#: manage/upload.php:111 manage/upload.php:191
+#: manage/upload.php:111 manage/upload.php:198
 msgid ""
 "Please upload the standard package of Debian software package, otherwise it "
 "may cause loss of data."
@@ -1929,67 +1929,72 @@ msgstr "请上传标准封装的 Debian 软件包，否则可能会导致数据�
 msgid "SELECT FILES"
 msgstr "选择文件"
 
-#: manage/upload.php:137
+#: manage/upload.php:140
 msgctxt "Uploader"
 msgid " Success"
 msgstr " 成功"
 
-#: manage/upload.php:138
+#: manage/upload.php:141
 msgctxt "Uploader"
 msgid " Upload Success!"
 msgstr " 上传成功！"
 
-#: manage/upload.php:141
+#: manage/upload.php:144
 msgctxt "Uploader"
 msgid " Failed"
 msgstr "失败"
 
-#: manage/upload.php:142
+#: manage/upload.php:145
 msgctxt "Uploader"
 msgid " Upload Failed!"
 msgstr "上传失败！"
 
-#: manage/upload.php:144
+#: manage/upload.php:147
 msgctxt "Uploader"
 msgid " Already Exists"
 msgstr " 已存在"
 
-#: manage/upload.php:145
+#: manage/upload.php:148
 msgctxt "Uploader"
 msgid " Already Exists!"
 msgstr " 已存在！"
 
-#: manage/upload.php:148
+#: manage/upload.php:152
 msgctxt "Uploader"
 msgid " Unknow"
 msgstr " 未知"
 
-#: manage/upload.php:149
+#: manage/upload.php:153
 msgctxt "Uploader"
-msgid " Unknow Error!"
-msgstr " 未知错误！"
+msgid "Unknow Error!"
+msgstr "未知错误！"
 
-#: manage/upload.php:166
+#: manage/upload.php:155
+msgctxt "Uploader"
+msgid " Error"
+msgstr " 错误"
+
+#: manage/upload.php:173
 msgid "multiple uploader"
 msgstr "更多方式上传"
 
-#: manage/upload.php:168
+#: manage/upload.php:175
 msgid "Select File"
 msgstr "选择文件"
 
-#: manage/upload.php:173
+#: manage/upload.php:180
 msgid "Please select a package"
 msgstr "请选择一个软件包"
 
-#: manage/upload.php:176
+#: manage/upload.php:183
 msgid "Ready"
 msgstr "准备就绪"
 
-#: manage/upload.php:202
+#: manage/upload.php:209
 msgid "Please wait for uploading..."
 msgstr "上传中，请稍等……"
 
-#: manage/upload.php:220
+#: manage/upload.php:227
 msgid "Please select a package!"
 msgstr "请选择一个软件包！"
 
@@ -1997,786 +2002,798 @@ msgstr "请选择一个软件包！"
 msgid "No specified item."
 msgstr "查询不到指定的项目。"
 
-#: manage/view.php:84
+#: manage/view.php:83
 msgid "This package no screenshot."
 msgstr "该软件包暂无截图"
 
-#: manage/view.php:90
+#: manage/view.php:89
 #, php-format
 msgid "This package have %d screenshot."
 msgid_plural "This package have %d screenshots."
 msgstr[0] "软件包截图 %d 张"
 
-#: manage/view.php:105
+#: manage/view.php:104
 msgid "New Screenshot"
 msgstr "新增截图"
 
-#: manage/view.php:107
+#: manage/view.php:106
 msgid "Batch Upload"
 msgstr "批量上传"
 
-#: manage/view.php:108
+#: manage/view.php:107
 msgid "Select Picture"
 msgstr "选择图片"
 
-#: manage/view.php:124
+#: manage/view.php:123
 msgid "Are you sure you want to delete this screenshot?"
 msgstr "您确定要彻底删除这张截图？"
 
-#: system/languages/l10n.php:706
+#: system/languages/l10n.php:733
 msgctxt "language"
 msgid "Afrikaans"
 msgstr "南非文"
 
-#: system/languages/l10n.php:707
+#: system/languages/l10n.php:734
 msgctxt "language"
 msgid "Albanian"
 msgstr "阿尔巴尼亚文"
 
-#: system/languages/l10n.php:708
+#: system/languages/l10n.php:735
 msgctxt "language"
 msgid "Arabic (Algeria)"
 msgstr "阿拉伯文 (阿尔及利亚)"
 
-#: system/languages/l10n.php:709
+#: system/languages/l10n.php:736
 msgctxt "language"
 msgid "Arabic (Bahrain)"
 msgstr "阿拉伯文 (巴林)"
 
-#: system/languages/l10n.php:710
+#: system/languages/l10n.php:737
 msgctxt "language"
 msgid "Arabic (Egypt)"
 msgstr "阿拉伯文 (埃及)"
 
-#: system/languages/l10n.php:711
+#: system/languages/l10n.php:738
 msgctxt "language"
 msgid "Arabic (Iraq)"
 msgstr "阿拉伯文 (伊拉克)"
 
-#: system/languages/l10n.php:712
+#: system/languages/l10n.php:739
 msgctxt "language"
 msgid "Arabic (Jordan)"
 msgstr "阿拉伯文 (约旦)"
 
-#: system/languages/l10n.php:713
+#: system/languages/l10n.php:740
 msgctxt "language"
 msgid "Arabic (Kuwait)"
 msgstr "阿拉伯文 (科威特)"
 
-#: system/languages/l10n.php:714
+#: system/languages/l10n.php:741
 msgctxt "language"
 msgid "Arabic (Lebanon)"
 msgstr "阿拉伯文 (黎巴嫩)"
 
-#: system/languages/l10n.php:715
+#: system/languages/l10n.php:742
 msgctxt "language"
 msgid "Arabic (libya)"
 msgstr "阿拉伯文 (利比亚)"
 
-#: system/languages/l10n.php:716
+#: system/languages/l10n.php:743
 msgctxt "language"
 msgid "Arabic (Morocco)"
 msgstr "阿拉伯文 (摩洛哥)"
 
-#: system/languages/l10n.php:717
+#: system/languages/l10n.php:744
 msgctxt "language"
 msgid "Arabic (Oman)"
 msgstr "阿拉伯文 (阿曼)"
 
-#: system/languages/l10n.php:718
+#: system/languages/l10n.php:745
 msgctxt "language"
 msgid "Arabic (Qatar)"
 msgstr "阿拉伯文 (卡塔尔)"
 
-#: system/languages/l10n.php:719
+#: system/languages/l10n.php:746
 msgctxt "language"
 msgid "Arabic (Saudi Arabia)"
 msgstr "阿拉伯文 (沙特阿拉伯)"
 
-#: system/languages/l10n.php:720
+#: system/languages/l10n.php:747
 msgctxt "language"
 msgid "Arabic (Syria)"
 msgstr "阿拉伯文 (叙利亚)"
 
-#: system/languages/l10n.php:721
+#: system/languages/l10n.php:748
 msgctxt "language"
 msgid "Arabic (Tunisia)"
 msgstr "阿拉伯文 (突尼斯)"
 
-#: system/languages/l10n.php:722
+#: system/languages/l10n.php:749
 msgctxt "language"
 msgid "Arabic (U.A.E.)"
 msgstr "阿拉伯文 (阿拉伯联合酋长国) "
 
-#: system/languages/l10n.php:723
+#: system/languages/l10n.php:750
 msgctxt "language"
 msgid "Arabic (Yemen)"
 msgstr "阿拉伯文 (也门)"
 
-#: system/languages/l10n.php:724
+#: system/languages/l10n.php:751
 msgctxt "language"
 msgid "Arabic"
 msgstr "阿拉伯文"
 
-#: system/languages/l10n.php:725
+#: system/languages/l10n.php:752
 msgctxt "language"
 msgid "Armenian"
 msgstr "亚美尼亚文"
 
-#: system/languages/l10n.php:726
+#: system/languages/l10n.php:753
 msgctxt "language"
 msgid "Assamese"
 msgstr "阿萨姆文"
 
-#: system/languages/l10n.php:727
+#: system/languages/l10n.php:754
 msgctxt "language"
 msgid "Azeri"
 msgstr "阿塞拜疆文"
 
-#: system/languages/l10n.php:728
+#: system/languages/l10n.php:755
 msgctxt "language"
 msgid "Basque"
 msgstr "巴斯克文"
 
-#: system/languages/l10n.php:729
+#: system/languages/l10n.php:756
 msgctxt "language"
 msgid "Belarusian"
 msgstr "白俄罗斯文"
 
-#: system/languages/l10n.php:730
+#: system/languages/l10n.php:757
 msgctxt "language"
 msgid "Bengali"
 msgstr "孟加拉文"
 
-#: system/languages/l10n.php:731
+#: system/languages/l10n.php:758
 msgctxt "language"
 msgid "Bulgarian"
 msgstr "保加利亚文"
 
-#: system/languages/l10n.php:732
+#: system/languages/l10n.php:759
 msgctxt "language"
 msgid "Catalan"
 msgstr "加泰隆文"
 
-#: system/languages/l10n.php:733
+#: system/languages/l10n.php:760
 msgctxt "language"
 msgid "Chinese (China)"
 msgstr "中文 (中国)"
 
-#: system/languages/l10n.php:734
+#: system/languages/l10n.php:761
 msgctxt "language"
 msgid "Chinese (Hong Kong SAR)"
 msgstr "中文 (香港特别行政区)"
 
-#: system/languages/l10n.php:735
+#: system/languages/l10n.php:762
 msgctxt "language"
 msgid "Chinese (Macau SAR)"
 msgstr "中文 (澳门特别行政区)"
 
-#: system/languages/l10n.php:736
+#: system/languages/l10n.php:763
 msgctxt "language"
 msgid "Chinese (Singapore)"
 msgstr "中文 (新加坡)"
 
-#: system/languages/l10n.php:737
+#: system/languages/l10n.php:764
 msgctxt "language"
 msgid "Chinese (Taiwan)"
 msgstr "中文 (台湾)"
 
-#: system/languages/l10n.php:738
+#: system/languages/l10n.php:765
 msgctxt "language"
 msgid "Chinese (Simplified)"
 msgstr "中文 (简体)"
 
-#: system/languages/l10n.php:739
+#: system/languages/l10n.php:766
 msgctxt "language"
 msgid "Chinese (Traditional)"
 msgstr "中文 (繁体)"
 
-#: system/languages/l10n.php:740
+#: system/languages/l10n.php:767
 msgctxt "language"
 msgid "Chinese"
 msgstr "中文"
 
-#: system/languages/l10n.php:741
+#: system/languages/l10n.php:768
 msgctxt "language"
 msgid "Croatian"
 msgstr "克罗地亚文"
 
-#: system/languages/l10n.php:742
+#: system/languages/l10n.php:769
 msgctxt "language"
 msgid "Czech"
 msgstr "捷克文"
 
-#: system/languages/l10n.php:743
+#: system/languages/l10n.php:770
 msgctxt "language"
 msgid "Danish"
 msgstr "丹麦文"
 
-#: system/languages/l10n.php:744
+#: system/languages/l10n.php:771
 msgctxt "language"
 msgid "Divehi"
 msgstr "迪维希文"
 
-#: system/languages/l10n.php:745
+#: system/languages/l10n.php:772
 msgctxt "language"
 msgid "Dutch (Belgium)"
 msgstr "荷兰文 (比利时)"
 
-#: system/languages/l10n.php:746
+#: system/languages/l10n.php:773
 msgctxt "language"
 msgid "Dutch (Netherlands)"
 msgstr "荷兰文 (荷兰)"
 
-#: system/languages/l10n.php:747
+#: system/languages/l10n.php:774
 msgctxt "language"
 msgid "English (Australia)"
 msgstr "英文 (澳大利亚)"
 
-#: system/languages/l10n.php:748
+#: system/languages/l10n.php:775
 msgctxt "language"
 msgid "English (Belize)"
 msgstr "英文 (伯利兹)"
 
-#: system/languages/l10n.php:749
+#: system/languages/l10n.php:776
 msgctxt "language"
 msgid "English (Canada)"
 msgstr "英文 (加拿大)"
 
-#: system/languages/l10n.php:750
+#: system/languages/l10n.php:777
 msgctxt "language"
 msgid "English (Ireland)"
 msgstr "英文 (爱尔兰)"
 
-#: system/languages/l10n.php:751
+#: system/languages/l10n.php:778
 msgctxt "language"
 msgid "English (Jamaica)"
 msgstr "英文 (牙买加)"
 
-#: system/languages/l10n.php:752
+#: system/languages/l10n.php:779
 msgctxt "language"
 msgid "English (New Zealand)"
 msgstr "英文 (新西兰)"
 
-#: system/languages/l10n.php:753
+#: system/languages/l10n.php:780
 msgctxt "language"
 msgid "English (Philippines)"
 msgstr "英文 (菲律宾)"
 
-#: system/languages/l10n.php:754
+#: system/languages/l10n.php:781
 msgctxt "language"
 msgid "English (South Africa)"
 msgstr "英文 (南非)"
 
-#: system/languages/l10n.php:755
+#: system/languages/l10n.php:782
 msgctxt "language"
 msgid "English (Trinidad)"
 msgstr "英文 (特立尼达)"
 
-#: system/languages/l10n.php:756
+#: system/languages/l10n.php:783
 msgctxt "language"
 msgid "English (United Kingdom)"
 msgstr "英文 (英国)"
 
-#: system/languages/l10n.php:757 system/languages/l10n.php:760
+#: system/languages/l10n.php:784 system/languages/l10n.php:787
 msgctxt "language"
 msgid "English (United States)"
 msgstr "英文 (美国)"
 
-#: system/languages/l10n.php:758
+#: system/languages/l10n.php:785
 msgctxt "language"
 msgid "English (Zimbabwe)"
 msgstr "英语 (津巴布韦)"
 
-#: system/languages/l10n.php:761
+#: system/languages/l10n.php:788
 msgctxt "language"
 msgid "Estonian"
 msgstr "爱沙尼亚文"
 
-#: system/languages/l10n.php:762
+#: system/languages/l10n.php:789
 msgctxt "language"
 msgid "Faeroese"
 msgstr "法罗文"
 
-#: system/languages/l10n.php:763
+#: system/languages/l10n.php:790
 msgctxt "language"
 msgid "Farsi"
 msgstr "波斯文"
 
-#: system/languages/l10n.php:764
+#: system/languages/l10n.php:791
 msgctxt "language"
 msgid "Finnish"
 msgstr "芬兰文"
 
-#: system/languages/l10n.php:765
+#: system/languages/l10n.php:792
 msgctxt "language"
 msgid "French (Belgium)"
 msgstr "法文 (比利时)"
 
-#: system/languages/l10n.php:766
+#: system/languages/l10n.php:793
 msgctxt "language"
 msgid "French (Canada)"
 msgstr "法文 (加拿大)"
 
-#: system/languages/l10n.php:767
+#: system/languages/l10n.php:794
 msgctxt "language"
 msgid "French (Luxembourg)"
 msgstr "法文 (卢森堡)"
 
-#: system/languages/l10n.php:768
+#: system/languages/l10n.php:795
 msgctxt "language"
 msgid "French (Monaco)"
 msgstr "法文 (摩纳哥)"
 
-#: system/languages/l10n.php:769
+#: system/languages/l10n.php:796
 msgctxt "language"
 msgid "French (Switzerland)"
 msgstr "法文 (瑞士)"
 
-#: system/languages/l10n.php:770
+#: system/languages/l10n.php:797
 msgctxt "language"
 msgid "French (France)"
 msgstr "法语 (法国)"
 
-#: system/languages/l10n.php:771
+#: system/languages/l10n.php:798
 msgctxt "language"
 msgid "FYRO Macedonian"
 msgstr "马其顿文"
 
-#: system/languages/l10n.php:772
+#: system/languages/l10n.php:799
 msgctxt "language"
 msgid "Gaelic"
 msgstr "苏格兰盖尔文"
 
-#: system/languages/l10n.php:773
+#: system/languages/l10n.php:800
 msgctxt "language"
 msgid "Georgian"
 msgstr "格鲁吉亚文"
 
-#: system/languages/l10n.php:774
+#: system/languages/l10n.php:801
 msgctxt "language"
 msgid "German (Austria)"
 msgstr "德文 (奥地利)"
 
-#: system/languages/l10n.php:775
+#: system/languages/l10n.php:802
 msgctxt "language"
 msgid "German (Liechtenstein)"
 msgstr "德文 (列支敦士登)"
 
-#: system/languages/l10n.php:776
+#: system/languages/l10n.php:803
 msgctxt "language"
 msgid "German (Luxembourg)"
 msgstr "德文 (卢森堡)"
 
-#: system/languages/l10n.php:777
+#: system/languages/l10n.php:804
 msgctxt "language"
 msgid "German (Switzerland)"
 msgstr "德文 (瑞士)"
 
-#: system/languages/l10n.php:778
+#: system/languages/l10n.php:805
 msgctxt "language"
 msgid "German (Germany)"
 msgstr "德文 (德国)"
 
-#: system/languages/l10n.php:779
+#: system/languages/l10n.php:806
 msgctxt "language"
 msgid "Greek"
 msgstr "现代希腊语"
 
-#: system/languages/l10n.php:780
+#: system/languages/l10n.php:807
 msgctxt "language"
 msgid "Gujarati"
 msgstr "古吉拉特文"
 
-#: system/languages/l10n.php:781
+#: system/languages/l10n.php:808
 msgctxt "language"
 msgid "Hebrew"
 msgstr "希伯来文"
 
-#: system/languages/l10n.php:782
+#: system/languages/l10n.php:809
 msgctxt "language"
 msgid "Hindi"
 msgstr "印地文"
 
-#: system/languages/l10n.php:783
+#: system/languages/l10n.php:810
 msgctxt "language"
 msgid "Hungarian"
 msgstr "希里莫图文"
 
-#: system/languages/l10n.php:784
+#: system/languages/l10n.php:811
 msgctxt "language"
 msgid "Icelandic"
 msgstr "冰岛文"
 
-#: system/languages/l10n.php:785
+#: system/languages/l10n.php:812
 msgctxt "language"
 msgid "Indonesian"
 msgstr "印尼文"
 
-#: system/languages/l10n.php:786
+#: system/languages/l10n.php:813
 msgctxt "language"
 msgid "Italian (Switzerland)"
 msgstr "意大利文 (瑞士)"
 
-#: system/languages/l10n.php:787
+#: system/languages/l10n.php:814
 msgctxt "language"
 msgid "Italian (Italy)"
 msgstr "意大利文 (意大利)"
 
-#: system/languages/l10n.php:788
+#: system/languages/l10n.php:815
 msgctxt "language"
 msgid "Japanese"
 msgstr "日文"
 
-#: system/languages/l10n.php:789
+#: system/languages/l10n.php:816
 msgctxt "language"
 msgid "Kannada"
 msgstr "坎纳达文"
 
-#: system/languages/l10n.php:790
+#: system/languages/l10n.php:817
 msgctxt "language"
 msgid "Kazakh"
 msgstr "哈萨克文"
 
-#: system/languages/l10n.php:791
+#: system/languages/l10n.php:818
 msgctxt "language"
 msgid "Konkani"
 msgstr "孔卡尼文"
 
-#: system/languages/l10n.php:792
+#: system/languages/l10n.php:819
 msgctxt "language"
 msgid "Korean"
 msgstr "韩文"
 
-#: system/languages/l10n.php:793
+#: system/languages/l10n.php:820
 msgctxt "language"
 msgid "Kyrgyz"
 msgstr "吉尔吉斯斯坦语"
 
-#: system/languages/l10n.php:794
+#: system/languages/l10n.php:821
 msgctxt "language"
 msgid "Latvian"
 msgstr "拉脱维亚文"
 
-#: system/languages/l10n.php:795
+#: system/languages/l10n.php:822
 msgctxt "language"
 msgid "Lithuanian"
 msgstr "立陶宛文"
 
-#: system/languages/l10n.php:796
+#: system/languages/l10n.php:823
 msgctxt "language"
 msgid "Malay"
 msgstr "马来文"
 
-#: system/languages/l10n.php:797
+#: system/languages/l10n.php:824
 msgctxt "language"
 msgid "Malayalam"
 msgstr "马拉亚拉姆文"
 
-#: system/languages/l10n.php:798
+#: system/languages/l10n.php:825
 msgctxt "language"
 msgid "Maltese"
 msgstr "马耳他文"
 
-#: system/languages/l10n.php:799
+#: system/languages/l10n.php:826
 msgctxt "language"
 msgid "Marathi"
 msgstr "马拉提文"
 
-#: system/languages/l10n.php:800
+#: system/languages/l10n.php:827
 msgctxt "language"
 msgid "Mongolian (Cyrillic)"
 msgstr "蒙古文 (西里尔字母)"
 
-#: system/languages/l10n.php:801
+#: system/languages/l10n.php:828
 msgctxt "language"
 msgid "Nepali (India)"
 msgstr "尼泊尔文 (印度)"
 
-#: system/languages/l10n.php:802 system/languages/l10n.php:804
+#: system/languages/l10n.php:829 system/languages/l10n.php:831
 msgctxt "language"
 msgid "Norwegian (Bokmal)"
 msgstr "挪威布克莫尔文"
 
-#: system/languages/l10n.php:803
+#: system/languages/l10n.php:830
 msgctxt "language"
 msgid "Norwegian (Nynorsk)"
 msgstr "新挪威文"
 
-#: system/languages/l10n.php:805
+#: system/languages/l10n.php:832
 msgctxt "language"
 msgid "Oriya"
 msgstr "奥利亚文"
 
-#: system/languages/l10n.php:806
+#: system/languages/l10n.php:833
 msgctxt "language"
 msgid "Polish"
 msgstr "波兰语"
 
-#: system/languages/l10n.php:807
+#: system/languages/l10n.php:834
 msgctxt "language"
 msgid "Portuguese (Brazil)"
 msgstr "葡萄牙文 (巴西)"
 
-#: system/languages/l10n.php:808
+#: system/languages/l10n.php:835
 msgctxt "language"
 msgid "Portuguese (Portugal)"
 msgstr "葡萄牙文 (葡萄牙)"
 
-#: system/languages/l10n.php:809
+#: system/languages/l10n.php:836
 msgctxt "language"
 msgid "Punjabi"
 msgstr "旁遮普文"
 
-#: system/languages/l10n.php:810
+#: system/languages/l10n.php:837
 msgctxt "language"
 msgid "Rhaeto-Romanic"
 msgstr "利托-罗曼文"
 
-#: system/languages/l10n.php:811
+#: system/languages/l10n.php:838
 msgctxt "language"
 msgid "Romanian (Moldova)"
 msgstr "罗马尼亚文 (摩尔多瓦)"
 
-#: system/languages/l10n.php:812
+#: system/languages/l10n.php:839
 msgctxt "language"
 msgid "Romanian"
 msgstr "罗马尼亚文"
 
-#: system/languages/l10n.php:813
+#: system/languages/l10n.php:840
 msgctxt "language"
 msgid "Russian (Moldova)"
 msgstr "俄文 (摩尔多瓦)"
 
-#: system/languages/l10n.php:814
+#: system/languages/l10n.php:841
 msgctxt "language"
 msgid "Russian"
 msgstr "俄文"
 
-#: system/languages/l10n.php:815
+#: system/languages/l10n.php:842
 msgctxt "language"
 msgid "Sanskrit"
 msgstr "梵文"
 
-#: system/languages/l10n.php:816
+#: system/languages/l10n.php:843
 msgctxt "language"
 msgid "Serbian"
 msgstr "塞尔维亚文"
 
-#: system/languages/l10n.php:817
+#: system/languages/l10n.php:844
 msgctxt "language"
 msgid "Slovak"
 msgstr "斯洛伐克文"
 
-#: system/languages/l10n.php:818
+#: system/languages/l10n.php:845
 msgctxt "language"
 msgid "Slovenian"
 msgstr "斯洛文尼亚文"
 
-#: system/languages/l10n.php:819
+#: system/languages/l10n.php:846
 msgctxt "language"
 msgid "Sorbian"
 msgstr "索布文"
 
-#: system/languages/l10n.php:820
+#: system/languages/l10n.php:847
 msgctxt "language"
 msgid "Spanish (Argentina)"
 msgstr "西班牙文 (阿根廷)"
 
-#: system/languages/l10n.php:821
+#: system/languages/l10n.php:848
 msgctxt "language"
 msgid "Spanish (Bolivia)"
 msgstr "西班牙文 (玻利维亚)"
 
-#: system/languages/l10n.php:822
+#: system/languages/l10n.php:849
 msgctxt "language"
 msgid "Spanish (Chile)"
 msgstr "西班牙文 (智利)"
 
-#: system/languages/l10n.php:823
+#: system/languages/l10n.php:850
 msgctxt "language"
 msgid "Spanish (Colombia)"
 msgstr "西班牙文 (哥伦比亚)"
 
-#: system/languages/l10n.php:824
+#: system/languages/l10n.php:851
 msgctxt "language"
 msgid "Spanish (Costa Rica)"
 msgstr "西班牙文 (哥斯达黎加)"
 
-#: system/languages/l10n.php:825
+#: system/languages/l10n.php:852
 msgctxt "language"
 msgid "Spanish (Dominican Republic)"
 msgstr "西班牙文 (多米尼加)"
 
-#: system/languages/l10n.php:826
+#: system/languages/l10n.php:853
 msgctxt "language"
 msgid "Spanish (Ecuador)"
 msgstr "西班牙文 (厄瓜多尔)"
 
-#: system/languages/l10n.php:827
+#: system/languages/l10n.php:854
 msgctxt "language"
 msgid "Spanish (El Salvador)"
 msgstr "西班牙文 (萨尔瓦多)"
 
-#: system/languages/l10n.php:828
+#: system/languages/l10n.php:855
 msgctxt "language"
 msgid "Spanish (Guatemala)"
 msgstr "西班牙文 (危地马拉)"
 
-#: system/languages/l10n.php:829
+#: system/languages/l10n.php:856
 msgctxt "language"
 msgid "Spanish (Honduras)"
 msgstr "西班牙文 (洪都拉斯)"
 
-#: system/languages/l10n.php:830
+#: system/languages/l10n.php:857
 msgctxt "language"
 msgid "Spanish (Mexico)"
 msgstr "西班牙文 (墨西哥)"
 
-#: system/languages/l10n.php:831
+#: system/languages/l10n.php:858
 msgctxt "language"
 msgid "Spanish (Nicaragua)"
 msgstr "西班牙文 (尼加拉瓜)"
 
-#: system/languages/l10n.php:832
+#: system/languages/l10n.php:859
 msgctxt "language"
 msgid "Spanish (Panama)"
 msgstr "西班牙文 (巴拿马)"
 
-#: system/languages/l10n.php:833
+#: system/languages/l10n.php:860
 msgctxt "language"
 msgid "Spanish (Paraguay)"
 msgstr "西班牙文 (巴拉圭)"
 
-#: system/languages/l10n.php:834
+#: system/languages/l10n.php:861
 msgctxt "language"
 msgid "Spanish (Peru)"
 msgstr "西班牙文 (秘鲁)"
 
-#: system/languages/l10n.php:835
+#: system/languages/l10n.php:862
 msgctxt "language"
 msgid "Spanish (Puerto Rico)"
 msgstr "西班牙文 (波多黎各)"
 
-#: system/languages/l10n.php:836
+#: system/languages/l10n.php:863
 msgctxt "language"
 msgid "Spanish (United States)"
 msgstr "西班牙文 (美国)"
 
-#: system/languages/l10n.php:837
+#: system/languages/l10n.php:864
 msgctxt "language"
 msgid "Spanish (Uruguay)"
 msgstr "西班牙文 (乌拉圭)"
 
-#: system/languages/l10n.php:838
+#: system/languages/l10n.php:865
 msgctxt "language"
 msgid "Spanish (Venezuela)"
 msgstr "西班牙文 (委内瑞拉)"
 
-#: system/languages/l10n.php:839
+#: system/languages/l10n.php:866
 msgctxt "language"
-msgid "Spanish (Traditional Sort)"
-msgstr "西班牙文 (传统排序)"
+msgid "Spanish"
+msgstr "法语"
 
-#: system/languages/l10n.php:840
+#: system/languages/l10n.php:867
 msgctxt "language"
 msgid "Sutu"
 msgstr "Sutu"
 
-#: system/languages/l10n.php:841
+#: system/languages/l10n.php:868
 msgctxt "language"
 msgid "Swahili"
 msgstr "斯瓦希里文"
 
-#: system/languages/l10n.php:842
+#: system/languages/l10n.php:869
 msgctxt "language"
 msgid "Swedish (Finland)"
 msgstr "瑞典文 (芬兰)"
 
-#: system/languages/l10n.php:843
+#: system/languages/l10n.php:870
 msgctxt "language"
 msgid "Swedish"
 msgstr "瑞典文"
 
-#: system/languages/l10n.php:844
+#: system/languages/l10n.php:871
 msgctxt "language"
 msgid "Syriac"
 msgstr "古叙利亚文"
 
-#: system/languages/l10n.php:845
+#: system/languages/l10n.php:872
 msgctxt "language"
 msgid "Tamil"
 msgstr "泰米尔文"
 
-#: system/languages/l10n.php:846
+#: system/languages/l10n.php:873
 msgctxt "language"
 msgid "Tatar"
 msgstr "塔塔尔文"
 
-#: system/languages/l10n.php:847
+#: system/languages/l10n.php:874
 msgctxt "language"
 msgid "Telugu"
 msgstr "泰卢固文"
 
-#: system/languages/l10n.php:848
+#: system/languages/l10n.php:875
 msgctxt "language"
 msgid "Thai"
 msgstr "泰文"
 
-#: system/languages/l10n.php:849
+#: system/languages/l10n.php:876
 msgctxt "language"
 msgid "Tsonga"
 msgstr "宗加文"
 
-#: system/languages/l10n.php:850
+#: system/languages/l10n.php:877
 msgctxt "language"
 msgid "Tswana"
 msgstr "塞茨瓦纳文"
 
-#: system/languages/l10n.php:851
+#: system/languages/l10n.php:878
 msgctxt "language"
 msgid "Turkish"
 msgstr "土耳其文"
 
-#: system/languages/l10n.php:852
+#: system/languages/l10n.php:879
 msgctxt "language"
 msgid "Ukrainian"
 msgstr "乌克兰文"
 
-#: system/languages/l10n.php:853
+#: system/languages/l10n.php:880
 msgctxt "language"
 msgid "Urdu"
 msgstr "乌尔都文"
 
-#: system/languages/l10n.php:854
+#: system/languages/l10n.php:881
 msgctxt "language"
 msgid "Uzbek"
 msgstr "乌兹别克文"
 
-#: system/languages/l10n.php:855
+#: system/languages/l10n.php:882
 msgctxt "language"
 msgid "Uyghurche (China)"
 msgstr "维吾尔语 (中国)"
 
-#: system/languages/l10n.php:856
+#: system/languages/l10n.php:883
 msgctxt "language"
 msgid "Vietnamese"
 msgstr "越南文"
 
-#: system/languages/l10n.php:857
+#: system/languages/l10n.php:884
 msgctxt "language"
 msgid "Xhosa"
 msgstr "科萨文"
 
-#: system/languages/l10n.php:858
+#: system/languages/l10n.php:885
 msgctxt "language"
 msgid "Yiddish"
 msgstr "依地文"
 
-#: system/languages/l10n.php:859
+#: system/languages/l10n.php:886
 msgctxt "language"
 msgid "Zulu"
 msgstr "祖鲁语"
+
+#~ msgctxt "Uploader"
+#~ msgid "Error: "
+#~ msgstr "错误："
+
+#~ msgctxt "Uploader"
+#~ msgid " Unknow Error!"
+#~ msgstr " 未知错误！"
+
+#~ msgctxt "language"
+#~ msgid "Spanish (Traditional Sort)"
+#~ msgstr "西班牙文 (传统排序)"
 
 #~ msgid ""
 #~ "It is hidden in the page, you should change 'Detailed Description' option "

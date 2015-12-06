@@ -148,8 +148,13 @@ $(function() {
 						files_msg += responeseDataObj.filename+"<?php _ex(' Already Exists!', 'Uploader'); ?>\n";
 					}
 				} else {
-					$('#' + file.id).find('.data').html('<?php _ex(' Unknow', 'Uploader'); ?>');
-					files_msg += responeseDataObj.filename+"<?php _ex(' Unknow Error!', 'Uploader'); ?>\n";
+					if(typeof(responeseDataObj.message) == "undefined") {
+						$('#' + file.id).find('.data').html('<?php _ex(' Unknow', 'Uploader'); ?>');
+						files_msg += "<?php _ex('Unknow Error!', 'Uploader'); ?>\n";
+					} else {
+						$('#' + file.id).find('.data').html('<?php _ex(' Error', 'Uploader'); ?>');
+						files_msg += "Error: "+responeseDataObj.message+"\n";
+					}
 				}
 			}
 		},
