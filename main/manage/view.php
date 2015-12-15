@@ -39,19 +39,6 @@ if (is_numeric($_GET['id'])) {
 }
 $package_info = DB::fetch_first("SELECT * FROM `".DCRM_CON_PREFIX."Packages` WHERE `ID` = '" . $request_id . "'");
 
-if (isset($_GET['action']) && $_GET['action'] == "image" && isset($_POST['image']) && strlen($_POST['image']) > 0) {
-	if(strpos($_POST['image'], ', '))
-		$images_array = explode(', ', $_POST['image']);
-	else
-		$images_array = array($_POST['image']);
-	foreach($images_array as $image) {
-		if(!empty($image))
-			DB::insert(DCRM_CON_PREFIX.'ScreenShots', array('PID' => $request_id, 'Image' => DB::real_escape_string($image)));
-	}
-} elseif (isset($_GET['action']) && $_GET['action'] == "del" && is_numeric($_GET['image'])) {
-	DB::delete(DCRM_CON_PREFIX.'ScreenShots', array('ID' => DB::real_escape_string($_GET['image'])));
-}
-
 require_once("header.php");
 ?>
 			<input type="radio" name="package" value="<?php echo($request_id); ?>" style="display: none;" checked="checked" />
@@ -61,6 +48,26 @@ require_once("header.php");
 if (!$package_info) {
 	$alert = __('No specified item.');
 } else {
+	$screenshots = empty($package_info['ScreenShots']) ? null : maybe_unserialize($package_info['ScreenShots']);
+	unset($package_info['ScreenShots']);
+	if (isset($_GET['action']) && $_GET['action'] == "image" && isset($_POST['image']) && strlen($_POST['image']) > 0) {
+		if(strpos($_POST['image'], ','))
+			$images_array = TrimArray(explode(',', $_POST['image']));
+		else
+			$images_array = array($_POST['image']);
+
+		if(is_array($screenshots)){
+			$screenshots = array_merge($screenshots, $images_array);
+		} else {
+			$screenshots = $images_array;
+		}
+		DB::update(DCRM_CON_PREFIX.'Packages', array('ScreenShots' => maybe_serialize($screenshots)), array('ID' => $request_id));
+	} elseif (isset($_GET['action']) && $_GET['action'] == "del" && isset($_POST['image']) && is_numeric($_POST['image']) && !empty($screenshots)) {
+		array_splice($screenshots, (int)$_POST['image'], 1);
+		if(empty($screenshots)) $screenshots = null;
+		DB::update(DCRM_CON_PREFIX.'Packages', array('ScreenShots' => maybe_serialize($screenshots)), array('ID' => $request_id));
+	}
+
 	unset($package_info['Multi']);
 	unset($package_info['System_Support']);
 	foreach ($package_info as $m_key => $m_value) {
@@ -76,8 +83,7 @@ if (!$package_info) {
 			</div>
 <?php
 }
-$screenshots = DB::fetch_all("SELECT * FROM `".DCRM_CON_PREFIX."ScreenShots` WHERE `PID` = '".$request_id."'");
-if (!$screenshots) {
+if (empty($screenshots)) {
 ?>
 			<div class="alert" id="tips">
 				<?php _e('This package no screenshot.'); ?><br />
@@ -88,9 +94,9 @@ if (!$screenshots) {
 			<div class="alert alert-success" id="tips">
 				<?php printf(_n('This package have %d screenshot.', 'This package have %d screenshots.', count($screenshots)), count($screenshots)); ?><br />
 <?php
-	foreach($screenshots as $screenshot){
+	foreach($screenshots as $screenshot_id => $screenshot){
 ?>
-				<li><a href="<?php echo($screenshot["Image"]); ?>"><?php if (strlen($screenshot["Image"]) > 72) echo(mb_substr($screenshot["Image"],0,72,"UTF-8").' ...'); else echo($screenshot["Image"]); ?></a>&emsp;<a href="javascript:delimage(<?php echo($screenshot["ID"]); ?>);">&times;</a></li>
+				<li><a href="<?php echo($screenshot); ?>"><?php echo(strlen($screenshot) > 72 ? mb_substr($screenshot,0,72,"UTF-8").' ...' : $screenshot); ?></a>&emsp;<a href="javascript:delimage(<?php echo($screenshot_id); ?>);">&times;</a></li>
 <?php
 	}
 ?>
@@ -119,9 +125,25 @@ if (!$screenshots) {
 		sli = document.getElementById('sli');
 		sli.innerHTML = '<a href="udid.php?package=<?php echo $package;?>"><?php _e('Binding UDID');?></a>';
 <?php endif; ?>
+		function post(URL, PARAMS) {
+			var temp = document.createElement("form");
+			temp.action = URL;
+			temp.method = "post";
+			temp.style.display = "none";
+			for (var x in PARAMS) {
+				var opt = document.createElement("textarea");        
+				opt.name = x;
+				opt.value = PARAMS[x];
+				temp.appendChild(opt);
+			}
+			document.body.appendChild(temp);
+			temp.submit();
+			return temp;
+		}
 		function delimage(pid) {
 			if(confirm("<?php _e('Are you sure you want to delete this screenshot?'); ?>")){
-			   window.location.href = "view.php?id=<?php echo($request_id); ?>&action=del&image=" + pid;
+				post('view.php?id=<?php echo($request_id); ?>&action=del', {image: pid});
+				//window.location.href = "view.php?id=<?php echo($request_id); ?>&action=del&image=" + pid;
 			}
 		}
 	</script>

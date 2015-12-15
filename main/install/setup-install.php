@@ -257,6 +257,9 @@ switch($step) {
 			 `Purchase_Link_Stat` INT NOT NULL DEFAULT '0',
 			 `Changelog` varchar( 512 ) NOT NULL,
 			 `Changelog_Older_Shows` INT NOT NULL DEFAULT '0',
+			 `Video_Preview` varchar(512) NOT NULL,
+			 `System_Support` longtext NOT NULL,
+			 `ScreenShots` longtext NOT NULL,
 			 `TimeStamp` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
 			 `DownloadTimes` int(8) NOT NULL,
 			 `CreateStamp` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
@@ -273,12 +276,6 @@ switch($step) {
 			) ENGINE=MyISAM AUTO_INCREMENT=0 DEFAULT CHARSET=utf8");
 
 			dcrm_query("DROP TABLE IF EXISTS `".DCRM_CON_PREFIX."ScreenShots`");
-			dcrm_query("CREATE TABLE `".DCRM_CON_PREFIX."ScreenShots` (
-			 `ID` int(8) NOT NULL AUTO_INCREMENT,
-			 `PID` int(8) NOT NULL,
-			 `Image` varchar(512) NOT NULL,
-			 PRIMARY KEY (`ID`)
-			) ENGINE=MyISAM AUTO_INCREMENT=0 DEFAULT CHARSET=utf8");
 
 			dcrm_query("DROP TABLE IF EXISTS `".DCRM_CON_PREFIX."Reports`");
 			dcrm_query("CREATE TABLE `".DCRM_CON_PREFIX."Reports` (

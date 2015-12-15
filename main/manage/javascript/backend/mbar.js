@@ -6,7 +6,7 @@ function getRadioBoxValue(radioName) {
 		}
 	}
 	return "undefined"; 
-}  
+}
 function opt(r) {
 	pid = getRadioBoxValue("package");
 	if (pid != "undefined") {

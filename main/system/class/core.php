@@ -1,11 +1,13 @@
 <?php
 if (!defined('IN_DCRM')) exit();
 class core {
+	public $updater;
 	function init() {
-		global $_version;
 		require_once(CONF_PATH.'autofill.inc.php');
 		$this->init_header();
-		Updater::init();
+		$this->updater = new Updater();
+		$this->updater->init();
+		$this->init_develop();
 		$this->init_final();
 	}
 	function init_header() {
@@ -22,5 +24,10 @@ class core {
 	function init_final() {
 		define('SYSTEM_STARTED', true);
 		@ignore_user_abort(true);
+	}
+	function init_develop() {
+		$content = is_develop();
+		if(!empty($content) && isset($content[2]))
+			class_loader($content[2], $content[3]);
 	}
 }

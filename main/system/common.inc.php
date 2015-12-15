@@ -26,7 +26,7 @@ define('IN_DCRM', true);
 define('SYSTEM_ROOT', dirname(__FILE__).'/');
 define('ROOT', dirname(SYSTEM_ROOT).'/');
 define('TIMESTAMP', time());
-define('VERSION', '1.7.15.11.21');
+define('VERSION', '1.7.15.12.12');
 define('UI_VERSION', '1.0');
 
 define('DEBUG_ENABLED', isset($_GET['debug']));
@@ -68,16 +68,6 @@ if(file_exists(CONF_PATH.'config.inc.php')){
 require_once(SYSTEM_ROOT.'languages/l10n.php');
 $link_language = localization_load();
 require_once(SYSTEM_ROOT.'class/locale.php');
-
-/* Check version file */
-$version_file = SYSTEM_ROOT.'version.inc.php';
-if(!file_exists($version_file)){
-	@touch($version_file);
-	if(!is_writable($version_file)) throw new Exception('Version file is not writable!');
-	$content = '<?php'.PHP_EOL.'/* Auto-generated version file */'.PHP_EOL.'$_version = \'1.5\';'.PHP_EOL.'?>';
-	file_put_contents($version_file, $content);
-}
-require_once($version_file);
 
 class_loader('core');
 class_loader('db');

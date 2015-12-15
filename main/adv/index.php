@@ -1,5 +1,7 @@
 <?php
 /**
+ * DCRM Advertisement Auto Rewrite
+ *
  * This file is part of WEIPDCRM.
  * 
  * WEIPDCRM is free software: you can redistribute it and/or modify
@@ -15,8 +17,6 @@
  * You should have received a copy of the GNU Affero General Public License
  * along with WEIPDCRM.  If not, see <http://www.gnu.org/licenses/>.
  */
-
-/* DCRM Advertisement Auto Rewrite */
 
 error_reporting(0);
 $r = rand(1, 3);

@@ -88,7 +88,6 @@ $sidebars = array(
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 	<title>DCRM - <?php _e('Repository Manager');?></title>
-	<meta name="viewport" content="width=600px, minimal-ui">
 	<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
 <?php if(is_rtl()){ ?>	<link rel="stylesheet" type="text/css" href="css/bootstrap-rtl.min.css"><?php echo "\n"; } ?>
 <?php if(file_exists(ROOT.'css/font/'.($local_css = substr($locale, 0, 2)).'.css') || file_exists(ROOT.'css/font/' . ($local_css = $locale) . '.css')): ?>	<link rel="stylesheet" type="text/css" href="../css/font/<?php echo $local_css; ?>.css"><?php echo("\n"); endif; ?>

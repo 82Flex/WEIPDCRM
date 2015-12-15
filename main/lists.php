@@ -1,5 +1,7 @@
 <?php
 /**
+ * DCRM Packages Provider
+ *
  * This file is part of WEIPDCRM.
  * 
  * WEIPDCRM is free software: you can redistribute it and/or modify
@@ -15,8 +17,6 @@
  * You should have received a copy of the GNU Affero General Public License
  * along with WEIPDCRM.  If not, see <http://www.gnu.org/licenses/>.
  */
-
-/* DCRM Packages Provider */
 
 $_customct = true;
 require_once('system/common.inc.php');

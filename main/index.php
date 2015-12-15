@@ -1,5 +1,7 @@
 <?php
 /**
+ * DCRM Mobile Page
+ *
  * This file is part of WEIPDCRM.
  * 
  * WEIPDCRM is free software: you can redistribute it and/or modify
@@ -15,8 +17,6 @@
  * You should have received a copy of the GNU Affero General Public License
  * along with WEIPDCRM.  If not, see <http://www.gnu.org/licenses/>.
  */
-
-/* DCRM Mobile Page */
 
 require_once('system/common.inc.php');
 base_url();
@@ -567,7 +567,7 @@ if ($index == 0) {
 	}
 } elseif ($index == 1) {
 		$pkg = (int)DB::real_escape_string($_GET['pid']);
-		$pkg_assoc = DB::fetch_first("SELECT `Name`, `Version`, `Author`, `Package`, `Description`, `DownloadTimes`, `Multi`, `CreateStamp`, `Size`, `Installed-Size`, `Section`, `Homepage`, `Tag`, `Level`, `Price`, `Purchase_Link`, `Changelog`, `Changelog_Older_Shows`, `Video_Preview`, `System_Support` FROM `".DCRM_CON_PREFIX."Packages` WHERE `ID` = '".$pkg."' LIMIT 1");
+		$pkg_assoc = DB::fetch_first("SELECT `Name`, `Version`, `Author`, `Package`, `Description`, `DownloadTimes`, `Multi`, `CreateStamp`, `Size`, `Installed-Size`, `Section`, `Homepage`, `Tag`, `Level`, `Price`, `Purchase_Link`, `Changelog`, `Changelog_Older_Shows`, `Video_Preview`, `System_Support`, `Screenshots` FROM `".DCRM_CON_PREFIX."Packages` WHERE `ID` = '".$pkg."' LIMIT 1");
 	if (!$pkg_assoc) {
 ?>
 			<block>
@@ -597,17 +597,7 @@ if ($index == 0) {
 			}
 ?>
 			<div id="header" style="display: none;">
-<?php
-			if (!empty($section_icon)) {
-?>
-				<img class="icon" src="<?php echo(SITE_URL); ?>icons/<?php echo($section_icon); ?>" style="width: 64px; height: 64px; vertical-align: top;" />
-<?php
-			} else {
-?>
-				<img class="icon" src="<?php echo(SITE_URL); ?>icons/default/unknown.png" style="width: 64px; height: 64px; vertical-align: top;" />
-<?php
-			}
-?>
+				<img class="icon" src="<?php echo(SITE_URL); ?>icons/<?php echo(empty($section_icon) ? 'default/unknown.png' : $section_icon); ?>" style="width: 64px; height: 64px; vertical-align: top;" />
 				<div id="content">
 					<p id="name"><?php echo($pkg_assoc['Name']); ?></p>
 					<p id="latest"><?php echo($pkg_assoc['Version']); ?></p>
@@ -668,15 +658,15 @@ if ($index == 0) {
 			<fieldset>
 <?php
 		if (DCRM_SCREENSHOTS == 2) {
-			$screenshots_count = DB::result_first("SELECT count(*) FROM `".DCRM_CON_PREFIX."ScreenShots` WHERE `PID` = '".(int)$_GET['pid']."'");
-			if (!empty($screenshots_count)){
+			if (!empty($pkg_assoc['ScreenShots'])){
+				$screenshots_count = count(maybe_unserialize($pkg_assoc['ScreenShots']));
 ?>
 				<a href="<?php echo_rewrite_url('screenshot', $_GET['pid']); ?>">
 				<img class="icon" src="<?php echo(SITE_URL); ?>icons/default/screenshots.png" />
 					<div>
 						<div>
 							<label>
-								<p><?php _e('View Screenshots'); ?></p>
+								<p><?php echo(_n('View Screenshot', 'View Screenshots', $screenshots_count)); ?></p>
 							</label>
 						</div>
 					</div>
@@ -1040,48 +1030,33 @@ if ($index == 0) {
 	}
 } elseif ($index == 2) {
 	if (DCRM_SCREENSHOTS == 2) {
-		$pkg = (int)DB::real_escape_string($_GET['pid']);
-		$pkg_query = DB::query("SELECT `PID`, `Image` FROM `".DCRM_CON_PREFIX."ScreenShots` WHERE `PID` = '".$pkg."'");
-		if (!$pkg_query) {
-?>
-			<block>
-				<p>
-					<?php _e('MySQL Error!'); ?>
-				</p>
-			</block>
-<?php
-		} else {
-			$num = mysql_affected_rows();
-			if ($num != 0) {
-				$preview = array();
-				$i = 0;
-				while ($pkg_assoc = mysql_fetch_assoc($pkg_query)) {
-					$preview[$i] = $pkg_assoc['Image'];
-					$i++;
-				}
+		$package_id = (int)DB::real_escape_string($_GET['pid']);
+		$screenshots_query = DB::fetch_frist("SELECT `ScreenShots` FROM `".DCRM_CON_PREFIX."Packages` WHERE `ID` = '".$package_id."'");
+		$screenshots = maybe_unserialize($screenshots_query);
+		if (!empty($screenshots)) {
+			$screenshots_count = count($screenshots);
 ?>
 			<!--label><?php _e('View Screenshots'); ?></label-->
 			<div class="horizontal-scroll-wrapper" style="background: transparent; position: relative;">
-				<div class="horizontal-scroll-wrapper" style="background: transparent url(<?php echo($preview[0]); ?>); background-size: 150%; background-position: center; -webkit-filter: blur(5px); position: absolute; z-index: 1;"></div>
+				<div class="horizontal-scroll-wrapper" style="background: transparent url(<?php echo($screenshots[0]); ?>); background-size: 150%; background-position: center; -webkit-filter: blur(5px); position: absolute; z-index: 1;"></div>
 				<div class="horizontal-scroll-wrapper" id="scroller" style="background: transparent; position: absolute; z-index: 2;">
-					<div class="horizontal-scroll-area" style="width:<?php echo($num * 240); ?>px;">
+					<div class="horizontal-scroll-area" style="width:<?php echo($screenshots_count * 240); ?>px;">
 <?php
-				for ($t = 0; $t < count($preview); $t++) {
+			foreach ($screenshots as $screenshot) {
 ?>
-						<img src="<?php echo($preview[$t]); ?>" />
+						<img src="<?php echo($screenshot); ?>" />
 <?php
-				}
+			}
 ?>
 					</div>
 					<div class="horizontal-scroll-pips"></div>
 				</div>
 			</div>
 <?php
-			} else {
+		} else {
 ?>
 			<label><?php _e('No screenshots now.'); ?></label>
 <?php
-			}
 		}
 	} else {
 ?>

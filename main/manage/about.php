@@ -25,12 +25,12 @@ $activeid = 'about';
 if (isset($_SESSION['connected']) && $_SESSION['connected'] === true) {
 	require_once("header.php");
 
-	preg_match("#^([0-9]\.[0-9])\.([0-9.]*)#", $_version, $versions);
+	preg_match("#^([0-9]\.[0-9])\.([0-9.]*)#", VERSION, $versions);
 ?>
 					<h2><?php _ex('About', 'About Page'); ?></h2>
 					<br /><div class="alert alert-info"><h3>
 					Darwin Cydia Repository Manager (DCRM)<br />
-					<?php _e('Version: '); ?><?php echo $versions[1];?> Pro <small>(<?php echo $_version;?>)</small><br />
+					<?php _e('Version: '); ?><?php echo $versions[1];?> Pro <small>(<?php echo(VERSION);?>)</small><br />
 					<?php _e('Open source Repository Manager for Cydia™/APT.'); ?></h3><br />
 					<h4><?php _e('Developer'); ?></h4>
 					<?php _e('Main Program: '); ?><a href="http://weibo.com/hintay">@Hintay</a><?php _ex(', ' , 'Punctuation'); ?><?php _e('WeiPhone Test Group'); ?><a href="http://weibo.com/82flex">@i_82</a><br />

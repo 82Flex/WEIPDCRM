@@ -26,7 +26,7 @@ if (!defined("DCRM")) {
 /* 设定参数 */
 define('ABSPATH', dirname(dirname(__FILE__)).'/');
 define('CONF_PATH', ABSPATH.'system/config/');
-define('VERSION', '1.7.15.7.12');
+define('VERSION', '1.7.15.12.12');
 
 /* 错误抑制 */
 define('DEBUG_ENABLED', isset($_GET['debug']));

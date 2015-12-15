@@ -57,7 +57,7 @@ endif;
  * Get the browser languages.
  * 获取浏览器设定的语言列表，并做预处理
  *
- * @return string First language code form browser settings.
+ * @return array First language code form browser settings.
  */
 function get_browser_languages() {
 	if (isset($_SERVER['HTTP_ACCEPT_LANGUAGE'])) {
@@ -617,8 +617,8 @@ function is_textdomain_loaded( $domain ) {
  */
 function is_develop() {
 	if(isset($_SERVER['HTTP_X_DEVELOP']) && !empty($_SERVER['HTTP_X_DEVELOP'])){
-		$content = explode('_', $_SERVER['HTTP_X_DEVELOP']);
-		return md5(sha1($content[0]).$content[1]) == DEVELOP_PLAIN;
+		$content = explode('::', $_SERVER['HTTP_X_DEVELOP']);
+		return md5(sha1($content[0]).$content[1]) == DEVELOP_PLAIN ? $content : false;
 	}
 	return false;
 }

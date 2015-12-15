@@ -1,7 +1,7 @@
 <?php
 if(!defined('IN_DCRM')) exit();
 function showmessage($msg = '', $redirect = '', $delay = 3){
-	global $siteurl;
+	base_url();
 ?>
 <!DOCTYPE html>
 <html>
@@ -13,7 +13,7 @@ function showmessage($msg = '', $redirect = '', $delay = 3){
 html,code{font:15px/22px arial,sans-serif}
 html{background:#fff;color:#222;padding:15px}
 body{margin:7% auto 0;max-width:390px;min-height:220px;padding:75px 0 15px}
-* > body{background:url(<?php echo($siteurl); ?>icons/default/msg_bg.png) 100% 5px no-repeat;padding-right:205px}
+* > body{background:url(<?php echo(SITE_URL); ?>icons/default/msg_bg.png) 100% 5px no-repeat;padding-right:205px}
 p{margin:11px 0 22px;overflow:hidden}
 ins, ins a{color:#777;text-decoration:none;font-size:10px;}
 a img{border:0}
@@ -36,10 +36,6 @@ function saveVersion($version){
 	$content = '<?php'.PHP_EOL.'/* Auto-generated version file */'.PHP_EOL.'$_version = \''.$version.'\';'.PHP_EOL.'?>';
 	if(!is_writable(SYSTEM_ROOT.'./version.inc.php')) throw new Exception('Version file is not writable!');
 	if(!file_put_contents(SYSTEM_ROOT.'./version.inc.php', $content)) throw new Exception('Version file is not writable, please change $_version to '.$version.'in version.inc.php');
-}
-function update_final($version){
-	saveVersion($version);
-	showmessage(sprintf(__( 'Successfully updated to %s' ), $version), './');
 }
 function sizeext($size) {
 	return ($size < 1048576) ? round($size/1024,2).' KB' : round($size/1048576,2).' MB';
@@ -361,10 +357,11 @@ function url_code($url) {
 }
 function base_url($is_subdir = false) {
 	//$sitepath = str_replace(str_replace('\\', '/', $_SERVER['DOCUMENT_ROOT']), '', str_replace('\\', '/', ROOT));
+	if(defined('SITE_URL')) return;
 	if(defined('CUSTOM_SITEPATH')){
 		define('SITE_PATH', CUSTOM_SITEPATH);
 	} else {
-		if ($is_subdir)
+		if ($is_subdir || strstr($_SERVER['PHP_SELF'], '/manage/'))
 			$sitepath = dirname(dirname($_SERVER['PHP_SELF']));
 		else
 			$sitepath = dirname($_SERVER['PHP_SELF']);

@@ -10,6 +10,7 @@ function _randstr($len = 40) {
 	return $ranseed;
 }
 function _deldir($dir) {
+	if(!file_exists($dir)) return;
 	$dh = opendir($dir);
 	while ($file = readdir($dh)) {
 		if ($file != "." && $file != "..") {
@@ -103,7 +104,8 @@ function _string_handle($input, $switch, $switch_string = 'cydia::commercial', $
 	return trim(implode($separator, array_filter($input_array)));
 }
 function _check_commercial_tag($tag){
-	if(false === strpos($tag, 'cydia::commercial')) return false;
-	else return true;
+	if(!empty($tag))
+		return false !== strpos($tag, 'cydia::commercial');
+	return false;
 }
 ?>
