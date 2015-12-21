@@ -99,7 +99,13 @@ if(isset($_POST['submit'])) {
 				$_SESSION['token'] = sha1(time()*rand(140,320));
 				$_SESSION['try'] = 0;
 				$_SESSION['connected'] = true;
-				header("Location: center.php");
+				if(isset($_SESSION['referer'])){
+					$referer = $_SESSION['referer'];
+					unset($_SESSION['referer']);
+					header("Location: ".$referer);
+				} else {
+					header("Location: center.php");
+				}
 				exit();
 			} else {
 				$_SESSION['try'] = $_SESSION['try'] + 1;

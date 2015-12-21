@@ -1,5 +1,7 @@
 <?php
 /**
+ * DCRM Packages Output
+ *
  * This file is part of WEIPDCRM.
  * 
  * WEIPDCRM is free software: you can redistribute it and/or modify
@@ -16,10 +18,7 @@
  * along with WEIPDCRM.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-/* DCRM Packages Output */
-
 session_start();
-define("DCRM",true);
 $localetype = 'manage';
 define('MANAGE_ROOT', dirname(__FILE__).'/');
 define('ABSPATH', dirname(MANAGE_ROOT).'/');
@@ -29,6 +28,7 @@ $activeid = 'build';
 $alert = "";
 
 if (!isset($_SESSION['connected']) || $_SESSION['connected'] != true) {
+	$_SESSION['referer'] = $_SERVER['REQUEST_URI'];
 	header("Location: login.php");
 	exit();
 }

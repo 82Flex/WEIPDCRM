@@ -17,6 +17,8 @@
  * 
  * You should have received a copy of the GNU Affero General Public License
  * along with WEIPDCRM.  If not, see <http://www.gnu.org/licenses/>.
+ *
+ * Designed by Hintay in China
  */
 
 session_start();
@@ -150,9 +152,7 @@ if (isset($_SESSION['connected']) && $_SESSION['connected'] === true) {
 
 			$page_c = show_table($list_query);
 
-			$q_info = DB::query("SELECT count(*) FROM `".DCRM_CON_PREFIX."UDID`");
-			$info = db_mysql::fetch_row($q_info);
-			$totalnum = (int)$info[0];
+			$totalnum = DB::result_first("SELECT count(*) FROM `".DCRM_CON_PREFIX."UDID`");
 			$params = array('total_rows'=>$totalnum, 'method'=>'html', 'parameter' =>'udid.php?page=%page', 'now_page'  =>$page, 'list_rows' =>10);
 			$page = new Core_Lib_Page($params);
 			echo '<div class="page">' . $page->show(2) . '</div>';
@@ -181,34 +181,17 @@ if (isset($_SESSION['connected']) && $_SESSION['connected'] === true) {
 				<br />
 				<h3 class="navbar"><?php printf(__('Search UDID: %s'), $_GET['contents']); ?></h3>
 <?php
+		$search_type_list = array(1 => 'UDID', 2 => 'Level', 3 => 'Package', 4 => 'IP', 5 => 'Comment');
 		$search_type = (int)$_GET['type'];
-		switch ($search_type) {
-			case 1:
-				$t = 'UDID';
-				break;
-			case 2:
-				$t = 'Level';
-				break;
-			case 3:
-				$t = 'Package';
-				break;
-			case 4:
-				$t = 'IP';
-				break;
-			case 5:
-				$t = 'Comment';
-				break;
-			default:
-				goto endlabel;
-		}
+		if(!isset($search_type_list[$search_type])) goto endlabel;
+		$t = $search_type_list[$search_type];
+
 		$r_value = DB::real_escape_string(str_replace('*', '%', str_replace('?', '_', $_GET['contents'])));
 		$list_query = DB::fetch_all("SELECT * FROM `".DCRM_CON_PREFIX."UDID` WHERE `" . $t . "` LIKE '%" . $r_value . "%' ORDER BY `ID` DESC LIMIT ".(string)$page_a.",10");
 
 		$page_c = show_table($list_query);
 
-		$q_info = DB::query("SELECT count(*) FROM `".DCRM_CON_PREFIX."UDID` WHERE `" . $t . "` LIKE '%" . $r_value . "%'");
-		$info = DB::fetch_row($q_info);
-		$totalnum = (int)$info[0];
+		$totalnum = DB::result_first("SELECT count(*) FROM `".DCRM_CON_PREFIX."UDID` WHERE `" . $t . "` LIKE '%" . $r_value . "%'");
 		$params = array('total_rows'=>$totalnum, 'method'=>'html', 'parameter' =>'center.php?action=search&contents='.$_GET['contents'].'&type='.$_GET['type'].'&page=%page', 'now_page'  =>$page, 'list_rows' =>10);
 		$page = new Core_Lib_Page($params);
 		echo '<div class="page">' . $page->show(2) . '</div>';
@@ -422,6 +405,7 @@ $(function () { $("input,select,textarea").not("[type=submit]").jqBootstrapValid
 </html>
 <?php
 } else {
+	$_SESSION['referer'] = $_SERVER['REQUEST_URI'];
 	header("Location: login.php");
 	exit();
 }

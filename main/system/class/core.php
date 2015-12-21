@@ -2,6 +2,9 @@
 if (!defined('IN_DCRM')) exit();
 class core {
 	public $updater;
+	/* Custom Content-Type Switch */
+	public $CCT = false;
+
 	function init() {
 		require_once(CONF_PATH.'autofill.inc.php');
 		$this->init_header();
@@ -11,9 +14,8 @@ class core {
 		$this->init_final();
 	}
 	function init_header() {
-		global $_customct;
 		ob_start();
-		if(!isset($_customct) || empty($_customct))
+		if(!$this->CCT)
 			header("Content-Type: text/html; charset=UTF-8");
 		header('Expires: Mon, 26 Jul 1997 05:00:00 GMT');
 		header('Cache-Control: no-cache');

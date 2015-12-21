@@ -1,5 +1,7 @@
 <?php
 /**
+ * DCRM Debian Information Ajax API
+ *
  * This file is part of WEIPDCRM.
  * 
  * WEIPDCRM is free software: you can redistribute it and/or modify
@@ -16,10 +18,7 @@
  * along with WEIPDCRM.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-/* DCRM Debian Information Ajax API */
-
 session_start();
-define("DCRM",true);
 define('MANAGE_ROOT', dirname(__FILE__).'/');
 define('ABSPATH', dirname(MANAGE_ROOT).'/');
 require_once ABSPATH.'system/common.inc.php';

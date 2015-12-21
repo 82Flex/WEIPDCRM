@@ -16,10 +16,6 @@
  * along with WEIPDCRM.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-if (version_compare(PHP_VERSION, '5.6', '>=')) {
-	echo 'DCRM not compatible with PHP 5.6+ now, please check your PHP version.';
-	exit();
-}
 error_reporting(E_ALL ^ E_NOTICE);
 define("DCRM",true);
 define('IN_DCRM', true);
@@ -74,6 +70,6 @@ class_loader('db');
 class_loader('Updater');
 
 require_once SYSTEM_ROOT.'./function/core.php';
-
 $system = new core();
+if(isset($_customct) && $_customct === true) $system->CCT = true;
 $system->init();

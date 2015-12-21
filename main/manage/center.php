@@ -1,5 +1,7 @@
 <?php
 /**
+ * DCRM Debian List
+ *
  * This file is part of WEIPDCRM.
  * 
  * WEIPDCRM is free software: you can redistribute it and/or modify
@@ -15,8 +17,6 @@
  * You should have received a copy of the GNU Affero General Public License
  * along with WEIPDCRM.  If not, see <http://www.gnu.org/licenses/>.
  */
-
-/* DCRM Debian List */
 
 session_start();
 define("DCRM",true);
@@ -275,6 +275,7 @@ if (isset($_SESSION['connected']) && $_SESSION['connected'] === true) {
 </html>
 <?php
 } else {
+	$_SESSION['referer'] = $_SERVER['REQUEST_URI'];
 	header("Location: login.php");
 	exit();
 }

@@ -1,5 +1,7 @@
 <?php
 /**
+ * DCRM Manage Header Template
+ *
  * This file is part of WEIPDCRM.
  * 
  * WEIPDCRM is free software: you can redistribute it and/or modify
@@ -15,8 +17,6 @@
  * You should have received a copy of the GNU Affero General Public License
  * along with WEIPDCRM.  If not, see <http://www.gnu.org/licenses/>.
  */
-
-/* DCRM Manage Header */
 
 if (!defined("DCRM")) {
 	header('HTTP/1.1 403 Forbidden');

@@ -1,5 +1,7 @@
 <?php
 /**
+ * DCRM Statistics
+ *
  * This file is part of WEIPDCRM.
  * 
  * WEIPDCRM is free software: you can redistribute it and/or modify
@@ -16,10 +18,8 @@
  * along with WEIPDCRM.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-/* DCRM Statistics */
-
 session_start();
-define("DCRM",true);
+define("DCRM", true);
 $activeid = 'stats';
 
 if (isset($_SESSION['connected']) && $_SESSION['connected'] === true) {
@@ -109,6 +109,7 @@ if (isset($_SESSION['connected']) && $_SESSION['connected'] === true) {
 </html>
 <?php
 } else {
+	$_SESSION['referer'] = $_SERVER['REQUEST_URI'];
 	header("Location: login.php");
 	exit();
 }

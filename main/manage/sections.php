@@ -1,5 +1,7 @@
 <?php
 /**
+ * DCRM Section Manage
+ *
  * This file is part of WEIPDCRM.
  * 
  * WEIPDCRM is free software: you can redistribute it and/or modify
@@ -16,10 +18,7 @@
  * along with WEIPDCRM.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-/* DCRM Section Manage */
-
 session_start();
-define("DCRM",true);
 $localetype = 'manage';
 define('MANAGE_ROOT', dirname(__FILE__).'/');
 define('ABSPATH', dirname(MANAGE_ROOT).'/');
@@ -88,9 +87,7 @@ if (isset($_SESSION['connected']) && $_SESSION['connected'] === true) {
 ?>
 					</tbody></table>
 <?php
-			$q_info = DB::query("SELECT count(*) FROM `".DCRM_CON_PREFIX."Sections`");
-			$info = DB::fetch_row($q_info);
-			$totalnum = (int)$info[0];
+			$totalnum = DB::result_first("SELECT count(*) FROM `".DCRM_CON_PREFIX."Sections`");
 			$params = array('total_rows'=>$totalnum, 'method'=>'html', 'parameter' =>'sections.php?page=%page', 'now_page'  =>$page, 'list_rows' =>10);
 			$page = new Core_Lib_Page($params);
 			echo '<div class="page">' . $page->show(2) . '</div>';
@@ -324,6 +321,7 @@ if (isset($_SESSION['connected']) && $_SESSION['connected'] === true) {
 </html>
 <?php
 } else {
+	$_SESSION['referer'] = $_SERVER['REQUEST_URI'];
 	header("Location: login.php");
 	exit();
 }

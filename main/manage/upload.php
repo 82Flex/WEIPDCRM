@@ -1,5 +1,7 @@
 <?php
 /**
+ * DCRM Upload Page
+ * 
  * This file is part of WEIPDCRM.
  * 
  * WEIPDCRM is free software: you can redistribute it and/or modify
@@ -16,10 +18,7 @@
  * along with WEIPDCRM.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-/* DCRM Upload Page */
-
 session_start();
-define("DCRM",true);
 $activeid = 'upload';
 $localetype = 'manage';
 define('MANAGE_ROOT', dirname(__FILE__).'/');
@@ -236,6 +235,7 @@ $(function() {
 </html>
 <?php
 } else {
+	$_SESSION['referer'] = $_SERVER['REQUEST_URI'];
 	header("Location: login.php");
 	exit();
 }
