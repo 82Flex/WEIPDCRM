@@ -851,15 +851,16 @@ if ($index == 0) {
 <?php
 		}
 		// Compatibility Check
-		if (!empty($pkg_assoc['System_Support']) && $isCydia){
+		if (!empty($pkg_assoc['System_Support'])){
 			$system_support = unserialize($pkg_assoc['System_Support']);
-			$device_info = device_check();
+			if ($isCydia){
+				$device_info = device_check();
 
-			if ($system_support['Minimum'] <= $device_info['OS'] && $device_info['OS'] <= $system_support['Maxmum']){
-				$Compatibility_Settings = array('color' => '#66B3FF', 'text' => __('Your device supports this package'));
-			} else {
-				$Compatibility_Settings = array('color' => '#FF4500', 'text' => __('Your device doesn\'t support this package'));
-			}
+				if ($system_support['Minimum'] <= $device_info['OS'] && $device_info['OS'] <= $system_support['Maxmum']){
+					$Compatibility_Settings = array('color' => '#66B3FF', 'text' => __('Your device supports this package'));
+				} else {
+					$Compatibility_Settings = array('color' => '#FF4500', 'text' => __('Your device doesn\'t support this package'));
+				}
 ?>
 			<fieldset style="background-color:<?php echo($Compatibility_Settings['color']); ?>">
 				<div>
@@ -869,6 +870,7 @@ if ($index == 0) {
 				</div>
 			</fieldset>
 <?php
+			}
 		}
 		if(!defined('DCRM_DESCRIPTION')) define('DCRM_DESCRIPTION', 2);
 		if (DCRM_MOREINFO == 2 || DCRM_DESCRIPTION == 2 || (empty($pkg_assoc['Multi']) && DCRM_MULTIINFO == 2)) {
@@ -878,7 +880,7 @@ if ($index == 0) {
 			if (DCRM_MOREINFO == 2) {
 ?>
 					<p><?php _e('Version'); ?> <strong><?php echo($pkg_assoc['Version']); ?></strong> | <?php _e('Downloads'); ?> <strong><?php echo($pkg_assoc['DownloadTimes']); ?></strong></p>
-					<?php if(!empty($pkg_assoc['System_Support'])): ?><p><?php _e('Compatible with: '); ?><strong>iOS <?php echo($system_support['Minimum']); ?> ~ iOS <?php echo($system_support['Maxmum']); ?></strong></p><?php endif; ?>
+					<?php if(!empty($pkg_assoc['System_Support'])): ?><p><?php _e('Compatible with: '); ?><strong>iOS <?php echo($system_support['Minimum']); if($system_support['Maxmum']): ?> ~ iOS <?php echo($system_support['Maxmum']); endif; ?></strong></p><?php endif; ?>
 					<p><?php _e('Last Updated'); ?> <strong><?php echo($pkg_assoc['CreateStamp']); ?></strong></p>
 <?php
 			}

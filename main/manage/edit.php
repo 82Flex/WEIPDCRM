@@ -255,8 +255,10 @@ if (isset($_SESSION['connected']) && $_SESSION['connected'] === true) {
 		}
 		unset($_POST['Custom_Purchase_Link']);
 
-		if(!empty($_POST['Minimum_System_Support']) && !empty($_POST['Maxmum_System_Support']))
+		if(!empty($_POST['Minimum_System_Support']))
 			$_POST['System_Support'] = serialize(array('Minimum' => $_POST['Minimum_System_Support'], 'Maxmum' => $_POST['Maxmum_System_Support']));
+		else
+			$_POST['System_Support'] = null;
 		unset($_POST['Minimum_System_Support']);
 		unset($_POST['Maxmum_System_Support']);
 
