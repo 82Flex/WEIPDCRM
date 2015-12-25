@@ -282,9 +282,7 @@ if ($index == 0) {
 				</div>
 			</fieldset>
 <?php
-	$q_info = DB::query("SELECT count(*) FROM `".DCRM_CON_PREFIX."Packages` WHERE `Stat` = '1'");
-	$info = mysql_fetch_row($q_info);
-	$num = (int)$info[0];
+	$num = DB::result_first("SELECT count(*) FROM `".DCRM_CON_PREFIX."Packages` WHERE `Stat` = '1'");
 ?>
 			<block>
 				<p>

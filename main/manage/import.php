@@ -59,14 +59,8 @@ if (!file_exists($r_path)) {
 	goto endlabel;
 }
 $file_md5 = md5_file($r_path);
-$md5_query = DB::query("SELECT `MD5sum` FROM `".DCRM_CON_PREFIX."Packages` WHERE `MD5sum` = '" . $file_md5 . "'");
-if ($md5_query == false) {
-	$alert = sprintf(__('Invalid request: %s'), DB::error());
-	$success = false;
-	goto endlabel;
-}
-$md5_row = mysql_fetch_row($md5_query);
-if ($md5_row != false) {
+$md5_exists = DB::result_first("SELECT `MD5sum` FROM `".DCRM_CON_PREFIX."Packages` WHERE `MD5sum` = '" . $file_md5 . "'");
+if ($md5_exists) {
 	$alert = sprintf(__('File already exists: %s'), $file_md5);
 	$success = false;
 	goto endlabel;
@@ -160,8 +154,7 @@ if ($same_row != false) {
 		goto endlabel;
 	} else {
 		if ($_GET['type'] == '1') {
-			$p_query = DB::query("SELECT `Package`, `Source`, `Priority`, `Section`, `Essential`, `Maintainer`, `Pre-Depends`, `Depends`, `Recommends`, `Suggests`, `Conflicts`, `Provides`, `Replaces`, `Enhances`, `Architecture`, `Installed-Size`, `Description`, `Origin`, `Bugs`, `Name`, `Author`, `Sponsor`, `Homepage`, `Website`, `Icon`, `Tag`, `Multi` FROM `".DCRM_CON_PREFIX."Packages` WHERE `Package` = '" . $same_row['Package'] . "' ORDER BY `ID` DESC LIMIT 1");
-			$p_row = mysql_fetch_assoc($p_query);
+			$p_row = DB::fetch_first("SELECT `Package`, `Source`, `Priority`, `Section`, `Essential`, `Maintainer`, `Pre-Depends`, `Depends`, `Recommends`, `Suggests`, `Conflicts`, `Provides`, `Replaces`, `Enhances`, `Architecture`, `Installed-Size`, `Description`, `Origin`, `Bugs`, `Name`, `Author`, `Sponsor`, `Homepage`, `Website`, `Icon`, `Tag`, `Multi`, `Level`, `Price`, `Purchase_Link`, `Purchase_Link_Stat`, `Video_Preview`, `System_Support`, `ScreenShots` FROM `".DCRM_CON_PREFIX."Packages` WHERE `Package` = '" . $same_row['Package'] . "' ORDER BY `ID` DESC LIMIT 1");
 			foreach ($p_row as $p_key => $p_value) {
 				$t_package[$p_key] = $p_value;
 			}
@@ -230,7 +223,6 @@ if ($new_id != false) {
 }
 if ($replace == true) {
 	DB::update(DCRM_CON_PREFIX.'Packages', array('Stat' => '-1'), array('Package' => $same_row['Package'], 'Version' => $same_row['Version']));
-	DB::query("INSERT INTO `".DCRM_CON_PREFIX."ScreenShots`(`PID`, `Image`) SELECT '".(int)$new_id."', `Image` FROM `".DCRM_CON_PREFIX."ScreenShots` WHERE `PID` = '".(int)$same_row['ID']."'");
 	header("Location: output.php?id=".(string)$new_id);
 	exit();
 } else {

@@ -27,6 +27,112 @@ if (isset($_SESSION['connected']) && $_SESSION['connected'] === true) {
 
 	if (!isset($_GET['action'])) {
 
+		function is_eng_array( $text , $context = null, $connector = '<br/>' ) {
+			global $locale;
+
+			$return = _x( $text, $context );
+			if ( substr( $locale, 0, 2 ) != 'en' )
+				$return .= $connector . $text;
+			return $return;
+		}
+
+		function languages_options() {
+			// Initialization
+			global $locale;
+			$return = array( is_eng_array('Detect', 'language' , ' - ' ) => 'Detect');
+			$languages = get_available_languages();
+			$languages_list = languages_list();
+			$languages_self_list = languages_self_list();
+			$is_en = substr( $locale, 0, 2 ) == 'en';
+
+			foreach( $languages as $language ) {
+				$return[] = array(
+					isset($languages_self_list[$language]) ? $languages_self_list[$language] : $languages_list[$language] => array(
+						(isset($languages_list[$language]) ? $languages_list[$language] : $language) . ($is_en ? '' : ' - '.$language ) => $language
+					)
+				);
+			}
+			if(!in_array('en', $languages) && !in_array('en_US', $languages) && !in_array('en_GB', $languages)){
+				$return[] = array('English' => array(is_eng_array('English', 'language', ' - ') => 'en_US'));
+			}
+
+			return $return;
+		}
+
+		function get_option_value($option, $default){
+			$value = get_option($option);
+			return empty($value) ? $default : $value;
+		}
+
+		// TODO: Array for Settings.
+		$options = array(
+			array(
+				'title'	=> __('General'),
+				'id'	=> 'general',
+				'type'	=> 'panelstart'
+			),
+			array(
+				'title'	=> __('General'),
+				'type'	=> 'subtitle'
+			),
+			array(
+				'name'	=> is_eng_array('Language'),
+				'desc'	=> is_eng_array('If you want the system auto detect users browser language to show pages please select "Detect" option.'),
+				'id'	=> 'language',
+				'type'	=> 'select',
+				'options' => languages_options(),
+				'optgroup'=> true,
+				'std'	=> defined("DCRM_LANG") ? DCRM_LANG : 'Detect',
+			),
+			array(
+				'name'	=> __('Rewrite Mod'),
+				'desc'	=> sprintf(__('<b>Elegant Mod</b> - Enable all rewrite rules, the url will show like %s.<br/><b>Normal Mod</b> - Compatible earlier than v1.7 configuration, only enbale a part of rewrite rules for HotLinks.<br/><b>Disabled</b> - This will disable all rewrite rules, so HotLinks will not work.<br/>Notice: You should update your rewrite config first if you want to use Elegant Mod.'), '<code>'.htmlspecialchars(base64_decode(DCRM_REPOURL)).'packages/1</code>'),
+				'id'	=> 'rewrite_mod',
+				'type'	=> 'select',
+				'options' => array(
+					1 => __('Disable'),
+					2 => __('Normal'),
+					3 => __('Elegant')
+				),
+				'std'	=> get_option_value('rewrite_mod', 2),
+			),
+			array(
+				'title'	=> __('Login Information'),
+				'type'	=> 'subtitle'
+			),
+			array(
+				'name'	=> __('Username'),
+				'id'	=> 'username',
+				'type'	=> 'text',
+				'attributes' => array(
+					'required' => 'required',
+					'minlength' => 4,
+					'maxlength' => 20,
+					'data-validation-minlength-message' => __('Username length must be between 4-20 characters!'),
+					'data-validation-regex-regex' => '^[0-9a-zA-Z\_]*$',
+					'data-validation-regex-message' => __('Username can only use numbers, letters and underline!')
+				),
+				'std'	=> htmlspecialchars($_SESSION['username']),
+			),
+			array(
+				'name'	=> __('New Password'),
+				'id'	=> 'pass1',
+				'type'	=> 'text',
+				'desc'	=> __('If you would like to change the password type a new one. Otherwise leave this blank.'),
+			),
+			array(
+				'name'	=> __('Repeat New Password'),
+				'id'	=> 'pass2',
+				'type'	=> 'text',
+				'desc'	=> __('Type your new password again.'),
+				'attributes' => array(
+					'data-validation-match-match' => 'pass1',
+					'data-validation-match-message' => __('Your password do not match.'),
+				),
+				'special' => 'pass-strength-result',
+			),
+		);
+
 		function show_select($variable, $false_text = '', $true_text = ''){
 			$select_array = array(($_false ? $_false : 1) => ($false_text ? $false_text : __('Disabled')), ($_true ? $_true : 2) => ($true_text ? $true_text : __('Enabled')));
 
