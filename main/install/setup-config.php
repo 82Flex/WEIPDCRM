@@ -140,13 +140,13 @@ switch($step) {
 		$pconnect = isset($_POST['pconnect']);
 
 		if ( empty( $prefix ) ) {
-			echo __('<strong>ERROR</strong>: "Table Prefix" must not be empty.') . $tryagain_link;
+			_e('<strong>ERROR</strong>: "Table Prefix" must not be empty.') . $tryagain_link;
 			break;
 		}
 
 		// Validate $prefix: it can only contain letters, numbers and underscores.
 		if ( preg_match( '|[^a-z0-9_]|i', $prefix ) ) {
-			echo __('<strong>ERROR</strong>: "Table Prefix" can only contain numbers, letters, and underscores.') . $tryagain_link;
+			_e('<strong>ERROR</strong>: "Table Prefix" can only contain numbers, letters, and underscores.') . $tryagain_link;
 			break;
 		}
 
@@ -163,21 +163,21 @@ switch($step) {
 		$con = mysql_connect("{$dbhost}:{$dbport}", DCRM_CON_USERNAME, DCRM_CON_PASSWORD);
 		if (!$con) {
 			$inst_alert = mysql_error();
-			echo __('<strong>ERROR</strong>: Can&#8217;t connect database server.') . '<br/>' . $inst_alert . $tryagain_link; 
+			_e('<strong>ERROR</strong>: Can&#8217;t connect database server.') . '<br/>' . $inst_alert . $tryagain_link; 
 			exit();
 		}
 
 		$result = mysql_query("CREATE DATABASE IF NOT EXISTS `".DCRM_CON_DATABASE."`");
 		if (!$result) {
 			$inst_alert = mysql_error();
-			echo __('<strong>ERROR</strong>: Can&#8217;t create database, please check your input information.') . '<br/>' . $inst_alert . $tryagain_link; 
+			_e('<strong>ERROR</strong>: Can&#8217;t create database, please check your input information.') . '<br/>' . $inst_alert . $tryagain_link; 
 			break;
 		}
 
 		$result = mysql_select_db(DCRM_CON_DATABASE);
 		if (!$result) {
 			$inst_alert = mysql_error();
-			echo __('<strong>ERROR</strong>: Can&#8217;t select database, please check your input information.') . '<br/>' . $inst_alert . $tryagain_link; 
+			_e('<strong>ERROR</strong>: Can&#8217;t select database, please check your input information.') . '<br/>' . $inst_alert . $tryagain_link; 
 			break;
 		}
 

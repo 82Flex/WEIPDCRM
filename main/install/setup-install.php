@@ -49,7 +49,7 @@ require_once(CONF_PATH.'connect.inc.php');
 $con = mysql_connect(DCRM_CON_SERVER.':'.(defined("DCRM_CON_SERVER_PORT") ? DCRM_CON_SERVER_PORT : '3306'), DCRM_CON_USERNAME, DCRM_CON_PASSWORD);
 if (!$con) {
 	$inst_alert = mysql_error();
-	echo __('<strong>ERROR</strong>: Can&#8217;t connect database server.') . '<br/>' . $inst_alert; 
+	_e('<strong>ERROR</strong>: Can&#8217;t connect database server.') . '<br/>' . $inst_alert; 
 	exit();
 }
 
