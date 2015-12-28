@@ -51,10 +51,7 @@ if (!$package_info) {
 	$screenshots = empty($package_info['ScreenShots']) ? null : maybe_unserialize($package_info['ScreenShots']);
 	unset($package_info['ScreenShots']);
 	if (isset($_GET['action']) && $_GET['action'] == "image" && isset($_POST['image']) && strlen($_POST['image']) > 0) {
-		if(strpos($_POST['image'], ','))
-			$images_array = TrimArray(explode(',', $_POST['image']));
-		else
-			$images_array = array($_POST['image']);
+		$images_array = array_filter(TrimArray(explode(',', $_POST['image'])));
 
 		if(is_array($screenshots)){
 			$screenshots = array_merge($screenshots, $images_array);
