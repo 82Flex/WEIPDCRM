@@ -233,22 +233,24 @@ if (isset($_SESSION['connected']) && $_SESSION['connected'] === true) {
 		$new_id = (int)$_GET['id'];
 		$tag = DB::result_first("SELECT `Tag` FROM `".DCRM_CON_PREFIX."Packages` WHERE `ID` = '" . $new_id . "'");
 		$_POST['Tag'] = string_handle($tag, $_POST['Protection']);
-		unset($_POST['Protection']);
 
-		switch($_POST['Purchase_Link_Stat']){
-			case '1':
-			// 自定义链接
-				$_POST['Purchase_Link'] = $_POST['Custom_Purchase_Link'];
-				break;
-			case '0':
-			// 支付宝
-				$alipay_account = urlencode(get_option('alipay_account'));
-				$price = '';
-				if(preg_match('/(\d.*)/', $_POST['Price'], $arr))
-					$price = $arr[0];
-				$_POST['Purchase_Link'] = "commercial.php?action=alipay_go&title={$_POST['Package']}&optEmail={$alipay_account}&payAmount={$price}";
-				break;
+		if($_POST['Protection'] == '1') {
+			switch($_POST['Purchase_Link_Stat']){
+				case '1':
+				// 自定义链接
+					$_POST['Purchase_Link'] = $_POST['Custom_Purchase_Link'];
+					break;
+				case '0':
+				// 支付宝
+					$alipay_account = urlencode(get_option('alipay_account'));
+					$price = '';
+					if(preg_match('/(\d*\.\d.)/', $_POST['Price'], $arr))
+						$price = $arr[0];
+					$_POST['Purchase_Link'] = "commercial.php?action=alipay_go&title={$_POST['Package']}&optEmail={$alipay_account}&payAmount={$price}";
+					break;
+			}
 		}
+		unset($_POST['Protection']);
 		unset($_POST['Custom_Purchase_Link']);
 
 		if(!empty($_POST['Minimum_System_Support']))
@@ -280,9 +282,9 @@ if (isset($_SESSION['connected']) && $_SESSION['connected'] === true) {
 								<input type="hidden" id="item_id" value="<?php echo $request_id; ?>" />
 								<select id="item_adv" style="width: 400px;" name="Advance" onChange="javascript:ajax();" >
 <?php
-		$z_query = DB::query("SELECT `COLUMN_NAME` FROM `information_schema`.`COLUMNS` WHERE `TABLE_SCHEMA`='".DCRM_CON_DATABASE."' and `TABLE_NAME`='".DCRM_CON_PREFIX."Packages' order by COLUMN_NAME");
-		while($z_list = mysql_fetch_assoc($z_query)) {
-			echo '<option value="'.$z_list['COLUMN_NAME'].'">'.$z_list['COLUMN_NAME'].'</option>';
+		$columns = DB::fetch_all("SELECT `COLUMN_NAME` FROM `information_schema`.`COLUMNS` WHERE `TABLE_SCHEMA`='".DCRM_CON_DATABASE."' and `TABLE_NAME`='".DCRM_CON_PREFIX."Packages' order by COLUMN_NAME");
+		foreach($columns as $column) {
+			echo('<option value="'.$column['COLUMN_NAME'].'">'.$column['COLUMN_NAME'].'</option>');
 		}
 ?>
 								</select>

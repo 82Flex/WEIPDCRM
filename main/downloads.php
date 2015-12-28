@@ -31,14 +31,14 @@ set_time_limit(0);
 @ini_set("max_execution_time", 1800);
 base_url();
 
-if (!empty($_GET['request']) AND (!empty($_SERVER['HTTP_X_UNIQUE_ID']) OR DCRM_DIRECT_DOWN == 1)) {
+if (!empty($_GET['request']) && (!empty($_SERVER['HTTP_X_UNIQUE_ID']) || DCRM_DIRECT_DOWN == 1)) {
 	$r_path = $_GET['request'];
 
-	$module_enabled = get_option('module_enabled');
+	$php_forward = get_option('php_forward');
 	$webserver = explode('/', $_SERVER['SERVER_SOFTWARE']);
 	// Apache URL重写模式下无法使用X-sendfile，因此在此处跳转
-	if($webserver[0] == 'Apache' && $module_enabled == 2 && strstr($_SERVER["REQUEST_URI"], '/debs/') != false){
-		header('Location: '.SITE_PATH.'/downloads.php?request='.$r_path);
+	if($webserver[0] == 'Apache' && $php_forward == 1 && strstr($_SERVER["REQUEST_URI"], '/debs/') != false){
+		header('Location: '.SITE_PATH.'downloads.php?request='.$r_path);
 		exit();
 	}
 
@@ -97,30 +97,30 @@ if (!empty($_GET['request']) AND (!empty($_SERVER['HTTP_X_UNIQUE_ID']) OR DCRM_D
 				}
 			}
 			DB::update(DCRM_CON_PREFIX.'Packages', array('DownloadTimes' => ((int)$m_row['DownloadTimes'] + 1)), array('ID' => (string)$request_id));
-			$php_forward = get_option('php_forward');
 			if($php_forward == 2 || $php_forward == ""){
 				downFile($download_path, $fake_name);
 			} else {
 				function xsendfile_header($self_header, $relative = true){
-					global $sitepath, $download_path, $fake_name;
+					global $download_path, $fake_name;
 					header('Accept-Ranges: bytes');
 					header('Content-type: application/octet-stream');
 					header('Content-Disposition: attachment; filename="' . rawurlencode($fake_name). '"');
 					header($self_header.': '.($relative ? SITE_PATH.substr($download_path, 2) : $download_path));
 					exit();
 				}
+				$module_enabled = get_option('module_enabled');
 				switch($webserver[0]){
 					case 'nginx':
 						xsendfile_header('X-Accel-Redirect');
 						break;
 					case 'Apache':
-						if (function_exists('apache_get_modules')){
+						if($module_enabled == 2) {
+							xsendfile_header('X-sendfile', false);
+						} elseif (function_exists('apache_get_modules')) {
 							$Mods = apache_get_modules();
 							if(in_array('mod_xsendfile', $Mods)){
 								xsendfile_header('X-sendfile', false);
 							}
-						} elseif($module_enabled == 2) {
-							xsendfile_header('X-sendfile', false);
 						}
 						if(file_exists(ROOT.'downloads/.htaccess'))
 							unlink(ROOT.'downloads/.htaccess');
@@ -131,7 +131,7 @@ if (!empty($_GET['request']) AND (!empty($_SERVER['HTTP_X_UNIQUE_ID']) OR DCRM_D
 						}
 						break;
 				}
-				header('Location: '.$sitepath.$download_path);
+				header('Location: '.SITE_PATH.$download_path);
 				exit();
 			}
 		} else {
