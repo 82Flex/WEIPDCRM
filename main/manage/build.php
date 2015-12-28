@@ -113,15 +113,15 @@ if (!file_exists(CONF_PATH.'release.save')) {
 		$alert .= "\n".__('Write to the Packages.bz2 file: ').$r_array['Packages.bz2'];
 	}
 	if (DCRM_GNUPG_ENABLED == 1) {
-		$alert .= "\n".'GnuPG 签名已配置，写入 Packages 校验信息。';
-		file_put_contents("../Release",file_get_contents(CONF_PATH.'release.save') . $verify_text);
-		$alert .= "\n".'写入 Release 文件：'.filesize('../Release');
+		$alert .= "\n".__('GnuPG has been configured, sign the Packages now.');
+		file_put_contents("../Release", file_get_contents(CONF_PATH.'release.save') . $verify_text);
+		$alert .= "\n".__('Write to the Release file: ').filesize('../Release');
 		$gpg_cmd = escapeshellcmd(DCRM_GNUPG_PATH . ' -abqs --no-tty --yes --passphrase "' . DCRM_GNUPG_PASS . '" -r "' . DCRM_GNUPG_NAME . '" -o "../Release.gpg" "../Release"');
 		exec($gpg_cmd);
-		$alert .= "\n".'GnuPG 签名已完成，签名长度：'.filesize('../Release.gpg');
+		$alert .= "\n".__('GnuPG signature has been successful, the signature length is: ').filesize('../Release.gpg');
 	} else {
-		$alert .= "\n".'写入 Release 文件：'.filesize('../Release');
-		file_put_contents("../Release",file_get_contents(CONF_PATH.'release.save'));
+		file_put_contents("../Release", file_get_contents(CONF_PATH.'release.save'));
+		$alert .= "\n".__('Write to the Release file: ').filesize('../Release');
 	}
 }
 

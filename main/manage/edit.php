@@ -78,15 +78,11 @@ if (isset($_SESSION['connected']) && $_SESSION['connected'] === true) {
 							<div class="controls">
 								<select name="Section" style="width: 400px;">
 <?php
-		$s_query = DB::query("SELECT `ID`, `Name` FROM `".DCRM_CON_PREFIX."Sections` ORDER BY `ID` ASC");
-		if (!$s_query) {
-			goto endlabel;
-		}
-		echo '<option value="' . htmlspecialchars($edit_info['Section']) . '" selected="selected">' . htmlspecialchars($edit_info['Section']) . '</option>';
-		while($s_list = mysql_fetch_assoc($s_query)) {
-			if ($s_list['Name'] != $edit_info['Section']) {
-				echo '<option value="' . htmlspecialchars($s_list['Name']) . '">' . htmlspecialchars($s_list['Name']) . '</option>';
-			}
+		$sections = DB::fetch_all("SELECT `ID`, `Name` FROM `".DCRM_CON_PREFIX."Sections` ORDER BY `ID` ASC");
+		echo('<option value="' . htmlspecialchars($edit_info['Section']) . '" selected="selected">' . htmlspecialchars($edit_info['Section']) . '</option>');
+		foreach($sections as $section){
+			if ($section['Name'] != $edit_info['Section'])
+				echo('<option value="' . htmlspecialchars($section['Name']) . '">' . htmlspecialchars($section['Name']) . '</option>');
 		}
 ?>
 								</select>

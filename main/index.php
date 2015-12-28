@@ -126,41 +126,25 @@ if (isset($_GET['pid'])) {
 			$title = __('Package Category');
 		} elseif (isset($_GET['method']) && $_GET['method'] == 'more') {
 			$index = 8;
-				$section_query = DB::query("SELECT `Name`, `Icon`, `TimeStamp` FROM `".DCRM_CON_PREFIX."Sections` WHERE `ID` = '".(int)$_GET['pid']."'");
-				if (!$section_query) {exit();}
-				$section_assoc = mysql_fetch_assoc($section_query);
-				if (!$section_assoc) {exit();}
-				$q_name = DB::real_escape_string($section_assoc['Name']);
+				$section = DB::fetch_first("SELECT `Name`, `Icon` FROM `".DCRM_CON_PREFIX."Sections` WHERE `ID` = '".(int)$_GET['pid']."'");
+				$q_name = DB::real_escape_string($section['Name']);
 				if (isset($_GET['offset']) && !empty($_GET['offset']) && ctype_digit($_GET['offset'])) {
 					$offset = intval($_GET['offset']);
 				} else {
 					$offset = 0;
 				}
-				$package_query = DB::query("SELECT `ID`, `Name`, `Package` FROM `".DCRM_CON_PREFIX."Packages` WHERE (`Stat` = '1' AND `Section` = '".$q_name."') ORDER BY `ID` DESC LIMIT 10 OFFSET ".$offset);
-				while ($package_assoc = mysql_fetch_assoc($package_query)) {
-					if ($isCydia) {
-?>
-				<a href="cydia://package/<?php echo($package_assoc['Package']); ?>" target="_blank">
-<?php
-					} else {
-?>
-				<a href="<?php echo_rewrite_url('view', $package_assoc['ID']);?>">
-<?php
-					}
-					if (!empty($section_assoc['Icon'])) {
-?>
-					<img class="icon" src="<?php echo(SITE_URL); ?>icons/<?php echo($section_assoc['Icon']); ?>">
-<?php
-					} else {
-?>
-					<img class="icon" src="<?php echo(SITE_URL); ?>icons/default/unknown.png">
-<?php
-					}
-?>
+				$package = DB::fetch_first("SELECT `ID`, `Name`, `Package` FROM `".DCRM_CON_PREFIX."Packages` WHERE (`Stat` = '1' AND `Section` = '".$q_name."') ORDER BY `ID` DESC LIMIT 10 OFFSET ".$offset);
+				if(!empty($package)){
+					if ($isCydia) { ?>
+				<a href="cydia://package/<?php echo($package['Package']); ?>" target="_blank">
+<?php					} else { ?>
+				<a href="<?php echo_rewrite_url('view', $package['ID']);?>">
+<?php					} ?>
+					<img class="icon" src="<?php echo(SITE_URL); ?>icons/<?php echo(empty($section['Icon']) ? 'default/unknown.png' : $section['Icon']); ?>">
 					<div>
 						<div>
 							<label>
-								<p><?php echo($package_assoc['Name']); ?></p>
+								<p><?php echo($package['Name']); ?></p>
 							</label>
 						</div>
 					</div>
@@ -267,7 +251,7 @@ if ($index == 0) {
 						</span>
 						<br/>
 						<span style="font-size: 16px">
-							<a class="panel" href="<?php echo(AUTOFILL_SITE); ?>"><?php echo(AUTOFILL_FULLNAME); ?></a>
+							<a class="panel" href="<?php echo(AUTOFILL_SITE); ?>"><?php echo(defined(AUTOFILL_FULLNAME) ? AUTOFILL_FULLNAME : AUTOFILL_MASTER); ?></a>
 							<br />
 							<a class="panel" href="mailto:<?php echo(AUTOFILL_EMAIL); ?>"><?php echo(AUTOFILL_EMAIL); ?></a>
 						</span>
@@ -416,46 +400,33 @@ if ($index == 0) {
 			</fieldset>
 <?php
 	if (DCRM_SHOWLIST == 2) {
-		$section_query = DB::query("SELECT `ID`, `Name`, `Icon` FROM `".DCRM_CON_PREFIX."Sections`");
-		if (!$section_query) {
+		$sections = DB::fetch_all("SELECT `ID`, `Name`, `Icon` FROM `".DCRM_CON_PREFIX."Sections`");
+		if (empty($sections)) {
 ?>
 			<block>
 				<p>
-					<?php _e('MySQL Error!'); ?>
+					<?php _e('No Section.'); ?>
 				</p>
 			</block>
 <?php
 		} else {
-			while ($section_assoc = mysql_fetch_assoc($section_query)) {
+			foreach($sections as $section){
 ?>
-			<label><p><?php echo($section_assoc['Name']); ?></p></label>
+		<label><p><?php echo($section['Name']); ?></p></label>
 			<fieldset>
 <?php
-				$package_query = DB::query("SELECT `ID`, `Name`, `Package` FROM `".DCRM_CON_PREFIX."Packages` WHERE (`Stat` = '1' AND `Section` = '".DB::real_escape_string($section_assoc['Name'])."') ORDER BY `ID` DESC LIMIT " . DCRM_SHOW_NUM);
-				while ($package_assoc = mysql_fetch_assoc($package_query)) {
-					if ($isCydia) {
-?>
-				<a href="cydia://package/<?php echo($package_assoc['Package']); ?>" target="_blank">
-<?php
-					} else {
-?>
-				<a href="<?php echo_rewrite_url('view', $package_assoc['ID']); ?>">
-<?php
-					}
-					if (!empty($section_assoc['Icon'])) {
-?>
-					<img class="icon" src="<?php echo(SITE_URL); ?>icons/<?php echo($section_assoc['Icon']); ?>" />
-<?php
-					} else {
-?>
-					<img class="icon" src="<?php echo(SITE_URL); ?>icons/default/unknown.png" />
-<?php
-					}
-?>
+				$packages = DB::fetch_all("SELECT `ID`, `Name`, `Package` FROM `".DCRM_CON_PREFIX."Packages` WHERE (`Stat` = '1' AND `Section` = '".DB::real_escape_string($section['Name'])."') ORDER BY `ID` DESC LIMIT " . DCRM_SHOW_NUM);
+				foreach($packages as $package) {
+					if ($isCydia) { ?>
+				<a href="cydia://package/<?php echo($package['Package']); ?>" target="_blank">
+<?php				} else { ?>
+				<a href="<?php echo_rewrite_url('view', $package['ID']);?>">
+<?php				} ?>
+					<img class="icon" src="<?php echo(SITE_URL); ?>icons/<?php echo(empty($section['Icon']) ? 'default/unknown.png' : $section['Icon']); ?>">
 					<div>
 						<div>
 							<label>
-								<p><?php echo($package_assoc['Name']); ?></p>
+								<p><?php echo($package['Name']); ?></p>
 							</label>
 						</div>
 					</div>
@@ -464,7 +435,7 @@ if ($index == 0) {
 				}
 				if (DCRM_ALLOW_FULLLIST == 2) {
 ?>
-				<a href="<?php echo_rewrite_url('section', $section_assoc['ID']); ?>">
+				<a href="<?php echo_rewrite_url('section', $section['ID']); ?>">
 					<img class="icon" src="<?php echo(SITE_URL); ?>icons/default/moreinfo.png" />
 					<div>
 						<div>
@@ -483,12 +454,12 @@ if ($index == 0) {
 		}
 	} else {
 		if (DCRM_ALLOW_FULLLIST == 2) {
-			$section_query = DB::query("SELECT `ID`, `Name`, `Icon` FROM `".DCRM_CON_PREFIX."Sections`");
-			if (!$section_query) {
+			$sections = DB::fetch_all("SELECT `ID`, `Name`, `Icon` FROM `".DCRM_CON_PREFIX."Sections`");
+			if (empty($sections)) {
 ?>
 			<block>
 				<p>
-					<?php _e('MySQL Error!'); ?>
+					<?php _e('No Section.'); ?>
 				</p>
 			</block>
 <?php
@@ -497,24 +468,14 @@ if ($index == 0) {
 			<label><?php _e('Package Category'); ?></label>
 			<fieldset>
 <?php
-				while ($section_assoc = mysql_fetch_assoc($section_query)) {
+				foreach($sections as $section){
 ?>
-				<a href="<?php echo_rewrite_url('section', $section_assoc['ID']); ?>">
-<?php
-					if (!empty($section_assoc['Icon'])) {
-?>
-					<img class="icon" src="<?php echo(SITE_URL); ?>icons/<?php echo($section_assoc['Icon']); ?>" />
-<?php
-					} else {
-?>
-					<img class="icon" src="<?php echo(SITE_URL); ?>icons/default/unknown.png" />
-<?php
-					}
-?>
+				<a href="<?php echo_rewrite_url('section', $section['ID']); ?>">
+					<img class="icon" src="<?php echo(SITE_URL); ?>icons/<?php echo(empty($section['Icon']) ? 'default/unknown.png' : $section['Icon']); ?>" />
 					<div>
 						<div>
 							<label>
-								<p><?php echo($section_assoc['Name']); ?></p>
+								<p><?php echo($section['Name']); ?></p>
 							</label>
 						</div>
 					</div>
@@ -564,9 +525,9 @@ if ($index == 0) {
 <?php
 	}
 } elseif ($index == 1) {
-		$pkg = (int)DB::real_escape_string($_GET['pid']);
-		$pkg_assoc = DB::fetch_first("SELECT `Name`, `Version`, `Author`, `Package`, `Description`, `DownloadTimes`, `Multi`, `CreateStamp`, `Size`, `Installed-Size`, `Section`, `Homepage`, `Tag`, `Level`, `Price`, `Purchase_Link`, `Changelog`, `Changelog_Older_Shows`, `Video_Preview`, `System_Support`, `Screenshots` FROM `".DCRM_CON_PREFIX."Packages` WHERE `ID` = '".$pkg."' LIMIT 1");
-	if (!$pkg_assoc) {
+	$package_id = (int)DB::real_escape_string($_GET['pid']);
+	$package_info = DB::fetch_first("SELECT `Name`, `Version`, `Author`, `Package`, `Description`, `DownloadTimes`, `Multi`, `CreateStamp`, `Size`, `Installed-Size`, `Section`, `Homepage`, `Tag`, `Level`, `Price`, `Purchase_Link`, `Changelog`, `Changelog_Older_Shows`, `Video_Preview`, `System_Support`, `Screenshots` FROM `".DCRM_CON_PREFIX."Packages` WHERE `ID` = '".$package_id."' LIMIT 1");
+	if (!$package_info) {
 ?>
 			<block>
 				<p>
@@ -578,7 +539,7 @@ if ($index == 0) {
 		if (!$isCydia) {
 ?>
 			<fieldset id="cydialink" style="display: none;">
-				<a href="cydia://url/https://cydia.saurik.com/api/share#?source=<?php echo($repo_url); ?>&amp;package=<?php echo($pkg_assoc['Package']); ?>" target="_blank">
+				<a href="cydia://url/https://cydia.saurik.com/api/share#?source=<?php echo($repo_url); ?>&amp;package=<?php echo($package_info['Package']); ?>" target="_blank">
 				<img class="icon" src="<?php echo(SITE_URL); ?>icons/default/cydia.png" />
 					<div>
 						<div>
@@ -590,24 +551,24 @@ if ($index == 0) {
 				</a>
 			</fieldset>
 <?php
-			if (!empty($pkg_assoc['Section'])) {
-				$section_icon = DB::result_first("SELECT `Icon` FROM `".DCRM_CON_PREFIX."Sections` WHERE `Name` = '".$pkg_assoc['Section']."' LIMIT 1");
+			if (!empty($package_info['Section'])) {
+				$section_icon = DB::result_first("SELECT `Icon` FROM `".DCRM_CON_PREFIX."Sections` WHERE `Name` = '".$package_info['Section']."' LIMIT 1");
 			}
 ?>
 			<div id="header" style="display: none;">
 				<img class="icon" src="<?php echo(SITE_URL); ?>icons/<?php echo(empty($section_icon) ? 'default/unknown.png' : $section_icon); ?>" style="width: 64px; height: 64px; vertical-align: top;" />
 				<div id="content">
-					<p id="name"><?php echo($pkg_assoc['Name']); ?></p>
-					<p id="latest"><?php echo($pkg_assoc['Version']); ?></p>
+					<p id="name"><?php echo($package_info['Name']); ?></p>
+					<p id="latest"><?php echo($package_info['Version']); ?></p>
 					<div id="extra">
-						<p><?php if(!empty($pkg_assoc['Installed-Size'])){echo(sizeext($pkg_assoc['Installed-Size'] * 1024));} ?></p>
+						<p><?php if(!empty($package_info['Installed-Size'])){echo(sizeext($package_info['Installed-Size'] * 1024));} ?></p>
 					</div>
 				</div>
 			</div>
 <?php
-			if (!empty($pkg_assoc['Author'])) {
-				$author_name = trim(preg_replace("#^(.+)<(.+)>#","$1", $pkg_assoc['Author']));
-				$author_mail = trim(preg_replace("#^(.+)<(.+)>#","$2", $pkg_assoc['Author']));
+			if (!empty($package_info['Author'])) {
+				$author_name = trim(preg_replace("#^(.+)<(.+)>#","$1", $package_info['Author']));
+				$author_mail = trim(preg_replace("#^(.+)<(.+)>#","$2", $package_info['Author']));
 			}
 ?>
 			<fieldset id="contact" style="display: none;">
@@ -629,7 +590,7 @@ if ($index == 0) {
 			</fieldset>
 <?php
 		}
-		if (DCRM_DIRECT_DOWN == 1 && !$isCydia && !check_commercial_tag($pkg_assoc['Tag'])) {
+		if (DCRM_DIRECT_DOWN == 1 && !$isCydia && !check_commercial_tag($package_info['Tag'])) {
 ?>
 			<fieldset>
 				<a href="<?php echo(SITE_URL); ?>debs/<?php echo($_GET['pid']); ?>.deb" id="downloadlink" style="display: none;" target="_blank">
@@ -641,7 +602,7 @@ if ($index == 0) {
 							</label>
 							<label class="detail">
 									<p>
-										<?php if(!empty($pkg_assoc['Size'])){echo(sizeext($pkg_assoc['Size']));} ?>
+										<?php if(!empty($package_info['Size'])){echo(sizeext($package_info['Size']));} ?>
 									</p>
 							</label>
 						</div>
@@ -650,14 +611,13 @@ if ($index == 0) {
 			</fieldset>
 <?php
 		}
-		$package_info = $pkg_assoc;
 		require_once('commercial.php');
 ?>
 			<fieldset>
 <?php
 		if (DCRM_SCREENSHOTS == 2) {
-			if (!empty($pkg_assoc['ScreenShots'])){
-				$screenshots_count = count(maybe_unserialize($pkg_assoc['ScreenShots']));
+			if (!empty($package_info['ScreenShots'])){
+				$screenshots_count = count(maybe_unserialize($package_info['ScreenShots']));
 ?>
 				<a href="<?php echo_rewrite_url('screenshot', $_GET['pid']); ?>">
 				<img class="icon" src="<?php echo(SITE_URL); ?>icons/default/screenshots.png" />
@@ -672,9 +632,9 @@ if ($index == 0) {
 <?php
 			}
 		}
-		if (!empty($pkg_assoc['Video_Preview'])) {
+		if (!empty($package_info['Video_Preview'])) {
 ?>
-				<a href="<?php echo(htmlspecialchars($pkg_assoc['Video_Preview'])); ?>">
+				<a href="<?php echo(htmlspecialchars($package_info['Video_Preview'])); ?>">
 				<img class="icon" src="<?php echo(SITE_URL); ?>icons/default/video.png" />
 					<div>
 						<div>
@@ -686,7 +646,7 @@ if ($index == 0) {
 				</a>
 <?
 		}
-		$changelogs_count = DB::result_first("SELECT count(*) FROM `".DCRM_CON_PREFIX."Packages` WHERE `Package` = '".$pkg_assoc['Package']."'");
+		$changelogs_count = DB::result_first("SELECT count(*) FROM `".DCRM_CON_PREFIX."Packages` WHERE `Package` = '".$package_info['Package']."'");
 		if ($changelogs_count != 1){
 ?>
 				<a href="<?php echo_rewrite_url('history', $_GET['pid']); ?>" id="historylink">
@@ -803,9 +763,9 @@ if ($index == 0) {
 				</a>
 <?php
 		}
-		if (!empty($pkg_assoc['Homepage']) && DCRM_MOREINFO == 2) {
+		if (!empty($package_info['Homepage']) && DCRM_MOREINFO == 2) {
 ?>
-				<a href="<?php echo($pkg_assoc['Homepage']); ?>" target="_blank">
+				<a href="<?php echo($package_info['Homepage']); ?>" target="_blank">
 				<img class="icon" src="<?php echo(SITE_URL); ?>icons/default/web.png" />
 					<div>
 						<div>
@@ -849,8 +809,8 @@ if ($index == 0) {
 <?php
 		}
 		// Compatibility Check
-		if (!empty($pkg_assoc['System_Support'])){
-			$system_support = unserialize($pkg_assoc['System_Support']);
+		if (!empty($package_info['System_Support'])){
+			$system_support = unserialize($package_info['System_Support']);
 			if ($isCydia){
 				$device_info = device_check();
 
@@ -871,39 +831,39 @@ if ($index == 0) {
 			}
 		}
 		if(!defined('DCRM_DESCRIPTION')) define('DCRM_DESCRIPTION', 2);
-		if (DCRM_MOREINFO == 2 || DCRM_DESCRIPTION == 2 || (empty($pkg_assoc['Multi']) && DCRM_MULTIINFO == 2)) {
+		if (DCRM_MOREINFO == 2 || DCRM_DESCRIPTION == 2 || (empty($package_info['Multi']) && DCRM_MULTIINFO == 2)) {
 ?>
 			<block>
 <?php
 			if (DCRM_MOREINFO == 2) {
 ?>
-					<p><?php _e('Version'); ?> <strong><?php echo($pkg_assoc['Version']); ?></strong> | <?php _e('Downloads'); ?> <strong><?php echo($pkg_assoc['DownloadTimes']); ?></strong></p>
-					<?php if(!empty($pkg_assoc['System_Support'])): ?><p><?php _e('Compatible with: '); ?><strong>iOS <?php echo($system_support['Minimum']); if($system_support['Maxmum']): ?> ~ iOS <?php echo($system_support['Maxmum']); endif; ?></strong></p><?php endif; ?>
-					<p><?php _e('Last Updated'); ?> <strong><?php echo($pkg_assoc['CreateStamp']); ?></strong></p>
+					<p><?php _e('Version'); ?> <strong><?php echo($package_info['Version']); ?></strong> | <?php _e('Downloads'); ?> <strong><?php echo($package_info['DownloadTimes']); ?></strong></p>
+					<?php if(!empty($package_info['System_Support'])): ?><p><?php _e('Compatible with: '); ?><strong>iOS <?php echo($system_support['Minimum']); if($system_support['Maxmum']): ?> ~ iOS <?php echo($system_support['Maxmum']); endif; ?></strong></p><?php endif; ?>
+					<p><?php _e('Last Updated'); ?> <strong><?php echo($package_info['CreateStamp']); ?></strong></p>
 <?php
 			}
-			if (DCRM_MOREINFO == 2 && (DCRM_DESCRIPTION == 2 || (empty($pkg_assoc['Multi']) && DCRM_MULTIINFO == 2))) echo '<hr />';
-			if (DCRM_DESCRIPTION == 2 || (empty($pkg_assoc['Multi']) && DCRM_MULTIINFO == 2)) {
+			if (DCRM_MOREINFO == 2 && (DCRM_DESCRIPTION == 2 || (empty($package_info['Multi']) && DCRM_MULTIINFO == 2))) echo '<hr />';
+			if (DCRM_DESCRIPTION == 2 || (empty($package_info['Multi']) && DCRM_MULTIINFO == 2)) {
 ?>
-					<p><?php echo(nl2br($pkg_assoc['Description'])); ?></p>
+					<p><?php echo(nl2br($package_info['Description'])); ?></p>
 <?php
 			}
 ?>
 			</block>
 <?php
 		}
-		if (!empty($pkg_assoc['Multi']) && DCRM_MULTIINFO == 2) {
+		if (!empty($package_info['Multi']) && DCRM_MULTIINFO == 2) {
 ?>
 			<fieldset>
 				<div>
 					<p>
-						<?php echo($pkg_assoc['Multi']); ?>
+						<?php echo($package_info['Multi']); ?>
 					</p>
 				</div>
 			</fieldset>
 <?php
 		}
-		if($pkg_assoc['Changelog_Older_Shows'] == 0 && !empty($pkg_assoc['Changelog'])) {
+		if($package_info['Changelog_Older_Shows'] == 0 && !empty($package_info['Changelog'])) {
 ?>
 			<label><p><?php _e('In this version'); ?></p></label>
 			<fieldset class="changelog">
@@ -912,7 +872,7 @@ if ($index == 0) {
 						<div>
 							<label>
 								<p>
-									<?php echo($pkg_assoc['Changelog']); ?>
+									<?php echo($package_info['Changelog']); ?>
 								</p>
 							</label>
 						</div>
@@ -920,8 +880,8 @@ if ($index == 0) {
 				</a>
 			</fieldset>
 <?php
-		} elseif($pkg_assoc['Changelog_Older_Shows'] !== 0) {
-			$changelogs = DB::fetch_all("SELECT `Version`, `Changelog` FROM `".DCRM_CON_PREFIX."Packages` WHERE `Package` = '".$pkg_assoc['Package']."' ORDER BY `Version` DESC LIMIT 0,".(int)$pkg_assoc['Changelog_Older_Shows']);
+		} elseif($package_info['Changelog_Older_Shows'] != 0) {
+			$changelogs = DB::fetch_all("SELECT `Version`, `Changelog` FROM `".DCRM_CON_PREFIX."Packages` WHERE `Package` = '".$package_info['Package']."' ORDER BY `Version` DESC LIMIT 0,".(int)$package_info['Changelog_Older_Shows']);
 			if(count($changelogs) > 0){
 ?>			
 			<label><p><?php _e('Changelogs'); ?></p></label>
@@ -957,7 +917,7 @@ if ($index == 0) {
 					<p style="height: 21px;"><span class="cmsswitch"><?php _e('Fold Comments'); ?></span></p>
 				</div>
 				<div id="comments">
-					<div class="ds-thread" data-thread-key="<?php echo($pkg_assoc['Package']); ?>" data-title="<?php echo($pkg_assoc['Name']); ?>" data-url="<?php echo('http://'.$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI']); ?>"></div>
+					<div class="ds-thread" data-thread-key="<?php echo($package_info['Package']); ?>" data-title="<?php echo($package_info['Name']); ?>" data-url="<?php echo('http://'.$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI']); ?>"></div>
 				</div>
 			</fieldset>
 			<script type="text/javascript">
@@ -1015,10 +975,10 @@ if ($index == 0) {
 ?>
 			<footer id="footer" style="display: none;">
 				<p>
-					<span id="id"><?php echo($pkg_assoc['Package']); ?></span>
+					<span id="id"><?php echo($package_info['Package']); ?></span>
 					<br />
 					<span class="source-name"><?php echo($release_origin); ?></span>&nbsp;·&nbsp;
-					<span id="section"><?php echo($pkg_assoc['Section']); ?></span>
+					<span id="section"><?php echo($package_info['Section']); ?></span>
 					<?php if(defined("AUTOFILL_FOOTER_CODE")){ ?>
 					<br />
 					<span id="code"><?php echo(stripslashes(AUTOFILL_FOOTER_CODE));?></span>
@@ -1068,9 +1028,9 @@ if ($index == 0) {
 			<label><?php _e('Current Device Info'); ?></label>
 <?php
 	if (DCRM_REPORTING == 2) {
-		$q_count = DB::query("SELECT `Support`, COUNT(*) AS 'num' FROM `".DCRM_CON_PREFIX."Reports` WHERE (`Device` = '".$device_info['DEVICE']."' AND `iOS` = '".$device_info['OS']."' AND `PID` = '".$_GET['pid']."') GROUP BY `Support`");
-		if (mysql_affected_rows() > 0) {
-			while ($s_count = mysql_fetch_assoc($q_count)) {
+		$q_count = DB::fetch_all("SELECT `Support`, COUNT(*) AS 'num' FROM `".DCRM_CON_PREFIX."Reports` WHERE (`Device` = '".$device_info['DEVICE']."' AND `iOS` = '".$device_info['OS']."' AND `PID` = '".$_GET['pid']."') GROUP BY `Support`");
+		if (count($q_count) > 0) {
+			foreach($q_count as $s_count){
 				switch ($s_count['Support']) {
 					case 1:
 						$s_1 = " (".$s_count['num'].")";
@@ -1167,10 +1127,10 @@ if ($index == 0) {
 	}
 } elseif ($index == 4) {
 	if (DCRM_REPORTING == 2) {
-		$result = DB::query("SELECT `ID` FROM `".DCRM_CON_PREFIX."Reports` WHERE (`Remote` = '".DB::real_escape_string($_SERVER['REMOTE_ADDR'])."' AND `PID`='".$_GET['pid']."') LIMIT 3");
-		if (mysql_affected_rows() < DCRM_REPORT_LIMIT) {
+		$result = DB::result_first("SELECT COUNT(ID) FROM `".DCRM_CON_PREFIX."Reports` WHERE (`Remote` = '".DB::real_escape_string($_SERVER['REMOTE_ADDR'])."' AND `PID`='".$_GET['pid']."') LIMIT 3");
+		if ($result < DCRM_REPORT_LIMIT) {
 			if (!empty($_SERVER['REMOTE_ADDR']) && !empty($device_info['DEVICE']) && !empty($device_info['OS']) && $isCydia) {
-				$result = DB::query("INSERT INTO `".DCRM_CON_PREFIX."Reports`(`Remote`, `Device`, `iOS`, `Support`, `TimeStamp`, `PID`) VALUES('".DB::real_escape_string($_SERVER['REMOTE_ADDR'])."', '".$device_info['DEVICE']."', '".$device_info['OS']."', '".$support."', '".date('Y-m-d H:i:s')."', '".(int)$_GET['pid']."')");
+				$result = DB::insert(DCRM_CON_PREFIX.'Reports', array('Remote' => DB::real_escape_string($_SERVER['REMOTE_ADDR']), 'Device' => $device_info['DEVICE'], 'iOS' => $device_info['OS'], 'Support' => $support, 'TimeStamp' => date('Y-m-d H:i:s'), 'PID' => (int)$_GET['pid']));
 ?>
 			<fieldset style="background-color: #ccffcc;">
 				<div>
@@ -1256,19 +1216,9 @@ if ($index == 0) {
 <?php
 	}
 } elseif ($index == 6) {
-		$pkg = (int)DB::real_escape_string($_GET['pid']);
-		$pkg_query = DB::query("SELECT `Name`, `Version`, `Author`, `Sponsor`, `Maintainer` FROM `".DCRM_CON_PREFIX."Packages` WHERE `ID` = '".$pkg."' LIMIT 1");
-	if (!$pkg_query) {
-?>
-			<block>
-				<p>
-					<?php _e('MySQL Error!'); ?>
-				</p>
-			</block>
-<?php
-	} else {
-		$pkg_assoc = mysql_fetch_assoc($pkg_query);
-		if (!$pkg_assoc) {
+	$package_id = (int)DB::real_escape_string($_GET['pid']);
+	$package_info = DB::fetch_first("SELECT `Name`, `Version`, `Author`, `Sponsor`, `Maintainer` FROM `".DCRM_CON_PREFIX."Packages` WHERE `ID` = '".$package_id."' LIMIT 1");
+	if (empty($package_info)) {
 ?>
 			<block>
 				<p>
@@ -1276,10 +1226,10 @@ if ($index == 0) {
 				</p>
 			</block>
 <?php
-		} else {
-			if (!empty($pkg_assoc['Author'])) {
-				$author_name = trim(preg_replace("#^(.+)<(.+)>#","$1", $pkg_assoc['Author']));
-				$author_mail = trim(preg_replace("#^(.+)<(.+)>#","$2", $pkg_assoc['Author']));
+	} else {
+		if (!empty($package_info['Author'])) {
+			$author_name = trim(preg_replace("#^(.+)<(.+)>#","$1", $package_info['Author']));
+			$author_mail = trim(preg_replace("#^(.+)<(.+)>#","$2", $package_info['Author']));
 ?>
 			<fieldset class="author">
 				<div>
@@ -1287,7 +1237,7 @@ if ($index == 0) {
 						<?php _e('Source manager can <strong>NOT</strong> solve the function problem of package: you <strong>MUST</strong> contact the author.'); ?>
 					</p>
 				</div>
-				<a href="mailto:<?php echo($author_mail); ?>?subject=<?php echo(urlencode("Cydia/APT(A): ".$pkg_assoc['Name']." (".$pkg_assoc['Version'].")")); ?>" target="_blank">
+				<a href="mailto:<?php echo($author_mail); ?>?subject=<?php echo(urlencode("Cydia/APT(A): ".$package_info['Name']." (".$package_info['Version'].")")); ?>" target="_blank">
 				<img class="icon" src="<?php echo(SITE_URL); ?>icons/default/email.png">
 					<div>
 						<div>
@@ -1300,10 +1250,10 @@ if ($index == 0) {
 				</a>
 			</fieldset>
 <?php
-			}
-			if (!empty($pkg_assoc['Sponsor'])) {
-				$sponsor_name = trim(preg_replace("#^(.+)<(.+)>#","$1", $pkg_assoc['Sponsor']));
-				$sponsor_url = trim(preg_replace("#^(.+)<(.+)>#","$2", $pkg_assoc['Sponsor']));
+		}
+		if (!empty($package_info['Sponsor'])) {
+			$sponsor_name = trim(preg_replace("#^(.+)<(.+)>#","$1", $package_info['Sponsor']));
+			$sponsor_url = trim(preg_replace("#^(.+)<(.+)>#","$2", $package_info['Sponsor']));
 ?>
 			<fieldset class="maintainer">
 				<div>
@@ -1324,16 +1274,16 @@ if ($index == 0) {
 				</a>
 			</fieldset>
 <?php
-			}
-			if (!empty($pkg_assoc['Maintainer'])) {
-				$maintainer_name = trim(preg_replace("#^(.+)<(.+)>#","$1", $pkg_assoc['Maintainer']));
-				$maintainer_mail = trim(preg_replace("#^(.+)<(.+)>#","$2", $pkg_assoc['Maintainer']));
+		}
+		if (!empty($package_info['Maintainer'])) {
+			$maintainer_name = trim(preg_replace("#^(.+)<(.+)>#","$1", $package_info['Maintainer']));
+			$maintainer_mail = trim(preg_replace("#^(.+)<(.+)>#","$2", $package_info['Maintainer']));
 ?>
 			<fieldset class="maintainer">
 				<div>
 					<p><?php _e('If you have questions when install or uninstall this package, please contact the maintainer.'); ?></p>
 				</div>
-				<a href="mailto:<?php echo($maintainer_mail); ?>?subject=<?php echo(urlencode("Cydia/APT(A): ".$pkg_assoc['Name']." (".$pkg_assoc['Version'].")")); ?>" target="_blank">
+				<a href="mailto:<?php echo($maintainer_mail); ?>?subject=<?php echo(urlencode("Cydia/APT(A): ".$package_info['Name']." (".$package_info['Version'].")")); ?>" target="_blank">
 				<img class="icon" src="<?php echo(SITE_URL); ?>icons/default/email.png">
 					<div>
 						<div>
@@ -1346,23 +1296,12 @@ if ($index == 0) {
 				</a>
 			</fieldset>
 <?php
-			}
 		}
 	}
 } elseif ($index == 7) {
 	if (DCRM_ALLOW_FULLLIST == 2) {
-		$section_query = DB::query("SELECT `Name`, `Icon`, `TimeStamp` FROM `".DCRM_CON_PREFIX."Sections` WHERE `ID` = '".(int)$_GET['pid']."'");
-		if (!$section_query) {
-?>
-			<block>
-				<p>
-					<?php _e('MySQL Error!'); ?>
-				</p>
-			</block>
-<?php
-		} else {
-			$section_assoc = mysql_fetch_assoc($section_query);
-			if (!$section_assoc) {
+		$sections = DB::fetch_first("SELECT `Name`, `Icon`, `TimeStamp` FROM `".DCRM_CON_PREFIX."Sections` WHERE `ID` = '".(int)$_GET['pid']."'");
+		if (!$sections) {
 ?>
 			<block>
 				<p>
@@ -1370,15 +1309,15 @@ if ($index == 0) {
 				</p>
 			</block>
 <?php
-			} else {
+		} else {
 ?>
-			<label><p><?php echo($section_assoc['Name']); ?></p></label>
+			<label><p><?php echo($sections['Name']); ?></p></label>
 <?php
-				$s_num = DB::result_first(DB::prepare("SELECT count(*) FROM `".DCRM_CON_PREFIX."Packages` WHERE (`Stat` = '1' AND `Section` = '%s')", $section_assoc['Name']));
+				$s_num = DB::result_first(DB::prepare("SELECT count(*) FROM `".DCRM_CON_PREFIX."Packages` WHERE (`Stat` = '1' AND `Section` = '%s')", $sections['Name']));
 ?>
 			<block>
 					<p><?php printf( __( '<strong>%s</strong> packages in this section.' ) , $s_num ); ?></p>
-					<p><?php printf( __( 'Create time: <strong>%s</strong>' ) , $section_assoc['TimeStamp'] ); ?></p>
+					<p><?php printf( __( 'Create time: <strong>%s</strong>' ) , $sections['TimeStamp'] ); ?></p>
 			</block>
 			<fieldset id="section"></fieldset>
 			<fieldset id="loadmore" name="<?php echo($_GET['pid']); ?>">
@@ -1395,7 +1334,6 @@ if ($index == 0) {
 			</fieldset>
 			<script type="text/javascript">var siteurl = '<?php echo(SITE_URL); ?>';</script>
 <?php
-			}
 		}
 	} else {
 ?>

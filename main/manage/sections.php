@@ -50,10 +50,7 @@ if (isset($_SESSION['connected']) && $_SESSION['connected'] === true) {
 		} else {
 			$page_b = $page - 1;
 		}
-		$list_query = DB::query("SELECT * FROM `".DCRM_CON_PREFIX."Sections` ORDER BY `ID` DESC LIMIT ".(string)$page_a.",10");
-		if ($list_query == FALSE) {
-			goto endlabel;
-		} else {
+		$list = DB::fetch_all("SELECT * FROM `".DCRM_CON_PREFIX."Sections` ORDER BY `ID` DESC LIMIT ".(string)$page_a.",10");
 ?>
 					<table class="table"><thead><tr>
 					<th><ul class="ctl"><?php _e('Delete'); ?></ul></th>
@@ -63,16 +60,17 @@ if (isset($_SESSION['connected']) && $_SESSION['connected'] === true) {
 					<th><ul class="ctl"><?php _e('Last Change'); ?></ul></th>
 					</tr></thead><tbody>
 <?php
-			while ($list = mysql_fetch_assoc($list_query)) {
+		if(!empty($list)){
+			foreach($list as $section) {
 ?>
 					<tr>
-					<td><a href="sections.php?action=delete_confirmation&amp;id=<?php echo($list['ID']); ?>&amp;name=<?php echo($list['Name']); ?>" class="close" style="line-height: 12px;">&times;</a></td>
-					<td><a href="sections.php?action=edit&amp;id=<?php echo($list['ID']); ?>" class="close">✎</a></td>
-					<td><ul class="ctl" style="width:400px;"><a title="<?php _e('Click to view packages in this section.'); ?>" href="center.php?action=search&amp;contents=<?php echo(urlencode($list['Name'])); ?>&amp;type=7"><?php echo(htmlspecialchars($list['Name'])); ?></a></ul></td>
+					<td><a href="sections.php?action=delete_confirmation&amp;id=<?php echo($section['ID']); ?>&amp;name=<?php echo($section['Name']); ?>" class="close" style="line-height: 12px;">&times;</a></td>
+					<td><a href="sections.php?action=edit&amp;id=<?php echo($section['ID']); ?>" class="close">✎</a></td>
+					<td><ul class="ctl" style="width:400px;"><a title="<?php _e('Click to view packages in this section.'); ?>" href="center.php?action=search&amp;contents=<?php echo(urlencode($section['Name'])); ?>&amp;type=7"><?php echo(htmlspecialchars($section['Name'])); ?></a></ul></td>
 <?php
-				if ($list['Icon'] != "") {
+				if ($section['Icon'] != '') {
 ?>
-					<td><ul class="ctl" style="width:150px;"><a href="<?php echo(base64_decode(DCRM_REPOURL)); ?>/icons/<?php echo($list['Icon']); ?>"><?php echo($list['Icon']); ?></a></ul></td>
+					<td><ul class="ctl" style="width:150px;"><a href="<?php echo(base64_decode(DCRM_REPOURL)); ?>/icons/<?php echo($section['Icon']); ?>"><?php echo($section['Icon']); ?></a></ul></td>
 <?php
 				} else {
 ?>
@@ -80,7 +78,7 @@ if (isset($_SESSION['connected']) && $_SESSION['connected'] === true) {
 <?php
 				}
 ?>
-					<td><ul class="ctl" style="width:150px;"><?php echo($list['TimeStamp']); ?></ul></td>
+					<td><ul class="ctl" style="width:150px;"><?php echo($section['TimeStamp']); ?></ul></td>
 					</tr>
 <?php
 			}

@@ -38,12 +38,7 @@ if ($request_id <= 0) {
 	$alert = __('Invalid arguments!');
 	goto endlabel;
 }
-$m_query = DB::query("SELECT `Package`, `Source`, `Version`, `Priority`, `Section`, `Essential`, `Maintainer`, `Pre-Depends`, `Depends`, `Recommends`, `Suggests`, `Conflicts`, `Provides`, `Replaces`, `Enhances`, `Architecture`, `Installed-Size`, `Origin`, `Bugs`, `Name`, `Author`, `Sponsor`, `Icon`, `Tag`, `Filename` FROM `".DCRM_CON_PREFIX."Packages` WHERE `ID` = '" . (string)$request_id . "' LIMIT 1");
-if ($m_query == false) {
-	$alert = sprintf(__('Database Error: %s'), DB::error());
-	goto endlabel;
-}
-$m_array = mysql_fetch_assoc($m_query);
+$m_array = DB::fetch_first("SELECT `Package`, `Source`, `Version`, `Priority`, `Section`, `Essential`, `Maintainer`, `Pre-Depends`, `Depends`, `Recommends`, `Suggests`, `Conflicts`, `Provides`, `Replaces`, `Enhances`, `Architecture`, `Installed-Size`, `Origin`, `Bugs`, `Name`, `Author`, `Sponsor`, `Icon`, `Tag`, `Filename` FROM `".DCRM_CON_PREFIX."Packages` WHERE `ID` = '" . (string)$request_id . "' LIMIT 1");
 if ($m_array == false) {
 	$alert = __('Cannot find the content specified!');
 	goto endlabel;
