@@ -126,14 +126,15 @@ if (isset($_GET['pid'])) {
 			$title = __('Package Category');
 		} elseif (isset($_GET['method']) && $_GET['method'] == 'more') {
 			$index = 8;
-				$section = DB::fetch_first("SELECT `Name`, `Icon` FROM `".DCRM_CON_PREFIX."Sections` WHERE `ID` = '".(int)$_GET['pid']."'");
-				$q_name = DB::real_escape_string($section['Name']);
-				if (isset($_GET['offset']) && !empty($_GET['offset']) && ctype_digit($_GET['offset'])) {
-					$offset = intval($_GET['offset']);
-				} else {
-					$offset = 0;
-				}
-				$package = DB::fetch_first("SELECT `ID`, `Name`, `Package` FROM `".DCRM_CON_PREFIX."Packages` WHERE (`Stat` = '1' AND `Section` = '".$q_name."') ORDER BY `ID` DESC LIMIT 10 OFFSET ".$offset);
+			$section = DB::fetch_first("SELECT `Name`, `Icon` FROM `".DCRM_CON_PREFIX."Sections` WHERE `ID` = '".(int)$_GET['pid']."'");
+			$q_name = DB::real_escape_string($section['Name']);
+			if (isset($_GET['offset']) && !empty($_GET['offset']) && ctype_digit($_GET['offset'])) {
+				$offset = intval($_GET['offset']);
+			} else {
+				$offset = 0;
+			}
+			$packages = DB::fetch_all("SELECT `ID`, `Name`, `Package` FROM `".DCRM_CON_PREFIX."Packages` WHERE (`Stat` = '1' AND `Section` = '".$q_name."') ORDER BY `ID` DESC LIMIT 10 OFFSET ".$offset);
+			foreach($packages as $package){
 				if(!empty($package)){
 					if ($isCydia) { ?>
 				<a href="cydia://package/<?php echo($package['Package']); ?>" target="_blank">
@@ -151,6 +152,7 @@ if (isset($_GET['pid'])) {
 				</a>
 <?php
 				}
+			}
 			exit();
 		} elseif (!isset($_GET['method']) || (isset($_GET['method']) && $_GET['method'] == 'view')) {
 			$index = 1;
