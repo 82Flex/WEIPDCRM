@@ -27,7 +27,7 @@ switch($this->current_version){
 			$screenshots = DB::fetch_all("SELECT * FROM `".DCRM_CON_PREFIX."ScreenShots`");
 			if(!empty($screenshots)){
 				foreach($screenshots as $screenshot){
-					$screenshots_cleaned[$screenshot['PID']][] = $screenshot['Image'];
+					$screenshots_cleaned[$screenshot['PID']][] = &$screenshots[$screenshot['Image']];
 				}
 				foreach($screenshots_cleaned as $package_id => $screenshots_pid){
 					DB::update(DCRM_CON_PREFIX.'Packages', array('ScreenShots' => serialize($screenshots_pid)), array('ID' => $package_id));
@@ -37,7 +37,21 @@ switch($this->current_version){
 		}
 		$this->update_version('1.7.15.12.9');
 	case '1.7.15.12.9':
-		$this->update_version('1.7.15.12.12', true);
+	case '1.7.15.12.12':
+		moveDir(ROOT.'manage/image', ROOT.'image');
+
+		function manage_replace($input){
+			return str_replace('/manage/', '/', $input);
+		}
+
+		$packages = DB::fetch_all("SELECT `ScreenShots`, `ID` FROM `".DCRM_CON_PREFIX."Packages`");
+		foreach ($packages as $package) {
+			if(strpos($package['ScreenShots'], '/manage/') === false)
+				continue;
+			$screenshots = unserialize($package['ScreenShots']);
+			DB::update(DCRM_CON_PREFIX.'Packages', array('ScreenShots' => serialize(array_map('manage_replace', $screenshots))), array('ID' => $package['ID']));
+		}
+		$this->update_version('1.7.15.12.30', true);
 		break;
 	default:
 		$this->fallback();

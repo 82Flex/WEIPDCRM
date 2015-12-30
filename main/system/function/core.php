@@ -371,6 +371,47 @@ function base_url($is_subdir = false) {
 	$siteurl = htmlspecialchars(($_SERVER['SERVER_PORT'] == '443' ? 'https://' : 'http://').$_SERVER['HTTP_HOST'].SITE_PATH);
 	define('SITE_URL', $siteurl);
 }
+/**
+ * Move directory.
+ * Copyright (c) 2015 Hintay <hintay@me.com>
+ *
+ * @param  string         $oldDir     Old directory.
+ * @param  string         $tgtDir     Target directory.
+ * @param  bool           $overWrite  Optional. Overwrite files?
+ * @return bool False if an error occurred.
+ */
+function moveDir($oldDir, $tgtDir, $overWrite = false){
+	$tgtDir .= '/';
+	$oldDir .= '/';
+	if (!is_dir($oldDir) || empty($tgtDir))
+		return false;
+	if (!file_exists($tgtDir))
+		return rename($oldDir, $tgtDir);
+
+	@$dirHandle = opendir($oldDir);
+	if (!$dirHandle)
+		return false;
+	while (false !== ($file = readdir($dirHandle))) {
+		if ($file == '.' || $file == '..')
+			continue;
+
+		if (!is_dir($oldDir . $file)) {
+			// This is a file.
+			if(file_exists($tgtDir . $file)) {
+				if(!$overWrite) {
+					unlink($oldDir . $file);
+					continue;
+				}
+				unlink($tgtDir . $file);
+			}
+			rename($oldDir . $file, $tgtDir . $file);
+		} else {
+			moveDir($oldDir . $file, $tgtDir . $file, $overWrite);
+		}
+	}
+	closedir($dirHandle);
+	return rmdir($oldDir);
+}
 // Function link
 function randstr($len = 40) {
 	require_once SYSTEM_ROOT.'./function/manage.php';
