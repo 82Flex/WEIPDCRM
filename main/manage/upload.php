@@ -27,13 +27,13 @@ require_once ABSPATH.'system/common.inc.php';
 
 function upload($file, $path = '../upload/', $name = '') {
 	if ($file["size"] <= 0) {
-		return __('File size incorrect!');
+		return __('File size is incorrect!');
 	}
 	if (pathinfo($_FILES['deb']['name'], PATHINFO_EXTENSION) != "deb") {
-		return __('File type incorrect!');
+		return __('File type is incorrect!');
 	}
 	if ($file["error"] > 0) {
-		return sprintf(__('Upload failed, Error Code: %s.'), $file["error"]);
+		return sprintf(__('Upload failed, error code: %s.'), $file["error"]);
 	}
 	if (file_exists($path . $file["name"])) {
 		return sprintf(__('%s already exists.'), $file["name"]);
@@ -82,7 +82,7 @@ else window.location.replace('./upload.php?mode=classic');
 	}
 	if (isset($_GET['mode']) && $_GET['mode'] == 'multiple') {
 ?>
-				<div class="subtitle"><h2><?php _e('Upload Packages'); ?></h2><span><?php printf(__('Unable to upload files? Try %s.'), '<a href="./upload.php?mode=classic">'.__('classic uploader').'</a>'); ?></span></div>
+				<div class="subtitle"><h2><?php _e('Upload Packages'); ?></h2><span><?php printf(__('Unable to upload files? Try the %s.'), '<a href="./upload.php?mode=classic">'.__('classic uploader').'</a>'); ?></span></div>
 				<br />
 				<div class="form-horizontal">
 					<fieldset>
@@ -105,9 +105,9 @@ else window.location.replace('./upload.php?mode=classic');
 				<h3><?php _e('Tips'); ?></h3>
 				<br />
 				<h4 class="alert alert-info">· <?php _e('Allowed data type: '); ?>application/x-deb<?php _ex(';', 'Separator'); ?>
-				<br />· <?php _e('Upload max filesize: '); ?>10M<?php _ex(';', 'Separator'); ?>
-				<br />· <?php _e('Please do not upload disrupt the Internet security data'); _ex(';', 'Separator'); ?>
-				<br />· <?php _e('Please upload the standard package of Debian software package, otherwise it may cause loss of data.'); ?></h4>
+				<br />· <?php _e('Max upload filesize: '); ?>10M<?php _ex(';', 'Separator'); ?>
+				<br />· <?php _e('Please do not upload data can disrupt the security of the Internet'); _ex(';', 'Separator'); ?>
+				<br />· <?php _e('Confirm that your deb package is legitimately built. Otherwise it may cause data loss.'); ?></h4>
 			</div>
 		</div>
 	</div>
@@ -137,19 +137,19 @@ $(function() {
 			if(responeseDataObj){
 				if(responeseDataObj.code == 200){
 					$('#' + file.id).find('.data').html('<?php _ex(' Success', 'Uploader'); ?>');
-					files_msg += responeseDataObj.filename+"<?php _ex(' Upload Success!', 'Uploader'); ?>\n";
+					files_msg += responeseDataObj.filename+"<?php _ex(' upload was successful', 'Uploader'); ?>\n";
 				} else if(responeseDataObj.code == 300) {
 					if(responeseDataObj.status == 'failed'){
 						$('#' + file.id).find('.data').html('<?php _ex(' Failed', 'Uploader'); ?>');
-						files_msg += responeseDataObj.filename+"<?php _ex(' Upload Failed!', 'Uploader'); ?>\n";
+						files_msg += responeseDataObj.filename+"<?php _ex(' upload failed!', 'Uploader'); ?>\n";
 					}else{
 						$('#' + file.id).find('.data').html('<?php _ex(' Already Exists', 'Uploader'); ?>');
-						files_msg += responeseDataObj.filename+"<?php _ex(' Already Exists!', 'Uploader'); ?>\n";
+						files_msg += responeseDataObj.filename+"<?php _ex(' already exists!', 'Uploader'); ?>\n";
 					}
 				} else {
 					if(typeof(responeseDataObj.message) == "undefined") {
-						$('#' + file.id).find('.data').html('<?php _ex(' Unknow', 'Uploader'); ?>');
-						files_msg += "<?php _ex('Unknow Error!', 'Uploader'); ?>\n";
+						$('#' + file.id).find('.data').html('<?php _ex(' Unknown', 'Uploader'); ?>');
+						files_msg += "<?php _ex('Unknown error!', 'Uploader'); ?>\n";
 					} else {
 						$('#' + file.id).find('.data').html('<?php _ex(' Error', 'Uploader'); ?>');
 						files_msg += "Error: "+responeseDataObj.message+"\n";
@@ -169,7 +169,7 @@ $(function() {
 <?php
 	}elseif (isset($_GET['mode']) && $_GET['mode'] == 'classic') {
 ?>
-				<div class="subtitle"><h2><?php _e('Upload Packages'); ?></h2><span><?php printf(__('Unable to upload files? Try %s.'), '<a href="./upload.php?mode=multiple">'.__('multiple uploader').'</a>'); ?></span></div>
+				<div class="subtitle"><h2><?php _e('Upload Packages'); ?></h2><span><?php printf(__('Unable to upload files? Try the %s.'), '<a href="./upload.php?mode=multiple">'.__('multiple uploader').'</a>'); ?></span></div>
 				<br />
 				<h3><?php _e('Select File'); ?></h3>
 				<br />
@@ -192,8 +192,8 @@ $(function() {
 				<h3><?php _e('Tips'); ?></h3>
 				<br />
 				<h4 class="alert alert-info">· <?php _e('Allowed data type: '); ?>application/x-deb<?php _ex(';', 'Separator'); ?>
-				<br />· <?php _e('Upload max filesize: '); ?><?php echo(ini_get("file_uploads") ? ini_get("upload_max_filesize") : __('Disabled')); _ex(';', 'Separator'); ?>
-				<br />· <?php _e('Please do not upload disrupt the Internet security data'); _ex(';', 'Separator'); ?>
+				<br />· <?php _e('Max upload filesize: '); ?><?php echo(ini_get("file_uploads") ? ini_get("upload_max_filesize") : __('Disabled')); _ex(';', 'Separator'); ?>
+				<br />· <?php _e('Please do not upload data can disrupt the security of the Internet'); _ex(';', 'Separator'); ?>
 				<br />· <?php _e('Please upload the standard package of Debian software package, otherwise it may cause loss of data.'); ?></h4>
 			</div>
 		</div>

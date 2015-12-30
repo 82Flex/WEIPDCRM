@@ -63,7 +63,7 @@ function httpinfo($info_type) {
 			$info = sprintf('403 Payment Required: This package is either paid or requires a paid package to function. If you already paid for this package, try again later, or email %s if this problem keeps happening.', AUTOFILL_EMAIL);
 			break;
 		case 4033:
-			$info = '403 Forbidden: This package protected.';
+			$info = '403 Forbidden: This package is protected.';
 			break;
 		case 405:
 			$info = "405 Method Not Allowed";

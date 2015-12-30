@@ -4,12 +4,12 @@ class db_mysql {
 	var $curlink;
 	var $last_query;
 	function connect() {
-		$this->curlink = $this->_dbconnect(DCRM_CON_SERVER.':' . (defined("DCRM_CON_SERVER_PORT") ? DCRM_CON_SERVER_PORT : '3306'), DCRM_CON_USERNAME, DCRM_CON_PASSWORD, 'utf8', DCRM_CON_DATABASE, (defined("DCRM_CON_PCONNECT") ? DCRM_CON_PCONNECT : false));
+		$this->curlink = $this->_dbconnect(DCRM_CON_SERVER, DCRM_CON_USERNAME, DCRM_CON_PASSWORD, 'utf8', DCRM_CON_DATABASE, (defined("DCRM_CON_PCONNECT") ? DCRM_CON_PCONNECT : false), (defined("DCRM_CON_SERVER_PORT") ? DCRM_CON_SERVER_PORT : '3306'));
 	}
-	function _dbconnect($dbhost, $dbuser, $dbpw, $dbcharset, $dbname, $pconnect) {
+	function _dbconnect($dbhost, $dbuser, $dbpw, $dbcharset, $dbname, $pconnect = false, $dbport = '3306') {
 		$link = null;
-		$func = empty($pconnect) ? 'mysql_connect' : 'mysql_pconnect';
-		if (!$link = @$func($dbhost, $dbuser, $dbpw, 1)) {
+		$func = $pconnect ? 'mysql_connect' : 'mysql_pconnect';
+		if (!$link = @$func($dbhost.':'.$dbport, $dbuser, $dbpw, 1)) {
 			$this->halt('Couldn\'t connect to MySQL Server');
 		} else {
 			$this->curlink = $link;

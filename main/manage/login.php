@@ -277,7 +277,7 @@ if (!isset($_SESSION['try']) OR $_SESSION['try'] <= DCRM_MAXLOGINFAIL) {
 ?>
 						<div class="panel-body">
 							<h1 class="text-center"><?php _e('Error'); ?></h1>
-							<p><?php printf(__('Your login wrong too many times , close the session or wait %s minutes and try again later.'), ceil(($_SESSION['lasttry']+DCRM_LOGINFAILRESETTIME - time())/60)); ?></p>
+							<p><?php printf(__('You\'ve tried to login too many times unsuccessfully, please close the session or wait %s minutes to try again.'), ceil(($_SESSION['lasttry']+DCRM_LOGINFAILRESETTIME - time())/60)); ?></p>
 						</div>
 <?php
 }

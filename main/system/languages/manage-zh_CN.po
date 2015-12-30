@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: DCRM Manager\n"
-"POT-Creation-Date: 2015-12-28 17:03+0800\n"
-"PO-Revision-Date: 2015-12-28 17:03+0800\n"
+"POT-Creation-Date: 2015-12-30 16:10+0800\n"
+"PO-Revision-Date: 2015-12-30 16:10+0800\n"
 "Last-Translator: Hintay <hintay@me.com>\n"
 "Language-Team: Hintay <hintay@me.com>\n"
 "Language: zh_CN\n"
@@ -438,30 +438,30 @@ msgid ""
 "disable the system compatibility check."
 msgstr "请填写 iOS 系统版本号，留空或输入 0 则关闭系统兼容性检测。"
 
-#: manage/edit.php:226 manage/edit.php:301 manage/release.php:90
+#: manage/edit.php:226 manage/edit.php:303 manage/release.php:90
 #: manage/settings.php:691 manage/udid.php:334
 msgid "Save"
 msgstr "保存"
 
-#: manage/edit.php:263 manage/edit.php:317
+#: manage/edit.php:265 manage/edit.php:319
 msgid "Update Database"
 msgstr "更新数据库"
 
-#: manage/edit.php:264 manage/edit.php:318
+#: manage/edit.php:266 manage/edit.php:320
 msgid "The package information edited!"
 msgstr "软件包信息编辑完成！"
 
-#: manage/edit.php:264 manage/edit.php:318
+#: manage/edit.php:266 manage/edit.php:320
 msgid ""
 "After modify the fields with an asterisk, you must write into package then "
 "safely rebuild list."
 msgstr "修改带星号的字段后，您必须将其写入软件包才能安全地刷新列表。"
 
-#: manage/edit.php:265 manage/edit.php:319
+#: manage/edit.php:267 manage/edit.php:321
 msgid "Write Now"
 msgstr "立即写入"
 
-#: manage/edit.php:265 manage/edit.php:319 manage/import.php:256
+#: manage/edit.php:267 manage/edit.php:321 manage/import.php:256
 #: manage/manage.php:116 manage/manage.php:124 manage/output.php:143
 #: manage/release.php:115 manage/release.php:117 manage/release.php:120
 #: manage/sections.php:312 manage/settings.php:777 manage/settings.php:845
@@ -469,74 +469,74 @@ msgstr "立即写入"
 msgid "Back"
 msgstr "返回"
 
-#: manage/edit.php:273 manage/header.php:178
+#: manage/edit.php:275 manage/header.php:178
 msgid "Advance Editing"
 msgstr "高级编辑"
 
-#: manage/edit.php:278
+#: manage/edit.php:280
 msgctxt "Advance Editing"
 msgid "Field"
 msgstr "修改字段"
 
-#: manage/edit.php:293
+#: manage/edit.php:295
 msgctxt "Advance Editing"
 msgid "Content"
 msgstr "修改内容"
 
-#: manage/edit.php:332 manage/edit.php:425 manage/udid.php:371
+#: manage/edit.php:334 manage/edit.php:427 manage/udid.php:371
 #: manage/view.php:123
 msgid "Binding UDID"
 msgstr "绑定UDID"
 
-#: manage/edit.php:337 manage/settings.php:875
+#: manage/edit.php:339 manage/settings.php:875
 msgid "Align"
 msgstr "对齐方式"
 
-#: manage/edit.php:339 manage/settings.php:877
+#: manage/edit.php:341 manage/settings.php:877
 msgctxt "Align"
 msgid "Left"
 msgstr "左对齐"
 
-#: manage/edit.php:340 manage/settings.php:878
+#: manage/edit.php:342 manage/settings.php:878
 msgctxt "Align"
 msgid "Center"
 msgstr "居中对齐"
 
-#: manage/edit.php:341 manage/settings.php:879
+#: manage/edit.php:343 manage/settings.php:879
 msgctxt "Align"
 msgid "Right"
 msgstr "右对齐"
 
-#: manage/edit.php:345 manage/settings.php:883
+#: manage/edit.php:347 manage/settings.php:883
 msgctxt "Edit"
 msgid "List"
 msgstr "编号"
 
-#: manage/edit.php:347 manage/settings.php:885
+#: manage/edit.php:349 manage/settings.php:885
 msgid "Ordered list"
 msgstr "数字编号"
 
-#: manage/edit.php:348 manage/settings.php:886
+#: manage/edit.php:350 manage/settings.php:886
 msgid "Unordered list"
 msgstr "项目编号"
 
-#: manage/edit.php:352 manage/settings.php:890
+#: manage/edit.php:354 manage/settings.php:890
 msgid "Indent"
 msgstr "缩进"
 
-#: manage/edit.php:354 manage/settings.php:892
+#: manage/edit.php:356 manage/settings.php:892
 msgid "Increase indent"
 msgstr "向右缩进"
 
-#: manage/edit.php:355 manage/settings.php:893
+#: manage/edit.php:357 manage/settings.php:893
 msgid "Decrease indent"
 msgstr "向左缩进"
 
-#: manage/edit.php:404
+#: manage/edit.php:406
 msgid "Data loading"
 msgstr "数据加载中"
 
-#: manage/edit.php:414
+#: manage/edit.php:416
 msgid "Database Error"
 msgstr "数据库错误"
 
@@ -777,8 +777,8 @@ msgstr "错误"
 #: manage/login.php:280
 #, php-format
 msgid ""
-"Your login wrong too many times , close the session or wait %s minutes and "
-"try again later."
+"You've tried to login too many times unsuccessfully, please close the "
+"session or wait %s minutes to try again."
 msgstr "您的登录错误次数太多，请关闭会话或等待 %s 分钟后再试。"
 
 #: manage/manage.php:43
@@ -1708,7 +1708,7 @@ msgstr "数据库版本："
 msgid "GD library version: "
 msgstr "GD 库版本："
 
-#: manage/stats.php:51 manage/upload.php:108 manage/upload.php:195
+#: manage/stats.php:51
 msgid "Upload max filesize: "
 msgstr "最大上传限制："
 
@@ -1855,16 +1855,16 @@ msgid "Are you sure you want to unbinding '%1$s' from UDID '%2$s'?"
 msgstr "您真的想将 '%1$s' 与UDID '%2$s' 解绑吗？"
 
 #: manage/upload.php:30
-msgid "File size incorrect!"
+msgid "File size is incorrect!"
 msgstr "文件尺寸错误！"
 
 #: manage/upload.php:33
-msgid "File type incorrect!"
+msgid "File type is incorrect!"
 msgstr "文件类型错误！"
 
 #: manage/upload.php:36
 #, php-format
-msgid "Upload failed, Error Code: %s."
+msgid "Upload failed, error code: %s."
 msgstr "上传失败，错误代码：%s"
 
 #: manage/upload.php:39
@@ -1879,8 +1879,8 @@ msgstr "上传成功：%s"
 
 #: manage/upload.php:85 manage/upload.php:172
 #, php-format
-msgid "Unable to upload files? Try %s."
-msgstr "无法上传文件？尝试%s."
+msgid "Unable to upload files? Try the %s."
+msgstr "无法上传文件？尝试%s"
 
 #: manage/upload.php:85
 msgid "classic uploader"
@@ -1915,14 +1915,18 @@ msgctxt "Separator"
 msgid ";"
 msgstr "；"
 
+#: manage/upload.php:108 manage/upload.php:195
+msgid "Max upload filesize: "
+msgstr "最大上传限制："
+
 #: manage/upload.php:109 manage/upload.php:196
-msgid "Please do not upload disrupt the Internet security data"
+msgid "Please do not upload data can disrupt the security of the Internet"
 msgstr "请勿上传可能扰乱互联网安全秩序的数据"
 
-#: manage/upload.php:110 manage/upload.php:197
+#: manage/upload.php:110
 msgid ""
-"Please upload the standard package of Debian software package, otherwise it "
-"may cause loss of data."
+"Confirm that your deb package is legitimately built. Otherwise it may cause "
+"data loss."
 msgstr "请上传标准封装的 Debian 软件包，否则可能会导致数据丢失。"
 
 #: manage/upload.php:126
@@ -1936,7 +1940,7 @@ msgstr " 成功"
 
 #: manage/upload.php:140
 msgctxt "Uploader"
-msgid " Upload Success!"
+msgid " upload was successful"
 msgstr " 上传成功！"
 
 #: manage/upload.php:143
@@ -1946,8 +1950,8 @@ msgstr "失败"
 
 #: manage/upload.php:144
 msgctxt "Uploader"
-msgid " Upload Failed!"
-msgstr "上传失败！"
+msgid " upload failed!"
+msgstr " 上传失败！"
 
 #: manage/upload.php:146
 msgctxt "Uploader"
@@ -1956,17 +1960,17 @@ msgstr " 已存在"
 
 #: manage/upload.php:147
 msgctxt "Uploader"
-msgid " Already Exists!"
+msgid " already exists!"
 msgstr " 已存在！"
 
 #: manage/upload.php:151
 msgctxt "Uploader"
-msgid " Unknow"
+msgid " Unknown"
 msgstr " 未知"
 
 #: manage/upload.php:152
 msgctxt "Uploader"
-msgid "Unknow Error!"
+msgid "Unknown error!"
 msgstr "未知错误！"
 
 #: manage/upload.php:154
@@ -1989,6 +1993,12 @@ msgstr "请选择一个软件包"
 #: manage/upload.php:182
 msgid "Ready"
 msgstr "准备就绪"
+
+#: manage/upload.php:197
+msgid ""
+"Please upload the standard package of Debian software package, otherwise it "
+"may cause loss of data."
+msgstr "请上传标准封装的 Debian 软件包，否则可能会导致数据丢失。"
 
 #: manage/upload.php:208
 msgid "Please wait for uploading..."
@@ -2782,6 +2792,46 @@ msgstr "依地文"
 msgctxt "language"
 msgid "Zulu"
 msgstr "祖鲁语"
+
+#~ msgid "Please do not upload disrupt the Internet security data"
+#~ msgstr "请勿上传可能扰乱互联网安全秩序的数据"
+
+#~ msgid "Unable to upload files? Try %s."
+#~ msgstr "无法上传文件？尝试%s."
+
+#~ msgctxt "Uploader"
+#~ msgid " Already Exists!"
+#~ msgstr " 已存在！"
+
+#~ msgctxt "Uploader"
+#~ msgid " Unknow"
+#~ msgstr " 未知"
+
+#~ msgctxt "Uploader"
+#~ msgid "Unknow Error!"
+#~ msgstr "未知错误！"
+
+#~ msgctxt "Uploader"
+#~ msgid " Upload Failed!"
+#~ msgstr "上传失败！"
+
+#~ msgctxt "Uploader"
+#~ msgid " Upload Success!"
+#~ msgstr " 上传成功！"
+
+#~ msgid "Upload failed, Error Code: %s."
+#~ msgstr "上传失败，错误代码：%s"
+
+#~ msgid "File type incorrect!"
+#~ msgstr "文件类型错误！"
+
+#~ msgid "File size incorrect!"
+#~ msgstr "文件尺寸错误！"
+
+#~ msgid ""
+#~ "Your login wrong too many times , close the session or wait %s minutes "
+#~ "and try again later."
+#~ msgstr "您的登录错误次数太多，请关闭会话或等待 %s 分钟后再试。"
 
 #~ msgid "Invalid request: %s"
 #~ msgstr "无效的请求： %s"

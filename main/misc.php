@@ -39,11 +39,6 @@ if (file_exists("Release")) {
 	}
 } else {
 	$release_origin = __('Empty Page');
-	if (file_exists('init/install.php')) {
-		$first = true;
-	} else {
-		$first = false;
-	}
 }
 $release_url = base64_decode(DCRM_REPOURL);
 ?>
@@ -88,27 +83,27 @@ if (file_exists('CydiaIcon.png')) {
 ?>
 			<p><?php echo $release_origin; ?></p>
 			<hr />
-			<p><?php printf( __( 'Welcome to <a href="%1$s">Add</a> <code>%2$s</code> via Cydia.' ) , 'cydia://url/https://cydia.saurik.com/api/share#?source='.$release_url , $release_url ); ?></p>
-		  	<div class="add_image">
-            	<div class="input_text"><?php _e('Enter Cydia/APT URL'); ?></div>
-            	<div class="repo_text">http://<span class="txt"><?php echo $release_url; ?></span></div>
-                <div class="cancel button">
-                	<div class="text"><?php _e('Cancel'); ?></div>
-                </div>
-                <div class="add button">
-                	<div class="text"><?php _e('Add Source'); ?></div>
-                </div>
-                <div class="repo">
-                	<span class="repo_image">
-                    	<span class="mask"> </span>
-                    	<img src="CydiaIcon.png"/>
-                    </span>
-                    <span class="repo_title"><?php echo $release_origin; ?></span>
-                    <span class="repo_url"><?php echo $release_url; ?></span>
-                </div>
-            </div>
+			<p><?php printf( __( 'Welcome! <a href="%1$s">Click to add</a> <code>%2$s</code> via Cydia.' ) , 'cydia://url/https://cydia.saurik.com/api/share#?source='.$release_url , $release_url ); ?></p>
+			<div class="add_image">
+				<div class="input_text"><?php _e('Enter Cydia/APT URL'); ?></div>
+				<div class="repo_text">http://<span class="txt"><?php echo $release_url; ?></span></div>
+				<div class="cancel button">
+					<div class="text"><?php _e('Cancel'); ?></div>
+				</div>
+				<div class="add button">
+					<div class="text"><?php _e('Add Source'); ?></div>
+				</div>
+				<div class="repo">
+					<span class="repo_image">
+						<span class="mask"> </span>
+						<img src="CydiaIcon.png"/>
+					</span>
+					<span class="repo_title"><?php echo $release_origin; ?></span>
+					<span class="repo_url"><?php echo $release_url; ?></span>
+				</div>
+			</div>
 			<hr />
-			<p><?php _e('This page is available to Safari only.'); ?></p>
+			<p><?php _e('This page is restricted to Safari only!'); ?></p>
 <?php
 if (defined("AUTOFILL_DUOSHUO_KEY")) {
 ?>
@@ -119,11 +114,11 @@ if (defined("AUTOFILL_DUOSHUO_KEY")) {
 			data-images="" 
 			data-content="<?php printf( __( 'My Favourite Repo: %1$s(%2$s)' ) , $release_origin, $release_url ); ?>" 
 			data-url="<?php echo($release_url); ?>">
-			    <div class="ds-share-aside-right">
-			      <div class="ds-share-aside-inner">
-			      </div>
-			      <div class="ds-share-aside-toggle"><?php _e('Share To'); ?></div>
-			    </div>
+				<div class="ds-share-aside-right">
+					<div class="ds-share-aside-inner">
+					</div>
+					<div class="ds-share-aside-toggle"><?php _e('Share To'); ?></div>
+				</div>
 			</div>
 <?php
 }
@@ -131,14 +126,6 @@ if (defined("AUTOFILL_DUOSHUO_KEY")) {
 			<hr />
 			<p>© <?php echo defined("AUTOFILL_FOOTER_YEAR") ? htmlspecialchars(stripslashes(AUTOFILL_FOOTER_YEAR)).'-' : '';echo date('Y'); ?> <a href="<?php echo htmlspecialchars(base64_decode(DCRM_REPOURL)); ?>"><?php echo defined("AUTOFILL_FOOTER_NAME") ? htmlspecialchars(stripslashes(AUTOFILL_FOOTER_NAME)) : $release_origin; ?></a></p>
 			<p><?php _e('Powered by <a href="http://82flex.com/projects">DCRM</a>.'); echo defined("AUTOFILL_FOOTER_CODE") ? stripslashes(" · ".AUTOFILL_FOOTER_CODE) : ''; ?></p>
-<?php
-if ($first) {
-?>
-			<hr />
-			<?php _e('Dear manager, please follow the steps on <a href="init/index.html">Install Introduction</a> first.'); ?>
-<?php
-}
-?>
 		</div>
 <?php
 if (defined("AUTOFILL_STATISTICS")) {

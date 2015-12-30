@@ -161,7 +161,7 @@ if(check_commercial_tag($package_info['Tag'])):
 		case 'candownload':
 ?>
 					<label>
-						<p><?php _e('Allowed To Download'); ?></p>
+						<p><?php _e('Package Available'); ?></p>
 					</label>
 <?php
 			break;
