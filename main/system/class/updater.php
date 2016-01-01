@@ -54,8 +54,7 @@ class Updater{
 		}
 		$this->fallback();
 	}
-	protected function update_version($version,
-	 $silently = false){
+	protected function update_version($version, $silently = false){
 		//saveVersion($version);
 		$this->previous_version = $this->current_version;
 		$this->current_version = $version;
