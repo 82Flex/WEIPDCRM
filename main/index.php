@@ -993,14 +993,14 @@ if ($index == 0) {
 } elseif ($index == 2) {
 	if (DCRM_SCREENSHOTS == 2) {
 		$package_id = (int)DB::real_escape_string($_GET['pid']);
-		$screenshots_query = DB::fetch_frist("SELECT `ScreenShots` FROM `".DCRM_CON_PREFIX."Packages` WHERE `ID` = '".$package_id."'");
+		$screenshots_query = DB::result_first("SELECT `ScreenShots` FROM `".DCRM_CON_PREFIX."Packages` WHERE `ID` = '".$package_id."'");
 		$screenshots = maybe_unserialize($screenshots_query);
 		if (!empty($screenshots)) {
 			$screenshots_count = count($screenshots);
 ?>
 			<!--label><?php _e('View Screenshots'); ?></label-->
-			<div class="horizontal-scroll-wrapper" style="background: transparent; position: relative;">
-				<div class="horizontal-scroll-wrapper" style="background: transparent url(<?php echo($screenshots[0]); ?>); background-size: 150%; background-position: center; -webkit-filter: blur(5px); position: absolute; z-index: 1;"></div>
+			<div class="screenshot-wrapper" style="background: transparent; position: relative;">
+				<div class="background blur" style="background-image: url(<?php echo($screenshots[0]); ?>);"></div>
 				<div class="horizontal-scroll-wrapper" id="scroller" style="background: transparent; position: absolute; z-index: 2;">
 					<div class="horizontal-scroll-area" style="width:<?php echo($screenshots_count * 240); ?>px;">
 <?php
