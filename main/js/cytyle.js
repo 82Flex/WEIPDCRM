@@ -23,7 +23,6 @@
                 if (item == null)
                     return;
 
-                //TODO: Match for other website
                 if (typeof cydia != 'undefined')
                     if (item.href.substr(0, 32) == 'http://cydia.saurik.com/package/')
                         item.href = 'cydia://package/' + item.href.substr(32);
@@ -118,7 +117,7 @@
 if (navigator.userAgent.search(/Cydia/) == -1)
     document.write('<base target="_top"/>');
 else {
-    document.write('<style type="text/css"> body.pinstripe { background: none; } </style>');
+    document.write('<style type="text/css"> body.pinstripe { background: none !important; } </style>');
     document.write('<base target="_blank"/>');
 }
 

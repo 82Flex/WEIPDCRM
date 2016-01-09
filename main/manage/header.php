@@ -100,7 +100,7 @@ $sidebars = array(
 		function Add_Data() {
 			var scrolla=$(window).scrollTop();
 			var cha=parseInt(top)-parseInt(scrolla)-10;
-			if(loaded && cha<=0) {                
+			if(loaded && cha<=0) {
 				$("#sidebar").addClass("sticky");
 				loaded=false;
 			}
