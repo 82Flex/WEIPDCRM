@@ -222,7 +222,6 @@ if (isset($_SESSION['connected']) && $_SESSION['connected'] === true) {
 
 		unlink($f_filename);
 		DB::delete(DCRM_CON_PREFIX.'Packages', array('ID' => $delete_id));
-		DB::delete(DCRM_CON_PREFIX.'ScreenShots', array('PID' => $delete_id));
 		DB::delete(DCRM_CON_PREFIX.'Reports', array('PID' => $delete_id));
 		if (!empty($_SESSION['page'])) {
 			header("Location: center.php?page=" . $_SESSION['page']);
