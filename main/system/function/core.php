@@ -365,7 +365,7 @@ function base_url($is_subdir = false) {
 			$sitepath = dirname(dirname($_SERVER['PHP_SELF']));
 		else
 			$sitepath = dirname($_SERVER['PHP_SELF']);
-		define('SITE_PATH', (strlen($sitepath) == 1 ? '/' : $sitepath.'/'));
+		define('SITE_PATH', (strlen($sitepath) === 1 ? '/' : $sitepath.'/'));
 	}
 
 	$siteurl = htmlspecialchars(($_SERVER['SERVER_PORT'] == '443' ? 'https://' : 'http://').$_SERVER['HTTP_HOST'].($_SERVER['SERVER_PORT'] == ('443' ||  '80') ? '' : ':'.$_SERVER['SERVER_PORT']).SITE_PATH);
