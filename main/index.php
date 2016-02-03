@@ -1030,26 +1030,13 @@ if ($index == 0) {
 			<label><?php _e('Current Device Info'); ?></label>
 <?php
 	if (DCRM_REPORTING == 2) {
-		$q_count = DB::fetch_all("SELECT `Support`, COUNT(*) AS 'num' FROM `".DCRM_CON_PREFIX."Reports` WHERE (`Device` = '".$device_info['DEVICE']."' AND `iOS` = '".$device_info['OS']."' AND `PID` = '".$_GET['pid']."') GROUP BY `Support`");
-		if (count($q_count) > 0) {
-			foreach($q_count as $s_count){
-				switch ($s_count['Support']) {
-					case 1:
-						$s_1 = " (".$s_count['num'].")";
-						$i_1 = $s_count['num'];
-						break;
-					case 2:
-						$s_2 = " (".$s_count['num'].")";
-						$i_2 = $s_count['num'];
-						break;
-					case 0:
-						$s_0 = " (".$s_count['num'].")";
-						$i_0 = $s_count['num'];
-						break;
-				}
-			}
+		$reports = DB::fetch_all("SELECT `Support`, COUNT(*) AS 'num' FROM `".DCRM_CON_PREFIX."Reports` WHERE (`Device` = '".$device_info['DEVICE']."' AND `iOS` = '".$device_info['OS']."' AND `PID` = '".$_GET['pid']."') GROUP BY `Support`");
+		$reports_num = array(0, 0, 0);
+		if (count($reports) > 0) {
+			foreach($reports as $report)
+				$reports_num[$report['Support']] = $report['num'];
 		}
-		$check_int = $i_1 * 3 + $i_2 - $i_0 * 2;
+		$check_int = $reports_num[1] * 3 + $reports_num[2] - $reports_num[0] * 2;
 		if ($check_int >= 10) {
 ?>
 			<fieldset style="background-color: #ccffcc;">
@@ -1090,7 +1077,7 @@ if ($index == 0) {
 					<div>
 						<div>
 							<label>
-								<p><?php _e('Fully Compatibile'); ?><?php echo($s_1); ?></p>
+								<p><?php _e('Fully Compatibile'); ?><?php echo(' ('.$reports_num[1].')'); ?></p>
 							</label>
 						</div>
 					</div>
@@ -1100,7 +1087,7 @@ if ($index == 0) {
 					<div>
 						<div>
 							<label>
-								<p><?php _e('Partly Compatibile'); ?><?php echo($s_0); ?></p>
+								<p><?php _e('Partly Compatibile'); ?><?php echo(' ('.$reports_num[0].')'); ?></p>
 							</label>
 						</div>
 					</div>
@@ -1110,7 +1097,7 @@ if ($index == 0) {
 					<div>
 						<div>
 							<label>
-								<p><?php _e('Not Compatibile'); ?><?php echo($s_2); ?></p>
+								<p><?php _e('Not Compatibile'); ?><?php echo(' ('.$reports_num[2].')'); ?></p>
 							</label>
 						</div>
 					</div>
