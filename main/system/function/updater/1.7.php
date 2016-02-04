@@ -38,7 +38,7 @@ switch($this->current_version){
 		$this->update_version('1.7.15.12.9');
 	case '1.7.15.12.9':
 	case '1.7.15.12.12':
-		moveDir(ROOT.'manage/image', ROOT.'image');
+		moveDir(ROOT.'manage/image', ROOT.'image', false, false);
 
 		function manage_replace($input){
 			return str_replace('/manage/', '/', $input);
@@ -52,6 +52,14 @@ switch($this->current_version){
 			DB::update(DCRM_CON_PREFIX.'Packages', array('ScreenShots' => serialize(array_map('manage_replace', $screenshots))), array('ID' => $package['ID']));
 		}
 		$this->update_version('1.7.15.12.30', true);
+	case '1.7.15.12.30':
+		moveDir(ROOT.'icons', ROOT.'icon', false, false);
+		$langfile_suffixs = array('install-', 'manage-', 'system-', '');
+		foreach ($langfile_suffixs as $suffix) {
+			unlink(LANG_DIR.'/'.$suffix.'zh_CN.po');
+			unlink(LANG_DIR.'/'.$suffix.'zh_CN.mo');
+		}
+		$this->update_version('1.7.16.2.4', true);
 		break;
 	default:
 		$this->fallback();

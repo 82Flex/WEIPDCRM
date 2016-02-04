@@ -378,9 +378,10 @@ function base_url($is_subdir = false) {
  * @param  string         $oldDir     Old directory.
  * @param  string         $tgtDir     Target directory.
  * @param  bool           $overWrite  Optional. Overwrite files?
+ * @param  bool           $deleteOld  Optional. Delete old files?
  * @return bool False if an error occurred.
  */
-function moveDir($oldDir, $tgtDir, $overWrite = false){
+function moveDir($oldDir, $tgtDir, $overWrite = false, $deleteOld = true){
 	$tgtDir .= '/';
 	$oldDir .= '/';
 	if (!is_dir($oldDir) || empty($tgtDir))
@@ -399,18 +400,25 @@ function moveDir($oldDir, $tgtDir, $overWrite = false){
 			// This is a file.
 			if(file_exists($tgtDir . $file)) {
 				if(!$overWrite) {
-					unlink($oldDir . $file);
+					if($deleteOld)
+						unlink($oldDir . $file);
 					continue;
 				}
 				unlink($tgtDir . $file);
 			}
-			rename($oldDir . $file, $tgtDir . $file);
+			if($deleteOld)
+				rename($oldDir . $file, $tgtDir . $file);
+			else
+				copy($oldDir . $file, $tgtDir . $file);
 		} else {
-			moveDir($oldDir . $file, $tgtDir . $file, $overWrite);
+			moveDir($oldDir . $file, $tgtDir . $file, $overWrite, $deleteOld);
 		}
 	}
 	closedir($dirHandle);
-	return rmdir($oldDir);
+	if($deleteOld)
+		return rmdir($oldDir);
+	else
+		return true;
 }
 // Function link
 function randstr($len = 40) {

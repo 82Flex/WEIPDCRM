@@ -70,7 +70,7 @@ if (isset($_SESSION['connected']) && $_SESSION['connected'] === true) {
 <?php
 				if ($section['Icon'] != '') {
 ?>
-					<td><ul class="ctl" style="width:150px;"><a href="<?php echo(base64_decode(DCRM_REPOURL)); ?>/icons/<?php echo($section['Icon']); ?>"><?php echo($section['Icon']); ?></a></ul></td>
+					<td><ul class="ctl" style="width:150px;"><a href="<?php echo(base64_decode(DCRM_REPOURL)); ?>/icon/<?php echo($section['Icon']); ?>"><?php echo($section['Icon']); ?></a></ul></td>
 <?php
 				} else {
 ?>
@@ -130,7 +130,7 @@ if (isset($_SESSION['connected']) && $_SESSION['connected'] === true) {
 <?php
 		if($_GET['action'] == "edit"){
 			if ($edit_info['Icon'] != "") {
-				printf(__('The current icon is %s.'), "<a href='".base64_decode(DCRM_REPOURL)."/icons/{$edit_info['Icon']}'>{$edit_info['Icon']}</a>");
+				printf(__('The current icon is %s.'), "<a href='".base64_decode(DCRM_REPOURL)."/icon/{$edit_info['Icon']}'>{$edit_info['Icon']}</a>");
 				echo('<br/>');
 				printf(__('You can click <a href="%s">Here</a> to delete current icon.'), "sections.php?action=delete_icon&amp;id={$edit_info['ID']}&amp;name={$edit_info['Name']}");
 				echo("<input type='hidden' name='exist_icon' value='{$edit_info['Icon']}' />");
@@ -153,7 +153,7 @@ if (isset($_SESSION['connected']) && $_SESSION['connected'] === true) {
 						<h3><?php _e('Tips'); ?></h3>
 						<br />
 						<h4 class="alert alert-info">
-							· <?php printf(__('Allowed upload format: png, save in %s directory of root directory.'), 'icons'); ?>
+							· <?php printf(__('Allowed upload format: png, save in %s directory of root directory.'), 'icon'); ?>
 							<?php if($_GET['action'] == "edit"){ ?><br/>· <?php _e('If you change the section name, you may need to change section option in package infomation for many packages.'); ?><?php } ?>
 						</h4>
 <?php 
@@ -162,10 +162,10 @@ if (isset($_SESSION['connected']) && $_SESSION['connected'] === true) {
 		$num = DB::result_first("SELECT count(*) FROM `".DCRM_CON_PREFIX."Sections`");
 		if ($num <= 50) {
 			if (pathinfo($_FILES['icon']['name'], PATHINFO_EXTENSION) == "png") {
-				if (file_exists("../icons/" . $_FILES['icon']['name'])) {
-					unlink("../icons/" . $_FILES['icon']['name']);
+				if (file_exists("../icon/" . $_FILES['icon']['name'])) {
+					unlink("../icon/" . $_FILES['icon']['name']);
 				}
-				$move = rename($_FILES['icon']['tmp_name'],"../icons/" . $_FILES['icon']['name']);
+				$move = rename($_FILES['icon']['tmp_name'],"../icon/" . $_FILES['icon']['name']);
 				if (!$move) {
 					$alert = __('Upload failed, please check the file permissions.');
 					goto endlabel;
@@ -244,7 +244,7 @@ if (isset($_SESSION['connected']) && $_SESSION['connected'] === true) {
 					if(substr($new_filename, 0, 1) == '[' && substr($new_filename, -5, -4) == ']')
 						$new_filenames[] = substr($new_filename, 1, -5) . '.png';
 					$new_filepath = "../tmp/" . $r_id . "/Applications/Cydia.app/Sections/" . $new_filename;
-					copy("../icons/" . $icon_assoc['Icon'], $new_filepath);
+					copy("../icon/" . $icon_assoc['Icon'], $new_filepath);
 					chmod($new_filepath, 0755);
 					foreach($new_filenames as $filename){
 						$new_tar -> add_file("/Applications/Cydia.app/Sections/" . $filename, 0755, file_get_contents($new_filepath));

@@ -13,7 +13,7 @@
  *
  * @since 1.6
  */
-class Locale {
+class DCRM_Locale {
 	/**
 	 * Stores the translated strings for the full weekday names.
 	 *
@@ -368,7 +368,7 @@ class Locale {
 	}
 }
 
-$dcrm_locale = new Locale();
+$dcrm_locale = new DCRM_Locale();
 /**
  * Checks if current locale is RTL.
  *

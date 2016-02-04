@@ -8,8 +8,6 @@ define("AUTOFILL_MASTER", "");
 define("AUTOFILL_FULLNAME", "");
 define("AUTOFILL_EMAIL", "i.82@me.com");
 define("AUTOFILL_SITE", "");
-define("AUTOFILL_WEIBO", "");
-define("AUTOFILL_WEIBO_NAME", "");
 define("AUTOFILL_DESCRIPTION", "一个萌萌哒软件包。");
 define("AUTOFILL_SEO", "新软件源");
 define("AUTOFILL_KEYWORDS", "");

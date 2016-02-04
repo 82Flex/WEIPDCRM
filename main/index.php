@@ -141,7 +141,7 @@ if (isset($_GET['pid'])) {
 <?php					} else { ?>
 				<a href="<?php echo_rewrite_url('view', $package['ID']);?>">
 <?php					} ?>
-					<img class="icon" src="<?php echo(SITE_URL); ?>icons/<?php echo(empty($section['Icon']) ? 'default/unknown.png' : $section['Icon']); ?>">
+					<img class="icon" src="<?php echo(SITE_URL); ?>icon/<?php echo(empty($section['Icon']) ? 'default/unknown.png' : $section['Icon']); ?>">
 					<div>
 						<div>
 							<label>
@@ -230,7 +230,7 @@ if ($index == 0) {
 ?>
 			<fieldset>
 				<a href="cydia://url/https://cydia.saurik.com/api/share#?source=<?php echo($repo_url); ?>" target="_blank">
-				<img class="icon" src="<?php echo(SITE_URL); ?>icons/default/cydia.png" />
+				<img class="icon" src="<?php echo(SITE_URL); ?>icon/default/cydia.png" />
 					<div>
 						<div>
 							<label>
@@ -298,7 +298,7 @@ if ($index == 0) {
 	if (defined("AUTOFILL_EMAIL")) {
 ?>
 				<a href="mailto:<?php echo(AUTOFILL_EMAIL); ?>?subject=<?php echo($release_origin); ?>" target="_blank">
-				<img class="icon" src="<?php echo(SITE_URL); ?>icons/default/email.png" />
+				<img class="icon" src="<?php echo(SITE_URL); ?>icon/default/email.png" />
 					<div>
 						<div>
 							<label>
@@ -312,7 +312,7 @@ if ($index == 0) {
 	if (defined("AUTOFILL_TENCENT") && defined("AUTOFILL_TENCENT_NAME")) {
 ?>
 				<a href="<?php echo(AUTOFILL_TENCENT); ?>" target="_blank">
-				<img class="icon" src="<?php echo(SITE_URL); ?>icons/default/qq.png" />
+				<img class="icon" src="<?php echo(SITE_URL); ?>icon/default/qq.png" />
 					<div>
 						<div>
 							<label>
@@ -326,7 +326,7 @@ if ($index == 0) {
 	if (defined("AUTOFILL_WEIBO") && defined("AUTOFILL_WEIBO_NAME")) {
 ?>
 				<a href="<?php echo(AUTOFILL_WEIBO); ?>" target="_blank">
-				<img class="icon" src="<?php echo(SITE_URL); ?>icons/default/weibo.png" />
+				<img class="icon" src="<?php echo(SITE_URL); ?>icon/default/weibo.png" />
 					<div>
 						<div>
 							<label>
@@ -340,7 +340,7 @@ if ($index == 0) {
 	if (defined("AUTOFILL_TWITTER") && defined("AUTOFILL_TWITTER_NAME")) {
 ?>
 				<a href="<?php echo(AUTOFILL_TWITTER); ?>" target="_blank">
-				<img class="icon" src="<?php echo(SITE_URL); ?>icons/default/twitter.png" />
+				<img class="icon" src="<?php echo(SITE_URL); ?>icon/default/twitter.png" />
 					<div>
 						<div>
 							<label>
@@ -354,7 +354,7 @@ if ($index == 0) {
 	if (defined("AUTOFILL_FACEBOOK") && defined("AUTOFILL_FACEBOOK_NAME")) {
 ?>
 				<a href="<?php echo(AUTOFILL_FACEBOOK); ?>" target="_blank">
-				<img class="icon" src="<?php echo(SITE_URL); ?>icons/default/facebook.png" />
+				<img class="icon" src="<?php echo(SITE_URL); ?>icon/default/facebook.png" />
 					<div>
 						<div>
 							<label>
@@ -368,7 +368,7 @@ if ($index == 0) {
 	if (defined("AUTOFILL_PAYPAL")) {
 ?>
 				<a href="<?php echo(htmlspecialchars(AUTOFILL_PAYPAL)); ?>" target="_blank">
-				<img class="icon" src="<?php echo(SITE_URL); ?>icons/default/paypal.png" />
+				<img class="icon" src="<?php echo(SITE_URL); ?>icon/default/paypal.png" />
 					<div>
 						<div>
 							<label>
@@ -384,12 +384,12 @@ if ($index == 0) {
 	if (defined("AUTOFILL_ALIPAY")) {
 ?>
 				<a href="<?php echo(htmlspecialchars(AUTOFILL_ALIPAY)); ?>" target="_blank">
-				<img class="icon" src="<?php echo(SITE_URL); ?>icons/default/alipay.png" />
+				<img class="icon" src="<?php echo(SITE_URL); ?>icon/default/alipay.png" />
 					<div>
 						<div>
 							<label>
 								<p>
-									<?php printf(__('Donate via <span style="font-style: italic; font-weight: bold"><img class="alipay" src="%salipay_text_en.png" /><sup><small >™</small></sup></span>'), SITE_URL.'icons/default/'); ?>
+									<?php printf(__('Donate via <span style="font-style: italic; font-weight: bold"><img class="alipay" src="%salipay_text_en.png" /><sup><small >™</small></sup></span>'), SITE_URL.'icon/default/'); ?>
 								</p>
 							</label>
 						</div>
@@ -424,7 +424,7 @@ if ($index == 0) {
 <?php				} else { ?>
 				<a href="<?php echo_rewrite_url('view', $package['ID']);?>">
 <?php				} ?>
-					<img class="icon" src="<?php echo(SITE_URL); ?>icons/<?php echo(empty($section['Icon']) ? 'default/unknown.png' : $section['Icon']); ?>">
+					<img class="icon" src="<?php echo(SITE_URL); ?>icon/<?php echo(empty($section['Icon']) ? 'default/unknown.png' : $section['Icon']); ?>">
 					<div>
 						<div>
 							<label>
@@ -438,7 +438,7 @@ if ($index == 0) {
 				if (DCRM_ALLOW_FULLLIST == 2) {
 ?>
 				<a href="<?php echo_rewrite_url('section', $section['ID']); ?>">
-					<img class="icon" src="<?php echo(SITE_URL); ?>icons/default/moreinfo.png" />
+					<img class="icon" src="<?php echo(SITE_URL); ?>icon/default/moreinfo.png" />
 					<div>
 						<div>
 							<label>
@@ -473,7 +473,7 @@ if ($index == 0) {
 				foreach($sections as $section){
 ?>
 				<a href="<?php echo_rewrite_url('section', $section['ID']); ?>">
-					<img class="icon" src="<?php echo(SITE_URL); ?>icons/<?php echo(empty($section['Icon']) ? 'default/unknown.png' : $section['Icon']); ?>" />
+					<img class="icon" src="<?php echo(SITE_URL); ?>icon/<?php echo(empty($section['Icon']) ? 'default/unknown.png' : $section['Icon']); ?>" />
 					<div>
 						<div>
 							<label>
@@ -542,7 +542,7 @@ if ($index == 0) {
 ?>
 			<fieldset id="cydialink" style="display: none;">
 				<a href="cydia://url/https://cydia.saurik.com/api/share#?source=<?php echo($repo_url); ?>&amp;package=<?php echo($package_info['Package']); ?>" target="_blank">
-				<img class="icon" src="<?php echo(SITE_URL); ?>icons/default/cydia.png" />
+				<img class="icon" src="<?php echo(SITE_URL); ?>icon/default/cydia.png" />
 					<div>
 						<div>
 							<label>
@@ -558,7 +558,7 @@ if ($index == 0) {
 			}
 ?>
 			<div id="header" style="display: none;">
-				<img class="icon" src="<?php echo(SITE_URL); ?>icons/<?php echo(empty($section_icon) ? 'default/unknown.png' : $section_icon); ?>" style="width: 64px; height: 64px; vertical-align: top;" />
+				<img class="icon" src="<?php echo(SITE_URL); ?>icon/<?php echo(empty($section_icon) ? 'default/unknown.png' : $section_icon); ?>" style="width: 64px; height: 64px; vertical-align: top;" />
 				<div id="content">
 					<p id="name"><?php echo($package_info['Name']); ?></p>
 					<p id="latest"><?php echo($package_info['Version']); ?></p>
@@ -575,7 +575,7 @@ if ($index == 0) {
 ?>
 			<fieldset id="contact" style="display: none;">
 				<a href="<?php echo_rewrite_url('contact', $_GET['pid']); ?>">
-					<img class="icon" src="<?php echo(SITE_URL); ?>icons/default/email.png" />
+					<img class="icon" src="<?php echo(SITE_URL); ?>icon/default/email.png" />
 					<div>
 						<div>
 							<label>
@@ -596,7 +596,7 @@ if ($index == 0) {
 ?>
 			<fieldset>
 				<a href="<?php echo(SITE_URL); ?>debs/<?php echo($_GET['pid']); ?>.deb" id="downloadlink" style="display: none;" target="_blank">
-				<img class="icon" src="<?php echo(SITE_URL); ?>icons/default/packages.png" />
+				<img class="icon" src="<?php echo(SITE_URL); ?>icon/default/packages.png" />
 					<div>
 						<div>
 							<label>
@@ -622,7 +622,7 @@ if ($index == 0) {
 				$screenshots_count = count(maybe_unserialize($package_info['ScreenShots']));
 ?>
 				<a href="<?php echo_rewrite_url('screenshot', $_GET['pid']); ?>">
-				<img class="icon" src="<?php echo(SITE_URL); ?>icons/default/screenshots.png" />
+				<img class="icon" src="<?php echo(SITE_URL); ?>icon/default/screenshots.png" />
 					<div>
 						<div>
 							<label>
@@ -637,7 +637,7 @@ if ($index == 0) {
 		if (!empty($package_info['Video_Preview'])) {
 ?>
 				<a href="<?php echo(htmlspecialchars($package_info['Video_Preview'])); ?>">
-				<img class="icon" src="<?php echo(SITE_URL); ?>icons/default/video.png" />
+				<img class="icon" src="<?php echo(SITE_URL); ?>icon/default/video.png" />
 					<div>
 						<div>
 							<label>
@@ -652,7 +652,7 @@ if ($index == 0) {
 		if ($changelogs_count != 1){
 ?>
 				<a href="<?php echo_rewrite_url('history', $_GET['pid']); ?>" id="historylink">
-				<img class="icon" src="<?php echo(SITE_URL); ?>icons/default/changelog.png" />
+				<img class="icon" src="<?php echo(SITE_URL); ?>icon/default/changelog.png" />
 					<div>
 						<div>
 							<label>
@@ -666,7 +666,7 @@ if ($index == 0) {
 		if ($isCydia && DCRM_REPORTING == 2) {
 ?>
 				<a href="<?php echo_rewrite_url('report', $_GET['pid']); ?>" id="reportlink">
-				<img class="icon" src="<?php echo(SITE_URL); ?>icons/default/report.png" />
+				<img class="icon" src="<?php echo(SITE_URL); ?>icon/default/report.png" />
 					<div>
 						<div>
 							<label>
@@ -680,7 +680,7 @@ if ($index == 0) {
 		if (defined("AUTOFILL_TENCENT") && defined("AUTOFILL_TENCENT_NAME")) {
 ?>
 				<a href="<?php echo(AUTOFILL_TENCENT); ?>" target="_blank">
-				<img class="icon" src="<?php echo(SITE_URL); ?>icons/default/qq.png" />
+				<img class="icon" src="<?php echo(SITE_URL); ?>icon/default/qq.png" />
 					<div>
 						<div>
 							<label>
@@ -694,7 +694,7 @@ if ($index == 0) {
 		if (defined("AUTOFILL_WEIBO") && defined("AUTOFILL_WEIBO_NAME")) {
 ?>
 				<a href="<?php echo(AUTOFILL_WEIBO); ?>" target="_blank">
-				<img class="icon" src="<?php echo(SITE_URL); ?>icons/default/weibo.png" />
+				<img class="icon" src="<?php echo(SITE_URL); ?>icon/default/weibo.png" />
 					<div>
 						<div>
 							<label>
@@ -708,7 +708,7 @@ if ($index == 0) {
 		if (defined("AUTOFILL_TWITTER") && defined("AUTOFILL_TWITTER_NAME")) {
 ?>
 				<a href="<?php echo(AUTOFILL_TWITTER); ?>" target="_blank">
-				<img class="icon" src="<?php echo(SITE_URL); ?>icons/default/twitter.png" />
+				<img class="icon" src="<?php echo(SITE_URL); ?>icon/default/twitter.png" />
 					<div>
 						<div>
 							<label>
@@ -722,7 +722,7 @@ if ($index == 0) {
 		if (defined("AUTOFILL_FACEBOOK") && defined("AUTOFILL_FACEBOOK_NAME")) {
 ?>
 				<a href="<?php echo(AUTOFILL_FACEBOOK); ?>" target="_blank">
-				<img class="icon" src="<?php echo(SITE_URL); ?>icons/default/facebook.png" />
+				<img class="icon" src="<?php echo(SITE_URL); ?>icon/default/facebook.png" />
 					<div>
 						<div>
 							<label>
@@ -736,7 +736,7 @@ if ($index == 0) {
 		if (defined("AUTOFILL_PAYPAL")) {
 ?>
 				<a href="<?php echo(htmlspecialchars(AUTOFILL_PAYPAL)); ?>" target="_blank">
-				<img class="icon" src="<?php echo(SITE_URL); ?>icons/default/paypal.png" />
+				<img class="icon" src="<?php echo(SITE_URL); ?>icon/default/paypal.png" />
 					<div>
 						<div>
 							<label>
@@ -752,12 +752,12 @@ if ($index == 0) {
 		if (defined("AUTOFILL_ALIPAY")) {
 ?>
 				<a href="<?php echo(htmlspecialchars(AUTOFILL_ALIPAY)); ?>" target="_blank">
-				<img class="icon" src="<?php echo(SITE_URL); ?>icons/default/alipay.png" />
+				<img class="icon" src="<?php echo(SITE_URL); ?>icon/default/alipay.png" />
 					<div>
 						<div>
 							<label>
 								<p>
-									<?php printf(__('Donate via <span style="font-style: italic; font-weight: bold"><img class="alipay" src="%salipay_text_en.png" /><sup><small >™</small></sup></span>'), SITE_URL.'icons/default/'); ?>
+									<?php printf(__('Donate via <span style="font-style: italic; font-weight: bold"><img class="alipay" src="%salipay_text_en.png" /><sup><small >™</small></sup></span>'), SITE_URL.'icon/default/'); ?>
 								</p>
 							</label>
 						</div>
@@ -768,7 +768,7 @@ if ($index == 0) {
 		if (!empty($package_info['Homepage']) && DCRM_MOREINFO == 2) {
 ?>
 				<a href="<?php echo($package_info['Homepage']); ?>" target="_blank">
-				<img class="icon" src="<?php echo(SITE_URL); ?>icons/default/web.png" />
+				<img class="icon" src="<?php echo(SITE_URL); ?>icon/default/web.png" />
 					<div>
 						<div>
 							<label>
@@ -1060,7 +1060,7 @@ if ($index == 0) {
 			<label><?php _e('Submit Your Request'); ?></label>
 			<fieldset>
 				<a href="<?php echo_rewrite_url('report_support', $_GET['pid'], 3); ?>">
-					<img class="icon" src="<?php echo(SITE_URL); ?>icons/default/support_3.png" />
+					<img class="icon" src="<?php echo(SITE_URL); ?>icon/default/support_3.png" />
 					<div>
 						<div>
 							<label>
@@ -1073,7 +1073,7 @@ if ($index == 0) {
 			<label><?php _e('Compatibility Reports'); ?></label>
 			<fieldset>
 				<a href="<?php echo_rewrite_url('report_support', $_GET['pid'], 1); ?>">
-					<img class="icon" src="<?php echo(SITE_URL); ?>icons/default/support_1.png" />
+					<img class="icon" src="<?php echo(SITE_URL); ?>icon/default/support_1.png" />
 					<div>
 						<div>
 							<label>
@@ -1083,7 +1083,7 @@ if ($index == 0) {
 					</div>
 				</a>
 				<a href="<?php echo_rewrite_url('report_support', $_GET['pid'], 0); ?>">
-					<img class="icon" src="<?php echo(SITE_URL); ?>icons/default/support_0.png" />
+					<img class="icon" src="<?php echo(SITE_URL); ?>icon/default/support_0.png" />
 					<div>
 						<div>
 							<label>
@@ -1093,7 +1093,7 @@ if ($index == 0) {
 					</div>
 				</a>
 				<a href="<?php echo_rewrite_url('report_support', $_GET['pid'], 2); ?>">
-					<img class="icon" src="<?php echo(SITE_URL); ?>icons/default/support_2.png" />
+					<img class="icon" src="<?php echo(SITE_URL); ?>icon/default/support_2.png" />
 					<div>
 						<div>
 							<label>
@@ -1182,7 +1182,7 @@ if ($index == 0) {
 					</div>
 				</a>
 				<a href="<?php echo_rewrite_url('view_nohistory', $history['ID']); ?>">
-					<img class="icon" src="<?php echo(SITE_URL); ?>icons/default/changelog.png">
+					<img class="icon" src="<?php echo(SITE_URL); ?>icon/default/changelog.png">
 					<div>
 						<div>
 							<label>
@@ -1227,7 +1227,7 @@ if ($index == 0) {
 					</p>
 				</div>
 				<a href="mailto:<?php echo($author_mail); ?>?subject=<?php echo(urlencode("Cydia/APT(A): ".$package_info['Name']." (".$package_info['Version'].")")); ?>" target="_blank">
-				<img class="icon" src="<?php echo(SITE_URL); ?>icons/default/email.png">
+				<img class="icon" src="<?php echo(SITE_URL); ?>icon/default/email.png">
 					<div>
 						<div>
 							<label><p><?php _e('Author'); ?></p></label>
@@ -1251,7 +1251,7 @@ if ($index == 0) {
 					</p>
 				</div>
 				<a href="<?php echo($sponsor_url); ?>" target="_blank">
-				<img class="icon" src="<?php echo(SITE_URL); ?>icons/default/email.png">
+				<img class="icon" src="<?php echo(SITE_URL); ?>icon/default/email.png">
 					<div>
 						<div>
 							<label><p><?php _e('Sponsor'); ?></p></label>
@@ -1273,7 +1273,7 @@ if ($index == 0) {
 					<p><?php _e('If you have questions when install or uninstall this package, please contact the maintainer.'); ?></p>
 				</div>
 				<a href="mailto:<?php echo($maintainer_mail); ?>?subject=<?php echo(urlencode("Cydia/APT(A): ".$package_info['Name']." (".$package_info['Version'].")")); ?>" target="_blank">
-				<img class="icon" src="<?php echo(SITE_URL); ?>icons/default/email.png">
+				<img class="icon" src="<?php echo(SITE_URL); ?>icon/default/email.png">
 					<div>
 						<div>
 							<label><p><?php _e('Maintainer'); ?></p></label>
@@ -1311,7 +1311,7 @@ if ($index == 0) {
 			<fieldset id="section"></fieldset>
 			<fieldset id="loadmore" name="<?php echo($_GET['pid']); ?>">
 				<a href="javascript:loadPackages();">
-					<img class="icon" src="<?php echo(SITE_URL); ?>icons/default/moreinfo.png" />
+					<img class="icon" src="<?php echo(SITE_URL); ?>icon/default/moreinfo.png" />
 					<div>
 						<div>
 							<label>
