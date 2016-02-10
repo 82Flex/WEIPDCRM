@@ -20,12 +20,12 @@
  * along with WEIPDCRM.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-$_customct = true;
 if (!file_exists('./system/config/connect.inc.php')) {
 	header("HTTP/1.1 500 Internal Server Error");
 	header("Status: 500 Internal Server Error");
 	exit();
 }
+$_customct = true;
 require_once('system/common.inc.php');
 set_time_limit(0);
 @ini_set("max_execution_time", 1800);
@@ -53,7 +53,7 @@ if (!empty($_GET['request']) && (!empty($_SERVER['HTTP_X_UNIQUE_ID']) || DCRM_DI
 			exit();
 		}
 	}
-	$m_row = DB::fetch_first("SELECT `Package`, `Version`, `Architecture`, `Filename`, `Tag`, `DownloadTimes`, `Level`, `Price` FROM `".DCRM_CON_PREFIX."Packages` WHERE `ID` = '" . (string)$request_id . "'");
+	$m_row = DB::fetch_first("SELECT `Package`, `Version`, `Architecture`, `Filename`, `Tag`, `DownloadTimes`, `Level` FROM `".DCRM_CON_PREFIX."Packages` WHERE `ID` = '" . (string)$request_id . "'");
 	
 	if (!$m_row) {
 		httpinfo(404);
@@ -70,27 +70,18 @@ if (!empty($_GET['request']) && (!empty($_SERVER['HTTP_X_UNIQUE_ID']) || DCRM_DI
 						if(!empty($udid_status['Packages'])) {
 							$udid_packages = TrimArray(explode(',', $udid_status['Packages']));
 							if(!in_array($m_row['Package'], $udid_packages, true)) {
-								if(empty($m_row['Price']))
-									httpinfo(4033);
-								else
-									httpinfo(4032);
+								httpinfo(4033);
 							}
 						} else {
 							$udid_level = (int)$udid_status['Level'];
 							$package_level = (int)$m_row['Level'];
 							if($udid_level <= $package_level) {
-								if(empty($m_row['Price']))
-									httpinfo(4033);
-								else
-									httpinfo(4032);
+								httpinfo(4033);
 							}
 						}
 						DB::update(DCRM_CON_PREFIX.'UDID', array('Downloads' => ((int)$udid_status['Downloads'] + 1)), array('UDID' => $_SERVER['HTTP_X_UNIQUE_ID']));
 					} else {
-						if(empty($m_row['Price']))
-							httpinfo(4033);
-						else
-							httpinfo(4032);
+						httpinfo(4033);
 					}
 				} else {
 					httpinfo(4030);

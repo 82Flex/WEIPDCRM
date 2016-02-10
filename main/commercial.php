@@ -21,38 +21,6 @@
  * Designed by Hintay in China
  */
 
-if(isset($_GET['action'])){
-	switch($_GET['action']){
-		// 支付宝跳转
-		case 'alipay_go':
-			// XSS过滤
-			if(!function_exists('xss_clean')){
-				if(!defined('IN_DCRM')) define('IN_DCRM', true);
-				require_once('system/function/core.php');
-			}
-			foreach($_GET as $key => $value)
-				$clan_data[$key] = xss_clean($value);
-?>
-<form id="alipay" accept-charset="GBK" method="POST" action="https://shenghuo.alipay.com/send/payment/fill.htm">
-	<?php if(isset($_GET['optEmail'])): ?><input type="hidden" value="<?php echo($clan_data['optEmail']); ?>" name="optEmail"><?php endif; ?>
-	<?php if(isset($_GET['payAmount'])): ?><input type="hidden" value="<?php echo($clan_data['payAmount']); ?>" name="payAmount"><?php endif; ?>
-	<?php if(isset($_GET['title'])): ?><input id="title" type="hidden" value="<?php echo($clan_data['title']); ?>" name="title"><?php endif; ?>
-	<?php if(isset($_GET['memo'])): ?><input name="memo" type="hidden" value="<?php echo($clan_data['memo']); ?>" /><?php endif; ?>
-</form>
-<script type="text/javascript">
-var postForm = document.getElementById('alipay');
-postForm.method = "post" ;   
-postForm.action = 'https://shenghuo.alipay.com/send/payment/fill.htm' ;  
-postForm.submit();
-</script>
-<?php
-			exit();
-			break;
-		default:
-			exit('Invalid parameter');
-	}
-}
-
 if (!isset($package_info)) {
 	if(!isset($_GET['Package']))
 		exit();
@@ -88,90 +56,64 @@ if (!isset($package_info)) {
 if(check_commercial_tag($package_info['Tag'])):
 	$nowip = _ip2long(getIp());
 
-	if(isset($_GET['udid']))
+	if(isset($_GET['udid'])){
 		$udid_status = DB::fetch_first(DB::prepare("SELECT `Packages`, `Level`, `IP` FROM `".DCRM_CON_PREFIX."UDID` WHERE `UDID` = '%s' LIMIT 1", $_GET['udid']));
-	else
+	} else {
 		$udid_status = DB::fetch_first("SELECT `Packages`, `Level`, `IP` FROM `".DCRM_CON_PREFIX."UDID` WHERE `IP` = '".$nowip."' LIMIT 1");
-	$purchased = false;
+	}
+	$candownloaded = false;
 	if(!empty($udid_status)){
 		if(!empty($udid_status['Packages'])) {
 			$udid_packages = TrimArray(explode(',', $udid_status['Packages']));
 			if(in_array($package_info['Package'], $udid_packages, true))
-				$purchased = true;
+				$candownloaded = true;
 		} else {
 			$udid_level = (int)$udid_status['Level'];
 			$package_level = (int)$package_info['Level'];
 			if($udid_level > $package_level)
-				$purchased = true;
+				$candownloaded = true;
 		}
 	}
 
-	if($purchased) {
+	if($candownloaded) {
 		//$not_installed_button = 'null, null, null';
-		$purchase_status = 'purchased';
+		$purchase_status = 'candownload';
 		$fieldset_color = '#eefff0';
 		$fieldset_icons = 'https://cache.saurik.com/crystal/256x256/actions/agt_action_success.png';
-		if(empty($package_info['Price']))
-			$purchase_status = 'candownload';
 	} else {
 		$fieldset_color = '#ffc040';
-		if(!empty($package_info['Price'])):
-			//$not_installed_button = '"'.__('Purchase').'", "Highlighted", function(){buy();}';
-			$purchase_status = 'notpurchase';
-			$fieldset_icons = 'https://cache.saurik.com/crystal/64x64/apps/kwallet.png';
-		else:
-			//$not_installed_button = '"'.__('Recheck').'", "Highlighted", function(){reload_();}';
-			$purchase_status = 'protection';
-			$fieldset_icons = 'https://cache.saurik.com/crystal/64x64/apps/alert.png';
-		endif;
+		//$not_installed_button = '"'.__('Recheck').'", "Highlighted", function(){reload_();}';
+		$purchase_status = 'protection';
+		$fieldset_icons = 'https://cache.saurik.com/crystal/64x64/apps/alert.png';
 	}
 ?>
-<panel>
-	<fieldset style="background-color:<?php echo($fieldset_color); ?>">
-		<a target="_popup" <?php if('notpurchase' == $purchase_status) echo('href="'.htmlspecialchars(SITE_PATH.$package_info['Purchase_Link']).'"'); ?>>
-			<img class="icon" src="<?php echo($fieldset_icons); ?>">
+<fieldset style="background-color:<?php echo($fieldset_color); ?>">
+	<a target="_popup" <?php if('notpurchase' == $purchase_status) echo('href="'.htmlspecialchars(SITE_PATH.$package_info['Purchase_Link']).'"'); ?>>
+		<img class="icon" src="<?php echo($fieldset_icons); ?>">
+		<div>
 			<div>
-				<div>
 <?php 
 	switch($purchase_status){
-		case 'notpurchase':
-?>
-					<label>
-						<p><?php _e('Purchase Product'); ?></p>
-					</label>
-					<label class="price">
-						<p><?php echo($package_info['Price']); ?></p>
-					</label>
-<?php
-			break;
 		case 'protection':
 ?>
-					<label>
-						<p><?php _e('Package Protected'); ?></p>
-					</label>
-<?php
-			break;
-		case 'purchased':
-?>
-					<label>
-						<p><?php _e('Package Officially Purchased'); ?></p>
-					</label>
+				<label>
+					<p><?php _e('Package Protected'); ?></p>
+				</label>
 <?php
 			break;
 		case 'candownload':
 ?>
-					<label>
-						<p><?php _e('Package Available'); ?></p>
-					</label>
+				<label>
+					<p><?php _e('Package Available'); ?></p>
+				</label>
 <?php
 			break;
-}
+	}
 ?>
-				</div>
 			</div>
-		</a>
-	</fieldset>
-</panel>
+		</div>
+	</a>
+</fieldset>
 <?php
 endif;
 ?>

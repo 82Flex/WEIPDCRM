@@ -368,16 +368,6 @@ if (isset($_SESSION['connected']) && $_SESSION['connected'] === true) {
 							</div>
 						</div>
 						<br />
-						<h3 id="Commercial"><?php _e('Commercial');?></h3>
-						<br />
-						<div class="control-group">
-							<label class="control-label"><?php _e('Alipay Account');?></label>
-							<div class="controls">
-								<input type="text" name="alipay_account" value="<?php echo(get_option('alipay_account')); ?>"/>
-								<p class="help-block"><?php _e('This is used to auto generate Alipay link for commercial package.');?></p>
-							</div>
-						</div>
-						<br />
 						<h3><?php _e('Download');?></h3>
 						<br />
 						<div class="control-group">
@@ -777,8 +767,6 @@ if (isset($_SESSION['connected']) && $_SESSION['connected'] === true) {
 			echo '<br /><a href="settings.php" onclick="javascript:history.go(-1);return false;">'.__('Back').'</a></h3>';
 		} else {
 			/* Update Options */
-			if(isset($_POST['alipay_account']) && !empty($_POST['alipay_account']))
-				update_option('alipay_account', $_POST['alipay_account']);
 			if(isset($_POST['autofill_depiction']))
 				update_option('autofill_depiction', $_POST['autofill_depiction']);
 			if(isset($_POST['php_forward'])){

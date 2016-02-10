@@ -107,34 +107,6 @@ if (isset($_SESSION['connected']) && $_SESSION['connected'] === true) {
 								</div>
 							</div>
 							<br />
-							<div class="group-control">
-								<label class="control-label"><?php _e('Price'); ?></label>
-								<div class="controls">
-									<input type="text" style="width: 400px;" name="Price" value="<?php if (!empty($edit_info['Price'])) {echo htmlspecialchars($edit_info['Price']);} ?>"/>
-									<p class="help-block"><?php _e('Example: <code>$0.99</code>. If leave a blank will do not display the purchase link.'); ?></p>
-								</div>
-							</div>
-							<br />
-							<div class="group-control">
-								<label class="control-label"><?php _e('Purchase Link'); ?></label>
-								<div class="controls">
-									<select name="Purchase_Link_Stat" style="width: 400px;" onchange="show_custom_link(this.options[this.options.selectedIndex].value)">
-										<option value="1" <?php if($edit_info['Purchase_Link_Stat'] === '1') echo('selected="selected"');?>><?php _e('Custom'); ?></option>
-										<option value="0" <?php if($edit_info['Purchase_Link_Stat'] === '0') echo('selected="selected"');?>><?php _e('Alipay'); ?></option>
-									</select>
-									<p class="help-block"><?php _e('Using non-custom options after <a href="settings.php#Commercial">Settings</a>.'); ?></p>
-								</div>
-							</div>
-							<br />
-							<div id="custom_link" <?php if(isset($edit_info['Purchase_Link_Stat']) && $edit_info['Purchase_Link_Stat'] != '1') echo 'style="display: none;"';?>>
-								<div class="group-control">
-									<label class="control-label"><?php _e('Custom Link'); ?></label>
-									<div class="controls">
-										<input type="text" style="width: 400px;" name="Custom_Purchase_Link" value="<?php if (!empty($edit_info['Purchase_Link'])) {echo htmlspecialchars($edit_info['Purchase_Link']);} ?>"/>
-									</div>
-								</div>
-								<br />
-							</div>
 						</div>
 						<div class="group-control">
 							<label class="control-label"><?php _e('Video Preview'); ?></label>
@@ -233,25 +205,7 @@ if (isset($_SESSION['connected']) && $_SESSION['connected'] === true) {
 		$new_id = (int)$_GET['id'];
 		$tag = DB::result_first("SELECT `Tag` FROM `".DCRM_CON_PREFIX."Packages` WHERE `ID` = '" . $new_id . "'");
 		$_POST['Tag'] = string_handle($tag, $_POST['Protection']);
-
-		if($_POST['Protection'] == '1') {
-			switch($_POST['Purchase_Link_Stat']){
-				case '1':
-				// 自定义链接
-					$_POST['Purchase_Link'] = $_POST['Custom_Purchase_Link'];
-					break;
-				case '0':
-				// 支付宝
-					$alipay_account = urlencode(get_option('alipay_account'));
-					$price = '';
-					if(preg_match('/(\d*\.\d.)/', $_POST['Price'], $arr))
-						$price = $arr[0];
-					$_POST['Purchase_Link'] = "commercial.php?action=alipay_go&title={$_POST['Package']}&optEmail={$alipay_account}&payAmount={$price}";
-					break;
-			}
-		}
 		unset($_POST['Protection']);
-		unset($_POST['Custom_Purchase_Link']);
 
 		if(!empty($_POST['Minimum_System_Support']))
 			$_POST['System_Support'] = serialize(array('Minimum' => $_POST['Minimum_System_Support'], 'Maxmum' => $_POST['Maxmum_System_Support']));
@@ -428,14 +382,6 @@ if (isset($_SESSION['connected']) && $_SESSION['connected'] === true) {
 		} else {
 			commercial.style.display = "none";
 			sli.innerHTML = '';
-		}
-	}
-	function show_custom_link(stat) {
-		custom_link = document.getElementById('custom_link');
-		if (stat == 1) {
-			custom_link.style.display = "";
-		} else {
-			custom_link.style.display = "none";
 		}
 	}
 	function changeCase(frmObj) {

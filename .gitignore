@@ -20,6 +20,7 @@ main/system/config/config.inc.php
 main/system/config/connect.inc.php
 main/system/config/gnupg.inc.php
 main/system/config/release.save
+main/system/languages/*zh_CN.*
 main/tmp/
 main/image/
 main/icons/*
