@@ -121,6 +121,8 @@ if (!empty($_GET['request']) && (!empty($_SERVER['HTTP_X_UNIQUE_ID']) || DCRM_DI
 							xsendfile_header('X-LIGHTTPD-send-file');
 						}
 						break;
+					// IIS? Hehe
+					//case 'IIS':
 				}
 				header('Location: '.SITE_URL.$download_path);
 				exit();

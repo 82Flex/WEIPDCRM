@@ -51,9 +51,10 @@ if (!isset($package_info)) {
 <script type="text/javascript" src="./js/menes.js"></script>
 </head>
 <body class="pinstripe">
+<panel>
 <?php
 }
-if(check_commercial_tag($package_info['Tag'])):
+if(check_commercial_tag($package_info['Tag'])) {
 	$nowip = _ip2long(getIp());
 
 	if(isset($_GET['udid'])){
@@ -115,5 +116,5 @@ if(check_commercial_tag($package_info['Tag'])):
 	</a>
 </fieldset>
 <?php
-endif;
+}
 ?>

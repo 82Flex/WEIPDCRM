@@ -24,4 +24,8 @@
 	RewriteRule ^(rewritetest)$ robots.txt
 </IfModule>
 
+<IfModule mod_xsendfile.c>
+	XSendFile on
+</IfModule>
+
 Options -Indexes
