@@ -11,9 +11,16 @@ This program is re-designed from tibounise's "[DCRM](https://github.com/tibounis
 4.  http://apt.sunbelife.com
 
 ##Requirements:
-1. PHP Version >= 5.3 and MySQL
-2. GD and BZ2 supports
+**Minimum:**
+
+1. PHP Version >= 5.3
+2. MySQL or MariaDB
 3. Nginx, Apache or Lighttpd
+
+**Recommended:**
+
+1. GD and BZ2 supports
+2. GunPG Command Line Tools
 
 ##How To Install And Use:
 1.  Upload `/main/*` to your wwwroot then give them read & write privileges.
@@ -46,7 +53,7 @@ Alipay: [<img width="90" alt="Alipay" src="https://i.alipayobjects.com/i/ecmng/p
 
 
 ##License
-Copyright © 2013-2015 Zheng Wu & Hintay
+Copyright © 2013-2016 Zheng Wu & Hintay
     
 The program is distributed under the terms of the GNU Affero General Public License.
 
@@ -56,4 +63,4 @@ This program is distributed in the hope that it will be useful, but WITHOUT ANY 
 
 You should have received a copy of the GNU Affero General Public License along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-We also offer a commercial license and technical supports, contact i.82@me.com for more details.
+We also offer a commercial license and technical supports, contact hintay@me.com for more details.
