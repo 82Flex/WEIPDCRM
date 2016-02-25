@@ -146,7 +146,7 @@ endlabel:
 		<!--/ 插件样式表 -->
 
 		<!-- 应用样式表：强制 -->
-		<link rel="stylesheet" href="http://cdn.bootcss.com/bootstrap/3.3.4/css/bootstrap.min.css">
+		<link rel="stylesheet" href="//cdn.bootcss.com/bootstrap/3.3.4/css/bootstrap.min.css">
 		<link rel="stylesheet" href="./stylesheet/layout.min.css">
 		<link rel="stylesheet" href="./stylesheet/uielement.min.css">
 <?php if(is_rtl()){ ?>		<link rel="stylesheet" type="text/css" href="./stylesheet/uielement-rtl.min.css"><?php } ?>
@@ -296,12 +296,12 @@ if (!isset($_SESSION['try']) OR $_SESSION['try'] <= DCRM_MAXLOGINFAIL) {
 
 		<!-- 开始 JAVASCRIPT 部分 (底部加载javascript以减少载入时间) -->
 		<!-- 应用及底层脚本：强制 -->
-		<script src="http://cdn.bootcss.com/jquery/1.11.2/jquery.min.js"></script>
-		<script src="http://cdn.bootcss.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+		<script src="//cdn.bootcss.com/jquery/1.11.2/jquery.min.js"></script>
+		<script src="//cdn.bootcss.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
 		<!--/ 应用及底层脚本：强制 -->
 
 		<!-- 插件及页面脚本：可选 -->
-		<script type="text/javascript" src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+		<script type="text/javascript" src="//cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
 		<script type="text/javascript" src="./javascript/pace.min.js"></script>
 		<script type="text/javascript" src="./plugins/parsley/parsley.min.js"></script>
 		<script type="text/javascript" src="./javascript/backend/login.min.js"></script>

@@ -149,7 +149,7 @@ if (defined("AUTOFILL_DUOSHUO_KEY")) {
 <?php
 }
 ?>
-	<script src="http://cdn.bootcss.com/jquery/1.11.2/jquery.min.js"></script>
+	<script src="//cdn.bootcss.com/jquery/1.11.2/jquery.min.js"></script>
 	<script src="./js/misc.js"></script>
 	</body>
 </html>

@@ -219,7 +219,7 @@ if ($isCydia) {
 		<script src="<?php echo(SITE_URL); ?>js/fastclick.js" type="text/javascript"></script>
 		<script src="<?php echo(SITE_URL); ?>js/menes.js" type="text/javascript"></script>
 		<script src="<?php echo(SITE_URL); ?>js/cytyle.js" type="text/javascript"></script>
-		<script src="http://cdn.bootcss.com/jquery/1.11.2/jquery.min.js"></script>
+		<script src="//cdn.bootcss.com/jquery/1.11.2/jquery.min.js"></script>
 	</head>
 	<body class="pinstripe">
 		<panel>
