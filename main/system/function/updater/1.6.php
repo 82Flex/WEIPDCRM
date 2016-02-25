@@ -58,9 +58,9 @@ switch($this->current_version){
 			base_url(true);
 		else
 			base_url();
-		if(url_code(SITE_URL.'misc') === 200)
+		if(url_code(url_scheme().SITE_URL.'misc') === 200)
 			update_option('rewrite_mod', 3);
-		elseif(url_code(SITE_URL.'rewritetest') === 200)
+		elseif(url_code(url_scheme().SITE_URL.'rewritetest') === 200)
 			update_option('rewrite_mod', 2);
 		else
 			update_option('rewrite_mod', 1);

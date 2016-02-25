@@ -368,8 +368,22 @@ function base_url($is_subdir = false) {
 		define('SITE_PATH', (strlen($sitepath) === 1 ? '/' : $sitepath.'/'));
 	}
 
-	$siteurl = htmlspecialchars(($_SERVER['SERVER_PORT'] == '443' ? 'https://' : 'http://').$_SERVER['HTTP_HOST'].($_SERVER['SERVER_PORT'] == ('443' ||  '80') ? '' : ':'.$_SERVER['SERVER_PORT']).SITE_PATH);
+	$siteurl = htmlspecialchars('//'.$_SERVER['HTTP_HOST'].($_SERVER['SERVER_PORT'] == ('443' ||  '80') ? '' : ':'.$_SERVER['SERVER_PORT']).SITE_PATH);
 	define('SITE_URL', $siteurl);
+}
+function is_HTTPS(){  
+	if(!isset($_SERVER['HTTPS']))  return FALSE;  
+	if($_SERVER['HTTPS'] === 1){  // Apache  
+		return TRUE;  
+	}elseif($_SERVER['HTTPS'] === 'on'){ // IIS  
+		return TRUE;  
+	}elseif($_SERVER['SERVER_PORT'] == 443){ // Other
+		return TRUE;  
+	}  
+	return FALSE;  
+}  
+function url_scheme(){
+	return is_HTTPS() ? 'https:' : 'http:';
 }
 /**
  * Move directory.

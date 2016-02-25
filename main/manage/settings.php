@@ -750,11 +750,11 @@ if (isset($_SESSION['connected']) && $_SESSION['connected'] === true) {
 		base_url(true);
 		switch($_POST['rewrite_mod']){
 			case 3:
-				$check_url = SITE_URL.'misc';
+				$check_url =url_scheme().SITE_URL.'misc';
 				$rewrite_code = url_code($check_url);
 				break;
 			case 2:
-				$check_url = SITE_URL.'rewritetest';
+				$check_url = url_scheme().SITE_URL.'rewritetest';
 				$rewrite_code = url_code($check_url);
 				break;
 		}
