@@ -181,7 +181,7 @@ if (isset($_SESSION['connected']) && $_SESSION['connected'] === true) {
 				<br />
 				<h3 class="navbar"><?php printf(__('Search UDID: %s'), $_GET['contents']); ?></h3>
 <?php
-		$search_type_list = array(1 => 'UDID', 2 => 'Level', 3 => 'Package', 4 => 'IP', 5 => 'Comment');
+		$search_type_list = array(1 => 'UDID', 2 => 'Level', 3 => 'Packages', 4 => 'IP', 5 => 'Comment');
 		$search_type = (int)$_GET['type'];
 		if(!isset($search_type_list[$search_type])) goto endlabel;
 		$t = $search_type_list[$search_type];
