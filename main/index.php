@@ -157,6 +157,9 @@ if (isset($_GET['pid'])) {
 		} elseif (!isset($_GET['method']) || (isset($_GET['method']) && $_GET['method'] == 'view')) {
 			$index = 1;
 			$title = __('View Package');
+			$package_id = (int)DB::real_escape_string($_GET['pid']);
+			$package_info = DB::fetch_first("SELECT `Name`, `Version`, `Author`, `Package`, `Description`, `DownloadTimes`, `Multi`, `CreateStamp`, `Size`, `Installed-Size`, `Section`, `Homepage`, `Tag`, `Level`, `Price`, `Purchase_Link`, `Changelog`, `Changelog_Older_Shows`, `Video_Preview`, `System_Support`, `ScreenShots` FROM `".DCRM_CON_PREFIX."Packages` WHERE `ID` = '".$package_id."' LIMIT 1");
+			if ($package_info) $title = $title.' - '.$package_info['Name'];
 		} else {
 			httpinfo(405);
 			exit();
@@ -527,8 +530,6 @@ if ($index == 0) {
 <?php
 	}
 } elseif ($index == 1) {
-	$package_id = (int)DB::real_escape_string($_GET['pid']);
-	$package_info = DB::fetch_first("SELECT `Name`, `Version`, `Author`, `Package`, `Description`, `DownloadTimes`, `Multi`, `CreateStamp`, `Size`, `Installed-Size`, `Section`, `Homepage`, `Tag`, `Level`, `Price`, `Purchase_Link`, `Changelog`, `Changelog_Older_Shows`, `Video_Preview`, `System_Support`, `ScreenShots` FROM `".DCRM_CON_PREFIX."Packages` WHERE `ID` = '".$package_id."' LIMIT 1");
 	if (!$package_info) {
 ?>
 			<block>
