@@ -816,7 +816,7 @@ if ($index == 0) {
 			if ($isCydia){
 				$device_info = device_check();
 
-				if ($system_support['Minimum'] <= $device_info['OS'] && $device_info['OS'] <= $system_support['Maxmum']){
+				if (version_compare($system_support['Minimum'], $device_info['OS'], '<=') && version_compare($device_info['OS'], $system_support['Maxmum'], '<=')){
 					$Compatibility_Settings = array('color' => '#66B3FF', 'text' => __('Your device supports this package'));
 				} else {
 					$Compatibility_Settings = array('color' => '#FF4500', 'text' => __('Your device doesn\'t support this package'));
