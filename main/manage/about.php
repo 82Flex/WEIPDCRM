@@ -44,11 +44,13 @@ if (isset($_SESSION['connected']) && $_SESSION['connected'] === true) {
 					<?php _e('Also, the father of the Cydia™'); ?> <a href="http://www.saurik.com">Saurik</a><?php _e('\'s articles: '); ?><a href="http://www.saurik.com/id/7">How to host a Cydia™ Repository</a><br/>
 					<?php _e('Mobile Home Page Style From Saurik IT.'); ?><br /><br />
 					<h4><?php _e('Translator'); ?></h4>
-					<p>You can help us to translate DCRM into your familiar language!</p>
 					English: <a href="http://weibo.com/hintay">@Hintay</a><?php _ex(', ' , 'Punctuation'); ?><a href="http://weibo.com/82flex">@i_82</a><?php _ex(', ' , 'Punctuation'); ?>globus<?php _ex(', ' , 'Punctuation'); ?><a href="https://github.com/sctigercat1">sctigercat1</a><br />
 					简体中文 (Chinese Simplified): <a href="http://weibo.com/82flex">@i_82</a><?php _ex(', ' , 'Punctuation'); ?><a href="http://weibo.com/hintay">@Hintay</a><br />
-					(Uyghurche) ئۇيغۇرچه: <a href="http://weibo.com/u/2767344637">Shiraq</a>
-					<br /><br />
+					(Uyghurche) ئۇيغۇرچه: <a href="http://weibo.com/u/2767344637">Shiraq</a><br />
+					русский язык (Russian): <a href="http://shlyahten.ru">shlyahten</a><br />
+					<br />
+					<h4><?php _e('Help translate DCRM into your language'); ?></h4>
+					<p>You can help us translate DCRM so it may come available into more regions and countries. Please contact us if you're willing to help!</p><br/>
 					<h4><?php _e('Copyright'); ?>&copy; 2013–<?php echo date('Y'); ?> i_82 &amp; Hintay<br />
 					<?php _e('This program is free software, you can redistribute it and/or modify it under the terms of the <a href="http://www.gnu.org/licenses">GNU Affero General Public License</a> as published by the Free Software Foundation either version 3 of the License.'); ?></h4></div>
 				</div>

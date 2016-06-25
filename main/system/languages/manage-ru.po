@@ -1,0 +1,2905 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: DCRM Manager\n"
+"POT-Creation-Date: 2015-07-14 17:36+0800\n"
+"PO-Revision-Date: 2016-05-10 00:07+1000\n"
+"Last-Translator: Hintay <hintay@me.com>\n"
+"Language-Team: Shlyahten.ru <sketch@shlyahten.ru>\n"
+"Language: ru\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 1.7.3\n"
+"X-Poedit-Basepath: ../../\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
+"%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+"X-Poedit-KeywordsList: __;_e;_n:1,2;_x:1,2c;_ex:1,2c;_nx:4c,1,2;esc_attr__;"
+"esc_attr_e;esc_attr_x:1,2c;esc_html__;esc_html_e;esc_html_x:1,2c;_n_noop:1,2;"
+"_nx_noop:3c,1,2;__ngettext_noop:1,2\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"X-Poedit-SearchPath-0: ./manage\n"
+"X-Poedit-SearchPath-1: ./system/languages\n"
+"X-Poedit-SearchPathExcluded-0: ./manage/bak\n"
+
+#: manage/about.php:31
+msgctxt "About Page"
+msgid "About"
+msgstr "О менеджере"
+
+#: manage/about.php:34
+msgid "Version: "
+msgstr "Версия: "
+
+#: manage/about.php:35
+msgid "Open source Repository Manager for Cydia™/APT."
+msgstr "Менеджер Репозитория для Cydia™/APT с открытым исходным кодом."
+
+#: manage/about.php:36
+msgid "Developer"
+msgstr "Разработчик"
+
+#: manage/about.php:37
+msgid "Main Program: "
+msgstr "Главная программа: "
+
+#: manage/about.php:37 manage/about.php:43
+msgid "WeiPhone Test Group"
+msgstr "Группа тестировщиков WeiPhone"
+
+#: manage/about.php:37 manage/about.php:41 manage/about.php:42
+#: manage/about.php:43 manage/about.php:49 manage/about.php:50
+msgctxt "Punctuation"
+msgid ", "
+msgstr ","
+
+#: manage/about.php:38
+msgid "Contributors: "
+msgstr "Авторы: "
+
+#: manage/about.php:39
+msgid "UI Design:"
+msgstr "Дизайн пользовательского интерфейса: "
+
+#: manage/about.php:40
+msgid "Credits"
+msgstr "Благодарности"
+
+#: manage/about.php:41
+msgid "Touch Sprite Team"
+msgstr "Команда Touch Sprite"
+
+#: manage/about.php:41
+msgid "WeiPhone"
+msgstr "WeiPhone"
+
+#: manage/about.php:41
+msgctxt "Credits"
+msgid "support"
+msgstr "поддержка"
+
+#: manage/about.php:42
+msgid "E-pal"
+msgstr "E-pal"
+
+#: manage/about.php:43 manage/about.php:44
+msgid "WeiPhone Technology Group"
+msgstr "Команда WeiPhone Technology"
+
+#: manage/about.php:43
+msgid "provide viewpoints"
+msgstr "provide viewpoints"
+
+#: manage/about.php:44 manage/about.php:45
+msgid "'s articles: "
+msgstr " "
+
+#: manage/about.php:45
+msgid "Also, the father of the Cydia™"
+msgstr "А также, создатель Cydia™"
+
+#: manage/about.php:46
+msgid "Mobile Home Page Style From Saurik IT."
+msgstr "Дизайн мобильной домашней страницы: Saurik IT."
+
+#: manage/about.php:47
+msgid "Translator"
+msgstr "Переводчики"
+
+#: manage/about.php:53
+msgid "Copyright"
+msgstr "Copyright"
+
+#: manage/about.php:54
+msgid ""
+"This program is free software, you can redistribute it and/or modify it "
+"under the terms of the <a href=\"http://www.gnu.org/licenses\">GNU Affero "
+"General Public License</a> as published by the Free Software Foundation "
+"either version 3 of the License."
+msgstr ""
+"Эта программа бесплатна, вы можете ее распространять и/или модифицировать "
+"соблюдая термины <a href=\"http://www.gnu.org/licenses\">GNU Affero General "
+"Public License</a> опубликованые Организацией Бесплатного ПО и 3 версии "
+"Лицензии."
+
+#: manage/build.php:67
+msgid "Find the number of records: "
+msgstr "Найденное количество записей: "
+
+#: manage/build.php:69
+msgid ""
+"No record in data table ` Packages `! Please import package and allow it to "
+"display first."
+msgstr ""
+"Нет записей в таблице данных ` Пакеты `! Пожалуйста, сперва перенесите пакет "
+"и убедитесь, что он отображен."
+
+#: manage/build.php:75
+msgid "Warning: "
+msgstr "Внимание: "
+
+#: manage/build.php:75
+msgid "release.save file does not exist! Please config release information."
+msgstr "файл release.save не существует! Пожалуйста, повторите еще раз."
+
+#: manage/build.php:77
+msgid "The Release configuration file exists."
+msgstr "Файл конфигурации The Release существует."
+
+#: manage/build.php:89
+msgid "Write to the Packages file: "
+msgstr "Записать в файл Packages: "
+
+#: manage/build.php:101
+msgid "Write to the Packages.bz file: "
+msgstr "Записать в файл Packages.bz: "
+
+#: manage/build.php:113
+msgid "Write to the Packages.bz2 file: "
+msgstr "Записать в файл Packages.bz2: "
+
+#: manage/build.php:134 manage/header.php:144
+msgid "Rebuild the list"
+msgstr "Пересобрать"
+
+#: manage/build.php:136
+msgid ""
+"List rebuild request submitted successfully, it is recommended that you <a "
+"href=\"stats.php?action=clean\">Clear the Cache</a> to free up disk space."
+msgstr ""
+"Запрос пересборки списка успешно отправлен, вам рекомендовано <a href="
+"\"stats.php?action=clean\">Очистить кэш</a> чтобы освободить место на диске."
+
+#: manage/build.php:138
+msgctxt "Rebuild the list"
+msgid "Information"
+msgstr "Информация"
+
+#: manage/build.php:146
+msgid "Preview of Packages file"
+msgstr "Предпросмотр файла Packages"
+
+#: manage/build.php:148
+msgid "File does not exist."
+msgstr "Файл не существует."
+
+#: manage/center.php:32 manage/center.php:71 manage/center.php:143
+#: manage/header.php:47
+msgid "Manage Packages"
+msgstr "Управление пакетами"
+
+#: manage/center.php:34 manage/center.php:73
+msgid "All Packages"
+msgstr "Все пакеты"
+
+#: manage/center.php:34 manage/center.php:73
+msgid "Search Packages"
+msgstr "Найти пакеты"
+
+#: manage/center.php:38 manage/udid.php:95
+msgid "Search Content"
+msgstr "Найти контент"
+
+#: manage/center.php:46 manage/udid.php:103
+msgid "Search Type"
+msgstr "Найти тип"
+
+#: manage/center.php:49 manage/edit.php:49
+msgid "Identifier"
+msgstr "Индитификатор"
+
+#: manage/center.php:50 manage/center.php:94 manage/center.php:156
+#: manage/edit.php:56 manage/manage.php:54 manage/sections.php:62
+msgid "Name"
+msgstr "Имя"
+
+#: manage/center.php:51 manage/edit.php:70
+msgid "Author"
+msgstr "Автор"
+
+#: manage/center.php:52 manage/edit.php:176 manage/release.php:67
+#: manage/settings.php:247
+msgid "Description"
+msgstr "Описание"
+
+#: manage/center.php:53 manage/edit.php:144
+msgid "Maintainer"
+msgstr "Создатель"
+
+#: manage/center.php:54 manage/edit.php:151
+msgid "Sponsor"
+msgstr "Спонсор"
+
+#: manage/center.php:55 manage/edit.php:77
+msgid "Section"
+msgstr "Секция"
+
+#: manage/center.php:56
+msgid "Tag"
+msgstr "Тег"
+
+#: manage/center.php:63 manage/udid.php:117
+msgid "Search"
+msgstr "Поиск"
+
+#: manage/center.php:95 manage/center.php:157 manage/edit.php:63
+#: manage/release.php:74
+msgid "Version"
+msgstr "Версия"
+
+#: manage/center.php:96 manage/center.php:158 manage/manage.php:55
+msgid "Size"
+msgstr "Размер"
+
+#: manage/center.php:97 manage/center.php:159 manage/udid.php:39
+msgid "Downloads"
+msgstr "Загрузки"
+
+#: manage/center.php:98 manage/center.php:160 manage/center.php:188
+#: manage/center.php:209 manage/manage.php:52 manage/sections.php:60
+#: manage/udid.php:42 manage/udid.php:62
+msgid "Delete"
+msgstr "Удалить"
+
+#: manage/center.php:99 manage/center.php:161
+msgid "History"
+msgstr "История"
+
+#: manage/center.php:145
+msgid "Protection Packages"
+msgstr "Защита пакетов"
+
+#: manage/center.php:145
+#, php-format
+msgid "Search Packages: %s"
+msgstr "Поиск пакетов: %s"
+
+#: manage/center.php:162 manage/center.php:190 manage/udid.php:43
+#: manage/udid.php:64
+msgid "Binding"
+msgstr "Связывание"
+
+#: manage/center.php:208 manage/udid.php:300
+#, php-format
+msgid "Are you sure you want to delete: %s?"
+msgstr "Вы уверены, что хотите удалить: %s?"
+
+#: manage/center.php:208 manage/udid.php:300
+msgid "This operation is irreversible, all related data will be delete!"
+msgstr "Эта опреация необратима, все содержимое будет удалено!"
+
+#: manage/center.php:210 manage/settings.php:250 manage/settings.php:260
+msgid "Hide"
+msgstr "Скрыть"
+
+#: manage/center.php:218 manage/import.php:278 manage/manage.php:105
+#: manage/sections.php:293 manage/sections.php:311 manage/udid.php:309
+#: manage/udid.php:391 manage/udid.php:400
+msgid "Cancel"
+msgstr "Отмена"
+
+#: manage/center.php:267
+msgid "Hide Package"
+msgstr "Скрыть пакет"
+
+#: manage/center.php:269
+msgid "Display Package"
+msgstr "Показать пакет"
+
+#: manage/edit.php:29 manage/edit.php:33 manage/sections.php:104
+#: manage/sections.php:108 manage/sections.php:113 manage/udid.php:222
+#: manage/udid.php:226 manage/udid.php:231
+msgid "Illegal request!"
+msgstr "Неправильный запрос!"
+
+#: manage/edit.php:44 manage/header.php:180
+msgid "General Editing"
+msgstr "Основное изменение"
+
+#: manage/edit.php:97
+msgid "Protection"
+msgstr "Защита"
+
+#: manage/edit.php:100 manage/settings.php:31
+msgid "Enabled"
+msgstr "Включить"
+
+#: manage/edit.php:100 manage/settings.php:31 manage/upload.php:189
+msgid "Disabled"
+msgstr "Отключить"
+
+#: manage/edit.php:107 manage/udid.php:36 manage/udid.php:107
+#: manage/udid.php:250 manage/udid.php:341
+msgid "Level"
+msgstr "Уровень"
+
+#: manage/edit.php:110
+msgid "Level take precedence over UDID Binding."
+msgstr "Level take precedence over UDID Binding."
+
+#: manage/edit.php:115
+msgid "Price"
+msgstr "Цена"
+
+#: manage/edit.php:118
+msgid ""
+"Example: <code>$0.99</code>. If leave a blank will do not display the "
+"purchase link."
+msgstr ""
+"Пример: <code>$0.99</code>. Если оставить поле пустым, то ссылка покупки "
+"будет не видна."
+
+#: manage/edit.php:123
+msgid "Purchase Link"
+msgstr "Ссылка покупки"
+
+#: manage/edit.php:126
+msgid "Custom"
+msgstr "Измененный"
+
+#: manage/edit.php:127
+msgid "Alipay"
+msgstr "Alipay"
+
+#: manage/edit.php:129
+msgid ""
+"Using non-custom options after <a href=\"settings.php#Commercial\">Settings</"
+"a>."
+msgstr ""
+"Использование не измененных после <a href=\"settings.php#Commercial"
+"\">Настроек</a>."
+
+#: manage/edit.php:135
+msgid "Custom Link"
+msgstr "Другая ссылка"
+
+#: manage/edit.php:158
+msgid "Depiction"
+msgstr "Описание"
+
+#: manage/edit.php:170
+#, php-format
+msgid "Default Depiction: %s"
+msgstr "Обычное описание: %s"
+
+#: manage/edit.php:171
+msgid "Preview Default Depiction"
+msgstr "Просмотреть обычное описание"
+
+#: manage/edit.php:184 manage/settings.php:257
+msgid "Detailed Description"
+msgstr "Подробное описание"
+
+#: manage/edit.php:184
+msgid " (Hidden)"
+msgstr " (Скрыто)"
+
+#: manage/edit.php:187
+#, php-format
+msgid ""
+"It is hidden in the page, you should change 'Detailed Description' option in "
+"<a href=\"%s\">Settings</a> if you want show this."
+msgstr ""
+"Это скрыто на странице, вам нужно изменить 'Подробное описание' в <a href="
+"\"%s\">Настройках</a> если вы хотите это увидеть."
+
+#: manage/edit.php:193
+msgid "Changelog"
+msgstr "Список изменений"
+
+#: manage/edit.php:196
+msgid "It will do not display in the page if leave a blank."
+msgstr "Это не будет показано на странице, если оставиьт поле пустым."
+
+#: manage/edit.php:201
+msgid "Old Changelogs"
+msgstr "Старые списки изменений"
+
+#: manage/edit.php:204
+msgid ""
+"Please fill the number you want to display for old changelog, If leave a "
+"blank or zero will only display this version changelog."
+msgstr ""
+"Пожалуйста, заполните номер, который вы хотите отобразить для старых списков "
+"изменениц. Если вы оставите поле пустым или напишите 0, то будет отображена "
+"только это версия списка изменений."
+
+#: manage/edit.php:210 manage/edit.php:278 manage/release.php:90
+#: manage/settings.php:585 manage/udid.php:351
+msgid "Save"
+msgstr "Сохранить"
+
+#: manage/edit.php:240 manage/edit.php:294
+msgid "Update Database"
+msgstr "Обновить БД"
+
+#: manage/edit.php:241 manage/edit.php:295
+msgid "The package information edited!"
+msgstr "Информация пакета изменена!"
+
+#: manage/edit.php:241 manage/edit.php:295
+msgid ""
+"After modify the fields with an asterisk, you must write into package then "
+"safely rebuild list."
+msgstr ""
+"После изменения полей через asterisk, вы должны записать в пакет, а затем "
+"пересобрать список."
+
+#: manage/edit.php:242 manage/edit.php:296
+msgid "Write Now"
+msgstr "Записать сейчас"
+
+#: manage/edit.php:242 manage/edit.php:296 manage/import.php:264
+#: manage/manage.php:116 manage/manage.php:124 manage/output.php:148
+#: manage/release.php:115 manage/release.php:117 manage/release.php:120
+#: manage/sections.php:317 manage/settings.php:671 manage/settings.php:739
+#: manage/stats.php:97
+msgid "Back"
+msgstr "Назад"
+
+#: manage/edit.php:250 manage/header.php:181
+msgid "Advance Editing"
+msgstr "Расширенное изменение"
+
+#: manage/edit.php:255
+msgctxt "Advance Editing"
+msgid "Field"
+msgstr "Поле"
+
+#: manage/edit.php:270
+msgctxt "Advance Editing"
+msgid "Content"
+msgstr "Контент"
+
+#: manage/edit.php:309 manage/edit.php:402 manage/udid.php:388
+#: manage/view.php:118
+msgid "Binding UDID"
+msgstr "Binding UDID"
+
+#: manage/edit.php:314
+msgid "Align"
+msgstr "Выровнить"
+
+#: manage/edit.php:316
+msgctxt "Align"
+msgid "Left"
+msgstr "Слева"
+
+#: manage/edit.php:317
+msgctxt "Align"
+msgid "Center"
+msgstr "Центр"
+
+#: manage/edit.php:318
+msgctxt "Align"
+msgid "Right"
+msgstr "Справа"
+
+#: manage/edit.php:322
+msgctxt "Edit"
+msgid "List"
+msgstr "Список"
+
+#: manage/edit.php:324
+msgid "Ordered list"
+msgstr "Упорядоченный список"
+
+#: manage/edit.php:325
+msgid "Unordered list"
+msgstr "Неупорядоченный список"
+
+#: manage/edit.php:329
+msgid "Indent"
+msgstr "Отступ"
+
+#: manage/edit.php:331
+msgid "Increase indent"
+msgstr "Увеличить отступ"
+
+#: manage/edit.php:332
+msgid "Decrease indent"
+msgstr "Уменьшить отступ"
+
+#: manage/edit.php:381
+msgid "Data loading"
+msgstr "Загрузка информации"
+
+#: manage/edit.php:391
+msgid "Database Error"
+msgstr "Ошибка БД"
+
+#: manage/header.php:37 manage/upload.php:86 manage/upload.php:166
+msgid "Upload Packages"
+msgstr "Загрузить пакеты"
+
+#: manage/header.php:42 manage/manage.php:30 manage/manage.php:76
+msgid "Import Packages"
+msgstr "Импорт пакетов"
+
+#: manage/header.php:52 manage/udid.php:89 manage/udid.php:126
+#: manage/udid.php:180 manage/udid.php:236 manage/udid.php:329
+#: manage/udid.php:386 manage/udid.php:395
+msgid "Manage UDID"
+msgstr "Управление UDID"
+
+#: manage/header.php:61 manage/sections.php:36 manage/sections.php:118
+msgid "Manage Sections"
+msgstr "Управление секциями"
+
+#: manage/header.php:66
+msgid "Manage Repository"
+msgstr "Управление Репо"
+
+#: manage/header.php:75 manage/stats.php:30
+msgid "Running Status"
+msgstr "Статус работы"
+
+#: manage/header.php:80
+msgid "About"
+msgstr "Справка"
+
+#: manage/header.php:90
+msgid "Repository Manager"
+msgstr "Репо Менеджер"
+
+#: manage/header.php:127
+msgid "Are you sure you want to hide this software package?"
+msgstr "Вы уверены, что хотите скрыть этот пакет ПО?"
+
+#: manage/header.php:128
+msgid ""
+"Are you sure you want to display this software package?\\nIf there are more "
+"than one version, the new version of the Cydia will show downgrade."
+msgstr ""
+"Вы уверены, что хотите отобразить этот пакет ПО?\\nЕсли будет больше одной "
+"версии, то новая версия Cydia покажет даунгрейд."
+
+#: manage/header.php:145
+msgctxt "Header"
+msgid "Preferences"
+msgstr "Настройки"
+
+#: manage/header.php:146
+msgid "Logout"
+msgstr "Выйти"
+
+#: manage/header.php:179 manage/view.php:54
+msgid "View Details"
+msgstr "Просмотреть детали"
+
+#: manage/import.php:39
+msgid "Invalid argument: `Filename`"
+msgstr "Неверный аргумент: `Имя файла`"
+
+#: manage/import.php:46 manage/upload.php:216
+msgid "Invalid file type!"
+msgstr "Неверный тип файла!"
+
+#: manage/import.php:52 manage/output.php:38
+msgid "Invalid arguments!"
+msgstr "Неверные аргументы!"
+
+#: manage/import.php:57
+#, php-format
+msgid "Cannot find the file: %s"
+msgstr "Не удалось найти файл: %s"
+
+#: manage/import.php:64
+#, php-format
+msgid "Invalid request: %s"
+msgstr "Неверный запрос: %s"
+
+#: manage/import.php:70 manage/import.php:201
+#, php-format
+msgid "File already exists: %s"
+msgstr "Файл уже существует: %s"
+
+#: manage/import.php:131
+msgid "Invalid package information!"
+msgstr "Неверная информация пакета!"
+
+#: manage/import.php:140 manage/import.php:183
+msgid "Forced inherit failed: invalid inherited package ID."
+msgstr ""
+"Принудительное наследование не удалось: унаследовал недопустимый "
+"идентификатор пакета."
+
+#: manage/import.php:151
+msgid ""
+"A package with the same name and version already exists, please select an "
+"operation."
+msgstr ""
+"Пакет с таким же именем и версией уже существует, пожалуйста, выберите "
+"действие."
+
+#: manage/import.php:153
+msgid ""
+"Early versions of this package already exists, please select an operation."
+msgstr ""
+"Ранние версии этого пакета уже существуют, пожалуйста, выберите действие."
+
+#: manage/import.php:155
+msgid ""
+"An updated version of this package already exists, please select an "
+"operation."
+msgstr ""
+"Обновленная версия этого пакета уже существует, пожалуйста, выберите "
+"действие."
+
+#: manage/import.php:157
+#, php-format
+msgid "Original package: %1$s &amp; %2$s"
+msgstr "Исходный пакет: %1$s &amp; %2$s"
+
+#: manage/import.php:157
+msgid "Import time: "
+msgstr "Время импорта: "
+
+#: manage/import.php:157
+#, php-format
+msgid "New package: %1$s &amp; %2$s"
+msgstr "Имя пакета: %1$s &amp; %2$s"
+
+#: manage/import.php:176
+msgid "Error importing type!"
+msgstr "Во время импорта произошла ошибка!"
+
+#: manage/import.php:195
+#, php-format
+msgid "Create directory failed: %s"
+msgstr "Ошибка при создании директории: %s"
+
+#: manage/import.php:206
+#, php-format
+msgid "Move file failed: %s"
+msgstr "Ошибка при перемещении файла: %s"
+
+#: manage/import.php:228
+msgid "Import failed! Please check the database configuration!"
+msgstr "Ошибка импортирования! Пожалуйста, проверьте конфигурацию БД!"
+
+#: manage/import.php:237
+msgid ""
+"Import was successful! Now you can enter the Manage Packages page to review!"
+msgstr ""
+"Успешное импортирование! Теперь вы можете зайти на страницу Менеджера "
+"Пакетов для просмотра."
+
+#: manage/import.php:237
+#, php-format
+msgid "Package address: %s"
+msgstr "Адрес пакета: %s"
+
+#: manage/import.php:242
+msgid ""
+"Invalid package: Unable to find `Package`, `Version`, `Architecture` fields "
+"in package information."
+msgstr ""
+"Неверный пакет: Не удалось найти поля `Package`, `Version`, `Architecture` в "
+"информации пакета."
+
+#: manage/import.php:249
+msgid "Import Package"
+msgstr "Импорт пакета"
+
+#: manage/import.php:275
+msgid "Inherit And Replace"
+msgstr "Наследовать и заменить"
+
+#: manage/import.php:276
+msgid "Direct Replace"
+msgstr "Прямое замещение?"
+
+#: manage/import.php:277
+msgid "Add New"
+msgstr "Добавить новый"
+
+#: manage/login.php:126 manage/login.php:171
+msgid "Login"
+msgstr "Вход"
+
+#: manage/login.php:190
+msgctxt "language"
+msgid "Select language"
+msgstr "Выбрать язык"
+
+#: manage/login.php:201 manage/settings.php:76 system/languages/l10n.php:759
+msgctxt "language"
+msgid "English"
+msgstr "Английский"
+
+#: manage/login.php:219 manage/settings.php:105
+msgid "Username"
+msgstr "Имя пользователя"
+
+#: manage/login.php:219
+msgid "Please fill in your username"
+msgstr "Пожалуйста, введите ваше имя пользователя"
+
+#: manage/login.php:223
+msgid "Password"
+msgstr "Пароль"
+
+#: manage/login.php:223
+msgid "Please fill in your password"
+msgstr "Пожалуйста, введите свой пароль"
+
+#: manage/login.php:228
+msgid "Verify Code"
+msgstr "Проверочный код"
+
+#: manage/login.php:228
+msgid "Please fill in the verify code"
+msgstr "Пожалуйста, ввыедите проверочный код"
+
+#: manage/login.php:244
+msgid "Please input your username and password!"
+msgstr "Пожалуйста, введите имя пользователя и пароль!"
+
+#: manage/login.php:246
+msgid "Unknown username or bad password!"
+msgstr "Неизвестное имя пользователя или неправильный пароль!"
+
+#: manage/login.php:248
+msgid "Bear!"
+msgstr "Медведь!"
+
+#: manage/login.php:250
+msgid "Verification code error!"
+msgstr "Ошибка в проверочном коде!"
+
+#: manage/login.php:258
+msgctxt "Buttom"
+msgid "Login"
+msgstr "Логин"
+
+#: manage/login.php:268
+msgid "Error"
+msgstr "Ошибка"
+
+#: manage/login.php:269
+#, php-format
+msgid ""
+"Your login wrong too many times , close the session or wait %s minutes and "
+"try again later."
+msgstr ""
+"Вы ввели неверные данные слишком много раз , прекратите сессию или подождите "
+"%s минут и повторите позже."
+
+#: manage/manage.php:43
+msgid "The upload directory is empty."
+msgstr "Директория загрузок пуста."
+
+#: manage/manage.php:44
+msgid ""
+"You can upload by web or upload packages to the upload directory in root by "
+"FTP."
+msgstr ""
+"Вы можете загружать из сети или загружать пакеты в директорию загрузок в "
+"корне через FTP."
+
+#: manage/manage.php:50 manage/manage.php:78
+msgid "Files List"
+msgstr "Список файлов"
+
+#: manage/manage.php:50 manage/manage.php:78
+msgid "Forced Inherit"
+msgstr "Принудительное наследование"
+
+#: manage/manage.php:53
+msgid "Inherit"
+msgstr "Наследовать"
+
+#: manage/manage.php:81
+msgid "File Name"
+msgstr "Имя файла"
+
+#: manage/manage.php:88
+msgid "Target ID"
+msgstr "Целевой ID"
+
+#: manage/manage.php:96 manage/sections.php:154 manage/udid.php:274
+msgid "Submit"
+msgstr "Отправить"
+
+#: manage/manage.php:103 manage/sections.php:291
+#, php-format
+msgid "Are you sure delete: %s ?"
+msgstr "Действительно удалить: %s ?"
+
+#: manage/manage.php:103 manage/udid.php:398
+msgid "You will not be able to undo this operation!"
+msgstr "Эта операция необратима!"
+
+#: manage/manage.php:104 manage/sections.php:292 manage/sections.php:310
+#: manage/udid.php:301 manage/udid.php:390 manage/udid.php:399
+#: manage/view.php:106
+msgid "Confirm"
+msgstr "Принять"
+
+#: manage/manage.php:115
+msgid "Unable to delete, please check the file permissions."
+msgstr "Не удалось удалить, проверте разрешения."
+
+#: manage/manage.php:123
+msgid "Invalid request."
+msgstr "Неверный запрос."
+
+#: manage/output.php:43
+#, php-format
+msgid "Database Error: %s"
+msgstr "Ошибка БД: %s"
+
+#: manage/output.php:48
+msgid "Cannot find the content specified!"
+msgstr "Не удалось найти содержимое"
+
+#: manage/output.php:53
+msgid "Cannot find the file specified!"
+msgstr "Не удалось найти указаный файл!"
+
+#: manage/output.php:90
+#, php-format
+msgid "Processing file: %s"
+msgstr "Обработка файла: %s"
+
+#: manage/output.php:102
+msgid "Package has been successfully written!"
+msgstr "Пакет был успешно записан!"
+
+#: manage/output.php:104
+msgid "Warning: Writting to package failed!"
+msgstr "Внимание: Ошибка при записи пакета!"
+
+#: manage/output.php:135
+msgid ""
+"Verification information update failed! Please check the package is "
+"successfully generated!"
+msgstr ""
+"Не удалось проверить информацию обновления! Пожалуйста, проверьте, что пакет "
+"успешно создан!"
+
+#: manage/output.php:138
+msgid "Verification information has been successfully updated!"
+msgstr "Проверочная информация успешно обновлена!"
+
+#: manage/output.php:144
+msgid "Update Packages"
+msgstr "Обновить пакеты"
+
+#: manage/output.php:146
+msgid ""
+"Tip: This operation does not automatically modify the software package file "
+"name, please upload the new name package when upgrade."
+msgstr ""
+"Совет: Эта операция не может автоматически изменить имя файла пакета ПО, "
+"пожалуйста, загрузите новое имя пакета при обновлении."
+
+#: manage/release.php:39
+msgid "Repository Settings"
+msgstr "Настройки Репо"
+
+#: manage/release.php:44
+msgid "Origin"
+msgstr "Origin"
+
+#: manage/release.php:47
+msgid "This name will be displayed in the sources interface of Cydia."
+msgstr "Это имя будет отображено в интерфейсе источников в Cydia."
+
+#: manage/release.php:52
+msgid "Label"
+msgstr "Метка"
+
+#: manage/release.php:55
+msgid "This name will be displayed at the top of the package list interface."
+msgstr "Это имя будет отображено наверху листа пакетов."
+
+#: manage/release.php:60
+msgid "Codename"
+msgstr "Кодовое имя"
+
+#: manage/release.php:81
+msgid "Repository Icon"
+msgstr "Иконка Репо"
+
+#: manage/release.php:84
+#, php-format
+msgid "Allowed upload format: png, save as %s in root directory."
+msgstr "Допустимый формат: png, сохраните как %s в корневом каталоге."
+
+#: manage/release.php:115 manage/sections.php:175
+msgid "Upload failed, please check the file permissions."
+msgstr "Ошибка загрузки, пожалуйста, проверьте разрешения файла."
+
+#: manage/release.php:117
+msgid "Upload icon completed."
+msgstr "Загрузка иконки завершена."
+
+#: manage/release.php:117 manage/release.php:120
+msgid ""
+"Repository settings save complete, rebuild the list to apply the changes."
+msgstr ""
+"Сохранение настроек Репо завершено, пересоберите список для принятия "
+"изменений."
+
+#: manage/sections.php:38 manage/sections.php:120
+msgid "Sections List"
+msgstr "Список секций"
+
+#: manage/sections.php:38 manage/sections.php:120
+msgid "Add Section"
+msgstr "Добавить секцию"
+
+#: manage/sections.php:38 manage/sections.php:120
+msgid "Create Icon Package"
+msgstr "Создать иконку пакета"
+
+#: manage/sections.php:61
+msgid "Edit"
+msgstr "Изменить"
+
+#: manage/sections.php:63
+msgid "Icon"
+msgstr "Иконка"
+
+#: manage/sections.php:64
+msgid "Last Change"
+msgstr "Послденее изменение"
+
+#: manage/sections.php:72
+msgid "Click to view packages in this section."
+msgstr "Нажмите, чтобы просмотреть пакеты в этой секции."
+
+#: manage/sections.php:80
+msgid "No Icon"
+msgstr "Нет иконки"
+
+#: manage/sections.php:120
+msgid "Edit Section"
+msgstr "Изменить секцию"
+
+#: manage/sections.php:124
+msgid "Section Name"
+msgstr "Имя секции"
+
+#: manage/sections.php:131
+msgid "Section Icon"
+msgstr "Иконка секции"
+
+#: manage/sections.php:138
+#, php-format
+msgid "The current icon is %s."
+msgstr "Текущая иконка %s."
+
+#: manage/sections.php:140
+#, php-format
+msgid "You can click <a href=\"%s\">Here</a> to delete current icon."
+msgstr ""
+"Вы можете нажать <a href=\"%s\">Здесь</a>, чтобы удалить текущую иконку."
+
+#: manage/sections.php:143
+msgid "There are currently no icon."
+msgstr "Иконка осутствует."
+
+#: manage/sections.php:158 manage/upload.php:106 manage/upload.php:186
+msgid "Tips"
+msgstr "Советы"
+
+#: manage/sections.php:161
+#, php-format
+msgid "Allowed upload format: png, save in %s directory of root directory."
+msgstr ""
+"Доступные форматы для загрузки: png, сохраните в %s директорию коренного "
+"каталога."
+
+#: manage/sections.php:162
+msgid ""
+"If you change the section name, you may need to change section option in "
+"package infomation for many packages."
+msgstr ""
+"Если вы измените имя секции, вам придется изменить параметры секции в "
+"информации пакета для множества пакетов."
+
+#: manage/sections.php:196
+msgid "You can add a maximum of 50 sections!"
+msgstr "Вы можете добавить максимум 50 секций!"
+
+#: manage/sections.php:207
+#, php-format
+msgid "Are you sure want to create the %s icon package?"
+msgstr "Вы уверены, что хотите создать %s иконку пакета?"
+
+#: manage/sections.php:207
+msgid "Create Now"
+msgstr "Создать сейчас"
+
+#: manage/sections.php:210
+msgid ""
+"You have not filled in SEO and autofill information, unable to use this "
+"function!"
+msgstr ""
+"ВЫ не хаполнили SEO и информацию для автозаполнения, не удалается "
+"использовать функцию!"
+
+#: manage/sections.php:217
+msgid ""
+"Cannot find any existing icon of section, please add an icon first, then "
+"create icon package."
+msgstr ""
+"Не удалось найти иконку для этой секции, пожалуйста, сначала добавьте "
+"иконку, а зетм создайте значок пакета."
+
+#: manage/sections.php:228
+msgid "Cannot create temporary directory, please check the file permissions!"
+msgstr ""
+"Не удалось создать временный каталог, пожалуйста, проверьте разрешения!"
+
+#: manage/sections.php:235
+msgid "Icon package template copy failed, please check the file permissions!"
+msgstr "Копирование шаблона иконки пакета, пожалуйста, проверьте разрешения!"
+
+#: manage/sections.php:263 manage/sections.php:273
+msgid "Icon package template rewriting failed!"
+msgstr "Не удалось перезаписать шаблон иконки пакета!"
+
+#: manage/sections.php:278
+msgid "Icon package template repositioning failed!"
+msgstr "Не удалось репозиционирование шаблона иконки пакета!"
+
+#: manage/sections.php:286
+msgid "Icon package template missing, please upload DCRM Pro again!"
+msgstr ""
+"Не найден шаблон иконки пакета, пожалуйста, загрузите DCRM Pro еще раз!"
+
+#: manage/sections.php:309
+#, php-format
+msgid "Are you sure delete the section icon for %s ?"
+msgstr "Вы уверены, что хотитеудалить иконку секции для %s ?"
+
+#: manage/settings.php:38
+msgid "Preferences"
+msgstr "Настройки"
+
+#: manage/settings.php:42
+msgid "General"
+msgstr "Основное"
+
+#: manage/settings.php:45
+msgid "Language"
+msgstr "Язык"
+
+#: manage/settings.php:53
+msgctxt "language"
+msgid "Detect"
+msgstr "Автоматически"
+
+#: manage/settings.php:81
+msgid ""
+"If you want the system auto detect users browser language to show pages "
+"please select \"Detect\" option."
+msgstr ""
+"Если вы хотите, чтобы система автоматически определяла язык браузера для "
+"отображения страницы, то выберите опцию \"Автоматически\"."
+
+#: manage/settings.php:86
+msgid "Rewrite Mod"
+msgstr "Режим перезаписи"
+
+#: manage/settings.php:90
+msgid "Disable"
+msgstr "Отключить"
+
+#: manage/settings.php:90
+msgid "Normal"
+msgstr "Обычно"
+
+#: manage/settings.php:90
+msgid "Elegant"
+msgstr "Улучшено"
+
+#: manage/settings.php:98
+#, php-format
+msgid ""
+"<b>Elegant Mod</b> - Enable all rewrite rules, the url will show like %s.<br/"
+"><b>Normal Mod</b> - Compatible earlier than v1.7 configuration, only enbale "
+"a part of rewrite rules for HotLinks.<br/><b>Disabled</b> - This will "
+"disable all rewrite rules, so HotLinks will not work.<br/>Notice: You should "
+"update your rewrite config first if you want to use Elegant Mod."
+msgstr ""
+"<b>Вариант Улучшено</b> - Позволяет переписывать правила, URL будет "
+"выглядить как %s.<br/><b>Вариант Обычно</b> - Совместимость с версиями ранее "
+"1.7, доступна перезапись только правил HotLinks.<br/><b>Отключено</b> - "
+"Отключает возможность перезаписывать правила, HotLinks работать не будет.<br/"
+">Примечание: Вам нужно обновить ваш перезаписывающий конфиг сначала, если вы "
+"хотите использовать вариант \"Улучшено\"."
+
+#: manage/settings.php:102
+msgid "Login Information"
+msgstr "Логин информация"
+
+#: manage/settings.php:107 manage/settings.php:597
+msgid "Username length must be between 4-20 characters!"
+msgstr "Имя пользователя должно быть между 4 и 20 символами!"
+
+#: manage/settings.php:107 manage/settings.php:599
+msgid "Username can only use numbers, letters and underline!"
+msgstr ""
+"В имени пользователя допустимы только цифры, буква и подчеркивание( _ )!"
+
+#: manage/settings.php:113
+msgid "New Password"
+msgstr "Новый пароль"
+
+#: manage/settings.php:116
+msgid ""
+"If you would like to change the password type a new one. Otherwise leave "
+"this blank."
+msgstr ""
+"Если вы хотите сменить пароль, введите новый. В другом случае оставьте это "
+"поле пустым."
+
+#: manage/settings.php:121
+msgid "Repeat New Password"
+msgstr "Повторите новый пароль"
+
+#: manage/settings.php:123
+msgid "Your password do not match."
+msgstr "Ваши пароли не совпадают."
+
+#: manage/settings.php:124
+msgid "Type your new password again."
+msgstr "Введите новый пароль еще раз"
+
+#: manage/settings.php:125 manage/settings.php:755
+msgid "Strength indicator"
+msgstr "Индикатор сложности"
+
+#: manage/settings.php:130
+msgid "The maximum number of attempts"
+msgstr "Максимальное число попыток"
+
+#: manage/settings.php:137
+msgid "Login Fail Reset Time"
+msgstr "Количество времени после неудачного логина"
+
+#: manage/settings.php:140
+msgid "Unit: Minutes"
+msgstr "Примичание: В минутах"
+
+#: manage/settings.php:145
+msgid "Repository URL"
+msgstr "URL Репозитория"
+
+#: manage/settings.php:147 manage/settings.php:513 manage/settings.php:528
+#: manage/settings.php:536 manage/settings.php:544
+msgid "Not a valid website address"
+msgstr "Неправильный адрес веб-сайта"
+
+#: manage/settings.php:148
+msgid ""
+"Displayed on the homepage for the user to add, and used for the autofill "
+"package's Depiction when import."
+msgstr ""
+"Displayed on the homepage for the user to add, and used for the autofill "
+"package's Depiction when import."
+
+#: manage/settings.php:152
+msgid "PC Site"
+msgstr "ПК сайт"
+
+#: manage/settings.php:155 manage/settings.php:167
+msgid "Master Switch"
+msgstr "Master Switch"
+
+#: manage/settings.php:160
+msgid "Non-apple owners will automatically jump if enabled."
+msgstr "Пользователи не Apple-девайсов будут перенаправлены, если включено."
+
+#: manage/settings.php:164
+msgid "Mobile Site"
+msgstr "Мобильный сайт"
+
+#: manage/settings.php:176 manage/settings.php:631
+msgid "Show Latest List"
+msgstr "Показать последний список"
+
+#: manage/settings.php:185
+msgid "Number of Latest List"
+msgstr "Число последних списков"
+
+#: manage/settings.php:187 manage/settings.php:222
+#, php-format
+msgid "Too high: Maximum of '%s'"
+msgstr "Максимальный размер : '%s'"
+
+#: manage/settings.php:188
+msgid "Must be lower than 20."
+msgstr "Должно быть меньше 20."
+
+#: manage/settings.php:193 manage/settings.php:637
+msgid "Full List of Sections"
+msgstr "Полный список секций"
+
+#: manage/settings.php:202 manage/settings.php:617
+msgctxt "Settings"
+msgid "Screenshorts"
+msgstr "Скриншоты"
+
+#: manage/settings.php:211 manage/settings.php:619
+msgid "Report Problems"
+msgstr "Сообщить о проблемах"
+
+#: manage/settings.php:220
+msgid "Limit Number of Report"
+msgstr "Лимит количества репортов"
+
+#: manage/settings.php:223
+msgid "The maximum not more than 10 times."
+msgstr "Максимально не более 10 раз."
+
+#: manage/settings.php:228 manage/settings.php:623
+msgid "Update Logs"
+msgstr "Обновить логи"
+
+#: manage/settings.php:233
+msgid "Displayed in the Version History."
+msgstr "Отобразить в истории версий."
+
+#: manage/settings.php:238 manage/settings.php:625
+msgid "More Information"
+msgstr "Больше информации"
+
+#: manage/settings.php:250 manage/settings.php:260
+msgid "Show"
+msgstr "Отобразить"
+
+#: manage/settings.php:252
+msgid "It will not hide if 'Detailed Description' is enabled and empty."
+msgstr "Не будет скрыто, если параметр 'Больше информации' включен или пуст."
+
+#: manage/settings.php:265
+msgid "Commercial"
+msgstr "Коммерция"
+
+#: manage/settings.php:268
+msgid "Alipay Account"
+msgstr "Alipay аккаунт"
+
+#: manage/settings.php:271
+msgid "This is used to auto generate Alipay link for commercial package."
+msgstr ""
+"Это используется для автоматической генерации Alipay ссылки для платного "
+"пакета."
+
+#: manage/settings.php:275
+msgid "Download"
+msgstr "Скачать"
+
+#: manage/settings.php:278
+msgid "PHP Forward"
+msgstr "PHP Forward"
+
+#: manage/settings.php:283
+msgid ""
+"Disable PHP forward will reduce server pressure and effectively avoid 'Sum "
+"Mismatch Hash' error.<br/>But it will make the speed limit function to "
+"invalid and may exposure real package address."
+msgstr ""
+"Отключение функции PHP Forward позволит избежать большого давления на сервер "
+"и ошибку 'Несоответствующий размер хэша'.<br/>Но это может сделать функцию "
+"ограничения скорости нерабочей и может раскрыть настоящий адрес пакета"
+
+#: manage/settings.php:288
+msgid "Module Enabled"
+msgstr "Модуль включен"
+
+#: manage/settings.php:291
+msgid "No"
+msgstr "Нет"
+
+#: manage/settings.php:291
+msgid "Yes"
+msgstr "Да"
+
+#: manage/settings.php:293
+msgid ""
+"Using this switch, the x-sendfile feature on DCRM can be manually enabled if "
+"it does not do so automatically <br/>when you have enabled mod_xsendfile on "
+"Apache or configured the \"allow-x-send-file\" option on Lighttpd. "
+"<br><b>WARNING:</b> If you don't know what this is, please turn this off; "
+"otherwise, package downloads may not work."
+msgstr ""
+"Using this switch, the x-sendfile feature on DCRM can be manually enabled if "
+"it does not do so automatically <br/>when you have enabled mod_xsendfile on "
+"Apache or configured the \"allow-x-send-file\" option on Lighttpd. "
+"<br><b>ВНИМАНИЕ:</b> Если вы не знаете, что это такое, то выключите. В "
+"противном случае загрузка пакетов работать не будет."
+
+#: manage/settings.php:298 manage/settings.php:611
+msgid "HotLink Protection"
+msgstr "HotLink Protection"
+
+#: manage/settings.php:307
+msgid "Max Download Speed"
+msgstr "Максимальная скорость скачки"
+
+#: manage/settings.php:310
+msgid "B/s, please input '0' if you do not want limit."
+msgstr "Б/с, пожалуйста, введите '0', если лимит не требуется."
+
+#: manage/settings.php:314
+msgid "Lists"
+msgstr "Списки"
+
+#: manage/settings.php:317
+msgid "Packages File Compression"
+msgstr "Компрессия файлов пакета"
+
+#: manage/settings.php:321
+msgid "Hide list"
+msgstr "Скрыть список"
+
+#: manage/settings.php:321
+msgid "Only text"
+msgstr "Только текст"
+
+#: manage/settings.php:321
+msgid "Only gz"
+msgstr "Только gz"
+
+#: manage/settings.php:321
+msgid "Text and gz"
+msgstr "Текст и gz"
+
+#: manage/settings.php:322
+msgid "Only bz2"
+msgstr "Только bz2"
+
+#: manage/settings.php:322
+msgid "Text and bz2"
+msgstr "Текст и bz2"
+
+#: manage/settings.php:322
+msgid "gz and bz2"
+msgstr "gz и bz2"
+
+#: manage/settings.php:322
+msgid "All"
+msgstr "Все"
+
+#: manage/settings.php:328
+msgid ""
+"Please change the compression method if error occurred trying rebuild the "
+"list."
+msgstr ""
+"Пожалуйста смените метод компрессии, если ошибка возникает при попытке "
+"пересобрать список."
+
+#: manage/settings.php:333
+msgid "Packages Validation "
+msgstr "Проверка пакетов"
+
+#: manage/settings.php:337
+msgid "No validation"
+msgstr "Нет проверки"
+
+#: manage/settings.php:343
+msgid "Take effect when write to Packages."
+msgstr "Вступает в силу при записи в Пакеты."
+
+#: manage/settings.php:348 manage/settings.php:635
+msgid "Downgrade Support"
+msgstr "Помощь при понижении"
+
+#: manage/settings.php:353
+msgid "Enable this function will cause a long-term traffic consumption."
+msgstr "Включите этой функции вызовет долгосрочный расход трафика."
+
+#: manage/settings.php:357
+msgid "Autofill"
+msgstr "Автозаполнение"
+
+#: manage/settings.php:360
+msgid "Autofill Depiction"
+msgstr "Автозаполнение описания"
+
+#: manage/settings.php:365
+msgid "Autofill package's Depiction when import if enabled."
+msgstr "Автозаполнение описания пакета при импорте, если включено."
+
+#: manage/settings.php:370
+msgid "Default Identifier of Packages"
+msgstr "Идентификатор пакетов по умолчанию"
+
+#: manage/settings.php:377
+msgid "Default Name of Packages"
+msgstr "Имя пакетов по умолчанию"
+
+#: manage/settings.php:384
+msgid "Default Depiction of Packages"
+msgstr "Описание пакетов по умолчанию"
+
+#: manage/settings.php:390
+msgid "SEO"
+msgstr "SEO"
+
+#: manage/settings.php:393
+msgctxt "SEO"
+msgid "Site Name"
+msgstr "Имя сайта"
+
+#: manage/settings.php:400
+msgctxt "SEO"
+msgid "Site Address"
+msgstr "Адрес сайта"
+
+#: manage/settings.php:407
+msgctxt "SEO"
+msgid "Site Keyword"
+msgstr "Ключевые слова сайта"
+
+#: manage/settings.php:410 manage/udid.php:268
+msgid "Separated by commas."
+msgstr "Разделение запятыми."
+
+#: manage/settings.php:414
+msgid "Administrator Informations"
+msgstr "Данные администратора"
+
+#: manage/settings.php:417
+msgctxt "Administrator"
+msgid "Name"
+msgstr "Имя"
+
+#: manage/settings.php:424
+msgctxt "Administrator"
+msgid "Full Name"
+msgstr "Полное имя"
+
+#: manage/settings.php:431
+msgctxt "Administrator"
+msgid "Email Address"
+msgstr "Электронная почта"
+
+#: manage/settings.php:433
+msgid "Not a valid email address"
+msgstr "Недействительный адрес электронной почты"
+
+#: manage/settings.php:437
+msgid "Footer"
+msgstr "Низ страниц"
+
+#: manage/settings.php:440
+msgid "Starting Year of Copyright"
+msgstr "Год отсчета Copyright'а"
+
+#: manage/settings.php:443
+#, php-format
+msgid ""
+"If input 2010, the final display is © 2010-%d, leave a blank will only "
+"displays the current year."
+msgstr ""
+"Если введете 1337, то в конечном итоге будет отображено как © 1337-%d. "
+"Оставьте поле пустым, чтобы отобразить только текущий год."
+
+#: manage/settings.php:448
+msgid "Copyright Name"
+msgstr "Имя Copyright'а"
+
+#: manage/settings.php:451
+msgid ""
+"Displayed on the website at the bottom. If you not input anything will "
+"display the repository name."
+msgstr ""
+"Отображается внизу страниц сайта. Если ничего не ввести, то будет "
+"отображаться имя репо."
+
+#: manage/settings.php:456
+msgid "Footer Code"
+msgstr "Нижняя часть сайта"
+
+#: manage/settings.php:459
+msgid ""
+"You can input ICP number, site information etc. Please use <code>·</code> as "
+"the separator. "
+msgstr ""
+"Вы может ввести ICP номер, информацию о сайте и т.п. . Пожалуйста, "
+"используйте <code>·</code> в качестве разделителя."
+
+#: manage/settings.php:463
+msgid "Social"
+msgstr "Соц. Сети"
+
+#: manage/settings.php:466
+msgid "Duoshuo Social Comments KEY"
+msgstr "Ключ для комментариев с помощью Duoshuo Social Comments"
+
+#: manage/settings.php:469
+#, php-format
+msgid ""
+"Please goto %s for get key (registration required), leave a blank will "
+"disabled comment function."
+msgstr ""
+"Пожалуйста, перейдите на %s для получения ключа (требуется регистрация), или "
+"оставьте поле пустым, чтобы отключить комментарии."
+
+#: manage/settings.php:474
+msgid "QQ Group Name"
+msgstr "QQ Group имя"
+
+#: manage/settings.php:481
+msgid "QQ Group Number"
+msgstr "QQ Group номер"
+
+#: manage/settings.php:484
+msgid "Need the new mobile client."
+msgstr "Нужен новый мобильный клиент."
+
+#: manage/settings.php:489
+msgid "Weibo Name"
+msgstr "Weibo имя"
+
+#: manage/settings.php:496
+msgid "Weibo Address"
+msgstr "Weibo адрес"
+
+#: manage/settings.php:498
+#, php-format
+msgid "Not a valid mobile weibo address. Example: %s"
+msgstr "Неверный адрес weibo. Например: %s"
+
+#: manage/settings.php:499
+msgid "Please input the mobile version homepage."
+msgstr "Пожалуйста, введите домашнюю страницу мобильной версии."
+
+#: manage/settings.php:504
+msgid "Twitter Name"
+msgstr "Twitter имя"
+
+#: manage/settings.php:511
+msgid "Twitter Address"
+msgstr "Адрес Twitter"
+
+#: manage/settings.php:514 manage/settings.php:529
+msgid "Need login for visit."
+msgstr "Нужно залогинится "
+
+#: manage/settings.php:519
+msgid "Facebook Name"
+msgstr "Имя Facebook"
+
+#: manage/settings.php:526
+msgid "Facebook Address"
+msgstr "Адрес Facebook"
+
+#: manage/settings.php:534
+msgid "Paypal Donate Address"
+msgstr "Адрес PayPal"
+
+#: manage/settings.php:542
+msgid "Alipay Donate Address"
+msgstr "Адрес Alipay"
+
+#: manage/settings.php:549
+msgid "Statistics And Advertisement"
+msgstr "Статистика и Реклама"
+
+#: manage/settings.php:552
+msgid "External Statistics"
+msgstr "Внешняя статистика"
+
+#: manage/settings.php:555
+msgid "Invisible statistic code."
+msgstr "Невидимый код статистики?."
+
+#: manage/settings.php:560
+msgid "Internal Statistics"
+msgstr "Внутреняя статистика"
+
+#: manage/settings.php:563
+msgid "Statistics code of view information at Running Status."
+msgstr "Код статистики для отображения в Статусе работы."
+
+#: manage/settings.php:568
+msgid "Advertisement"
+msgstr "Реклама"
+
+#: manage/settings.php:574
+msgid "Notice"
+msgstr "Уведомление"
+
+#: manage/settings.php:577
+msgid "Emergency Notice"
+msgstr "Аварийное уведомление"
+
+#: manage/settings.php:595
+msgid "Please provide a valid username."
+msgstr "Пожалуйста, введите правильное имя пользователя"
+
+#: manage/settings.php:601
+msgid "You entered your new password only once."
+msgstr "Вы введи свой новый пароль только один раз."
+
+#: manage/settings.php:603
+msgid "Your passwords do not match. Please try again."
+msgstr "Ваши пароли не совпадают. Повторите попытку."
+
+#: manage/settings.php:605
+msgid "The maximum number of attempts must be an integer!"
+msgstr "Максимальное количество попыток должно быть целым числом!"
+
+#: manage/settings.php:607
+msgid "Login fail reset time must be an integer!"
+msgstr "Количество времени после неудачного логина быть целым числом!"
+
+#: manage/settings.php:609
+msgid "Max download speed must be an integer!"
+msgstr "Максимальная скорость скачки должна быть целым числом!"
+
+#: manage/settings.php:611 manage/settings.php:617 manage/settings.php:619
+#: manage/settings.php:623 manage/settings.php:625 manage/settings.php:627
+#: manage/settings.php:631 manage/settings.php:635 manage/settings.php:637
+#, php-format
+msgid "Please set the correct %s switch!"
+msgstr "Пожалуйста, укажите правильный %s переключатель!"
+
+#: manage/settings.php:613
+msgid "Please set the correct PC Site Master Switch!"
+msgstr "Пожалуйста, выберите Master Switch для ПК сайта!"
+
+#: manage/settings.php:615
+msgid "Please set the correct Mobile Site Master Switch!"
+msgstr "Пожалуйста, укажите Master Switch для мобильного сайта!"
+
+#: manage/settings.php:621
+msgid ""
+"Please set the correct Limit Number of Report, the maximum not more than 10 "
+"times!"
+msgstr ""
+"Пожалуйста, введите правильное число для лимита докладов, максимальное число "
+"не может быть больше 10!"
+
+#: manage/settings.php:627
+msgid "Multiple Information"
+msgstr "Multiple Information"
+
+#: manage/settings.php:629
+msgid "Please set the correct Packages compression method!"
+msgstr "Пожалуйста, укажите корректный метод компрессии пакетов!"
+
+#: manage/settings.php:633
+msgid ""
+"Please set the correct number of latest list, the maximum must not exceed "
+"20 !"
+msgstr ""
+"Пожалуйста, укажите коректное число последних списков, оно не должно "
+"превышать 20!"
+
+#: manage/settings.php:639
+msgid "Please provide a valid repository URL!"
+msgstr "Пожалуйста, введите рабочий адресс репозитория!"
+
+#: manage/settings.php:643
+msgid "There is a same username!"
+msgstr "Это такое же имя пользователя!"
+
+#: manage/settings.php:666
+#, php-format
+msgid ""
+"Cannot access %s, you might need update your rewrite config to use this "
+"rewrite mod!"
+msgstr ""
+"Невозможно получить доступ к %s, вам нужно обновить перезаписывающий конфиг, "
+"чтобы пользоваться режимом перезаписи!"
+
+#: manage/settings.php:739
+msgid "Amendments to the success of settings!"
+msgstr "Поправки успешно приняты!"
+
+#: manage/settings.php:755
+msgctxt "Password"
+msgid "Short"
+msgstr "Короткий"
+
+#: manage/settings.php:755
+msgctxt "Password"
+msgid "Bad"
+msgstr "Плохой"
+
+#: manage/settings.php:755
+msgctxt "Password"
+msgid "Good"
+msgstr "Хороший"
+
+#: manage/settings.php:755
+msgctxt "Password"
+msgid "Strong"
+msgstr "Надежный"
+
+#: manage/settings.php:755
+msgctxt "Password"
+msgid "Mismatch"
+msgstr "Не совпадает"
+
+#: manage/settings.php:760
+msgid "You have some errors, please check the form."
+msgstr "Есть некоторые проблемы, проверьте поля."
+
+#: manage/stats.php:33
+msgid "Database Status"
+msgstr "Статус БД"
+
+#: manage/stats.php:39
+msgid "Service Information"
+msgstr "Информация сервиса"
+
+#: manage/stats.php:51
+msgid "Server information: "
+msgstr "Информация о сервере: "
+
+#: manage/stats.php:51
+msgid "Database version: "
+msgstr "Версия БД: "
+
+#: manage/stats.php:51
+msgid "GD library version: "
+msgstr "Версия библиотеки GD: "
+
+#: manage/stats.php:51 manage/upload.php:109 manage/upload.php:189
+msgid "Upload max filesize: "
+msgstr "Максимальный вес для загрузки файла: "
+
+#: manage/stats.php:51
+msgid "Max execution time: "
+msgstr "Максимальное время исполнения: "
+
+#: manage/stats.php:51
+#, php-format
+msgid "%d second"
+msgid_plural "%d seconds"
+msgstr[0] "%d секунда"
+msgstr[1] "%d секунды"
+msgstr[2] "%d секунд"
+
+#: manage/stats.php:51
+msgid "Server time: "
+msgstr "Серверное время: "
+
+#: manage/stats.php:57
+msgid "Management Statistics"
+msgstr "Статистика управления"
+
+#: manage/stats.php:78
+msgid "Total download times: "
+msgstr "Всего раз загружено: "
+
+#: manage/stats.php:78
+msgid "Number of packages: "
+msgstr "Кол-во пакетов: "
+
+#: manage/stats.php:78
+msgid "Number of non-hidden packages: "
+msgstr "Кол-во не скрытых пакетов: "
+
+#: manage/stats.php:78
+msgid "Number of sections: "
+msgstr "Кол-во секций: "
+
+#: manage/stats.php:78
+msgid "Download pool size: "
+msgstr "Размер пула для скачки: "
+
+#: manage/stats.php:78
+msgid "Cache pool size: "
+msgstr "Размер пула кэша: "
+
+#: manage/stats.php:78
+msgid "Clean cache"
+msgstr "Очистить кэш"
+
+#: manage/stats.php:95
+msgid "Clean Cache"
+msgstr "Очистить Кэш"
+
+#: manage/stats.php:96
+msgid "Cache cleanup completed!"
+msgstr "Очистка кэш заверщена!"
+
+#: manage/udid.php:35 manage/udid.php:106 manage/udid.php:242
+msgid "UDID"
+msgstr "UDID"
+
+#: manage/udid.php:37 manage/udid.php:110 manage/udid.php:258
+#: manage/udid.php:342
+msgid "Comment"
+msgstr "Комментарий"
+
+#: manage/udid.php:38 manage/udid.php:265
+msgid "Packages"
+msgstr "Пакеты"
+
+#: manage/udid.php:40 manage/udid.php:109
+msgid "Last IP"
+msgstr "Последний IP"
+
+#: manage/udid.php:41
+msgid "Create Time"
+msgstr "Дата создания"
+
+#: manage/udid.php:91 manage/udid.php:128 manage/udid.php:238
+#: manage/udid.php:331
+msgid "All UDID"
+msgstr "Все UDID"
+
+#: manage/udid.php:91 manage/udid.php:128 manage/udid.php:238
+#: manage/udid.php:331
+msgid "Add UDID"
+msgstr "Добавить UDID"
+
+#: manage/udid.php:91 manage/udid.php:128 manage/udid.php:238
+#: manage/udid.php:331
+msgid "Search UDID"
+msgstr "Найти UDID"
+
+#: manage/udid.php:91 manage/udid.php:128 manage/udid.php:238
+#: manage/udid.php:331
+msgid "Manage Level"
+msgstr "Управление уровнем?"
+
+#: manage/udid.php:108
+msgid "Package"
+msgstr "Пакет"
+
+#: manage/udid.php:182
+#, php-format
+msgid "Search UDID: %s"
+msgstr "Найти UDID：%s"
+
+#: manage/udid.php:244
+msgid "UDID must be 40 characters!"
+msgstr "UDID должен быть длиной в 40 символов!"
+
+#: manage/udid.php:244
+msgid "UDID must be number or letter!!"
+msgstr "UDID доллжен быть числом или словом!"
+
+#: manage/udid.php:334
+msgid "Lowest Protection Level"
+msgstr "Наименьший уровень защиты"
+
+#: manage/udid.php:352
+msgid "Add Row"
+msgstr "Добавить ряд"
+
+#: manage/udid.php:353
+msgid "Delete Row"
+msgstr "Удалить ряд"
+
+#: manage/udid.php:366
+msgid "Guest"
+msgstr "Гость"
+
+#: manage/udid.php:389
+#, php-format
+msgid "Are you sure you want to binding '%1$s' to UDID '%2$s'?"
+msgstr "Вы уверены, что хотите привязать '%1$s' к UDID '%2$s'?"
+
+#: manage/udid.php:397
+msgid "Unbinding UDID"
+msgstr "Отвязать UDID"
+
+#: manage/udid.php:398
+#, php-format
+msgid "Are you sure you want to unbinding '%1$s' from UDID '%2$s'?"
+msgstr "Вы уверены, что хотите отвязать '%1$s' от UDID '%2$s'?"
+
+#: manage/upload.php:31
+msgid "File size incorrect!"
+msgstr "Неправильный размер файла!"
+
+#: manage/upload.php:34
+msgid "File type incorrect!"
+msgstr "Неправильный тип файла!"
+
+#: manage/upload.php:37
+#, php-format
+msgid "Upload failed, Error Code: %s."
+msgstr "Загрузка прирвана, код ошибки: %s."
+
+#: manage/upload.php:40
+#, php-format
+msgid "%s already exists."
+msgstr "%s уже существует."
+
+#: manage/upload.php:44
+#, php-format
+msgid "Uploaded successfully: %s."
+msgstr "Загружено успешно: %s."
+
+#: manage/upload.php:86 manage/upload.php:166
+#, php-format
+msgid "Unable to upload files? Try %s."
+msgstr "Не удается загрузить файлы? Попробуй %s."
+
+#: manage/upload.php:86
+msgid "classic uploader"
+msgstr "классический загрузчик"
+
+#: manage/upload.php:91
+msgid "Please select packages"
+msgstr "Пожалуйста, выберите пакеты"
+
+#: manage/upload.php:94
+msgid ""
+"Tip: Select multiple packages by hold down Ctrl(⌘) key while you click the "
+"packages."
+msgstr ""
+"Совет: Вы можете загрузить несколько пакетов за раз, зажав кнопку Ctrl(⌘), "
+"когда выбираете файлы."
+
+#: manage/upload.php:99 manage/upload.php:181
+msgid "Upload"
+msgstr "Загрузить"
+
+#: manage/upload.php:100
+msgctxt "Upload"
+msgid "Reset"
+msgstr "Сброс"
+
+#: manage/upload.php:108 manage/upload.php:188
+msgid "Allowed data type: "
+msgstr "Разрешенный тип данных: "
+
+#: manage/upload.php:108 manage/upload.php:109 manage/upload.php:110
+#: manage/upload.php:188 manage/upload.php:189 manage/upload.php:190
+msgctxt "Separator"
+msgid ";"
+msgstr ";"
+
+#: manage/upload.php:110 manage/upload.php:190
+msgid "Please do not upload disrupt the Internet security data"
+msgstr ""
+"Пожалуйста, не загружайте файлы, способные причинить вред интернет-"
+"безопасности"
+
+#: manage/upload.php:111 manage/upload.php:191
+msgid ""
+"Please upload the standard package of Debian software package, otherwise it "
+"may cause loss of data."
+msgstr ""
+"Пожалуйста, загрузите стандартный Debian пакет, в противном случае это может "
+"привести к потере данных."
+
+#: manage/upload.php:127
+msgid "SELECT FILES"
+msgstr "Выбрать файлы"
+
+#: manage/upload.php:137
+msgctxt "Uploader"
+msgid " Success"
+msgstr "Успех"
+
+#: manage/upload.php:138
+msgctxt "Uploader"
+msgid " Upload Success!"
+msgstr "Успех!"
+
+#: manage/upload.php:141
+msgctxt "Uploader"
+msgid " Failed"
+msgstr "Не удалось"
+
+#: manage/upload.php:142
+msgctxt "Uploader"
+msgid " Upload Failed!"
+msgstr "Загрузка не удалась!"
+
+#: manage/upload.php:144
+msgctxt "Uploader"
+msgid " Already Exists"
+msgstr "Уже существует"
+
+#: manage/upload.php:145
+msgctxt "Uploader"
+msgid " Already Exists!"
+msgstr "Уже существует!"
+
+#: manage/upload.php:148
+msgctxt "Uploader"
+msgid " Unknow"
+msgstr "Неизвестно"
+
+#: manage/upload.php:149
+msgctxt "Uploader"
+msgid " Unknow Error!"
+msgstr "Неизвестная ошибка!"
+
+#: manage/upload.php:166
+msgid "multiple uploader"
+msgstr "Множественный загрузчик"
+
+#: manage/upload.php:168
+msgid "Select File"
+msgstr "Выберите файл"
+
+#: manage/upload.php:173
+msgid "Please select a package"
+msgstr "Пожалуйста, выберите пакет"
+
+#: manage/upload.php:176
+msgid "Ready"
+msgstr "Готово"
+
+#: manage/upload.php:202
+msgid "Please wait for uploading..."
+msgstr "Пожалуйста, подождите..."
+
+#: manage/upload.php:220
+msgid "Please select a package!"
+msgstr "Пожалуйста, выберите пакет!"
+
+#: manage/view.php:59
+msgid "No specified item."
+msgstr "Нет заданного элемента."
+
+#: manage/view.php:83
+msgid "This package no screenshot."
+msgstr "В этом пакете нет скриншота."
+
+#: manage/view.php:89
+#, php-format
+msgid "This package have %d screenshot."
+msgid_plural "This package have %d screenshots."
+msgstr[0] "В этом пакете %d скриншот."
+msgstr[1] "В этом пакете %d скриншота."
+msgstr[2] "В этом пакете %d скриншотов."
+
+#: manage/view.php:104
+msgid "New Screenshot"
+msgstr "Новый скриншот"
+
+#: manage/view.php:105
+msgid "Select Picture"
+msgstr "Выберите картинку"
+
+#: manage/view.php:121
+msgid "Are you sure you want to delete this screenshot?"
+msgstr "Вы уверены, что хотите удалить этот скриншот?"
+
+#: system/languages/l10n.php:706
+msgctxt "language"
+msgid "Afrikaans"
+msgstr "Африканский"
+
+#: system/languages/l10n.php:707
+msgctxt "language"
+msgid "Albanian"
+msgstr "Албанский"
+
+#: system/languages/l10n.php:708
+msgctxt "language"
+msgid "Arabic (Algeria)"
+msgstr "Арабский (Алжир)"
+
+#: system/languages/l10n.php:709
+msgctxt "language"
+msgid "Arabic (Bahrain)"
+msgstr "Арабский (Бахрейн)"
+
+#: system/languages/l10n.php:710
+msgctxt "language"
+msgid "Arabic (Egypt)"
+msgstr "Арабский (Египет)"
+
+#: system/languages/l10n.php:711
+msgctxt "language"
+msgid "Arabic (Iraq)"
+msgstr "Арабский (Ирак)"
+
+#: system/languages/l10n.php:712
+msgctxt "language"
+msgid "Arabic (Jordan)"
+msgstr "Арабский (Иордания)"
+
+#: system/languages/l10n.php:713
+msgctxt "language"
+msgid "Arabic (Kuwait)"
+msgstr "Арабский (Кувейт)"
+
+#: system/languages/l10n.php:714
+msgctxt "language"
+msgid "Arabic (Lebanon)"
+msgstr "Арабский (Ливан)"
+
+#: system/languages/l10n.php:715
+msgctxt "language"
+msgid "Arabic (libya)"
+msgstr "Арабский (Ливия)"
+
+#: system/languages/l10n.php:716
+msgctxt "language"
+msgid "Arabic (Morocco)"
+msgstr "Арабский (Марокко)"
+
+#: system/languages/l10n.php:717
+msgctxt "language"
+msgid "Arabic (Oman)"
+msgstr "Арабский (Оман)"
+
+#: system/languages/l10n.php:718
+msgctxt "language"
+msgid "Arabic (Qatar)"
+msgstr "Арабский (Катар)"
+
+#: system/languages/l10n.php:719
+msgctxt "language"
+msgid "Arabic (Saudi Arabia)"
+msgstr "Арабский (Саудовская Аравия)"
+
+#: system/languages/l10n.php:720
+msgctxt "language"
+msgid "Arabic (Syria)"
+msgstr "Арабский (Сирия)"
+
+#: system/languages/l10n.php:721
+msgctxt "language"
+msgid "Arabic (Tunisia)"
+msgstr "Арабский (Тунис)"
+
+#: system/languages/l10n.php:722
+msgctxt "language"
+msgid "Arabic (U.A.E.)"
+msgstr "Арабский (ОАЭ)"
+
+#: system/languages/l10n.php:723
+msgctxt "language"
+msgid "Arabic (Yemen)"
+msgstr "Арабский (Йемен)"
+
+#: system/languages/l10n.php:724
+msgctxt "language"
+msgid "Arabic"
+msgstr "Арабский"
+
+#: system/languages/l10n.php:725
+msgctxt "language"
+msgid "Armenian"
+msgstr "Армянский"
+
+#: system/languages/l10n.php:726
+msgctxt "language"
+msgid "Assamese"
+msgstr "Ассамский"
+
+#: system/languages/l10n.php:727
+msgctxt "language"
+msgid "Azeri"
+msgstr "Азербайджанский"
+
+#: system/languages/l10n.php:728
+msgctxt "language"
+msgid "Basque"
+msgstr "Баскский"
+
+#: system/languages/l10n.php:729
+msgctxt "language"
+msgid "Belarusian"
+msgstr "Белорусский"
+
+#: system/languages/l10n.php:730
+msgctxt "language"
+msgid "Bengali"
+msgstr "Бенгальский"
+
+#: system/languages/l10n.php:731
+msgctxt "language"
+msgid "Bulgarian"
+msgstr "Болгарский"
+
+#: system/languages/l10n.php:732
+msgctxt "language"
+msgid "Catalan"
+msgstr "Каталанский"
+
+#: system/languages/l10n.php:733
+msgctxt "language"
+msgid "Chinese (China)"
+msgstr "Китайский (Китай)"
+
+#: system/languages/l10n.php:734
+msgctxt "language"
+msgid "Chinese (Hong Kong SAR)"
+msgstr "Китайский (Гонконг)"
+
+#: system/languages/l10n.php:735
+msgctxt "language"
+msgid "Chinese (Macau SAR)"
+msgstr "Китайский (Макао)"
+
+#: system/languages/l10n.php:736
+msgctxt "language"
+msgid "Chinese (Singapore)"
+msgstr "Китайский (Сингапур)"
+
+#: system/languages/l10n.php:737
+msgctxt "language"
+msgid "Chinese (Taiwan)"
+msgstr "Китайский (Тайвань)"
+
+#: system/languages/l10n.php:738
+msgctxt "language"
+msgid "Chinese (Simplified)"
+msgstr "Китайский (Упрощенный)"
+
+#: system/languages/l10n.php:739
+msgctxt "language"
+msgid "Chinese (Traditional)"
+msgstr "Китайский (Традиционный)"
+
+#: system/languages/l10n.php:740
+msgctxt "language"
+msgid "Chinese"
+msgstr "Китайский"
+
+#: system/languages/l10n.php:741
+msgctxt "language"
+msgid "Croatian"
+msgstr "Хорватский"
+
+#: system/languages/l10n.php:742
+msgctxt "language"
+msgid "Czech"
+msgstr "Czech"
+
+#: system/languages/l10n.php:743
+msgctxt "language"
+msgid "Danish"
+msgstr "Danish"
+
+#: system/languages/l10n.php:744
+msgctxt "language"
+msgid "Divehi"
+msgstr "Divehi"
+
+#: system/languages/l10n.php:745
+msgctxt "language"
+msgid "Dutch (Belgium)"
+msgstr "Dutch (Belgium)"
+
+#: system/languages/l10n.php:746
+msgctxt "language"
+msgid "Dutch (Netherlands)"
+msgstr "Dutch (Netherlands)"
+
+#: system/languages/l10n.php:747
+msgctxt "language"
+msgid "English (Australia)"
+msgstr "Английский (Автралия)"
+
+#: system/languages/l10n.php:748
+msgctxt "language"
+msgid "English (Belize)"
+msgstr "Английский (Белиз)"
+
+#: system/languages/l10n.php:749
+msgctxt "language"
+msgid "English (Canada)"
+msgstr "Английский (Канада)"
+
+#: system/languages/l10n.php:750
+msgctxt "language"
+msgid "English (Ireland)"
+msgstr "Английский (Ирландия)"
+
+#: system/languages/l10n.php:751
+msgctxt "language"
+msgid "English (Jamaica)"
+msgstr "Английский (Ямайка)"
+
+#: system/languages/l10n.php:752
+msgctxt "language"
+msgid "English (New Zealand)"
+msgstr "Английский (Новая Зеландия)"
+
+#: system/languages/l10n.php:753
+msgctxt "language"
+msgid "English (Philippines)"
+msgstr "Английский (Филипины)"
+
+#: system/languages/l10n.php:754
+msgctxt "language"
+msgid "English (South Africa)"
+msgstr "Английский (Южная Америка)"
+
+#: system/languages/l10n.php:755
+msgctxt "language"
+msgid "English (Trinidad)"
+msgstr "Английский (Тринидад)"
+
+#: system/languages/l10n.php:756
+msgctxt "language"
+msgid "English (United Kingdom)"
+msgstr "Английский (Объединенное Королевство)"
+
+#: system/languages/l10n.php:757 system/languages/l10n.php:760
+msgctxt "language"
+msgid "English (United States)"
+msgstr "Английский (Соединенные Штаты)"
+
+#: system/languages/l10n.php:758
+msgctxt "language"
+msgid "English (Zimbabwe)"
+msgstr "Английский (Зимбабве)"
+
+#: system/languages/l10n.php:761
+msgctxt "language"
+msgid "Estonian"
+msgstr "Эстонский"
+
+#: system/languages/l10n.php:762
+msgctxt "language"
+msgid "Faeroese"
+msgstr "Faeroese"
+
+#: system/languages/l10n.php:763
+msgctxt "language"
+msgid "Farsi"
+msgstr "Farsi"
+
+#: system/languages/l10n.php:764
+msgctxt "language"
+msgid "Finnish"
+msgstr "Финский"
+
+#: system/languages/l10n.php:765
+msgctxt "language"
+msgid "French (Belgium)"
+msgstr "Французкий (Бельгия)"
+
+#: system/languages/l10n.php:766
+msgctxt "language"
+msgid "French (Canada)"
+msgstr "Французкий (Канада)"
+
+#: system/languages/l10n.php:767
+msgctxt "language"
+msgid "French (Luxembourg)"
+msgstr "Франуцузкий (Люксембург)"
+
+#: system/languages/l10n.php:768
+msgctxt "language"
+msgid "French (Monaco)"
+msgstr "Французкий (Монако)"
+
+#: system/languages/l10n.php:769
+msgctxt "language"
+msgid "French (Switzerland)"
+msgstr "French (Switzerland)"
+
+#: system/languages/l10n.php:770
+msgctxt "language"
+msgid "French (France)"
+msgstr "Французкий (Франция)"
+
+#: system/languages/l10n.php:771
+msgctxt "language"
+msgid "FYRO Macedonian"
+msgstr "FYRO Macedonian"
+
+#: system/languages/l10n.php:772
+msgctxt "language"
+msgid "Gaelic"
+msgstr "Gaelic"
+
+#: system/languages/l10n.php:773
+msgctxt "language"
+msgid "Georgian"
+msgstr "Georgian"
+
+#: system/languages/l10n.php:774
+msgctxt "language"
+msgid "German (Austria)"
+msgstr "Немецкий (Австралия)"
+
+#: system/languages/l10n.php:775
+msgctxt "language"
+msgid "German (Liechtenstein)"
+msgstr "German (Liechtenstein)"
+
+#: system/languages/l10n.php:776
+msgctxt "language"
+msgid "German (Luxembourg)"
+msgstr "Немецкий (Люксембурский)"
+
+#: system/languages/l10n.php:777
+msgctxt "language"
+msgid "German (Switzerland)"
+msgstr "German (Switzerland)"
+
+#: system/languages/l10n.php:778
+msgctxt "language"
+msgid "German (Germany)"
+msgstr "Немецкий (Германия)"
+
+#: system/languages/l10n.php:779
+msgctxt "language"
+msgid "Greek"
+msgstr "Greek"
+
+#: system/languages/l10n.php:780
+msgctxt "language"
+msgid "Gujarati"
+msgstr "Gujarati"
+
+#: system/languages/l10n.php:781
+msgctxt "language"
+msgid "Hebrew"
+msgstr "Hebrew"
+
+#: system/languages/l10n.php:782
+msgctxt "language"
+msgid "Hindi"
+msgstr "Hindi"
+
+#: system/languages/l10n.php:783
+msgctxt "language"
+msgid "Hungarian"
+msgstr "Hungarian"
+
+#: system/languages/l10n.php:784
+msgctxt "language"
+msgid "Icelandic"
+msgstr "Icelandic"
+
+#: system/languages/l10n.php:785
+msgctxt "language"
+msgid "Indonesian"
+msgstr "Indonesian"
+
+#: system/languages/l10n.php:786
+msgctxt "language"
+msgid "Italian (Switzerland)"
+msgstr "Italian (Switzerland)"
+
+#: system/languages/l10n.php:787
+msgctxt "language"
+msgid "Italian (Italy)"
+msgstr "Итальянский (Италия)"
+
+#: system/languages/l10n.php:788
+msgctxt "language"
+msgid "Japanese"
+msgstr "Японский"
+
+#: system/languages/l10n.php:789
+msgctxt "language"
+msgid "Kannada"
+msgstr "Kannada"
+
+#: system/languages/l10n.php:790
+msgctxt "language"
+msgid "Kazakh"
+msgstr "Kazakh"
+
+#: system/languages/l10n.php:791
+msgctxt "language"
+msgid "Konkani"
+msgstr "Konkani"
+
+#: system/languages/l10n.php:792
+msgctxt "language"
+msgid "Korean"
+msgstr "Корейский"
+
+#: system/languages/l10n.php:793
+msgctxt "language"
+msgid "Kyrgyz"
+msgstr "Kyrgyz"
+
+#: system/languages/l10n.php:794
+msgctxt "language"
+msgid "Latvian"
+msgstr "Latvian"
+
+#: system/languages/l10n.php:795
+msgctxt "language"
+msgid "Lithuanian"
+msgstr "Lithuanian"
+
+#: system/languages/l10n.php:796
+msgctxt "language"
+msgid "Malay"
+msgstr "Malay"
+
+#: system/languages/l10n.php:797
+msgctxt "language"
+msgid "Malayalam"
+msgstr "Malayalam"
+
+#: system/languages/l10n.php:798
+msgctxt "language"
+msgid "Maltese"
+msgstr "Maltese"
+
+#: system/languages/l10n.php:799
+msgctxt "language"
+msgid "Marathi"
+msgstr "Marathi"
+
+#: system/languages/l10n.php:800
+msgctxt "language"
+msgid "Mongolian (Cyrillic)"
+msgstr "Mongolian (Cyrillic)"
+
+#: system/languages/l10n.php:801
+msgctxt "language"
+msgid "Nepali (India)"
+msgstr "Nepali (India)"
+
+#: system/languages/l10n.php:802 system/languages/l10n.php:804
+msgctxt "language"
+msgid "Norwegian (Bokmal)"
+msgstr "Norwegian (Bokmal)"
+
+#: system/languages/l10n.php:803
+msgctxt "language"
+msgid "Norwegian (Nynorsk)"
+msgstr "Norwegian (Nynorsk)"
+
+#: system/languages/l10n.php:805
+msgctxt "language"
+msgid "Oriya"
+msgstr "Oriya"
+
+#: system/languages/l10n.php:806
+msgctxt "language"
+msgid "Polish"
+msgstr "Польский"
+
+#: system/languages/l10n.php:807
+msgctxt "language"
+msgid "Portuguese (Brazil)"
+msgstr "Португальский (Бразилия)"
+
+#: system/languages/l10n.php:808
+msgctxt "language"
+msgid "Portuguese (Portugal)"
+msgstr "Португальский (Португалия)"
+
+#: system/languages/l10n.php:809
+msgctxt "language"
+msgid "Punjabi"
+msgstr "Punjabi"
+
+#: system/languages/l10n.php:810
+msgctxt "language"
+msgid "Rhaeto-Romanic"
+msgstr "Rhaeto-Romanic"
+
+#: system/languages/l10n.php:811
+msgctxt "language"
+msgid "Romanian (Moldova)"
+msgstr "Romanian (Moldova)"
+
+#: system/languages/l10n.php:812
+msgctxt "language"
+msgid "Romanian"
+msgstr "Romanian"
+
+#: system/languages/l10n.php:813
+msgctxt "language"
+msgid "Russian (Moldova)"
+msgstr "Русский (Молдова)"
+
+#: system/languages/l10n.php:814
+msgctxt "language"
+msgid "Russian"
+msgstr "Русский"
+
+#: system/languages/l10n.php:815
+msgctxt "language"
+msgid "Sanskrit"
+msgstr "Sanskrit"
+
+#: system/languages/l10n.php:816
+msgctxt "language"
+msgid "Serbian"
+msgstr "Сербский"
+
+#: system/languages/l10n.php:817
+msgctxt "language"
+msgid "Slovak"
+msgstr "Slovak"
+
+#: system/languages/l10n.php:818
+msgctxt "language"
+msgid "Slovenian"
+msgstr "Slovenian"
+
+#: system/languages/l10n.php:819
+msgctxt "language"
+msgid "Sorbian"
+msgstr "Sorbian"
+
+#: system/languages/l10n.php:820
+msgctxt "language"
+msgid "Spanish (Argentina)"
+msgstr "Spanish (Argentina)"
+
+#: system/languages/l10n.php:821
+msgctxt "language"
+msgid "Spanish (Bolivia)"
+msgstr "Spanish (Bolivia)"
+
+#: system/languages/l10n.php:822
+msgctxt "language"
+msgid "Spanish (Chile)"
+msgstr "Spanish (Chile)"
+
+#: system/languages/l10n.php:823
+msgctxt "language"
+msgid "Spanish (Colombia)"
+msgstr "Spanish (Colombia)"
+
+#: system/languages/l10n.php:824
+msgctxt "language"
+msgid "Spanish (Costa Rica)"
+msgstr "Spanish (Costa Rica)"
+
+#: system/languages/l10n.php:825
+msgctxt "language"
+msgid "Spanish (Dominican Republic)"
+msgstr "Spanish (Dominican Republic)"
+
+#: system/languages/l10n.php:826
+msgctxt "language"
+msgid "Spanish (Ecuador)"
+msgstr "Spanish (Ecuador)"
+
+#: system/languages/l10n.php:827
+msgctxt "language"
+msgid "Spanish (El Salvador)"
+msgstr "Spanish (El Salvador)"
+
+#: system/languages/l10n.php:828
+msgctxt "language"
+msgid "Spanish (Guatemala)"
+msgstr "Spanish (Guatemala)"
+
+#: system/languages/l10n.php:829
+msgctxt "language"
+msgid "Spanish (Honduras)"
+msgstr "Spanish (Honduras)"
+
+#: system/languages/l10n.php:830
+msgctxt "language"
+msgid "Spanish (Mexico)"
+msgstr "Spanish (Mexico)"
+
+#: system/languages/l10n.php:831
+msgctxt "language"
+msgid "Spanish (Nicaragua)"
+msgstr "Spanish (Nicaragua)"
+
+#: system/languages/l10n.php:832
+msgctxt "language"
+msgid "Spanish (Panama)"
+msgstr "Spanish (Panama)"
+
+#: system/languages/l10n.php:833
+msgctxt "language"
+msgid "Spanish (Paraguay)"
+msgstr "Spanish (Paraguay)"
+
+#: system/languages/l10n.php:834
+msgctxt "language"
+msgid "Spanish (Peru)"
+msgstr "Spanish (Peru)"
+
+#: system/languages/l10n.php:835
+msgctxt "language"
+msgid "Spanish (Puerto Rico)"
+msgstr "Spanish (Puerto Rico)"
+
+#: system/languages/l10n.php:836
+msgctxt "language"
+msgid "Spanish (United States)"
+msgstr "Spanish (United States)"
+
+#: system/languages/l10n.php:837
+msgctxt "language"
+msgid "Spanish (Uruguay)"
+msgstr "Spanish (Uruguay)"
+
+#: system/languages/l10n.php:838
+msgctxt "language"
+msgid "Spanish (Venezuela)"
+msgstr "Spanish (Venezuela)"
+
+#: system/languages/l10n.php:839
+msgctxt "language"
+msgid "Spanish (Traditional Sort)"
+msgstr "Spanish (Traditional Sort)"
+
+#: system/languages/l10n.php:840
+msgctxt "language"
+msgid "Sutu"
+msgstr "Sutu"
+
+#: system/languages/l10n.php:841
+msgctxt "language"
+msgid "Swahili"
+msgstr "Swahili"
+
+#: system/languages/l10n.php:842
+msgctxt "language"
+msgid "Swedish (Finland)"
+msgstr "Swedish (Finland)"
+
+#: system/languages/l10n.php:843
+msgctxt "language"
+msgid "Swedish"
+msgstr "Swedish"
+
+#: system/languages/l10n.php:844
+msgctxt "language"
+msgid "Syriac"
+msgstr "Syriac"
+
+#: system/languages/l10n.php:845
+msgctxt "language"
+msgid "Tamil"
+msgstr "Tamil"
+
+#: system/languages/l10n.php:846
+msgctxt "language"
+msgid "Tatar"
+msgstr "Tatar"
+
+#: system/languages/l10n.php:847
+msgctxt "language"
+msgid "Telugu"
+msgstr "Telugu"
+
+#: system/languages/l10n.php:848
+msgctxt "language"
+msgid "Thai"
+msgstr "Тайский"
+
+#: system/languages/l10n.php:849
+msgctxt "language"
+msgid "Tsonga"
+msgstr "Tsonga"
+
+#: system/languages/l10n.php:850
+msgctxt "language"
+msgid "Tswana"
+msgstr "Tswana"
+
+#: system/languages/l10n.php:851
+msgctxt "language"
+msgid "Turkish"
+msgstr "Turkish"
+
+#: system/languages/l10n.php:852
+msgctxt "language"
+msgid "Ukrainian"
+msgstr "Украинский"
+
+#: system/languages/l10n.php:853
+msgctxt "language"
+msgid "Urdu"
+msgstr "Urdu"
+
+#: system/languages/l10n.php:854
+msgctxt "language"
+msgid "Uzbek"
+msgstr "Uzbek"
+
+#: system/languages/l10n.php:855
+msgctxt "language"
+msgid "Uyghurche (China)"
+msgstr "Уйгурский (Китай)"
+
+#: system/languages/l10n.php:856
+msgctxt "language"
+msgid "Vietnamese"
+msgstr "Vietnamese"
+
+#: system/languages/l10n.php:857
+msgctxt "language"
+msgid "Xhosa"
+msgstr "Xhosa"
+
+#: system/languages/l10n.php:858
+msgctxt "language"
+msgid "Yiddish"
+msgstr "Yiddish"
+
+#: system/languages/l10n.php:859
+msgctxt "language"
+msgid "Zulu"
+msgstr "Zulu"
+
+#~ msgid ""
+#~ "It is hidden in the page, you should change 'Detailed Description' option "
+#~ "in settings if you want show this."
+#~ msgstr "该栏已隐藏，如果您想显示它，您需要在设置中更改'详细描述'选项。"
+
+#~ msgid "If leave a blank will do not display."
+#~ msgstr "留空则不显示。"
+
+#~ msgid "Select"
+#~ msgstr "选择"
+
+#~ msgid ""
+#~ "If you have enabled mod_xsendfile on Apache or configured \"allow-x-send-"
+#~ "file\" option on Lighttpd,<br/> and DCRM not automatically enable x-"
+#~ "sendfile function, you can enable that in here.<br><b>WARNING:</b> If you "
+#~ "don't know what this is, please make this off, otherwise packages "
+#~ "download may not work."
+#~ msgstr ""
+#~ "如果您已启用了 Apache 的 mod_xsendfile 或已在 Lighttpd 上配置好 \"allow-x-"
+#~ "send-file\" 选项，<br/>若 DCRM 没有自动启用 x-sendfile 功能，您可以在此开"
+#~ "启。<br><b>注意:</b> 如果您不知道这是什么，请保持关闭状态，否则软件包可能"
+#~ "无法正常下载。"
+
+#~ msgid "Database Error!"
+#~ msgstr "数据库错误！"
+
+#~ msgid ""
+#~ "This program is free software, you can redistribute it and/or modify it "
+#~ "under the terms of the <a href=\"http://www.gnu.org/licenses\">GNU "
+#~ "General Public License</a> as published by the Free Software Foundation "
+#~ "either version 3 of the License."
+#~ msgstr ""
+#~ "本程序是自由软件，修改和重新发布应该遵照自由软件基金会出版的 <a href="
+#~ "\"http://www.gnu.org/licenses\">GNU 通用公共许可证条款第三版</a>。"
+
+#~ msgid "'%s' already exists"
+#~ msgstr "'%s' 已经存在"
+
+#~ msgid "'%s' uploaded successfully!"
+#~ msgstr "'%s' 上传成功！"
+
+#~ msgid "'%s' upload failed!"
+#~ msgstr "'%s' 上传失败！"
+
+#~ msgid "Displayed on the homepage for the user to add."
+#~ msgstr "展示在首页供用户添加"
+
+#~ msgid "Too high: Maximum of '20'"
+#~ msgstr "过高：最大不得超过 20"
+
+#~ msgid "The maximum must not exceed 20."
+#~ msgstr "最大不得超过 20 条"
+
+#~ msgid "General Editor"
+#~ msgstr "常规编辑"
+
+#~ msgid "Settings"
+#~ msgstr "设置"
+
+#~ msgctxt "SEO"
+#~ msgid "Domain"
+#~ msgstr "SEO 域名"

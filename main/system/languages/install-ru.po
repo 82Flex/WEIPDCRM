@@ -1,0 +1,752 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: DCRM Installer\n"
+"POT-Creation-Date: 2015-05-16 22:15+0800\n"
+"PO-Revision-Date: 2016-05-09 23:57+1000\n"
+"Last-Translator: Hintay <hintay@me.com>\n"
+"Language-Team: Shlyahten.ru <sketch@shlyahten.ru>\n"
+"Language: ru\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 1.7.3\n"
+"X-Poedit-Basepath: ../..\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Poedit-KeywordsList: __;_e;_n:1,2;_x:1,2c;_ex:1,2c;_nx:4c,1,2;esc_attr__;"
+"esc_attr_e;esc_attr_x:1,2c;esc_html__;esc_html_e;esc_html_x:1,2c;_n_noop:1,2;"
+"_nx_noop:3c,1,2;__ngettext_noop:1,2\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"X-Poedit-SearchPath-0: ./install\n"
+
+#: install/function.php:45 install/function.php:75 install/function.php:82
+msgid "No Limit"
+msgstr "Без ограничений"
+
+#: install/function.php:45
+msgid "Unix-like"
+msgstr "UNIX-подобная ОС"
+
+#: install/function.php:73
+msgid "The GD module cannot be loaded"
+msgstr "Невозможно загрузить GD модуль"
+
+#: install/function.php:256 install/function.php:258 install/function.php:263
+#: install/function.php:265 install/function.php:267 install/function.php:271
+#: install/function.php:273 install/function.php:275 install/function.php:277
+msgid "Warning: "
+msgstr "Внимание: "
+
+#: install/function.php:256
+msgid ""
+"The server does not support the cURL function, DCRM will not be able to use."
+msgstr "Сервер не поддерживает функцию cURL, DCRM не может быть использован."
+
+#: install/function.php:258
+msgid ""
+"The server does not support the URL Rewrite, DCRM will not be able to use."
+msgstr ""
+"The server does not support the URL Rewrite, DCRM will not be able to use."
+
+#: install/function.php:263
+msgid ""
+"The file '/system/config/connect.inc.php' already exists. If you need to "
+"reset any of the configuration items in this file, please delete it first."
+msgstr ""
+"The file '/system/config/connect.inc.php' already exists. If you need to "
+"reset any of the configuration items in this file, please delete it first."
+
+#: install/function.php:265
+msgid ""
+"Sorry, I need a /system/config/connect.inc.default.php file to work from. "
+"Please re-upload this file from your DCRM installation."
+msgstr ""
+"Sorry, I need a /system/config/connect.inc.default.php file to work from. "
+"Please re-upload this file from your DCRM installation."
+
+#: install/function.php:267
+msgid ""
+"<code>/system/config/</code> directory is not writable. Please change the "
+"directory properties or create the connect.inc.php manually (you can see "
+"connect.inc.default.php)"
+msgstr ""
+"<code>/system/config/</code> directory is not writable. Please change the "
+"directory properties or create the connect.inc.php manually (you can see "
+"connect.inc.default.php)"
+
+#: install/function.php:271
+msgid ""
+"Sorry, I need a /system/config/config.inc.default.php file to work from. "
+"Please re-upload this file from your DCRM installation."
+msgstr ""
+"Sorry, I need a /system/config/config.inc.default.php file to work from. "
+"Please re-upload this file from your DCRM installation."
+
+#: install/function.php:273
+msgid ""
+"Sorry, I need a /system/config/gnupg.inc.default.php file to work from. "
+"Please re-upload this file from your DCRM installation."
+msgstr ""
+"Sorry, I need a /system/config/gnupg.inc.default.php file to work from. "
+"Please re-upload this file from your DCRM installation."
+
+#: install/function.php:275
+msgid ""
+"Sorry, I need a /system/config/autofill.inc.default.php file to work from. "
+"Please re-upload this file from your DCRM installation."
+msgstr ""
+"Sorry, I need a /system/config/autofill.inc.default.php file to work from. "
+"Please re-upload this file from your DCRM installation."
+
+#: install/function.php:277
+msgid ""
+"<code>/system/config/</code> directory is not writable. Please change the "
+"directory properties."
+msgstr ""
+"<code>/system/config/</code> directory is not writable. Please change the "
+"directory properties."
+
+#: install/setup-check.php:25
+msgid "OS"
+msgstr "OS"
+
+#: install/setup-check.php:26
+msgid "PHP Ver"
+msgstr "PHP Ver"
+
+#: install/setup-check.php:27
+msgid "GD Ver"
+msgstr "GD Ver"
+
+#: install/setup-check.php:28
+msgid "Disk Space"
+msgstr "Дисковое пространство"
+
+#: install/setup-check.php:29
+msgid "Writeable"
+msgstr "Записываемый"
+
+#: install/setup-check.php:30
+msgid "Unwriteable"
+msgstr "Не записываемый"
+
+#: install/setup-check.php:31
+msgid "Supported"
+msgstr "Поддерживается"
+
+#: install/setup-check.php:32
+msgid "Unsupported"
+msgstr "Не поддерживается"
+
+#: install/setup-check.php:33
+msgid "Unsupported this PHP Version"
+msgstr "Не поддерживается этой версии PHP"
+
+#: install/setup-check.php:34
+msgid "GD module version is too low"
+msgstr "Версия GD модуля слишком низка"
+
+#: install/setup-check.php:35
+msgid "Not enough disk space"
+msgstr "Недостаточно места на диске"
+
+#: install/setup-check.php:36
+msgid "No './' directory read-write permissions"
+msgstr "У каталога './' нет разрешения на чтение-запись"
+
+#: install/setup-check.php:37
+msgid "No './system/config' directory read-write permissions"
+msgstr "No './system/config' directory read-write permissions"
+
+#: install/setup-check.php:38
+msgid "Mysql module not support"
+msgstr "Mysql module not support"
+
+#: install/setup-check.php:39
+msgid "Does not support the fsockopen function or the function is disabled"
+msgstr "Does not support the fsockopen function or the function is disabled"
+
+#: install/setup-check.php:40
+msgid ""
+"Does not support the fsockopen function and curl module or the function is "
+"disabled"
+msgstr ""
+"Does not support the fsockopen function and curl module or the function is "
+"disabled"
+
+#: install/setup-check.php:41
+msgid ""
+"Does not support the file_get_contents function or the function is disabled"
+msgstr ""
+"Does not support the file_get_contents function or the function is disabled"
+
+#: install/setup-check.php:42
+msgid ""
+"Does not support the mhash function or the function is disabled, maybe can "
+"not use GPG function."
+msgstr ""
+"Does not support the mhash function or the function is disabled, maybe can "
+"not use GPG function."
+
+#: install/setup-check.php:43
+msgid ""
+"Does not support the bzcompresss function or the function is disabled, maybe "
+"can not use list compress function."
+msgstr ""
+"Does not support the bzcompresss function or the function is disabled, maybe "
+"can not use list compress function."
+
+#: install/setup-check.php:44
+msgid ""
+"Does not support the zlib function or the function is disabled, maybe can "
+"not use list compress function."
+msgstr ""
+"Does not support the zlib function or the function is disabled, maybe can "
+"not use list compress function."
+
+#: install/setup-check.php:45
+msgid ""
+"Does not support the mhash or hash_hmac function, maybe can not use list "
+"compress function."
+msgstr ""
+"Does not support the mhash or hash_hmac function, maybe can not use list "
+"compress function."
+
+#: install/setup-check.php:48
+msgid "Environments Check"
+msgstr "Проверка среды"
+
+#: install/setup-check.php:58
+msgid "Project"
+msgstr "Проект"
+
+#: install/setup-check.php:59
+msgid "Required"
+msgstr "Обязательно"
+
+#: install/setup-check.php:60
+msgid "Best"
+msgstr "Лучший"
+
+#: install/setup-check.php:61
+msgid "Current Server"
+msgstr "Текущий сервер"
+
+#: install/setup-check.php:62 install/setup-check.php:99
+#: install/setup-check.php:134
+msgid "Result"
+msgstr "Результат"
+
+#: install/setup-check.php:89
+msgid "Private Check"
+msgstr "Индивидуальная проверка"
+
+#: install/setup-check.php:97
+msgid "Directorys"
+msgstr "Каталоги"
+
+#: install/setup-check.php:98 install/setup-check.php:133
+msgid "Status"
+msgstr "Статус"
+
+#: install/setup-check.php:124
+msgid "Functions Depend Check"
+msgstr "Проверка системных зависимостей?"
+
+#: install/setup-check.php:132
+msgid "Function Name"
+msgstr "Имя функции"
+
+#: install/setup-config.php:27
+msgid "Configuration Wizard"
+msgstr "Мастер Настройки"
+
+#: install/setup-config.php:48
+msgid "Welcome to DCRM!"
+msgstr "Добро пожаловать в DCRM!"
+
+#: install/setup-config.php:49
+msgid "is a Darwin Cydia Repository Manager write by PHP."
+msgstr "is a Darwin Cydia Repository Manager write by PHP."
+
+#: install/setup-config.php:49
+msgid ""
+"This project is a original designs by <a href=\"http://weibo.cn/"
+"u/3246210680\">@i_82</a>, and some codes by <a href=\"http://weibo.com/hintay"
+"\">@Hintay</a>."
+msgstr ""
+"This project is a original designs by <a href=\"http://weibo.cn/"
+"u/3246210680\">@i_82</a>, and some codes by <a href=\"http://weibo.com/hintay"
+"\">@Hintay</a>."
+
+#: install/setup-config.php:50
+msgid ""
+"If you pay close attention to <a href=\"http://weibo.cn/u/3246210680\">i_82</"
+"a> and some of his <a href=\"http://82flex.com/projects\">projects</a>. Also "
+"wanted to help him, welcome to donate him."
+msgstr ""
+"If you pay close attention to <a href=\"http://weibo.cn/u/3246210680\">i_82</"
+"a> and some of his <a href=\"http://82flex.com/projects\">projects</a>. Also "
+"wanted to help him, welcome to donate him."
+
+#: install/setup-config.php:52
+msgid "Credits"
+msgstr "Благодарности"
+
+#: install/setup-config.php:53
+msgid "Touch Sprite Team"
+msgstr "Команда Touch Sprite"
+
+#: install/setup-config.php:53 install/setup-config.php:54
+#: install/setup-config.php:55
+msgctxt "Punctuation"
+msgid ", "
+msgstr ", "
+
+#: install/setup-config.php:53
+msgid "WeiPhone"
+msgstr "WeiPhone"
+
+#: install/setup-config.php:53
+msgctxt "Credits"
+msgid "support"
+msgstr "поддержка"
+
+#: install/setup-config.php:54
+msgid "E-pal"
+msgstr "E-pal"
+
+#: install/setup-config.php:55
+msgid "WeiPhone Test Group"
+msgstr "Группа тестировщиков WeiPhone"
+
+#: install/setup-config.php:55 install/setup-config.php:56
+msgid "WeiPhone Technology Group"
+msgstr "Команда WeiPhone Technology"
+
+#: install/setup-config.php:55
+msgid "provide viewpoints"
+msgstr "provide viewpoints"
+
+#: install/setup-config.php:56 install/setup-config.php:57
+msgid "'s articles: "
+msgstr " "
+
+#: install/setup-config.php:57
+msgid "Also, the father of the Cydia™"
+msgstr "А также, создатель Cydia™"
+
+#: install/setup-config.php:60
+msgid ""
+"Before getting started, you will need to know the following items before "
+"proceeding."
+msgstr ""
+"Before getting started, you will need to know the following items before "
+"proceeding."
+
+#: install/setup-config.php:62
+msgid "Database name"
+msgstr "Имя базы данных"
+
+#: install/setup-config.php:63
+msgid "Database username"
+msgstr "Имя пользователя"
+
+#: install/setup-config.php:64
+msgid "Database password"
+msgstr "Пароль"
+
+#: install/setup-config.php:65
+msgid "Database host"
+msgstr "Хост базы данных"
+
+#: install/setup-config.php:66
+msgid ""
+"Table prefix (if you want to run more than one DCRM in a single database)"
+msgstr ""
+"Table prefix (if you want to run more than one DCRM in a single database)"
+
+#: install/setup-config.php:68
+msgid ""
+"If for any reason you can&#8217;t enter next step, don&#8217;t worry. All "
+"this does is fill in the database information to a configuration file. You "
+"may also simply open <code>/system/config/connect.inc.default.php</code> in "
+"a text editor, fill in your information, and save it as <code>connect.inc."
+"php</code>."
+msgstr ""
+"If for any reason you can&#8217;t enter next step, don&#8217;t worry. All "
+"this does is fill in the database information to a configuration file. You "
+"may also simply open <code>/system/config/connect.inc.default.php</code> in "
+"a text editor, fill in your information, and save it as <code>connect.inc."
+"php</code>."
+
+#: install/setup-config.php:69
+msgid ""
+"Recommendations before the installation read the accompanying documentation "
+"(readme.html), if still not understand of place, can post them to <a href="
+"\"https://github.com/Lessica/WEIPDCRM/issues/new\">GitHub Issues</a>."
+msgstr ""
+"Recommendations before the installation read the accompanying documentation "
+"(readme.html), if still not understand of place, can post them to <a href="
+"\"https://github.com/Lessica/WEIPDCRM/issues/new\">GitHub Issues</a>."
+
+#: install/setup-config.php:70
+msgid "If you&#8217;re all ready&hellip;"
+msgstr "If you&#8217;re all ready&hellip;"
+
+#: install/setup-config.php:73
+msgid "Can&#8217;t start!"
+msgstr "Can&#8217;t start!"
+
+#: install/setup-config.php:75
+msgid "Let&#8217;s go!"
+msgstr "Let&#8217;s go!"
+
+#: install/setup-config.php:84 install/setup-install.php:456
+msgid "Check again"
+msgstr "Проверить еще раз"
+
+#: install/setup-config.php:86 install/setup-config.php:110
+#: install/setup-install.php:458
+msgid "Error!"
+msgstr "Ошибка!"
+
+#: install/setup-config.php:88
+msgctxt "Button"
+msgid "Next"
+msgstr "Далее"
+
+#: install/setup-config.php:99
+msgid ""
+"Below you should enter your database connection details. If you&#8217;re not "
+"sure about these, contact your host."
+msgstr ""
+"Below you should enter your database connection details. If you&#8217;re not "
+"sure about these, contact your host."
+
+#: install/setup-config.php:101
+msgid "Database Host"
+msgstr "Хост базы данных"
+
+#: install/setup-config.php:101
+msgid "Required, generally is 'localhost'"
+msgstr "Required, generally is 'localhost'"
+
+#: install/setup-config.php:102
+msgid "Database Port"
+msgstr "Порт базы данных"
+
+#: install/setup-config.php:102
+msgid "Required, generally is '3306'"
+msgstr "Required, generally is '3306'"
+
+#: install/setup-config.php:103
+msgid "User Name"
+msgstr "Имя пользователя"
+
+#: install/setup-config.php:103
+msgid "Your MySQL username"
+msgstr "Ваше имя пользователя MySQL"
+
+#: install/setup-config.php:104 install/setup-install.php:436
+msgid "Password"
+msgstr "Пароль"
+
+#: install/setup-config.php:104
+msgid "&hellip;and your MySQL password."
+msgstr "&hellip;and your MySQL password."
+
+#: install/setup-config.php:105
+msgid "Database Name"
+msgstr "Имя базы данных"
+
+#: install/setup-config.php:105
+msgid "The name of the database you want to run DCRM in."
+msgstr "The name of the database you want to run DCRM in."
+
+#: install/setup-config.php:106
+msgid "Table Prefix"
+msgstr "Префикс таблицы"
+
+#: install/setup-config.php:106
+msgid ""
+"If you want to run multiple DCRM installations in a single database, change "
+"this."
+msgstr ""
+"If you want to run multiple DCRM installations in a single database, change "
+"this."
+
+#: install/setup-config.php:107
+msgid "Keep the connection to the database server"
+msgstr "Keep the connection to the database server"
+
+#: install/setup-config.php:112
+msgid "Submit"
+msgstr "Отправить"
+
+#: install/setup-config.php:128
+msgid "Try again"
+msgstr "Повторите попытку"
+
+#: install/setup-config.php:139
+msgid "<strong>ERROR</strong>: \"Table Prefix\" must not be empty."
+msgstr "<strong>ERROR</strong>: \"Table Prefix\" must not be empty."
+
+#: install/setup-config.php:145
+msgid ""
+"<strong>ERROR</strong>: \"Table Prefix\" can only contain numbers, letters, "
+"and underscores."
+msgstr ""
+"<strong>ERROR</strong>: \"Table Prefix\" can only contain numbers, letters, "
+"and underscores."
+
+#: install/setup-config.php:162 install/setup-install.php:68
+msgid "<strong>ERROR</strong>: Can&#8217;t connect database server."
+msgstr "<strong>ERROR</strong>: Can&#8217;t connect database server."
+
+#: install/setup-config.php:169
+msgid ""
+"<strong>ERROR</strong>: Can&#8217;t create database, please check your input "
+"information."
+msgstr ""
+"<strong>ERROR</strong>: Can&#8217;t create database, please check your input "
+"information."
+
+#: install/setup-config.php:176
+msgid ""
+"<strong>ERROR</strong>: Can&#8217;t select database, please check your input "
+"information."
+msgstr ""
+"<strong>ERROR</strong>: Can&#8217;t select database, please check your input "
+"information."
+
+#: install/setup-config.php:221
+msgid ""
+"All right, sparky! You&#8217;ve made it through this part of the "
+"installation. DCRM can now communicate with your database. If you are ready, "
+"time now to&hellip;"
+msgstr ""
+"All right, sparky! You&#8217;ve made it through this part of the "
+"installation. DCRM can now communicate with your database. If you are ready, "
+"time now to&hellip;"
+
+#: install/setup-config.php:223
+msgid "Run the install"
+msgstr "Запуск установки"
+
+#: install/setup-install.php:45
+msgid "Installer"
+msgstr "Установщик"
+
+#: install/setup-install.php:78
+msgid "Already Installed"
+msgstr "Уже установлено"
+
+#: install/setup-install.php:78
+msgid ""
+"You appear to have already installed DCRM. To reinstall please clear your "
+"old database tables first."
+msgstr ""
+"You appear to have already installed DCRM. To reinstall please clear your "
+"old database tables first."
+
+#: install/setup-install.php:78 install/setup-install.php:446
+msgid "Log In"
+msgstr "Войти"
+
+#: install/setup-install.php:107
+msgid "Repository Title"
+msgstr "Название репозитория"
+
+#: install/setup-install.php:111
+msgid "Repository URL"
+msgstr "URL Репозитория"
+
+#: install/setup-install.php:114
+msgid ""
+"Displayed on the homepage for the user to add, and used for the autofill "
+"package's Depiction when import."
+msgstr ""
+"Displayed on the homepage for the user to add, and used for the autofill "
+"package's Depiction when import."
+
+#: install/setup-install.php:118 install/setup-install.php:432
+msgid "Username"
+msgstr "Имя пользователя"
+
+#: install/setup-install.php:121
+msgid ""
+"Usernames can have only alphanumeric characters, spaces, underscores, "
+"hyphens, periods, and the @ symbol."
+msgstr ""
+"Имена пользователей могут иметь только буквенно-цифровые символы, пробелы, "
+"подчеркивания, дефисы, точки и символ @."
+
+#: install/setup-install.php:126
+msgid "Password, twice"
+msgstr "Пароль, дважды"
+
+#: install/setup-install.php:127
+msgid ""
+"A password will be automatically generated for you if you leave this blank."
+msgstr "Пароль будет создан автоматически если вы оставите это поле пустым."
+
+#: install/setup-install.php:132 install/setup-install.php:149
+msgid "Strength indicator"
+msgstr "Надёжность пароля"
+
+#: install/setup-install.php:133
+msgid ""
+"Hint: The password should be at least seven characters long. To make it "
+"stronger, use upper and lower case letters, numbers, and symbols like ! \" ? "
+"$ % ^ &amp; )."
+msgstr ""
+"Подсказка: пароль должен быть не менее семи символов. Чтобы сделать его "
+"сильнее, используйте буквы верхнего и нижнего регистра, цифры и символы « ? "
+"$ % ^ &amp; )."
+
+#: install/setup-install.php:137
+msgid "Your E-mail"
+msgstr "Ваш E-mail"
+
+#: install/setup-install.php:139
+msgid "Double-check your email address before continuing."
+msgstr "Прежде чем продолжить, дважды проверьте свой адрес электронной почты."
+
+#: install/setup-install.php:142
+msgid "Install DCRM"
+msgstr "Установить DCRM"
+
+#: install/setup-install.php:149
+msgctxt "Password"
+msgid "Short"
+msgstr "Короткий"
+
+#: install/setup-install.php:149
+msgctxt "Password"
+msgid "Bad"
+msgstr "Плохой"
+
+#: install/setup-install.php:149
+msgctxt "Password"
+msgid "Good"
+msgstr "Хороший"
+
+#: install/setup-install.php:149
+msgctxt "Password"
+msgid "Strong"
+msgstr "Надежный"
+
+#: install/setup-install.php:149
+msgctxt "Password"
+msgid "Mismatch"
+msgstr "Несоответствие"
+
+#: install/setup-install.php:159
+msgctxt "Howdy"
+msgid "Welcome"
+msgstr "Добро пожаловать"
+
+#: install/setup-install.php:163
+msgid "Note: "
+msgstr "Примечание: "
+
+#: install/setup-install.php:163
+msgid ""
+"If you want to recreate <code>connect.inc.php</code>, please click <a href="
+"\"./setup-config.php\">here</a>."
+msgstr ""
+"If you want to recreate <code>connect.inc.php</code>, please click <a href="
+"\"./setup-config.php\">here</a>."
+
+#: install/setup-install.php:165
+msgid ""
+"Welcome to the DCRM installation process! Just fill in the information below."
+msgstr ""
+"Welcome to the DCRM installation process! Just fill in the information below."
+
+#: install/setup-install.php:167
+msgid "Information needed"
+msgstr "Запрашивается информация"
+
+#: install/setup-install.php:168
+msgid ""
+"Please provide the following information. Don&#8217;t worry, you can always "
+"change these settings later."
+msgstr ""
+"Please provide the following information. Don&#8217;t worry, you can always "
+"change these settings later."
+
+#: install/setup-install.php:187
+msgid "Please provide a valid username."
+msgstr "Пожалуйста, введите правильное имя пользователя."
+
+#: install/setup-install.php:190
+msgid "The username you provided has invalid characters."
+msgstr "Имя пользователя содержит недопустимые символы."
+
+#: install/setup-install.php:193
+msgid "Your passwords do not match. Please try again."
+msgstr "Ваши пароли не совпадают. Повторите попытку."
+
+#: install/setup-install.php:196
+msgid "You must provide an email address."
+msgstr "Необходимо ввести адрес электронной почты."
+
+#: install/setup-install.php:199
+msgid ""
+"Sorry, that isn&#8217;t a valid email address. Email addresses look like "
+"<code>username@example.com</code>."
+msgstr ""
+"К сожалению, это не действительный адрес электронной почты. Адрес "
+"электронной должен выглядеть как <code>username@example.com</code>."
+
+#: install/setup-install.php:328
+msgid "Guest"
+msgstr "Гость"
+
+#: install/setup-install.php:335
+msgid "Your chosen password."
+msgstr "Вами выбранный пароль."
+
+#: install/setup-install.php:417
+msgid "Success!"
+msgstr "Успех!"
+
+#: install/setup-install.php:419
+msgid ""
+"DCRM has been installed. Were you expecting more steps? Sorry to disappoint."
+msgstr "DCRM был установлен. Вы ожидали больше шагов? Жаль разочаровывать."
+
+#: install/setup-install.php:424
+msgid "Something wrong..."
+msgstr "Что-то пошло не так..."
+
+#: install/setup-install.php:426
+msgid ""
+"DCRM has been installed, but some files have not been copied. Please copy "
+"all <code>*.inc.default.php</code> to <code>*.inc.php</code> in <code>/"
+"system/config/</code> and chmod to 0666."
+msgstr ""
+"DCRM has been installed, but some files have not been copied. Please copy "
+"all <code>*.inc.default.php</code> to <code>*.inc.php</code> in <code>/"
+"system/config/</code> and chmod to 0666."
+
+#: install/setup-install.php:460
+msgid "Continue"
+msgstr "Продолжить"
+
+#~ msgid "Also, and the father of the Cydia™"
+#~ msgstr "Cydia™ ئەسلى قورغۇچىسى"
+
+#~ msgid "Displayed on the homepage for the user to add."
+#~ msgstr "展示在首页供用户添加"
+
+#~ msgid "No './manage/include' directory read-write permissions"
+#~ msgstr "没有./manage/include目录的读写权限 "
+
+#~ msgid "Notice: "
+#~ msgstr "提醒："
+
+#~ msgctxt "Howdy1"
+#~ msgid "Welcome"
+#~ msgstr "测试三|"

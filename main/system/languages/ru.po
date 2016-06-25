@@ -1,0 +1,385 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: DCRM Front\n"
+"POT-Creation-Date: 2016-05-10 00:02+1000\n"
+"PO-Revision-Date: 2016-05-10 00:02+1000\n"
+"Last-Translator: Hintay <hintay@me.com>\n"
+"Language-Team: Shlyahten.ru <sketch@shlyahten.ru>\n"
+"Language: ru\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 1.7.3\n"
+"X-Poedit-Basepath: ../../\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
+"%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+"X-Poedit-KeywordsList: __;_e;_n:1,2;_x:1,2c;_ex:1,2c;_nx:4c,1,2;esc_attr__;"
+"esc_attr_e;esc_attr_x:1,2c;esc_html__;esc_html_e;esc_html_x:1,2c;_n_noop:1,2;"
+"_nx_noop:3c,1,2;__ngettext_noop:1,2\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"X-Poedit-SearchPath-0: .\n"
+"X-Poedit-SearchPathExcluded-0: manage\n"
+"X-Poedit-SearchPathExcluded-1: install\n"
+"X-Poedit-SearchPathExcluded-2: system\n"
+"X-Poedit-SearchPathExcluded-3: bak\n"
+
+#: commercial.php:130
+msgid "Purchase Product"
+msgstr "Купить"
+
+#: commercial.php:140
+msgid "Package Protected"
+msgstr "Пакет защищен"
+
+#: commercial.php:147
+msgid "Package Officially Purchased"
+msgstr "Пакет официально куплен"
+
+#: commercial.php:154
+msgid "Allowed To Download"
+msgstr "Загрузка разрешена"
+
+#: index.php:64 misc.php:31
+msgid "No Name"
+msgstr "Безымяный"
+
+#: index.php:76 misc.php:41
+msgid "Empty Page"
+msgstr "Пустая страница"
+
+#: index.php:82 index.php:671 index.php:1017 index.php:1042
+msgid "View Screenshots"
+msgstr "Просмотреть скриншоты"
+
+#: index.php:111 index.php:701 index.php:1144 index.php:1190
+msgid "Report Problems"
+msgstr "Сообщить о проблемах"
+
+#: index.php:114 index.php:687 index.php:1197
+msgid "Version History"
+msgstr "История версий"
+
+#: index.php:117 index.php:313
+msgid "Contact us"
+msgstr "Связь с нами"
+
+#: index.php:120 index.php:491 index.php:1381
+msgid "Package Category"
+msgstr "Категория пакета"
+
+#: index.php:167
+msgid "View Package"
+msgstr "Просмотреть пакет"
+
+#: index.php:246
+msgid "Add in Cydia<sup><small>™</small></sup>"
+msgstr "Добавить в Cydia<sup><small>™</small></sup>"
+
+#: index.php:272
+msgid "Add this URL via Cydia<sup><small>™</small></sup>: "
+msgstr "Добавить этот URL через Cydia<sup><small>™</small></sup>: "
+
+#: index.php:285
+#, php-format
+msgid "<strong>%d</strong> packages in total."
+msgstr "<strong>%d</strong> пакет(-а, -ов) всего."
+
+#: index.php:288
+#, php-format
+msgid "Last updated: <strong>%s</strong>"
+msgstr "Последний раз обновлено: <strong>%s</strong>"
+
+#: index.php:300
+msgid "Visit Home Page"
+msgstr "Посетить домашнюю старницу"
+
+#: index.php:384 index.php:772
+msgid ""
+"Donate via <span style=\"font-style: italic; font-weight: bold\"><span style="
+"\"color: #1a3665\">Pay</span><span style=\"color: #32689a\">Pal</"
+"span><sup><small>™</small></sup></span>"
+msgstr ""
+"Поддержите через <span style=\"font-style: italic; font-weight: bold\"><span "
+"style=\"color: #1a3665\">Pay</span><span style=\"color: #32689a\">Pal</"
+"span><sup><small>™</small></sup></span>"
+
+#: index.php:400 index.php:788
+#, php-format
+msgid ""
+"Donate via <span style=\"font-style: italic; font-weight: bold\"><img class="
+"\"alipay\" src=\"%salipay_text_en.png\" /><sup><small >™</small></sup></span>"
+msgstr ""
+"Поддержите через <span style=\"font-style: italic; font-weight: bold\"><img "
+"class=\"alipay\" src=\"%salipay_text_en.png\" /><sup><small >™</small></"
+"sup></span>"
+
+#: index.php:418 index.php:485 index.php:1003 index.php:1244 index.php:1338
+msgid "MySQL Error!"
+msgstr "Ошибка MySQL!"
+
+#: index.php:466 index.php:1369
+msgid "More..."
+msgstr "Еще..."
+
+#: index.php:527 index.php:956
+msgid "Source Info"
+msgstr "Информация об источнике"
+
+#: index.php:548
+msgid "Index"
+msgstr "Индекс"
+
+#: index.php:551
+#, php-format
+msgid "Copyright &copy; %s"
+msgstr "Copyright &copy; %s"
+
+#: index.php:567 index.php:1254
+msgid "Invalid package!<br />Perhaps this package has been deleted by us."
+msgstr "Поврежденный пакет!<br />Возможно, этот пакет был удален нами."
+
+#: index.php:580
+msgid "View in Cydia<sup><small>™</small></sup>"
+msgstr "Просмотр в Cydia<sup><small>™</small></sup>"
+
+#: index.php:623 index.php:1273
+msgid "Author"
+msgstr "Автор"
+
+#: index.php:644
+msgid "Download"
+msgstr "Скачать"
+
+#: index.php:803
+msgid "More Info"
+msgstr "Больше информации"
+
+#: index.php:845
+msgid "Version"
+msgstr "Версия"
+
+#: index.php:845
+msgid "Downloads"
+msgstr "Загрузок"
+
+#: index.php:846
+msgid "Last Updated"
+msgstr "Последний раз обновлено"
+
+#: index.php:872
+msgid "In this version"
+msgstr "В этой версии"
+
+#: index.php:891
+msgid "Changelogs"
+msgstr "Списки изменений"
+
+#: index.php:921 index.php:944
+msgid "Fold Comments"
+msgstr "Скрыть комментарии"
+
+#: index.php:947
+msgid "Unfold Comments"
+msgstr "Раскрыть комментарии"
+
+#: index.php:1036
+msgid "No screenshots now."
+msgstr "Нет скриншотов."
+
+#: index.php:1042 index.php:1144 index.php:1190 index.php:1381
+#, php-format
+msgid "The %s function is disabled."
+msgstr "Функция %s была отключена."
+
+#: index.php:1047
+msgid "Current Device Info"
+msgstr "Информация о данном девайсе"
+
+#: index.php:1090
+msgid "Submit Your Request"
+msgstr "Отправить ваш запрос"
+
+#: index.php:1097
+msgid "Request for updating"
+msgstr "Запрос для обновления?"
+
+#: index.php:1103
+msgid "Compatibility Reports"
+msgstr "Совместимые отчеты"
+
+#: index.php:1110
+msgid "Fully Compatibile"
+msgstr "Полностью совместимо"
+
+#: index.php:1120
+msgid "Partly Compatibile"
+msgstr "Частично совместимо"
+
+#: index.php:1130
+msgid "Not Compatibile"
+msgstr "Несовместимо"
+
+#: index.php:1138
+msgid ""
+"<p><strong>The software package compatibility report is voted by the "
+"majority of users, and we generated these statistical data, for reference "
+"only.</strong></p><hr /><p>If you have compatibility issues after "
+"installation, your vote, may be able to help tens of thousands of users from "
+"safe mode and many other threats.</p>"
+msgstr ""
+"<p><strong>Совместимость пакета программного обеспечения была обжалована "
+"большинством пользователей, и мы создали эту статистику только для "
+"ознакомления.</strong></p><hr /><p>Если у вас есть проблемы с совместимостью "
+"после установки, то ваш отчет может помочь десяткам тысячам пользователей "
+"избежать safe mode и  других проблем.</p>"
+
+#: index.php:1158
+msgid "Your report has been submitted.<br />Thanks for your support!"
+msgstr "Ваш отчет был отправлен.<br />Спасибо за поддержку!"
+
+#: index.php:1168
+msgid ""
+"Please use Cydia to vote.<br />Each device is limited to vote for 2 times!"
+msgstr ""
+"Пожалуйста, используйте Cydia для голосования.<br />С каждого девайса можно "
+"голосовать только 2 раза!"
+
+#: index.php:1179
+msgid "You have reached the voting limit."
+msgstr "Вы достигли лимит голосования."
+
+#: index.php:1208
+msgid "Unknown change."
+msgstr "Неизвестное изменение."
+
+#: index.php:1220
+msgid "View This Version"
+msgstr "Просмотреть эту версию"
+
+#: index.php:1233
+msgid "No version history now."
+msgstr "Нет истории версий."
+
+#: index.php:1266
+msgid ""
+"Source manager can <strong>NOT</strong> solve the function problem of "
+"package: you <strong>MUST</strong> contact the author."
+msgstr ""
+"Менеджер <strong>НЕ</strong> решил проблему пакета: вы <strong>ДОЛЖНЫ</"
+"strong> связаться с автором."
+
+#: index.php:1290
+msgid ""
+"If the package is a commercial package, you can contact the sponsor to "
+"obtain commercial support."
+msgstr ""
+"Если пакет коммерческий, вы можете связаться со спонсором для коммерческой "
+"поддержки."
+
+#: index.php:1297
+msgid "Sponsor"
+msgstr "Спонсор"
+
+#: index.php:1313
+msgid ""
+"If you have questions when install or uninstall this package, please contact "
+"the maintainer."
+msgstr ""
+"Если у вас есть вопросы по поводу установки или удаления этого пакета, то, "
+"пожалуйста, свяжитесь с поддержкой."
+
+#: index.php:1319
+msgid "Maintainer"
+msgstr "Поддержка"
+
+#: index.php:1348
+msgid "Invalid section!<br />Perhaps this section has been deleted by us."
+msgstr "Поврежденная секция!<br />Возможно, эта секция была удалена нами."
+
+#: index.php:1359
+#, php-format
+msgid "<strong>%s</strong> packages in this section."
+msgstr "<strong>%s</strong> пакет(а)(ов) в этой секции."
+
+#: index.php:1360
+#, php-format
+msgid "Create time: <strong>%s</strong>"
+msgstr "Дата создания: <strong>%s</strong>"
+
+#: misc.php:91
+#, php-format
+msgid "Welcome to <a href=\"%1$s\">Add</a> <code>%2$s</code> via Cydia."
+msgstr ""
+"Добро пожаловать! Вы можете <a href=\"%1$s\">Добавить наш репо</a> <code>"
+"%2$s</code> через Cydia."
+
+#: misc.php:93
+msgid "Enter Cydia/APT URL"
+msgstr "Введите Cydia/APT URL"
+
+#: misc.php:96
+msgid "Cancel"
+msgstr "Отмена"
+
+#: misc.php:99
+msgid "Add Source"
+msgstr "Добавить"
+
+#: misc.php:111
+msgid "This page is available to Safari only."
+msgstr "Эта страница доступна только в Safari."
+
+#: misc.php:120
+#, php-format
+msgid "My Favourite Repo: %1$s(%2$s)"
+msgstr "Мой избранный репо: %1$s(%2$s)"
+
+#: misc.php:125
+msgid "Share To"
+msgstr "Рассказать"
+
+#: misc.php:133
+msgid "Powered by <a href=\"http://82flex.com/projects\">DCRM</a>."
+msgstr "При поддержке <a href=\"http://82flex.com/projects\">DCRM</a>."
+
+#: misc.php:138
+msgid ""
+"Dear manager, please follow the steps on <a href=\"init/index.html\">Install "
+"Introduction</a> first."
+msgstr ""
+"Дорогой менеджер, пожалуйста проследуйте указаниям из <a href=\"init/index."
+"html\">Введения установки</a>."
+
+#~ msgid ""
+#~ "Welcome to <a href=\"cydia://sources/add\">Add</a> <code>%s</code> via "
+#~ "Cydia."
+#~ msgstr ""
+#~ "欢迎通过 Cydia <a href=\"cydia://sources/add\">添加</a> <code>%s</code> 访"
+#~ "问本源。"
+
+#~ msgid ""
+#~ "Donate via <span style=\"font-style: italic; font-weight: bold\"><img "
+#~ "class=\"alipay\" src=\"icons/default/alipay_text_en.png\" /><sup><small "
+#~ ">™</small></sup></span>"
+#~ msgstr ""
+#~ "前往 <span style=\"font-style: italic; font-weight: bold\"><img class="
+#~ "\"alipay\" src=\"icons/default/alipay_text.png\" /><sup><small >™</"
+#~ "small></sup></span> 捐助"
+
+#~ msgid "Device Info"
+#~ msgstr "设备信息"
+
+#~ msgid "In this version:"
+#~ msgstr "本版更新："
+
+#~ msgid "Changelogs:"
+#~ msgstr "更新日志："
+
+#~ msgid "Purchase"
+#~ msgstr "购买"
+
+#~ msgid "Recheck"
+#~ msgstr "重新检查"
+
+#~ msgid "Download Times"
+#~ msgstr "下载次数"
