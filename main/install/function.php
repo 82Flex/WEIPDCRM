@@ -27,11 +27,17 @@ if (!defined("DCRM")) {
 define('ABSPATH', dirname(dirname(__FILE__)).'/');
 define('CONF_PATH', ABSPATH.'system/config/');
 define('VERSION', '1.7.15.12.12');
+if ( function_exists( 'mysqli_connect' ) )
+	define('USE_MYSQLI', true);
 
 /* 错误抑制 */
 define('DEBUG_ENABLED', isset($_GET['debug']));
 error_reporting(DEBUG_ENABLED ? E_ALL & !E_NOTICE & !E_STRICT : E_ERROR | E_PARSE);
 @ini_set('display_errors', DEBUG_ENABLED);
+
+/* 数据库类 */
+include_once './installer-db.php';
+$db = new DB();
 
 /* 载入语言 */
 $localetype = 'install';
@@ -148,13 +154,15 @@ function check_func(&$result)
 						'zlib' => 'gzcompress',
 						'mhash' => array('mhash', 'hash_hmac')
 						);
+	if (defined('USE_MYSQLI'))
+		$func_items['mysql'] = 'mysqli_connect';
 	$check_func_items = array();
 	foreach ($func_items as $key => $var) {
 		if ('mhash' == $key) {
 			if (!dcrm_function_exists($var[0]) && !dcrm_function_exists($var[1])) {
-				$check_func_items[implode(',', $var).'( )'] = array('s' => 'unsupportted_both', 'state' => false);
+				$check_func_items[implode(', ', $var).'( )'] = array('s' => 'unsupportted_both', 'state' => false);
 			} else {
-				$check_func_items[$var[0].'( ),'.$var[1].'( )'] = array('s' => 'supportted', 'state' => true);
+				$check_func_items[$var[0].'( ), '.$var[1].'( )'] = array('s' => 'supportted', 'state' => true);
 			}
 		} elseif('bz2' == $key || 'zlib' == $key){
 			if (dcrm_function_exists($var)) {
@@ -459,15 +467,6 @@ function dcrm_unslash( $value ) {
 	}
 
 	return $value;
-}
-
-function dcrm_query( $sql ){
-	$result = mysql_query($sql);
-	if (!$result) {
-		$inst_alert = mysql_error();
-		echo $inst_alert; 
-		exit();
-	}
 }
 
 /**

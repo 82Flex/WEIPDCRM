@@ -46,12 +46,8 @@ $step = isset($_GET['step']) ? $_GET['step'] : 0;
 require_once(CONF_PATH.'connect.inc.php');
 
 // Test Connect
-$con = mysql_connect(DCRM_CON_SERVER.':'.(defined("DCRM_CON_SERVER_PORT") ? DCRM_CON_SERVER_PORT : '3306'), DCRM_CON_USERNAME, DCRM_CON_PASSWORD);
-if (!$con) {
-	$inst_alert = mysql_error();
-	_e('<strong>ERROR</strong>: Can&#8217;t connect database server.') . '<br/>' . $inst_alert; 
-	exit();
-}
+$db->_dbconnect();
+$db->set_charset($db->curlink, 'utf8');
 
 // Make sure DCRM is not already installed.
 // Check installed.lock file.
@@ -62,9 +58,9 @@ if(file_exists(CONF_PATH.'installed.lock')) {
 	exit();
 }
 // Check database.
-$result = mysql_query("SHOW TABLES FROM `".DCRM_CON_DATABASE."` LIKE '".DCRM_CON_PREFIX."Packages'");
-if ($result && mysql_num_rows($result) != 0) {
-	mysql_error();
+$result = $db->query("SHOW TABLES FROM `".DCRM_CON_DATABASE."` LIKE '".DCRM_CON_PREFIX."Packages'");
+if ($result && $db->num_rows($result) != 0) {
+	$db->error();
 
 	display_header();
 	echo '<h1>' . __('Already Installed') . '</h1><p>' . __('You appear to have already installed DCRM. You should clear your old database tables before reinstall.') . '</p><p class="step"><a href="../manage/login.php" class="button button-large">' . __('Log In') . '</a></p></body></html>';
@@ -200,20 +196,16 @@ switch($step) {
 		}
 		
 		if ( $error === false ) {
-			dcrm_query("SET FOREIGN_KEY_CHECKS=0");
-			dcrm_query("SET character_set_connection=utf8, character_set_results=utf8, character_set_client=binary");
+			$db->query("SET FOREIGN_KEY_CHECKS=0");
+			//$db->set_charset($db->curlink, 'utf8');
 
-			dcrm_query("CREATE DATABASE IF NOT EXISTS `".DCRM_CON_DATABASE."`");
+			$db->_query("CREATE DATABASE IF NOT EXISTS `".DCRM_CON_DATABASE."`");
 
-			$result = mysql_select_db(DCRM_CON_DATABASE);
-			if (!$result) {
-				$inst_alert = mysql_error();
-				echo $inst_alert; 
-				exit();
-			}
+			$result = $db->select_db(DCRM_CON_DATABASE);
+			if (!$result) $db->halt();
 
-			dcrm_query("DROP TABLE IF EXISTS `".DCRM_CON_PREFIX."Packages`");
-			dcrm_query("CREATE TABLE `".DCRM_CON_PREFIX."Packages` (
+			$db->_query("DROP TABLE IF EXISTS `".DCRM_CON_PREFIX."Packages`");
+			$db->_query("CREATE TABLE `".DCRM_CON_PREFIX."Packages` (
 			 `ID` int(8) NOT NULL AUTO_INCREMENT,
 			 `Package` varchar(512) NOT NULL,
 			 `Source` varchar(512) NOT NULL,
@@ -266,8 +258,8 @@ switch($step) {
 			 PRIMARY KEY (`ID`)
 			) ENGINE=MyISAM AUTO_INCREMENT=0 DEFAULT CHARSET=utf8");
 
-			dcrm_query("DROP TABLE IF EXISTS `".DCRM_CON_PREFIX."Sections`");
-			dcrm_query("CREATE TABLE `".DCRM_CON_PREFIX."Sections` (
+			$db->_query("DROP TABLE IF EXISTS `".DCRM_CON_PREFIX."Sections`");
+			$db->_query("CREATE TABLE `".DCRM_CON_PREFIX."Sections` (
 			 `ID` int(8) NOT NULL AUTO_INCREMENT,
 			 `Name` varchar(512) NOT NULL,
 			 `Icon` varchar(512) NOT NULL,
@@ -275,10 +267,10 @@ switch($step) {
 			 PRIMARY KEY (`ID`)
 			) ENGINE=MyISAM AUTO_INCREMENT=0 DEFAULT CHARSET=utf8");
 
-			dcrm_query("DROP TABLE IF EXISTS `".DCRM_CON_PREFIX."ScreenShots`");
+			$db->_query("DROP TABLE IF EXISTS `".DCRM_CON_PREFIX."ScreenShots`");
 
-			dcrm_query("DROP TABLE IF EXISTS `".DCRM_CON_PREFIX."Reports`");
-			dcrm_query("CREATE TABLE `".DCRM_CON_PREFIX."Reports` (
+			$db->_query("DROP TABLE IF EXISTS `".DCRM_CON_PREFIX."Reports`");
+			$db->_query("CREATE TABLE `".DCRM_CON_PREFIX."Reports` (
 			 `ID` int(8) NOT NULL AUTO_INCREMENT,
 			 `PID` int(8) NOT NULL,
 			 `Remote` varchar(64) NOT NULL,
@@ -290,8 +282,8 @@ switch($step) {
 			 PRIMARY KEY (`ID`)
 			) ENGINE=MyISAM AUTO_INCREMENT=0 DEFAULT CHARSET=utf8");
 
-			dcrm_query("DROP TABLE IF EXISTS `".DCRM_CON_PREFIX."Users`");
-			dcrm_query("CREATE TABLE `".DCRM_CON_PREFIX."Users` (
+			$db->_query("DROP TABLE IF EXISTS `".DCRM_CON_PREFIX."Users`");
+			$db->_query("CREATE TABLE `".DCRM_CON_PREFIX."Users` (
 			 `ID` int(8) NOT NULL AUTO_INCREMENT PRIMARY KEY,
 			 `Username` varchar(64) NOT NULL,
 			 `SHA1` varchar(128) NOT NULL,
@@ -299,8 +291,8 @@ switch($step) {
 			 `Power` int(8) NOT NULL
 			) ENGINE=MyISAM AUTO_INCREMENT=0 DEFAULT CHARSET=utf8");
 
-			dcrm_query("DROP TABLE IF EXISTS `".DCRM_CON_PREFIX."UDID`");
-			dcrm_query('CREATE TABLE `'.DCRM_CON_PREFIX.'UDID` (
+			$db->_query("DROP TABLE IF EXISTS `".DCRM_CON_PREFIX."UDID`");
+			$db->_query('CREATE TABLE `'.DCRM_CON_PREFIX.'UDID` (
 				`ID` int(8) NOT NULL AUTO_INCREMENT,
 				`UDID` varchar(128) NOT NULL,
 				`Level` int(8) NOT NULL DEFAULT \'0\',
@@ -313,8 +305,8 @@ switch($step) {
 				PRIMARY KEY (`ID`)
 				) ENGINE=MyISAM AUTO_INCREMENT=0 DEFAULT CHARSET=utf8');
 
-			dcrm_query("DROP TABLE IF EXISTS `".DCRM_CON_PREFIX."Options`");
-			dcrm_query('CREATE TABLE `'.DCRM_CON_PREFIX.'Options` (
+			$db->_query("DROP TABLE IF EXISTS `".DCRM_CON_PREFIX."Options`");
+			$db->_query('CREATE TABLE `'.DCRM_CON_PREFIX.'Options` (
 				`option_id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT,
 				`option_name` varchar(64) NOT NULL,
 				`option_value` longtext NOT NULL,
@@ -323,15 +315,15 @@ switch($step) {
 				) ENGINE=MyISAM AUTO_INCREMENT=0 DEFAULT CHARSET=utf8');
 
 			// Insert Options SQL
-			dcrm_query("INSERT INTO `".DCRM_CON_PREFIX."Options` (`option_name`, `option_value`) VALUES ('udid_level', '" . serialize(array( __('Guest'), '')) . "') ON DUPLICATE KEY UPDATE `option_name` = VALUES(`option_name`), `option_value` = VALUES(`option_value`)");
-			dcrm_query("INSERT INTO `".DCRM_CON_PREFIX."Options` (`option_name`, `option_value`) VALUES ('autofill_depiction', '2') ON DUPLICATE KEY UPDATE `option_name` = VALUES(`option_name`), `option_value` = VALUES(`option_value`)");
+			$db->_query("INSERT INTO `".DCRM_CON_PREFIX."Options` (`option_name`, `option_value`) VALUES ('udid_level', '" . serialize(array( __('Guest'), '')) . "') ON DUPLICATE KEY UPDATE `option_name` = VALUES(`option_name`), `option_value` = VALUES(`option_value`)");
+			$db->_query("INSERT INTO `".DCRM_CON_PREFIX."Options` (`option_name`, `option_value`) VALUES ('autofill_depiction', '2') ON DUPLICATE KEY UPDATE `option_name` = VALUES(`option_name`), `option_value` = VALUES(`option_value`)");
 			// Rewrite Option
 			if (available(BASE_URL.'rewritetest') !== 200)
-				dcrm_query("INSERT INTO `".DCRM_CON_PREFIX."Options` (`option_name`, `option_value`) VALUES ('rewrite_mod', '1') ON DUPLICATE KEY UPDATE `option_name` = VALUES(`option_name`), `option_value` = VALUES(`option_value`)");
+				$db->_query("INSERT INTO `".DCRM_CON_PREFIX."Options` (`option_name`, `option_value`) VALUES ('rewrite_mod', '1') ON DUPLICATE KEY UPDATE `option_name` = VALUES(`option_name`), `option_value` = VALUES(`option_value`)");
 			elseif (available(BASE_URL.'misc') !== 200 && available(BASE_URL.'misc') !== 500)
-				dcrm_query("INSERT INTO `".DCRM_CON_PREFIX."Options` (`option_name`, `option_value`) VALUES ('rewrite_mod', '2') ON DUPLICATE KEY UPDATE `option_name` = VALUES(`option_name`), `option_value` = VALUES(`option_value`)");
+				$db->_query("INSERT INTO `".DCRM_CON_PREFIX."Options` (`option_name`, `option_value`) VALUES ('rewrite_mod', '2') ON DUPLICATE KEY UPDATE `option_name` = VALUES(`option_name`), `option_value` = VALUES(`option_value`)");
 			else
-				dcrm_query("INSERT INTO `".DCRM_CON_PREFIX."Options` (`option_name`, `option_value`) VALUES ('rewrite_mod', '3') ON DUPLICATE KEY UPDATE `option_name` = VALUES(`option_name`), `option_value` = VALUES(`option_value`)");
+				$db->_query("INSERT INTO `".DCRM_CON_PREFIX."Options` (`option_name`, `option_value`) VALUES ('rewrite_mod', '3') ON DUPLICATE KEY UPDATE `option_name` = VALUES(`option_name`), `option_value` = VALUES(`option_value`)");
 
 
 			if ( empty($admin_password) ) {
@@ -340,7 +332,7 @@ switch($step) {
 			} else {
 				$password_message = '<em>'.__('Your chosen password.').'</em>';
 			}
-			dcrm_query("INSERT INTO `".DCRM_CON_PREFIX."Users` (`Username`, `SHA1`, `LastLoginTime`, `Power`)
+			$db->_query("INSERT INTO `".DCRM_CON_PREFIX."Users` (`Username`, `SHA1`, `LastLoginTime`, `Power`)
 			  VALUES ('". $user_name ."', '" . sha1( dcrm_slash( $admin_password ) ) . "', '0000-00-00 00:00:00', '1')");
 
 			// Copy *.inc.default.php to *.inc.php and config it.

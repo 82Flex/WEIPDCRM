@@ -34,7 +34,7 @@ if (isset($_SESSION['connected']) && $_SESSION['connected'] === true) {
 					<?php _e('Open source Repository Manager for Cydia™/APT.'); ?></h3><br />
 					<h4><?php _e('Developer'); ?></h4>
 					<?php _e('Main Program: '); ?><a href="http://weibo.com/hintay">@Hintay</a><?php _ex(', ' , 'Punctuation'); ?><?php _e('WeiPhone Test Group'); ?><a href="http://weibo.com/82flex">@i_82</a><br />
-					<?php _e('Contributors: '); ?><a href="http://weibo.com/jacky189">@Jackyxyz</a><br />
+					<?php _e('Contributors: '); ?><a href="http://weibo.com/jacky189">@0xJacky</a><br />
 					<?php _e('UI Design:'); ?><a href="http://weibo.com/hintay">@Hintay</a><br /><br />
 					<h4><?php _e('Credits'); ?></h4>
 					<?php _e('Touch Sprite Team'); ?> @Z<?php _ex(', ' , 'Punctuation'); ?>@F<?php _ex(', ' , 'Punctuation'); ?>@K<?php _ex(', ' , 'Punctuation'); ?><?php _e('WeiPhone'); ?> <a href="http://weibo.cn/375584554">@飄Sir</a> <?php _ex('support' , 'Credits'); ?><br />
@@ -51,7 +51,7 @@ if (isset($_SESSION['connected']) && $_SESSION['connected'] === true) {
 					<br />
 					<h4><?php _e('Help translate DCRM into your language'); ?></h4>
 					<p>You can help us translate DCRM so it may come available into more regions and countries. Please contact us if you're willing to help!</p><br/>
-					<h4><?php _e('Copyright'); ?>&copy; 2013–<?php echo date('Y'); ?> i_82 &amp; Hintay<br />
+					<h4><?php _e('Copyright'); ?>&copy; 2013–<?php echo date('Y'); ?> Hintay &amp; i_82<br />
 					<?php _e('This program is free software, you can redistribute it and/or modify it under the terms of the <a href="http://www.gnu.org/licenses">GNU Affero General Public License</a> as published by the Free Software Foundation either version 3 of the License.'); ?></h4></div>
 				</div>
 			</div>

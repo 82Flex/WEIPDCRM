@@ -59,7 +59,7 @@ $__['error_mhash,hash_hmac( )'] = __('Does not support the mhash or hash_hmac fu
 			<th><?php _e( 'Required' ); ?></th>
 			<th><?php _e( 'Best' );?></th>
 			<th><?php _e( 'Current Server' );?></th>
-			<th class="r-b"><?php _e( 'Result' );?></th>	
+			<th class="r-b"><?php _e( 'Result' );?></th>
 		</tr>
 		<?php if ($env_vars):?>
 		<?php foreach ($env_vars as $key => $item):?>
@@ -136,7 +136,7 @@ if ($item['state'] == false) {
 		<?php if ($func_vars):?>
 		<?php foreach ($func_vars as $key => $item):?>
 		<tr>
-			<td><?php echo $key;?>  </td>
+			<td><?php echo $key;?></td>
 			<td class="<?php echo $item['state'] ? $item['state'] : 'false';?>"><?php echo $__[$item['s']];?></td>
 			<td><span class="icon-<?php if ($item['state'] == true):?>true<?php else:?>false<?php endif;?>"></span></td>
 		</tr>

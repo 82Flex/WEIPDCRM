@@ -20,7 +20,7 @@
  */
  
 header('Content-Type: text/html; charset=utf-8');
-define("DCRM",true);
+define("DCRM", true);
 
 error_reporting(E_ALL ^ E_WARNING);
 require_once('function.php');
@@ -108,7 +108,7 @@ switch($step) {
 		<tr><th scope="row"><label for="pwd"><?php _e( 'Password' ); ?></label></th><td><input name="pwd" id="pwd" type="text" size="35" value="" /></td><td><?php _e( '&hellip;and your MySQL password.' ); ?></td></tr>
 		<tr><th scope="row"><label for="dbname"></label><?php _e('Database Name'); ?></th><td><input name="dbname" id="dbname" type="text" size="35" value="cydia" /></td><td><?php _e( 'The name of the database you want to run DCRM in.' ); ?></td></tr>
 		<tr><th scope="row"><label for="prefix"><?php _e( 'Table Prefix' ); ?></label></th><td><input name="prefix" id="prefix" type="text" size="35" value="apt_" /></td><td><?php _e( 'If you want to run multiple DCRM installations in a single database, change this.' ); ?></td></tr>
-		<?php if(function_exists('mysql_pconnect')){ ?><tr><th scope="row"></th><td><input type="checkbox" value="1" name="pconnect"><?php _e( 'Keep the connection to the database server' ); ?></td><td></td></tr><?php } ?>
+		<?php if(function_exists('mysql_pconnect') && !defined('USE_MYSQLI')){ ?><tr><th scope="row"></th><td><input type="checkbox" value="1" name="pconnect"><?php _e( 'Keep the connection to the database server' ); ?></td><td></td></tr><?php } ?>
 	</table>
 	<?php if ($notice !== '') { ?>
 		<p class="step"><a href="setup-config.php?<?php echo $step_language; ?>" class="button"><?php _e( 'Error!' ); ?></a></p>
@@ -130,6 +130,7 @@ switch($step) {
 		display_header($notice);
 
 		$tryagain_link = '<p class="step"><a href="setup-config.php?step=2&amp;' . $step_language . '" onclick="javascript:history.go(-1);return false;" class="button">' . __('Try again') . '</a>';
+		$db->tryagain_link = $tryagain_link;
 
 		$dbhost = trim($_POST['dbhost']);
 		$dbport = intval(trim($_POST['dbport']));
@@ -150,7 +151,7 @@ switch($step) {
 			break;
 		}
 
-		// Test the db connection.
+		// Test the database connection.
 		define('DCRM_CON_SERVER', $dbhost);
 		define('DCRM_CON_SERVER_PORT', $dbport);
 		define('DCRM_CON_USERNAME', $uname);
@@ -160,26 +161,15 @@ switch($step) {
 		define('DCRM_CON_PCONNECT', $pconnect);
 
 		// Connect to Server
-		$con = mysql_connect("{$dbhost}:{$dbport}", DCRM_CON_USERNAME, DCRM_CON_PASSWORD);
-		if (!$con) {
-			$inst_alert = mysql_error();
-			_e('<strong>ERROR</strong>: Can&#8217;t connect database server.') . '<br/>' . $inst_alert . $tryagain_link; 
-			exit();
-		}
+		$db->_dbconnect();
 
-		$result = mysql_query("CREATE DATABASE IF NOT EXISTS `".DCRM_CON_DATABASE."`");
-		if (!$result) {
-			$inst_alert = mysql_error();
-			_e('<strong>ERROR</strong>: Can&#8217;t create database, please check your input information.') . '<br/>' . $inst_alert . $tryagain_link; 
-			break;
-		}
+		$result = $db->query("CREATE DATABASE IF NOT EXISTS `".DCRM_CON_DATABASE."`");
+		if (!$result)
+			$db->halt(__('<strong>ERROR</strong>: Can&#8217;t create database, please check your input information.'));
 
-		$result = mysql_select_db(DCRM_CON_DATABASE);
-		if (!$result) {
-			$inst_alert = mysql_error();
-			_e('<strong>ERROR</strong>: Can&#8217;t select database, please check your input information.') . '<br/>' . $inst_alert . $tryagain_link; 
-			break;
-		}
+		$result = $db->select_db(DCRM_CON_DATABASE);
+		if (!$result)
+			$db->halt(__('<strong>ERROR</strong>: Can&#8217;t select database, please check your input information.'));
 
 		$config_file = file( CONF_PATH . 'connect.inc.default.php' );
 		foreach ( $config_file as $line_num => $line ) {
