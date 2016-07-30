@@ -1,10 +1,10 @@
 <?php
 if (!defined('IN_DCRM')) exit();
-class error {
+class Crash {
 	public static function system_error($message, $show = true, $halt = true) {
-		list($showtrace, $logtrace) = error::debug_backtrace();
+		list($showtrace, $logtrace) = Crash::debug_backtrace();
 		if ($show) {
-			error::show_error('system', "<li>$message</li>", $showtrace, 0);
+			Crash::show_error('system', "<li>$message</li>", $showtrace, 0);
 		}
 		if ($halt) {
 			exit();
@@ -41,7 +41,7 @@ class error {
 	}
 	public static function db_error($message, $sql) {
 		global $_G;
-		list($showtrace, $logtrace) = error::debug_backtrace();
+		list($showtrace, $logtrace) = Crash::debug_backtrace();
 		$db = &DB::object();
 		$dberrno = $db->errno();
 		$dberror = str_replace($db->tablepre, '', $db->error());
@@ -49,7 +49,7 @@ class error {
 		$msg = '<li>'.$message.'</li>';
 		$msg .= $dberrno ? '<li>['.$dberrno.'] '.$dberror.'</li>' : '';
 		$msg .= $sql ? '<li>[Query] '.$sql.'</li>' : '';
-		error::show_error('db', $msg, $showtrace, false);
+		Crash::show_error('db', $msg, $showtrace, false);
 		exit();
 	}
 	public static function exception_error($exception) {

@@ -372,15 +372,15 @@ function base_url($is_subdir = false) {
 	define('SITE_URL', $siteurl);
 }
 function is_HTTPS(){  
-	if(!isset($_SERVER['HTTPS']))  return FALSE;  
-	if($_SERVER['HTTPS'] === 1){  // Apache  
-		return TRUE;  
-	}elseif($_SERVER['HTTPS'] === 'on'){ // IIS  
-		return TRUE;  
-	}elseif($_SERVER['SERVER_PORT'] == 443){ // Other
-		return TRUE;  
-	}  
-	return FALSE;  
+	if( !isset( $_SERVER['HTTPS'] ) ) return FALSE;
+	if( $_SERVER['HTTPS'] === 1 ){  // Apache
+		return TRUE;
+	} elseif ( $_SERVER['HTTPS'] === 'on' ){ // IIS
+		return TRUE;
+	} elseif ( $_SERVER['SERVER_PORT'] == 443 ){ // Other
+		return TRUE;
+	}
+	return FALSE;
 }  
 function url_scheme(){
 	return is_HTTPS() ? 'https:' : 'http:';

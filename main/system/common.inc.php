@@ -30,7 +30,7 @@ error_reporting(DEBUG_ENABLED ? E_ALL & !E_NOTICE & !E_STRICT : E_ERROR | E_PARS
 @ini_set('display_errors', DEBUG_ENABLED);
 
 require_once SYSTEM_ROOT.'./class/error.php';
-set_exception_handler(array('error', 'exception_error'));
+set_exception_handler(array('Crash', 'exception_error'));
 
 function class_loader($class_name, $extension = 'php'){
 	$file_path = "system/class/{$class_name}.{$extension}";
