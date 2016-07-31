@@ -214,6 +214,9 @@ if (isset($_SESSION['connected']) && $_SESSION['connected'] === true) {
 		unset($_POST['Minimum_System_Support']);
 		unset($_POST['Maxmum_System_Support']);
 
+		//	强制转换
+		$_POST['Changelog_Older_Shows'] = (int)$_POST['Changelog_Older_Shows'];
+
 		DB::update(DCRM_CON_PREFIX.'Packages', $_POST, array('ID' => $new_id));
 
 		echo '<h2>'.__('Update Database').'</h2><br />';

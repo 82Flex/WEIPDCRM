@@ -171,7 +171,7 @@ class db_mysql {
 		return $func($this->curlink);
 	}
 	function halt($message = '', $sql = '') {
-		error::db_error($message, $sql);
+		Crash::db_error($message, $sql);
 	}
 	function __destruct() {
 		$this->close();
