@@ -1,14 +1,22 @@
-# WEIPDCRM #
-Darwin Cydia Repository Manager
+<h1 align="center">WEIPDCRM </h1>
+<p align="center">Darwin Cydia Repository Manager</p>
 
 This is an open source Repository Manager for Saurik's Cydia™ Clients.  
 This program is re-designed from tibounise's "[DCRM](https://github.com/tibounise/DCRM)", and we add almost 95% functions for a wonderful repository.
 
+##WARNING 警告:
+DO NOT USE WEIPDCRM FOR DISTRIBUTE PIRATED PACKAGES AND THIS PROJECT NON-COMMERCIAL USE ONLY UNLESS YOU HAVE A COMMERCIAL LICENSE. PLEASE FOLLOW THE LICENSE TERMS.
+
+禁止将 WEIPDCRM 用于**分发盗版软件包**。根据开源许可，任何对源码的更改均需要向实际用户提供修改后的源码（包括网络分发），在未经软件作者本人同意的情况下，不得用于**商业用途**。
+
+请在使用 WEIPDCRM 前请务必仔细阅读并透彻理解开源许可与使用协议，您的任何使用行为将被视为对本项目开源许可和使用协议中全部内容的认可，否则您无权使用本项目。任何违反开源许可及使用协议的行为将被记入耻辱柱中并保留追究法律责任的权力。
+
+你可以在 [这里](https://github.com/82Flex/WEIPDCRM/wiki/Hall-of-Shame) 查阅耻辱柱名单。
+
 ##Preview:
 1.  ~~http://apt.82flex.com~~ (closed)
 2.  http://apt.touchsprite.com
-3.  http://cydia.minwenlsm.pw
-4.  http://apt.sunbelife.com
+3.  http://apt.sunbelife.com
 
 ##Requirements:
 **Minimum:**
