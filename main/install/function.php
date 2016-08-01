@@ -212,22 +212,6 @@ function dcrm_function_exists($func, $ext = false) {
 }
 
 /**
- * https检测
- */
-function is_https() {
-	if (isset($_SERVER['HTTPS']) && (strtolower($_SERVER['HTTPS']) == 'on' || $_SERVER['HTTPS'] == 1)) {
-		return TRUE;
-	}
-
-	// Nginx 专用方法检测
-	if (isset($_SERVER['SERVER_PORT']) && $_SERVER['SERVER_PORT'] == '443') {
-		return TRUE;
-	}
-
-	return FALSE;
-}
-
-/**
  * url检测
  */
 function available($url) {

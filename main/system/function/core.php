@@ -371,19 +371,19 @@ function base_url($is_subdir = false) {
 	$siteurl = htmlspecialchars('//'.$_SERVER['HTTP_HOST'].($_SERVER['SERVER_PORT'] == ('443' ||  '80') ? '' : ':'.$_SERVER['SERVER_PORT']).SITE_PATH);
 	define('SITE_URL', $siteurl);
 }
-function is_HTTPS(){  
-	if( !isset( $_SERVER['HTTPS'] ) ) return FALSE;
-	if( $_SERVER['HTTPS'] === 1 ){  // Apache
-		return TRUE;
-	} elseif ( $_SERVER['HTTPS'] === 'on' ){ // IIS
-		return TRUE;
-	} elseif ( $_SERVER['SERVER_PORT'] == 443 ){ // Other
-		return TRUE;
+function is_ssl(){  
+	if ( isset($_SERVER['HTTPS']) ) {
+		if ( 'on' == strtolower($_SERVER['HTTPS']) )
+			return true;
+		if ( '1' == $_SERVER['HTTPS'] )
+			return true;
+	} elseif ( isset($_SERVER['SERVER_PORT']) && ( '443' == $_SERVER['SERVER_PORT'] ) ) {
+		return true;
 	}
-	return FALSE;
+	return false;
 }  
 function url_scheme(){
-	return is_HTTPS() ? 'https:' : 'http:';
+	return is_ssl() ? 'https:' : 'http:';
 }
 /**
  * Move directory.

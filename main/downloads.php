@@ -38,7 +38,7 @@ if (!empty($_GET['request']) && (!empty($_SERVER['HTTP_X_UNIQUE_ID']) || DCRM_DI
 	$webserver = explode('/', $_SERVER['SERVER_SOFTWARE']);
 	// Apache URL重写模式下无法使用X-sendfile，因此在此处跳转
 	if($webserver[0] == 'Apache' && $php_forward == 1 && strstr($_SERVER["REQUEST_URI"], '/debs/') != false){
-		header('Location: '.SITE_URL.'downloads.php?request='.$r_path);
+		header('Location: '.url_scheme().SITE_URL.'downloads.php?request='.$r_path);
 		exit();
 	}
 
@@ -124,7 +124,7 @@ if (!empty($_GET['request']) && (!empty($_SERVER['HTTP_X_UNIQUE_ID']) || DCRM_DI
 					// IIS? Hehe
 					//case 'IIS':
 				}
-				header('Location: '.SITE_URL.$download_path);
+				header('Location: '.url_scheme().SITE_URL.$download_path);
 				exit();
 			}
 		} else {
