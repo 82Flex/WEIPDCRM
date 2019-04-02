@@ -1,7 +1,0 @@
-@font-face {
-font-family: UKIJTUZ;
-src: url('UKIJTUZ.TTF');
-}
-body, pinput, button, select, textarea , p{font-family: UKIJTUZ,"Helvetica Neue",Helvetica,Arial,sans-serif;}
-.manage abel, .manage input, .manage button, .manage select, .manage textarea, .manage p, .well{font-size: 16px;}
-.manage #logo, .manage #logo p{font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;}

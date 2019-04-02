@@ -1,6 +1,0 @@
-p, .changelog p{text-align:right;}
-panel > footer  > p{text-align: center;}
-panel > block{direction:rtl;}
-panel > label{direction:rtl;}
-.author p, .maintainer p, .changelog p{direction:rtl;}
-.changelog p{display:block}
